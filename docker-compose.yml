@@ -1,0 +1,34 @@
+# SQL Annotator — Docker Compose
+# Run: docker compose up -d
+# App: http://localhost:3008
+# Redis (message queue): localhost:6379
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3008:3008"
+    environment:
+      - NODE_ENV=production
+      - JWT_SECRET=${JWT_SECRET:-annotator-dev-secret-change-in-production}
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./source:/app/source:ro
+      - ./template:/app/template:ro
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+volumes:
+  redis_data:

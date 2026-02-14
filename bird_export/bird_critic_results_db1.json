@@ -1,0 +1,23 @@
+{
+  "db_id": "db-1",
+  "total": 3,
+  "passed": 0,
+  "success_rate": 0.0,
+  "results": [
+    {
+      "index": 0,
+      "success": false,
+      "error": "connection to server at \"localhost\" (::1), port 5436 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5436 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connect"
+    },
+    {
+      "index": 1,
+      "success": false,
+      "error": "connection to server at \"localhost\" (::1), port 5436 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5436 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connect"
+    },
+    {
+      "index": 2,
+      "success": false,
+      "error": "connection to server at \"localhost\" (::1), port 5436 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?\nconnection to server at \"localhost\" (127.0.0.1), port 5436 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connect"
+    }
+  ]
+}

@@ -1,0 +1,4416 @@
+{
+  "db-1": {
+    "aircraft_position_history": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "hex",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "lat",
+        "type": "double precision",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "lon",
+        "type": "double precision",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "altitude",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "speed",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "track",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "vertical_rate",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "timestamp",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": "now()"
+      }
+    ],
+    "aircraft_real": [
+      {
+        "name": "hex",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "flight",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "lat",
+        "type": "double precision",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "lon",
+        "type": "double precision",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "altitude",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "speed",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "track",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "vertical_rate",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "squawk",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "receiver_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "seen_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": "now()"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": "now()"
+      }
+    ],
+    "aircraft_sessions_real": [
+      {
+        "name": "hex",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "flight",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "receiver_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "first_seen",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "last_seen",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "ended_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": "now()"
+      }
+    ],
+    "anonymous_chat_users": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "guest_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "anonymous_chats": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "join_code",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "expires_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "anonymous_messages": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "guest_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "content",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "chat_invitations": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "inviting_user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "invited_user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "status",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "chat_participants": [
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "joined_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "chats": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "title",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "current_ai_character_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_by",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "collision_alerts": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "hex1",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "hex2",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "flight1",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "flight2",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "horizontal_distance_nm",
+        "type": "double precision",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "vertical_distance_ft",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "severity",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "detected_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": "now()"
+      },
+      {
+        "name": "resolved_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "file_attachments": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "message_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "file_name",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "file_size",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "file_type",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "file_path",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "friends": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "friend_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "status",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "messages": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "sender_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "content",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "is_ai",
+        "type": "boolean",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "ai_character_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "deleted_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "mentioned_users",
+        "type": "ARRAY",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "is_system_message",
+        "type": "boolean",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "mentions_data",
+        "type": "jsonb",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "notifications": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "type",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "title",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "message",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "data",
+        "type": "jsonb",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "read",
+        "type": "boolean",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "seen_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "profiles": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "username",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "display_name",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "avatar_url",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "ai_character_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "user_role",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "email",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "bio",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "last_username_changed_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "prompt_username_setup",
+        "type": "boolean",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "risk_assessments": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "hex1",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "hex2",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "flight1",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "flight2",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "risk_score",
+        "type": "double precision",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "horizontal_distance_nm",
+        "type": "double precision",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "vertical_distance_ft",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "closure_rate_knots",
+        "type": "double precision",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "time_to_cpa_seconds",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "risk_level",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "detected_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": "now()"
+      },
+      {
+        "name": "resolved_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      }
+    ]
+  },
+  "db-2": {
+    "affiliates_affiliatelink": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "unique_slug",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "full_url",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "custom_alias",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "is_active",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "expires_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "click_count",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "conversion_count",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "total_revenue",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "total_commission",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "last_clicked_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "marketer_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "product_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "affiliates_attributiontracking": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "cookie_id",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "session_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "attribution_model",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "click_chain",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "expires_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "converted",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "converted_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "first_click_link_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "last_click_link_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "order_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "affiliates_catalogue": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "slug",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_active",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "marketer_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "affiliates_catalogue_links": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "catalogue_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "affiliatelink_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "affiliates_clicktracking": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "ip_address",
+        "type": "inet",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "user_agent",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "device_type",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "browser",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "operating_system",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "referrer_url",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "landing_page_url",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "country_code",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "city",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "session_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "cookie_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "clicked_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_bot",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_suspicious",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "fraud_score",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "link_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "affiliates_cookieconsent": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "cookie_id",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "ip_address",
+        "type": "inet",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "user_agent",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "consent_given",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "consent_types",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "consent_given_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "consent_withdrawn_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "ai_services_aicontentlog": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "content_type",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "prompt",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "generated_content",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "platform",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "tone",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "was_used",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "feedback_rating",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "tokens_used",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "generation_time_ms",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "product_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "ai_services_productrecommendation": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "recommendation_score",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "recommendation_reason",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "match_factors",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "was_promoted",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "promoted_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "expires_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "marketer_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "product_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "analytics_activitylog": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "action",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "entity_type",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "entity_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "ip_address",
+        "type": "inet",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "user_agent",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "metadata",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "analytics_frauddetectionlog": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "entity_type",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "entity_id",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "fraud_type",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "fraud_score",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "indicators",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "action_taken",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_false_positive",
+        "type": "boolean",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "reviewed_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "detected_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "reviewed_by_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "auth_group": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "auth_group_permissions": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "group_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "permission_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "auth_permission": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "content_type_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "codename",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "authentication_user": [
+      {
+        "name": "password",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_superuser",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "email",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "role",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "full_name",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "phone_number",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "profile_image_url",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "is_verified",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_active",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_staff",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "last_login",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "bvn",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "nin",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "kyc_status",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "kyc_verified_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "bank_name",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "account_number",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "account_name",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "business_name",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "business_registration_number",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "social_media_handles",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "niche_categories",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "audience_size",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "authentication_user_groups": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "group_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "authentication_user_user_permissions": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "permission_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "commissions_commission": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "gross_sale_amount",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "commission_rate",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "commission_amount",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "platform_fee_rate",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "platform_fee_amount",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "net_commission",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "status",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "earned_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "holdback_until",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "approved_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "paid_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "reversal_reason",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "reversed_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "marketer_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "order_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "product_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "payout_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "commissions_payout": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "payout_method",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "total_amount",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "commission_count",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "bank_name",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "account_number",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "account_name",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "status",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "paystack_transfer_reference",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "transfer_code",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "failure_reason",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "requested_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "processed_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "completed_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "marketer_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "commissions_payoutcommission": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "commission_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "payout_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "django_admin_log": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "action_time",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "object_id",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "object_repr",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "action_flag",
+        "type": "smallint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "change_message",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "content_type_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "django_celery_beat_clockedschedule": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "clocked_time",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "django_celery_beat_crontabschedule": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "minute",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "hour",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "day_of_week",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "day_of_month",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "month_of_year",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "timezone",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "django_celery_beat_intervalschedule": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "every",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "period",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "django_celery_beat_periodictask": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "task",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "args",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "kwargs",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "queue",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "exchange",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "routing_key",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "expires",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "last_run_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "total_run_count",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "date_changed",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "crontab_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "interval_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "solar_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "one_off",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "start_time",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "priority",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "headers",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "clocked_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "expire_seconds",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "django_celery_beat_periodictasks": [
+      {
+        "name": "ident",
+        "type": "smallint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "last_update",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "django_celery_beat_solarschedule": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "event",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "latitude",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "longitude",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "django_celery_results_chordcounter": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "group_id",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "sub_tasks",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "count",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "django_celery_results_groupresult": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "group_id",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "date_created",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "date_done",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "content_type",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "content_encoding",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "result",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "django_celery_results_taskresult": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "task_id",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "status",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "content_type",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "content_encoding",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "result",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "date_done",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "traceback",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "meta",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "task_args",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "task_kwargs",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "task_name",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "worker",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "date_created",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "periodic_task_name",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "date_started",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "django_content_type": [
+      {
+        "name": "id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "app_label",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "model",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "django_migrations": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "app",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "applied",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "django_session": [
+      {
+        "name": "session_key",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "session_data",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "expire_date",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "notifications_notification": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "title",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "body",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_read",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "orders_cart": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_active",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "buyer_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "orders_cartitem": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "quantity",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "unit_price",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "added_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "cart_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "product_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "orders_customerorder": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "order_number",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "customer_email",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "customer_name",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "customer_phone",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "shipping_address",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "subtotal",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "shipping_fee",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "tax_amount",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "total_amount",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "payment_status",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "payment_reference",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "paystack_reference",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "paid_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "buyer_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "orders_order": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "order_number",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "customer_email",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "customer_name",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "customer_phone",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "shipping_address",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "quantity",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "unit_price",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "subtotal",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "shipping_fee",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "tax_amount",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "total_amount",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "commission_rate",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "commission_amount",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "status",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "payment_status",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "payment_method",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "payment_reference",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "paystack_reference",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "refund_status",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "refund_amount",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "refund_reason",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "refund_requested_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "refund_processed_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "attribution_cookie_id",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "notes",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "paid_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "shipped_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "delivered_at",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "marketer_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "product_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "seller_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "customer_order_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "payments_paymentlog": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "provider",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "reference",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "raw_payload",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      }
+    ],
+    "products_product": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "slug",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "short_description",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "price",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "compare_at_price",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "cost_price",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "commission_rate",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "commission_type",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "fixed_commission_amount",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "stock_quantity",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "sku",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "images",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "specifications",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_active",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "is_featured",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "min_order_quantity",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "max_order_quantity",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "weight_kg",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "dimensions",
+        "type": "jsonb",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "seo_title",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "seo_description",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "seo_keywords",
+        "type": "jsonb",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "total_sales",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "total_revenue",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "average_rating",
+        "type": "numeric",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "review_count",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "seller_id",
+        "type": "uuid",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "category_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "products_productcategory": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "slug",
+        "type": "character varying",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "is_active",
+        "type": "boolean",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "parent_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null
+      }
+    ]
+  },
+  "db-3": {
+    "table1": [
+      {
+        "name": "id",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "parent_id",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "category",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "table2": [
+      {
+        "name": "id",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "table1_id",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "related_value",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "date_col",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "table3": [
+      {
+        "name": "id",
+        "type": "text",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "table1_id",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "table2_id",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "metric_value",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "status",
+        "type": "character varying",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ]
+  },
+  "db-4": {
+    "anonymous_chat_users": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "guest_id",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "anonymous_chats": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "join_code",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "expires_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "anonymous_messages": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "guest_id",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "content",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "chat_invitations": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "inviting_user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "invited_user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "chat_participants": [
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "joined_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "chats": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "current_ai_character_id",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_by",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      }
+    ],
+    "file_attachments": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "message_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "file_name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "file_size",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "file_type",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "file_path",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "friends": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "friend_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "messages": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "chat_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "sender_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "content",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "is_ai",
+        "type": "boolean",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "ai_character_id",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "deleted_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "mentioned_users",
+        "type": "ARRAY",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "is_system_message",
+        "type": "boolean",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "mentions_data",
+        "type": "jsonb",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "notifications": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "message",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "data",
+        "type": "jsonb",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "read",
+        "type": "boolean",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "seen_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "profiles": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "username",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "display_name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "avatar_url",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "ai_character_id",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "user_role",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "email",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "bio",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "last_username_changed_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "prompt_username_setup",
+        "type": "boolean",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "prompt_username_setup": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": true,
+        "default": "gen_random_uuid()"
+      },
+      {
+        "name": "prompt_shown",
+        "type": "boolean",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ]
+  },
+  "db-5": {
+    "phppos_allocations": [
+      {
+        "name": "allocation_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_customers": [
+      {
+        "name": "person_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "company_name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "deleted",
+        "type": "integer",
+        "nullable": true,
+        "default": "0"
+      }
+    ],
+    "phppos_employee_item_kits": [
+      {
+        "name": "person_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_kit_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_employee_items": [
+      {
+        "name": "person_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_employee_items_taxes": [
+      {
+        "name": "person_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "tax_rate",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_employee_sales": [
+      {
+        "name": "sale_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "person_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_employee_sales_items": [
+      {
+        "name": "sale_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_employees": [
+      {
+        "name": "person_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "first_name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "last_name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_employees_audit": [
+      {
+        "name": "person_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "audit_time",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_employees_locations": [
+      {
+        "name": "person_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "location_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_expenses": [
+      {
+        "name": "expense_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "amount",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_giftcards": [
+      {
+        "name": "giftcard_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "value",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_inventory": [
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "location_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "quantity",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_item_kit_items": [
+      {
+        "name": "item_kit_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_item_kits": [
+      {
+        "name": "item_kit_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_items": [
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "deleted",
+        "type": "integer",
+        "nullable": true,
+        "default": "0"
+      }
+    ],
+    "phppos_items_taxes": [
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "tax_rate",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_items_tier_prices": [
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "tier_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "price",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_location_item_kits": [
+      {
+        "name": "location_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_kit_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_location_items": [
+      {
+        "name": "location_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "quantity",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_location_items_taxes": [
+      {
+        "name": "location_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "tax_rate",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_locations": [
+      {
+        "name": "location_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_people": [
+      {
+        "name": "person_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "first_name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "last_name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "deleted",
+        "type": "integer",
+        "nullable": true,
+        "default": "0"
+      }
+    ],
+    "phppos_receivings": [
+      {
+        "name": "receiving_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "supplier_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "receiving_time",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_register_log": [
+      {
+        "name": "log_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "register_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "action_time",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_sales": [
+      {
+        "name": "sale_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "customer_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "sale_time",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "location_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "deleted",
+        "type": "integer",
+        "nullable": true,
+        "default": "0"
+      }
+    ],
+    "phppos_sales_audit": [
+      {
+        "name": "sale_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "audit_time",
+        "type": "timestamp without time zone",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_sales_item_kits": [
+      {
+        "name": "sale_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_kit_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_sales_item_kits_taxes": [
+      {
+        "name": "sale_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_kit_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "tax_rate",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_sales_items": [
+      {
+        "name": "sale_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "quantity",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "unit_price",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_sales_items_taxes": [
+      {
+        "name": "sale_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "item_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "tax_rate",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_sales_payments": [
+      {
+        "name": "sale_id",
+        "type": "integer",
+        "nullable": true,
+        "default": null
+      },
+      {
+        "name": "payment_amount",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_store_accounts": [
+      {
+        "name": "account_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "balance",
+        "type": "numeric",
+        "nullable": true,
+        "default": null
+      }
+    ],
+    "phppos_suppliers": [
+      {
+        "name": "supplier_id",
+        "type": "integer",
+        "nullable": false,
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "nullable": true,
+        "default": null
+      }
+    ]
+  }
+}

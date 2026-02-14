@@ -1,0 +1,10 @@
+{
+  "annotator": {
+    "views": ["/", "/dashboard", "/admin/tasks"],
+    "canExport": false
+  },
+  "customer": {
+    "views": ["/", "/dashboard", "/suite", "/customer", "/admin/tasks"],
+    "canExport": true
+  }
+}

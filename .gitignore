@@ -32,10 +32,6 @@ test_outputs/
 
 # Next.js / Node
 .next/
-node_modules/
-
-# Vercel static DB site output (scrubbed; annotator at root)
-public/
 
 # Temporary files
 *.tmp
@@ -45,9 +41,6 @@ public/
 *.backup2
 .~lock.*
 .~lock.*#
-
-# Virtual envs (all variants)
-venv_selenium/
 
 # DB check logs (keep logs/README.md, telemetry_summary.json optional)
 logs/db_check.log
@@ -60,69 +53,13 @@ extract_from_db_zip/
 # Environment
 .env
 
-# Large data files (1GB+ per database)
-*.dump
-*.sql.gz
-*.zip
-db-*/data/data_synthetic_batch_*.sql
-db-*/data/data_synthetic_final.sql
-db-*/data/data_gov_extract*.sql
-db-*/data/data.sql
-db-*/data/data_large.sql
-db-*/data/data_large_postgresql.sql
-db-*/data/database_dump.sql
-db-*/data/full_dump.sql
-db-*/deliverable/*/data/data_large.sql
-db-*/deliverable/*/data/data_large_postgresql.sql
-
-# Extracted data files (research)
-db-*/research/extracted_data/
-db-*/research/*.csv
-
-# Notebook backups
-*.ipynb.colab_fix_backup
-*.ipynb.colab_pg_backup
-
-# Stale source database folders
-db-*/DATABASE/
-db-*/DATABASE\ */
-db-*/DOCUMENTATION/
-db-*/QUERIES/
-
-# Stale source/db-N folders (legacy, canonical is app/)
-source/db-*/DATABASE/
-source/db-*/DATABASE\ */
-source/db-*/DOCUMENTATION/
-source/db-*/LEGAL/
-source/db-*/LEGAL\ */
-
-# Source: large data files (same exclusions as db-*)
-source/db-*/data/data.sql
-source/db-*/data/internet_pulled/
-source/db-*/data/internet_transformed/
-source/db-*/data/raw_datasets/
-source/db-*/data/transformed_datasets/
-source/db-*/package/
-source/db-*/data/data_large.sql
-source/db-*/data/data_large_postgresql.sql
-source/db-*/app/DATABASE/data.sql
-source/db-*/app/DATABASE/data_large.sql
-source/db-*/app/DATABASE/data_large_postgresql.sql
-source/db-*/deliverable/*/data/data.sql
-source/db-*/deliverable/*/data/data_large.sql
-source/db-*/deliverable/*/data/data_large_postgresql.sql
-source/db-*/deliverable/data/data.sql
-source/db-*/deliverable/data/data_large.sql
-source/db-*/deliverable/data/data_large_postgresql.sql
-source/db-*/research/extracted_data/
-source/db-*/research/*.csv
-
-# Client data mirror (85GB+)
-client/
 
 # Rust (scripts/bin/checksum)
 scripts/bin/checksum/target/
 
 # Kubernetes secrets (use secret.yaml.example)
 k8s/secret.yaml
+
+# Credentials and secrets (never commit)
+results/snowflake_credentials.json
 # lib/sources-manifest.json — COMMITTED for Vercel (regenerate with: node scripts/generate-sources-manifest.js)

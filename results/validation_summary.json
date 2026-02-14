@@ -1,0 +1,36 @@
+{
+  "validation_date": "20260214-1818",
+  "databases": {
+    "db-1": {
+      "database": "db-1",
+      "start_time": "20260214-1818",
+      "phases": {
+        "phase_0_extraction": {
+          "status": "PASS"
+        },
+        "phase_1_fix_verification": {
+          "status": "PASS"
+        },
+        "phase_2_4_validation": {
+          "status": "PASS"
+        },
+        "phase_3_execution": {
+          "status": "PASS"
+        },
+        "phase_5_report": {
+          "status": "PASS"
+        }
+      },
+      "status": "PASS",
+      "end_time": "20260214-1818"
+    }
+  },
+  "summary": {
+    "total_databases": 1,
+    "passed": 1,
+    "failed": 0,
+    "partial": 0,
+    "skipped": 0,
+    "overall_status": "PASS"
+  }
+}

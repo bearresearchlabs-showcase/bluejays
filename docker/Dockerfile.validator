@@ -1,0 +1,21 @@
+# Validator image: runs db_check validate/qa-suite against PostgreSQL
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy repo (in CI, context is repo root)
+COPY scripts/ /app/scripts/
+COPY db-*/ /app/
+COPY client/ /app/client/ 2>/dev/null || true
+COPY docker/ /app/docker/ 2>/dev/null || true
+
+# Minimal structure for db_check
+RUN mkdir -p /app/db-1 /app/logs
+
+RUN pip install --no-cache-dir psycopg2-binary pyyaml jsonschema
+
+ENV PYTHONPATH=/app/scripts
+WORKDIR /app
+
+ENTRYPOINT ["python3", "scripts/db_check.py"]
+CMD ["qa-suite", "1"]

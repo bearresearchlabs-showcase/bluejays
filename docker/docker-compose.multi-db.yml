@@ -1,0 +1,331 @@
+# Multi-DB PostgreSQL instances for parallel testing db-1 through db-16
+# Ports 5436-5451 (one per database)
+# Usage: docker compose -f docker/docker-compose.multi-db.yml up -d
+# Env: load from client/.env via --env-file
+
+services:
+  postgres-db-1:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-1
+    ports:
+      - "5436:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db1
+    volumes:
+      - postgres-db-1-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-2:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-2
+    ports:
+      - "5437:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db2
+    volumes:
+      - postgres-db-2-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-3:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-3
+    ports:
+      - "5438:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db3
+    volumes:
+      - postgres-db-3-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-4:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-4
+    ports:
+      - "5439:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db4
+    volumes:
+      - postgres-db-4-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-5:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-5
+    ports:
+      - "5440:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db5
+    volumes:
+      - postgres-db-5-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-6:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-6
+    ports:
+      - "5441:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db6
+    volumes:
+      - postgres-db-6-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-7:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-7
+    ports:
+      - "5442:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db7
+    volumes:
+      - postgres-db-7-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-8:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-8
+    ports:
+      - "5443:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db8
+    volumes:
+      - postgres-db-8-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-9:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-9
+    ports:
+      - "5444:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db9
+    volumes:
+      - postgres-db-9-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-10:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-10
+    ports:
+      - "5445:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db10
+    volumes:
+      - postgres-db-10-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-11:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-11
+    ports:
+      - "5446:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db11
+    volumes:
+      - postgres-db-11-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-12:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-12
+    ports:
+      - "5447:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db12
+    volumes:
+      - postgres-db-12-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-13:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-13
+    ports:
+      - "5448:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db13
+    volumes:
+      - postgres-db-13-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-14:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-14
+    ports:
+      - "5449:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db14
+    volumes:
+      - postgres-db-14-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-15:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-15
+    ports:
+      - "5450:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db15
+    volumes:
+      - postgres-db-15-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+  postgres-db-16:
+    image: postgis/postgis:15-3.4
+    container_name: postgres-db-16
+    ports:
+      - "5451:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db16
+    volumes:
+      - postgres-db-16-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network
+
+volumes:
+  postgres-db-1-data:
+  postgres-db-2-data:
+  postgres-db-3-data:
+  postgres-db-4-data:
+  postgres-db-5-data:
+  postgres-db-6-data:
+  postgres-db-7-data:
+  postgres-db-8-data:
+  postgres-db-9-data:
+  postgres-db-10-data:
+  postgres-db-11-data:
+  postgres-db-12-data:
+  postgres-db-13-data:
+  postgres-db-14-data:
+  postgres-db-15-data:
+  postgres-db-16-data:
+
+networks:
+  db-network:
+    driver: bridge

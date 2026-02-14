@@ -1,0 +1,47 @@
+name: Sync Content from Deliverables
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  push:
+    paths:
+      - 'client/db/**/*.md'
+      - 'client/db/**/*.html'
+      - 'website-nextjs/scripts/extract-deliverable-content.js'
+
+jobs:
+  sync-content:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: website-nextjs/package.json
+      
+      - name: Install dependencies
+        working-directory: website-nextjs
+        run: npm ci
+      
+      - name: Extract content from deliverables
+        working-directory: website-nextjs
+        run: npm run sync-content
+      
+      - name: Check for changes
+        id: verify-changed-files
+        run: |
+          git diff --exit-code website-nextjs/lib/database-content.json || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add website-nextjs/lib/database-content.json
+          git commit -m "chore: sync content from deliverables [skip ci]" || exit 0
+          git push

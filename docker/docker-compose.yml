@@ -1,0 +1,236 @@
+version: '3.8'
+services:
+  db-6:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db-6
+    container_name: db-6-container
+    ports:
+    - 8886:8888
+    - 5436:5432
+    - 8506:8501
+    volumes:
+    - ../client/db/db-6:/workspace/client/db/db-6:ro
+    - ../db-6:/workspace/db/db-6:ro
+    - ../docker/notebooks:/workspace/docker/notebooks:ro
+    - db-6-data:/var/lib/postgresql/data
+    environment:
+    - PG_HOST=localhost
+    - PG_PORT=5432
+    - PG_USER=postgres
+    - PG_PASSWORD=postgres
+    - DB_NAME=db6
+    networks:
+    - db-network
+  db-7:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db-7
+    container_name: db-7-container
+    ports:
+    - 8887:8888
+    - 5437:5432
+    - 8507:8501
+    volumes:
+    - ../client/db/db-7:/workspace/client/db/db-7:ro
+    - ../db-7:/workspace/db/db-7:ro
+    - ../docker/notebooks:/workspace/docker/notebooks:ro
+    - db-7-data:/var/lib/postgresql/data
+    environment:
+    - PG_HOST=localhost
+    - PG_PORT=5432
+    - PG_USER=postgres
+    - PG_PASSWORD=postgres
+    - DB_NAME=db7
+    networks:
+    - db-network
+  db-8:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db-8
+    container_name: db-8-container
+    ports:
+    - 8888:8888
+    - 5438:5432
+    - 8508:8501
+    volumes:
+    - ../client/db/db-8:/workspace/client/db/db-8:ro
+    - ../db-8:/workspace/db/db-8:ro
+    - ../docker/notebooks:/workspace/docker/notebooks:ro
+    - db-8-data:/var/lib/postgresql/data
+    environment:
+    - PG_HOST=localhost
+    - PG_PORT=5432
+    - PG_USER=postgres
+    - PG_PASSWORD=postgres
+    - DB_NAME=db8
+    networks:
+    - db-network
+  db-9:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db-9
+    container_name: db-9-container
+    ports:
+    - 8889:8888
+    - 5439:5432
+    - 8509:8501
+    volumes:
+    - ../client/db/db-9:/workspace/client/db/db-9:ro
+    - ../db-9:/workspace/db/db-9:ro
+    - ../docker/notebooks:/workspace/docker/notebooks:ro
+    - db-9-data:/var/lib/postgresql/data
+    environment:
+    - PG_HOST=localhost
+    - PG_PORT=5432
+    - PG_USER=postgres
+    - PG_PASSWORD=postgres
+    - DB_NAME=db9
+    networks:
+    - db-network
+  db-10:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db-10
+    container_name: db-10-container
+    ports:
+    - 8890:8888
+    - 5440:5432
+    - 8510:8501
+    volumes:
+    - ../client/db/db-10:/workspace/client/db/db-10:ro
+    - ../db-10:/workspace/db/db-10:ro
+    - ../docker/notebooks:/workspace/docker/notebooks:ro
+    - db-10-data:/var/lib/postgresql/data
+    environment:
+    - PG_HOST=localhost
+    - PG_PORT=5432
+    - PG_USER=postgres
+    - PG_PASSWORD=postgres
+    - DB_NAME=db10
+    networks:
+    - db-network
+  db-11:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db-11
+    container_name: db-11-container
+    ports:
+    - 8891:8888
+    - 5441:5432
+    - 8511:8501
+    volumes:
+    - ../client/db/db-11:/workspace/client/db/db-11:ro
+    - ../db-11:/workspace/db/db-11:ro
+    - ../docker/notebooks:/workspace/docker/notebooks:ro
+    - db-11-data:/var/lib/postgresql/data
+    environment:
+    - PG_HOST=localhost
+    - PG_PORT=5432
+    - PG_USER=postgres
+    - PG_PASSWORD=postgres
+    - DB_NAME=db11
+    networks:
+    - db-network
+  db-12:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db-12
+    container_name: db-12-container
+    ports:
+    - 8892:8888
+    - 5442:5432
+    - 8512:8501
+    volumes:
+    - ../client/db/db-12:/workspace/client/db/db-12:ro
+    - ../db-12:/workspace/db/db-12:ro
+    - ../docker/notebooks:/workspace/docker/notebooks:ro
+    - db-12-data:/var/lib/postgresql/data
+    environment:
+    - PG_HOST=localhost
+    - PG_PORT=5432
+    - PG_USER=postgres
+    - PG_PASSWORD=postgres
+    - DB_NAME=db12
+    networks:
+    - db-network
+  db-13:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db-13
+    container_name: db-13-container
+    ports:
+    - 8893:8888
+    - 5443:5432
+    - 8513:8501
+    volumes:
+    - ../client/db/db-13:/workspace/client/db/db-13:ro
+    - ../db-13:/workspace/db/db-13:ro
+    - ../docker/notebooks:/workspace/docker/notebooks:ro
+    - db-13-data:/var/lib/postgresql/data
+    environment:
+    - PG_HOST=localhost
+    - PG_PORT=5432
+    - PG_USER=postgres
+    - PG_PASSWORD=postgres
+    - DB_NAME=db13
+    networks:
+    - db-network
+  db-14:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db-14
+    container_name: db-14-container
+    ports:
+    - 8894:8888
+    - 5444:5432
+    - 8514:8501
+    volumes:
+    - ../client/db/db-14:/workspace/client/db/db-14:ro
+    - ../db-14:/workspace/db/db-14:ro
+    - ../docker/notebooks:/workspace/docker/notebooks:ro
+    - db-14-data:/var/lib/postgresql/data
+    environment:
+    - PG_HOST=localhost
+    - PG_PORT=5432
+    - PG_USER=postgres
+    - PG_PASSWORD=postgres
+    - DB_NAME=db14
+    networks:
+    - db-network
+  db-15:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db-15
+    container_name: db-15-container
+    ports:
+    - 8895:8888
+    - 5445:5432
+    - 8515:8501
+    volumes:
+    - ../client/db/db-15:/workspace/client/db/db-15:ro
+    - ../db-15:/workspace/db/db-15:ro
+    - ../docker/notebooks:/workspace/docker/notebooks:ro
+    - db-15-data:/var/lib/postgresql/data
+    environment:
+    - PG_HOST=localhost
+    - PG_PORT=5432
+    - PG_USER=postgres
+    - PG_PASSWORD=postgres
+    - DB_NAME=db15
+    networks:
+    - db-network
+volumes:
+  db-6-data: null
+  db-7-data: null
+  db-8-data: null
+  db-9-data: null
+  db-10-data: null
+  db-11-data: null
+  db-12-data: null
+  db-13-data: null
+  db-14-data: null
+  db-15-data: null
+networks:
+  db-network:
+    driver: bridge

@@ -1,0 +1,15 @@
+{
+  "name": "queries-convert",
+  "version": "1.0.0",
+  "description": "Bidirectional queries.md ↔ queries.json conversion with MDX formatting",
+  "type": "module",
+  "main": "index.js",
+  "bin": { "queries-convert": "./cli.js" },
+  "scripts": {
+    "convert": "node cli.js",
+    "test": "node -e \"require('./index.js').runTests?.()\""
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "^3.0.0"
+  }
+}

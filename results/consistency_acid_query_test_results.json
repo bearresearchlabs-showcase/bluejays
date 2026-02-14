@@ -1,0 +1,3777 @@
+{
+  "test_date": "20260214-0710",
+  "postgresql": "127.0.0.1:5433",
+  "databases": {
+    "db-1": {
+      "database": "db-1",
+      "db_name": "db1",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Window Time-Series Analysis with Rolling Agg",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 21.31
+          },
+          {
+            "number": 2,
+            "title": "Segmentation Analysis with Decile Ranking",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.73
+          },
+          {
+            "number": 3,
+            "title": "Performance Quartile Distribution",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 3.85
+          },
+          {
+            "number": 4,
+            "title": "Category Revenue Distribution Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.41
+          },
+          {
+            "number": 5,
+            "title": "Velocity and Acceleration Metrics",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.18
+          },
+          {
+            "number": 6,
+            "title": "Hourly Pattern Detection and Clustering",
+            "success": true,
+            "row_count": 20,
+            "execution_time_ms": 1.67
+          },
+          {
+            "number": 7,
+            "title": "Gap Analysis with Sequential Difference",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.07
+          },
+          {
+            "number": 8,
+            "title": "Anomaly Detection Using Z-Score Windows",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.79
+          },
+          {
+            "number": 9,
+            "title": "Recency-Frequency Scoring Model",
+            "success": true,
+            "row_count": 6,
+            "execution_time_ms": 0.93
+          },
+          {
+            "number": 10,
+            "title": "Multi-Period Cohort Retention Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.05
+          },
+          {
+            "number": 11,
+            "title": "Second-Order Derivative Computation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.21
+          },
+          {
+            "number": 12,
+            "title": "Cross-Category Benchmarking with Percentiles",
+            "success": true,
+            "row_count": 20,
+            "execution_time_ms": 1.48
+          },
+          {
+            "number": 13,
+            "title": "Weighted Moving Average Pipeline",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.26
+          },
+          {
+            "number": 14,
+            "title": "Peak Period Identification and Efficiency",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.94
+          },
+          {
+            "number": 15,
+            "title": "Lifetime Value Estimation Model",
+            "success": true,
+            "row_count": 6,
+            "execution_time_ms": 1.62
+          },
+          {
+            "number": 16,
+            "title": "Year-over-Year Growth Rate Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.48
+          },
+          {
+            "number": 17,
+            "title": "Heatmap Data Generation by Dimensions",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.92
+          },
+          {
+            "number": 18,
+            "title": "Running Percentile Distribution",
+            "success": true,
+            "row_count": 20,
+            "execution_time_ms": 1.12
+          },
+          {
+            "number": 19,
+            "title": "Cross-Correlation Pattern Analysis",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 2.58
+          },
+          {
+            "number": 20,
+            "title": "Status Transition Forensic Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.28
+          },
+          {
+            "number": 21,
+            "title": "Multi-Metric Dashboard Aggregation",
+            "success": true,
+            "row_count": 6,
+            "execution_time_ms": 1.17
+          },
+          {
+            "number": 22,
+            "title": "Sequential Pattern Mining with Windows",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.04
+          },
+          {
+            "number": 23,
+            "title": "Concentration Index Computation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.91
+          },
+          {
+            "number": 24,
+            "title": "Statistical Anomaly Score Assignment",
+            "success": true,
+            "row_count": 20,
+            "execution_time_ms": 1.05
+          },
+          {
+            "number": 25,
+            "title": "Fiscal Period Comparative Reporting",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.01
+          },
+          {
+            "number": 26,
+            "title": "Throughput Optimization Metrics",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.02
+          },
+          {
+            "number": 27,
+            "title": "Cumulative Trend Analysis Pipeline",
+            "success": true,
+            "row_count": 6,
+            "execution_time_ms": 1.03
+          },
+          {
+            "number": 28,
+            "title": "Multi-Dimensional Pivot Aggregation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.94
+          },
+          {
+            "number": 29,
+            "title": "Funnel Stage Progression Tracking",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.99
+          },
+          {
+            "number": 30,
+            "title": "Outlier Detection with IQR Method",
+            "success": true,
+            "row_count": 20,
+            "execution_time_ms": 1.24
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-2": {
+      "database": "db-2",
+      "db_name": "db2",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Window Time-Series Sales Analysis with Rolli",
+            "success": true,
+            "row_count": 42,
+            "execution_time_ms": 18.62
+          },
+          {
+            "number": 2,
+            "title": "Customer Purchase Frequency Segmentation",
+            "success": true,
+            "row_count": 51,
+            "execution_time_ms": 3.12
+          },
+          {
+            "number": 3,
+            "title": "Employee Performance Quartile Ranking",
+            "success": true,
+            "row_count": 35,
+            "execution_time_ms": 1.66
+          },
+          {
+            "number": 4,
+            "title": "Payment Type Revenue Distribution",
+            "success": true,
+            "row_count": 52,
+            "execution_time_ms": 2.9
+          },
+          {
+            "number": 5,
+            "title": "Location-Based Sales Velocity",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.69
+          },
+          {
+            "number": 6,
+            "title": "Hourly Sales Pattern Detection",
+            "success": true,
+            "row_count": 47,
+            "execution_time_ms": 1.51
+          },
+          {
+            "number": 7,
+            "title": "Invoice Gap Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.01
+          },
+          {
+            "number": 8,
+            "title": "Suspended Transaction Anomaly Detection",
+            "success": true,
+            "row_count": 8,
+            "execution_time_ms": 1.64
+          },
+          {
+            "number": 9,
+            "title": "Customer Recency-Frequency Analysis",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 2.3
+          },
+          {
+            "number": 10,
+            "title": "Multi-Period Cohort Retention",
+            "success": true,
+            "row_count": 50,
+            "execution_time_ms": 2.11
+          },
+          {
+            "number": 11,
+            "title": "Sales Acceleration Rate Computation",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 1.63
+          },
+          {
+            "number": 12,
+            "title": "Cross-Location Revenue Benchmarking",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 1.81
+          },
+          {
+            "number": 13,
+            "title": "Time-Weighted Moving Average",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.6
+          },
+          {
+            "number": 14,
+            "title": "Peak Hour Identification and Staffing",
+            "success": true,
+            "row_count": 11,
+            "execution_time_ms": 1.47
+          },
+          {
+            "number": 15,
+            "title": "Customer Lifetime Value Estimation",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 1.97
+          },
+          {
+            "number": 16,
+            "title": "YoY Growth Rate with Seasonal Adjustment",
+            "success": true,
+            "row_count": 43,
+            "execution_time_ms": 1.59
+          },
+          {
+            "number": 17,
+            "title": "Transaction Velocity Heatmap Data",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.63
+          },
+          {
+            "number": 18,
+            "title": "Running Percentile Sales Distribution",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 1.86
+          },
+          {
+            "number": 19,
+            "title": "Employee Cross-Sell Effectiveness",
+            "success": true,
+            "row_count": 43,
+            "execution_time_ms": 1.84
+          },
+          {
+            "number": 20,
+            "title": "Deleted Transaction Forensic Analysis",
+            "success": true,
+            "row_count": 11,
+            "execution_time_ms": 1.42
+          },
+          {
+            "number": 21,
+            "title": "Multi-Metric Dashboard Aggregation",
+            "success": true,
+            "row_count": 74,
+            "execution_time_ms": 1.71
+          },
+          {
+            "number": 22,
+            "title": "Sequential Purchase Pattern Mining",
+            "success": true,
+            "row_count": 50,
+            "execution_time_ms": 1.66
+          },
+          {
+            "number": 23,
+            "title": "Revenue Concentration Index",
+            "success": true,
+            "row_count": 51,
+            "execution_time_ms": 1.77
+          },
+          {
+            "number": 24,
+            "title": "Anomaly Score Computation",
+            "success": true,
+            "row_count": 74,
+            "execution_time_ms": 1.89
+          },
+          {
+            "number": 25,
+            "title": "Fiscal Period Comparative Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.5
+          },
+          {
+            "number": 26,
+            "title": "Transaction Throughput Optimization",
+            "success": true,
+            "row_count": 11,
+            "execution_time_ms": 33.36
+          },
+          {
+            "number": 27,
+            "title": "Store Account Payment Trend Analysis",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 3.03
+          },
+          {
+            "number": 28,
+            "title": "Multi-Dimensional Pivot Analysis",
+            "success": true,
+            "row_count": 43,
+            "execution_time_ms": 3.15
+          },
+          {
+            "number": 29,
+            "title": "Sales Funnel Stage Progression",
+            "success": true,
+            "row_count": 51,
+            "execution_time_ms": 6.68
+          },
+          {
+            "number": 30,
+            "title": "Outlier Detection with IQR Method",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 2.96
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-3": {
+      "database": "db-3",
+      "db_name": "db3",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Window Time-Series Analysis with Rolling Agg",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 19.46
+          },
+          {
+            "number": 2,
+            "title": "Segmentation Analysis with Decile Ranking",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 2.44
+          },
+          {
+            "number": 3,
+            "title": "Performance Quartile Distribution",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 1.28
+          },
+          {
+            "number": 4,
+            "title": "Revenue Distribution by Category",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.23
+          },
+          {
+            "number": 5,
+            "title": "Velocity and Acceleration Metrics",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 1.24
+          },
+          {
+            "number": 6,
+            "title": "Hourly Pattern Detection and Clustering",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.02
+          },
+          {
+            "number": 7,
+            "title": "Gap Analysis with Sequential Difference",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.96
+          },
+          {
+            "number": 8,
+            "title": "Anomaly Detection Using Z-Score Windows",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.17
+          },
+          {
+            "number": 9,
+            "title": "Recency-Frequency-Monetary Scoring",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 1.56
+          },
+          {
+            "number": 10,
+            "title": "Multi-Period Cohort Retention Analysis",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.59
+          },
+          {
+            "number": 11,
+            "title": "Second-Order Derivative Computation",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 1.26
+          },
+          {
+            "number": 12,
+            "title": "Cross-Category Benchmarking with Percentiles",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.17
+          },
+          {
+            "number": 13,
+            "title": "Exponentially Weighted Moving Average",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 1.09
+          },
+          {
+            "number": 14,
+            "title": "Peak Period Identification and Efficiency",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 0.99
+          },
+          {
+            "number": 15,
+            "title": "Lifetime Value Estimation Model",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 1.03
+          },
+          {
+            "number": 16,
+            "title": "Year-over-Year Growth Rate Analysis",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.18
+          },
+          {
+            "number": 17,
+            "title": "Heatmap Data Generation by Time Dimensions",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 1.11
+          },
+          {
+            "number": 18,
+            "title": "Running Percentile Distribution Computation",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.19
+          },
+          {
+            "number": 19,
+            "title": "Cross-Correlation Pattern Analysis",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 1.04
+          },
+          {
+            "number": 20,
+            "title": "Forensic Analysis of Status Transitions",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.21
+          },
+          {
+            "number": 21,
+            "title": "Multi-Metric Dashboard Aggregation Pipeline",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 1.04
+          },
+          {
+            "number": 22,
+            "title": "Sequential Pattern Mining with Windows",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.26
+          },
+          {
+            "number": 23,
+            "title": "Concentration Index Computation",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.93
+          },
+          {
+            "number": 24,
+            "title": "Statistical Anomaly Score Assignment",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 0.88
+          },
+          {
+            "number": 25,
+            "title": "Fiscal Period Comparative Reporting",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.82
+          },
+          {
+            "number": 26,
+            "title": "Throughput Optimization Metrics",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 0.82
+          },
+          {
+            "number": 27,
+            "title": "Cumulative Trend Analysis Pipeline",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 0.86
+          },
+          {
+            "number": 28,
+            "title": "Multi-Dimensional Pivot Aggregation",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 0.97
+          },
+          {
+            "number": 29,
+            "title": "Funnel Stage Progression Tracking",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.89
+          },
+          {
+            "number": 30,
+            "title": "Outlier Detection with IQR Method",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 0.86
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-4": {
+      "database": "db-4",
+      "db_name": "db4",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Window Time-Series Analysis with Rolling Agg",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 18.31
+          },
+          {
+            "number": 2,
+            "title": "Segmentation Analysis with Decile Ranking",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.67
+          },
+          {
+            "number": 3,
+            "title": "Performance Quartile Distribution",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 2.92
+          },
+          {
+            "number": 4,
+            "title": "Revenue Distribution by Category",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.68
+          },
+          {
+            "number": 5,
+            "title": "Velocity and Acceleration Metrics",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.72
+          },
+          {
+            "number": 6,
+            "title": "Hourly Pattern Detection and Clustering",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 1.78
+          },
+          {
+            "number": 7,
+            "title": "Gap Analysis with Sequential Difference",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.1
+          },
+          {
+            "number": 8,
+            "title": "Anomaly Detection Using Z-Score Windows",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.95
+          },
+          {
+            "number": 9,
+            "title": "Recency-Frequency-Monetary Scoring",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 2.41
+          },
+          {
+            "number": 10,
+            "title": "Multi-Period Cohort Retention Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.6
+          },
+          {
+            "number": 11,
+            "title": "Second-Order Derivative Computation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.89
+          },
+          {
+            "number": 12,
+            "title": "Cross-Category Benchmarking with Percentiles",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 2.41
+          },
+          {
+            "number": 13,
+            "title": "Exponentially Weighted Moving Average",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.81
+          },
+          {
+            "number": 14,
+            "title": "Peak Period Identification and Efficiency",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.38
+          },
+          {
+            "number": 15,
+            "title": "Lifetime Value Estimation Model",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 2.23
+          },
+          {
+            "number": 16,
+            "title": "Year-over-Year Growth Rate Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.72
+          },
+          {
+            "number": 17,
+            "title": "Heatmap Data Generation by Time Dimensions",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.45
+          },
+          {
+            "number": 18,
+            "title": "Running Percentile Distribution Computation",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 1.78
+          },
+          {
+            "number": 19,
+            "title": "Cross-Correlation Pattern Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.74
+          },
+          {
+            "number": 20,
+            "title": "Forensic Analysis of Status Transitions",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.49
+          },
+          {
+            "number": 21,
+            "title": "Multi-Metric Dashboard Aggregation Pipeline",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 2.12
+          },
+          {
+            "number": 22,
+            "title": "Sequential Pattern Mining with Windows",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.52
+          },
+          {
+            "number": 23,
+            "title": "Concentration Index Computation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.55
+          },
+          {
+            "number": 24,
+            "title": "Statistical Anomaly Score Assignment",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 1.77
+          },
+          {
+            "number": 25,
+            "title": "Fiscal Period Comparative Reporting",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.8
+          },
+          {
+            "number": 26,
+            "title": "Throughput Optimization Metrics",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.45
+          },
+          {
+            "number": 27,
+            "title": "Cumulative Trend Analysis Pipeline",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 2.04
+          },
+          {
+            "number": 28,
+            "title": "Multi-Dimensional Pivot Aggregation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.46
+          },
+          {
+            "number": 29,
+            "title": "Funnel Stage Progression Tracking",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.62
+          },
+          {
+            "number": 30,
+            "title": "Outlier Detection with IQR Method",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 1.88
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-5": {
+      "database": "db-5",
+      "db_name": "db5",
+      "setup": {
+        "schema": true,
+        "data": false,
+        "errors": [
+          "Data: column \"first_namelast_namephone_numberemailaddress_1address_2citystate\" of relation \"phppos_people\"; column \"usernamepasswordperson_idbalancedeletedhide_from_switch_user\" of relation \"phppos_employees\"; column \"employee_idlocation_id\" of relation \"phppos_employees_locations\" does not exist\nLINE 1: INSE"
+        ]
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Window Time-Series Sales Analysis with Rolli",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 26.28
+          },
+          {
+            "number": 2,
+            "title": "Customer Purchase Frequency Segmentation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.99
+          },
+          {
+            "number": 3,
+            "title": "Employee Performance Quartile Ranking",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.35
+          },
+          {
+            "number": 4,
+            "title": "Payment Type Revenue Distribution",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 4.27
+          },
+          {
+            "number": 5,
+            "title": "Location-Based Sales Velocity",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.02
+          },
+          {
+            "number": 6,
+            "title": "Hourly Sales Pattern Detection",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.35
+          },
+          {
+            "number": 7,
+            "title": "Invoice Gap Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.28
+          },
+          {
+            "number": 8,
+            "title": "Suspended Transaction Anomaly Detection",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.53
+          },
+          {
+            "number": 9,
+            "title": "Customer Recency-Frequency Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.94
+          },
+          {
+            "number": 10,
+            "title": "Multi-Period Cohort Retention",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.68
+          },
+          {
+            "number": 11,
+            "title": "Sales Acceleration Rate Computation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.74
+          },
+          {
+            "number": 12,
+            "title": "Cross-Location Revenue Benchmarking",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.04
+          },
+          {
+            "number": 13,
+            "title": "Time-Weighted Moving Average",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.17
+          },
+          {
+            "number": 14,
+            "title": "Peak Hour Identification and Staffing",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.74
+          },
+          {
+            "number": 15,
+            "title": "Customer Lifetime Value Estimation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.61
+          },
+          {
+            "number": 16,
+            "title": "YoY Growth Rate with Seasonal Adjustment",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.55
+          },
+          {
+            "number": 17,
+            "title": "Transaction Velocity Heatmap Data",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.67
+          },
+          {
+            "number": 18,
+            "title": "Running Percentile Sales Distribution",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.72
+          },
+          {
+            "number": 19,
+            "title": "Employee Cross-Sell Effectiveness",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.66
+          },
+          {
+            "number": 20,
+            "title": "Deleted Transaction Forensic Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.72
+          },
+          {
+            "number": 21,
+            "title": "Multi-Metric Dashboard Aggregation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.65
+          },
+          {
+            "number": 22,
+            "title": "Sequential Purchase Pattern Mining",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.65
+          },
+          {
+            "number": 23,
+            "title": "Revenue Concentration Index",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.64
+          },
+          {
+            "number": 24,
+            "title": "Anomaly Score Computation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.74
+          },
+          {
+            "number": 25,
+            "title": "Fiscal Period Comparative Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.56
+          },
+          {
+            "number": 26,
+            "title": "Transaction Throughput Optimization",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.73
+          },
+          {
+            "number": 27,
+            "title": "Store Account Payment Trend Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.75
+          },
+          {
+            "number": 28,
+            "title": "Multi-Dimensional Pivot Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.6
+          },
+          {
+            "number": 29,
+            "title": "Sales Funnel Stage Progression",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.59
+          },
+          {
+            "number": 30,
+            "title": "Outlier Detection with IQR Method",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.72
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-6": {
+      "database": "db-6",
+      "db_name": "db6",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 28,
+        "failed": 2,
+        "success_rate": 93.33,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Production-Grade Spatial Weather Forecast Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 37.08
+          },
+          {
+            "number": 2,
+            "title": "Recursive Spatial Boundary Hierarchy Analysis with",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2818.38
+          },
+          {
+            "number": 3,
+            "title": "Multi-Parameter Weather Correlation Analysis with ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.6
+          },
+          {
+            "number": 4,
+            "title": "Spatial Join Optimization Analysis with Boundary-F",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.41
+          },
+          {
+            "number": 5,
+            "title": "Weather Station Network Coverage Analysis with Spa",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 4.89
+          },
+          {
+            "number": 6,
+            "title": "Forecast Accuracy Trend Analysis with Temporal Err",
+            "success": false,
+            "error": "column wo.observation_value does not exist\nLINE 33:         AND wo.observation_value IS NOT NULL\n                     ^\n",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 7,
+            "title": "Boundary Forecast Aggregation Analysis with Multi-",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 9.59
+          },
+          {
+            "number": 8,
+            "title": "Observation Forecast Validation Analysis with Accu",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.21
+          },
+          {
+            "number": 9,
+            "title": "Multi-Boundary Spatial Intersection Analysis with ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 50.61
+          },
+          {
+            "number": 10,
+            "title": "Parameter Forecast Distribution Analysis with Stat",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.78
+          },
+          {
+            "number": 11,
+            "title": "Geospatial Forecast Interpolation Analysis with Sp",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 6.06
+          },
+          {
+            "number": 12,
+            "title": "Weather Pattern Clustering Analysis with Spatial-T",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.64
+          },
+          {
+            "number": 13,
+            "title": "Forecast Model Performance Comparison with Multi-M",
+            "success": false,
+            "error": "column wo.observation_value does not exist\nLINE 52:     WHERE wo.observation_value IS NOT NULL\n                   ^\n",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 14,
+            "title": "Boundary Forecast Anomaly Detection with Statistic",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.67
+          },
+          {
+            "number": 15,
+            "title": "Insurance Risk Factor Calculation from 7-14 Day Fo",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.27
+          },
+          {
+            "number": 16,
+            "title": "Insurance Rate Table Generation from Forecast Risk",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.76
+          },
+          {
+            "number": 17,
+            "title": "Rate Table Comparison Across 7-14 Day Forecasts",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.46
+          },
+          {
+            "number": 18,
+            "title": "Historical Claims Validation Against Forecast Risk",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 9.49
+          },
+          {
+            "number": 19,
+            "title": "Rate Volatility and Stability Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.49
+          },
+          {
+            "number": 20,
+            "title": "Policy Area Risk Ranking and Comparison",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 10.52
+          },
+          {
+            "number": 21,
+            "title": "Forecast-to-Rate Impact Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 6.95
+          },
+          {
+            "number": 22,
+            "title": "Multi-Day Forecast Ensemble Rate Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 6.26
+          },
+          {
+            "number": 23,
+            "title": "Forecast Day Selection Optimization",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.34
+          },
+          {
+            "number": 24,
+            "title": "Comprehensive Insurance Rate Modeling Summary",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 6.28
+          },
+          {
+            "number": 25,
+            "title": "US-Wide NEXRAD Reflectivity Composite Generation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 13.04
+          },
+          {
+            "number": 26,
+            "title": "NEXRAD Storm Cell Tracking and Movement Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 10.19
+          },
+          {
+            "number": 27,
+            "title": "US-Wide Satellite Imagery Cloud Composite Generati",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.06
+          },
+          {
+            "number": 28,
+            "title": "NEXRAD-Satellite Data Fusion for Precipitation Est",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 10.82
+          },
+          {
+            "number": 29,
+            "title": "Satellite Fire Detection and Monitoring Across US",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.09
+          },
+          {
+            "number": 30,
+            "title": "US-Wide Composite Product Generation (NEXRAD + Sat",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 15.23
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-7": {
+      "database": "db-7",
+      "db_name": "db7",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Production-Grade Vessel Position Tracking Analysis",
+            "success": true,
+            "row_count": 6,
+            "execution_time_ms": 42.61
+          },
+          {
+            "number": 2,
+            "title": "Port Call Performance Analysis with Delay Detectio",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 5.41
+          },
+          {
+            "number": 3,
+            "title": "Route Optimization Analysis with Transit Time Comp",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 4.62
+          },
+          {
+            "number": 4,
+            "title": "Carrier Performance Metrics with On-Time Performan",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 4.11
+          },
+          {
+            "number": 5,
+            "title": "Port Statistics Aggregation with Throughput Analys",
+            "success": true,
+            "row_count": 8,
+            "execution_time_ms": 3.31
+          },
+          {
+            "number": 6,
+            "title": "Sailing Capacity Utilization Analysis with Vessel ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.98
+          },
+          {
+            "number": 7,
+            "title": "Multi-Port Route Analysis with Transshipment Detec",
+            "success": true,
+            "row_count": 15,
+            "execution_time_ms": 5.91
+          },
+          {
+            "number": 8,
+            "title": "Vessel Utilization Analysis Across Carriers with F",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 2.43
+          },
+          {
+            "number": 9,
+            "title": "Port Pair Demand Analysis with Trade Flow Intellig",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 2.76
+          },
+          {
+            "number": 10,
+            "title": "Voyage Completion Rate Analysis with Port Call Suc",
+            "success": true,
+            "row_count": 8,
+            "execution_time_ms": 3.57
+          },
+          {
+            "number": 11,
+            "title": "Carrier Route Performance Analysis with Service Qu",
+            "success": true,
+            "row_count": 6,
+            "execution_time_ms": 3.42
+          },
+          {
+            "number": 12,
+            "title": "Vessel Tracking and Position Analysis with Route D",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 79.55
+          },
+          {
+            "number": 13,
+            "title": "Port Capacity Utilization Analysis with Berth Opti",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 2.31
+          },
+          {
+            "number": 14,
+            "title": "Sailing Schedule Reliability Analysis with On-Time",
+            "success": true,
+            "row_count": 7,
+            "execution_time_ms": 3.08
+          },
+          {
+            "number": 15,
+            "title": "Carrier Market Share Analysis with Route Dominance",
+            "success": true,
+            "row_count": 7,
+            "execution_time_ms": 3.24
+          },
+          {
+            "number": 16,
+            "title": "Vessel Route Efficiency Analysis with Fuel Optimiz",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 3.14
+          },
+          {
+            "number": 17,
+            "title": "Port Call Sequence Optimization with Multi-Port Vo",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.27
+          },
+          {
+            "number": 18,
+            "title": "Vessel Performance Benchmarking with Fleet Compari",
+            "success": true,
+            "row_count": 7,
+            "execution_time_ms": 3.12
+          },
+          {
+            "number": 19,
+            "title": "Route Network Connectivity Analysis with Port Hub ",
+            "success": true,
+            "row_count": 9,
+            "execution_time_ms": 3.73
+          },
+          {
+            "number": 20,
+            "title": "Sailing Frequency Analysis with Service Consistenc",
+            "success": true,
+            "row_count": 8,
+            "execution_time_ms": 3.76
+          },
+          {
+            "number": 21,
+            "title": "Port Call Delay Prediction with Risk Assessment an",
+            "success": true,
+            "row_count": 8,
+            "execution_time_ms": 2.68
+          },
+          {
+            "number": 22,
+            "title": "Carrier Route Profitability Analysis with Revenue ",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 2.16
+          },
+          {
+            "number": 23,
+            "title": "Vessel Age and Performance Correlation Analysis wi",
+            "success": true,
+            "row_count": 7,
+            "execution_time_ms": 2.68
+          },
+          {
+            "number": 24,
+            "title": "Seasonal Demand Patterns Analysis with Peak Period",
+            "success": true,
+            "row_count": 8,
+            "execution_time_ms": 2.14
+          },
+          {
+            "number": 25,
+            "title": "Port Infrastructure Utilization Analysis with Reso",
+            "success": true,
+            "row_count": 14,
+            "execution_time_ms": 1.95
+          },
+          {
+            "number": 26,
+            "title": "Transit Time Variability Analysis with Reliability",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 2.06
+          },
+          {
+            "number": 27,
+            "title": "Port Pair Trade Volume Trends Analysis with Growth",
+            "success": true,
+            "row_count": 8,
+            "execution_time_ms": 2.21
+          },
+          {
+            "number": 28,
+            "title": "Vessel Deployment Strategy Analysis with Fleet Opt",
+            "success": true,
+            "row_count": 7,
+            "execution_time_ms": 2.06
+          },
+          {
+            "number": 29,
+            "title": "Carrier Alliance Performance Analysis with Collabo",
+            "success": true,
+            "row_count": 7,
+            "execution_time_ms": 2.0
+          },
+          {
+            "number": 30,
+            "title": "Comprehensive Maritime Intelligence Dashboard Quer",
+            "success": true,
+            "row_count": 1,
+            "execution_time_ms": 3.94
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-8": {
+      "database": "db-8",
+      "db_name": "db8",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Production-Grade AI Job Matching Engine with Multi",
+            "success": true,
+            "row_count": 33,
+            "execution_time_ms": 44.48
+          },
+          {
+            "number": 2,
+            "title": "Recursive Skill Gap Analysis with Hierarchical Ski",
+            "success": true,
+            "row_count": 100,
+            "execution_time_ms": 10.62
+          },
+          {
+            "number": 3,
+            "title": "Market Trend Analysis with Time-Series Forecasting",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 6.55
+          },
+          {
+            "number": 4,
+            "title": "Application Success Rate Analysis with Cohort Segm",
+            "success": true,
+            "row_count": 2,
+            "execution_time_ms": 3.09
+          },
+          {
+            "number": 5,
+            "title": "Company Competitive Intelligence with Market Share",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 3.48
+          },
+          {
+            "number": 6,
+            "title": "Geographic Job Market Analysis with Location Intel",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 3.53
+          },
+          {
+            "number": 7,
+            "title": "Salary Benchmarking Analysis with Percentile Ranki",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.13
+          },
+          {
+            "number": 8,
+            "title": "User Cohort Analysis with Retention Metrics and Ca",
+            "success": true,
+            "row_count": 1,
+            "execution_time_ms": 2.21
+          },
+          {
+            "number": 9,
+            "title": "Skill Demand vs Supply Analysis with Market Imbala",
+            "success": true,
+            "row_count": 1,
+            "execution_time_ms": 2.32
+          },
+          {
+            "number": 10,
+            "title": "Federal Job Opportunities Analysis with USAJobs.go",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.53
+          },
+          {
+            "number": 11,
+            "title": "Job Search Behavior Analysis with Search Pattern R",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.57
+          },
+          {
+            "number": 12,
+            "title": "Application Funnel Optimization with Conversion Ra",
+            "success": true,
+            "row_count": 3,
+            "execution_time_ms": 1.43
+          },
+          {
+            "number": 13,
+            "title": "Skill Combination Analysis with Co-occurrence Patt",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.85
+          },
+          {
+            "number": 14,
+            "title": "Time-to-Fill Analysis with Hiring Velocity Metrics",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.48
+          },
+          {
+            "number": 15,
+            "title": "Remote Work Trends Analysis with Geographic Distri",
+            "success": true,
+            "row_count": 1,
+            "execution_time_ms": 1.39
+          },
+          {
+            "number": 16,
+            "title": "Data Source Quality Analysis with Extraction Metri",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.64
+          },
+          {
+            "number": 17,
+            "title": "Job Title Normalization and Clustering with Simila",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.63
+          },
+          {
+            "number": 18,
+            "title": "Application Success Prediction with Machine Learni",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 8.21
+          },
+          {
+            "number": 19,
+            "title": "Company Growth Analysis with Hiring Trends and Exp",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.99
+          },
+          {
+            "number": 20,
+            "title": "Skill Evolution Tracking with Emerging Skills Dete",
+            "success": true,
+            "row_count": 2,
+            "execution_time_ms": 2.97
+          },
+          {
+            "number": 21,
+            "title": "Application Timing Optimization with Best Time-to-",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.67
+          },
+          {
+            "number": 22,
+            "title": "Industry Transition Analysis with Career Path Mapp",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.64
+          },
+          {
+            "number": 23,
+            "title": "Salary Negotiation Intelligence with Market Positi",
+            "success": true,
+            "row_count": 2,
+            "execution_time_ms": 2.21
+          },
+          {
+            "number": 24,
+            "title": "Job Market Saturation Analysis with Competition In",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.77
+          },
+          {
+            "number": 25,
+            "title": "User Journey Analysis with Engagement Funnels and ",
+            "success": true,
+            "row_count": 3,
+            "execution_time_ms": 1.44
+          },
+          {
+            "number": 26,
+            "title": "Recursive Career Path Analysis with Hierarchical J",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.01
+          },
+          {
+            "number": 27,
+            "title": "Multi-Dimensional Market Segmentation with Cluster",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.16
+          },
+          {
+            "number": 28,
+            "title": "Predictive Market Forecasting with Time-Series Pro",
+            "success": true,
+            "row_count": 8,
+            "execution_time_ms": 1.17
+          },
+          {
+            "number": 29,
+            "title": "Cross-Database Job Matching with Redundancy Archit",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 1.96
+          },
+          {
+            "number": 30,
+            "title": "Comprehensive Market Intelligence Dashboard with M",
+            "success": true,
+            "row_count": 1,
+            "execution_time_ms": 2.6
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-9": {
+      "database": "db-9",
+      "db_name": "db9",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 24,
+        "failed": 6,
+        "success_rate": 80.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Carrier Rate Comparison with Zone Analysis a",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 22.51
+          },
+          {
+            "number": 2,
+            "title": "Shipping Zone Analysis with Geographic Distributio",
+            "success": false,
+            "error": "recursive query \"zone_hierarchy\" column 12 has type character varying(1000) in non-recursive term but type character varying overall\nLINE 15:         ",
+            "error_type": "DatatypeMismatch"
+          },
+          {
+            "number": 3,
+            "title": "Shipment Tracking Analytics with Event Pattern Ana",
+            "success": false,
+            "error": "column spa.total_hours_since_first_event does not exist\nLINE 103:         spa.total_hours_since_first_event / 24.0 AS days_in_...\n                  ^\n",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 4,
+            "title": "Address Validation Quality Analysis with Correctio",
+            "success": true,
+            "row_count": 1,
+            "execution_time_ms": 7.43
+          },
+          {
+            "number": 5,
+            "title": "Shipping Cost Analytics with Revenue Optimization ",
+            "success": false,
+            "error": "column \"coo.potential_savings\" must appear in the GROUP BY clause or be used in an aggregate function\nLINE 142:     SUM(COALESCE(coo.potential_savings",
+            "error_type": "GroupingError"
+          },
+          {
+            "number": 6,
+            "title": "Bulk Shipping Preset Optimization with Weight Dist",
+            "success": true,
+            "row_count": 3,
+            "execution_time_ms": 6.34
+          },
+          {
+            "number": 7,
+            "title": "International Shipping Customs Analysis with Duty ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.23
+          },
+          {
+            "number": 8,
+            "title": "Shipping Adjustment Analysis with Discrepancy Dete",
+            "success": false,
+            "error": "column da.adjustment_status does not exist\nLINE 93:         COUNT(CASE WHEN da.adjustment_status = 'Disputed' TH...\n                                 ^",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 9,
+            "title": "API Rate Request Performance Analysis with Optimiz",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 2.62
+          },
+          {
+            "number": 10,
+            "title": "Shipping Analytics Dashboard with Revenue Trends a",
+            "success": true,
+            "row_count": 1,
+            "execution_time_ms": 3.7
+          },
+          {
+            "number": 11,
+            "title": "Dimensional Weight Optimization with Package Confi",
+            "success": true,
+            "row_count": 2,
+            "execution_time_ms": 3.25
+          },
+          {
+            "number": 12,
+            "title": "Shipping Zone Coverage Analysis with Geographic Ga",
+            "success": true,
+            "row_count": 7,
+            "execution_time_ms": 2.54
+          },
+          {
+            "number": 13,
+            "title": "Shipping Rate Volatility Analysis with Price Trend",
+            "success": false,
+            "error": "function date_diff(unknown, date, date) does not exist\nLINE 12:         DATE_DIFF('day', sr.effective_date, COALESCE(sr.expi...\n                 ^\nHIN",
+            "error_type": "UndefinedFunction"
+          },
+          {
+            "number": 14,
+            "title": "Carrier Service Performance Comparison with Delive",
+            "success": false,
+            "error": "function pg_catalog.extract(unknown, integer) does not exist\nLINE 23:             THEN EXTRACT(EPOCH FROM (s.actual_delivery_date ...\n                ",
+            "error_type": "UndefinedFunction"
+          },
+          {
+            "number": 15,
+            "title": "Route Optimization Analysis with Cost and Time Tra",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 1.18
+          },
+          {
+            "number": 16,
+            "title": "Shipping Cost Breakdown Analysis with Component Co",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.75
+          },
+          {
+            "number": 17,
+            "title": "Tracking Event Pattern Recognition with Anomaly De",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.66
+          },
+          {
+            "number": 18,
+            "title": "Address Validation Quality Metrics with Correction",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.64
+          },
+          {
+            "number": 19,
+            "title": "International Shipping Route Analysis with Customs",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.79
+          },
+          {
+            "number": 20,
+            "title": "Carrier Rate Comparison Matrix with Multi-Dimensio",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.76
+          },
+          {
+            "number": 21,
+            "title": "Package Dimension Optimization with Volume Efficie",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.91
+          },
+          {
+            "number": 22,
+            "title": "Shipping Zone Transit Time Analysis with Reliabili",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.96
+          },
+          {
+            "number": 23,
+            "title": "Customs Duty Optimization with Tariff Code Analysi",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.72
+          },
+          {
+            "number": 24,
+            "title": "API Rate Cache Optimization with Hit Rate Analysis",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.7
+          },
+          {
+            "number": 25,
+            "title": "Shipping Revenue Forecasting with Trend Analysis",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.7
+          },
+          {
+            "number": 26,
+            "title": "Carrier Performance Benchmarking with Industry Sta",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.73
+          },
+          {
+            "number": 27,
+            "title": "Dimensional Weight Cost Analysis with Optimization",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 1.44
+          },
+          {
+            "number": 28,
+            "title": "Shipping Route Efficiency Metrics with Performance",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.97
+          },
+          {
+            "number": 29,
+            "title": "Multi-Carrier Rate Aggregation with Best Rate Sele",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.92
+          },
+          {
+            "number": 30,
+            "title": "Comprehensive Shipping Intelligence Dashboard with",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.93
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-10": {
+      "database": "db-10",
+      "db_name": "db10",
+      "setup": {
+        "schema": true,
+        "data": false,
+        "errors": [
+          "Data: column \"retailer_idretailer_nameretailer_typewebsite_urlheadquarters_ci\" of relation \"retailers\" doe; column \"store_idretailer_idstore_namestore_numberstore_addressstore_cit\" of relation \"stores\" does n; column \"product_idskuupcproduct_namebrandmanufacturermodel_numbercatego\" of relation \"products\" does"
+        ]
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 27,
+        "failed": 3,
+        "success_rate": 90.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Retailer Price Comparison with Geographic Fi",
+            "success": false,
+            "error": "function st_within(geography, geography) does not exist\nLINE 63: ...geom IS NOT NULL AND s.store_geom IS NOT NULL AND ST_WITHIN(...\n                  ",
+            "error_type": "UndefinedFunction"
+          },
+          {
+            "number": 2,
+            "title": "Inventory Availability Prediction Using Historical",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 184:         COUNT(DISTINCT sp.store_id) OVER (\n                  ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 3,
+            "title": "Market Share Analysis with Competitive Positioning",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 18.73
+          },
+          {
+            "number": 4,
+            "title": "Deal Detection and Alert Generation with Temporal ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 4.68
+          },
+          {
+            "number": 5,
+            "title": "Product Category Trend Analysis with Seasonal Deco",
+            "success": false,
+            "error": "column \"retailer_id\" does not exist\nLINE 29:         COUNT(DISTINCT retailer_id) AS retailers_count,\n                                ^\n",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 6,
+            "title": "Marketing Intelligence Analysis Query 6",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.85
+          },
+          {
+            "number": 7,
+            "title": "Marketing Intelligence Analysis Query 7",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.87
+          },
+          {
+            "number": 8,
+            "title": "Marketing Intelligence Analysis Query 8",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.4
+          },
+          {
+            "number": 9,
+            "title": "Marketing Intelligence Analysis Query 9",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.55
+          },
+          {
+            "number": 10,
+            "title": "Marketing Intelligence Analysis Query 10",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.7
+          },
+          {
+            "number": 11,
+            "title": "Marketing Intelligence Analysis Query 11",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.44
+          },
+          {
+            "number": 12,
+            "title": "Marketing Intelligence Analysis Query 12",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.32
+          },
+          {
+            "number": 13,
+            "title": "Marketing Intelligence Analysis Query 13",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.2
+          },
+          {
+            "number": 14,
+            "title": "Marketing Intelligence Analysis Query 14",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.36
+          },
+          {
+            "number": 15,
+            "title": "Marketing Intelligence Analysis Query 15",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.46
+          },
+          {
+            "number": 16,
+            "title": "Marketing Intelligence Analysis Query 16",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.48
+          },
+          {
+            "number": 17,
+            "title": "Marketing Intelligence Analysis Query 17",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.66
+          },
+          {
+            "number": 18,
+            "title": "Marketing Intelligence Analysis Query 18",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.57
+          },
+          {
+            "number": 19,
+            "title": "Marketing Intelligence Analysis Query 19",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.58
+          },
+          {
+            "number": 20,
+            "title": "Marketing Intelligence Analysis Query 20",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.63
+          },
+          {
+            "number": 21,
+            "title": "Marketing Intelligence Analysis Query 21",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.77
+          },
+          {
+            "number": 22,
+            "title": "Marketing Intelligence Analysis Query 22",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.47
+          },
+          {
+            "number": 23,
+            "title": "Marketing Intelligence Analysis Query 23",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.46
+          },
+          {
+            "number": 24,
+            "title": "Marketing Intelligence Analysis Query 24",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.36
+          },
+          {
+            "number": 25,
+            "title": "Marketing Intelligence Analysis Query 25",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.44
+          },
+          {
+            "number": 26,
+            "title": "Marketing Intelligence Analysis Query 26",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.53
+          },
+          {
+            "number": 27,
+            "title": "Marketing Intelligence Analysis Query 27",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.54
+          },
+          {
+            "number": 28,
+            "title": "Marketing Intelligence Analysis Query 28",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.78
+          },
+          {
+            "number": 29,
+            "title": "Marketing Intelligence Analysis Query 29",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.61
+          },
+          {
+            "number": 30,
+            "title": "Marketing Intelligence Analysis Query 30",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.47
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-11": {
+      "database": "db-11",
+      "db_name": "db11",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Dimensional Market Demand Analysis with Geog",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 29.59
+          },
+          {
+            "number": 2,
+            "title": "Competitive Intelligence Analysis with Pricing Str",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 74.52
+          },
+          {
+            "number": 3,
+            "title": "Event-Based Parking Demand Forecasting with Multi-",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 3.99
+          },
+          {
+            "number": 4,
+            "title": "Airport Parking Revenue Optimization with Passenge",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 3.0
+          },
+          {
+            "number": 5,
+            "title": "Traffic Volume Correlation Analysis with Parking D",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.56
+          },
+          {
+            "number": 6,
+            "title": "Demographic Targeting Analysis with Income-Based P",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.74
+          },
+          {
+            "number": 7,
+            "title": "Market Segmentation Analysis with Multi-Dimensiona",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 2.67
+          },
+          {
+            "number": 8,
+            "title": "Utilization Pattern Analysis with Temporal Decompo",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.18
+          },
+          {
+            "number": 9,
+            "title": "Geographic Expansion Analysis with Market Opportun",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 3.11
+          },
+          {
+            "number": 10,
+            "title": "Revenue Forecasting Models with Time-Series Analys",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 3.22
+          },
+          {
+            "number": 11,
+            "title": "Competitive Positioning Analysis with Market Share",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.44
+          },
+          {
+            "number": 12,
+            "title": "Business District Analysis with Parking Demand Cor",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.33
+          },
+          {
+            "number": 13,
+            "title": "Monthly Parking Optimization with Customer Lifetim",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.49
+          },
+          {
+            "number": 14,
+            "title": "EV Charging Facility Analysis with Demand Forecast",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.27
+          },
+          {
+            "number": 15,
+            "title": "Reservation vs Walk-in Analysis with Revenue Optim",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.77
+          },
+          {
+            "number": 16,
+            "title": "Peak Hour Analysis with Dynamic Pricing Optimizati",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.3
+          },
+          {
+            "number": 17,
+            "title": "Weekend vs Weekday Pattern Analysis with Pricing S",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.86
+          },
+          {
+            "number": 18,
+            "title": "Facility Type Optimization with Performance Benchm",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.38
+          },
+          {
+            "number": 19,
+            "title": "Operator Type Analysis with Market Share and Compe",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.44
+          },
+          {
+            "number": 20,
+            "title": "Multi-City Comparison Analysis with Performance Be",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.59
+          },
+          {
+            "number": 21,
+            "title": "MSA-Level Aggregation Analysis with Regional Marke",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.61
+          },
+          {
+            "number": 22,
+            "title": "Time-Series Forecasting with Seasonal Decompositio",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.22
+          },
+          {
+            "number": 23,
+            "title": "Anomaly Detection Analysis with Statistical Method",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.04
+          },
+          {
+            "number": 24,
+            "title": "Customer Segmentation Analysis with Behavioral Pat",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.04
+          },
+          {
+            "number": 25,
+            "title": "Price Elasticity Analysis with Demand Response Mod",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.38
+          },
+          {
+            "number": 26,
+            "title": "Supply-Demand Gap Analysis with Capacity Planning ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.42
+          },
+          {
+            "number": 27,
+            "title": "Market Penetration Analysis with Growth Metrics an",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.36
+          },
+          {
+            "number": 28,
+            "title": "Revenue Per Square Foot Analysis with Facility Eff",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.82
+          },
+          {
+            "number": 29,
+            "title": "Comprehensive Market Intelligence Dashboard with M",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.21
+          },
+          {
+            "number": 30,
+            "title": "Cross-Database Performance Optimization Analysis w",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.17
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-12": {
+      "database": "db-12",
+      "db_name": "db12",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 3,
+        "failed": 27,
+        "success_rate": 10.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Dimensional Rewards Optimization Analysis wi",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 28.55
+          },
+          {
+            "number": 2,
+            "title": "Location-Based Card Recommendations with Geospatia",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 27.26
+          },
+          {
+            "number": 3,
+            "title": "Bank Offers Optimization and Activation Tracking w",
+            "success": false,
+            "error": "function datediff(unknown, date, date) does not exist\nLINE 46:         DATEDIFF('day', CURRENT_DATE, bo.offer_end_date) AS ...\n                 ^\nHINT",
+            "error_type": "UndefinedFunction"
+          },
+          {
+            "number": 4,
+            "title": "CFPB Consumer Complaint Analysis with Issuer Risk ",
+            "success": false,
+            "error": "column fc.resolution_rate_pct does not exist\nLINE 169:         fc.resolution_rate_pct,\n                  ^\nHINT:  Perhaps you meant to reference the c",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 5,
+            "title": "Federal Reserve Credit Data Trend Analysis with Ma",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 3.46
+          },
+          {
+            "number": 6,
+            "title": "Chase 5/24 Rule Tracking with Application Strategy",
+            "success": false,
+            "error": "recursive query \"application_history\" column 8 has type character varying(255)[] in non-recursive term but type character varying[] overall\nLINE 11:  ",
+            "error_type": "DatatypeMismatch"
+          },
+          {
+            "number": 7,
+            "title": "Annual Fee Optimization with Card Renewal Value An",
+            "success": false,
+            "error": "function datediff(unknown, date, date) does not exist\nLINE 17:                 DATEDIFF('day', CURRENT_DATE, uc.next_annual...\n                       ",
+            "error_type": "UndefinedFunction"
+          },
+          {
+            "number": 8,
+            "title": "Signup Bonus Tracking and Optimization with Minimu",
+            "success": false,
+            "error": "syntax error at or near \"cc\"\nLINE 12: ...       DATE_ADD(uc.account_opening_date, INTERVAL cc.signup_...\n                                             ",
+            "error_type": "SyntaxError"
+          },
+          {
+            "number": 9,
+            "title": "Merchant-Specific Card Recommendations with Histor",
+            "success": false,
+            "error": "column mcr.transaction_count does not exist\nLINE 106:             WHEN mcr.transaction_count >= 10 THEN 100\n                           ^\n",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 10,
+            "title": "Category Bonus Period Optimization with Quarterly ",
+            "success": false,
+            "error": "function datediff(unknown, date, date) does not exist\nLINE 14:         DATEDIFF('day', CURRENT_DATE, crs.effective_end_date...\n                 ^\nHINT",
+            "error_type": "UndefinedFunction"
+          },
+          {
+            "number": 11,
+            "title": "Spending Category Analysis with Optimization Oppor",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 12,
+            "title": "Card Portfolio Diversification Analysis",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 13,
+            "title": "Foreign Transaction Fee Optimization",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 14,
+            "title": "Authorized User Fee Analysis",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 15,
+            "title": "Credit Limit Utilization Optimization",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 16,
+            "title": "Rewards Redemption Value Analysis",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 17,
+            "title": "Transfer Partner Analysis",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 18,
+            "title": "Card Upgrade/Downgrade Recommendations",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 19,
+            "title": "Spending Limit Tracking",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 20,
+            "title": "Multi-Profile Card Management",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 21,
+            "title": "Offer Expiration Tracking",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 22,
+            "title": "Rewards Statement Credit Analysis",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 23,
+            "title": "Card Network Optimization",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 24,
+            "title": "Metal Card Value Analysis",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 25,
+            "title": "Business Card Optimization",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 26,
+            "title": "Secured Card Graduation Tracking",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 27,
+            "title": "Credit Score Impact Analysis",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 28,
+            "title": "Rewards Expiration Tracking",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 29,
+            "title": "Card Agreement Comparison",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          },
+          {
+            "number": 30,
+            "title": "Comprehensive Portfolio Health Score",
+            "success": false,
+            "error": "DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issue...\n                 ^\n",
+            "error_type": "FeatureNotSupported"
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-13": {
+      "database": "db-13",
+      "db_name": "db13",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Model Performance Comparison with Intelligen",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 19.32
+          },
+          {
+            "number": 2,
+            "title": "Model Pricing Trend Analysis with Market Share Imp",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.48
+          },
+          {
+            "number": 3,
+            "title": "Benchmark Evaluation Performance Across Model Fami",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 2.67
+          },
+          {
+            "number": 4,
+            "title": "Government Benchmark Compliance Tracking with Risk",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.48
+          },
+          {
+            "number": 5,
+            "title": "Model Adoption Prediction with Performance Correla",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.43
+          },
+          {
+            "number": 6,
+            "title": "Model Performance Trajectory Analysis with Tempora",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.84
+          },
+          {
+            "number": 7,
+            "title": "Model Market Share Evolution with Competitive Dyna",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.07
+          },
+          {
+            "number": 8,
+            "title": "Benchmark Performance Correlation Matrix with Cros",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.96
+          },
+          {
+            "number": 9,
+            "title": "Pricing Strategy Impact Analysis with Revenue Opti",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.84
+          },
+          {
+            "number": 10,
+            "title": "Model Family Performance Comparison with Statistic",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.75
+          },
+          {
+            "number": 11,
+            "title": "Government Compliance Scorecard with Regulatory Ri",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.88
+          },
+          {
+            "number": 12,
+            "title": "Adoption Prediction Model with Performance Correla",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.83
+          },
+          {
+            "number": 13,
+            "title": "Benchmark Leaderboard with Dynamic Ranking and Tie",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.84
+          },
+          {
+            "number": 14,
+            "title": "Performance-Price Optimization Analysis with ROI C",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.87
+          },
+          {
+            "number": 15,
+            "title": "Model Comparison Matrix with Multi-Dimensional Sco",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.91
+          },
+          {
+            "number": 16,
+            "title": "Temporal Performance Forecasting with Trend Projec",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.81
+          },
+          {
+            "number": 17,
+            "title": "Market Intelligence Aggregation with Competitive P",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.86
+          },
+          {
+            "number": 18,
+            "title": "Benchmark Evaluation Quality Assessment with Stati",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.81
+          },
+          {
+            "number": 19,
+            "title": "Model Adoption Funnel Analysis with Conversion Met",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.67
+          },
+          {
+            "number": 20,
+            "title": "Performance Benchmark Gap Analysis with Improvemen",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.79
+          },
+          {
+            "number": 21,
+            "title": "Pricing Elasticity Analysis with Demand Forecastin",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.64
+          },
+          {
+            "number": 22,
+            "title": "Cross-Benchmark Performance Consistency Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.66
+          },
+          {
+            "number": 23,
+            "title": "Model Lifecycle Performance Tracking with Stage Cl",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.6
+          },
+          {
+            "number": 24,
+            "title": "Competitive Intelligence Dashboard with Market Dyn",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.69
+          },
+          {
+            "number": 25,
+            "title": "Benchmark Evaluation Reliability Scoring with Conf",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.76
+          },
+          {
+            "number": 26,
+            "title": "Model Performance Anomaly Detection with Outlier A",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.72
+          },
+          {
+            "number": 27,
+            "title": "Market Penetration Analysis with Geographic and De",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.61
+          },
+          {
+            "number": 28,
+            "title": "Performance Optimization Recommendations with Cost",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.66
+          },
+          {
+            "number": 29,
+            "title": "Comprehensive Model Evaluation Report with Multi-D",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.7
+          },
+          {
+            "number": 30,
+            "title": "Strategic Model Selection Framework with Use Case ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.77
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-14": {
+      "database": "db-14",
+      "db_name": "db14",
+      "setup": {
+        "schema": true,
+        "data": false,
+        "errors": [
+          "Data: column \"provider_idprovider_nameprovider_display_nameapi_base_urlpricin\" of relation \"cloud_provider; column \"region_idprovider_idregion_coderegion_nameregion_display_nameco\" of relation \"cloud_regions\"; column \"region_idprovider_idregion_coderegion_nameregion_display_nameco\" of relation \"cloud_regions\""
+        ]
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Provider Cost-Performance Analysis with Recu",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 25.51
+          },
+          {
+            "number": 2,
+            "title": "Historical Pricing Trend Analysis with Recursive C",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 3.61
+          },
+          {
+            "number": 3,
+            "title": "Reserved Instance ROI Analysis with Multi-Year Pro",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.42
+          },
+          {
+            "number": 4,
+            "title": "Spot Instance Cost-Benefit Analysis with Risk Mode",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.29
+          },
+          {
+            "number": 5,
+            "title": "Regional Pricing Optimization with Cross-Region Co",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.34
+          },
+          {
+            "number": 6,
+            "title": "Performance-Cost Correlation Analysis with Statist",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.26
+          },
+          {
+            "number": 7,
+            "title": "Instance Family Cost Efficiency Ranking",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.39
+          },
+          {
+            "number": 8,
+            "title": "Cost Forecasting with Time-Series Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.26
+          },
+          {
+            "number": 9,
+            "title": "Multi-Cloud Migration Cost Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.33
+          },
+          {
+            "number": 10,
+            "title": "Long-Term Cost Projections with DCF Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.23
+          },
+          {
+            "number": 11,
+            "title": "Instance Right-Sizing Recommendations",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.22
+          },
+          {
+            "number": 12,
+            "title": "Cost Anomaly Detection with Statistical Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.25
+          },
+          {
+            "number": 13,
+            "title": "Reserved Instance Purchase Optimization",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.32
+          },
+          {
+            "number": 14,
+            "title": "Spot Instance Interruption Risk Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.3
+          },
+          {
+            "number": 15,
+            "title": "Cross-Provider Instance Matching",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.23
+          },
+          {
+            "number": 16,
+            "title": "Cost-Performance Pareto Frontier Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.53
+          },
+          {
+            "number": 17,
+            "title": "Instance Deprecation Impact Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.24
+          },
+          {
+            "number": 18,
+            "title": "Burstable Instance Cost Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.22
+          },
+          {
+            "number": 19,
+            "title": "GPU Instance Cost Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.25
+          },
+          {
+            "number": 20,
+            "title": "Storage Cost Optimization",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.2
+          },
+          {
+            "number": 21,
+            "title": "Network Cost Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.23
+          },
+          {
+            "number": 22,
+            "title": "Cost Allocation Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.25
+          },
+          {
+            "number": 23,
+            "title": "Instance Lifecycle Cost Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.26
+          },
+          {
+            "number": 24,
+            "title": "Cost Optimization Score Calculation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.28
+          },
+          {
+            "number": 25,
+            "title": "Instance Comparison Matrix Generation",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.28
+          },
+          {
+            "number": 26,
+            "title": "Recursive Instance Dependency Graph Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.1
+          },
+          {
+            "number": 27,
+            "title": "Reserved Instance Utilization Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.26
+          },
+          {
+            "number": 28,
+            "title": "Spot Instance Price Volatility Analysis",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.23
+          },
+          {
+            "number": 29,
+            "title": "Cross-Region Cost Comparison",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.23
+          },
+          {
+            "number": 30,
+            "title": "Comprehensive Cost  Dashboard",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.2
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-15": {
+      "database": "db-15",
+      "db_name": "db15",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 16,
+        "failed": 14,
+        "success_rate": 53.33,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Multi-Level Electricity Rate Analysis with Geograp",
+            "success": true,
+            "row_count": 6,
+            "execution_time_ms": 27.49
+          },
+          {
+            "number": 2,
+            "title": "Recursive Rate Structure Analysis with Tiered Rate",
+            "success": false,
+            "error": "recursive query \"tiered_rate_calculations\" column 12 has type integer in non-recursive term but type numeric overall\nLINE 20:         0 AS cumulative_",
+            "error_type": "DatatypeMismatch"
+          },
+          {
+            "number": 3,
+            "title": "Comprehensive Solar Rebate Aggregation and Optimiz",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.57
+          },
+          {
+            "number": 4,
+            "title": "Historical Rate Trend Analysis with Time-Series Fo",
+            "success": false,
+            "error": "function pg_catalog.extract(unknown, integer) does not exist\nLINE 22:         EXTRACT(EPOCH FROM (her.effective_date - MIN(her.eff...\n                ",
+            "error_type": "UndefinedFunction"
+          },
+          {
+            "number": 5,
+            "title": "Geographic Rate Comparison Matrix with Cross-State",
+            "success": false,
+            "error": "column mi.region does not exist\nLINE 145:         mi.region,\n                  ^\nHINT:  Perhaps you meant to reference the column \"s.region\".\n",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 6,
+            "title": "Utility Performance Benchmarking with Rate Competi",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 4.64
+          },
+          {
+            "number": 7,
+            "title": "Rate Code Market Share Analysis with Utility Distr",
+            "success": false,
+            "error": "column \"rc.rate_code_id\" must appear in the GROUP BY clause or be used in an aggregate function\nLINE 4:         rc.rate_code_id,\n                ^\n",
+            "error_type": "GroupingError"
+          },
+          {
+            "number": 8,
+            "title": "Solar Rebate ROI Analysis with Payback Period Calc",
+            "success": false,
+            "error": "column npva.year_num does not exist\nLINE 150:     WHERE npva.year_num = 1\n                    ^\n",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 9,
+            "title": "Cross-State Rate Comparison with Regional Market D",
+            "success": false,
+            "error": "syntax error at or near \"ON\"\nLINE 111:     CROSS JOIN regional_benchmarks rb ON srs.region = rb.reg...\n                                               ",
+            "error_type": "SyntaxError"
+          },
+          {
+            "number": 10,
+            "title": "Rate Structure Complexity Analysis with Multi-Tier",
+            "success": false,
+            "error": "column rs.rate_structure_type does not exist\nLINE 8:         rs.rate_structure_type,\n                ^\nHINT:  Perhaps you meant to reference the colum",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 11,
+            "title": "Historical Rebate Trend Analysis with Incentive Ex",
+            "success": false,
+            "error": "function pg_catalog.extract(unknown, integer) does not exist\nLINE 12:         EXTRACT(EPOCH FROM (fi.expiration_date - fi.effectiv...\n                ",
+            "error_type": "UndefinedFunction"
+          },
+          {
+            "number": 12,
+            "title": "Geographic Rate Optimization with Zip Code Level A",
+            "success": false,
+            "error": "column gra.utility_id does not exist\nLINE 13:         COUNT(DISTINCT gra.utility_id) AS utilities_serving_...\n                                ^\nHINT: ",
+            "error_type": "UndefinedColumn"
+          },
+          {
+            "number": 13,
+            "title": "Utility Rate Portfolio Analysis with Rate Code Div",
+            "success": false,
+            "error": "column reference \"diversity_score\" is ambiguous\nLINE 93:     diversity_score, portfolio_completeness, rate_range_dive...\n             ^\n",
+            "error_type": "AmbiguousColumn"
+          },
+          {
+            "number": 14,
+            "title": "Solar Installation Economics with Net Metering Ana",
+            "success": false,
+            "error": "column reference \"annual_savings\" is ambiguous\nLINE 103:     annual_savings, payback_period_years, total_rebates, net...\n              ^\n",
+            "error_type": "AmbiguousColumn"
+          },
+          {
+            "number": 15,
+            "title": "Rate Volatility Analysis with Risk Assessment Metr",
+            "success": false,
+            "error": "column reference \"avg_rate_3yr\" is ambiguous\nLINE 80:     months_analyzed, avg_rate_3yr, rate_volatility, coeffici...\n                              ^\n",
+            "error_type": "AmbiguousColumn"
+          },
+          {
+            "number": 16,
+            "title": "Market Segmentation Analysis with Rate Type Distri",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.11
+          },
+          {
+            "number": 17,
+            "title": "Cross-Utility Rate Comparison with Competitive Pos",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1.0
+          },
+          {
+            "number": 18,
+            "title": "Rebate Stacking Optimization with Maximum Savings ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.95
+          },
+          {
+            "number": 19,
+            "title": "Rate Code Adoption Analysis with Utility Market Pe",
+            "success": true,
+            "row_count": 6,
+            "execution_time_ms": 0.88
+          },
+          {
+            "number": 20,
+            "title": "Geographic Rebate Analysis with State-Level Aggreg",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 0.77
+          },
+          {
+            "number": 21,
+            "title": "Rate Trend Forecasting with Predictive Analytics",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 0.78
+          },
+          {
+            "number": 22,
+            "title": "Utility Rate Strategy Analysis with Rate Code Port",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 0.58
+          },
+          {
+            "number": 23,
+            "title": "Solar Rebate Market Analysis with Incentive Availa",
+            "success": true,
+            "row_count": 10,
+            "execution_time_ms": 1.21
+          },
+          {
+            "number": 24,
+            "title": "Cross-Regional Rate Comparison with Market Share A",
+            "success": true,
+            "row_count": 4,
+            "execution_time_ms": 0.54
+          },
+          {
+            "number": 25,
+            "title": "Rate Structure Performance Analysis with Cost Effi",
+            "success": true,
+            "row_count": 6,
+            "execution_time_ms": 0.98
+          },
+          {
+            "number": 26,
+            "title": "Recursive Rate Code Hierarchy Analysis with Multi-",
+            "success": false,
+            "error": "recursive query \"rate_code_hierarchy\" column 7 has type character varying(255)[] in non-recursive term but type character varying[] overall\nLINE 9:   ",
+            "error_type": "DatatypeMismatch"
+          },
+          {
+            "number": 27,
+            "title": "Comprehensive Rate Analysis Dashboard with Multi-D",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 1.08
+          },
+          {
+            "number": 28,
+            "title": "Solar Rebate Competitive Analysis with Market Posi",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 0.55
+          },
+          {
+            "number": 29,
+            "title": "Geographic Rate Clustering Analysis with Regional ",
+            "success": true,
+            "row_count": 5,
+            "execution_time_ms": 0.56
+          },
+          {
+            "number": 30,
+            "title": "Enterprise Rate Optimization Platform with Compreh",
+            "success": false,
+            "error": "column reference \"monthly_cost_1000kwh\" is ambiguous\nLINE 55:     monthly_cost_1000kwh, monthly_cost_2000kwh,\n             ^\n",
+            "error_type": "AmbiguousColumn"
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-16": {
+      "database": "db-16",
+      "db_name": "db16",
+      "setup": {
+        "schema": true,
+        "data": true,
+        "errors": []
+      },
+      "acid": {
+        "atomicity": true,
+        "consistency": true,
+        "isolation": true,
+        "durability": true
+      },
+      "queries": {
+        "total": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "queries": [
+          {
+            "number": 1,
+            "title": "Pre-Acquisition Multi-Factor Flood Risk Assessment",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 34584.28
+          },
+          {
+            "number": 2,
+            "title": "Acquisition Target Portfolio Risk Analysis with Ge",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1447.75
+          },
+          {
+            "number": 3,
+            "title": "Historical Flood Event Due Diligence Analysis with",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 5.66
+          },
+          {
+            "number": 4,
+            "title": "Sea Level Rise Impact Projections for Coastal Acqu",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 766.16
+          },
+          {
+            "number": 5,
+            "title": "Streamflow Flood Frequency Analysis with Gauge Net",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 525.34
+          },
+          {
+            "number": 6,
+            "title": "NASA Flood Model Performance Evaluation with Advan",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 42.84
+          },
+          {
+            "number": 7,
+            "title": "Property-Flood Zone Intersection Analysis with Adv",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 30.64
+          },
+          {
+            "number": 8,
+            "title": "Risk Trend Analysis Over Time with Advanced Analyt",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 30.04
+          },
+          {
+            "number": 9,
+            "title": "Geographic Risk Clustering with Advanced Analytics",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 28.72
+          },
+          {
+            "number": 10,
+            "title": "Property Vulnerability Scoring with Advanced Analy",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 26.32
+          },
+          {
+            "number": 11,
+            "title": "Financial Impact Modeling for M&A Acquisition Pric",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 27.24
+          },
+          {
+            "number": 12,
+            "title": "FEMA Flood Zone Risk Classification with Advanced ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 26.3
+          },
+          {
+            "number": 13,
+            "title": "NOAA Sea Level Rise Scenario Comparison with Advan",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 25.61
+          },
+          {
+            "number": 14,
+            "title": "USGS Streamflow Historical Pattern Recognition wit",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 26.23
+          },
+          {
+            "number": 15,
+            "title": "NASA Model Prediction Accuracy Assessment with Adv",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 27.63
+          },
+          {
+            "number": 16,
+            "title": "Acquisition Target Portfolio Risk Summary Generati",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 27.62
+          },
+          {
+            "number": 17,
+            "title": "Data Quality Metrics Analysis with Advanced Analyt",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 24.35
+          },
+          {
+            "number": 18,
+            "title": "Spatial Join Optimization with Advanced Analytics",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 26.19
+          },
+          {
+            "number": 19,
+            "title": "Multi-Source Risk Score Fusion with Advanced Analy",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 25.95
+          },
+          {
+            "number": 20,
+            "title": "Temporal Risk Projection Analysis with Advanced An",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 27.3
+          },
+          {
+            "number": 21,
+            "title": "Property Elevation vs Flood Risk Correlation with ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 25.85
+          },
+          {
+            "number": 22,
+            "title": "Historical Flood Event Impact Assessment with Adva",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 27.43
+          },
+          {
+            "number": 23,
+            "title": "Model Performance Comparison with Advanced Analyti",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 26.1
+          },
+          {
+            "number": 24,
+            "title": "Geographic Risk Distribution Analysis with Advance",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 28.83
+          },
+          {
+            "number": 25,
+            "title": "Property Type Risk Analysis with Advanced Analytic",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 27.49
+          },
+          {
+            "number": 26,
+            "title": "Recursive Flood Risk Propagation with Advanced Ana",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 1527.23
+          },
+          {
+            "number": 27,
+            "title": "High-Risk Property Identification for M&A Deal-Bre",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 26.14
+          },
+          {
+            "number": 28,
+            "title": "Post-Acquisition Risk Mitigation Cost-Benefit Anal",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 26.19
+          },
+          {
+            "number": 29,
+            "title": "Acquisition Target Portfolio Diversification Risk ",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 27.27
+          },
+          {
+            "number": 30,
+            "title": "M&A Due Diligence Comprehensive Flood Risk Assessm",
+            "success": true,
+            "row_count": 0,
+            "execution_time_ms": 26.2
+          }
+        ]
+      },
+      "overall": "PASS"
+    },
+    "db-17": {
+      "database": "db-17",
+      "db_name": "db17",
+      "setup": {
+        "schema": false,
+        "data": false,
+        "errors": [
+          "schema.sql not found"
+        ]
+      },
+      "acid": {},
+      "queries": {},
+      "overall": "FAILED"
+    }
+  },
+  "summary": {
+    "databases_tested": 17,
+    "databases_passed": 16,
+    "total_queries": 480,
+    "queries_successful": 428,
+    "overall_query_success_rate": 89.17
+  }
+}

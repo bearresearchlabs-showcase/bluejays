@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-validation-config
+  namespace: db-validation
+  labels:
+    app: db-validation
+data:
+  KUBE_NAMESPACE: "db-validation"
+  KUBE_PARALLEL_JOBS: "4"
+  PG_USER: "postgres"
+  PG_DATABASE: "postgres"
+  REPO_URL: "https://github.com/1digitaldesign/db.git"
+  # PG_HOST, PG_PORT, PG_PASSWORD from Secret or env override

@@ -1,0 +1,235 @@
+{
+  "databases": {
+    "db-1": {
+      "checkout": "OK",
+      "format": "FAIL",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-1"
+      }
+    },
+    "db-2": {
+      "checkout": "OK",
+      "format": "FAIL",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-2"
+      }
+    },
+    "db-3": {
+      "checkout": "OK",
+      "format": "FAIL",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-3"
+      }
+    },
+    "db-4": {
+      "checkout": "OK",
+      "format": "FAIL",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-4"
+      }
+    },
+    "db-5": {
+      "checkout": "OK",
+      "format": "FAIL",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-5"
+      }
+    },
+    "db-6": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-6"
+      }
+    },
+    "db-7": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-7"
+      }
+    },
+    "db-8": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-8"
+      }
+    },
+    "db-9": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-9"
+      }
+    },
+    "db-10": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-10"
+      }
+    },
+    "db-11": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-11"
+      }
+    },
+    "db-12": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-12"
+      }
+    },
+    "db-13": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-13"
+      }
+    },
+    "db-14": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-14"
+      }
+    },
+    "db-15": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-15"
+      }
+    },
+    "db-16": {
+      "checkout": "OK",
+      "format": "OK",
+      "compliance": "OK",
+      "integrity": "OK",
+      "bird_workbench": "OK",
+      "audit": {
+        "Pass": 1,
+        "missing": [],
+        "issues": [],
+        "extras": [],
+        "path": "/Users/machine/Documents/AQ/db/source/db-16"
+      }
+    }
+  },
+  "summary": {
+    "formatted": 11,
+    "compliance_ok": 16,
+    "integrity_ok": 16,
+    "bird_ok": 16,
+    "audit_ok": 16
+  }
+}

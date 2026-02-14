@@ -1,0 +1,11 @@
+# Hardened PostgreSQL/PostGIS base for db-1..db-16
+# Security: non-root, minimal layers, pinned versions
+# Use with docker-compose.hardened.yml (security_opt: no-new-privileges)
+
+FROM postgis/postgis:15-3.4-alpine
+
+# Ensure we run as postgres (default in official image)
+USER postgres
+
+# Harden: SCRAM-SHA-256 auth
+ENV POSTGRES_INITDB_ARGS="--auth-host=scram-sha-256 --auth-local=scram-sha-256"

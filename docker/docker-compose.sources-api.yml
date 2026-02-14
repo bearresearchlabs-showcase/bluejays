@@ -1,0 +1,30 @@
+# Sources API microservice — standalone
+# Unit → Integration → UAT → Docker
+# Usage: docker compose -f docker/docker-compose.sources-api.yml up -d
+# API: http://localhost:8011/health | http://localhost:8011/sources | http://localhost:8011/queries?source=db-1
+
+services:
+  sources-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.sources-api
+    image: db-sources-api:latest
+    container_name: sources-api
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "8011:8000"
+    volumes:
+      - ../source:/app/source:ro
+      - ../template:/app/template:ro
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health')\" || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    networks:
+      - sources-network
+
+networks:
+  sources-network:
+    driver: bridge

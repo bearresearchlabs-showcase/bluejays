@@ -1,0 +1,23 @@
+# Label Studio with pre-set default user (bypass manual API key setup)
+# See: https://labelstud.io/guide/signup
+# Usage: docker compose -f docker/docker-compose.label-studio.yml up -d
+# Then: export LABEL_STUDIO_URL=http://localhost:8081
+#      export LABEL_STUDIO_USER_TOKEN=workbench-dev-token
+#      python scripts/db_check.py label-studio template --multi-session
+
+services:
+  label-studio:
+    image: heartexlabs/label-studio:latest
+    ports:
+      - "8081:8080"  # 8081 if 8080 in use
+    volumes:
+      - label-studio-data:/label-studio/data
+    environment:
+      # Pre-create default user with known token (bypass Account & Settings)
+      LABEL_STUDIO_USERNAME: default_user@localhost
+      LABEL_STUDIO_PASSWORD: workbench-dev
+      LABEL_STUDIO_USER_TOKEN: workbench-dev-token
+      LABEL_STUDIO_ENABLE_LEGACY_API_TOKEN: "true"
+
+volumes:
+  label-studio-data: {}

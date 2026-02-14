@@ -1,0 +1,76 @@
+# Job: run db_check validate in-cluster (connects to postgres-validation)
+# Build image: docker build -f docker/Dockerfile.validator -t db-validator:latest .
+# Or use pre-built: ghcr.io/your-org/db-validator:latest
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-validation-job
+  namespace: db-validation
+  labels:
+    app: db-validation
+spec:
+  ttlSecondsAfterFinished: 3600
+  backoffLimit: 2
+  template:
+    metadata:
+      labels:
+        app: db-validation
+    spec:
+      restartPolicy: OnFailure
+      initContainers:
+        - name: clone-repo
+          image: alpine/git:latest
+          command: ["/bin/sh", "-c", "git clone --depth 1 ${REPO_URL:-https://github.com/afterquery/db.git} /workspace"]
+          env:
+            - name: REPO_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: db-validation-config
+                  key: REPO_URL
+                  optional: true
+          volumeMounts:
+            - name: workspace
+              mountPath: /workspace
+      containers:
+        - name: validator
+          image: python:3.11-slim
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+              pip install -q psycopg2-binary pyyaml jsonschema
+              cd /workspace
+              export PG_HOST=${PG_HOST:-postgres-validation}
+              export PG_PORT=${PG_PORT:-5432}
+              export PG_USER=${PG_USER:-postgres}
+              export PG_PASSWORD=${PG_PASSWORD:-postgres}
+              export PG_DATABASE=${PG_DATABASE:-postgres}
+              python3 scripts/db_check.py qa-suite 1 || echo "Validation completed with errors"
+          envFrom:
+            - configMapRef:
+                name: db-validation-config
+          env:
+            - name: PG_HOST
+              value: "postgres-validation"
+            - name: PG_PORT
+              value: "5432"
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-validation-secret
+                  key: PG_PASSWORD
+                  optional: true
+          volumeMounts:
+            - name: workspace
+              mountPath: /workspace
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      volumes:
+        - name: workspace
+          emptyDir: {}

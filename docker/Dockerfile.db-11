@@ -1,0 +1,70 @@
+# Dockerfile template for db-* databases
+# This template is used to generate Dockerfiles for each database
+
+FROM python:3.14-slim
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV PGDATA=/var/lib/postgresql/data
+ENV PG_HOST=localhost
+ENV PG_PORT=5432
+ENV PG_USER=postgres
+ENV PG_PASSWORD=postgres
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    postgresql \
+    postgresql-contrib \
+    postgresql-client \
+    build-essential \
+    libpq-dev \
+    git \
+    curl \
+    sudo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Jupyter and notebook dependencies
+RUN pip install --no-cache-dir \
+    jupyter \
+    jupyterlab \
+    notebook \
+    ipykernel \
+    nbconvert \
+    papermill
+
+# Install Python packages required for notebooks
+RUN pip install --no-cache-dir \
+    psycopg2-binary>=2.9.0 \
+    pandas>=2.0.0 \
+    numpy>=1.24.0 \
+    matplotlib>=3.7.0 \
+    seaborn>=0.12.0 \
+    ipython>=8.0.0 \
+    streamlit>=1.28.0 \
+    plotly>=5.17.0 \
+    openpyxl>=3.1.0
+
+# Create directories
+RUN mkdir -p /workspace/client/db
+RUN mkdir -p /workspace/db
+RUN mkdir -p /var/lib/postgresql/data
+RUN mkdir -p /var/run/postgresql
+
+# Set up PostgreSQL user permissions
+RUN chown -R postgres:postgres /var/lib/postgresql
+RUN chown -R postgres:postgres /var/run/postgresql
+
+# Copy entrypoint script
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Set working directory
+WORKDIR /workspace
+
+# Expose ports
+EXPOSE 8888 5432 8501
+
+# Entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]

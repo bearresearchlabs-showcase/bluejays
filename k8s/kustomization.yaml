@@ -1,0 +1,10 @@
+# Kustomize: optional overlay for db-validation
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: db-validation
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - postgres-deployment.yaml
+  - validation-job.yaml
+# secret.yaml excluded - create manually

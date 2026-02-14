@@ -1,0 +1,192 @@
+{
+  "db_nums": [
+    16
+  ],
+  "total_tasks": 30,
+  "passed": 30,
+  "accuracy": 1.0,
+  "assertion_failures": [],
+  "results": [
+    {
+      "task_id": "db-16-query-1",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-2",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-3",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-4",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-5",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-6",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-7",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-8",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-9",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-10",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-11",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-12",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-13",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-14",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-15",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-16",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-17",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-18",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-19",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-20",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-21",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-22",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-23",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-24",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-25",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-26",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-27",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-28",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-29",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    },
+    {
+      "task_id": "db-16-query-30",
+      "passed": true,
+      "error": null,
+      "skipped": true
+    }
+  ],
+  "duration_ms": 216212.6832921058
+}

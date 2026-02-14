@@ -1,0 +1,14 @@
+# Hardened Qdrant vector DB for work storage
+# Security: minimal layers, pinned version, storage isolation, no-new-privileges
+# Use with docker-compose.microservices.yml (security_opt: no-new-privileges)
+
+FROM qdrant/qdrant:v1.11.4
+
+# Storage dir must be writable; run with volume mount
+ENV QDRANT__STORAGE__STORAGE_PATH=/qdrant/storage
+
+# Disable telemetry
+ENV QDRANT__SERVICE__TELEMETRY_DISABLED=true
+
+# Optional: enable API key via env (set QDRANT__SERVICE__API_KEY at runtime)
+# ENV QDRANT__SERVICE__API_KEY=${QDRANT_API_KEY}

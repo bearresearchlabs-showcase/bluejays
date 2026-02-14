@@ -1,0 +1,19 @@
+[package]
+name = "db-checksum"
+version = "0.1.0"
+edition = "2021"
+description = "Compute CRC-32, CRC-64-ECMA, SHA-256 for a file. Single purpose."
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "checksum"
+path = "src/main.rs"
+
+[dependencies]
+crc = "3.0"
+sha2 = "0.10"
+
+[dev-dependencies]
+serde_json = "1.0"

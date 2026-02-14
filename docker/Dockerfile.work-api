@@ -1,0 +1,21 @@
+# Work API microservice — FastAPI + Qdrant client
+# Security: non-root, minimal layers
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Non-root user
+RUN adduser --disabled-password --gecos "" appuser
+
+COPY workbench/work_api/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY workbench/ ./workbench/
+
+USER appuser
+
+EXPOSE 8000
+
+ENV PYTHONUNBUFFERED=1
+CMD ["uvicorn", "workbench.work_api.main:app", "--host", "0.0.0.0", "--port", "8000"]

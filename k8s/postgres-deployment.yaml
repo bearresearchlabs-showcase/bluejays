@@ -1,0 +1,60 @@
+# Single PostgreSQL for validation in-cluster (lightweight)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-validation
+  namespace: db-validation
+  labels:
+    app: postgres-validation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-validation
+  template:
+    metadata:
+      labels:
+        app: postgres-validation
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: db-validation-config
+                  key: PG_USER
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: db-validation-config
+                  key: PG_DATABASE
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-validation-secret
+                  key: PG_PASSWORD
+                  optional: true
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-validation
+  namespace: db-validation
+spec:
+  selector:
+    app: postgres-validation
+  ports:
+    - port: 5432
+      targetPort: 5432
+  type: ClusterIP

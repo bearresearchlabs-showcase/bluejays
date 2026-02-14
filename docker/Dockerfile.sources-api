@@ -1,0 +1,25 @@
+# Sources API microservice — discover sources, load queries
+# Hardened: non-root, pinned base, security_opt: no-new-privileges
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN adduser --disabled-password --gecos "" appuser
+
+# Install deps (no cache, minimal)
+COPY apps/sources_api/requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+
+# Copy app and source data (read-only at runtime via :ro mount)
+COPY apps/ /app/apps/
+COPY source/ /app/source/
+COPY template/ /app/template/
+
+RUN chown -R appuser:appuser /app
+
+USER appuser
+
+EXPOSE 8000
+ENV PYTHONUNBUFFERED=1
+CMD ["uvicorn", "apps.sources_api.main:app", "--host", "0.0.0.0", "--port", "8000"]

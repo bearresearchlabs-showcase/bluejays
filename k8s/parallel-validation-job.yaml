@@ -1,0 +1,94 @@
+# Parallel validation Job - spawns KUBE_PARALLEL_JOBS parallel pods
+# Each pod validates one db-N (using JOB_COMPLETION_INDEX from Indexed Job)
+# Usage: kubectl apply -f k8s/parallel-validation-job.yaml
+# Requires: namespace db-validation, configmap, secret for PG_*
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: parallel-validation
+  namespace: db-validation
+  labels:
+    app: db-validation
+spec:
+  completionMode: Indexed
+  completions: 16
+  parallelism: 4  # KUBE_PARALLEL_JOBS - run 4 at a time
+  backoffLimit: 2
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels:
+        app: db-validation
+    spec:
+      restartPolicy: OnFailure
+      initContainers:
+        - name: clone-repo
+          image: alpine/git:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              git clone --depth 1 ${REPO_URL:-https://github.com/afterquery/db.git} /workspace
+          env:
+            - name: REPO_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: db-validation-config
+                  key: REPO_URL
+                  optional: true
+          volumeMounts:
+            - name: workspace
+              mountPath: /workspace
+      containers:
+        - name: validator
+          image: python:3.11-slim
+          command:
+            - /bin/sh
+            - -c
+            - |
+              pip install -q psycopg2-binary pyyaml jsonschema
+              cd /workspace
+              IDX=$${JOB_COMPLETION_INDEX:-0}
+              DB_NUM=$$((IDX + 1))
+              export PG_HOST=$${PG_HOST:-postgres-validation}
+              export PG_PORT=$$((5436 + IDX))
+              export PG_USER=$${PG_USER:-postgres}
+              export PG_PASSWORD=$${PG_PASSWORD:-}
+              export PG_DATABASE=db$${DB_NUM}
+              export DB_PORTS_START=5436
+              export DB_PORTS_END=5451
+              python3 scripts/db_check.py validate $$DB_NUM || echo "db-$$DB_NUM validation completed with errors"
+          env:
+            - name: PG_HOST
+              value: "postgres-validation"
+            - name: PG_PORT
+              value: "5432"
+            - name: PG_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: db-validation-config
+                  key: PG_USER
+                  optional: true
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-validation-secret
+                  key: PG_PASSWORD
+                  optional: true
+          envFrom:
+            - configMapRef:
+                name: db-validation-config
+                optional: true
+          volumeMounts:
+            - name: workspace
+              mountPath: /workspace
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      volumes:
+        - name: workspace
+          emptyDir: {}

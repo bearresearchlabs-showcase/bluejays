@@ -1,0 +1,13 @@
+# Backend test app - mounts multi-db compose
+# Usage: docker compose -f ../../docker/docker-compose.multi-db.yml up -d
+#        docker compose -f docker-compose.yml up -d
+services:
+  backend-test:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../../client/.env
+    depends_on: []
+    # When using multi-db: add depends_on for postgres-db-1..16
+    # Or run standalone and point PG_HOST to host.docker.internal

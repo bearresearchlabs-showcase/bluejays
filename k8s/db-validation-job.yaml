@@ -1,0 +1,56 @@
+# Kubernetes Job template for parallel DB validation
+# Usage: kubectl apply -f k8s/db-validation-job.yaml
+# Requires: KUBE_NAMESPACE, PG_* or secrets for DB credentials
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-validation
+  namespace: db-validation
+spec:
+  parallelism: 4
+  completions: 16
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: validator
+          image: python:3.11-slim
+          command:
+            - python3
+            - scripts/db_check.py
+            - validate
+            - "1"
+          env:
+            - name: PG_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: host
+            - name: PG_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: port
+            - name: PG_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: user
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: password
+          volumeMounts:
+            - name: repo
+              mountPath: /workspace
+      volumes:
+        - name: repo
+          persistentVolumeClaim:
+            claimName: db-repo-pvc
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: db-validation
