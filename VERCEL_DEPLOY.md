@@ -1,14 +1,17 @@
-# Vercel Deployment Guide
+# Vercel Deployment — Data Annotation App
 
-## db-red-three.vercel.app — Data Annotation App (Primary)
+## db-red-three.vercel.app
 
-**To deploy the SQL Annotator (data annotation app):**
+This project deploys the **SQL Annotator** (data annotation app) from `apps/annotator`.
+
+### Required: Set Root Directory
 
 1. **Vercel Dashboard** → Project **db** → **Settings** → **General**
 2. Set **Root Directory** to `apps/annotator` (click Edit, enter `apps/annotator`, Save)
 3. **Redeploy** (Deployments → ⋮ on latest → Redeploy)
 
-The annotator app will then serve at `https://db-red-three.vercel.app/` with:
+### Routes
+
 - `/login` — Login (staff/123123, annotator/123123, customer/123123)
 - `/` — Annotator
 - `/dashboard` — Dashboard
@@ -16,20 +19,9 @@ The annotator app will then serve at `https://db-red-three.vercel.app/` with:
 - `/suite` — Full Suite
 - `/customer` — Customer Portal
 
-Add **Neon** or **Supabase** integration for PostgreSQL + pgvector.
+### PostgreSQL + pgvector
 
----
-
-## Static Database Docs (Alternative)
-
-To deploy the **static database documentation** instead of the annotator:
-
-1. Set **Root Directory** to empty (repo root)
-2. **Build Command**: `bash scripts/prepare_vercel_public.sh`
-3. **Output Directory**: `public`
-4. **Framework Preset**: Other
-
-This serves the index at `/` and db-N docs at `/db-6`, `/db-7`, etc.
+Add **Neon** or **Supabase** integration for `POSTGRES_URL`. See below.
 
 ---
 
@@ -103,4 +95,3 @@ export async function query<T>(sql: string, params?: unknown[]): Promise<T[]> {
   return rows as T[]
 }
 ```
-

@@ -28,10 +28,27 @@ ENV/
 htmlcov/
 test_outputs/
 
+# Vercel static DB site output (scrubbed; annotator uses apps/annotator)
+public/
+
 # Temporary files
 *.tmp
 *.log
 *.bak
+*.backup
+*.backup2
+.~lock.*
+.~lock.*#
+
+# Virtual envs (all variants)
+venv_selenium/
+
+# DB check logs (keep logs/README.md, telemetry_summary.json optional)
+logs/db_check.log
+logs/telemetry.ndjson
+
+# Session traces (rerun_trace.py)
+traces/
 extract_from_db_zip/
 
 # Environment
@@ -66,5 +83,31 @@ db-*/DATABASE\ */
 db-*/DOCUMENTATION/
 db-*/QUERIES/
 
+# Stale source/db-N folders (legacy, canonical is app/)
+source/db-*/DATABASE/
+source/db-*/DATABASE\ */
+source/db-*/DOCUMENTATION/
+source/db-*/LEGAL/
+source/db-*/LEGAL\ */
+
+# Source: large data files (same exclusions as db-*)
+source/db-*/data/data.sql
+source/db-*/data/data_large.sql
+source/db-*/data/data_large_postgresql.sql
+source/db-*/app/DATABASE/data.sql
+source/db-*/app/DATABASE/data_large.sql
+source/db-*/app/DATABASE/data_large_postgresql.sql
+source/db-*/deliverable/*/data/data.sql
+source/db-*/deliverable/*/data/data_large.sql
+source/db-*/deliverable/*/data/data_large_postgresql.sql
+source/db-*/deliverable/data/data.sql
+source/db-*/deliverable/data/data_large.sql
+source/db-*/deliverable/data/data_large_postgresql.sql
+source/db-*/research/extracted_data/
+source/db-*/research/*.csv
+
 # Client data mirror (85GB+)
 client/
+
+# Kubernetes secrets (use secret.yaml.example)
+k8s/secret.yaml
