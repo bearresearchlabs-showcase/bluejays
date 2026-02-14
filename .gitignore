@@ -60,6 +60,4 @@ scripts/bin/checksum/target/
 # Kubernetes secrets (use secret.yaml.example)
 k8s/secret.yaml
 
-# Credentials and secrets (never commit)
-results/snowflake_credentials.json
 # lib/sources-manifest.json — COMMITTED for Vercel (regenerate with: node scripts/generate-sources-manifest.js)
