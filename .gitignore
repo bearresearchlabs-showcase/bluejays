@@ -33,6 +33,12 @@ test_outputs/
 # Next.js / Node
 .next/
 node_modules/
+public/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Build caches
+.swc/
 
 # Temporary files
 *.tmp

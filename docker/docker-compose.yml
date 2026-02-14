@@ -11,7 +11,7 @@ services:
     - 8506:8501
     volumes:
     - ../client/db/db-6:/workspace/client/db/db-6:ro
-    - ../db-6:/workspace/db/db-6:ro
+    - ../source/db-6:/workspace/db/db-6:ro
     - ../docker/notebooks:/workspace/docker/notebooks:ro
     - db-6-data:/var/lib/postgresql/data
     environment:
@@ -33,7 +33,7 @@ services:
     - 8507:8501
     volumes:
     - ../client/db/db-7:/workspace/client/db/db-7:ro
-    - ../db-7:/workspace/db/db-7:ro
+    - ../source/db-7:/workspace/db/db-7:ro
     - ../docker/notebooks:/workspace/docker/notebooks:ro
     - db-7-data:/var/lib/postgresql/data
     environment:
@@ -55,7 +55,7 @@ services:
     - 8508:8501
     volumes:
     - ../client/db/db-8:/workspace/client/db/db-8:ro
-    - ../db-8:/workspace/db/db-8:ro
+    - ../source/db-8:/workspace/db/db-8:ro
     - ../docker/notebooks:/workspace/docker/notebooks:ro
     - db-8-data:/var/lib/postgresql/data
     environment:
@@ -77,7 +77,7 @@ services:
     - 8509:8501
     volumes:
     - ../client/db/db-9:/workspace/client/db/db-9:ro
-    - ../db-9:/workspace/db/db-9:ro
+    - ../source/db-9:/workspace/db/db-9:ro
     - ../docker/notebooks:/workspace/docker/notebooks:ro
     - db-9-data:/var/lib/postgresql/data
     environment:
@@ -99,7 +99,7 @@ services:
     - 8510:8501
     volumes:
     - ../client/db/db-10:/workspace/client/db/db-10:ro
-    - ../db-10:/workspace/db/db-10:ro
+    - ../source/db-10:/workspace/db/db-10:ro
     - ../docker/notebooks:/workspace/docker/notebooks:ro
     - db-10-data:/var/lib/postgresql/data
     environment:
@@ -121,7 +121,7 @@ services:
     - 8511:8501
     volumes:
     - ../client/db/db-11:/workspace/client/db/db-11:ro
-    - ../db-11:/workspace/db/db-11:ro
+    - ../source/db-11:/workspace/db/db-11:ro
     - ../docker/notebooks:/workspace/docker/notebooks:ro
     - db-11-data:/var/lib/postgresql/data
     environment:
@@ -143,7 +143,7 @@ services:
     - 8512:8501
     volumes:
     - ../client/db/db-12:/workspace/client/db/db-12:ro
-    - ../db-12:/workspace/db/db-12:ro
+    - ../source/db-12:/workspace/db/db-12:ro
     - ../docker/notebooks:/workspace/docker/notebooks:ro
     - db-12-data:/var/lib/postgresql/data
     environment:
@@ -165,7 +165,7 @@ services:
     - 8513:8501
     volumes:
     - ../client/db/db-13:/workspace/client/db/db-13:ro
-    - ../db-13:/workspace/db/db-13:ro
+    - ../source/db-13:/workspace/db/db-13:ro
     - ../docker/notebooks:/workspace/docker/notebooks:ro
     - db-13-data:/var/lib/postgresql/data
     environment:
@@ -187,7 +187,7 @@ services:
     - 8514:8501
     volumes:
     - ../client/db/db-14:/workspace/client/db/db-14:ro
-    - ../db-14:/workspace/db/db-14:ro
+    - ../source/db-14:/workspace/db/db-14:ro
     - ../docker/notebooks:/workspace/docker/notebooks:ro
     - db-14-data:/var/lib/postgresql/data
     environment:
@@ -209,7 +209,7 @@ services:
     - 8515:8501
     volumes:
     - ../client/db/db-15:/workspace/client/db/db-15:ro
-    - ../db-15:/workspace/db/db-15:ro
+    - ../source/db-15:/workspace/db/db-15:ro
     - ../docker/notebooks:/workspace/docker/notebooks:ro
     - db-15-data:/var/lib/postgresql/data
     environment:
