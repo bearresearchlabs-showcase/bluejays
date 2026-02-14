@@ -131,7 +131,7 @@ def _load_schema_direct(db_name: str, schema_file: Path, enable_postgis: bool) -
             sql = f.read()
         if convert_to_postgresql:
             sql = convert_to_postgresql(sql)
-        # PostgreSQL VARCHAR max 10485760; cap Snowflake/Databricks large varchars
+        # PostgreSQL VARCHAR max 10485760
         import re
         sql = re.sub(r'VARCHAR\s*\(\s*16777216\s*\)', 'VARCHAR(10485760)', sql, flags=re.IGNORECASE)
         sql = re.sub(r'VARCHAR\s*\(\s*65535\s*\)', 'VARCHAR(65535)', sql, flags=re.IGNORECASE)
@@ -347,17 +347,19 @@ def run_queries(db_name: str, queries: List[Dict], conn) -> Dict:
 
 
 def get_queries_for_db(db_num: int) -> Optional[List[Dict]]:
-    """Get queries from db-N/queries/queries.json, deliverable/queries/queries.json, or deliverable/dbN-*/db-N_deliverable.json."""
-    for base in [BASE / f'db-{db_num}' / 'queries', BASE / f'db-{db_num}' / 'deliverable' / 'queries']:
+    """Get queries from db-N or source/db-N: queries/queries.json, app/QUERIES/queries.json, deliverable."""
+    db_dir = BASE / f'db-{db_num}' if (BASE / f'db-{db_num}').exists() else BASE / 'source' / f'db-{db_num}'
+    for base in [db_dir / 'queries', db_dir / 'deliverable' / 'queries', db_dir / 'app' / 'QUERIES']:
         qj = base / 'queries.json'
         if qj.exists():
             try:
                 data = json.loads(qj.read_text())
-                return data.get('queries', [])
+                qs = data.get('queries', [])
+                return qs if isinstance(qs, list) else []
             except Exception:
                 pass
     # Fallback: check deliverable JSON (db2-filling-station-retail/db-2_deliverable.json etc.)
-    deliverable_dir = BASE / f'db-{db_num}' / 'deliverable'
+    deliverable_dir = db_dir / 'deliverable'
     if deliverable_dir.exists():
         for d in deliverable_dir.iterdir():
             if d.is_dir():
@@ -374,7 +376,8 @@ def get_queries_for_db(db_num: int) -> Optional[List[Dict]]:
 def test_database(db_num: int) -> Dict:
     """Full test for one database."""
     db_name = f'db{db_num}'
-    db_dir = BASE / f'db-{db_num}'
+    # Support both root db-N and source/db-N
+    db_dir = BASE / f'db-{db_num}' if (BASE / f'db-{db_num}').exists() else BASE / 'source' / f'db-{db_num}'
     schema_file = db_dir / 'data' / 'schema.sql'
     data_file = db_dir / 'data' / 'data.sql'
     # Use sample data for db-16 (full data is 2.5GB)

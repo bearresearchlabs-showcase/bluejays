@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  if (pathname === '/login') return NextResponse.next()
+  if (pathname === '/login' || pathname === '/logout') return NextResponse.next()
   if (pathname.startsWith('/api/')) return NextResponse.next() // API routes handle auth
   const token = request.cookies.get('annotator_session')?.value
   if (!token) {
