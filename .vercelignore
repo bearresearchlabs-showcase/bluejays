@@ -1,0 +1,30 @@
+# Exclude large dirs to keep deploy under 2GB
+client
+client.zip
+archive
+website-nextjs
+venv_selenium
+traces
+logs
+**/node_modules
+**/__pycache__
+**/.git
+**/venv
+**/.venv
+*.dump
+*.sql.gz
+*.zip
+*.ipynb
+apps/annotator/.next
+
+# Exclude heavy source subdirs (keep deliverable HTML/JSON)
+source/db-*/app
+source/db-*/data
+source/db-*/research
+source/db-*/results
+source/db-*/scripts
+source/db-*/metadata
+source/db-*/docs
+source/db-*/queries
+source/db-*/archive
+source/db-*/deliverable/*/data

@@ -1,6 +1,18 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
   "rewrites": [
     {"source": "/", "destination": "/index.html"},
+    {"source": "/db-1", "destination": "/db-1/deliverable/db1-chat-messaging-platform/db-1_documentation.html"},
+    {"source": "/db-1_deliverable.json", "destination": "/db-1/deliverable/db1-chat-messaging-platform/db-1_deliverable.json"},
+    {"source": "/db-2", "destination": "/db-2/deliverable/db2-filling-station-retail/db-2_documentation.html"},
+    {"source": "/db-2_deliverable.json", "destination": "/db-2/deliverable/db2-filling-station-retail/db-2_deliverable.json"},
+    {"source": "/db-3", "destination": "/db-3/deliverable/db3-hierarchical-orders/db-3_documentation.html"},
+    {"source": "/db-3_deliverable.json", "destination": "/db-3/deliverable/db3-hierarchical-orders/db-3_deliverable.json"},
+    {"source": "/db-4", "destination": "/db-4/deliverable/db4-sharedai-models/db-4_documentation.html"},
+    {"source": "/db-4_deliverable.json", "destination": "/db-4/deliverable/db4-sharedai-models/db-4_deliverable.json"},
+    {"source": "/db-5", "destination": "/db-5/deliverable/db5-pos-retail/db-5_documentation.html"},
+    {"source": "/db-5_deliverable.json", "destination": "/db-5/deliverable/db5-pos-retail/db-5_deliverable.json"},
     {"source": "/db-6", "destination": "/db-6/deliverable/db6-weather-consulting-insurance/db-6_documentation.html"},
     {"source": "/db-6_deliverable.json", "destination": "/db-6/deliverable/db6-weather-consulting-insurance/db-6_deliverable.json"},
     {"source": "/db-7", "destination": "/db-7/deliverable/db7-maritime-shipping-intelligence/db-7_documentation.html"},
@@ -8,14 +20,8 @@
     {"source": "/db-9", "destination": "/db-9/deliverable/db9-shipping-intelligence/db-9_documentation.html"},
     {"source": "/db-10", "destination": "/db-10/deliverable/db10-marketing-intelligence/db-10_documentation.html"},
     {"source": "/db-11", "destination": "/db-11/deliverable/db11-parking-intelligence/db-11_documentation.html"},
-    {"source": "/db-12", "destination": "/db-12/deliverable/db12-credit-card-and-rewards-optimization-system/db-12_documentation.html"},
-    {"source": "/db-12_deliverable.json", "destination": "/db-12/deliverable/db12-credit-card-and-rewards-optimization-system/db-12_deliverable.json"},
-    {"source": "/db-13", "destination": "/db-13/deliverable/db13-ai-benchmark-marketing-database/db-13_documentation.html"},
-    {"source": "/db-13_deliverable.json", "destination": "/db-13/deliverable/db13-ai-benchmark-marketing-database/db-13_deliverable.json"},
-    {"source": "/db-14", "destination": "/db-14/deliverable/db14-cloud-instance-cost-database/db-14_documentation.html"},
-    {"source": "/db-14_deliverable.json", "destination": "/db-14/deliverable/db14-cloud-instance-cost-database/db-14_deliverable.json"},
-    {"source": "/db-15", "destination": "/db-15/deliverable/db15-electricity-cost-and-solar-rebate-database/db-15_documentation.html"},
-    {"source": "/db-15_deliverable.json", "destination": "/db-15/deliverable/db15-electricity-cost-and-solar-rebate-database/db-15_deliverable.json"}
+    {"source": "/db-16", "destination": "/db-16/deliverable/db16-flood-risk-assessment/db-16_documentation.html"},
+    {"source": "/db-16_deliverable.json", "destination": "/db-16/deliverable/db16-flood-risk-assessment/db-16_deliverable.json"}
   ],
   "headers": [
     {"source": "/(.*\\.html)", "headers": [{"key": "Content-Type", "value": "text/html"}]},
