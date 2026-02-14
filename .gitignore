@@ -28,7 +28,11 @@ ENV/
 htmlcov/
 test_outputs/
 
-# Vercel static DB site output (scrubbed; annotator uses apps/annotator)
+# Next.js / Node
+.next/
+node_modules/
+
+# Vercel static DB site output (scrubbed; annotator at root)
 public/
 
 # Temporary files

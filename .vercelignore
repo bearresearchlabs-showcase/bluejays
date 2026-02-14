@@ -17,8 +17,9 @@ logs
 *.zip
 *.ipynb
 
-# Exclude heavy source subdirs (keep deliverable HTML/JSON)
-source/db-*/app
+# Exclude heavy source subdirs (keep QUERIES for annotator)
+source/db-*/app/DATABASE
+source/db-*/app/DOCUMENTATION
 source/db-*/data
 source/db-*/research
 source/db-*/results
