@@ -74,6 +74,7 @@ results/snowflake_credentials.json
 *.zip
 client/
 archive/
+backup_archive/
 
 # Virtual envs (all variants)
 venv_selenium/

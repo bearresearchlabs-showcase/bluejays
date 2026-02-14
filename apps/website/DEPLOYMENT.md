@@ -94,7 +94,7 @@ To update database content:
            if section_match:
                databases[db_id] = section_match.group(1).strip()
        
-       output_file = Path('website-nextjs/lib/database-content.json')
+       output_file = Path('apps/website/lib/database-content.json')
        with open(output_file, 'w', encoding='utf-8') as f:
            json.dump(databases, f, ensure_ascii=False, indent=2)
    "

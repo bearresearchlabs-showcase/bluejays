@@ -6,7 +6,7 @@ This website uses Vercel Blob Storage to serve database deliverable JSON files. 
 
 ### Local Development
 
-1. Create a `.env.local` file in the `website-nextjs/` directory:
+1. Create a `.env.local` file in the `apps/website/` directory:
 
 ```bash
 BLOB_READ_WRITE_TOKEN=vercel_blob_rw_Ad7SZ62s8LD9MQvS_EjMhBn3tnZz5WoYJFKLaxt3rPZbSey

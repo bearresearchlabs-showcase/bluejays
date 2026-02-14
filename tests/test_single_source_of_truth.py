@@ -119,7 +119,7 @@ class TestRootCleanliness:
         ".cursor", ".github", ".git", ".pytest_cache", ".vscode",
         "apps", "archive", "bird_export", "client", "docs", "docker",
         "k8s", "logs", "notebooks", "research", "results", "scripts",
-        "source", "tests", "traces", "website-nextjs",
+        "source", "tests", "traces", "apps/website",
     }
 
     def test_no_stray_py_at_root(self):

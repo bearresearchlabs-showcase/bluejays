@@ -109,7 +109,7 @@ If content seems incomplete:
 ## File Structure
 
 ```
-website-nextjs/
+apps/website/
 ├── scripts/
 │   ├── extract-deliverable-content.js  # Main extraction script
 │   └── watch-and-sync.js               # Watch mode script

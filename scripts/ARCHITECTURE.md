@@ -39,7 +39,7 @@ Build: `make build-bin` or `cd scripts/bin && cargo build --release`
 - **remove_databricks.py** – Superseded by `scrub_keywords.py`
 - **remove_non_postgres_vendors.py** – Superseded by `scrub_keywords.py`
 - **fix_*.py** (one-off) – Moved to `archive/one-off-fixes/`
-- **update_*.py** (one-off) – Moved to `archive/one-off-updates/`
+- **update_*.py** (one-off) – Moved to `archive/one-off-updates/` (update_table_of_contents, update_sourced_language, update_docker_compose_streamlit, update_client_dashboards_paths, update_html_with_*)
 
 ## Directory Layout
 

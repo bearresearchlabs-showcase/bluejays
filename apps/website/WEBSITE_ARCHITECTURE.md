@@ -118,7 +118,7 @@ BLOB_READ_WRITE_TOKEN=vercel_blob_rw_...
 ## File Structure
 
 ```
-website-nextjs/
+apps/website/
 ├── app/
 │   ├── page.tsx                    # Redirects to /databases
 │   ├── databases/page.tsx          # Catalog page

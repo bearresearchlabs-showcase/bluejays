@@ -1,0 +1,111 @@
+---
+description: Repository organization, no extraneous files, prefer features over one-off scripts, commit discipline
+alwaysApply: true
+---
+
+# Repository Organization and Discipline
+
+## Overview
+
+This rule enforces clean repository organization, discourages one-off scripts and extraneous files, and requires regular commits when meaningful changes accumulate.
+
+## Directory Structure (Top Level)
+
+```
+db/
+├── app/              # Next.js annotator (root app)
+├── apps/              # All applications (annotator, website, backend_test, sources_api)
+├── components/       # Shared React components
+├── lib/              # Shared libraries
+├── source/           # Database sources (db-1..db-16) — canonical
+├── template/         # Templates for new databases
+├── scripts/          # Reusable tools and orchestration only
+│   ├── bin/          # Compiled binaries
+│   ├── archive/      # Obsolete/one-off scripts (do not add new files here)
+│   ├── testing/      # Test harnesses
+│   └── [core tools]  # db_check.py, format.py, validate.py, etc.
+├── tests/            # Python tests (pytest)
+├── __tests__/        # JavaScript/TypeScript tests (Jest)
+├── docs/             # Project documentation
+├── data/             # Config and project data
+├── docker/           # Docker configs
+├── k8s/              # Kubernetes configs
+├── bird_export/      # BIRD workbench exports (generated)
+├── logs/             # Telemetry and logs (generated)
+├── results/          # Validation and test results (generated)
+├── notebooks/        # Jupyter notebooks
+├── research/         # Research and experimentation
+└── workbench/        # Workbench services
+```
+
+## No Extraneous Files
+
+**CRITICAL**: Do not create:
+
+- **One-time use scripts** — Instead, add a feature to an existing tool (e.g., `db_check.py`, `format.py`)
+- **Duplicate configs** — One config per concern; use env vars for overrides
+- **Temporary files** — Use `/tmp` or `.gitignore`d paths
+- **Backup copies** — Use git history; avoid `*.backup`, `*_old`, `*_copy`
+- **Debug artifacts** — No `debug_*.py`, `test_one_off.py` in scripts/
+
+## Prefer Features Over Scripts
+
+When adding functionality:
+
+1. **Extend existing tools** — Add a subcommand to `db_check.py`, `format.py`, or `validate.py`
+2. **Create reusable modules** — Put shared logic in `lib/` or `scripts/` as importable modules
+3. **Use the archive** — One-off fixes go in `scripts/archive/one-off-fixes/` only when unavoidable
+4. **Document entry points** — Update `scripts/ARCHITECTURE.md` and `Makefile`
+
+## Scripts Policy
+
+- **scripts/** — Only core orchestration and reusable tools
+- **scripts/archive/** — Obsolete scripts; do not add new files
+- **scripts/archive/one-off-fixes/** — Historical one-offs; reference only
+- **New functionality** — Add to `db_check.py` subcommands or create a proper tool with `--help`
+
+## Commit Discipline
+
+**Commit when ~1% of tracked files change** (or sooner for logical units):
+
+- **Threshold**: If `git status` shows ≥1% of repo files changed, commit
+- **Logical units**: Prefer smaller commits (one feature, one fix) over large batches
+- **Message format**: `type(scope): description` (e.g., `fix(scripts): add backup_zips_to_drive`)
+- **Do not** accumulate many unrelated changes in one commit
+
+### Quick Check
+
+```bash
+# Use db_check check-commit (recommended)
+python3 scripts/db_check.py check-commit
+
+# Or manually: count changed vs total tracked
+git status --short | wc -l
+git ls-files | wc -l
+# If changed/total ≥ 0.01, consider committing
+```
+
+## Output Directories
+
+- **bird_export/** — BIRD workbench exports (generated)
+- **logs/** — Telemetry and logs (generated)
+- **results/** — Validation and test results (generated)
+- **public/** — Build output for static DB sites (generated)
+
+These are generated; do not commit large generated files. Use `.gitignore` patterns.
+
+## Refactoring Guidelines
+
+1. **Consolidate duplicates** — Same logic in multiple scripts → extract to shared module
+2. **Single entry point** — Prefer `db_check.py <subcommand>` over many top-level scripts
+3. **Config over code** — Use YAML/JSON config (e.g., `scrub_keywords.py`) instead of hardcoded logic
+4. **Archive obsolete** — Move superseded scripts to `scripts/archive/`; update ARCHITECTURE.md
+
+## Related Rules
+
+- `scripts/ARCHITECTURE.md` — Scripts layout and entry points
+- `database-creation-workflow.mdc` — Database structure
+- `qa-workflow-cursor.mdc` — QA and test workflow
+
+---
+**Last Updated**: 2026-02-14

@@ -17,7 +17,7 @@ const token = process.env.BLOB_READ_WRITE_TOKEN
 if (!token) {
   console.error('❌ BLOB_READ_WRITE_TOKEN is not set')
   console.log('\nTo configure:')
-  console.log('1. Create .env.local file in website-nextjs/')
+  console.log('1. Create .env.local file in apps/website/')
   console.log('2. Add: BLOB_READ_WRITE_TOKEN=your_token_here')
   console.log('3. Or set in Vercel dashboard: Project Settings > Environment Variables')
   process.exit(1)

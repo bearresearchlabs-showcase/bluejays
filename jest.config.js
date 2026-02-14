@@ -15,8 +15,8 @@ const config = {
     '**/__tests__/**/*.[jt]s?(x)',
     '**/?(*.)+(spec|test).[jt]s?(x)',
   ],
-  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/', '<rootDir>/website-nextjs/', '<rootDir>/apps/'],
-  modulePathIgnorePatterns: ['<rootDir>/website-nextjs/', '<rootDir>/apps/'],
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/', '<rootDir>/apps/website/', '<rootDir>/apps/'],
+  modulePathIgnorePatterns: ['<rootDir>/apps/website/', '<rootDir>/apps/'],
   collectCoverageFrom: [
     'app/**/*.{js,jsx,ts,tsx}',
     'components/**/*.{js,jsx,ts,tsx}',

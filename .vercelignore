@@ -3,7 +3,7 @@ client
 client.zip
 db.zip
 archive
-website-nextjs
+apps/website
 venv_selenium
 traces
 logs

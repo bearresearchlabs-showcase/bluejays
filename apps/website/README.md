@@ -73,7 +73,7 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for complete development guide.
 ## Project Structure
 
 ```
-website-nextjs/
+apps/website/
 ├── app/                    # Next.js app directory
 ├── components/             # React components
 │   └── design-system/      # Design system components

@@ -38,7 +38,7 @@
   ],
   "exclude": [
     "node_modules",
-    "website-nextjs",
+    "apps/website",
     "apps"
   ]
 }

@@ -21,7 +21,7 @@ const eslintConfig = defineConfig([
     '.venv/**',
     '**/__pycache__/**',
     'apps/**',
-    'website-nextjs/**',
+    'apps/website/**',
     'client/**',
     'scripts/**',
   ]),

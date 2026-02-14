@@ -55,7 +55,7 @@
 - `scripts/create_streamlit_dashboards.py` - Dashboard generator
 - `scripts/test_streamlit_dashboards.sh` - Testing script
 - `scripts/run_streamlit_dashboards.sh` - Execution script
-- `scripts/update_docker_compose_streamlit.py` - Port configuration
+- `scripts/archive/one-off-updates/update_docker_compose_streamlit.py` - Port configuration (archived)
 - `scripts/update_docker_compose_notebooks_volume.py` - Volume configuration
 
 ### Documentation

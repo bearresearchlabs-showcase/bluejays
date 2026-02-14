@@ -13,11 +13,13 @@ Usage:
     python3 scripts/db_check.py bird-workbench [db-1] [db-5] | -a  # BIRD benchmark + ACID/BASE + workbench assertions
     python3 scripts/db_check.py gdpval-langgraph [db-1] [db-5] | -a  # GDPval-style: prompt + reference(SQL) + deliverable(queries.md), .env harness, LangGraph
     python3 scripts/db_check.py rotate [--max-lines 10000] # Rotate/trim logs
+    python3 scripts/db_check.py check-commit  # Report if ~1%+ of repo changed (commit discipline)
 """
 
 import sys
 import json
 import time
+import subprocess
 from pathlib import Path
 from typing import List, Optional
 
@@ -435,6 +437,36 @@ def cmd_rotate(args: List[str]) -> int:
         raise
 
 
+def cmd_check_commit(_args: List[str]) -> int:
+    """Report if ~1%+ of tracked files changed (commit discipline per repo-organization.mdc)."""
+    try:
+        r = subprocess.run(
+            ["git", "status", "--short"],
+            capture_output=True,
+            text=True,
+            cwd=root_dir,
+            timeout=5,
+        )
+        changed = len([l for l in (r.stdout or "").strip().splitlines() if l.strip()])
+        r2 = subprocess.run(
+            ["git", "ls-files"],
+            capture_output=True,
+            text=True,
+            cwd=root_dir,
+            timeout=5,
+        )
+        total = len((r2.stdout or "").strip().splitlines()) or 1
+        pct = (changed / total) * 100
+        if pct >= 1.0:
+            print(f"Consider committing: {changed}/{total} files changed ({pct:.1f}%)")
+            return 0
+        print(f"OK: {changed}/{total} files changed ({pct:.2f}%)")
+        return 0
+    except Exception as e:
+        print(f"check-commit: {e}")
+        return 1
+
+
 def cmd_full(args: List[str]) -> int:
     """Run all checks: validate, format, qa, integrity, compliance."""
     db_nums = parse_db_args(args)
@@ -470,7 +502,7 @@ def cmd_full(args: List[str]) -> int:
 def main() -> int:
     if len(sys.argv) < 2:
         print(__doc__)
-        print("\nSubcommands: validate, format, qa, qa-suite, integrity, compliance, full, rotate, bird-workbench")
+        print("\nSubcommands: validate, format, qa, qa-suite, integrity, compliance, full, rotate, check-commit, bird-workbench")
         return 1
 
     subcmd = sys.argv[1].lower()
@@ -505,6 +537,8 @@ def main() -> int:
         return cmd_full(subargs)
     elif subcmd == "rotate":
         return cmd_rotate(subargs)
+    elif subcmd == "check-commit":
+        return cmd_check_commit(subargs)
     elif subcmd == "debug":
         return cmd_debug(subargs)
     elif subcmd == "qa-claude":
@@ -519,7 +553,7 @@ def main() -> int:
     else:
         log("db_check", "main", status="fail", message=f"Unknown subcommand: {subcmd}")
         print(f"Unknown subcommand: {subcmd}")
-        print("Subcommands: validate, format, qa, qa-suite, integrity, compliance, full, rotate, debug, qa-claude, bird-workbench, gdpval-langgraph, export, label-studio")
+        print("Subcommands: validate, format, qa, qa-suite, integrity, compliance, full, rotate, check-commit, debug, qa-claude, bird-workbench, gdpval-langgraph, export, label-studio")
         return 1
 
 
