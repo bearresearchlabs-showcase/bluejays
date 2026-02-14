@@ -1,7 +1,15 @@
 import { readFileSync, existsSync, readdirSync } from 'fs'
 import { join } from 'path'
 
-const ROOT = join(process.cwd(), '..', '..')
+// Vercel (Root Directory = apps/annotator): prebuild copies source/template into cwd
+// Local dev: source/template live at repo root (cwd/../../)
+function getRoot(): string {
+  const cwd = process.cwd()
+  const localSource = join(cwd, 'source')
+  if (existsSync(localSource)) return cwd
+  return join(cwd, '..', '..')
+}
+const ROOT = getRoot()
 
 function sourceDir() {
   return join(ROOT, 'source')

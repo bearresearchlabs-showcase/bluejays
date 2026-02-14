@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
+    "prebuild": "node -e \"var fs=require('fs'),path=require('path');var cwd=process.cwd(),up=path.join(cwd,'..','..');var src=path.join(up,'source'),tpl=path.join(up,'template');if(fs.existsSync(src)){fs.cpSync(src,path.join(cwd,'source'),{recursive:true});}if(fs.existsSync(tpl)){fs.cpSync(tpl,path.join(cwd,'template'),{recursive:true});}\"",
     "build": "next build",
     "postbuild": "node -e \"var p=require('path'); var f=require('fs'); var l=p.join(process.cwd(),'..','..','.cursor','debug.log'); f.appendFileSync(l, JSON.stringify({location:'annotator/postbuild',message:'Build completed',data:{cwd:process.cwd(),hypothesisId:'H3'},timestamp:Date.now()})+'\\n')\"",
     "start": "next start -p 3001",
