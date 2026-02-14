@@ -110,7 +110,7 @@ The command provides real-time progress updates:
   - `query_test_results_postgres.json` (if Phase 3 runs)
   - `final_comprehensive_validation_report.json`
 
-- **Summary report**: `validation_summary.json` (in root directory)
+- **Summary report**: `results/validation_summary.json`
   - Contains overall validation status
   - Summary statistics for all databases
   - Per-database phase results

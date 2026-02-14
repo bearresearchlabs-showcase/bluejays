@@ -1,0 +1,20 @@
+{
+  "id": "db-16",
+  "name": "for M&A Due Diligence - db-16",
+  "version": "1.0",
+  "created_date": "2026-02-13",
+  "queries_count": 30,
+  "schema_hash": "0aa46039c11569937918a9ba27092ce3a2925cf56ae7c3132b7f01689e5c8a94",
+  "queries_hash": "6a0b3bee4065bee843268b4e6b62008db6f95e62c724a205d86a19c2b9827161",
+  "deliverable_files": [
+    "schema.sql",
+    "data.sql",
+    "queries.json",
+    "queries.md",
+    "db-16_documentation.html",
+    "db-16_deliverable.json"
+  ],
+  "rl_ready": true,
+  "client_ready": true,
+  "generated_at": "20260214-0132"
+}

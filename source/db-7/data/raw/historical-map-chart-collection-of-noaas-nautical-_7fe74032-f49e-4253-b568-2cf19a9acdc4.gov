@@ -1,0 +1,367 @@
+
+<!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://services.arcgisonline.com/; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'">-->
+
+<html>
+
+
+
+	<link rel="stylesheet" href="js/ol/v4.6.5/css/ol.css" type="text/css"></link>
+	
+	<script type="text/javascript" src="js/ol/v4.6.5/build/ol.js"></script>
+	<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery.dataTables.min.js" ></script>
+	<script type="text/javascript" src="js/proj4js/stable/proj4js-compressed.js" ></script>
+	<script type="text/javascript" src="js/openlayers_map_code_v4.js" ></script>
+	<script src="/openseadragon/openseadragon.min.js"></script>
+	<script type="text/javascript" src="/js/seadragon.js"></script>
+	<script src='js/historicals.js'></script>
+	<script src='js/search.js'></script>
+	<script src="js/ol/polyfill.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="stylesheet/jquery.dataTables.min.css" />
+	<link rel="stylesheet" type="text/css" href="stylesheet/page/header.css" />
+	<link rel="stylesheet" type="text/css" href="stylesheet/page/footer.css" />
+	<link rel="stylesheet" type="text/css" href="stylesheet/page/SearchPage.css" />
+	<link rel="stylesheet" type="text/css" href="stylesheet/historicals.css" />
+
+	<title>Coast Survey's Historical Map &amp; Chart Collection</title>
+
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1QHQ5YMS0T"></script>
+<!-- We participate in the US government's analytics program. See the data at analytics.usa.gov. -->
+<script async type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&amp;subagency=NOAA" id="_fed_an_ua_tag"></script>
+<script> 
+window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1QHQ5YMS0T');
+</script>
+</head>
+<!--<script id="_fed_an_ua_tag" type="text/javascript" src="/js/federated-analytics.js?agency=DOC&amp;subagency=NOAA&amp;pua=UA-118861525-1"></script>-->
+<link rel="stylesheet" type="text/css" href="stylesheet/responsive.css" />
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<body>
+	<div id="container">
+		<div id="basePage_pageTitle">
+			<img id="histLogo" src="images/historical_collection_logo.png"/>
+			
+			<div style="margin-top:53px; margin-right:15px; float:right;">
+			<a href="https://nauticalcharts.noaa.gov/" title="NOS Office of Coast Survey">
+				<img src="images/noaa-logo.png" alt="NOS Office of Coast Survey" style=""/>
+			</a>
+			</div>
+			
+			<div style="margin-top:53px; margin-right:15px; float:right;">
+				<span style="font-size: 24px; color:#004496; font-weight:bold;">Office of Coast Survey</span><br>
+				<span style="color:#000000; font-weight:bold; font-size:14px;">National Oceanic and Atmospheric Administration<br>U.S. Department of Commerce</span>
+			</div>
+		</div>
+		<div id="basePage_mainPanel">
+			<div id="basePage_centerPanel">
+				<div id="basePage_contentPanel">
+					
+					<div id="nav" style="background-color: #5f1e00; line-height:34px; border-top: 2px solid #231f20; overflow:hidden;">
+						<button id ="hamburger" style="background-color: #5f1e00; border:none;" onclick="displayLinks()">
+							<span style="color: white; font-size: 12px">MENU</span></br>
+							<img height=27 width=27 src="images/menu.png"></img>
+						</button>
+						<div id ="blankSpace" style="width:0px;display:inline-block;float:left;"></div>
+						<div id ="about" class="headerItem" ><a href="/about.php" style="text-decoration:none"><span class="headerText" id="aboutText">About</span></a></div>
+						<div id ="search" class="headerItem"><a href="/search.php" style="text-decoration:none"><span id="searchText" class="headerText">Search Images</span></a></div>
+						<div id ="pub" class="headerItem"><a href="/publications.php" style="text-decoration:none"><span id="pubText" class="headerText">Search Publications</span></a></div>
+						<!--<div id ="faq" style="border-right: 2px solid rgb(223,182,125);"><a href="/faq.php" style="text-decoration:none"><span style="color:rgb(223,182,125); margin-right:15px;">FAQS</span></a></div>-->
+						<div id ="fc" class="headerItem"><a href="/collections.php" style="text-decoration:none"><span id="fcText" class="headerText">Collections</span></a></div>
+						<div id ="links"><a href="/links.php" style="text-decoration:none"><span id="linksText" class="headerText">Links</span></a></div>
+					</div>
+		
+<script>
+	
+	function adjustSize(){
+		var about = document.getElementById("aboutText");
+		var search = document.getElementById("searchText");
+		var pub = document.getElementById("pubText");
+		var fc = document.getElementById("fcText");
+		var links = document.getElementById("linksText");
+		
+		var broWidth = document.body.clientWidth;
+
+		if (broWidth > 767){
+			about.style.marginRight = broWidth/30;
+			about.style.marginLeft = broWidth/30;
+			search.style.marginRight = broWidth/30;
+			search.style.marginLeft = broWidth/30;
+			pub.style.marginRight = broWidth/30;
+			pub.style.marginLeft = broWidth/30;
+			fc.style.marginRight = broWidth/30;
+			fc.style.marginLeft = broWidth/30;
+			links.style.marginRight = broWidth/30;
+			links.style.marginLeft = broWidth/30;
+		}
+	}
+	
+	function displayLinks(){
+		var about = document.getElementById("about");
+		var search = document.getElementById("search");
+		var pub = document.getElementById("pub");
+		var fc = document.getElementById("fc");
+		var links = document.getElementById("links");
+		
+		var aboutText = document.getElementById("aboutText");
+		var searchText = document.getElementById("searchText");
+		
+		var nav = document.getElementById("nav");
+		if (about.style.display == "inline-block"){
+			about.style.cssText = "null";
+			search.style.cssText = "null";
+			pub.style.cssText = "null";
+			fc.style.cssText = "null";
+			links.style.cssText = "null";
+		}
+		else{
+			about.style.display = "inline-block";
+			search.style.display = "block";
+			pub.style.display = "block";
+			fc.style.display = "block";
+			links.style.display = "block";
+		}
+	}
+
+	
+	window.addEventListener("resize", adjustSize);
+	window.onload = adjustSize();
+</script>		
+					<div id="topOptions">
+		<div id="dlModal" class="modal">
+			<div class="modal-content-dl">
+				<img class='close' id='dlClose' src='images/closeprev.png' style="float: right;"></img>
+				<div id='dlModalTable'>
+					<div id='inner' class='border_radius light_transparency_back menu_header_black' style='float:center; display:inline-block; margin:5px; padding:2px;'>
+						<div id='innerContent'>
+							<h2 style="color: #6a330a; font-size: 16px; text-align: center;">Please Note:</h2>
+							<p style="text-align: center; font-size: 14px;">Your download is processing, please be patient while the images are prepared.</p>
+							<button id="dlPopClose" class='button' style="text-align: center;">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<img class='close' id ='cartClose' src='images/closeprev.png' style="float: right;"></img>
+				<div id='modalTable'></div>
+			</div>
+		</div>
+		<div id="imageModal" class="modal">
+			<div class="modal-content-prev">
+				<div id="closerHolder" style="height:22px;width:100%;">
+					<img class='close' id ='prevClose' src='images/closeprev.png' style="float: right;"></img>
+				</div>
+				<div id='imageModalSection'></div>
+			</div>
+		</div>
+		<div id="basicModal" class="modal">
+			<div class="modal-content-basic">
+				<span id ='basicClose' class="close">&times;</span>
+				<div id='basicModalSection'>
+					<iframe id='contentIframe' class='zoomifyViewer'></iframe>
+				</div>
+			</div>
+		</div>
+		
+		<div id="hideMap" class="menu_header_brown" style="display:inline-block;float:left;margin-left:5px">
+			<span class='link' onclick='hideMapSearch()'> Hide the map search </span>
+		</div>
+		<div class="menu_header_brown" style="display:inline-block;float:right;margin-right:5px">
+			<a href="/pdfs/HistoricalCollection_SearchInstructions.pdf" target="_blank" title="Search Interface Tips (PDF)">Search Tips (PDF)</a>
+		</div>
+
+		
+		<div class="menu_header_brown" style="float:right;display:inline-block"></div>
+
+	</div>
+	<div id="mainContainer">
+		<div id="mainTitle" class="menu_header_brown">
+			<h1>Two Geographic Search Options:</h1>
+		</div>
+		<div id="searchContainers" style="max-width:1100px;margin:auto;">
+			<div id="leftHolder">
+				<div id="leftSearchContainer" class="light_transparency_back" style="margin-left:auto;margin-right:auto;display:inline-block">
+					<div class="searchPageTopHeader menu_header_brown"><h2>Select Point on Map</h2></div>
+					<div id="pointSelectionContainer" style="margin:auto;overflow:auto;cursor: pointer;" onclick="fadeIn();">
+						<button type="submit" style="float:left; position: relative; border:0; background: transparent" title="Click to Select a Map Point">
+							<img src="images/hist_map_pin.png" alt="submit"/>
+						</button>
+						<div id="pointTxtArea" style="margin:auto; font-size: 14px;font-weight: bold;color: #6a330a; margin-top:20px;">
+							<div id="pointSelectionToolText">
+								<p>Click To Select a Point on Map</p>
+							</div>
+							<div id="pointSelectionHint">
+								<p>Click anywhere on the map below</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="rightHolder">
+				<div id="rightSearchContainer" class="light_transparency_back" style="margin-left:auto;margin-right:auto;">
+					<div class="searchPageTopHeader menu_header_brown"><h2>Enter a Geographic Place Name</h2></div>
+					<div id="placeNameHint" class="menu_header_brown">Enter a place name (e.g. Baltimore):</div>
+					<div id="searchPanel">
+						<form name = 'myForm'>
+							<label style="float: left; margin-left: 12px; font-size:12px; font-weight:bold">Place Name: </label>
+							<input id="placeName" size="25" style="float: left; margin-left: 3px;"></input>
+							<button style='display:inline;' class='cartButton' id="lookupButton" onclick='nameSearch(); showBox();'>Lookup</button>
+						</form>
+						<div id='gnisList' class='gnisResult' style='display:none;flex-direction:column'>
+							<div id="gnisListheader" style="display:none; font-size:12px; font-weight:bold;"><span>Click a name below to search</span></div>
+							<div id="gnisResults"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="topPageContainer">
+			<div id="leftPanel">
+				<div id="onMapSearch" class="map-search">
+					<button id='ol-cust'>Click to Place Point</button>
+				</div>
+				<div id="baseController" class="base-map">
+					<select id="basemap" style="background-color: rgba(0,60,136,.5); color:white;">
+						<option>Oceans</option>
+						<option>Satellite</option>
+						<option>Topo</option>
+					</select>
+				</div>
+				<div id="mapBasePanel">
+					<div id="mapWindowContainer">
+							<img src="images/waiting_large.gif" id="mapLoadingGif"/>
+						<div id="map"></div>
+						<div id="popup" class="ol-popup">
+							<a href="" id="popup-closer" class="ol-popup-closer"></a>
+							<div id="popup-content"></div>
+						</div>
+						<div id="chartFootprintRemoveLink" onclick="removeChartFootprintLayer();" title="Remove Footprint From Map">
+							Remove Footprint from Map
+						</div>
+						<div id="mapCoords">
+							0,0
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<div id="bottomPageContainer">
+		<div id = "historicalsSearch" class="containerMap">
+			<div id = "headerContainer">
+				<h2 id='searchFilter' class="searchHeader" style='margin-bottom: 15px;'>Search Criteria</h2>
+				<span style='position:absolute; font-size:13px; right:2px; top:2px;' class ='link menu_header_brown' onclick = 'clearSearch()'>Reset Filters</span>
+			</div>
+			<div id="searchInput">
+				<div id="searchCriteria">
+					<div id="titleSearch" class="searchTitle">
+						<label class="searchReg">Title: </label>
+						<input id="title" size="20" style="float: left; margin-left: 3px;"></input>
+					</div>
+					<div id="typeSearch" class="searchItem">
+						<label id='typeLabel' class="searchReg">Type: </label>
+						<select id="searchType" class="searchType">
+							<option>Any Type</option><option>Aeronautical Chart</option><option>Annual Report</option><option>Base Map</option><option>Bathymetric Map</option><option>Bathymetric Map--Fishing</option><option>Bathymetric Map--Index</option><option>Bathymetric Map--Preliminary</option><option>Cartographic</option><option>Chart Catalog</option><option>City Plan</option><option>Civil War</option><option>Commemorative</option><option>Drawing</option><option>Geodetic</option><option>Geodetic Control</option><option>Graph</option><option>Gravity</option><option>Great Lakes</option><option>Great Lakes--Index</option><option>H-Sheet</option><option>Index</option><option>Lake Survey--First Series</option><option>Magnetic</option><option>Nautical Chart</option><option>Nautical Chart--Annotated</option><option>Nautical Chart--Index</option><option>Nautical Chart--Preliminary</option><option>Nautical Chart--Sketch</option><option>Nautical Chart--Training</option><option>Other</option><option>Photo</option><option>Photo--Index</option><option>Plat Map</option><option>Sketch</option><option>Text</option><option>Topographic</option><option>Topographic Bathymetric Map</option><option>Topographic--Index</option><option>Triangulation Diagram</option><option>Triangulation Map</option><option>T-Sheet</option>						</select>
+					</div>
+					<div id="stateSearch" class="searchItem">
+						<label id='stateLabel' class="searchReg">State:</label>
+						<select id="location" class="stateReg">
+							<option>Any</option><option>AK</option><option>AL</option><option>AR</option><option>AS</option><option>AZ</option><option>BI</option><option>CA</option><option>CO</option><option>CT</option><option>DC</option><option>DE</option><option>FL</option><option>GA</option><option>GU</option><option>HI</option><option>HW</option><option>IA</option><option>ID</option><option>IL</option><option>IN</option><option>JI</option><option>JT</option><option>KR</option><option>KS</option><option>KY</option><option>LA</option><option>MA</option><option>MD</option><option>ME</option><option>MI</option><option>MN</option><option>MO</option><option>MP</option><option>MS</option><option>MT</option><option>NC</option><option>ND</option><option>NE</option><option>NH</option><option>NJ</option><option>NM</option><option>NONE</option><option>NV</option><option>NY</option><option>OH</option><option>OK</option><option>OR</option><option>OTHER</option><option>PA</option><option>PC</option><option>PH</option><option>PR</option><option>PT</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>USA</option><option>UT</option><option>VA</option><option>VI</option><option>VT</option><option>WA</option><option>WI</option><option>WIN</option><option>WK</option><option>WLD</option><option>WV</option><option>WY</option>						</select>
+					</div>
+					<div id="yearSearch" class="searchItem">
+						<label id='yearLabel' class="searchReg">Year:</label>
+						<span id="toggleYearInputLabel" class = "link" onclick="yearSwitch()" style="float:right;margin-left:3px;font-size: 10px; text-decoration:underline" >single year</span>
+						<input id="year" size="6" class="searchReg" style="float: left; margin-left: 3px; display:none;"></input>
+						<input id="yearMin" size="2" style="float: left; margin-left: 3px;"></input>
+						<input id="yearMax" size="2" style="float: right; margin-left: 6px;"></input>
+					</div>
+					<div id="chartSearch" class="searchItem">
+						<label id='chartLabel' class="searchReg">Chart:</label>
+						<input id="chart" size="3" style="float: left; margin-left: 3px;"></input>
+					</div>
+					<div id="scaleSearch" class="searchItem">
+						<label id="scaleHelp" onmouseover="popHelp()" onmouseout="hideHelp()" class="searchReg">Scale<sup>[?]</sup>:</label>
+						<div id="scalePop" style="position:absolute; display:none;">
+							<table id="scalePopTab">
+								<tbody>
+									<tr style="line-height: 12px; background-color: #492000;">
+										<td style="width: 299px; color: #e8ce65; font-size:.9em;">Scale Information</td>
+									</tr>
+									<tr style="height: 62px; background-color: #ffffff; vertical-align: top;">
+										<td style="width: 299px; height: 62px;  font-size:.8em;">Scale measures the ratio of the distance on <br /> the map or chart compared to the real world distance. <br /> The greater the scale, a larger area and less detail <br /> will be represented in the map or chart.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<select id="chartScale" style="float: left; margin-left: 3px; max-width:100px">
+							<option>All Scales</option>
+							<option>More Detail (0 to 1:40,000)</option>
+							<option>Mid Detail (1:40,001 to 80,000)</option>
+							<option>More and Mid Detail (0 to 80,000)</option>
+							<option>Less Detail (1:80,001 and beyond)</option>
+							<option>No Scale Attributed</option>
+						</select>
+					</div>
+					<div style="clear:both">
+						<input id='historicalsSearchButton' class ='submit' type = 'button' onclick = 'searchHist(); minispinner();' value = 'Search'></input>
+						<div id="mwaitani" style="display:inline;visibility: hidden;"><img alt="ajax_indicator (3K)" style="vertical-align:middle;" src="images/waiting_large.gif" height="26" width="26"/></div>
+					</div>
+				</div>
+			</div>
+			<div id="hiddenGPSearchContainer">
+				<input id="lonSearchInput" style="visibility:hidden;"></input>
+				<input id="latSearchInput" style="visibility:hidden;"></input>
+			</div>
+
+			<div id="pageHolder" style="visibility:hidden;"></div>
+			<input id="orderby" style="visibility:hidden;" value = ""></input>
+			<input id="cending" style="visibility:hidden;" value = ""></input>
+			
+		</div>
+		<div id="gpFilterCriteria" style="visibility:hidden; margin-top:5px;margin-bottom:5px;">
+			<div id="latLongSpan" class="menu_header_brown results" style="font-size: 15px;">
+				<span id="coordinateSection" style="font-weight: bold;">Selected Lat/Long:</span>
+				<span id="latitudeDisplay">[lat]</span>
+				<span id="longitudeDisplay">[lon]</span>
+				<span id="gpFilterRemoveLink" class = "link" onmouseup="unSelectFeaturesByControlId('selectGNISFeatureControl'); removeClickLayer();" style="margin:1px; font-size: 13px; cursor:pointer;" title="Clear Geographic Filter">[Remove]</span>
+			</div>
+		</div>
+		<div id='searchResultArea'>
+		</div>
+		<div id='temp'></div>
+	</div>
+						<div>
+							<div id="inquiryText" class="light_transparency_back"><span id="fullInquiry">The Historical Map and Charts team is looking for your feedback.  
+								Please let us know if you have any comments, questions, or concerns by submitting an 
+								<a href="https://www.nauticalcharts.noaa.gov/customer-service/assist/" target="_blank">inquiry.</a>
+								We will get back to you as soon as possible.</span>
+								<span style="font-size:14px; padding: 12px;" id ="mobileInquiry"><a href="https://www.nauticalcharts.noaa.gov/customer-service/assist/" target="_blank">Submit an Inquiry</a>
+							</div>
+						</div>
+					</div>
+				<div id="bottom">
+					<div style="bottom: 0px; right: 15px; ">
+						<a href="https://nauticalcharts.noaa.gov/about/contact.html" style="color:rgb(223,182,125);">Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+						<a href="https://nauticalcharts.noaa.gov/survey.html" style="color:rgb(223,182,125);">User Survey</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+						<a href="https://nauticalcharts.noaa.gov/about/privacy-policy.html" style="color:rgb(223,182,125);">Privacy Policy</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+						<a href="https://www.noaa.gov/disclaimer.html" style="color:rgb(223,182,125);">Disclaimer</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+						<a href="https://oceanservice.noaa.gov/" style="color:rgb(223,182,125);">NOAA's National Ocean Service</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+						<a href="https://www.noaa.gov/" style="color:rgb(223,182,125);">NOAA</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+						<a href="https://www.commerce.gov/" style="color:rgb(223,182,125);">U.S. Department of Commerce</a>
+					</div>
+				</div>
+				<div style="text-align:center; font-size:12px; margin:2px">Web site owner: United States Office of Coast Survey</div>		
+			</div>
+		</div>
+	</div> 
+</body>
+
+<script src="js/lapse.js"></script>
+</html>

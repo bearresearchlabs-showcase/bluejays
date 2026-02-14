@@ -51,7 +51,7 @@ The validation command runs the complete validation suite:
 ## Output
 
 - Validation results are saved to `db-{N}/results/` directories
-- Summary report is saved to `validation_summary.json` in the root directory
+- Summary report is saved to `results/validation_summary.json`
 - Console output shows progress and results for each phase
 
 ## Examples

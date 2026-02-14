@@ -1,0 +1,386 @@
+{
+  "database": "db-15",
+  "description": "Electricity Cost Intelligence and Solar Rebate Database - Comprehensive Source Metadata Tracking",
+  "last_updated": "2026-02-04",
+  "source_metadata": [
+    {
+      "source_id": "SRC001",
+      "source_name": "OpenEI Utility Rates API",
+      "source_category": "api",
+      "authority": "Department of Energy (DOE) / Illinois State University",
+      "api_configuration": {
+        "base_url": "https://api.openei.org",
+        "endpoint": "/utility_rates",
+        "full_url": "https://api.openei.org/utility_rates",
+        "http_method": "GET",
+        "authentication_method": "api_key",
+        "headers_required": [],
+        "query_parameters": [
+          "version",
+          "format",
+          "api_key",
+          "getpage",
+          "address",
+          "lat",
+          "lon",
+          "radius",
+          "sector",
+          "detail",
+          "approved"
+        ],
+        "response_format": "JSON, CSV, JSON_plain",
+        "pagination": false,
+        "api_key_registration": "https://openei.org/services/api/signup"
+      },
+      "data_format_specifications": {
+        "format": "JSON, CSV, JSON_plain",
+        "encoding": "UTF-8",
+        "schema_available": true,
+        "schema_url": "https://openei.org/services/doc/rest/util_rates/"
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "U.S. Utility Rate Database (URDB)",
+        "data_collection_method": "Data collected and quality-controlled by Illinois State University on behalf of DOE",
+        "processing_steps": [
+          "Utility rate data collection",
+          "Quality control and validation",
+          "OpenEI platform publication",
+          "API exposure"
+        ],
+        "update_schedule": "Monthly"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": ["doe-gov"],
+        "data_gov_tags": [
+          "electricity",
+          "utility rates",
+          "energy",
+          "tariffs"
+        ]
+      }
+    },
+    {
+      "source_id": "SRC002",
+      "source_name": "EIA Form 861 - Annual Electric Power Industry Report",
+      "source_category": "api",
+      "authority": "U.S. Energy Information Administration (EIA)",
+      "api_configuration": {
+        "base_url": "https://www.eia.gov",
+        "endpoint": "/electricity/data/eia861/",
+        "full_url": "https://www.eia.gov/electricity/data/eia861/",
+        "http_method": "GET",
+        "authentication_method": "none",
+        "headers_required": [],
+        "response_format": "Excel, CSV, JSON",
+        "pagination": false
+      },
+      "data_format_specifications": {
+        "format": "Excel, CSV, JSON",
+        "encoding": "UTF-8",
+        "schema_available": true,
+        "schema_url": "https://www.eia.gov/electricity/data/eia861/"
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "EIA Form 861 Annual Electric Power Industry Report",
+        "data_collection_method": "Annual census of all U.S. electric utilities via Form EIA-861 submissions",
+        "processing_steps": [
+          "Utility form submissions",
+          "EIA data processing and validation",
+          "Excel file generation",
+          "Website publication"
+        ],
+        "update_schedule": "Annual (with 1-2 year delay)"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": ["eia-gov"],
+        "data_gov_tags": [
+          "electricity",
+          "utilities",
+          "energy",
+          "census"
+        ]
+      }
+    },
+    {
+      "source_id": "SRC003",
+      "source_name": "EIA State Electricity Profiles",
+      "source_category": "api",
+      "authority": "U.S. Energy Information Administration (EIA)",
+      "api_configuration": {
+        "base_url": "https://www.eia.gov",
+        "endpoint": "/electricity/state/",
+        "full_url": "https://www.eia.gov/electricity/state/",
+        "http_method": "GET",
+        "authentication_method": "none",
+        "headers_required": [],
+        "response_format": "HTML, Excel, CSV",
+        "pagination": false
+      },
+      "data_format_specifications": {
+        "format": "HTML, Excel, CSV",
+        "encoding": "UTF-8",
+        "schema_available": true,
+        "schema_url": "https://www.eia.gov/electricity/state/"
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "EIA State Electricity Profiles",
+        "data_collection_method": "State-level electricity data aggregation from multiple EIA sources",
+        "processing_steps": [
+          "State data collection",
+          "Data aggregation and analysis",
+          "Profile generation",
+          "Website publication"
+        ],
+        "update_schedule": "Monthly"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": ["eia-gov"],
+        "data_gov_tags": [
+          "electricity",
+          "state energy",
+          "energy prices",
+          "renewable energy"
+        ]
+      }
+    },
+    {
+      "source_id": "SRC005",
+      "source_name": "DSIRE - Database of State Incentives for Renewables & Efficiency",
+      "source_category": "api",
+      "authority": "NC Clean Energy Technology Center at NC State University",
+      "api_configuration": {
+        "base_url": "https://programs.dsireusa.org",
+        "endpoint": "/system/program",
+        "full_url": "https://programs.dsireusa.org/system/program",
+        "http_method": "GET",
+        "authentication_method": "none",
+        "headers_required": [],
+        "query_parameters": [
+          "zip",
+          "state",
+          "technology",
+          "sector"
+        ],
+        "response_format": "HTML, JSON",
+        "pagination": false
+      },
+      "data_format_specifications": {
+        "format": "HTML, JSON",
+        "encoding": "UTF-8",
+        "schema_available": false
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "DSIRE Database",
+        "data_collection_method": "Comprehensive database of state, local, utility, and federal incentives",
+        "processing_steps": [
+          "Incentive data collection from multiple sources",
+          "Data validation and quality control",
+          "Database compilation",
+          "Website and API publication"
+        ],
+        "update_schedule": "Monthly"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": null,
+        "data_gov_tags": [
+          "solar",
+          "renewable energy",
+          "incentives",
+          "rebates"
+        ]
+      }
+    },
+    {
+      "source_id": "SRC006",
+      "source_name": "DOE Tax Credits, Rebates & Savings",
+      "source_category": "website",
+      "authority": "U.S. Department of Energy",
+      "api_configuration": {
+        "base_url": "https://www.energy.gov",
+        "endpoint": "/tax-credits-rebates-savings-0",
+        "full_url": "https://www.energy.gov/tax-credits-rebates-savings-0",
+        "http_method": "GET",
+        "authentication_method": "none",
+        "headers_required": [],
+        "response_format": "HTML",
+        "pagination": false
+      },
+      "data_format_specifications": {
+        "format": "HTML",
+        "encoding": "UTF-8",
+        "schema_available": false
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "DOE Energy.gov Website",
+        "data_collection_method": "Federal tax credit and rebate information compilation",
+        "processing_steps": [
+          "Federal incentive information collection",
+          "Website publication",
+          "DSIRE database reference"
+        ],
+        "update_schedule": "Monthly"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": ["doe-gov"],
+        "data_gov_tags": [
+          "tax credits",
+          "solar",
+          "renewable energy",
+          "federal incentives"
+        ]
+      }
+    },
+    {
+      "source_id": "SRC007",
+      "source_name": "PowerOutage.us Electricity Rates",
+      "source_category": "website",
+      "authority": "PowerOutage.us",
+      "api_configuration": {
+        "base_url": "https://poweroutage.us",
+        "endpoint": "/electricity-rates",
+        "full_url": "https://poweroutage.us/electricity-rates",
+        "http_method": "GET",
+        "authentication_method": "none",
+        "headers_required": [],
+        "response_format": "HTML",
+        "pagination": false
+      },
+      "data_format_specifications": {
+        "format": "HTML",
+        "encoding": "UTF-8",
+        "schema_available": false
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "PowerOutage.us Website",
+        "data_collection_method": "Web scraping and data aggregation",
+        "processing_steps": [
+          "Rate data collection",
+          "Rate code organization",
+          "Website publication"
+        ],
+        "update_schedule": "Monthly"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": null,
+        "data_gov_tags": [
+          "electricity rates",
+          "rate codes",
+          "utilities"
+        ]
+      }
+    },
+    {
+      "source_id": "SRC008",
+      "source_name": "Data.gov Electricity Datasets",
+      "source_category": "api",
+      "authority": "U.S. General Services Administration",
+      "api_configuration": {
+        "base_url": "https://catalog.data.gov",
+        "endpoint": "/api/3/action",
+        "full_url": "https://catalog.data.gov/api/3/action",
+        "http_method": "GET",
+        "authentication_method": "none",
+        "headers_required": [],
+        "query_parameters": [
+          "q",
+          "rows",
+          "fq"
+        ],
+        "response_format": "JSON",
+        "pagination": true
+      },
+      "data_format_specifications": {
+        "format": "JSON",
+        "encoding": "UTF-8",
+        "schema_available": true,
+        "schema_url": "https://catalog.data.gov/api/3/action/help"
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "Data.gov Federal Open Data Portal",
+        "data_collection_method": "Federal agency data publication",
+        "processing_steps": [
+          "Agency data collection",
+          "Data.gov publication",
+          "CKAN API exposure"
+        ],
+        "update_schedule": "Varies by dataset"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": [
+          "gsa-gov",
+          "doe-gov",
+          "eia-gov"
+        ],
+        "data_gov_tags": [
+          "electricity",
+          "utility rates",
+          "solar",
+          "renewable energy"
+        ]
+      }
+    }
+  ],
+  "coordinate_reference_systems": {
+    "geographic_data": {
+      "primary": "WGS84 (EPSG:4326)",
+      "description": "Geographic coordinate system for utility locations, rate areas, and solar installation sites",
+      "units": "degrees"
+    },
+    "state_boundaries": {
+      "primary": "WGS84 (EPSG:4326)",
+      "description": "State boundaries and utility service territories",
+      "units": "degrees"
+    }
+  },
+  "data_collection_strategy": {
+    "primary_sources": [
+      "OpenEI Utility Rates API (3,700+ utilities)",
+      "EIA Form 861 (annual utility census)",
+      "EIA State Electricity Profiles (state-level data)",
+      "DSIRE (comprehensive solar rebate database)",
+      "DOE Tax Credits (federal incentives)",
+      "Data.gov (additional federal datasets)"
+    ],
+    "update_frequency": {
+      "openei_api": "monthly",
+      "eia_form_861": "annual",
+      "eia_state_profiles": "monthly",
+      "dsire": "monthly",
+      "doe_website": "monthly",
+      "datagov": "varies by dataset"
+    },
+    "data_validation": {
+      "cross_source_validation": true,
+      "official_source_validation": true,
+      "data_quality_scoring": true
+    }
+  },
+  "notes": [
+    "OpenEI Utility Rates API provides comprehensive rate structure data for 3,700+ utilities",
+    "EIA Form 861 provides annual utility census data from 1990",
+    "DSIRE is the authoritative source for solar rebates and incentives",
+    "State utility commission websites provide state-specific rate filings and tariffs",
+    "PowerOutage.us provides rate code organization and reference",
+    "Data.gov provides additional federal electricity datasets",
+    "All rate data should be validated against official sources (EIA, OpenEI)",
+    "Solar rebate data should be cross-referenced with DSIRE for completeness",
+    "Geographic data uses WGS84 (EPSG:4326) coordinate system",
+    "Rate codes are critical for organizing and categorizing electricity rates",
+    "Historical data available for rates (10+ years) and incentives (20+ years)",
+    "Target data size of 2GB includes rate structures, utility data, rebates, and geographic information"
+  ]
+}

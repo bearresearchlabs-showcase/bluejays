@@ -13,7 +13,14 @@ import sys
 from pathlib import Path
 
 BASE = Path(__file__).parent.parent
-SOURCE_QUERIES = lambda n: BASE / f"db-{n}" / "queries"
+def _source_queries(n):
+    d = BASE / "source" / f"db-{n}"
+    try:
+        from db_paths import get_queries_dir
+        return get_queries_dir(d)
+    except ImportError:
+        return d / "app" / "QUERIES" if (d / "app" / "QUERIES").exists() else d / "queries"
+SOURCE_QUERIES = _source_queries
 CLIENT_QUERIES = lambda n: BASE / "client" / "db" / f"db-{n}" / "QUERIES"
 ZIP_EXTRACT_DEFAULT = Path("/tmp/db_zip_extract/db")
 

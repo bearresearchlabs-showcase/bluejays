@@ -1,0 +1,100 @@
+[
+  {
+    "_field_definitions": {
+      "db_id": "BIRD-SQL standard — database identifier, must match folder name (e.g. db-6)",
+      "question_id": "BIRD-SQL standard — unique integer per query within this database (1–30)",
+      "question": "BIRD-SQL standard — natural-language question the agent receives as input prompt",
+      "SQL": "BIRD-SQL standard — golden SQL solution the agent must learn to generate",
+      "evidence": "BIRD-SQL standard — chain-of-thought (COT) reasoning the agent uses to bridge the question to the SQL; maps to external_knowledge in LiveSQLBench",
+      "difficulty": "BIRD-SQL standard — simple | moderate | challenging; controls curriculum distribution",
+      "query_category": "Training extension — SQL pattern label for curriculum coverage (aggregation, join, window/self-join, subquery/cte, filtering/lookup, date-arithmetic, aggregation/ranking)",
+      "tables_used": "Training extension — ground-truth table list for schema-linking evaluation",
+      "schema_context": "Training extension — per-query schema subset the agent sees at inference time; simulates real-world partial-schema retrieval",
+      "expected_output": "Training extension — execution result for reward-model verification (EX metric); stringified 2D array matching SELECT output"
+    }
+  },
+  {
+    "db_id": "healthcare_hospital",
+    "question_id": 1,
+    "question": "What is the average length of stay for patients admitted with cardiac conditions in Q4 2024?",
+    "SQL": "SELECT AVG(JULIANDAY(discharge_date) - JULIANDAY(admit_date)) AS avg_los\nFROM patients p\nJOIN diagnoses d ON p.patient_id = d.patient_id\nWHERE d.icd_code LIKE 'I%'\n  AND p.admit_date BETWEEN '2024-10-01' AND '2024-12-31';",
+    "evidence": "Length of stay is calculated as discharge_date minus admit_date in days. Cardiac conditions are identified by ICD-10 codes starting with 'I' (diseases of the circulatory system). Q4 2024 refers to October 1 through December 31, 2024.",
+    "difficulty": "moderate",
+    "query_category": "aggregation",
+    "tables_used": [
+      "patients",
+      "diagnoses"
+    ],
+    "schema_context": {
+      "patients": {
+        "patient_id": "INTEGER PRIMARY KEY — unique patient identifier",
+        "admit_date": "DATE — date of hospital admission, e.g. '2024-10-15'",
+        "discharge_date": "DATE — date of hospital discharge, e.g. '2024-10-22'",
+        "status": "VARCHAR(20) — 'admitted', 'discharged', 'transferred'"
+      },
+      "diagnoses": {
+        "diagnosis_id": "INTEGER PRIMARY KEY — unique diagnosis record",
+        "patient_id": "INTEGER FK → patients.patient_id",
+        "icd_code": "VARCHAR(10) — ICD-10 code, e.g. 'I21.0' = acute ST-elevation MI",
+        "diagnosis_type": "VARCHAR(10) — 'primary', 'secondary', 'admitting'"
+      }
+    },
+    "expected_output": "[[7.3]]"
+  },
+  {
+    "db_id": "healthcare_hospital",
+    "question_id": 2,
+    "question": "Which department had the highest number of readmissions within 30 days during 2024?",
+    "SQL": "WITH readmissions AS (\n  SELECT\n    p1.department,\n    p1.patient_id,\n    p1.discharge_date AS first_discharge,\n    MIN(p2.admit_date) AS readmit_date\n  FROM patients p1\n  JOIN patients p2\n    ON p1.patient_id = p2.patient_id\n    AND p2.admit_date > p1.discharge_date\n    AND p2.admit_date <= DATE(p1.discharge_date, '+30 days')\n  WHERE p1.discharge_date BETWEEN '2024-01-01' AND '2024-12-31'\n  GROUP BY p1.department, p1.patient_id, p1.discharge_date\n)\nSELECT department, COUNT(*) AS readmission_count\nFROM readmissions\nGROUP BY department\nORDER BY readmission_count DESC\nLIMIT 1;",
+    "evidence": "A readmission is defined as a new admission for the same patient_id within 30 days of a prior discharge_date. The 30-day window is calculated using DATE(discharge_date, '+30 days') in SQLite. Only index admissions with discharge dates in 2024 are counted.",
+    "difficulty": "challenging",
+    "query_category": "window/self-join",
+    "tables_used": [
+      "patients"
+    ],
+    "schema_context": {
+      "patients": {
+        "patient_id": "INTEGER — unique patient identifier; same patient can have multiple rows (one per visit)",
+        "department": "VARCHAR(50) — admitting department, e.g. 'Emergency', 'Cardiology', 'Orthopedics'",
+        "admit_date": "DATE — date of this admission",
+        "discharge_date": "DATE — date of this discharge"
+      }
+    },
+    "expected_output": "[['Emergency', 142]]"
+  },
+  {
+    "db_id": "healthcare_hospital",
+    "question_id": 3,
+    "question": "List the top 5 physicians by total billed amount for outpatient visits in 2024.",
+    "SQL": "SELECT\n  ph.physician_name,\n  SUM(b.amount) AS total_billed\nFROM billing b\nJOIN visits v ON b.visit_id = v.visit_id\nJOIN physicians ph ON v.physician_id = ph.physician_id\nWHERE v.visit_type = 'outpatient'\n  AND v.visit_date BETWEEN '2024-01-01' AND '2024-12-31'\nGROUP BY ph.physician_name\nORDER BY total_billed DESC\nLIMIT 5;",
+    "evidence": "Outpatient visits are identified by visit_type = 'outpatient'. Total billed amount is the SUM of billing.amount for all line items associated with a visit. Physicians are linked through visits.physician_id → physicians.physician_id.",
+    "difficulty": "simple",
+    "query_category": "aggregation/ranking",
+    "tables_used": [
+      "billing",
+      "visits",
+      "physicians"
+    ],
+    "schema_context": {
+      "billing": {
+        "billing_id": "INTEGER PRIMARY KEY",
+        "visit_id": "INTEGER FK → visits.visit_id",
+        "amount": "DECIMAL(10,2) — billed amount in USD",
+        "billing_code": "VARCHAR(10) — CPT code"
+      },
+      "visits": {
+        "visit_id": "INTEGER PRIMARY KEY",
+        "patient_id": "INTEGER FK → patients.patient_id",
+        "physician_id": "INTEGER FK → physicians.physician_id",
+        "visit_type": "VARCHAR(20) — 'outpatient', 'inpatient', 'emergency'",
+        "visit_date": "DATE"
+      },
+      "physicians": {
+        "physician_id": "INTEGER PRIMARY KEY",
+        "physician_name": "VARCHAR(100)",
+        "specialty": "VARCHAR(50)"
+      }
+    },
+    "expected_output": "[['Dr. Smith', 482000.50], ['Dr. Johnson', 395200.00], ['Dr. Patel', 371800.75], ['Dr. Chen', 358400.00], ['Dr. Williams', 342100.25]]"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "setup-worktree": ["npm install 2>/dev/null || true"],
+  "scrub-4x": [
+    "python3 scripts/scrub_keywords.py --worktree 0 4",
+    "python3 scripts/scrub_keywords.py --worktree 1 4",
+    "python3 scripts/scrub_keywords.py --worktree 2 4",
+    "python3 scripts/scrub_keywords.py --worktree 3 4"
+  ]
+}

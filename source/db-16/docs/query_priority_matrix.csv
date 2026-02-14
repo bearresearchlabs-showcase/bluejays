@@ -1,0 +1,31 @@
+Query,Business Impact,Stakeholder Count,Data Complexity,Priority Score,Development Phase
+Q1,Critical,4,Very High,95,Phase 1
+Q2,Critical,3,Very High,90,Phase 1
+Q11,Critical,2,High,85,Phase 1
+Q30,Critical,2,Very High,85,Phase 1
+Q27,High,2,Medium,80,Phase 1
+Q3,High,3,High,75,Phase 2
+Q4,High,2,High,75,Phase 2
+Q7,High,2,Medium,70,Phase 2
+Q10,High,2,Medium,70,Phase 2
+Q12,High,2,Low,70,Phase 2
+Q16,High,2,Medium,70,Phase 2
+Q5,Medium,2,High,65,Phase 3
+Q6,Medium,1,Medium,65,Phase 3
+Q8,Medium,2,Medium,65,Phase 3
+Q9,Medium,2,High,65,Phase 3
+Q13,Medium,2,High,65,Phase 3
+Q14,Medium,2,High,65,Phase 3
+Q15,Medium,1,Medium,65,Phase 3
+Q17,Medium,1,Low,65,Phase 3
+Q19,Medium,1,Medium,65,Phase 3
+Q20,Medium,2,High,65,Phase 3
+Q21,Medium,2,Medium,65,Phase 3
+Q22,Medium,2,Medium,65,Phase 3
+Q23,Medium,1,Medium,65,Phase 3
+Q24,Medium,2,High,65,Phase 3
+Q25,Medium,2,Medium,65,Phase 3
+Q26,Medium,2,Very High,65,Phase 3
+Q28,Medium,2,Medium,60,Phase 4
+Q18,Low,2,Medium,55,Phase 4
+Q29,Low,2,High,55,Phase 4

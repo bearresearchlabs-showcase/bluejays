@@ -37,13 +37,16 @@ def main():
         if not run([sys.executable, str(BASE / "scripts" / "reconcile_and_verify_queries.py"), "--skip-resync"],
                    "2. Verify byte-for-byte (source = client)"):
             sys.exit(1)
+        if not run([sys.executable, str(BASE / "scripts" / "verify_unified_structure.py")],
+                   "3. Verify structure (DATABASE/DOCUMENTATION/QUERIES, PostgreSQL-only, 1GB)"):
+            sys.exit(1)
 
     if args.zip:
         if not run([sys.executable, str(BASE / "scripts" / "prepare_client_db_for_drive.py")],
-                   "3. Prepare client for Drive"):
+                   "4. Prepare client for Drive"):
             sys.exit(1)
         if not run([sys.executable, str(BASE / "scripts" / "create_drive_upload_package.py")],
-                   "4. Create zip package"):
+                   "5. Create zip package"):
             sys.exit(1)
 
     print("\n" + "=" * 60)

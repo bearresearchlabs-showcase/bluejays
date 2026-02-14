@@ -1,0 +1,38 @@
+# Config Registry — YAML/JSON pairs with 1:1 structure in workbench infra
+# Ensures queries.json ↔ queries.md and other config files maintain structural parity
+# Used by: queries_md_json_translator, db_check qa-suite, pytest test_qa_queries_format
+
+version: "1.0"
+description: "Registry of config file pairs that must maintain 1:1 YAML structure"
+
+# Pairs: YAML (source) ↔ JSON (export/canonical)
+# Structure in JSON must mirror YAML keys exactly
+pairs:
+  - id: qa_anchor
+    yaml: template/qa_anchor.yaml
+    json: template/qa_anchor.json
+    description: "QA validation schema for queries.md format"
+    sync: "yaml → json (pyyaml dump)"
+
+  - id: queries_format
+    yaml: template/queries_format_schema.yaml
+    json: null  # No JSON export; schema defines structure for queries.json
+    description: "Format schema for queries.md ↔ queries.json 1:1 translation"
+
+  - id: template_config
+    yaml: template/template_config.yaml
+    json: null
+    description: "Template alignment config (field mappings, difficulty rules)"
+
+  - id: doc_config
+    yaml: "source/db-N/_doc_config.yaml"
+    json: "source/db-N/_doc_config.json"
+    description: "Per-DB doc config for format.py"
+
+# queries.json structure (API response) — must mirror queries.md sections 1:1
+queries_json_structure:
+  meta:
+    preamble: { _title: "string", "Database Overview": "string", ... }
+    sections: { "Database Overview": { block_type: "yaml", content: "string" }, ... }
+  data:
+    queries: []  # each with _raw_json, _header for round-trip

@@ -1,0 +1,11 @@
+Stakeholder,Role,Primary Goals,Key Queries,Data Needs
+M&A Deal Team,Decision Makers,Evaluate acquisition targets; Assess deal risk; Make go/no-go decisions,"Q1, Q2, Q11, Q27, Q30",Multi-factor risk scores; Portfolio summaries; Financial impact
+Due Diligence Analysts,Analysts,Conduct property assessments; Identify risk factors; Generate reports,"Q1, Q3, Q7, Q10, Q22",Property-level risk; Historical data; Vulnerability scores
+Portfolio Managers,Risk Managers,Assess portfolio exposure; Identify concentrations; Diversification analysis,"Q2, Q9, Q24, Q29",Portfolio aggregations; Geographic clusters; Risk distribution
+Financial Analysts,Financial Modeling,Price negotiations; Deal structuring; ROI calculations,"Q11, Q20, Q28",Financial impact; Cost-benefit analysis; Time horizon projections
+Coastal Property Specialists,Domain Experts,Assess sea level rise; Coastal viability; Long-term projections,"Q4, Q13",Sea level rise scenarios; Multi-horizon projections
+Riverine Risk Analysts,Domain Experts,Assess streamflow risk; Flood frequency; Historical patterns,"Q5, Q14",Streamflow data; Historical patterns; Gauge coverage
+Model Validation Team,Quality Assurance,Validate predictions; Compare models; Ensure accuracy,"Q6, Q15, Q17, Q23",Model performance; Data quality; Accuracy metrics
+Insurance & Compliance,Regulatory,Determine insurance costs; FEMA zone classification; Regulatory requirements,"Q7, Q12",FEMA zones; Insurance requirements; Regulatory compliance
+Post-Acquisition Team,Operations,Plan mitigation; Cost-benefit analysis; Risk management,Q28,Mitigation strategies; Cost analysis; ROI projections
+Executive Leadership,Strategic Decision,Strategic portfolio decisions; Risk tolerance; Investment strategy,"Q16, Q30",Executive summaries; Comprehensive reports; Strategic insights

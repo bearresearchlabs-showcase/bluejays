@@ -1,0 +1,97 @@
+{
+  "database": "db-15",
+  "database_name": "Electricity Cost and Solar Rebate Database",
+  "test_date": "2026-02-10",
+  "postgresql_instance": "localhost:5433 (independent Docker test instance)",
+  "summary": {
+    "acid_tests": {
+      "atomicity": "PASS",
+      "consistency": "PASS",
+      "isolation": "PASS",
+      "durability": "PASS",
+      "overall": "4/4 PASS"
+    },
+    "queries": {
+      "total": 30,
+      "passed": 15,
+      "failed": 15,
+      "success_rate_pct": 50.0
+    }
+  },
+  "acid_details": {
+    "atomicity": "OK - Transaction rollback verified; no partial state on rollback",
+    "consistency": "OK - Constraints hold; database remains in valid state",
+    "isolation": "OK - Read committed isolation level verified",
+    "durability": "OK - Committed data persists after operations"
+  },
+  "query_results": {
+    "passed": [1, 6, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 29],
+    "failed": [
+      {
+        "number": 2,
+        "error": "syntax error at or near THEN - malformed CASE in tou_period_analysis (period_duration_hours)"
+      },
+      {
+        "number": 3,
+        "error": "syntax error at or near THEN - malformed CASE in federal_incentive_analysis"
+      },
+      {
+        "number": 4,
+        "error": "EXTRACT(EPOCH FROM integer) - effective_date - MIN() returns integer, need interval"
+      },
+      {
+        "number": 5,
+        "error": "column mi.region does not exist - should reference s.region in JOIN"
+      },
+      {
+        "number": 7,
+        "error": "rate_code_id must appear in GROUP BY or aggregate in rate_code_adoption"
+      },
+      {
+        "number": 8,
+        "error": "column npva.year_num does not exist - GENERATE_SERIES alias"
+      },
+      {
+        "number": 9,
+        "error": "syntax error - CROSS JOIN ... ON invalid; CROSS JOIN cannot have ON clause"
+      },
+      {
+        "number": 10,
+        "error": "rs.rate_structure_type does not exist - should use rc.rate_structure_type"
+      },
+      {
+        "number": 11,
+        "error": "syntax error at or near AS - COALESCE/ROUND expression"
+      },
+      {
+        "number": 12,
+        "error": "gra.utility_id does not exist in geographic_rebate_aggregation"
+      },
+      {
+        "number": 13,
+        "error": "diversity_score column reference ambiguous"
+      },
+      {
+        "number": 14,
+        "error": "syntax error at or near THEN - malformed CASE expression"
+      },
+      {
+        "number": 15,
+        "error": "avg_rate_3yr column reference ambiguous"
+      },
+      {
+        "number": 26,
+        "error": "recursive CTE type mismatch: VARCHAR(255)[] vs VARCHAR[]"
+      },
+      {
+        "number": 30,
+        "error": "monthly_cost_1000kwh column reference ambiguous"
+      }
+    ]
+  },
+  "setup": {
+    "schema_loaded": true,
+    "data_loaded": true,
+    "data_source": "db-15/deliverable/data/data.sql (copied to db-15/data/)"
+  }
+}

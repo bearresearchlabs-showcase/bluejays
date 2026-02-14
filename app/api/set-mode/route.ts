@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
   res.cookies.set('view_mode', m, {
     path: '/',
     maxAge: 30 * 86400,
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
   })
   return res

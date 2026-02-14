@@ -1,0 +1,20 @@
+{
+  "id": "db-12",
+  "name": "12 - db-12",
+  "version": "1.0",
+  "created_date": "2026-02-13",
+  "queries_count": 30,
+  "schema_hash": "3a504d19155a1012a5e84ef0729aa3c0dde8b75bc9bdf31e5b98441116f611f4",
+  "queries_hash": "4f0efe14495c0fbaeac813d65432500b15aab74d0e5036b4443529a20d0630fd",
+  "deliverable_files": [
+    "schema.sql",
+    "data.sql",
+    "queries.json",
+    "queries.md",
+    "db-12_documentation.html",
+    "db-12_deliverable.json"
+  ],
+  "rl_ready": true,
+  "client_ready": true,
+  "generated_at": "20260214-0132"
+}

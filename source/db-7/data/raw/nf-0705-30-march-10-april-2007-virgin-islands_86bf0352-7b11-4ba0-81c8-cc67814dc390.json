@@ -1,0 +1,2704 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-44FQGBN8G1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-44FQGBN8G1');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NF-0705 30 March - 10 April 2007, Virgin Islands | InPort</title>
+    <meta name="description" content="Biologic, Data collected from plankton collecting gear and LADCP. CNV and TSG data collected aboard the NOAA Ship NANCY FOSTER during cruise #NF-0705, March...">
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/inport/images/inport-icon-32.png" />
+  <link href="/inport/css/inport-rd.css?v=6.0.5"
+        rel="stylesheet">
+      <script async="" type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&amp;subagency=NOAA&pga4=G-44FQGBN8G1&yt=true&exts=aac,arc,arj,asf,asx,bin,flv,gif,gzip,hqx,jar,mp2,msp,phps,qt,qutm,mxd,ram,sea,sit,tar,torrent,tsv,wav,wpd,xml,z"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin="">
+        <script type="application/ld+json">
+    {
+            "@context" : "http://schema.org/",              "@type" : "Dataset",              "name" : "NF-0705 30 March - 10 April 2007, Virgin Islands",              "description" : "Biologic, Data collected from plankton collecting gear and LADCP. CNV and TSG data collected aboard the NOAA Ship NANCY FOSTER during cruise #NF-0705, March 30th - April 10th, 2007 as part of the Coral Reef Ecosystem Research (CRER) project and from inshore larval collections in Brewer's Bay, St. Thomas April\r\n\r\n.",              "url" : "https://www.fisheries.noaa.gov/inport/item/24259",              "keywords" : [
+              "DOC/NOAA/NMFS/SEFSC > Southeast Fisheries Science Center, National Marine Fisheries Service, NOAA, U.S. Department of Commerce",              "DOC/NOAA/OAR/AOML > Atlantic Oceanographic and Meteorological Laboratory, OAR, NOAA, U.S. Department of Commerce",              "EARTH SCIENCE > OCEANS > OCEAN TEMPERATURE > WATER TEMPERATURE",              "0273560",              "273560",              "US DOC; NOAA; NMFS; Southeast Fisheries Science Center",              "US DOC; NOAA; OAR; Atlantic Oceanographic and Meteorological Laboratory",              "ANIMALS - GROUP - NUMBER IN GROUP",              "WATER TEMPERATURE",              "in situ",              "laboratory analyses",              "Coral Reef Conservation Program (CRCP)",              "CORAL REEF STUDIES",              "US DOC; NOAA; NMFS; Southeast Fisheries Science Center"          ],              "alternateName" : "NF-0705 Data",              "dateCreated" : "2007-01-01",                      "datePublished" : "2009-01-01",              "image" : "https://www.ncei.noaa.gov/archive/accession/0273560/1.1/data/0-data/NF0705_State_Dept_CD/NF0705_final_cruise_track.pdf",                "identifier" : [
+        {
+                "@type" : "PropertyValue",                  "value" : "24259",                  "propertyID" : "InPort Catalog ID"          }
+              ],
+            "temporalCoverage" : [
+              "2007-03-30/2007-04-19"          ],                "spatialCoverage" : [
+                                    {
+                      "@type" : "Place",                  "geo" : {
+                                            "@type" : "GeoShape",                            "box" : "17.35 -67.16 18.55 -62.66"                                    }
+              }
+                        ,                                    "Virgin Islands"
+                        ,                                    "OCEAN > ATLANTIC OCEAN > NORTH ATLANTIC OCEAN > CARIBBEAN SEA"
+                        ,                                    "OCEAN > ATLANTIC OCEAN > NORTH ATLANTIC OCEAN > CARIBBEAN SEA > PUERTO RICO"
+                        ,                                    "OCEAN > ATLANTIC OCEAN > NORTH ATLANTIC OCEAN > CARIBBEAN SEA > VIRGIN ISLANDS"
+                        ,                                    "Caribbean Sea"
+                        ,                                    "British Virgin Islands"
+                        ,                                    "Puerto Rico"
+                        ,                                    "U. S Virgin Islands"
+                                          ],
+                    "distribution" : [
+                      {
+                    "@type" : "DataDownload",                                                                                "provider" : {
+                        "@type" : "Organization",                          "name" : "NOAA National Centers for Environmental Information (NCEI)"                  },
+                                  "contentUrl" : "https://www.ncei.noaa.gov/archive/accession/0273560/1.1/data/0-data/NF0705_State_Dept_CD/"              }                  ],
+            "sourceOrganization" : {
+              "@type" : "Organization",                "name" : "Southeast Fisheries Science Center"        },
+              "creator" : [
+                      {
+                    "@type" : "Organization",                      "name" : "Southeast Fisheries Science Center (SEFSC)"              },                      {
+                    "@type" : "Organization",                      "name" : "Atlantic Oceanographic & Meteorological Laboratory (AOML)"              }                  ],
+            "includedInDataCatalog" : {
+              "@type" : "DataCatalog",                "name" : "InPort",                "url" : "https://www.fisheries.noaa.gov/inport"        }
+                }
+    </script>
+  </head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <div class="system-notices">
+    <div class="fixed-page-fit">
+                </div>
+  </div>
+
+  <div class="fixed-page-fit fixed-header-style cf">
+    <div class="logo-bar">
+      <div class="left">
+        <a href="/inport/"><img class="logo" src="/inport/images/inport-logo.png"
+                                       width="126" height="64"
+                                       title="InPort - NMFS Enterprise Data Management Program"
+                                       alt="InPort"></a>
+      </div>
+      <div class="right">
+
+        <div class="mobile-header-icons">
+                    <a href="/inport/search"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-search.png" width="60" height="60" alt="Search"></a>
+          <a href="/inport/help"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-help.png" width="60" height="60" alt="Help"></a>
+          <span id="mobileNavToggle"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-hamburger.png" width="60" height="60" alt="Show/Hide Menu"></span>
+        </div>
+
+                  <form class="header-search-form"
+                method="get" action="/inport/q">
+            <input type="text" class="field header-search-field"
+                   aria-label="Search the InPort Catalog"
+                   name="keywords" id="quickKeywords" placeholder="Enter Keywords / Cat ID...">
+            <input type="submit" class="button small-button" value="Search">
+          </form>
+              </div>
+    </div>
+  </div>
+
+  <nav class="fixed-page-fit fixed-header-style">
+    <div id="mobileNav" style="display: none;">
+      <ul>
+                  <li><a href="/inport/login">Login</a></li>
+                                      <li><a
+                href="/inport/organizations/nmfs">NMFS</a>
+            </li>
+                      <li><a
+                href="/inport/organizations/nos">NOS</a>
+            </li>
+                      <li><a
+                href="/inport/organizations/partners">Partners</a>
+            </li>
+                          <li><a href="/inport/stats">Stats</a></li>
+                                          <li><a href="/inport/about">About InPort</a></li>
+                <li><a href="/inport/contact">Contact</a></li>
+              </ul>
+    </div>
+
+    <div id="nav" class="header-bar cf">
+      <ul class="sf-menu left">
+                  <li>
+            <span>Login</span>
+            <ul class="submenu submenu-form">
+              <li>
+                <form action="/inport/login/process" method="post"
+                      onsubmit="return loginNotice();">
+                  <input type="hidden" name="_csrf" value="66ae68ba-6a35-4cc5-809b-0f8f07e6cc28">
+<div class="form-field-block">
+  <label for="navUsername" class="label">NOAA / InPort Email:</label>
+  <input class="field" type="text" id="navUsername" name="username"
+         aria-label="NOAA / InPort Email" autofocus="autofocus">
+</div>
+<div class="form-field-block">
+  <label for="navPassword" class="label">Password:</label>
+  <input class="field" autocomplete="off" type="password" id="navPassword"
+         name="password" aria-label="Password">
+</div>
+                  <input type="submit" class="button small-button" value="Login">
+                  <div class="submenu-form-content"><a href="/inport/forgot-password">Forgot
+                    your password?</a></div>
+                </form>
+              </li>
+            </ul>
+          </li>
+                <li><span>Catalog</span>
+          <ul class="submenu">
+                                          <li><a
+                    href="/inport/organizations/nmfs">NMFS</a>
+                </li>
+                              <li><a
+                    href="/inport/organizations/nos">NOS</a>
+                </li>
+                              <li><a
+                    href="/inport/organizations/partners">Partners</a>
+                </li>
+                                      <li><a href="/inport/organizations">All Organizations</a></li>
+          </ul>
+        </li>
+                <li><a href="/inport/search">Search</a></li>
+        <li><a href="/inport/stats">Stats</a></li>
+
+        
+        <li><a href="/inport/help">Help</a>
+          <ul class="submenu">
+            <li><a href="/inport/about">About InPort</a></li>
+            <li><a href="/inport/contact">Contact / Support / Training</a></li>
+            <li><a href="/inport/help">Help Guides</a></li>
+            <li><a href="/inport/help/xml-loader">InPort XML Loader</a></li>
+            <li><a href="/inport/help/components">Components</a></li>
+          </ul>
+        </li>
+
+              </ul>
+
+      <div class="user-display right">
+              </div>
+    </div>
+
+  </nav>
+</header>
+<main>
+  <div class="fixed-page-fit fixed-page-main">
+    <header class="page-header">
+
+              <div class="stat right" style="margin-left: 0.625rem; clear: right;">
+                      <div class="stat-label">Completion Rubric</div>
+            <div class="stat-main">
+                              <a href="/inport/item/24259/rubric/data-set-completion"
+                   title="View the full Data Set Completion Rubric for this item">95%</a>
+                          </div>
+            <div class="stat-secondary">
+              33.42 / 35
+            </div>
+                        <div class="stat-secondary"><a href="/inport/item/24259/rubric/data-set-completion" class="icon icon-score">View Report</a></div>
+                  </div>
+            <div class="breadcrumbs">
+                              <a class="icon icon-mprj"
+               href="/inport/item/1631">
+              SEFSC Metadata Library</a> &gt;
+                      <a class="icon icon-prj"
+               href="/inport/item/30650">
+              POPULATION &amp; ECOSYSTEMS MONITORING DIV</a> &gt;
+                      <a class="icon icon-prj"
+               href="/inport/item/65605">
+              Other Protected Resources Projects</a> &gt;
+                      <a class="icon icon-prj"
+               href="/inport/item/26121">
+              Early Life History</a> &gt;
+                      <a class="icon icon-prj"
+               href="/inport/item/11415">
+              USVI Larval Distribution and Supply</a> &gt;
+                      <a class="icon icon-ds"
+               href="/inport/item/68639">
+              Coral Reef Ecosystem Research Consisting Of Bio...</a> &gt;
+                        </div>
+      <h1 class="force-break" style="margin-top: 2px;">NF-0705 30 March - 10 April 2007, Virgin Islands</h1>
+      <strong><span class="icon icon-ds">
+        Data Set
+        (DS)</span></strong>&nbsp;
+      |&nbsp; <strong>Southeast Fisheries Science Center
+      (SEFSC)</strong><br>
+      <span title="The Globally Unique IDentifier (GUID) uniquely identifies InPort records in external systems. It is derived from the InPort namespace and the Catalog Item ID.">GUID: gov.noaa.nmfs.inport:24259</span>&nbsp;
+      |&nbsp; Updated: May 15, 2025&nbsp;
+            |&nbsp; Published / External&nbsp;
+          </header>
+    <div class="page-header-bar cf">
+      <ul class="page-header-options left">
+                <li>
+          <span id="viewAsButton"><span class="icon icon-menu-arrow">View As</span></span>
+          <ul class="options-menu" id="viewAsMenu" style="display: none;">
+            <li><a href="/inport/item/24259/full-list" title="View Catalog Item in Full List format"><span class="icon icon-full-list">Full List View</span></a></li>
+                        <li><span class="menu-item"><strong>EXPORTS</strong></span></li>
+            <li><a href="/inport/item/24259/inport-xml" title="View the InPort XML format"><span class="icon icon-xml">InPort XML</span></a></li>
+                          <li><a href="/inport/item/24259/iso19115" title="View in ISO 19115 format"><span class="icon icon-xml">ISO 19115</span></a></li>
+                                                                <li><a href="/inport/item/24259/waf" title="View the WAF files for this catalog item"><span class="icon icon-waf">WAF Files</span></a></li>
+                      </ul>
+        </li>
+                <li><a href="/inport/hierarchy?select=24259"><span class="icon icon-tree" title="View this Catalog Item within the Catalog Hierarchy">View in Hierarchy</span></a></li>
+              </ul>
+    </div>
+
+    <div class="col-1">
+
+         
+      
+      <div class="tabbed-header">
+        <div id="summaryTab" class="tabbed-header-tab">Summary</div>
+        <div id="itemIdentificationTab" class="tabbed-header-tab">Item Identification</div>
+                  <div id="keywordsSectionTab"
+               class="tabbed-header-tab ">Keywords</div>
+                                  <div id="dataSetTab"
+              class="tabbed-header-tab ">Data Set Info</div>
+                                                                          <div id="supportRolesTab"
+              class="tabbed-header-tab ">Support Roles</div>
+                          <div id="extentsTab"
+              class="tabbed-header-tab ">Extents</div>
+                                  <div id="accessInfoTab"
+              class="tabbed-header-tab ">Access Info</div>
+                          <div id="distributionInfoTab"
+              class="tabbed-header-tab ">Distribution Info</div>
+                                  <div id="urlsTab"
+              class="tabbed-header-tab ">URLs</div>
+                                                  <div id="dataQualityTab"
+              class="tabbed-header-tab ">Data Quality</div>
+                          <div id="dataManagementTab"
+              class="tabbed-header-tab ">Data Management</div>
+                          <div id="lineageTab"
+              class="tabbed-header-tab ">Lineage</div>
+                          <div id="acquisitionInfoTab"
+              class="tabbed-header-tab ">Acquisition Info</div>
+                                                  <div id="childItemsTab"
+              class="tabbed-header-tab ">Child Items</div>
+                        <div id="catalogDetailsTab"
+            class="tabbed-header-tab">Catalog Details</div>
+      </div>
+
+      
+
+
+
+      <!-- Item Summary -->
+      <div id="summary" class="section metadataSection">
+
+        
+        <div class="section__header sh">
+          <h2 class="sh__main">Summary</h2>
+        </div>
+        <div class="section__content">
+                      <div class="media-block">
+              <img src="${esc.html($bg.browseGraphicLink)}"
+                   alt="NF-07-05 Cruise Track With Gears Shown on Map">
+            </div>
+          
+                      <p class="small">
+              <strong>Short Citation</strong><br>
+              Southeast Fisheries Science Center, 2026: NF-0705 30 March - 10 April 2007, Virgin Islands, https://www.fisheries.noaa.gov/inport/item/24259.<br>
+              <a href="/inport/item/24259/citation">Full Citation Examples</a>
+            </p>
+                    
+                                    <strong>Abstract</strong><br>
+                        <div class="small">
+                    <p>Biologic, Data collected from plankton collecting gear and LADCP. CNV and TSG data collected aboard the NOAA Ship NANCY FOSTER during cruise #NF-0705, March 30th - April 10th, 2007 as part of the Coral Reef Ecosystem Research (CRER) project and from inshore larval collections in Brewer's Bay, St. Thomas April</p>
+      <p>.</p>
+              </div>
+          
+                      <strong>Purpose</strong><br>
+            <div class="small">
+                    <p>The United States Virgin Islands' (USVI) Grammanik Bank, located to the south of St. Thomas, is the site of multi-species spawning aggregation for economically important fish including yellowfin grouper, Nassau grouper, tiger grouper, and dog snapper. Fishing pressure at this suspected source of larval recruits prompted the Caribbean Fisheries Council in 2004 to close the bank yearly from February - April. A series of banks south of the USVI (St. Thomas and St. John) and the British Virgin Islands (BVI) provide similar habitats and spawning aggregation sites. Unfortunately, the biological and physical processes which drive production on these banks, the circulation connecting these banks, and the flows across these banks have yet to be quantified. Absent such data, management decisions (including Marine Protected Area [MPA] designations and temporary closures) are presently based on professional judgment rather than quantifiable, defensible scientific information. To address this data gap, National Oceanic and Atmospheric Administration (NOAA) scientists from the Southeast Fisheries Science Center (SEFSC) and Atlantic Oceanographic and Meteorological Laboratory (AOML) in Miami, Florida, working with scientists from the University of the Virgin Islands (UVI) in St. Thomas will be conducting a three-year interdisciplinary research project using the R/V NANCY FOSTER to conduct biological and physical oceanographic surveys of the Virgin Islands' (VI) bank ecosystems and surrounding regional waters. The long-term sustainability of fisheries in the VI and surrounding regions will depend on a comprehensive understanding of regional spawning aggregations, larval transport, and overall larval recruitment in the study area. The project will be directed at answering one over-arching question: How are unprotected VI banks, MPAs such as the Hind Bank Marine Conservation District, seasonally closed areas such as the Grammanik Bank, and inshore areas ecologically linked via regional reef fish larval dispersal, transport, and life-history patterns? To gain the information necessary to develop more specific hypotheses, the first research cruise of this project was conducted between March 30, 2007 and April 10, 2007 aboard the R/V NANCY FOSTER. This survey sampled water properties, currents, and dispersal and transport of settlement-stage larvae in the VI and neighboring regions. It should yield not only an understanding of regional spatial variation in the supply of settlement-stage fishes, but also insights into the relative importance of Grammanik Bank and its MPAs as a source of juvenile fishes recruiting to the waters of the VI. Specifically, the cruise will address the following questions: 1) How do the abundance and composition of ichthyoplankton around Grammanik Bank and other similar banks change with space and time? 2) How much of this variation in abundance and composition can be explained by the oceanographic setting? 3) How do the oceanography and ichthyoplankton assemblages interface with the boundary areas of seasonally or permanently closed MPAs? This survey included neuston, bongo, and MOCNESS trawl tows, as well as CTDO2/LADCP casts measuring, temperature, salinity, dissolved oxygen, light transmission, chlorophyll, and water velocity. Continuous surface measurements of temperature, salinity, light transmission, chlorophyll, and water velocity werel also collected via the ship's flow-through system and hull-mounted ADCP. Satellite imagery of sea surface temperature, altimetry, and ocean color was used to aid in the interpretation of and extrapolation from shipboard observations. Identification and analysis of samples and shipboard data analysis commenced immediately after the cruise and should be completed by the end of 2009. Initially, the success of the project will be measured by the extent of the surveys made and the number of samples collected, as well as the utility and quality of useful information generated from analysis of the data collected. Settlement-stage larvae collected from inshore sampling will constitute another measure of success for the field study portion of this project. Determination of the utility of stable isotope analysis of these larvae will provide an additional benchmark. The synthesis of these data, to determine the location and relative importance of spawning sites, and the incorporation of this information into fisheries oceanographic models that help local resource managers in making decisions as to MPA sites and optimal seasonal closures with respect to time and place, will provide the ultimate measure of project success. In addition, it is our intention that all data generated and analyzed will be published in peer-reviewed literature. We consider this an essential step both to guarantee data quality and to assure that management decisions based on this information are defensible.</p>
+              </div>
+          
+          
+          <div class="cf"></div> <!-- needed to clear browse image float -->
+
+          <div class="inner-col-2">
+            <div class="inner-col-2__main">
+
+              
+              
+              
+              
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Distribution Information</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                                          <ul class="content-list">
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://www.ncei.noaa.gov/archive/accession/0273560/1.1/data/0-data/NF0705_State_Dept_CD/" rel="noopener"
+                                 target="_blank">https://www.ncei.noaa.gov/archive/accession/0273560/1.1/data/0-data/NF0705_State_Dept_CD/</a>
+                                                      </div>
+                                                                            </li>
+                                              </ul>
+                    
+                                          <strong>Access Constraints:</strong>
+                      <div class="small">
+                              <p>N/A</p>
+                        </div>
+                    
+                                          <strong>Use Constraints:</strong>
+                      <div class="small">
+                              <p>N/A</p>
+                        </div>
+                                      </div>
+                </div>
+                                            <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Controlled Theme Keywords</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                    <p>
+                                              DOC/NOAA/NMFS/SEFSC,                                               DOC/NOAA/OAR/AOML,                                               WATER TEMPERATURE                                          </p>
+                  </div>
+                </div>
+              
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">URLs</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                    <ul class="content-list">
+                                                                        <li>
+                            <div class="force-break">
+                              <a href="https://www.omao.noaa.gov/learn/marine-operations/ships/nancy-foster" rel="noopener"
+                                 target="_blank">Home Page Nancy Foster</a>
+                            </div>
+                                                          <div class="small">
+                                      <p>NOAA Ship Nancy Foster ship supports fish habitat and populations studies, seafloor mapping surveys, physical and chemical oceanography studies, and maritime heritage surveys..</p>
+      <p>This was the ship that conducted the survey</p>
+                                </div>
+                                                      </li>
+                                                                                                <li>
+                            <div class="force-break">
+                              <a href="https://www.ncei.noaa.gov/archive/accession/0043165/1.1/data/1-data/fallrate/nf0705/data/orig/" rel="noopener"
+                                 target="_blank">NCEI Accession 0043165 Fallrate data for Cruise NF0705</a>
+                            </div>
+                                                          <div class="small">
+                                      <p>Oceanographic temperature and salinity measurements collected using CTD and XBT from NOAA Ship Nancy Foster/Ronald H Brown in the North Atlantic from 1998 to 2007 (NCEI Accession 0043165) </p>
+      <p>It includes data from cruise NF0705</p>
+                                </div>
+                                                      </li>
+                                                                                                                </ul>
+                  </div>
+                </div>
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Child Items</h3>
+                  </div>
+                                      <table class="header-table">
+                      <thead>
+                      <tr>
+                        <th style="width: 9rem;">Type</th>
+                        <th>Title</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-ent">
+                            Entity</span></td>
+                          <td><strong><a href="/inport/item/68043">CtD Data 2007</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-doc">
+                            Document</span></td>
+                          <td><strong><a href="/inport/item/57797">DOS-2006-113.pdf</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-ent">
+                            Entity</span></td>
+                          <td><strong><a href="/inport/item/67960">LADCP Data 2007</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-ent">
+                            Entity</span></td>
+                          <td><strong><a href="/inport/item/57244">NF0705.xls</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-doc">
+                            Document</span></td>
+                          <td><strong><a href="/inport/item/57237">NF0705_FISH_DATA_REPORT.doc</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-ent">
+                            Entity</span></td>
+                          <td><strong><a href="/inport/item/67924">NF0705_FISH_DATA_REPORT.xls</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-ent">
+                            Entity</span></td>
+                          <td><strong><a href="/inport/item/68031">NF0705_OS150_surface_vels_part1.asc</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-ent">
+                            Entity</span></td>
+                          <td><strong><a href="/inport/item/68056">NF0705_OS150_surface_vels_part2.asc</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-doc">
+                            Document</span></td>
+                          <td><strong><a href="/inport/item/57236">NF0705_final_cruise_track.pdf</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-ent">
+                            Entity</span></td>
+                          <td><strong><a href="/inport/item/57255">NF0705_final_station_list.txt</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-ent">
+                            Entity</span></td>
+                          <td><strong><a href="/inport/item/68030">NF0705_flowthrough_dataset.dat</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-doc">
+                            Document</span></td>
+                          <td><strong><a href="/inport/item/67571">USVI larval reef fish supply study : 2007-08 report</a></strong></td>
+                        </tr>
+                                              <tr class="ellipsisize">
+                          <td><span class="icon icon-doc">
+                            Document</span></td>
+                          <td><strong><a href="/inport/item/67956">readme_NF-0705.pdf</a></strong></td>
+                        </tr>
+                                            </tbody>
+                    </table>
+                                  </div>
+              
+            </div>
+
+            <div class="inner-col-2__sidebar">
+
+              <div class="inner-col-section">
+                <div class="inner-col-section__header inner-col-sh">
+                  <h3 class="inner-col-sh__main">Contact Information</h3>
+                </div>
+                <div class="inner-col-section__content force-break">
+                                                                              <p>
+                        <strong>Point of Contact</strong><br>
+                                                Estrella Malca<br>
+                                  Estrella.Malca@noaa.gov<br>
+        305-361-4295<br>
+                            </p>
+                                          <p>
+                        <strong>Point of Contact</strong><br>
+                                                Trika Gerard<br>
+                                  trika.gerard@noaa.gov<br>
+        305-361-4493<br>
+                            </p>
+                                          <p>
+                        <strong>Point of Contact</strong><br>
+                                                Ryan H Smith<br>
+                                  ryan.smith@noaa.gov<br>
+        (305) 361-4328<br>
+                            </p>
+                                          <p>
+                        <strong>Metadata Contact</strong><br>
+                                                Trika Gerard<br>
+                                  trika.gerard@noaa.gov<br>
+        305-361-4493<br>
+                            </p>
+                                                      </div>
+              </div>
+
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Extents</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                                        
+                                                                    <div class="add-bottom-grid-margin">
+                          <strong>Geographic Area 1</strong><br>
+                                                      <div id="summaryGeoBoundsMap195464"
+                                 class="geo-bounds-display geo-bounds-small-display"></div>
+                                                        <p>
+                              -67.16&deg; W,
+                              -62.66&deg; E,
+                              18.55&deg; N,
+                              17.35&deg; S<br>
+                            </p>
+                                                                                <div class="small">
+                                    <p>Virgin Islands</p>
+                              </div>
+                                                  </div>
+                                                                  
+                                                              <div class="add-bottom-pad">
+                        <strong>Time Frame 1</strong><br>
+                        2007-03-30 - 2007-04-19<br>
+                        <div class="small">
+                                                    </div>
+                      </div>
+                                                            </div>
+                </div>
+                          </div>
+          </div>
+
+        </div>
+      </div> <!-- .section: Summary -->
+
+      <!-- Section: Item Identification -->
+      <div id="itemIdentification" class="section metadataSection">
+          <div class="section__header sh">
+    <h2 class="sh__main">Item Identification</h2>
+            </div>
+        <div class="section__content">
+                       <table class="name-value-table">
+                  <tr>
+    <th scope="col">
+              Title:
+          </th>
+    <td class="ellipsisize">
+              NF-0705 30 March - 10 April 2007, Virgin Islands
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Short Name:
+          </th>
+    <td class="ellipsisize">
+              NF-0705 Data
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Status:
+          </th>
+    <td class="ellipsisize">
+              Completed
+          </td>
+  </tr>
+                                  <tr>
+    <th scope="col">
+              Creation Date:
+          </th>
+    <td class="ellipsisize">
+              2007
+          </td>
+  </tr>
+                                                                                        <tr>
+    <th scope="col">
+              Publication Date:
+          </th>
+    <td class="ellipsisize">
+              2009
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">Abstract:</th>
+    <td class="small">
+            <p>Biologic, Data collected from plankton collecting gear and LADCP. CNV and TSG data collected aboard the NOAA Ship NANCY FOSTER during cruise #NF-0705, March 30th - April 10th, 2007 as part of the Coral Reef Ecosystem Research (CRER) project and from inshore larval collections in Brewer's Bay, St. Thomas April</p>
+      <p>.</p>
+      </td>
+  </tr>
+                  <tr>
+    <th scope="col">Purpose:</th>
+    <td class="small">
+            <p>The United States Virgin Islands' (USVI) Grammanik Bank, located to the south of St. Thomas, is the site of multi-species spawning aggregation for economically important fish including yellowfin grouper, Nassau grouper, tiger grouper, and dog snapper. Fishing pressure at this suspected source of larval recruits prompted the Caribbean Fisheries Council in 2004 to close the bank yearly from February - April. A series of banks south of the USVI (St. Thomas and St. John) and the British Virgin Islands (BVI) provide similar habitats and spawning aggregation sites. Unfortunately, the biological and physical processes which drive production on these banks, the circulation connecting these banks, and the flows across these banks have yet to be quantified. Absent such data, management decisions (including Marine Protected Area [MPA] designations and temporary closures) are presently based on professional judgment rather than quantifiable, defensible scientific information. To address this data gap, National Oceanic and Atmospheric Administration (NOAA) scientists from the Southeast Fisheries Science Center (SEFSC) and Atlantic Oceanographic and Meteorological Laboratory (AOML) in Miami, Florida, working with scientists from the University of the Virgin Islands (UVI) in St. Thomas will be conducting a three-year interdisciplinary research project using the R/V NANCY FOSTER to conduct biological and physical oceanographic surveys of the Virgin Islands' (VI) bank ecosystems and surrounding regional waters. The long-term sustainability of fisheries in the VI and surrounding regions will depend on a comprehensive understanding of regional spawning aggregations, larval transport, and overall larval recruitment in the study area. The project will be directed at answering one over-arching question: How are unprotected VI banks, MPAs such as the Hind Bank Marine Conservation District, seasonally closed areas such as the Grammanik Bank, and inshore areas ecologically linked via regional reef fish larval dispersal, transport, and life-history patterns? To gain the information necessary to develop more specific hypotheses, the first research cruise of this project was conducted between March 30, 2007 and April 10, 2007 aboard the R/V NANCY FOSTER. This survey sampled water properties, currents, and dispersal and transport of settlement-stage larvae in the VI and neighboring regions. It should yield not only an understanding of regional spatial variation in the supply of settlement-stage fishes, but also insights into the relative importance of Grammanik Bank and its MPAs as a source of juvenile fishes recruiting to the waters of the VI. Specifically, the cruise will address the following questions: 1) How do the abundance and composition of ichthyoplankton around Grammanik Bank and other similar banks change with space and time? 2) How much of this variation in abundance and composition can be explained by the oceanographic setting? 3) How do the oceanography and ichthyoplankton assemblages interface with the boundary areas of seasonally or permanently closed MPAs? This survey included neuston, bongo, and MOCNESS trawl tows, as well as CTDO2/LADCP casts measuring, temperature, salinity, dissolved oxygen, light transmission, chlorophyll, and water velocity. Continuous surface measurements of temperature, salinity, light transmission, chlorophyll, and water velocity werel also collected via the ship's flow-through system and hull-mounted ADCP. Satellite imagery of sea surface temperature, altimetry, and ocean color was used to aid in the interpretation of and extrapolation from shipboard observations. Identification and analysis of samples and shipboard data analysis commenced immediately after the cruise and should be completed by the end of 2009. Initially, the success of the project will be measured by the extent of the surveys made and the number of samples collected, as well as the utility and quality of useful information generated from analysis of the data collected. Settlement-stage larvae collected from inshore sampling will constitute another measure of success for the field study portion of this project. Determination of the utility of stable isotope analysis of these larvae will provide an additional benchmark. The synthesis of these data, to determine the location and relative importance of spawning sites, and the incorporation of this information into fisheries oceanographic models that help local resource managers in making decisions as to MPA sites and optimal seasonal closures with respect to time and place, will provide the ultimate measure of project success. In addition, it is our intention that all data generated and analyzed will be published in peer-reviewed literature. We consider this an essential step both to guarantee data quality and to assure that management decisions based on this information are defensible.</p>
+      </td>
+  </tr>
+                                <tr>
+    <th scope="col">Other Citation Details:</th>
+    <td class="small">
+            <p>DATASET CONTRIBUTORS: John Lamkin, Trika Gerard, Estrella Malca, Akihiro Shiroza (NOAA/NMFS/SEFSC and NOAA/OAR/AOML)</p>
+      </td>
+  </tr>
+                  <tr>
+    <th scope="col">Supplemental Information:</th>
+    <td class="small">
+            <p>Biological data collected aboard the NOAA Ship NANCY FOSTER during cruise #NF0705, March 30th - April 10th, 2007 Biological data collected during larval collections in Brewer's Bay, St. Thomas April 12 -19th, 2007.Gear used was light traps, channel nets and beach seine</p>
+      </td>
+  </tr>
+                                                            </table>
+        </div>
+      </div> <!-- .section Item Identification -->
+
+      <!-- Section: Keywords -->
+              <div id="keywordsSection" class="section metadataSection ">
+            <div class="section__header sh">
+    <h2 class="sh__main">Keywords</h2>
+            </div>
+          <div class="section__content">
+                                             <h3 class="record-block-section-header">Theme Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Data Center Keywords</td>
+            <td class="force-break">
+              <div>
+  DOC/NOAA/NMFS/SEFSC &gt; Southeast Fisheries Science Center, National Marine Fisheries Service, NOAA, U.S. Department of Commerce
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Data Center Keywords</td>
+            <td class="force-break">
+              <div>
+  DOC/NOAA/OAR/AOML &gt; Atlantic Oceanographic and Meteorological Laboratory, OAR, NOAA, U.S. Department of Commerce
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Science Keywords</td>
+            <td class="force-break">
+              <div>
+  EARTH SCIENCE &gt; OCEANS &gt; OCEAN TEMPERATURE &gt; WATER TEMPERATURE
+  </div>
+            </td>
+          </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NCEI Accession</td>
+                            <td class="force-break">
+                0273560
+              </td>
+            </tr>
+                      <tr>
+                              <td>NCEI Accession</td>
+                            <td class="force-break">
+                273560
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC COLLECTING INSTITUTION NAMES THESAURUS</td>
+                            <td class="force-break">
+                US DOC; NOAA; NMFS; Southeast Fisheries Science Center
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC COLLECTING INSTITUTION NAMES THESAURUS</td>
+                            <td class="force-break">
+                US DOC; NOAA; OAR; Atlantic Oceanographic and Meteorological Laboratory
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC DATA TYPES THESAURUS</td>
+                            <td class="force-break">
+                ANIMALS - GROUP - NUMBER IN GROUP
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC DATA TYPES THESAURUS</td>
+                            <td class="force-break">
+                WATER TEMPERATURE
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC OBSERVATION TYPES THESAURUS</td>
+                            <td class="force-break">
+                in situ
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC OBSERVATION TYPES THESAURUS</td>
+                            <td class="force-break">
+                laboratory analyses
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC PROJECT NAMES THESAURUS</td>
+                            <td class="force-break">
+                Coral Reef Conservation Program (CRCP)
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC PROJECT NAMES THESAURUS</td>
+                            <td class="force-break">
+                CORAL REEF STUDIES
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC SUBMITTING INSTITUTION NAMES THESAURUS</td>
+                            <td class="force-break">
+                US DOC; NOAA; NMFS; Southeast Fisheries Science Center
+              </td>
+            </tr>
+                        </table>
+    </div>
+                    <h3 class="record-block-section-header">Temporal Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                2007
+              </td>
+            </tr>
+                        </table>
+    </div>
+                    <h3 class="record-block-section-header">Spatial Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Location Keywords</td>
+            <td class="force-break">
+              <div>
+  OCEAN &gt; ATLANTIC OCEAN &gt; NORTH ATLANTIC OCEAN &gt; CARIBBEAN SEA
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Location Keywords</td>
+            <td class="force-break">
+              <div>
+  OCEAN &gt; ATLANTIC OCEAN &gt; NORTH ATLANTIC OCEAN &gt; CARIBBEAN SEA &gt; PUERTO RICO
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Location Keywords</td>
+            <td class="force-break">
+              <div>
+  OCEAN &gt; ATLANTIC OCEAN &gt; NORTH ATLANTIC OCEAN &gt; CARIBBEAN SEA &gt; VIRGIN ISLANDS
+  </div>
+            </td>
+          </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NODC SEA AREA NAMES THESAURUS</td>
+                            <td class="force-break">
+                Caribbean Sea
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                British Virgin Islands
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Puerto Rico
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                U. S Virgin Islands
+              </td>
+            </tr>
+                        </table>
+    </div>
+                                  <h3 class="record-block-section-header">Instrument Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Instrument Keywords</td>
+            <td class="force-break">
+              <div>
+  ADCP &gt; Acoustic Doppler Current Profiler
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Instrument Keywords</td>
+            <td class="force-break">
+              <div>
+  CTD &gt; Conductivity, Temperature, Depth
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Instrument Keywords</td>
+            <td class="force-break">
+              <div>
+  MOCNESS &gt; MOCNESS Plankton Net
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Instrument Keywords</td>
+            <td class="force-break">
+              <div>
+  NETS &gt; NETS
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Instrument Keywords</td>
+            <td class="force-break">
+              <div>
+  THERMOSALINOGRAPHS
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Instrument Keywords</td>
+            <td class="force-break">
+              <div>
+  VISUAL OBSERVATIONS &gt; VISUAL OBSERVATIONS
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>International Standard Statistical Classification of Fishing Gear (ISSCFG)</td>
+            <td class="force-break">
+              <div>
+  SEINE NETS &gt; Beach seines
+  </div>
+            </td>
+          </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NODC INSTRUMENT TYPES THESAURUS</td>
+                            <td class="force-break">
+                ADCP
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC INSTRUMENT TYPES THESAURUS</td>
+                            <td class="force-break">
+                CTD
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC INSTRUMENT TYPES THESAURUS</td>
+                            <td class="force-break">
+                Multiple Opening/Closing Net and Environmental Sensing System (MOCNESS)
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC INSTRUMENT TYPES THESAURUS</td>
+                            <td class="force-break">
+                net
+              </td>
+            </tr>
+                      <tr>
+                              <td>NODC INSTRUMENT TYPES THESAURUS</td>
+                            <td class="force-break">
+                visual observation
+              </td>
+            </tr>
+                        </table>
+    </div>
+                    <h3 class="record-block-section-header">Platform Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Platform Keywords</td>
+            <td class="force-break">
+              <div>
+  Nancy Foster &gt; NOAA Ship Nancy Foster
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Platform Keywords</td>
+            <td class="force-break">
+              <div>
+  Ships
+  </div>
+            </td>
+          </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NODC PLATFORM NAMES THESAURUS</td>
+                            <td class="force-break">
+                NOAA Ship Nancy Foster
+              </td>
+            </tr>
+                        </table>
+    </div>
+            </div>
+        </div> <!-- .section Keywords -->
+      
+      <!-- Section: Physical Location -->
+      
+      <!-- Section: Data Set -->
+              <div id="dataSet" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Set Information</h2>
+            </div>
+          <div class="section__content">
+                                                       <table class="name-value-table">
+                                      <tr>
+    <th scope="col">
+              Data Set Scope Code:
+          </th>
+    <td class="ellipsisize">
+              Data Set
+          </td>
+  </tr>
+                                            <tr>
+    <th scope="col">
+              Maintenance Frequency:
+          </th>
+    <td class="ellipsisize">
+              None Planned
+          </td>
+  </tr>
+                                          <tr>
+    <th scope="col">
+              Data Presentation Form:
+          </th>
+    <td class="ellipsisize">
+              Table (digital)
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">Entity Attribute Overview:</th>
+    <td class="small">
+            <p>Fish identification data for stations at which a MOCNESS, Bongo or inshore gear was deployed including lowest identifiable taxa when possible. Abundances provided. See the header of data file for complete description of data fields...</p>
+      </td>
+  </tr>
+                                                          <tr>
+    <th scope="col">Distribution Liability:</th>
+    <td class="small">
+            <p>Data were collected for scientific purposes only and should only be used for general scientific interest/endeavours. NOAA/OAR/AOML &amp; NOAA/NMFS/SEFSC cannot be held liable for use of these data in any other manner.</p>
+      </td>
+  </tr>
+                                    </table>
+                      </div>
+        </div> <!-- .section Data Set -->
+      
+      
+      <!-- Section: Entity -->
+      
+      <!-- Section: Data Attributes -->
+      
+      <!-- Section: Procedure -->
+      
+      <!-- Section: Project -->
+      
+      <!-- Section: Publication Info -->
+      
+      <!-- Section: Support Roles -->
+              <div id="supportRoles" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Support Roles</h2>
+            </div>
+          <div class="section__content">
+                                                      <!-- Record ID: 1185018, Created By: lee.weinberger@noaa.gov (1279), 2022-09-28 11:41+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2022-09-28 11:41+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Data Steward</h3>
+                  <div class="x-small right">CC ID: 1185018</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2007
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Gerard, Trika
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          75 Virginia Beach Drive<br>
+              Miami, FL 33149<br>
+              USA
+      </td>
+</tr>
+                                                                                          <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              trika.gerard@noaa.gov
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              305-361-4493
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Fax:
+          </th>
+    <td class="ellipsisize">
+              305-365-4103
+          </td>
+  </tr>
+                                                                                                                </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 289330, Created By: lee.weinberger@noaa.gov (1279), 2016-02-23 12:18+0000, Last Mod By: edmjira.inport@noaa.gov (0), 2024-10-03 18:16+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distributor</h3>
+                  <div class="x-small right">CC ID: 289330</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2007
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Organization):
+          </th>
+    <td class="ellipsisize">
+              NOAA National Centers for Environmental Information (NCEI)
+          </td>
+  </tr>
+                                                                                            <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              ncei.info@noaa.gov
+          </td>
+  </tr>
+                                                                                                  <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td>
+      <a href="https://www.ncei.noaa.gov/contact" rel="noopener" target="_blank">
+                  NCEI Contact Information
+              </a>
+    </td>
+  </tr>
+                                                                  </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 195436, Created By: sarah.oconnor@noaa.gov (9368), 2015-04-01 15:02+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2019-09-26 19:02+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Metadata Contact</h3>
+                  <div class="x-small right">CC ID: 195436</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2007
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Gerard, Trika
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          75 Virginia Beach Drive<br>
+              Miami, FL 33149<br>
+              USA
+      </td>
+</tr>
+                                                                                          <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              trika.gerard@noaa.gov
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              305-361-4493
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Fax:
+          </th>
+    <td class="ellipsisize">
+              305-365-4103
+          </td>
+  </tr>
+                                                                                                                </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 195433, Created By: sarah.oconnor@noaa.gov (9368), 2015-04-01 14:57+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2019-09-26 19:02+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Originator</h3>
+                  <div class="x-small right">CC ID: 195433</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2007
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Organization):
+          </th>
+    <td class="ellipsisize">
+              Southeast Fisheries Science Center (SEFSC)
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          75 Virginia Beach Drive<br>
+              Miami, FL 33149<br>
+              USA
+      </td>
+</tr>
+                                                                                                                  <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              (305)361-5761
+          </td>
+  </tr>
+                                                                          <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td>
+      <a href="https://www.fisheries.noaa.gov/about/southeast-fisheries-science-center" rel="noopener" target="_blank">
+                  https://www.fisheries.noaa.gov/about/southeast-fisheries-science-center
+              </a>
+    </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Business Hours:
+          </th>
+    <td class="ellipsisize">
+              8:00 a.m. - 4:30 p.m. EST
+          </td>
+  </tr>
+                                          </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 195640, Created By: sarah.oconnor@noaa.gov (9368), 2015-04-03 13:52+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2019-09-26 19:02+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Originator</h3>
+                  <div class="x-small right">CC ID: 195640</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2007
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Organization):
+          </th>
+    <td class="ellipsisize">
+              Atlantic Oceanographic &amp; Meteorological Laboratory (AOML)
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          4301 Rickenbacker Causeway<br>
+              Miami, FL 33149<br>
+          </td>
+</tr>
+                                                                                                                  <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              305-361-4420
+          </td>
+  </tr>
+                                                                          <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td>
+      <a href="https://www.aoml.noaa.gov/" rel="noopener" target="_blank">
+                  https://www.aoml.noaa.gov/
+              </a>
+    </td>
+  </tr>
+                                                                  </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 880087, Created By: lee.weinberger@noaa.gov (1279), 2019-09-26 18:56+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2019-09-26 18:56+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Point of Contact</h3>
+                  <div class="x-small right">CC ID: 880087</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2009
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Malca, Estrella
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          75 Va Beach Dr<br>
+              Miami , FL<br>
+          </td>
+</tr>
+                                                                                          <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              Estrella.Malca@noaa.gov
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              305-361-4295
+          </td>
+  </tr>
+                                                                                                                                        </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 195434, Created By: sarah.oconnor@noaa.gov (9368), 2015-04-01 15:00+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2019-09-26 19:02+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Point of Contact</h3>
+                  <div class="x-small right">CC ID: 195434</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2007
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Gerard, Trika
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          75 Virginia Beach Drive<br>
+              Miami, FL 33149<br>
+              USA
+      </td>
+</tr>
+                                                                                          <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              trika.gerard@noaa.gov
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              305-361-4493
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Fax:
+          </th>
+    <td class="ellipsisize">
+              305-365-4103
+          </td>
+  </tr>
+                                                                                                                </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 880088, Created By: lee.weinberger@noaa.gov (1279), 2019-09-26 19:01+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2019-09-26 19:01+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Point of Contact</h3>
+                  <div class="x-small right">CC ID: 880088</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2007
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Smith, Ryan H
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          4301 Rickenbacker Cswy<br>
+              Miami, FL 33149-1026<br>
+              United States
+      </td>
+</tr>
+                                                                                          <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              ryan.smith@noaa.gov
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              (305) 361-4328
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Fax:
+          </th>
+    <td class="ellipsisize">
+              (305) 361-4392
+          </td>
+  </tr>
+                                                                                                                </table>
+                </div> <!-- .record-block -->
+                                                    <a href="/inport/item/24259/support-roles/historical"
+                class="button small-button">View Historical Support Roles</a>
+                      </div>
+        </div> <!-- .section Support Roles -->
+      
+        <!-- Section: Extents -->
+              <div id="extents" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Extents</h2>
+            </div>
+          <div class="section__content">
+                                       <table class="name-value-table">
+                    <tr>
+    <th scope="col">
+              Currentness Reference:
+          </th>
+    <td class="ellipsisize">
+              Ground Condition
+          </td>
+  </tr>
+              </table>
+
+                                      <!-- Record ID: 245400, Created By: edmjira.inport@noaa.gov (0), 2015-11-03 13:29+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2019-03-06 05:25+0000 -->
+
+              <h3 class="record-block-section-header">Extent Group 1</h3>
+
+                              
+                                                  <!-- Record ID: 195464, Created By: sarah.oconnor@noaa.gov (9368), 2015-04-01 15:15+0000, Last Mod By: sarah.oconnor@noaa.gov (9368), 2015-04-01 15:15+0000 -->
+                  <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Extent Group 1 / Geographic Area 1</h3>
+                      <div class="x-small right">CC ID: 195464</div>
+                    </div>
+                    <table class="name-value-table">
+                                              <tr class="extra-cols">
+                          <th scope="col"><strong>W&deg; Bound:</strong></th>
+                          <td>-67.16</td>
+                          <td class="geo-bounds-cell" rowspan="4">
+                            <div id="geoBoundsMap195464" class="geo-bounds-display geo-bounds-full-display"></div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>E&deg; Bound:</strong></th>
+                          <td>-62.66</td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>N&deg; Bound:</strong></th>
+                          <td>18.55</td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>S&deg; Bound:</strong></th>
+                          <td>17.35</td>
+                        </tr>
+                                                                    <tr>
+                          <th scope="col">Description</th>
+                          <td class="small" colspan="2">
+                                  <p>Virgin Islands</p>
+                            </td>
+                        </tr>
+                                          </table>
+                  </div> <!-- .record-block -->
+                                  
+                                
+                                                  <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Extent Group 1 / Time Frame 1</h3>
+                      <div class="x-small right">CC ID: 195465</div>
+                    </div>
+                    <table class="name-value-table">
+                      <!-- Record ID: 195465, Created By: sarah.oconnor@noaa.gov (9368), 2015-04-01 15:16+0000, Last Mod By: sarah.oconnor@noaa.gov (9368), 2015-04-01 15:16+0000 -->
+                            <tr>
+    <th scope="col">
+              Time Frame Type:
+          </th>
+    <td class="ellipsisize">
+              Range
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              Start:
+          </th>
+    <td class="ellipsisize">
+              2007-03-30
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              End:
+          </th>
+    <td class="ellipsisize">
+              2007-04-19
+          </td>
+  </tr>
+                                                                                                  </table>
+                  </div> <!-- .record-block -->
+                                  
+              
+                                    </div>
+        </div> <!-- .section Extents -->
+      
+      <!-- Section: Spatial Info -->
+      
+      <!-- Section: Access Info -->
+              <div id="accessInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Access Information</h2>
+            </div>
+          <div class="section__content">
+                                                     <!-- ${esc.html($accessInfo.recordDetail.displayString)} -->
+              <table class="name-value-table">
+                                                                                                                                                              <tr>
+    <th scope="col">
+              Security Class:
+          </th>
+    <td class="ellipsisize">
+              Unclassified
+          </td>
+  </tr>
+                                                                            <tr>
+    <th scope="col">Data Access Procedure:</th>
+    <td class="small">
+            <p>Retrieve from website</p>
+      </td>
+  </tr>
+                      <tr>
+    <th scope="col">Data Access Constraints:</th>
+    <td class="small">
+            <p>N/A</p>
+      </td>
+  </tr>
+                      <tr>
+    <th scope="col">Data Use Constraints:</th>
+    <td class="small">
+            <p>N/A</p>
+      </td>
+  </tr>
+                                                    </table>
+                      </div>
+        </div> <!-- .section Access Info -->
+      
+      <!-- Section: Distribution Info -->
+              <div id="distributionInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Distribution Information</h2>
+            </div>
+          <div class="section__content">
+                                      <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 1</h3>
+                  <div class="x-small right">CC ID: 1204321</div>
+                </div>
+                <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Start Date:
+          </th>
+    <td class="ellipsisize">
+              2022
+          </td>
+  </tr>
+                                        <tr>
+                      <th scope="col">End Date:</th>
+                      <td>
+                                                  Present
+                                              </td>
+                    </tr>
+                                        <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://www.ncei.noaa.gov/archive/accession/0273560/1.1/data/0-data/NF0705_State_Dept_CD/" rel="noopener" target="_blank">https://www.ncei.noaa.gov/archive/accession/0273560/1.1/data/0-data/NF0705_State_Dept_CD/</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              NOAA National Centers for Environmental Information (NCEI) (2007 - Present)
+          </td>
+  </tr>
+                                                                                                                                                                                                                      </table>
+                              </div>
+                      </div>
+        </div> <!-- .section Distribution Info -->
+      
+      <!-- Section: Archive Info -->
+      
+      <!-- Section: URLs -->
+              <div id="urls" class="section metadataSection ">
+            <div class="section__header sh">
+    <h2 class="sh__main">URLs</h2>
+            </div>
+          <div class="section__content">
+                                                     <!-- Record ID: 826992, Created By: lee.weinberger@noaa.gov (1279), 2019-03-06 05:15+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2023-01-16 00:05+0000 -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">URL 1</h3>
+                  <div class="x-small right">CC ID: 826992</div>
+                </div>
+                <table class="name-value-table">
+                      <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td><a href="https://www.omao.noaa.gov/learn/marine-operations/ships/nancy-foster" rel="noopener" target="_blank">https://www.omao.noaa.gov/learn/marine-operations/ships/nancy-foster</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Name:
+          </th>
+    <td class="ellipsisize">
+              Home Page Nancy Foster
+          </td>
+  </tr>
+                                      <tr>
+                    <th scope="col">URL Type:</th>
+                    <td>
+                      <div>Online Resource</div>
+                                          </td>
+                  </tr>
+                                          <tr>
+    <th scope="col">
+              File Resource Format:
+          </th>
+    <td class="ellipsisize">
+              html
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>NOAA Ship Nancy Foster ship supports fish habitat and populations studies, seafloor mapping surveys, physical and chemical oceanography studies, and maritime heritage surveys..</p>
+      <p>This was the ship that conducted the survey</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                        <!-- Record ID: 1178966, Created By: lee.weinberger@noaa.gov (1279), 2022-07-25 19:16+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2023-01-16 00:05+0000 -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">URL 2</h3>
+                  <div class="x-small right">CC ID: 1178966</div>
+                </div>
+                <table class="name-value-table">
+                      <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td><a href="https://www.ncei.noaa.gov/archive/accession/0043165/1.1/data/1-data/fallrate/nf0705/data/orig/" rel="noopener" target="_blank">https://www.ncei.noaa.gov/archive/accession/0043165/1.1/data/1-data/fallrate/nf0705/data/orig/</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Name:
+          </th>
+    <td class="ellipsisize">
+              NCEI Accession 0043165 Fallrate data for Cruise NF0705
+          </td>
+  </tr>
+                                      <tr>
+                    <th scope="col">URL Type:</th>
+                    <td>
+                      <div>Online Resource</div>
+                                          </td>
+                  </tr>
+                                                              <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Oceanographic temperature and salinity measurements collected using CTD and XBT from NOAA Ship Nancy Foster/Ronald H Brown in the North Atlantic from 1998 to 2007 (NCEI Accession 0043165) </p>
+      <p>It includes data from cruise NF0705</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                        <!-- Record ID: 1204322, Created By: lee.weinberger@noaa.gov (1279), 2023-01-16 00:04+0000, Last Mod By: lee.weinberger@noaa.gov (1279), 2023-01-16 00:05+0000 -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">URL 3</h3>
+                  <div class="x-small right">CC ID: 1204322</div>
+                </div>
+                <table class="name-value-table">
+                      <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td><a href="https://www.ncei.noaa.gov/archive/accession/0273560/1.1/data/0-data/NF0705_State_Dept_CD/NF0705_final_cruise_track.pdf" rel="noopener" target="_blank">https://www.ncei.noaa.gov/archive/accession/0273560/1.1/data/0-data/NF0705_State_Dept_CD/NF0705_final_cruise_track.pdf</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Name:
+          </th>
+    <td class="ellipsisize">
+              NF-07-05 Cruise Track With Gears Shown on Map
+          </td>
+  </tr>
+                                      <tr>
+                    <th scope="col">URL Type:</th>
+                    <td>
+                      <div>Browse Graphic</div>
+                                          </td>
+                  </tr>
+                                                                            </table>
+              </div>
+                                    </div>
+        </div> <!-- .section URLs -->
+      
+      <!-- Section: Activity Log -->
+      
+      <!-- Section: Issues -->
+      
+      <!-- Section: Technical Environment -->
+      
+      <!-- Section: Data Quality -->
+              <div id="dataQuality" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Quality</h2>
+            </div>
+          <div class="section__content">
+                                       <!-- ${esc.html($dataQual.recordDetail.displayString)} -->
+            <table class="name-value-table">
+                                  <tr>
+    <th scope="col">Accuracy:</th>
+    <td class="small">
+            <p>Data have been processed using standard methodology with regard to plankton samples and identifications of fishes are ongoing with trained personnel.</p>
+      <p>Horizontal Positional Accuracy: The exact location of each tow (either MOCNESS, or Bongo) cast is shown in the spreadsheet. This location is determined from the ship's GPS and should be considered very accurate.The exact location of each station (light trap) is shown in the spreadsheet, locations were determined from the vessel's GPS and should be considered accurate. Positions of net casts recoreded in the data files correspond with the beginning of each cast. As the ship may drift on station, the position of the net will change in time over the course of the cast. As such the position information is only accurate for the beginning of the cast (i.e. when the net first enters the water). This accuracy is on the order of 10 meters. Positions of inshore collections is in the order of 5 meters due to the shifting wind and current at each station. Geographical accuracy was determined by GPS NMEA data.</p>
+      <p>Vertical Positional Accuracy: pressures (depth proxy) are determined using the MOCNESS pressure sensor.Depth of inshore stations was determined using the vessel's built in sounder. pressures (depth proxy) are accurate to within 1db</p>
+      </td>
+  </tr>
+                                                                                                                                                                                                                    <tr>
+    <th scope="col">Completeness Report:</th>
+    <td class="small">
+            <p>N/A</p>
+      </td>
+  </tr>
+                                    <tr>
+    <th scope="col">Quality Control Procedures Employed:</th>
+    <td class="small">
+            <p>Data is checked as it is entered</p>
+      </td>
+  </tr>
+              </table>
+          </div>
+        </div> <!-- .section Data Quality -->
+      
+      <!-- Section: Data Management -->
+              <div id="dataManagement" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Management</h2>
+            </div>
+          <div class="section__content">
+                                       <!-- ${esc.html($dataMgmt.recordDetail.displayString)} -->
+            <table class="name-value-table">
+                    <tr>
+    <th scope="col">
+              Have Resources for Management of these Data Been Identified?:
+          </th>
+    <td class="ellipsisize">
+              No
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Approximate Percentage of Budget for these Data Devoted to Data Management:
+          </th>
+    <td class="ellipsisize">
+              Unknown
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Do these Data Comply with the Data Access Directive?:
+          </th>
+    <td class="ellipsisize">
+              Yes
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Is Access to the Data Limited Based on an Approved Waiver?:
+          </th>
+    <td class="ellipsisize">
+              No
+          </td>
+  </tr>
+                                        <tr>
+    <th scope="col">
+              Approximate Delay Between Data Collection and Dissemination:
+          </th>
+    <td class="ellipsisize">
+              365
+          </td>
+  </tr>
+                                      <tr>
+    <th scope="col">
+              Actual or Planned Long-Term Data Archive Location:
+          </th>
+    <td class="ellipsisize">
+              NCEI-MD
+          </td>
+  </tr>
+                                    <tr>
+    <th scope="col">
+              Approximate Delay Between Data Collection and Archiving:
+          </th>
+    <td class="ellipsisize">
+              365
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">How Will the Data Be Protected from Accidental or Malicious Modification or Deletion Prior to Receipt by the Archive?:</th>
+    <td class="small">
+            <p>N/A</p>
+      </td>
+  </tr>
+              </table>
+          </div>
+        </div> <!-- .section Data Management -->
+      
+      <!-- Section: Lineage -->
+              <div id="lineage" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Lineage</h2>
+            </div>
+          <div class="section__content">
+                        <table class="name-value-table">
+                                          </table>
+
+            
+                          <h3 class="record-block-section-header">Process Steps</h3>
+                              <!-- ${esc.html($processStep.recordDetail.displayString)} -->
+                <div class="record-block">
+                  <div class="record-block-header cf">
+                    <h3 class="left">Process Step 1</h3>
+                    <div class="x-small right">CC ID: 195468</div>
+                  </div>
+                  <table class="name-value-table">
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Net / Trawl Operations: Operations varied, utilizing either neuston, bongo, Methot, or 1 meter Multiple Opening and Closing Net Environmental Sampling System (MOCNESS) . Trawl type and location was dependent on the work area (depth). Plankton samples were collected at sea and preserved in Ethanol. Light trap, channel net operations were done daily and consisted of larval fish collections. Seine tows were done three times around the new moon to monitor recruitment of settlement size fishes. Sorting and identification of larval fish began immediately. All data was stored in a spreadsheet format and updated as samples were completed.</p>
+      </td>
+  </tr>
+                                                                                                                                            </table>
+                </div>
+                                    </div>
+        </div> <!-- .section Lineage -->
+      
+      <!-- Section: Acquisition Info -->
+              <div id="acquisitionInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Acquisition Information</h2>
+            </div>
+          <div class="section__content">
+                        <!-- Subsection: Instruments -->
+                                      <h3 class="record-block-section-header">Instruments</h3>
+                                                <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Instrument 1</h3>
+                      <div class="x-small right">CC ID: 826996</div>
+                    </div>
+                    <table class="name-value-table">
+                            <tr>
+    <th scope="col">
+              Identifier:
+          </th>
+    <td class="ellipsisize">
+              Neuston Net
+          </td>
+  </tr>
+                                                        <tr>
+    <th scope="col">
+              Instrument / Gear:
+          </th>
+    <td class="ellipsisize">
+              Gear
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              Instrument Type:
+          </th>
+    <td class="ellipsisize">
+              Plankton Nets
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Neuston nets are designed to capture members of the neuston, the collective term for the organisms that inhabit the water&rsquo;s surface. Neuston nets have a rectangular frame and are towed horizontally at the top of the water column.</p>
+      </td>
+  </tr>
+                      </table>
+                  </div>
+                                                            
+            <!-- Subsection: Platforms -->
+                          <h3 class="record-block-section-header">Platforms</h3>
+                                                <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Platform 1</h3>
+                      <div class="x-small right">CC ID: 826997</div>
+                    </div>
+                    <table class="name-value-table">
+                            <tr>
+    <th scope="col">
+              Identifier:
+          </th>
+    <td class="ellipsisize">
+              NOAA Ship Nancy Foster
+          </td>
+  </tr>
+                                                      <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>The Nancy Foster is a 187-ft research vessel that operates in all three SEFSC research areas. The Nancy Foster is used in habitat and fauna characterization in the nation&rsquo;s National Marine Sanctuaries as well as pollution assessments, bathymetric surveys, physical and chemical oceanography studies, maritime heritage surveys, and pollution assessments. On board equipment includes two cranes, A-frame, J-frame and two winches. Special research equipment includes wet and dry laboratories, computers for data acquisition and analysis, and instruments for obtaining oceanographic and atmospheric data. The ship also carries four different launches, ranging from 17-ft rigid hull inflatable boats to a 23-ft aluminum boat for diving and oceanographic operations in shallow water.  </p>
+      </td>
+  </tr>
+                                                <tr class="subtable-header">
+  <td colspan="2"><h4>Mounted Instrument 1</h4></td>
+</tr>
+                        <tr>
+                          <td colspan="2">
+                            <table class="name-value-subtable">
+                              <tr>
+                                      <tr>
+    <th scope="col">
+              Identifier:
+          </th>
+    <td class="ellipsisize">
+              Neuston Net
+          </td>
+  </tr>
+                                </tr>
+                            </table>
+                          </td>
+                        </tr>
+                                                                  </table>
+                  </div>
+                                                                      </div>
+        </div> <!-- .section Acquisition Info -->
+      
+      <!-- Section: Acronyms -->
+      
+      <!-- Section: Glossary -->
+      
+      <!-- Section: FAQs -->
+      
+      <!-- Section: Child Items -->
+              <div id="childItems" class="section metadataSection">
+          <div class="section__header sh">
+            <h2 class="sh__main">Child Items</h2>
+          </div>
+          <div class="section__content">
+            <p class="xx-small subdued add-left-grid-margin">Rubric scores updated every 15m</p>
+            <table class="header-table">
+              <thead>
+              <tr>
+                <th class="hide-bp-narrow" title="Rubric Score" style="width: 5rem;">
+                  <img class="centered-block" src="/inport/images/icons/icon-score.png" alt="Rubric Score">
+                </th>
+                <th style="width: 9rem;">Type</th>
+                <th>Title</th>
+              </tr>
+              </thead>
+              <tbody>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-ent">
+                    Entity</span></td>
+                  <td><strong><a href="/inport/item/68043">CtD Data 2007</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-doc">
+                    Document</span></td>
+                  <td><strong><a href="/inport/item/57797">DOS-2006-113.pdf</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-ent">
+                    Entity</span></td>
+                  <td><strong><a href="/inport/item/67960">LADCP Data 2007</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-ent">
+                    Entity</span></td>
+                  <td><strong><a href="/inport/item/57244">NF0705.xls</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-doc">
+                    Document</span></td>
+                  <td><strong><a href="/inport/item/57237">NF0705_FISH_DATA_REPORT.doc</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-ent">
+                    Entity</span></td>
+                  <td><strong><a href="/inport/item/67924">NF0705_FISH_DATA_REPORT.xls</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-ent">
+                    Entity</span></td>
+                  <td><strong><a href="/inport/item/68031">NF0705_OS150_surface_vels_part1.asc</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-ent">
+                    Entity</span></td>
+                  <td><strong><a href="/inport/item/68056">NF0705_OS150_surface_vels_part2.asc</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-doc">
+                    Document</span></td>
+                  <td><strong><a href="/inport/item/57236">NF0705_final_cruise_track.pdf</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-ent">
+                    Entity</span></td>
+                  <td><strong><a href="/inport/item/57255">NF0705_final_station_list.txt</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-ent">
+                    Entity</span></td>
+                  <td><strong><a href="/inport/item/68030">NF0705_flowthrough_dataset.dat</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-doc">
+                    Document</span></td>
+                  <td><strong><a href="/inport/item/67571">USVI larval reef fish supply study : 2007-08 report</a></strong></td>
+                </tr>
+                              <tr class="ellipsisize">
+                  <td class="hide-bp-narrow">
+                                      </td>
+                  <td><span class="icon icon-doc">
+                    Document</span></td>
+                  <td><strong><a href="/inport/item/67956">readme_NF-0705.pdf</a></strong></td>
+                </tr>
+                            </tbody>
+            </table>
+          </div>
+        </div> <!-- .section Child Items -->
+      
+      <!-- Section: Related Items -->
+      
+      <!-- Section: Catalog Details -->
+      <div id="catalogDetails" class="section metadataSection">
+          <div class="section__header sh">
+    <h2 class="sh__main">Catalog Details</h2>
+            </div>
+        <div class="section__content">
+                       <table class="name-value-table">
+                  <tr>
+    <th scope="col">
+              Catalog Item ID:
+          </th>
+    <td class="ellipsisize">
+              24259
+          </td>
+  </tr>
+                  <tr>
+    <th scope="col">
+              <span title="The Globally Unique IDentifier (GUID) uniquely identifies InPort records in external systems. It is derived from the InPort namespace and the Catalog Item ID.">GUID:</span>
+          </th>
+    <td class="ellipsisize">
+              gov.noaa.nmfs.inport:24259
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Created By:
+          </th>
+    <td class="ellipsisize">
+              Sarah A O'Connor
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Created:
+          </th>
+    <td class="ellipsisize">
+              2015-04-01 14:30+0000
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Last Modified By:
+          </th>
+    <td class="ellipsisize">
+              SysAdmin InPortAdmin
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Last Modified:
+          </th>
+    <td class="ellipsisize">
+              2025-05-15 19:16+0000
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Published:
+          </th>
+    <td class="ellipsisize">
+              2023-01-12
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Owner Org:
+          </th>
+    <td class="ellipsisize">
+              SEFSC
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Publication Status:
+          </th>
+    <td class="ellipsisize">
+              Published Externally
+          </td>
+  </tr>
+                                <tr>
+    <th scope="col">
+              Do Not Publish?:
+          </th>
+    <td class="ellipsisize">
+              N
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Last Review Date:
+          </th>
+    <td class="ellipsisize">
+              2022-04-27
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Review Frequency:
+          </th>
+    <td class="ellipsisize">
+              1 Year
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Next Review Date:
+          </th>
+    <td class="ellipsisize">
+              2023-04-27
+          </td>
+  </tr>
+            </table>
+                  </div>
+      </div> <!-- .section Catalog Details -->
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="fixed-page-fit">
+    <nav>
+      <a href="/inport/about">About InPort</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/contact">Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/release-notes">Release Notes</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/system-availability">System Availability</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/privacy">Privacy</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/security">Security</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/pra">Paperwork Reduction Act</a>
+    </nav>
+    <div class="cf">
+      <div class="org-seals">
+        <ul>
+          <li><a href="https://www.fisheries.noaa.gov/national/commercial-fishing/fisheries-information-system-program" title="Fisheries Information System"
+                 rel="noopener" target="_blank"><img src="/inport/images/fis-seal.png" width="52" height="53" alt="FIS"/></a></li>
+          <li><a href="https://www.fisheries.noaa.gov/" title="NOAA Fisheries"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/noaa-fisheries-seal.png" width="52" height="53" alt="NOAA Fisheries"/></a></li>
+          <li><a href="https://www.noaa.gov/" title="National Oceanic &amp; Atmospheric Administration"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/noaa-seal.png" width="52" height="53" alt="NOAA"/></a></li>
+          <li><a href="https://www.commerce.gov/" title="U.S. Department of Commerce"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/doc-seal.png" width="52" height="53" alt="Department of Commerce"/></a></li>
+        </ul>
+      </div>
+      <div class="app-info">
+        <img src="/inport/images/inport-logo-footer.png" width="94" height="48" alt="InPort Logo">
+        <div class="release-info">
+          <strong class="x-small">Release 6.0.5</strong><br>
+          <span class="xx-small">Build FINAL (2025-12-02 18:25 UTC)</span>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .fixed-page-fit -->
+</footer>
+
+<!-- Script Includes -->
+<script src="//code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs"
+        crossorigin="anonymous"></script> <!-- hash generated by srihash.org -->
+<script src="/inport/js/inport.js?v=6.0.5"></script>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+  <script type="text/javascript" src="/inport/js/geobounds.js?v=6.0.5"></script>
+
+<script type="text/javascript">
+  var viewAsMenu = $("#viewAsMenu").hide();
+    
+  $(function() {
+    $("#viewAsButton").click(function() {
+            viewAsMenu.toggle();
+      
+      $(document).one("click", function() {
+        viewAsMenu.hide();
+      });
+
+      return false;
+    });
+
+    
+    
+    registerTab("summary");
+          registerTab("itemIdentification");
+              registerTab("keywordsSection");
+                  registerTab("dataSet");
+                                      registerTab("supportRoles");
+              registerTab("extents");
+                  registerTab("accessInfo");
+              registerTab("distributionInfo");
+                  registerTab("urls");
+                          registerTab("dataQuality");
+              registerTab("dataManagement");
+              registerTab("lineage");
+              registerTab( "acquisitionInfo");
+                    registerTab("childItems");
+    registerTab("relatedItems");
+    registerTab("catalogDetails");
+
+    function registerTab(sectionId) {
+      $("#" + sectionId + "Tab").click(function () {
+        activateTab(sectionId);
+        return false;
+      });
+    }
+
+    function activateTab(sectionId) {
+      hideAllElementsWithClass("metadataSection");
+      removeClassFromAllElements("tabbed-header-tab", "selected");
+      document.getElementById(sectionId).style.display = "block";
+      document.getElementById(sectionId + "Tab").classList.add("selected");
+      // Leaflet maps need to be redrawn when their containing element's display is set to none.
+      if (sectionId === "extents") {
+        reinitializeMaps();
+      }
+    }
+
+    /*
+      invalidateSize must be called on any maps after display is set from none to block.
+      The map also needs to be refit to the bounds.
+     */
+    function reinitializeMaps() {
+                                          maps[0].invalidateSize(false);
+            fitBoundsToMap(maps[0],
+                  17.35,
+                  -67.16,
+                  18.55,
+                  -62.66,
+                  false);
+                                        }
+
+                            loadGeoBoundsMap("summaryGeoBoundsMap195464",
+            17.35,
+            -67.16,
+            18.55,
+            -62.66
+          );
+              
+      let maps = [];
+                                    maps.push(
+                loadGeoBoundsMap("geoBoundsMap195464",
+                      17.35,
+                      -67.16,
+                      18.55,
+                      -62.66));
+                            
+        
+                  
+    let anchoredSection = window.location.hash.substring(1);
+    // verify that the hash corresponds to an actual section in the page
+    if (document.getElementById(anchoredSection) == null) {
+      // Have the Summary tab selected by default
+      activateTab("summary");
+    } else {
+      activateTab(anchoredSection);
+    }
+  });
+
+</script>
+<script src="/inport/js/species.js?v=6.0.5"></script>
+</body>
+</html>

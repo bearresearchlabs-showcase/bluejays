@@ -1,0 +1,48 @@
+---
+description: Export annotations (Scale Tasks Tab style) — /export command populates queries.json
+alwaysApply: false
+globs: scripts/annotator_app.py, scripts/export_annotations.py, source/**/queries.json
+---
+
+# Export Annotations — /export Command
+
+## Overview
+
+The **/export** command exports submission data from the master database (queries.json) in Excel sheet structure, matching [Scale Tasks Tab](https://scale.com/docs/pro-or-tasks-tab) style. It can also **populate** queries.json from an edited CSV file.
+
+## Excel Sheet Structure (Scale-style)
+
+Columns: `question_id`, `db_id`, `question`, `SQL`, `evidence`, `difficulty`, `query_category`, `tables_used`, `expected_output`, `task_status`, `audit_status`, `created_at`, `updated_at`
+
+- **task_status**: Queued, In Progress, Completed, Error, Canceled, Redo
+- **audit_status**: Ready to Audit, Accepted, Fixed, Rejected
+
+## Usage
+
+### CLI (db_check)
+
+```bash
+# Export to CSV (Excel-compatible)
+python3 scripts/db_check.py export db-1 [--output submissions_db1.csv]
+
+# Populate queries.json from edited CSV
+python3 scripts/db_check.py export db-1 --populate --from-csv submissions_db1.csv
+```
+
+### Web App (Annotator)
+
+1. Run: `python3 scripts/db_check.py annotator [--port 8766]`
+2. Open http://localhost:8766/annotate
+3. Select source (db-1, db-2, … or template)
+4. Click **Load**, then **Export CSV** or **Export JSON**
+5. Edit CSV in Excel, then run `db_check export db-N --populate --from-csv file.csv` to update queries.json
+
+### API
+
+- `GET /api/export?source=db-1&format=csv` — CSV download
+- `GET /api/export?source=db-1&format=json` — JSON download
+
+## When to Use
+
+- **Export**: Download current submissions for backup, review, or editing in Excel
+- **Populate**: After editing CSV in Excel, run `--populate --from-csv` to update queries.json

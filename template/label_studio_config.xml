@@ -1,0 +1,18 @@
+<!-- Label Studio labeling config for text-to-SQL query review -->
+<!-- Use with: template/queries.json → scripts/export_queries_to_label_studio.py -->
+<!-- Docs: https://labelstud.io/guide/quick_start -->
+<View>
+  <Header value="Question (natural language)"/>
+  <Text name="question" value="$question"/>
+  <Header value="SQL (golden solution) — edit if needed"/>
+  <TextArea name="sql" toName="question" value="$sql" rows="10" transcription="true"/>
+  <Header value="Evidence (chain-of-thought) — edit if needed"/>
+  <TextArea name="evidence" toName="question" value="$evidence" rows="5" transcription="true"/>
+  <Header value="Difficulty"/>
+  <Choices name="difficulty" toName="question">
+    <Choice value="simple"/>
+    <Choice value="moderate"/>
+    <Choice value="challenging"/>
+  </Choices>
+  <Text name="meta" value="Category: $query_category | Tables: $tables_used"/>
+</View>

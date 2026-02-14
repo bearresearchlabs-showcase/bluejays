@@ -1,0 +1,34 @@
+# Internal doc config — consumed by format.py to build deliverable markdown.
+# Renamed from DELIVERABLE.md; YAML/JSON preferred for structured input.
+# Location: source/db-N/_doc_config.yaml (or _doc_config.json)
+
+database:
+  id: db-N
+  name: Database Name
+  type: Database Type
+  status: Complete
+
+overview:
+  description: |
+    Database description (markdown supported).
+  key_features:
+    - Feature 1: Description
+    - Feature 2: Description
+  platforms:
+    - PostgreSQL
+
+schema:
+  overview: |
+    Schema overview text (markdown).
+  table_groups:
+    - name: Group Name
+      tables: [table1table2]
+  er_diagram: |
+    ```mermaid
+    erDiagram
+    ...
+    ```
+
+usage:
+  instructions: |
+    Load schema.sql and data.sql into PostgreSQL.

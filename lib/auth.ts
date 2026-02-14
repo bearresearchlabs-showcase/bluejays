@@ -66,6 +66,7 @@ export async function setViewModeCookie(mode: string) {
   cookieStore.set(VIEW_MODE_COOKIE, mode, {
     path: '/',
     maxAge: 30 * 86400,
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
   })
 }

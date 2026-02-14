@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   outputFileTracingRoot: path.join(__dirname),
   outputFileTracingIncludes: {
-    '/api/**': ['source/**', 'template/**'],
-    '/*': ['source/**', 'template/**'],
+    '/api/**': ['source/**', 'template/**', 'lib/**'],
+    '/*': ['source/**', 'template/**', 'lib/**'],
   },
 }
 

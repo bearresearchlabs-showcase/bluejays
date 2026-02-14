@@ -1,0 +1,61 @@
+# Template alignment config — aligns source/db-N/app/QUERIES/* with template/
+# Used by convert_queries_to_template_format.py, extract_queries_to_json.py, etc.
+
+template:
+  dir: template
+  queries_md: queries.md
+  queries_json: queries.json
+
+# Field mappings: old format → template (BIRD-SQL)
+field_mappings:
+  number: question_id
+  title: question
+  use_case: question
+  description: evidence
+  complexity: difficulty
+  sql: SQL  # template uses uppercase SQL for BIRD-SQL compat
+
+# Difficulty mapping: complexity string → simple|moderate|challenging
+difficulty_rules:
+  simple:
+    - "simple"
+    - "basic"
+    - "single"
+  challenging:
+    - "recursive"
+    - "4 cte"
+    - "3 cte"
+    - "9 window"
+  default: moderate
+
+# Query categories (inferred from SQL patterns)
+query_categories:
+  - aggregation
+  - aggregation/ranking
+  - join
+  - window/ranking
+  - window/self-join
+  - subquery/cte
+  - recursive_cte
+  - filtering/lookup
+  - date-arithmetic
+
+# Required template fields (for validation)
+required_fields:
+  - db_id
+  - question_id
+  - question
+  - SQL
+  - evidence
+  - difficulty
+  - query_category
+  - tables_used
+  - schema_context
+  - expected_output
+
+# Backward-compat fields (optional)
+backward_compat_fields:
+  - number
+  - title
+  - description
+  - complexity

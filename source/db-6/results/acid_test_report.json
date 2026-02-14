@@ -1,0 +1,368 @@
+{
+  "test_date": "20260210-0304",
+  "database": "db-6",
+  "acid_tests": {
+    "tests": {
+      "atomicity": {
+        "Pass": 1,
+        "note": "Rollback undid insert"
+      },
+      "consistency": {
+        "Pass": 1,
+        "note": "Primary key constraint enforced"
+      },
+      "isolation": {
+        "Pass": 1,
+        "level": "read committed",
+        "note": "Isolation level supported"
+      },
+      "durability": {
+        "Pass": 1,
+        "note": "Committed data persisted"
+      }
+    },
+    "Pass": 1
+  },
+  "pass": 1,
+  "query_results": [
+    {
+      "query_number": 1,
+      "title": "Production-Grade Spatial Weather Forecast Analysis with Multi-Level CTE Nesting and Geospatial Aggregations",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 21.24,
+      "sample_columns": []
+    },
+    {
+      "query_number": 2,
+      "title": "Recursive Spatial Boundary Hierarchy Analysis with Multi-Hop Geospatial Traversal",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 3352.74,
+      "sample_columns": []
+    },
+    {
+      "query_number": 3,
+      "title": "Multi-Parameter Weather Correlation Analysis with Cross-Parameter Temporal Patterns",
+      "success": true,
+      "row_count": 5,
+      "error": null,
+      "execution_time_ms": 19.32,
+      "sample_columns": [
+        "forecast_time",
+        "forecast_hour",
+        "forecast_date",
+        "rounded_lat",
+        "rounded_lon",
+        "temperature_value",
+        "precipitation_value",
+        "windspeed_value",
+        "apparent_temperature",
+        "wind_chill_temperature",
+        "temp_change_1h",
+        "temp_change_3h",
+        "precip_change_1h",
+        "correlation_pattern",
+        "weather_pattern",
+        "pattern_frequency",
+        "temp_percentile",
+        "precip_quintile"
+      ]
+    },
+    {
+      "query_number": 4,
+      "title": "Spatial Join Optimization Analysis with Boundary-Forecast Matching Efficiency Metrics",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 11.41,
+      "sample_columns": []
+    },
+    {
+      "query_number": 5,
+      "title": "Weather Station Network Coverage Analysis with Spatial Gap Detection and Coverage Optimization",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 14.5,
+      "sample_columns": []
+    },
+    {
+      "query_number": 6,
+      "title": "Forecast Accuracy Trend Analysis with Temporal Error Pattern Detection",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 10.42,
+      "sample_columns": []
+    },
+    {
+      "query_number": 7,
+      "title": "Boundary Forecast Aggregation Analysis with Multi-Level Spatial Summarization",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 16.01,
+      "sample_columns": []
+    },
+    {
+      "query_number": 8,
+      "title": "Observation Forecast Validation Analysis with Accuracy Scoring",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 8.15,
+      "sample_columns": []
+    },
+    {
+      "query_number": 9,
+      "title": "Multi-Boundary Spatial Intersection Analysis with Overlap Detection",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 80.55,
+      "sample_columns": []
+    },
+    {
+      "query_number": 10,
+      "title": "Parameter Forecast Distribution Analysis with Statistical Profiling",
+      "success": true,
+      "row_count": 3,
+      "error": null,
+      "execution_time_ms": 7.96,
+      "sample_columns": [
+        "parameter_name",
+        "forecast_date",
+        "forecast_count",
+        "mean_value",
+        "median_value",
+        "q1_value",
+        "q3_value",
+        "p10_value",
+        "p90_value",
+        "p5_value",
+        "p95_value",
+        "min_value",
+        "max_value",
+        "stddev_value",
+        "iqr",
+        "value_range",
+        "coefficient_of_variation",
+        "skewness_indicator",
+        "iqr_outlier_count",
+        "percentile_outlier_count",
+        "zscore_outlier_count",
+        "avg_iqr_outlier_value",
+        "outlier_percentage",
+        "moving_avg_mean_7d",
+        "stddev_percentile"
+      ]
+    },
+    {
+      "query_number": 11,
+      "title": "Geospatial Forecast Interpolation Analysis with Spatial Gradient Detection",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 6.76,
+      "sample_columns": []
+    },
+    {
+      "query_number": 12,
+      "title": "Weather Pattern Clustering Analysis with Spatial-Temporal Pattern Detection",
+      "success": true,
+      "row_count": 5,
+      "error": null,
+      "execution_time_ms": 12.94,
+      "sample_columns": [
+        "temp_forecast_id",
+        "forecast_time",
+        "forecast_hour",
+        "rounded_lat",
+        "rounded_lon",
+        "temperature",
+        "precipitation",
+        "wind_speed",
+        "weather_pattern",
+        "cluster_cohesion",
+        "pattern_frequency",
+        "anomaly_status",
+        "avg_temp_for_pattern",
+        "avg_precip_for_pattern",
+        "avg_wind_for_pattern",
+        "temp_deviation_from_pattern",
+        "precip_deviation_from_pattern",
+        "wind_deviation_from_pattern",
+        "temp_percentile_in_pattern",
+        "temp_quintile_in_pattern"
+      ]
+    },
+    {
+      "query_number": 13,
+      "title": "Forecast Model Performance Comparison with Multi-Model Analysis",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 4.59,
+      "sample_columns": []
+    },
+    {
+      "query_number": 14,
+      "title": "Boundary Forecast Anomaly Detection with Statistical Outlier Identification",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 7.89,
+      "sample_columns": []
+    },
+    {
+      "query_number": 15,
+      "title": "Insurance Risk Factor Calculation from 7-14 Day Forecasts",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 11.53,
+      "sample_columns": []
+    },
+    {
+      "query_number": 16,
+      "title": "Insurance Rate Table Generation from Forecast Risk Factors",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 7.75,
+      "sample_columns": []
+    },
+    {
+      "query_number": 17,
+      "title": "Rate Table Comparison Across 7-14 Day Forecasts",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 8.39,
+      "sample_columns": []
+    },
+    {
+      "query_number": 18,
+      "title": "Historical Claims Validation Against Forecast Risk Factors",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 6.17,
+      "sample_columns": []
+    },
+    {
+      "query_number": 19,
+      "title": "Rate Volatility and Stability Analysis",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 6.4,
+      "sample_columns": []
+    },
+    {
+      "query_number": 20,
+      "title": "Policy Area Risk Ranking and Comparison",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 3.61,
+      "sample_columns": []
+    },
+    {
+      "query_number": 21,
+      "title": "Forecast-to-Rate Impact Analysis",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 3.9,
+      "sample_columns": []
+    },
+    {
+      "query_number": 22,
+      "title": "Multi-Day Forecast Ensemble Rate Analysis",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 3.1,
+      "sample_columns": []
+    },
+    {
+      "query_number": 23,
+      "title": "Forecast Day Selection Optimization",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 4.79,
+      "sample_columns": []
+    },
+    {
+      "query_number": 24,
+      "title": "Comprehensive Insurance Rate Modeling Summary",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 6.48,
+      "sample_columns": []
+    },
+    {
+      "query_number": 25,
+      "title": "US-Wide NEXRAD Reflectivity Composite Generation",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 13.1,
+      "sample_columns": []
+    },
+    {
+      "query_number": 26,
+      "title": "NEXRAD Storm Cell Tracking and Movement Analysis",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 5.24,
+      "sample_columns": []
+    },
+    {
+      "query_number": 27,
+      "title": "US-Wide Satellite Imagery Cloud Composite Generation",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 5.57,
+      "sample_columns": []
+    },
+    {
+      "query_number": 28,
+      "title": "NEXRAD-Satellite Data Fusion for Precipitation Estimation",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 22.15,
+      "sample_columns": []
+    },
+    {
+      "query_number": 29,
+      "title": "Satellite Fire Detection and Monitoring Across US",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 5.15,
+      "sample_columns": []
+    },
+    {
+      "query_number": 30,
+      "title": "US-Wide Composite Product Generation (NEXRAD + Satellite)",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 20.28,
+      "sample_columns": []
+    }
+  ],
+  "queries_run": 30,
+  "queries_success": 30,
+  "queries_failed": 0
+}

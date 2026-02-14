@@ -1,0 +1,31 @@
+# Internal doc config — consumed by format.py. Replaces DELIVERABLE.md.
+database:
+  id: db-2
+  name: Filling Station Retail / POS
+  type: Filling Station Retail / POS (phppos)
+  status: Complete
+
+overview:
+  description: |
+    Real-world retail Point-of-Sale (POS) database from a family business in Kenya,
+    featuring complete transactional history, inventory management, and multi-location
+    operations. Includes phppos schema with sales, line items, payments, inventory,
+    products, and suppliers.
+  key_features:
+    - Sales transactions and line items
+    - Payment records and inventory movements
+    - Product catalog and purchase orders
+    - Supplier receivings and multi-location support
+  platforms:
+    - PostgreSQL
+
+schema:
+  overview: |
+    See `docs/SCHEMA.md` for table relationships. Core tables include `phppos_sales`,
+    `phppos_sales_items`, `phppos_payments`, `phppos_items`, `phppos_inventory`,
+    `phppos_suppliers`, and related phppos tables.
+
+usage:
+  instructions: |
+    Load schema.sql and data.sql into PostgreSQL. See docs/POSTGRES_MIGRATION.md for
+    migration from MySQL format.

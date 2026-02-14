@@ -1,0 +1,8 @@
+Data Source,Stakeholder Needs,Queries Using,Critical Fields,Update Frequency
+FEMA Flood Zones,"Insurance costs, Regulatory compliance, Zone classification","Q1, Q7, Q12","zone_code, base_flood_elevation, zone_geom",Annual
+NOAA Sea Level Rise,"Coastal viability, Long-term projections, Scenario comparison","Q1, Q4, Q13","projection_year, scenario, sea_level_rise_feet",Quarterly
+USGS Streamflow,"Riverine risk, Flood frequency, Historical patterns","Q1, Q5, Q14","gauge_id, discharge_cfs, flood_category",Real-time
+NASA Flood Models,"Prediction accuracy, Model validation, Flood probability","Q1, Q6, Q15, Q23","flood_probability, inundation_depth_feet, model_id",Daily
+Historical Flood Events,"Past damage, Frequency patterns, Recurrence intervals","Q3, Q22","event_date, severity, damage_estimate_dollars",As available
+Property Data,"Property characteristics, Location, Value",All queries,"property_id, property_geom, total_value, elevation_feet",Per acquisition
+Portfolio Data,"Portfolio structure, Geographic distribution","Q2, Q9, Q16, Q24, Q29","portfolio_id, portfolio_name, acquisition_date",Per acquisition

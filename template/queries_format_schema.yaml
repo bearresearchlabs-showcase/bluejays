@@ -1,0 +1,85 @@
+# Queries Format Schema — XLSX/Word-style structure
+# Defines sections, styles, content types for queries.md ↔ queries.json translation
+# Like XLSX: styles (formatting) + content (data) + structure (sections)
+# Like Word: compiled from components with defined styles
+
+version: "1.0"
+description: "Canonical format schema for byte-for-byte queries.md ↔ queries.json translation"
+
+# 1:1 structure mapping — queries.json keys MUST mirror queries.md sections exactly
+# JSON path = meta.sections.{section_id} for preamble; data.queries for query blocks
+structure_1to1:
+  title: { json_path: "meta.preamble._title", md_header: "# {name} — Query Documentation", block_type: null }
+  Database Overview: { json_path: "meta.sections.Database Overview", block_type: yaml }
+  Purpose: { json_path: "meta.sections.Purpose", block_type: text }
+  "Use Case": { json_path: "meta.sections.Use Case", block_type: text }
+  "Business Value": { json_path: "meta.sections.Business Value", block_type: text }
+  "Training Data Field Definitions": { json_path: "meta.sections.Training Data Field Definitions", block_type: text, optional: true }
+  Schema: { json_path: "meta.sections.Schema", block_type: sql }
+  "Domain Knowledge": { json_path: "meta.sections.Domain Knowledge", block_type: text }
+  "Query Difficulty Distribution": { json_path: "meta.sections.Query Difficulty Distribution", block_type: text }
+  Queries: { json_path: "data.queries", block_type: json }
+
+# Section structure (order, block type) — like XLSX sheet structure
+sections:
+  - id: title
+    level: 1
+    pattern: "^# (.+) — Query Documentation$"
+    block_type: null
+  - id: database_overview
+    level: 2
+    pattern: "^## Database Overview$"
+    block_type: yaml
+  - id: purpose
+    level: 2
+    pattern: "^## Purpose$"
+    block_type: text
+  - id: use_case
+    level: 2
+    pattern: "^## Use Case$"
+    block_type: text
+  - id: business_value
+    level: 2
+    pattern: "^## Business Value$"
+    block_type: text
+  - id: schema
+    level: 2
+    pattern: "^## Schema$"
+    block_type: sql
+  - id: domain_knowledge
+    level: 2
+    pattern: "^## Domain Knowledge$"
+    block_type: text
+  - id: query_difficulty_distribution
+    level: 2
+    pattern: "^## Query Difficulty Distribution$"
+    block_type: text
+  - id: queries
+    level: 2
+    pattern: "^## Queries$"
+    block_type: json  # per-query blocks
+
+# Query block style — like XLSX cell style
+query_block_style:
+  header_pattern: "^### Query (\\d+) — (simple|moderate|challenging) / ([a-zA-Z0-9/_-]+)$"
+  code_fence: "```json"
+  code_fence_close: "```"
+  preserve_raw: true  # Store exact bytes for round-trip
+
+# API response structure (submission of queries.md form)
+api_response:
+  status: "success" | "error"
+  submission:
+    source: "queries.md"
+    content_sha256: "hex"
+    byte_count: int
+    extracted_at: "ISO8601"
+  meta:
+    format_version: "1.0"
+    schema_anchor: "template/qa_anchor.json"
+    total_queries: int
+  data:
+    queries: []
+  validation:
+    round_trip_ok: bool
+    checksum_match: bool

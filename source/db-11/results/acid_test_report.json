@@ -1,0 +1,375 @@
+{
+  "test_date": "20260210-0254",
+  "database": "db-11",
+  "acid_tests": {
+    "tests": {
+      "atomicity": {
+        "Pass": 1,
+        "note": "Rollback undid insert"
+      },
+      "consistency": {
+        "Pass": 1,
+        "note": "FK constraint enforced"
+      },
+      "isolation": {
+        "Pass": 1,
+        "level": "read committed",
+        "note": "Isolation level supported"
+      },
+      "durability": {
+        "Pass": 1,
+        "note": "Committed data persisted"
+      }
+    },
+    "Pass": 1
+  },
+  "pass": 1,
+  "query_results": [
+    {
+      "query_number": 1,
+      "title": "Multi-Dimensional Market Demand Analysis with Geographic Segmentation and Temporal Patterns",
+      "success": true,
+      "row_count": 5,
+      "error": null,
+      "execution_time_ms": 32.06,
+      "sample_columns": [
+        "city_id",
+        "city_name",
+        "state_code",
+        "msa_name",
+        "population",
+        "population_density",
+        "median_household_income",
+        "total_facilities",
+        "total_spaces",
+        "avg_occupancy_rate",
+        "median_occupancy_rate",
+        "p95_occupancy_rate",
+        "avg_daily_traffic",
+        "demand_score",
+        "growth_potential_score",
+        "demand_rank",
+        "growth_rank",
+        "demand_percentile",
+        "growth_percentile",
+        "expansion_priority",
+        "market_tier"
+      ]
+    },
+    {
+      "query_number": 2,
+      "title": "Competitive Intelligence Analysis with Pricing Strategy Optimization and Market Share Calculation",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 117.73,
+      "sample_columns": []
+    },
+    {
+      "query_number": 3,
+      "title": "Event-Based Parking Demand Forecasting with Multi-Event Correlation and Revenue Optimization",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 11.79,
+      "sample_columns": []
+    },
+    {
+      "query_number": 4,
+      "title": "Airport Parking Revenue Optimization with Passenger Volume Correlation and Seasonal Pattern Analysis",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 5.14,
+      "sample_columns": []
+    },
+    {
+      "query_number": 5,
+      "title": "Traffic Volume Correlation Analysis with Parking Demand Forecasting and Revenue Impact Modeling",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 7.11,
+      "sample_columns": []
+    },
+    {
+      "query_number": 6,
+      "title": "Demographic Targeting Analysis with Income-Based Pricing Optimization and Market Penetration Modeling",
+      "success": true,
+      "row_count": 5,
+      "error": null,
+      "execution_time_ms": 12.0,
+      "sample_columns": [
+        "city_id",
+        "city_name",
+        "state_code",
+        "income_segment",
+        "age_segment",
+        "employment_segment",
+        "population",
+        "median_household_income",
+        "median_age",
+        "facility_count",
+        "avg_occupancy_rate",
+        "current_rate",
+        "recommended_hourly_rate",
+        "total_revenue",
+        "revenue_per_capita",
+        "price_sensitivity_index",
+        "market_penetration_score",
+        "penetration_category"
+      ]
+    },
+    {
+      "query_number": 7,
+      "title": "Market Segmentation Analysis with Multi-Dimensional Clustering and Revenue Optimization",
+      "success": true,
+      "row_count": 5,
+      "error": null,
+      "execution_time_ms": 3.87,
+      "sample_columns": [
+        "city_id",
+        "city_name",
+        "state_code",
+        "market_segment",
+        "population",
+        "population_density",
+        "median_household_income",
+        "facility_count",
+        "avg_occupancy_rate",
+        "total_revenue",
+        "revenue_potential_score",
+        "current_rate",
+        "recommended_segment_rate",
+        "growth_opportunity",
+        "segment_rank"
+      ]
+    },
+    {
+      "query_number": 8,
+      "title": "Utilization Pattern Analysis with Temporal Decomposition and Anomaly Detection",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 9.78,
+      "sample_columns": []
+    },
+    {
+      "query_number": 9,
+      "title": "Geographic Expansion Analysis with Market Opportunity Scoring and Risk Assessment",
+      "success": true,
+      "row_count": 4,
+      "error": null,
+      "execution_time_ms": 9.82,
+      "sample_columns": [
+        "city_id",
+        "city_name",
+        "state_code",
+        "msa_name",
+        "population",
+        "population_density",
+        "median_household_income",
+        "existing_facilities",
+        "competitor_facilities",
+        "avg_occupancy_rate",
+        "opportunity_score",
+        "overall_risk_score",
+        "expansion_priority_score",
+        "expansion_rank",
+        "expansion_priority"
+      ]
+    },
+    {
+      "query_number": 10,
+      "title": "Revenue Forecasting Models with Time-Series Analysis and Confidence Intervals",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 5.65,
+      "sample_columns": []
+    },
+    {
+      "query_number": 11,
+      "title": "Competitive Positioning Analysis with Market Share Dynamics and Strategic Recommendations",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 8.9,
+      "sample_columns": []
+    },
+    {
+      "query_number": 12,
+      "title": "Business District Analysis with Parking Demand Correlation and Revenue Optimization",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 7.34,
+      "sample_columns": []
+    },
+    {
+      "query_number": 13,
+      "title": "Monthly Parking Optimization with Customer Lifetime Value and Retention Analysis",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 8.02,
+      "sample_columns": []
+    },
+    {
+      "query_number": 14,
+      "title": "EV Charging Facility Analysis with Demand Forecasting and Revenue Impact Modeling",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 9.55,
+      "sample_columns": []
+    },
+    {
+      "query_number": 15,
+      "title": "Reservation vs Walk-in Analysis with Revenue Optimization and Capacity Planning",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 9.11,
+      "sample_columns": []
+    },
+    {
+      "query_number": 16,
+      "title": "Peak Hour Analysis with Dynamic Pricing Optimization and Capacity Management",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 4.13,
+      "sample_columns": []
+    },
+    {
+      "query_number": 17,
+      "title": "Weekend vs Weekday Pattern Analysis with Pricing Strategy Optimization",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 9.32,
+      "sample_columns": []
+    },
+    {
+      "query_number": 18,
+      "title": "Facility Type Optimization with Performance Benchmarking and Revenue Maximization",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 6.5,
+      "sample_columns": []
+    },
+    {
+      "query_number": 19,
+      "title": "Operator Type Analysis with Market Share and Competitive Advantage Assessment",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 4.3,
+      "sample_columns": []
+    },
+    {
+      "query_number": 20,
+      "title": "Multi-City Comparison Analysis with Performance Benchmarking and Best Practice Identification",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 7.31,
+      "sample_columns": []
+    },
+    {
+      "query_number": 21,
+      "title": "MSA-Level Aggregation Analysis with Regional Market Intelligence and Expansion Opportunities",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 8.04,
+      "sample_columns": []
+    },
+    {
+      "query_number": 22,
+      "title": "Time-Series Forecasting with Seasonal Decomposition and Trend Analysis",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 7.65,
+      "sample_columns": []
+    },
+    {
+      "query_number": 23,
+      "title": "Anomaly Detection Analysis with Statistical Methods and Alert Generation",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 8.45,
+      "sample_columns": []
+    },
+    {
+      "query_number": 24,
+      "title": "Customer Segmentation Analysis with Behavioral Patterns and Targeting Strategies",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 8.14,
+      "sample_columns": []
+    },
+    {
+      "query_number": 25,
+      "title": "Price Elasticity Analysis with Demand Response Modeling and Revenue Optimization",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 10.23,
+      "sample_columns": []
+    },
+    {
+      "query_number": 26,
+      "title": "Supply-Demand Gap Analysis with Capacity Planning and Facility Expansion Recommendations",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 6.75,
+      "sample_columns": []
+    },
+    {
+      "query_number": 27,
+      "title": "Market Penetration Analysis with Growth Metrics and Expansion Strategies",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 3.48,
+      "sample_columns": []
+    },
+    {
+      "query_number": 28,
+      "title": "Revenue Per Square Foot Analysis with Facility Efficiency Optimization",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 6.81,
+      "sample_columns": []
+    },
+    {
+      "query_number": 29,
+      "title": "Comprehensive Market Intelligence Dashboard with Multi-Dimensional Analytics",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 9.53,
+      "sample_columns": []
+    },
+    {
+      "query_number": 30,
+      "title": "Cross-Database Performance Optimization Analysis with Query Efficiency Metrics",
+      "success": true,
+      "row_count": 0,
+      "error": null,
+      "execution_time_ms": 5.83,
+      "sample_columns": []
+    }
+  ],
+  "queries_run": 30,
+  "queries_success": 30,
+  "queries_failed": 0
+}

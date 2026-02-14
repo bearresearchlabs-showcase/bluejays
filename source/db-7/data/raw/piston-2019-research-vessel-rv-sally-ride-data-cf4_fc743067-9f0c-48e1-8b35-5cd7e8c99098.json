@@ -1,0 +1,1168 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <title>ASDC | PISTON-ONR-NOAA_RVSallyRide_2019_1</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico" sizes="32x32" />
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,400|Raleway:200,400|Source+Sans+Pro:400,400i&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/application.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/header_footer.css">
+    <script type="text/javascript" src="/static/js/update_external_links.js"></script>
+
+    <script async type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NASA&subagency=LARC" id="_fed_an_ua_tag"></script>
+    <script async src="//script.crazyegg.com/pages/scripts/0013/2090.js"></script>
+    
+    <!-- Client IP push to Data Layer  -->
+    
+        <script>
+            var dataLayer = window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                'event': 'ipAddress',
+                'ipAddress': '10.131.0.1' //i.e.: 'ipAddress': '50.226.226.146'
+            });
+        </script>
+    
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WNP7MLF');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script src="/static/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+<script>
+    var collapse = true;
+    $('#abstract-expander').click(function () {
+        if (collapse == true) {
+            $(this).text('Read Less')
+        } else {
+            $(this).text('Read More')
+        }
+        collapse = !collapse;
+    });
+</script>
+
+    
+    
+
+</head>
+
+<body class="eui-layout d-flex flex-column min-vh-100 font-source-sans">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WNP7MLF" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="earthdata-tophat2" style="height: 32px;"></div>
+    <!-- Start Earthdata Status Bar -->
+    <h5>
+        <div class="alert alert-warning text-center rounded-0 mb-20px" role="alert" id="earthdata-notification-banner"></div>
+    </h5>
+    <script type="text/javascript" src="https://status.earthdata.nasa.gov/assets/banner_widget.js"></script>
+    <!-- End Earthdata Status Bar -->
+
+    
+
+<nav class="navbar navbar-dark navbar-expand-lg pr-0 pl-2 pb-2 pt-2 col-md-11 mx-auto">
+    <div class="eui-masthead-logo eui-application-logo row container d-flex">
+        <div class="masthead-inner pr-2 col">
+            <h1 class="font-raleway text-light">
+                <a class="navbar-brand mr-0" href="/"></a>
+            </h1>
+            <h3 class="font-raleway text-light pt-1 ml-5">
+                ASDC | Atmospheric Science Data Center
+            </h3>
+        </div>
+        <div class="masthead-inner-search pl-2 col">
+            <form class="search-bar form-inline rounded w-100" action="/search" method="GET">
+                <div class="justify-content-between align-items-baseline w-100 d-flex shadow rounded">
+                    <input class="pl-3 mr-1 search-bar-inner w-75 border-0 text-white"
+                        aria-label="search-this-site"
+                        placeholder="Search the ASDC site..."
+                        name="query">
+                    <i class="fas fa-search mr-3" aria-hidden="true"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-dark navbar-expand-lg p-2 col-md-11 mx-auto">
+    <button class="navbar-toggler ml-auto border-0 pr-0 mb-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-white">
+            <li class="nav-item dropdown pl-2 pr-2">
+                <a class="nav-link text-white" href="/about" id="navbarDropdownAbout" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ABOUT
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownAbout">
+                    <a class="dropdown-item" href="/about">About ASDC</a>
+                    <a class="dropdown-item" href="/contact-us">Contact Us</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown pl-2 pr-2">
+                <a class="nav-link text-white" href="/data/" id="navbarDropdownData" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    DATA
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownData">
+                    <a class="dropdown-item" href="/data/">Direct Data Download</a>
+                    <a class="dropdown-item ext_link"
+                        href="https://search.earthdata.nasa.gov/search?fdc=Atmospheric%20Science%20Data%20Center%20(ASDC)"
+                        target="_blank">Find Data</a>
+                    <a class="dropdown-item" href="/browse-projects">Browse Projects</a>
+                    <a class="dropdown-item" href="/projects">Explore Collections</a>
+                    <a class="dropdown-item" href="/tools-and-services">Tools and Services</a>
+                    <a class="dropdown-item " href="/soot/">Sub-Orbital Order Tool</a>
+                    <a class="dropdown-item ext_link" href="https://opendap.larc.nasa.gov/opendap">OPeNDAP</a>
+                    <a class="dropdown-item ext_link" href="https://gis.earthdata.nasa.gov/portal/home/">ArcGIS Portal</a>
+                    <a class="dropdown-item ext_link" href="https://earthdata.nasa.gov/">Earthdata Search</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown pl-2 pr-2">
+                <a class="nav-link text-white" href="#" id="navbarDropdownCommunity" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    COMMUNITY
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownCommunity">
+                    <a class="dropdown-item" href="/forum">Earthdata Forum</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown pl-2 pr-2">
+                <a class="nav-link text-white" href="#" id="navbarDropdownResources" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    OUTREACH
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownResources">
+                    <a class="dropdown-item" href="/data-in-action">Data In Action</a>
+                    <a class="dropdown-item" href="/data-e-learning">Data-E-Learning</a>
+                    <a class="dropdown-item" href="/outreach-materials">Outreach Materials</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown pl-2 pr-2">
+                <a class="nav-link text-white" href="#" id="navbarDropdownResources" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    RESOURCES
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownResources">
+                    <a class="dropdown-item" href="/glossary">Glossary</a>
+                    <a class="dropdown-item" href="/citing-data">Citing Data</a>
+                    <a class="dropdown-item" href="/publications">Publications</a>
+                    <a class="dropdown-item" href="/relevant-links">Relevant Links</a>
+                    <a class="dropdown-item" href="/copyright-information">Copyright Information</a>
+                    <a class="dropdown-item" href="/discrepancies-and-known-issues">Discrepancies and Known Issues</a>
+                    <a class="dropdown-item" href="https://asdc.larc.nasa.gov/documents/HOW_TO_PUBLISH_DATA_AT_THE_ASDC.docx">How to Publish Data at the ASDC</a>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</nav>
+    
+
+    <main class="mb-5">
+        <div>
+            <section class="col-md-11 mx-auto">
+                
+                <nav class="mb-3" aria-label="breadcrumb">
+                    <ol class="bg-dark breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        
+                            
+                                <li class="breadcrumb-item text-break">
+                                    <a href="/projects">
+                                        Projects
+                                    </a>
+                                </li>
+                            
+                        
+                            
+                                <li class="breadcrumb-item text-break">
+                                    <a href="/project/CAMP2Ex">
+                                        CAMP2Ex
+                                    </a>
+                                </li>
+                            
+                        
+                            
+                                <li class="breadcrumb-item text-break">
+                                    <a href="/project/CAMP2Ex?level=2">
+                                        Level 2 Collections
+                                    </a>
+                                </li>
+                            
+                        
+                            
+                                <li class="breadcrumb-item active text-break" aria-current="page">PISTON-ONR-NOAA_RVSallyRide_2019_1</li>
+                            
+                        
+                    </ol>
+                </nav>
+                
+                
+                
+<div class="text-white">
+    <h6>
+        <a href="/project/CAMP2Ex?level=2">
+            <span class="eui-badge--md mr-1">
+                CAMP2Ex
+            </span>
+            <span class="eui-badge--md">
+                
+                    Level 2
+                
+            </span>
+        </a>
+    </h6>
+    <div class="row">
+        <div class="col col-xl-8 d-block">
+            <h6 class="text-break mb-0"> <span class="pl-0 font-source-sans-ital text-uppercase">Entry Title: </span> PISTON 2019 Research Vessel (RV) Sally Ride Data</h6>
+            <hr class="border-top my-2">
+            <h6 class="text-break"><span class=" pl-0 font-source-sans-ital text-uppercase">Entry ID: </span>
+                PISTON-ONR-NOAA_RVSallyRide_2019_1</h6>
+            <h6>
+                
+                    
+                    <span id="Clouds" class="eui-badge--md discipline mb-3 mr-1" data-toggle="tooltip" data-placement="top"
+                        title="A visible aggregate of minute water droplets and/or ice crystals in the atmosphere above the Earth&#x27;s surface.">Clouds</span>
+                
+                    
+                    <span id="Radiation Budget" class="eui-badge--md discipline mb-3 mr-1" data-toggle="tooltip" data-placement="top"
+                        title="Radiation budget refers to the difference between the absorbed solar radiation and the net infrared radiation. The radiation budget takes into account the sum of all radiation, transferred in all directions, through the Earth&#x27;s atmosphere and to and from space. The radiation budget (or radiation balance) controls the Earth&#x27;s temperature and rainfall.">Radiation Budget</span>
+                
+            </h6>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card mb-2">
+            <div class="card-body">
+                
+                
+                <aside>
+                    <h5 class="text-uppercase font-raleway">Description</h5>
+                    <hr class="my-2">
+                    <p>PISTON-ONR-NOAA_RVSallyRide_2019 is the Propagation of Intra-Seasonal Tropical Oscillations (PISTON) 2019 Research Vessel (RV) Sally Ride data product. This product is the result of a joint effort that involved NASA as well as the Office of Naval Research (ONR), and National Oceanic and Atmospheric Administration (NOAA). Data was collected collection for this product using multiple instruments on the RV platform including: Conductivity, Temperature, Depth (CTD), Acoustic Doppler Current Profiler (ADCP), SEA-going POLarimetric Doppler Radar (SEA-POL), Chameleon Microstructure Profiler(CHAM), and SurfOtter Platform (SO). Data collection is complete.</p>
+                    <div class="collapse" id="abstract-after">
+                        <p>The PISTON field campaign, sponsored by the Office of Naval Research (ONR) and the National Oceanic and Atmospheric Administration (NOAA), was designed to gain understanding and enhance the prediction capability of multi-scale tropical atmospheric convection and air-sea interaction in this region. PISTON targeted the Boreal Summer Intraseasonal Oscillation (BSISO), which defines the northward and eastward movement of convection associated with equatorial waves, the MJO, tropical cyclones, and the Maritime Continent monsoon during northern-hemispheric (boreal) summertime. PISTON completed three total shipboard cruises (this doi), deployed eight drifting ocean profiling floats and two full-depth ocean moorings, collaborated with a Japanese research vessel collecting similar data, and also made use of soundings from nearby islands. These activities took place in the Philippine Sea, which is in the tropical northwestern Pacific Ocean north of Palau, between August 2018 - September 2019, with each dataset spanning a slightly different amount of time. There were two US research vessels involved in PISTON: R/V Thomas G. Thompson in Aug-Sept and Sept-Oct 2018  and R/V Sally Ride in Sept 2019 (this doi). The first 2018 cruise coincided collaborative activities with R/V Mirai. The 2019 cruise coincided with the NASA CAMP2Ex airborne field experiment (Clouds, Aerosol and Monsoon Processes-Philippines Experiment, please see more info below).  The two specialized moorings were deployed north of Palau and collected data from August 2018 - Oct 2019 to document a time series of ocean characteristics beneath typhoons and other tropical weather disturbances. Toward the same goal, eight profiling ocean floats were also deployed ahead of typhoons in 2018.<br><br>For characterization of clouds and precipitation, the PISTON shipboard instrument payload included a scanning C-band dual-polarization Doppler radar (SEA-POL), a vertically-pointing Doppler W-band radar, and multiple vertically- and horizontally-scanning lidars. Rawinsondes were launched from the ships for atmospheric profiling. Additional radiosonde and precipitation radar data were collected from R/V Mirai via an international collaboration. Regular soundings were also archived from islands neighboring the Philippines and the Philippine Sea: Dongsha Island, Taiping Island, Yap, Palau, and Guam. Additional atmospheric sampling from the PISTON R/V Thompson 2018 and Sally Ride 2019 cruises included an electric field meter and disdrometer in 2018, and all-sky camera images in 2019. To document near-surface meteorological conditions, air-sea fluxes, and upper-ocean variability including ocean vertical profiles on these cruises, instruments were deployed on and towed from the ship. Additional profiles of ocean acoustics and oceanic chemistry were not archived but are available upon request by James N. Moum, Oregon State University, jim.moum@oregonstate.edu. A forecast team analyzed and predicted conditions of the weather and ocean throughout the PISTON experiment, which were not archived but are available upon request for future modeling and observational analysis studies (contacts: Sue Chen, US Naval Research Lab Monterey, sue.chen@nrlmry.navy.mil and Michael M. Bell, Colorado State University, mmbell@colostate.edu).<br><br>There are five total DOIs related to PISTON, separated by ship (and therefore year) as well as other platforms/locations that span multiple years:<br><br>https://doi.org/10.5067/SUBORBITAL/PISTON2018-ONR-NOAA/RVTHOMPSON/DATA001<br><br>https://doi.org/10.5067/SUBORBITAL/PISTON2019-ONR-NOAA/RVSALLYRIDE/DATA001 (this doi)<br><br>https://doi.org/10.5067/SUBORBITAL/PISTON2018-2019-ONR-NOAA/AUTONOMOUS/DATA001<br><br>https://doi.org/10.5067/SUBORBITAL/PISTON2018-2019-ONR-NOAA/ISLANDS/DATA001<br><br>https://doi.org/10.5067/SUBORBITAL/PISTON2018-ONR-NOAA/RVMIRAI/DATA001<br><br>The CAMP2Ex 2019 data DOI is:<br><br>https://doi.org/DOI: 10.5067/Suborbital/CAMP2EX2018/DATA001<br><br>The CAMP2Ex (Clouds, Aerosol and Monsoon Processes-Philippines Experiment, 2019) and PISTON (Propagation of Intra-Seasonal Tropical Oscillations, 2018-2019) were two field studies conducted collaboratively in the Southeast Asian region.  While each study had its own set of science objectives, there were common and complementary science goals and instrument payloads between these two projects.  Consequently, a synergistic partnership was established at the very beginning of the projects and a coordinated sampling strategy was developed to extend spatial coverage and obtain temporal context information, which benefits the analysis of both data sets for achieving the science objectives.</p>
+                    </div>
+                    <a id="abstract-expander" data-toggle="collapse" href="#abstract-after" role="button"
+                        aria-expanded="false" aria-controls="abstract-after">
+                        Read More
+                    </a>
+                </aside>
+                
+                
+            </div>
+        </div>
+
+        
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="text-uppercase font-raleway text-nowrap"><i class="fas fa-book mr-2"></i>DOI</h5>
+                <hr class="my-2">
+                <div class="citation">10.5067/SUBORBITAL/PISTON2019-ONR-NOAA/RVSALLYRIDE/DATA001 </div>
+                <hr class="my-2">
+                
+                <a href="/project/CAMP2Ex/PISTON-ONR-NOAA_RVSallyRide_2019_1/citation">
+                    Citation Styles for this Dataset</a>
+                
+            </div>
+        </div>
+        
+
+        
+
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="text-uppercase font-raleway"><i class="far fa-file-alt mr-2"></i>Resources and Documentation</h5>
+                <hr class="my-2">
+                <p>
+                    <a  href="https://forum.earthdata.nasa.gov/"
+                        target="_blank">Earthdata Forum</a>
+                </p>
+                
+                
+                
+                
+                <h5 class="text-uppercase font-source-sans-ital mt-4">PROJECT HOME PAGE</h5>
+                    
+                    
+                        
+                        <p class="mb-0">
+                            <a href="https://onrpiston.colostate.edu/index.html" target="_blank">
+                            Office of Naval Research (ONR) home page for PISTON
+                            </a>
+                        </p>
+                        
+                    
+                    
+                
+                
+                
+                
+                
+                <h5 class="text-uppercase font-source-sans-ital mt-4">VIEW RELATED INFORMATION</h5>
+                    
+                        
+                        
+                        <ul>
+                            <p class="text-uppercase font-source-sans-ital mt-4">DATA CITATION GUIDELINES</p>
+                            
+                                
+                                <li>
+                                    <a href="https://asdc.larc.nasa.gov/citing-data" target="_blank">
+                                    How to cite ASDC data
+                                    </a>
+                                </li>
+                                
+                            
+                        </ul>
+                        
+                        <ul>
+                            <p class="text-uppercase font-source-sans-ital mt-4">GENERAL DOCUMENTATION</p>
+                            
+                                
+                                <li>
+                                    <a href="https://asdc.larc.nasa.gov/soot/power-user/CAMP2EX/2018" target="_blank">
+                                    CAMP2Ex Data on the Sub-Orbital Order Tool (SOOT) Power User Interface (UI)
+                                    </a>
+                                </li>
+                                
+                            
+                                
+                                <li>
+                                    <a href="https://onrpiston.colostate.edu/docs/PISTON_1page_21Mar2017_FINAL.pdf" target="_blank">
+                                    PISTON Campaign Summary
+                                    </a>
+                                </li>
+                                
+                            
+                                
+                                <li>
+                                    <a href="https://onrpiston.colostate.edu/docs/science_plan.pdf" target="_blank">
+                                    PISTON Science Plan
+                                    </a>
+                                </li>
+                                
+                            
+                        </ul>
+                        
+                    
+                
+                
+            </div>
+        </div>
+
+        
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="text-uppercase font-raleway"><i class="fas fa-tags mr-2"></i>Keywords</h5>
+                <hr class="my-2">
+                <div id="keywordsContainer">
+                    <ul class="nav nav-pills d-flex align-items-center mb-3" id="keywords" role="tablist">
+                        <li class="nav-item">
+                            
+                            <a class="nav-link active" id="sk-tab" data-toggle="pill" href="#sk" role="tab"
+                                aria-controls="sk" aria-selected="false">
+                                <p class="mb-0 font-source-sans-ital text-uppercase">Science Keywords</p>
+                            </a>
+                            
+                        </li>
+                        <li class="nav-item">
+                            
+                            <a class="nav-link disabled">
+                                <p class="mb-0 font-source-sans-ital text-uppercase"><i>Ancillary Keywords</i></p>
+                            </a>
+                            
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="keyword-tab-content">
+                        
+                        <div class="tab-pane fade active show" id="sk" role="tabpanel" aria-labelledby="sk-tab">
+                            <h5 class="font-source-sans-ital">From GCMD Science Keywords:</h5>
+                            <ul id="ek-el">
+                                
+                                <li> CLOUD BASE HEIGHT &gt; CLOUD PROPERTIES </li>
+                                
+                                <li> SEA SURFACE SKIN TEMPERATURE &gt; SEA SURFACE TEMPERATURE </li>
+                                
+                                <li> HUMIDITY &gt; WATER VAPOR INDICATORS </li>
+                                
+                                <li> STATION HEIGHT </li>
+                                
+                                <li> UPPER LEVEL WINDS </li>
+                                
+                                <li> CLOUD CEILING &gt; CLOUD PROPERTIES </li>
+                                
+                                <li> STRATOPAUSE </li>
+                                
+                                <li> SEA SURFACE TEMPERATURE </li>
+                                
+                                <li> CLOUD BASE TEMPERATURE &gt; CLOUD PROPERTIES </li>
+                                
+                                <li> SALINITY </li>
+                                
+                                <li> PLANETARY BOUNDARY LAYER HEIGHT </li>
+                                
+                                <li> LATENT HEAT FLUX &gt; HEAT FLUX </li>
+                                
+                                <li> CLOUD FRACTION &gt; CLOUD PROPERTIES </li>
+                                
+                                <li> SENSIBLE HEAT FLUX &gt; HEAT FLUX </li>
+                                
+                                <li> TROPOPAUSE </li>
+                                
+                                <li> TURBULENT HEAT FLUX &gt; HEAT FLUX </li>
+                                
+                                <li> WATER TEMPERATURE </li>
+                                
+                                <li> SUBSURFACE CURRENTS &gt; OCEAN CURRENTS </li>
+                                
+                                <li> WIND SPEED &gt; UPPER LEVEL WINDS </li>
+                                
+                                <li> ATMOSPHERIC STABILITY </li>
+                                
+                                <li> CONDUCTIVITY </li>
+                                
+                                <li> DOWNWELLING SHORTWAVE RADIATION &gt; SHORTWAVE RADIATION </li>
+                                
+                                <li> POTENTIAL DENSITY </li>
+                                
+                                <li> SEA SURFACE FOUNDATION TEMPERATURE &gt; SEA SURFACE TEMPERATURE </li>
+                                
+                                <li> SEA SURFACE SUBSKIN TEMPERATURE &gt; SEA SURFACE TEMPERATURE </li>
+                                
+                                <li> SURFACE WINDS </li>
+                                
+                                <li> WIND VELOCITY/SPEED PROFILES &gt; WIND PROFILES </li>
+                                
+                                <li> AIR MASS/DENSITY </li>
+                                
+                                <li> AIR TEMPERATURE &gt; SURFACE TEMPERATURE </li>
+                                
+                                <li> NET RADIATION </li>
+                                
+                                <li> SIGNIFICANT WAVE HEIGHT </li>
+                                
+                                <li> VERTICAL PROFILES &gt; UPPER AIR TEMPERATURE </li>
+                                
+                                <li> WIND DIRECTION &gt; UPPER LEVEL WINDS </li>
+                                
+                                <li> DENSITY </li>
+                                
+                                <li> DROPLET SIZE </li>
+                                
+                                <li> WATER PRESSURE </li>
+                                
+                                <li> HEAT FLUX </li>
+                                
+                                <li> PRECIPITATION RATE </li>
+                                
+                                <li> UPWELLING LONGWAVE RADIATION &gt; LONGWAVE RADIATION </li>
+                                
+                                <li> PRECIPITATION PROFILES </li>
+                                
+                                <li> DOWNWELLING LONGWAVE RADIATION &gt; LONGWAVE RADIATION </li>
+                                
+                                <li> WATER VAPOR PROFILES </li>
+                                
+                                <li> SEA LEVEL PRESSURE </li>
+                                
+                                <li> WAVE SPEED </li>
+                                
+                                <li> WIND STRESS &gt; WIND DYNAMICS </li>
+                                
+                            </ul>
+                        </div>
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        
+        
+    </div>
+
+    <div class="col-xl-4 mb-3">
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="text-uppercase font-raleway"><i class="fas fa-download mr-3"></i>Data Distribution</h5>
+                <hr class="my-2">
+
+                
+
+                    
+                        <h5 class="d-inline">File Format(s): </h5>
+                        <p class="d-inline mb-3">
+                            
+                            NetCDF-4
+                            , 
+                            
+                            TAR
+                            , 
+                            
+                            Text File
+                            
+                            
+                        </p>
+                    
+
+                    
+                    <div class="my-3">
+                        
+                            <a class="btn btn-info text-white" href=https://search.earthdata.nasa.gov/search/granules?p=C2566393530-LARC_ASDC>
+                                <!-- @formatter:off -->
+                                Get Dataset
+                            </a>
+                        
+                        <div class="btn-group" role="group">
+                            
+                            <button id="btnGroupDrop1" type="button" class="btn btn-info btn-secondary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Additional Options
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                
+                                    
+                                
+                                    
+                                        <a class="dropdown-item" href="https://asdc.larc.nasa.gov/data/CAMP2Ex/PISTON-ONR-NOAA_RVSallyRide_2019_1/">DIRECT DOWNLOAD</a>
+                                    
+                                
+                                
+                                    
+                                    
+                                        <a class="dropdown-item" href="https://opendap.larc.nasa.gov/opendap/CAMP2Ex/PISTON-ONR-NOAA_RVSallyRide_2019_1/contents.html">OPENDAP DATA</a>
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="alert alert-info mb-0">
+                        Note: "Get Dataset" is a link to our recommended order method. The down arrow will show you
+                        additional options.
+                    </p>
+                    
+                
+
+                
+
+                
+            </div>
+        </div>
+        <div class="card mb-2">
+            <div class="card-body">
+
+                    <h5 class="text-uppercase font-raleway"><i class="fas fa-globe-americas mr-3"></i>Spatial Information</h5>
+                    <hr class="my-2">
+                    <div class="spatial-container">
+                        <img class="image" src="/static/images/map.png" alt="spatial-coverage-map">
+                        
+                        
+                        <style>
+                            #overlay-0 {
+                                background: rgba(38, 111, 135, 0.7);
+                            }
+
+                            #overlay-pin-0 {
+                                display: none;
+                            }
+                        </style>
+                        
+                        <div class="overlay" id="overlay-0" style="
+                            
+                                top: 38.10555555555556%;
+                            
+                                height: 3.572222222222222%;
+                            
+                                left: 84.89666666666666%;
+                            
+                                width: 1.2144444444444444%;
+                            ">
+
+                            
+                        </div>
+                        
+
+                    </div>
+                    <b>Spatial Coverage: </b>
+                    
+                        (S: 14.98, N: 21.41),
+                        (W: 125.628, E: 130)
+                    <br />
+                    <b>Spatial Coverage Type:
+                    </b>Horizontal Vertical<br />
+                    
+                    
+                    
+                    
+                    
+                    
+                    <b>Coordinate System: </b>Cartesian<br />
+                    <b>Granule Spatial Representation: </b>
+                    Cartesian<br />
+
+            </div>
+        </div>
+
+        
+        <div class="card mb-2">
+            <div class="card-body">
+                
+                <h5 class="text-uppercase font-raleway"><i class="fas fa-map-marked-alt mr-2"></i>Locations</h5>
+                <hr class="my-2">
+                
+                <span class="eui-badge--md">
+                    
+                    CONTINENT
+                    
+                </span>
+                
+                <span class="eui-badge--md">
+                    
+                    ASIA
+                    
+                </span>
+                
+                <span class="eui-badge--md">
+                    
+                    SOUTHEASTERN ASIA
+                    
+                </span>
+                
+                <span class="eui-badge--md">
+                    
+                    OCEAN
+                    
+                </span>
+                
+                <span class="eui-badge--md">
+                    
+                    PACIFIC OCEAN
+                    
+                </span>
+                
+                <span class="eui-badge--md">
+                    
+                    WESTERN PACIFIC OCEAN
+                    
+                </span>
+                
+                <span class="eui-badge--md">
+                    
+                    PHILIPPINES
+                    
+                </span>
+                
+                <span class="eui-badge--md">
+                    
+                    VERTICAL LOCATION
+                    
+                </span>
+                
+                <span class="eui-badge--md">
+                    
+                    TROPOSPHERE
+                    
+                </span>
+                
+            </div>
+        </div>
+        
+
+        
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="text-uppercase font-raleway"><i class="far fa-calendar-alt mr-2"></i>Temporal Information</h5>
+                <hr class="my-2">
+                <b>Temporal Coverage: </b>
+                
+                <span id="tempc">
+                    2019-08-31 - 2019-09-26
+                </span>
+                
+                <br />
+                
+            </div>
+        </div>
+        
+
+
+        
+        <div class="card mb-2">
+            <div class="card-body">
+                <div class="content-block">
+                    <h5 class="text-uppercase font-raleway"><i class="fas fa-satellite mr-2"></i>Platforms</h5>
+                    <hr class="my-2">
+                    
+                    <h5 class="text-uppercase font-source-sans-ital">Vessels</h5>
+                    <div>
+                        
+                        <div class="card">
+                            
+                            <div class="card-header">
+                                <span class="card-badge">R/V Sally Ride</span>
+                                <h6 class="card-header-title d-flex align-items-center justify-content-end mr-2">
+                                    Research Vessel Sally Ride</h6>
+                            </div>
+                            <div class="card-body">
+                                
+
+                                
+                                <h6 class="card-title mb-1">CTD</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Conductivity, Temperature, Depth
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">ADCP</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Acoustic Doppler Current Profiler
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">SEA-POL</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    SEA-going POLarimetric Doppler Radar
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">CHAM</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Chameleon Microstructure Profiler
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">SO</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    SurfOtter Platform
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">ROSR</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Remote Ocean Surface Radiometer
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">HSRL</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    High Spectral Resolution Lidar
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">W-Band Radar</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    W-Band Radar
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">CEILOMETERS</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    CEILOMETERS
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">RAWINSONDES</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    RAWINSONDES
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">DISDROMETERS</h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">LIDAR</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Light Detection and Ranging
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">GPS</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Global Positioning System
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">Hemisphere VS1000</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Hemisphere VS1000 GPS System
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">Gill WindMaster Pro</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Gill Instruments WindMaster 3-Axis Ultrasonic Anemometer
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">Vaisala HMT337</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Vaisala HMT337 Temperature and Humidity Sensor
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">Vaisala HMT330</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Vaisala HMT330 Temperature and Humidity Sensor
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">ORG-815-DA</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    ORG-815-DA Optical Rain Gauge
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">Vaisala PTB330</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Vaisala PTB330 Digital Barometer
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">NOAA PSL Sea Snake</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    NOAA Physical Sciences Laboratory Sea Snake Thermometer
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">SBE-21</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    SBE-21 SeaCAT Thermosalinograph
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">Riegl LD90-3100VHS-FLP</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Riegl LD90-3100VHS-FLP First &amp; Last Pulse Distance Meter
+                                </h6>
+                                
+                                
+                                
+                                
+
+                                
+                                <h6 class="card-title mb-1">Eppley PIR</h6>
+                                
+                                <h6 class="card-subtitle mb-3 text-muted">
+                                    Eppley Laboratory Precision Infrared Radiometer
+                                </h6>
+                                
+                                
+                                
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="card mb-2">
+            <div class="card-body">
+                <div class="content-block">
+                    <h5 class="text-uppercase font-raleway"><i class="far fa-clock mr-2"></i>Metadata Dates</h5>
+                    <hr class="my-2">
+                    
+                    <div class="text-muted">
+                        <em>Created on </em>2020-08-31
+                    </div>
+                    
+                    
+                    <div class="text-muted">
+                        <em>Last updated on </em>2023-03-17
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.getElementById('-tab').addEventListener("click", function () {
+        var longName = '';
+        var shortName = '';
+        document.querySelector('#MenuButton').textContent = shortName;
+        document.querySelector('#longName').textContent = longName;
+    });
+
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function () {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+        });
+    }
+</script>
+
+            </section>
+        </div>
+    </main>
+
+    
+
+<footer class="footer pt-5 mt-auto">
+    <section class="col-md-11 mx-auto">
+        <div class="row d-flex justify-content-between mb-4">
+            <div class="col-xs-12 col-sm-6 col-lg-2 pt-3">
+                <h5 class="text-uppercase font-raleway">About</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="/about">About ASDC</a></li>
+                    <li><a href="/citing-data">Citing Our Data</a></li>
+                    <li><a href="https://www.nasa.gov/about/highlights/HP_Privacy.html" rel="nofollow" class="ext_link">NASA Web
+                            Privacy Policy</a></li>
+                    <li><a href="https://www.nasa.gov/accessibility/">Accessibility</a></li>
+                    <li><a href="/copyright-information">Copyright Information</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-xl-2 pt-3">
+                <h5 class="text-uppercase font-raleway">Learn</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="https://mynasadata.larc.nasa.gov" target="_blank" alt="Opens to My NASA Data website" class="ext_link">My NASA Data</a>
+                    </li>
+                    <li><a href="/rss">RSS Feeds</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-xl-2 pt-3">
+                <h5 class="text-uppercase font-raleway">Use</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="https://gis.earthdata.nasa.gov/portal/home/" rel="nofollow" class="ext_link">ArcGIS</a></li>
+                    <li><a href="/soot/" rel="nofollow">Sub-Orbital Order Tool (SOOT)</a></li>
+                    <li><a href="https://subset.larc.nasa.gov/calipso" rel="nofollow" class="ext_link">CALIPSO Search and Subset
+                            Tool</a>
+                    </li>
+                    <li><a href="https://subset.larc.nasa.gov/ceres/login.php" rel="nofollow" class="ext_link">CERES Search and
+                            Subset
+                            Tool</a></li>
+                    <li><a href="https://ceres.larc.nasa.gov/order_data.php" rel="nofollow" class="ext_link">CERES
+                            Subset/Visualization
+                            Tool</a></li>
+                    <li><a href="/data/">Direct Data Download</a></li>
+                    <li><a href="https://l0dup05.larc.nasa.gov/cgi-bin/MISR/main.cgi" rel="nofollow" class="ext_link">MISR Order
+                            and
+                            Customization Tool</a></li>
+                    <li><a href="https://opendap.larc.nasa.gov/opendap/" rel="nofollow" class="ext_link"> OPeNDAP</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-xl-2 pt-3">
+                <h5 class="text-uppercase font-raleway">Explore</h5>
+                <ul class="m-0 p-0">
+                    <li>
+                        <a
+                            href="https://search.earthdata.nasa.gov/search?fdc=Atmospheric%20Science%20Data%20Center%20(ASDC)" class="ext_link">Earthdata
+                            Search</a></li>
+                    <li><a href="https://worldview.earthdata.nasa.gov/" class="ext_link">EOSDIS Worldview</a></li>
+                    <li><a href="https://power.larc.nasa.gov" target="_blank" alt="Opens POWER website" class="ext_link">POWER</a></li>
+                    <li><a href="/tools-and-services">Tools And Services</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-xl-2 pt-3">
+                <h5 class="text-uppercase font-raleway">Support</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="/forum">Earthdata Forum</a></li>
+                    <li><a href="/glossary">Glossary</a></li>
+                </ul>
+                <div class="social-media">
+                    <div class="btn-group">
+                        <a class="btn pl-0 pr-2 mr-1" href="https://www.facebook.com/NASAEarthData" aria-label="Go to NASA Earthdata's Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn pl-1 mr-4" href="https://twitter.com/NASAEarthData" aria-label="Go to NASA Earthdata's Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="col-md-11 mx-auto">
+        <div class="row d-flex justify-content-end border-top border-white mb-4 text-right pt-3">
+            <ul class="m-0 p-0">
+                <li>
+                    <div class="icsulogo">
+                        <a href="https://worlddatasystem.org/" target="_blank" alt="opens to International Council for Science World Data Centres">
+                            <img class="py-1" src="https://asdc.larc.nasa.gov/static/images/wds_reverse-79.png"
+                                alt="ICSU-WDS - International Council for Science World Data Centres"
+                                title="ICSU-WDS - International Council for Science World Data Centres" />
+                        </a>
+                    </div>
+                </li>
+                <li>NASA Official: Jeff Walter</li>
+                <li>Site Curator:
+                    <a href="javascript:window.feedback.showForm()" aria-label="Open the feedback form">
+                        NASA Langley ASDC User Services
+                    </a>
+                </li>
+                <li>
+                    <div id="Updated" class="list"></div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</footer>
+
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/eui.js"></script>
+    <!-- NASA ED Tophat Script -->
+    <script src="https://cdn.earthdata.nasa.gov/tophat2/tophat2.js" id="earthdata-tophat-script" data-current-daac="ASDC"
+        data-show-fbm="true" data-show-status="true"></script>
+    <!-- NASA ED Feedback Module -->
+    <script type="text/javascript" src="https://fbm.earthdata.nasa.gov/for/ASDC/feedback.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Add external link icons.
+            updateExternalLinks();
+            // Init Feedback Module; hide left-side "feedback" bar.
+            window.feedback.init({showIcon: false});
+        });
+    </script>
+</body>
+
+</html>

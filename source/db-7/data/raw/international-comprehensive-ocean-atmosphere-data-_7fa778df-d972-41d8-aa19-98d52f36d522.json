@@ -1,0 +1,828 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Dataset Overview | National Centers for Environmental Information (NCEI)</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta>
+        <meta name="description" content="">
+        <meta name="keywords" content="National Centers for Environmental Information (NCEI)">
+        <meta name="author" content="National Centers for Environmental Information (NCEI)">
+        <meta name="application-name" content="">
+        <link rel="shortcut icon" href="/metadata/geoportal/app/content/details/images/favicon.ico">
+        <link rel="apple-touch-icon" sizes="144x144" href="/metadata/geoportal/app/content/details/images/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/metadata/geoportal/app/content/details/images/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/metadata/geoportal/app/content/details/images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="/metadata/geoportal/app/content/details/images/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" href="/metadata/geoportal/app/content/details/images/apple-touch-icon.png">
+        <meta name="msapplication-tooltip" content="">
+        <meta name="msapplication-task" content="name=NCEI;action-uri=https://www.ncdc.noaa.gov/;icon-uri=https://www.ncdc.noaa.gov/favicon.ico">
+        <meta name="msapplication-TileColor" content="#007EC6">
+        <meta name="msapplication-TileImage" content="../images/apple-touch-icon-144.png">
+        <meta name="verify-v1" content="DjxBYfR0oM2KSNJl6i2BbxfTcXOGUnbglkT0QQj5KtI=">
+        <link href="/metadata/geoportal/app/content/details/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" media="all" href="/metadata/geoportal/app/content/details/css/reset.css">
+        <link rel="stylesheet" type="text/css" media="all" href="/metadata/geoportal/app/content/details/css/application.css">
+        <link rel="stylesheet" type="text/css" media="all" href="/metadata/geoportal/app/content/details/css/metadata-display.css">
+        <link rel="stylesheet" type="text/css" media="screen and (max-width: 659px)" href="/metadata/geoportal/app/content/details/css/layout_320.css">
+        <link rel="stylesheet" type="text/css" media="screen and (min-width: 660px) and (max-width: 1023px)" href="/metadata/geoportal/app/content/details/css/layout_640.css">
+        <link rel="stylesheet" type="text/css" media="screen and (min-width: 1024px)" href="/metadata/geoportal/app/content/details/css/layout_1024.css">
+        <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/css/main.css">
+        <script src="/metadata/geoportal/lib/jquery-3.7.1.min.js"></script><script src="https://js.arcgis.com/4.11/" defer="1"></script><script type="text/javascript" src="/metadata/geoportal/app/content/details/js/lib/html5.min.js"></script><script type="text/javascript" src="/metadata/geoportal/app/content/details/js/application.js"></script><script src="/metadata/geoportal/app/content/details/js/lib/jquery-ui.min.js"></script><script src="/metadata/geoportal/app/content/details/js/metadata-display.js"></script><script type="text/javascript">var mapCoordinates = 
+[90,
+-90,
+180,
+-180];</script>
+    </head>
+    <body>
+        <div id="main">
+            <header>
+                <div id="header" class="clearfix" role="banner">
+                    <div class="inset clearfix">
+                        <div class="title">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="element-invisible">
+                    <a class="element-invisible element-focusable" href="#main-content">Skip to main content</a>
+                    <br>
+                    <a class="element-invisible element-focusable" href="#site-search">Skip to site search</a>
+                </div>
+                <nav id="nav" class="clearfix" role="navigation">
+                    <div class="inset">
+                        <ul class="mainNav" role="menubar">
+                            <li role="menuitem">
+                                <a href="https://www.ncei.noaa.gov" title="Home">Home</a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="https://www.ncei.noaa.gov/about" title="About">About</a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="https://www.ncei.noaa.gov/news" title="News">News</a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="https://www.ncei.noaa.gov/access" title="Access">Access</a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="https://www.ncei.noaa.gov/archive" title="Archive">Archive</a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="https://www.ncei.noaa.gov/contact" title="Contact">Contact</a>
+                            </li>
+                        </ul>
+                        <div class="navSearchForm" role="search">
+                            <form name="sitesearchform" method="get" action="https://search.usa.gov/search">
+                                <a id="site-search"></a>
+                                <fieldset>
+                                    <legend>Search for articles, products, and data at the National Centers for Environmental Information</legend><input type="hidden" name="affiliate" value="NCDC"><label for="sitesearch">Search Field:</label><input type="text" name="query" class="searchtext inputbox" id="sitesearch" value="Search" maxlength="50"><label for="sitesearchbutton">Search button:</label><input type="submit" class="submitbutton" id="sitesearchbutton" value="Search">
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div id="breadcrumbs">
+                <div class="inset">
+                    <a href="//www.ncei.noaa.gov/" title="National Centers for Environmental Information">Home</a> &nbsp;&gt; &nbsp; 
+              
+              <a href="../../../../" title="Geoportal">Geoportal</a> &nbsp;&gt;&nbsp; Dataset Overview 
+                </div>
+            </div>
+            <div id="content" class="clearfix reset">
+                <div class="inset">
+                    <h1>International Comprehensive Ocean Atmosphere Data Set (ICOADS) R3.0 in Near-Real-Time (NRT)</h1>
+                    <h2></h2>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-3 col-md-2">
+                            <a href="https://www.ncei.noaa.gov/pub/data/metadata/images/Logo_ICOADS_single.png"><img alt="browse graphic" class=" img-responsive " src="https://www.ncei.noaa.gov/pub/data/metadata/images/Logo_ICOADS_single.png"></a><small>ICOADS logo</small>
+                        </div>
+                        <div class="col-md-7">The International Comprehensive Ocean-Atmosphere Data Set (ICOADS) Near-Real-Time (NRT) product is an extension of the official ICOADS data set based on preliminary Global Telecommunication System (GTS) data. The data are considered 'preliminary' until fully incorporated into a full major ICOADS data set release. The NRT data set is a merged product of various marine GTS data sources providing surface marine in situ observations from different observing platforms. Observations in the NRT product are primarily from ships (merchant, research, fishing, navy, etc.), moored and drifting buoys, and coastal stations. Each report contains individual observations of meteorological and oceanographic variables, such as sea surface and air temperatures, winds, pressure, humidity, wet bulb, dew point, ocean waves and cloudiness. The data are provided in the ICOADS common International Maritime Meteorological Archive (IMMA) data format and NetCDF. Useful metadata have been added in the global and variable attributes of each file to make the netCDF self-contained. R3.0 includes changes designed to enable more effective exchange of information describing data quality between ICOADS, reanalysis centers, data set developers, scientists and the public. These user-driven innovations include the assignment of a unique identifier (UID) to each marine report, to enable tracing of observations, linking with reports and improved data sharing. Many new input data and metadata sources have been assembled, and updates and improvements to existing data sources, or removal of erroneous data, made. For NRT creation the data are first quality controlled and blended together, with duplicates (Intermediate product) retained.  The duplicates are then compared and removed for the Final product and a statistical output summary file providing justifications for duplicate deletions that occurred during the blending process. User groups include sea surface temperature analyses, global surface temperature analyses, model/reanalysis input, and general ocean research. The data set is produced and archived monthly. Spatial coverage is global and the current period of record for these files begins in January 2008 to the most current complete month.</div>
+                        <div class="col-md-3">
+                            <div class="panel-group" id="UseAndID" aria-multiselectable="true" role="tablist">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="citation">
+                                        <span class="panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#UseAndID" href="#" aria-expanded="false" aria-controls="collapseCitation" onClick="$('#collapseIdentifiers').slideUp();$('#collapse19115-2').slideUp();$('#collapseCitation').slideToggle();"> Dataset Citation </a></span>
+                                    </div>
+                                    <div id="collapseCitation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="citation">
+                                        <div class="panel-body">
+                                            <ul class="unstyled">
+                                                <li>Cite as: Wang, Zhankun; National Centers for Environmental Information; Cooperative Institute for Research in Environmental Sciences, University of Colorado; Research Data Archive, Computational and Information Systems Laboratory, National Center for Atmospheric Research, University Corporation for Atmospheric Research; Earth System Research Laboratory, NOAA, U.S. Department of Commerce; NERC National Oceanography Centre, Natural Environment Research Council, United Kingdom; Met Office, Ministry of Defence, United Kingdom; Deutscher Wetterdienst (German Meteorological Service), Germany; University of Washington, Department of Atmospheric Science; Center for Ocean-Atmospheric Prediction Studies, Florida State University (2017). International Comprehensive Ocean-Atmosphere Data Set (ICOADS) R3.0 in Near-Real-Time (NRT). [indicate subset used]. NOAA National Centers for Environmental Information. [access date].</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="identifiers">
+                                        <span class="panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#UseAndID" href="#" aria-expanded="false" aria-controls="collapseIdentifiers" onClick="$('#collapseCitation').slideUp();$('#collapse19115-2').slideUp();$('#collapseIdentifiers').slideToggle();"> Dataset Identifiers </a></span>
+                                    </div>
+                                    <div id="collapseIdentifiers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="identifiers">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li>NCEI DSI 1178_02</li>
+                                                <li>gov.noaa.ncdc:C01596</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="19115-2">
+                                        <span class="panel-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#UseAndID" href="#" aria-expanded="false" aria-controls="collapse19115-2" onClick="$('#collapseIdentifiers').slideUp();$('#collapseCitation').slideUp();$('#collapse19115-2').slideToggle();"> ISO 19115-2 Metadata </a></span>
+                                    </div>
+                                    <div id="collapse19115-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="19115-2">
+                                        <div class="panel-body">
+                                            <span>C01596
+                                                <!-- viewsmenu start -->
+                                                <div class="viewsmenu">
+                                                    <a class="isoLink" href="../../../metadata/item/gov.noaa.ncdc:C01596/xml" target="_blank"><span><i class="glyphicon glyphicon-share-alt"></i></span>XML</a>
+                                                </div>
+                                                <!-- viewsmenu end -->
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 ui-tabs" id="tabs">
+                            <ul class="nav nav-tabs ui-tabs-nav" role="tablist">
+                                <li role="presentation">
+                                    <a href="#OnlineAccess" aria-controls="OnlineAccess" role="tab" data-toggle="tab"><span class="ui-tabs-tab">Access</span></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#Coverage" aria-controls="coverage" role="tab" data-toggle="tab" id="coverageTab"><span class="ui-tabs-tab">Time &amp; Location</span></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#Documentation" aria-controls="documentation" role="tab" data-toggle="tab"><span class="ui-tabs-tab">Documentation</span></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#Description" aria-controls="description" role="tab" data-toggle="tab"><span class="ui-tabs-tab">Description</span></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#Credit" aria-controls="credit" role="tab" data-toggle="tab"><span class="ui-tabs-tab">Credit</span></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#keywords" aria-controls="keywords" role="tab" data-toggle="tab"><span class="ui-tabs-tab">Keywords</span></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#Constraints" aria-controls="constraints" role="tab" data-toggle="tab"><span class="ui-tabs-tab">Constraints</span></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#Lineage" aria-controls="lineage" role="tab" data-toggle="tab">Lineage</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active ui-tabs-panel" id="OnlineAccess">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <table class="table table-condensed table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tr>
+                                                            <td class="col-md-3">Download Data</td><td>
+                                                                <ul class="unstyled">
+                                                                    <li>
+                                                                        <a href="https://www.ncei.noaa.gov/thredds/marine-ocean/marine-ocean.html" target="_blank">NCEI THREDDS Catalog</a> <span class="italics">(download)</span>
+                                                                        <br>
+                                                                        THREDDS Data Service for the dataset. Data available 2015 - present
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="https://www.ncei.noaa.gov/data/international-comprehensive-ocean-atmosphere/v3/archive/nrt/" target="_blank">NCEI direct download</a> <span class="italics">(download)</span>
+                                                                        <br>
+                                                                        Direct download links for dataset files. Data available 2015 - present.
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="https://www.ncei.noaa.gov/data/international-comprehensive-ocean-atmosphere/v3/archive/final-untrim/" target="_blank">NCEI direct download</a> <span class="italics">(download)</span>
+                                                                        <br>
+                                                                        Direct download links for dataset files.
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="col-md-3">Distribution Formats</td><td>
+                                                                <ul>
+                                                                    <li>NetCDF (Version: 4) </li>
+                                                                    <li>ASCII</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="col-md-3">Ordering Instructions</td><td>Contact NCEI for other distribution options and instructions.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="col-md-3">Distributor</td><td><span class="italics">NOAA National Centers for Environmental Information</span>
+                                                                <br>
+                                                                <a href="mailto:ncei.info@noaa.gov?International Comprehensive Ocean Atmosphere Data Set (ICOADS) R3.0 in Near-Real-Time (NRT) )">ncei.info@noaa.gov</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="col-md-3">Dataset  Point of Contact </td><td>Customer Engagement Branch
+                                                                <br>
+                                                                <span class="italics">NOAA National Centers for Environmental Information
+                                                                    <br>
+                                                                </span>1-828-271-4800
+                                                                <br>
+                                                                <a href="mailto:ncei.orders@noaa.gov?International Comprehensive Ocean Atmosphere Data Set (ICOADS) R3.0 in Near-Real-Time (NRT)">ncei.orders@noaa.gov</a>
+                                                                <br>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane ui-tabs-panel" id="Coverage">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-condensed table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td class="col-md-3">Time Period</td><td>1662-10-15 to Present</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Spatial Bounding Box Coordinates</td><td>
+                                                        <div class="col-md-2 bounding-box">
+                                                            <strong>N: </strong>90
+                                                        </div>
+                                                        <div class="col-md-2 bounding-box">
+                                                            <strong>S: </strong>-90
+                                                        </div>
+                                                        <div class="col-md-2 bounding-box">
+                                                            <strong>E: </strong>180
+                                                        </div>
+                                                        <div class="col-md-2 bounding-box">
+                                                            <strong>W: </strong>-180
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Spatial Coverage Map</td><td>
+                                                        <div id="map-canvas"></div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane ui-tabs-panel" id="Documentation">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-condensed table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td class="col-md-3">General Documentation</td><td>
+                                                        <ul class="unstyled">
+                                                            <li>
+                                                                <a href="https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C01596/html" target="_blank">NCEI Dataset Landing Page</a>
+                                                                <br>
+                                                                Landing page for the dataset.
+                                                            </li>
+                                                            <li>
+                                                                <a href="https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc%3AC01596/html" target="_blank">NCEI landing page for this dataset</a>
+                                                                <br>
+                                                                Dataset landing page with general information and access links for the dataset.
+                                                            </li>
+                                                            <li>
+                                                                <a href="https://icoads.noaa.gov/" target="_blank">NOAA ICOADS page</a>
+                                                                <br>
+                                                                Access to ICOADS documentation, chronology, and publications.
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"> Processing Documents </td><td>
+                                                        <ul class="unstyled">
+                                                            <li>
+                                                                IMMA format Description
+                                                                <ul class="cite-url">
+                                                                    <li>
+                                                                        <a href="https://icoads.noaa.gov/e-doc/imma/R3.0-imma1_short.pdf" target="_blank">IMMA format Description</a>
+                                                                        <br>
+                                                                        NOAA ICOADS documentation describing the process and formatting of data.
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Associated Resources</td><td>
+                                                        <ul class="unstyled">
+                                                            <li>
+                                                                A Major Update to the Historical Marine Climate Record
+                                                                <ul class="cite-url">
+                                                                    <li>
+                                                                        <a href="https://doi.org/10.1002/joc.4775" target="_blank">Journal article published June 2016 by Wiley (International Journal of Climatology)</a>
+                                                                        <br>
+                                                                        Freeman, E., S.D. Woodruff, S.J. Worley, S.J. Lubker, E.C. Kent, W.E. Angel, D.I . Berry, P. Brohan, R. Eastman, L. Gates, W. Gloeden, Z. Ji, J. Lawrimore, N.A. Rayner, G. Rosenhagen, and S.R. Smith, 2017: ICOADS Release 3.0: A major update to the historical marine climate record. Int. J. Climatol. (CLIMAR-IV Special Issue), 37, 2211-2237. https://doi.org/10.1002/joc.4775
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>
+                                                                International Comprehensive Ocean-Atmosphere Data Set (ICOADS) Release 3.0 Final, Individual Reports in the International Maritime Meteorological Archive Format version 1 (IMMA1)
+                                                                <ul class="cite-url">
+                                                                    <li>
+                                                                        <a href="https://doi.org/10.7289/V5CZ3562" target="_blank">NCEI landing page for ICOADS R3 Final in IMMA1</a>
+                                                                        <br>
+                                                                        Related dataset landing page with general information and access links for that dataset.
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane ui-tabs-panel" id="Description">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-condensed table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td class="col-md-3">Publication Dates</td><td>
+                                                        <ul class="unstyled">
+                                                            <li>publication: 2017-04-04</li>
+                                                            <li>revision: 2019-09-15</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Edition</td><td>Version 3.0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Data Presentation Form</td><td> Digital table - digital representation of facts or figures systematically displayed, especially in columns 
+                                                        <br>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Dataset Progress Status</td><td>Ongoing - data is continually being updated
+                                                        <br>
+                                                        Historical archive - data has been stored in an offline storage facility</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Data Update Frequency</td><td> As needed </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Purpose</td><td>This dataset is available to the public for a wide variety of uses including scientific research and analysis.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Use Limitations</td><td>
+                                                        <ul class="unstyled">
+                                                            <li>accessLevel: Public</li>
+                                                        </ul>
+                                                        <ul class="unstyled">
+                                                            <li>Distribution liability: NOAA and NCEI make no warranty, expressed or implied, regarding these data, nor does the fact of distribution constitute such a warranty. NOAA and NCEI cannot assume liability for any damages caused by any errors or omissions in these data. If appropriate, NCEI can only certify that the data it distributes are an authentic copy of the records that were accepted for inclusion in the NCEI archives.</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane ui-tabs-panel" id="Credit">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-condensed table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td class="col-md-3"> Dataset Citation </td><td>
+                                                        <ul class="unstyled">
+                                                            <li>Cite as: Wang, Zhankun; National Centers for Environmental Information; Cooperative Institute for Research in Environmental Sciences, University of Colorado; Research Data Archive, Computational and Information Systems Laboratory, National Center for Atmospheric Research, University Corporation for Atmospheric Research; Earth System Research Laboratory, NOAA, U.S. Department of Commerce; NERC National Oceanography Centre, Natural Environment Research Council, United Kingdom; Met Office, Ministry of Defence, United Kingdom; Deutscher Wetterdienst (German Meteorological Service), Germany; University of Washington, Department of Atmospheric Science; Center for Ocean-Atmospheric Prediction Studies, Florida State University (2017). International Comprehensive Ocean-Atmosphere Data Set (ICOADS) R3.0 in Near-Real-Time (NRT). [indicate subset used]. NOAA National Centers for Environmental Information. [access date].</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"> Cited Authors </td><td>
+                                                        <ul class="unstyled">
+                                                            <li>
+                                                                <span class="italics">DOC/NOAA/NESDIS/NCEI &gt; National Centers for Environmental Information, NESDIS, NOAA, U.S. Department of Commerce</span>
+                                                            </li>
+                                                            <li>
+                                                                Wang, Zhankun
+                                                                <br>
+                                                                <span class="italics">DOC/NOAA/NESDIS/NCEI &gt; National Centers for Environmental Information, NESDIS, NOAA, U.S. Department of Commerce</span>
+                                                            </li>
+                                                            <li>
+                                                                ICOADS Partner
+                                                                <br>
+                                                                <span class="italics">UCO/CIRES &gt; Cooperative Institute for Research in Environmental Sciences, University of Colorado</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">UCAR/NCAR/CISL/RDA &gt; Research Data Archive, Computational and Information Systems Laboratory, National Center for Atmospheric Research, University Corporation for Atmospheric Research</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">DOC/NOAA/ESRL &gt; Earth System Research Laboratory, NOAA, U.S. Department of Commerce</span>
+                                                            </li>
+                                                            <li>
+                                                                National Oceanography
+                                                                <br>
+                                                                <span class="italics">UK/NERC/NEODC &gt; NERC National Oceanography Centre, Natural Environment Research Council, United Kingdom</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">UK/MOD/MET &gt; Met Office, Ministry of Defence, United Kingdom</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">DE/DWD &gt; Deutscher Wetterdienst (German Meteorological Service), Germany</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">UWA/DOA &gt; University of Washington, Department of Atmospheric Science</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">FSU/COAPS &gt; Center for Ocean-Atmospheric Prediction Studies, Florida State University</span>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"> Collaborators </td><td>
+                                                        <ul class="unstyled">
+                                                            <li>
+                                                                ICOADS Partner
+                                                                <br>
+                                                                <span class="italics">UCO/CIRES &gt; Cooperative Institute for Research in Environmental Sciences, University of Colorado</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">UCAR/NCAR/CISL/RDA &gt; Research Data Archive, Computational and Information Systems Laboratory, National Center for Atmospheric Research, University Corporation for Atmospheric Research</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">DOC/NOAA/ESRL &gt; Earth System Research Laboratory, NOAA, U.S. Department of Commerce</span>
+                                                            </li>
+                                                            <li>
+                                                                National Oceanography
+                                                                <br>
+                                                                <span class="italics">UK/NERC/NEODC &gt; NERC National Oceanography Centre, Natural Environment Research Council, United Kingdom</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">UK/MOD/MET &gt; Met Office, Ministry of Defence, United Kingdom</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">DE/DWD &gt; Deutscher Wetterdienst (German Meteorological Service), Germany</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">UWA/DOA &gt; University of Washington, Department of Atmospheric Science</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="italics">FSU/COAPS &gt; Center for Ocean-Atmospheric Prediction Studies, Florida State University</span>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Publishers</td><td>
+                                                        <ul class="unstyled">
+                                                            <li>
+                                                                <span class="italics">DOC/NOAA/NESDIS/NCEI &gt; National Centers for Environmental Information, NESDIS, NOAA, U.S. Department of Commerce</span>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3"> Acknowledgments </td><td>
+                                                        <ul class="unstyled">
+                                                            <li>Conversion of ICOADS data from IMMA1 to netCDF format by NCEI is supported by the NOAA Big Earth Data Initiative (BEDI).</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane ui-tabs-panel" id="keywords">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-condensed table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td class="col-md-3">Theme keywords</td><td><span class="italics">Global Change Master Directory (GCMD) Science Keywords</span>
+                                                        <ul>
+                                                            <li>Earth Science &gt; Atmosphere &gt; Atmospheric Pressure &gt; Atmospheric Pressure Measurements</li>
+                                                            <li>Earth Science &gt; Atmosphere &gt; Atmospheric Pressure &gt; Pressure Tendency</li>
+                                                            <li>Earth Science &gt; Atmosphere &gt; Atmospheric Pressure &gt; Sea Level Pressure</li>
+                                                            <li>Earth Science &gt; Atmosphere &gt; Atmospheric Pressure &gt; Surface Pressure</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Ocean Pressure &gt; Sea Level Pressure</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Ocean Temperature &gt; Sea Surface Temperature</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Ocean Temperature &gt; Water Temperature</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Ocean Waves &gt; Sea State</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Ocean Waves &gt; Swells</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Ocean Waves &gt; Wave Height</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Ocean Waves &gt; Wave Period</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Ocean Waves &gt; Wave Speed/Direction</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Ocean Waves &gt; Wind Waves</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Ocean Winds &gt; Surface Winds</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Sea Ice &gt; Ice Edges</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Sea Ice &gt; Icebergs</li>
+                                                            <li>Earth Science &gt; Oceans &gt; Sea Ice &gt; Sea Ice Concentration</li>
+                                                        </ul>
+                                                        <span class="italics">Global Climate Observing System (GCOS) Essential Climate Variables (ECVs)</span>
+                                                        <ul>
+                                                            <li>Oceanic - Surface - Sea-surface Temperature</li>
+                                                            <li>Atmospheric - Surface - Air Temperature</li>
+                                                            <li>Atmospheric - Surface - Wind Speed And Direction</li>
+                                                            <li>Atmospheric - Surface - Pressure</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Data Center keywords</td><td><span class="italics">Global Change Master Directory (GCMD) Data Center Keywords</span>
+                                                        <ul>
+                                                            <li>DOC/NOAA/NESDIS/NCEI &gt; National Centers for Environmental Information, NESDIS, NOAA, U.S. Department of Commerce</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Platform keywords</td><td><span class="italics">Global Change Master Directory (GCMD) Platform Keywords</span>
+                                                        <ul>
+                                                            <li>Ships</li>
+                                                            <li>C-MAN &gt; Coastal Marine Network</li>
+                                                            <li>Buoys</li>
+                                                            <li>Ocean Platforms</li>
+                                                            <li>Moorings</li>
+                                                            <li>Ocean Weather Stations</li>
+                                                            <li>TAO &gt; Tropical Atmosphere Ocean</li>
+                                                            <li>TRITON &gt; TRIangle Trans-Ocean Buoy Network</li>
+                                                            <li>Floats</li>
+                                                            <li>NDBC Moored Buoy</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Instrument keywords</td><td><span class="italics">Global Change Master Directory (GCMD) Instrument Keywords</span>
+                                                        <ul>
+                                                            <li>Anemometers</li>
+                                                            <li>Barometers</li>
+                                                            <li>Hygrometers</li>
+                                                            <li>Drifting Buoys</li>
+                                                            <li>Wind Vane</li>
+                                                            <li>Thermometers</li>
+                                                            <li>Aneroid Pressure Sensor</li>
+                                                            <li>Visual Observations</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Place keywords</td><td><span class="italics">Global Change Master Directory (GCMD) Location Keywords</span>
+                                                        <ul>
+                                                            <li>Ocean</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Project keywords</td><td><span class="italics">Global Change Master Directory (GCMD) Project Keywords</span>
+                                                        <ul>
+                                                            <li>ICOADS &gt; International Comprehensive Ocean-Atmosphere Data Set</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Data Resolution keywords</td><td><span class="italics">Global Change Master Directory (GCMD) Horizontal Data Resolution Keywords</span>
+                                                        <ul>
+                                                            <li>Point Resolution</li>
+                                                        </ul>
+                                                        <span class="italics">Global Change Master Directory (GCMD) Temporal Data Resolution Keywords</span>
+                                                        <ul>
+                                                            <li>Hourly - &lt; Daily</li>
+                                                            <li>1 minute - &lt; 1 hour</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Stratum keywords</td><td><span class="italics">Global Change Master Directory (GCMD) Location Keywords</span>
+                                                        <ul>
+                                                            <li>Vertical Location &gt; Sea Surface</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane ui-tabs-panel" id="Constraints">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-condensed table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td class="col-md-3">Use Constraints</td><td>
+                                                        <ul>
+                                                            <li>Cite as: Wang, Zhankun; National Centers for Environmental Information; Cooperative Institute for Research in Environmental Sciences, University of Colorado; Research Data Archive, Computational and Information Systems Laboratory, National Center for Atmospheric Research, University Corporation for Atmospheric Research; Earth System Research Laboratory, NOAA, U.S. Department of Commerce; NERC National Oceanography Centre, Natural Environment Research Council, United Kingdom; Met Office, Ministry of Defence, United Kingdom; Deutscher Wetterdienst (German Meteorological Service), Germany; University of Washington, Department of Atmospheric Science; Center for Ocean-Atmospheric Prediction Studies, Florida State University (2017). International Comprehensive Ocean-Atmosphere Data Set (ICOADS) R3.0 in Near-Real-Time (NRT). [indicate subset used]. NOAA National Centers for Environmental Information. [access date].</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Access Constraints</td><td>
+                                                        <ul>
+                                                            <li>Use liability: NOAA and NCEI cannot provide any warranty as to the accuracy, reliability, or completeness of furnished data. Users assume responsibility to determine the usability of these data. The user is responsible for the results of any application of this data for other than its intended purpose.</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Fees</td><td>
+                                                        <ul>
+                                                            <li>In most cases, electronic downloads of the data are free. However, fees may apply for custom orders, data certifications, copies of analog materials, and data distribution on physical media.</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane ui-tabs-panel" id="Lineage">
+                                    <div class="row">
+                                        <div class="col-md-12 multi-table">
+                                            <table class="table table-condensed table-bordered multi-table">
+                                                <caption class="text-left"> Lineage information for: dataset</caption>
+                                                <tr>
+                                                    <td class="col-md-3">Lineage Statement</td><td>This release includes a netCDF version of the ICOADS Release 3.0 which is converted from the original IMMA1 format.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Processor</td><td>
+                                                        <ul class="unstyled">
+                                                            <li>DOC/NOAA/NESDIS/NCEI &gt; National Centers for Environmental Information, NESDIS, NOAA, U.S. Department of Commerce</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Processing Steps</td><td>
+                                                        <ul>
+                                                            <li>
+                                                                Final dataset after inclusion of new sources, qc and final validation.
+                                                                <br>
+                                                                 Rationale: To provide the highest quality data set.
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Processing Documents</td><td>
+                                                        <ul class="unstyled">
+                                                            <ul class="unstyled">
+                                                                <li>
+                                                                    IMMA format Description
+                                                                    <ul class="cite-url">
+                                                                        <li>
+                                                                            <a href="https://icoads.noaa.gov/e-doc/imma/R3.0-imma1_short.pdf" target="_blank">IMMA format Description</a>
+                                                                            <br>
+                                                                            NOAA ICOADS documentation describing the process and formatting of data.
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Source Datasets</td><td>
+                                                        <ul class="unstyled">
+                                                            <li>
+                                                                International Comprehensive Ocean-Atmosphere Data Set (ICOADS)
+                                                                <ul class="cite-url">
+                                                                    <li>
+                                                                        <a href="http://icoads.noaa.gov/" target="_blank">International Comprehensive Ocean-Atmosphere Data Set (ICOADS)</a>
+                                                                        <br>
+                                                                        Main NOAA website for ICOADS project.
+                                                                    </li>
+                                                                    <li>Description of Source: Heterogenius mixture of marine platforms and data sources</li>
+                                                                    <li>Temporal extent used: 
+		      1662-10 to 2014-12</li>
+                                                                    <li>Spatial extent used:  N:90  S:-90  E:180  W:-180</li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <table class="table table-condensed table-bordered multi-table">
+                                                <caption class="text-left"> Acquisition Information (collection) </caption>
+                                                <tr>
+                                                    <td class="col-md-3">Instrument</td><td>
+                                                        <ul>
+                                                            <li>bathythermograph - MBT</li>
+                                                            <li>bathythermograph - XBT</li>
+                                                            <li>buoy - drifting buoy</li>
+                                                            <li>buoy - moored buoy</li>
+                                                            <li>CTD</li>
+                                                            <li>Glider</li>
+                                                            <li>profiling floats</li>
+                                                            <li>tide gauge</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="col-md-3">Platform</td><td>
+                                                        <ul>
+                                                            <li>DRIFTING BUOY</li>
+                                                            <li>FIXED PLATFORM</li>
+                                                            <li>FIXED STATIONS</li>
+                                                            <li>ICE STATION</li>
+                                                            <li>LIGHT VESSELS</li>
+                                                            <li>Moored Buoy</li>
+                                                            <li>MULTIPLE SHIPS</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center"> Last Modified: 2023-06-23</div>
+                    <div class="text-center">
+                        For questions about the information on this page, please email: <a href="mailto:ncei.info@noaa.gov?International Comprehensive Ocean Atmosphere Data Set (ICOADS) R3.0 in Near-Real-Time (NRT)">ncei.info@noaa.gov</a>
+                    </div>
+                </div>
+            </div>
+            <footer id="footer" class="clearfix">
+                <div class="inset">
+                    <div class="subfooter">
+                        <a role="link" href="https://www.commerce.gov/"><img src="/metadata/geoportal/app/content/details/images/logos/logo_doc.png" alt="Click to visit the U.S. Department of Commerce Website"></a><a role="link" href="https://www.usa.gov"><img src="/metadata/geoportal/app/content/details/images/logos/logo_usagov.png" alt="Click to visit USA.gov"></a><a role="link" href="https://www.ready.gov"><img src="/metadata/geoportal/app/content/details/images/logos/logo_ready.png" alt="Click to visit Ready.gov"></a>
+                    </div>
+                    <ul class="menu">
+                        <li>
+                            <a role="link" title="About" href="https://www.ncei.noaa.gov/about">About</a>
+                        </li>
+                        <li>
+                            <a role="link" title="Contact Us" href="https://www.ncei.noaa.gov/contact">Contact</a>
+                        </li>
+                        <li>
+                            <a role="link" title="Employment" href="https://www.ncdc.noaa.gov/about/employment">Employment</a>
+                        </li>
+                        <li>
+                            <a role="link" title="Site Map of the Homepage and Support Pages" href="https://www.ncei.noaa.gov/sitemap">Site Map</a>
+                        </li>
+                    </ul>
+                    <ul class="menu">
+                        <li>
+                            <a role="link" title="NOAA's Privacy Policy" href="https://www.ncei.noaa.gov/privacy" rel="external">Privacy</a>
+                        </li>
+                        <li>
+                            <a role="link" title="Freedom of Information Act" href="https://www.noaa.gov/foia-freedom-of-information-act" rel="external">FOIA</a>
+                        </li>
+                        <li>
+                            <a role="link" title="Information Quality" href="https://www.cio.noaa.gov/services_programs/info_quality.html" rel="external">Information Quality</a>
+                        </li>
+                        <li>
+                            <a role="link" title="Disclaimer" href="https://www.noaa.gov/disclaimer.html" rel="external">Disclaimer</a>
+                        </li>
+                    </ul>
+                    <ul class="menu last">
+                        <li>
+                            <a role="link" title="Take Our Site Survey" href="https://www.ncdc.noaa.gov/survey">Take Our Survey</a>
+                        </li>
+                        <li>
+                            <a role="link" title="United States Department of Commerce" href="https://www.commerce.gov/" rel="external">Department of Commerce</a>
+                        </li>
+                        <li>
+                            <a role="link" title="NOAA" href="https://www.noaa.gov" rel="external">NOAA</a>
+                        </li>
+                        <li>
+                            <a role="link" title="NESDIS" href="https://www.nesdis.noaa.gov/" rel="external">NESDIS</a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <div id="footerCrumbs" class="clearfix">
+                        <a class="ext" href="https://www.commerce.gov/" target="_blank" title="Department of Commerce">Department of Commerce</a><span class="ext">&nbsp;</span>&nbsp;&gt;&nbsp;
+					<a class="ext" href="https://www.noaa.gov/" target="_blank" title="NOAA">NOAA</a><span class="ext">&nbsp;</span>&nbsp;&gt;&nbsp;
+					<a class="ext" href="https://www.nesdis.noaa.gov/" target="_blank" title="NESDIS">NESDIS</a><span class="ext">&nbsp;</span>&nbsp;&gt;&nbsp;
+					<a href="https://www.ncei.noaa.gov/" title="NCEI">NCEI</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    <script id="_fed_an_ua_tag" type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&subagency=NOAA"></script></body>
+</html>

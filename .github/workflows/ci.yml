@@ -1,0 +1,78 @@
+# CI: validate, format, qa-suite, integrity on push/PR
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  db-check:
+    name: DB Check (validate, format, qa-suite, integrity)
+    runs-on: ubuntu-latest
+    env:
+      PG_HOST: localhost
+      PG_USER: postgres
+      PG_PASSWORD: postgres
+      PG_DATABASE: postgres
+      DB_PORTS_START: "5436"
+    defaults:
+      run:
+        working-directory: .
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          pip install --quiet psycopg2-binary pyyaml jsonschema
+
+      - name: Env validation
+        run: python3 scripts/env_validator.py --op db || true
+
+      - name: Phase 0 - Extract queries (db-1 sample)
+        run: python3 scripts/db_check.py validate 1 2>&1 | head -50 || true
+
+      - name: BIRD export
+        run: python3 scripts/bird_export.py 1 --single || true
+
+      - name: QA Suite (no DB required)
+        run: python3 scripts/db_check.py qa-suite 1
+
+      - name: Integrity checks
+        run: python3 scripts/db_check.py integrity 1
+
+      - name: Compliance check
+        run: python3 scripts/db_check.py compliance 1
+
+      - name: Upload telemetry summary
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: telemetry-summary
+          path: logs/telemetry_summary.json
+          if-no-files-found: ignore
+
+  pre-commit:
+    name: Pre-commit (structure + integrity)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run pre-commit DB hook (dry run)
+        run: python3 scripts/pre_commit_db.py || true

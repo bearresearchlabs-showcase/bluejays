@@ -1,0 +1,57 @@
+# Scrub config for keyword cleanup. Used by scripts/scrub_keywords.py
+# Supports worktree partitioning for Cursor 4x Parallel Agents.
+
+# Keywords for rg search (pipe-separated)
+keywords: "databricks|snowflake"
+
+exclude:
+  - snowflake_credentials.json
+
+patterns:
+  # Databricks
+  - find: ',\s*databricks\s*,'
+    replace: ', '
+    regex: true
+    ignore_case: true
+  - find: 'PostgreSQL\s*/\s*databricks'
+    replace: 'PostgreSQL'
+    regex: true
+    ignore_case: true
+  - find: 'databricks\s*/\s*'
+    replace: ''
+    regex: true
+    ignore_case: true
+  - find: '\s+to\s+databricks\.?'
+    replace: '.'
+    regex: true
+    ignore_case: true
+  - find: '\bdatabricks\b'
+    replace: ''
+    regex: true
+    ignore_case: true
+  - find: 'remove_databricks\.py'
+    replace: 'remove_non_postgres_vendors.py'
+    regex: true
+    ignore_case: true
+
+  # Snowflake
+  - find: ',\s*snowflake\s*,'
+    replace: ', '
+    regex: true
+    ignore_case: true
+  - find: 'PostgreSQL\s*/\s*snowflake'
+    replace: 'PostgreSQL'
+    regex: true
+    ignore_case: true
+  - find: '\s+and\s+snowflake\b'
+    replace: ''
+    regex: true
+    ignore_case: true
+  - find: 'Compatible with PostgreSQL,?\s*and\s+Snowflake'
+    replace: 'Compatible with PostgreSQL'
+    regex: true
+    ignore_case: true
+  - find: '\bsnowflake\b'
+    replace: ''
+    regex: true
+    ignore_case: true

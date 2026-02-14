@@ -22,11 +22,8 @@ from datetime import datetime
 # Add scripts directory to path for timestamp_utils
 scripts_dir = Path(__file__).parent
 sys.path.insert(0, str(scripts_dir))
-try:
-    from timestamp_utils import get_est_timestamp
-except ImportError:
-    def get_est_timestamp():
-        return datetime.now().strftime('%Y%m%d-%H%M')
+from timestamp_utils import get_est_timestamp
+from db_paths import get_queries_dir
 
 class DeliverableFormatter:
     """Format database deliverables using OpenAPI/Swagger specification"""
@@ -173,11 +170,12 @@ class DeliverableFormatter:
 
     def format_database(self, db_num: int) -> dict:
         """Format deliverable for a single database - creates ONE comprehensive markdown file"""
-        db_dir = self.root_dir / f'db-{db_num}'
+        db_dir = self.root_dir / "source" / f'db-{db_num}'
         deliverable_dir = db_dir / 'deliverable'
         deliverable_file = db_dir / 'DELIVERABLE.md'
-        queries_md_file = db_dir / 'queries' / 'queries.md'
-        queries_json_file = db_dir / 'queries' / 'queries.json'
+        queries_dir = get_queries_dir(db_dir)
+        queries_md_file = queries_dir / 'queries.md'
+        queries_json_file = queries_dir / 'queries.json'
 
         if not db_dir.exists():
             return {
@@ -878,7 +876,7 @@ Every query in this database was created to solve a specific business problem fo
 
         # Add overview section (content only, header already added)
         if overview_section:
-            overview_section = self.remove_databricks_references(overview_section)
+            overview_section = self.remove_non_postgresql_references(overview_section)
             # Clean up any duplicate headers in the section (more aggressive)
             # Remove all instances of "## Database Overview" header (standalone or with content after)
             overview_section = re.sub(r'^##+\s+Database Overview\s*$', '', overview_section, flags=re.MULTILINE | re.IGNORECASE)
@@ -921,14 +919,6 @@ Every query in this database was created to solve a specific business problem fo
             overview_section = overview_section.strip()
             if overview_section:
                 doc += overview_section + "\n\n"
-        else:
-            # Fallback: extract content before schema section
-            fallback = deliverable_content.split('## Database Schema')[0] if '## Database Schema' in deliverable_content else deliverable_content[:1000]
-            # Remove any headers from fallback
-            fallback = re.sub(r'^#+\s+.*?\n+', '', fallback, flags=re.MULTILINE)
-            if fallback.strip():
-                doc += fallback.strip() + "\n\n"
-
         # Add Data Dictionary section BEFORE schema (matching golden solution structure)
         # In the golden solution, the Data Dictionary section contains the table groups (like "### Composite Products")
         # So we use the schema section as the Data Dictionary content
@@ -1061,7 +1051,7 @@ Every query in this database was created to solve a specific business problem fo
         # Add usage instructions if present
         usage_section = self.extract_section(deliverable_content, '## Usage Instructions', '##', include_header=False)
         if usage_section:
-            usage_section = self.remove_databricks_references(usage_section)
+            usage_section = self.remove_non_postgresql_references(usage_section)
             usage_section = usage_section.strip()
             # Remove any "Business Context" headers from usage section
             usage_section = re.sub(r'^##+\s+Business Context\s*$', '', usage_section, flags=re.MULTILINE | re.IGNORECASE)
@@ -1102,18 +1092,22 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
         return doc
 
-    def remove_databricks_references(self, content: str) -> str:
-        """Remove Databricks references from content (PostgreSQL-only)"""
+    def remove_non_postgresql_references(self, content: str) -> str:
+        """Remove non-PostgreSQL platform references from content (PostgreSQL only)."""
         if not content:
             return content
-        # Remove lines containing Databricks
-        lines = content.split('\n')
-        cleaned = []
-        for line in lines:
-            if 'databricks' in line.lower() or 'Databricks' in line:
-                continue
-            cleaned.append(line)
-        return '\n'.join(cleaned)
+        import re
+        # Replace common multi-DB patterns with PostgreSQL-only
+        content = re.sub(r',?\s*Databricks\s*,?', ', ', content, flags=re.IGNORECASE)
+        content = re.sub(r',?\s*Snowflake\s*,?', ', ', content, flags=re.IGNORECASE)
+        content = re.sub(r'\(PostgreSQL/Databricks\)', '(PostgreSQL)', content, flags=re.IGNORECASE)
+        content = re.sub(r'PostgreSQL\s*/\s*Databricks', 'PostgreSQL', content, flags=re.IGNORECASE)
+        content = re.sub(r'Databricks\s*/\s*', '', content, flags=re.IGNORECASE)
+        content = re.sub(r'\bDatabricks\b', '', content, flags=re.IGNORECASE)
+        # Clean up double commas or trailing commas from removals
+        content = re.sub(r',\s*,', ',', content)
+        content = re.sub(r',\s*$', '', content, flags=re.MULTILINE)
+        return content
 
     def clean_generated_markdown(self, content: str) -> str:
         """Clean generated markdown to ensure lint-free output"""

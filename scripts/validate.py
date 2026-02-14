@@ -11,16 +11,32 @@ Usage:
 """
 
 import sys
+import os
 import subprocess
 import json
 from pathlib import Path
 from typing import List, Tuple, Optional
 from datetime import datetime
 
-# Add scripts directory to path for timestamp_utils
+# Add scripts directory to path for timestamp_utils and db_paths
 scripts_dir = Path(__file__).parent
 sys.path.insert(0, str(scripts_dir))
 from timestamp_utils import get_est_timestamp
+from db_paths import get_queries_dir
+
+
+def _db_script_env() -> dict:
+    """Build env with PYTHONPATH so db scripts find root scripts/ modules."""
+    root_scripts = Path(__file__).resolve().parent
+    testing = root_scripts / 'testing'
+    archive = root_scripts / 'archive'
+    paths = [str(root_scripts), str(testing), str(archive)]
+    existing = os.environ.get('PYTHONPATH', '')
+    if existing:
+        paths.append(existing)
+    env = os.environ.copy()
+    env['PYTHONPATH'] = os.pathsep.join(paths)
+    return env
 
 class ValidationRunner:
     """Run validation suite for database repositories"""
@@ -89,8 +105,8 @@ class ValidationRunner:
 
     def validate_database(self, db_num: int) -> dict:
         """Run validation suite for a single database"""
-        db_dir = self.root_dir / f'db-{db_num}'
-        queries_dir = db_dir / 'queries'
+        db_dir = self.root_dir / "source" / f'db-{db_num}'
+        queries_dir = get_queries_dir(db_dir)
         scripts_dir = db_dir / 'scripts'
         results_dir = db_dir / 'results'
 
@@ -154,17 +170,30 @@ class ValidationRunner:
             result['end_time'] = get_est_timestamp()  # EST format: YYYYMMDD-HHMM
             return result
 
-        # Phase 1: Fix Verification
+        # Phase 1: Fix Verification (use shared conceptual verify_fixes)
         print(f"\n[Phase 1] Verifying fixes...")
         try:
-            verify_script = scripts_dir / 'verify_fixes.py'
+            shared_verify = self.root_dir / 'scripts' / 'verify_fixes.py'
+            db_verify = scripts_dir / 'verify_fixes.py'
+            verify_script = shared_verify if shared_verify.exists() else db_verify
             if verify_script.exists():
-                proc = subprocess.run(
-                    [sys.executable, str(verify_script)],
-                    cwd=str(db_dir),
-                    capture_output=True,
-                    text=True
-                )
+                # Shared script takes db_num; db script runs with cwd=db_dir
+                if verify_script == shared_verify:
+                    proc = subprocess.run(
+                        [sys.executable, str(verify_script), str(db_num)],
+                        cwd=str(self.root_dir),
+                        env=_db_script_env(),
+                        capture_output=True,
+                        text=True
+                    )
+                else:
+                    proc = subprocess.run(
+                        [sys.executable, str(verify_script)],
+                        cwd=str(db_dir),
+                        env=_db_script_env(),
+                        capture_output=True,
+                        text=True
+                    )
                 if proc.returncode == 0:
                     print("  ✓ Phase 1: Fix verification completed")
                     result['phases']['phase_1_fix_verification'] = {'status': 'PASS'}
@@ -172,7 +201,7 @@ class ValidationRunner:
                     print(f"  ✗ Phase 1: Fix verification failed")
                     result['phases']['phase_1_fix_verification'] = {
                         'status': 'FAIL',
-                        'error': proc.stderr[:500] if proc.stderr else 'Unknown error'
+                        'error': (proc.stderr or proc.stdout or 'Unknown error')[:500]
                     }
             else:
                 print(f"  ⚠️  Phase 1: Script not found")
@@ -192,6 +221,7 @@ class ValidationRunner:
                 proc = subprocess.run(
                     [sys.executable, str(validator_script)],
                     cwd=str(db_dir),
+                    env=_db_script_env(),
                     capture_output=True,
                     text=True
                 )
@@ -229,12 +259,14 @@ class ValidationRunner:
                     os.getenv('POSTGRES_HOST') or os.getenv('POSTGRES_USER')
                 )
 
-                # Check if PostgreSQL is running on localhost:5432 (common default)
+                # Check if PostgreSQL is reachable (use PG_HOST:PG_PORT from env; no particular port required)
                 pg_available_local = False
                 try:
+                    check_host = os.getenv('PG_HOST', 'localhost')
+                    check_port = int(os.getenv('PG_PORT', '5432'))
                     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                     sock.settimeout(1)
-                    connection_result = sock.connect_ex(('localhost', 5432))
+                    connection_result = sock.connect_ex((check_host, check_port))
                     sock.close()
                     pg_available_local = (connection_result == 0)
                 except Exception:
@@ -255,19 +287,17 @@ class ValidationRunner:
                     if not os.getenv('PG_USER'):
                         os.environ['PG_USER'] = 'postgres'
                     if not os.getenv('PG_DATABASE'):
-                        # Try db{N} first (common Docker naming), then fallback to db_{N}_validation
                         os.environ['PG_DATABASE'] = f'db{db_num}'
                     # Default password for Docker PostgreSQL containers is often 'postgres'
                     if not os.getenv('PG_PASSWORD'):
                         os.environ['PG_PASSWORD'] = 'postgres'
-                    print(f"  ℹ️  Using default PostgreSQL connection (localhost:5432, user=postgres, database={os.environ.get('PG_DATABASE')})")
+                    print(f"  ℹ️  Using default PostgreSQL connection ({os.environ.get('PG_HOST', 'localhost')}:{os.environ.get('PG_PORT', '5432')}, user=postgres, database={os.environ.get('PG_DATABASE')})")
 
-                has_databricks = bool(os.getenv('SNOWFLAKE_USER') or os.getenv('SNOWFLAKE_ACCOUNT'))
-
-                if has_pg or has_databricks:
+                if has_pg:
                     proc = subprocess.run(
                         [sys.executable, str(exec_script)],
                         cwd=str(db_dir),
+                        env=_db_script_env(),
                         capture_output=True,
                         text=True
                     )
@@ -301,6 +331,7 @@ class ValidationRunner:
                 proc = subprocess.run(
                     [sys.executable, str(report_script)],
                     cwd=str(db_dir),
+                    env=_db_script_env(),
                     capture_output=True,
                     text=True
                 )
@@ -388,7 +419,8 @@ class ValidationRunner:
         print(f"{'='*70}\n")
 
         # Save summary to file
-        summary_file = self.root_dir / 'validation_summary.json'
+        summary_file = self.root_dir / 'results' / 'validation_summary.json'
+        summary_file.parent.mkdir(parents=True, exist_ok=True)
         summary_file.write_text(json.dumps(all_results, indent=2))
         print(f"Summary saved to: {summary_file}")
 

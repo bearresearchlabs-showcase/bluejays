@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=10"/>
+<title>Chart Locator</title>
+
+<meta http-equiv="content-type" content="text/html"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+
+<link href="/InteractiveCatalog/stylesheets/w2ui-1.5.rc1.min.css" rel="stylesheet" type="text/css"/>
+<link rel="/InteractiveCatalog/stylesheet" href="stylesheets/all.css">
+<link href="/InteractiveCatalog/stylesheets/ol.css" rel="stylesheet">
+<link rel="icon" href="/images/noaa-logo-no-ring-70.png">
+<!---->
+<link rel="stylesheet" href="/InteractiveCatalog/stylesheets/layout.css">
+
+<!--<script src="/InteractiveCatalog/js/jquery-3.3.1.min.js"></script>-->
+<script src="/InteractiveCatalog/js/jquery-3.6.0.min.js"></script>
+<script src="/InteractiveCatalog/js/w2ui-1.5.rc1.js" type="text/javascript"></script>
+<script src="/InteractiveCatalog/js/ol.js"></script>
+<script src="/InteractiveCatalog/js/jsts.js"></script>
+
+<script src="/InteractiveCatalog/js/InteractiveCatalog.js"></script>
+
+
+<body>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "https://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+    <!-- META tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+
+
+    <!-- ADD Bootstrap and Custom CSS-->
+
+    <link href="/bootstrap5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="/fancyapps/dist/fancybox.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+
+
+
+
+
+    <link href="/css/nauticalcharts.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- ADD Bootstrap and Custom JS-->
+    <!--    <script src="/js/jquery-3.6.0.min.js"></script>-->
+    <script src="/fancyapps/dist/fancybox.umd.js"></script>
+
+
+    <script>
+        function submitForm() {
+            document.getElementById('search_form').submit();
+        }
+
+    </script>
+
+
+
+    <!-- title -->
+    <title>U.S. Office of Coast Survey</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SM6YMQ7JH4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-SM6YMQ7JH4');
+    </script>
+
+</head>
+
+
+
+<div class="usa-banner">
+    <small>
+        <div style="text-align:center;font-size: .7777777778rem;"><img class="img-fluid flag" src="/includes/img/flag.png"
+                                                                       alt="U.S. flag"> An
+            official website of the United States government.
+            <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+               data-bs-target="#collapseExample" aria-controls="collapseExample">
+                Here's how you know we're official.
+            </a>
+        </div>
+    </small>
+
+
+</div>
+
+
+<div class="collapse" id="collapseExample" style="background-color: #eaeaea;font-size:1rem;">
+    <div class="card-group" style="text-align:left; background-color: #eaeaea; width:85%; margin:auto;">
+
+        <div class="card card-nohover" style="transform:none;">
+
+            <div class="card-body" style="background-color: #eaeaea;">
+
+                <img src="/includes/img/icon-dot-gov.svg"
+                     style="width:45px;height:45px;vertical-align: top;float:left;margin-right:5px;" alt="dot gov">
+
+
+                <strong>Official websites use .gov</strong><br />
+                A <strong>.gov</strong> website belongs to an official
+                government organization in the United States.</p>
+            </div>
+        </div>
+        <div class="card" style="transform:none;">
+
+            <div class="card-body" style="background-color: #eaeaea;">
+
+                <img src="/includes/img/icon-https.svg"
+                     style="width:45px;height:45px;vertical-align: top;float:left;margin-right:5px;" alt="https">
+                <strong>Secure websites use HTTPS</strong><br />
+
+                A small lock (<i class="bi bi-lock-fill"></i>) or <strong>https://</strong> means you've safely
+                connected to a .gov website. Share sensitive
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;information only on official, secure
+                websites.
+
+            </div>
+        </div>
+
+
+
+        <div class="w-100 d-none d-sm-block d-md-none"></div>
+
+
+    </div>
+</div>
+
+<div class="newBody">
+
+    <body>
+
+
+    <div class="container">
+        <div class="row new_header">
+            <div class="col-md-9 order-md-1">
+                <div class="top-logo">
+                    <a href="https://www.noaa.gov"><img class="img-fluid" style="max-height:75px;"
+                                                        src="//nauticalcharts.noaa.gov/images/noaa-logo-rgb-2022.png" alt="noaa-logo"></a>
+                    <p class="top-text-heading">Office of Coast Survey<br />
+                        <span class="top-text-lower"><a href="https://www.noaa.gov">National Oceanic and Atmospheric
+                                    Administration</a><br />
+                                <a href="https://www.commerce.gov">U.S. Department of Commerce </a></span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3 order-md-2 mb-sm-4">
+                <form accept-charset="UTF-8" action="https://search.usa.gov/search" id="search_form" method="get"
+                      style="--bs-gutter:none;">
+
+                    <div class="search-container">
+                        <input placeholder='Search...' class='searchinput' type="text" name="query">
+
+                        <i class="bi bi-search search-i" onclick="submitForm();"></i>
+                        <input id="affiliate" name="affiliate" type="hidden" value="nauticalcharts.noaa.gov" />
+
+                    </div>
+                </form>
+                <!-- spacer for XS screens only -->
+                <div class="d-block d-sm-none" style="min-height:20px;"></div>
+            </div>
+        </div>
+    </div>
+
+<!-- navigation -->
+
+<style>
+    @media all and (min-width: 992px) {
+        .navbar .nav-item .dropdown-menu {
+            display: none;
+        }
+
+        .navbar .nav-item .nav-link {
+            font-size:14px;
+        }
+
+        .navbar .nav-item:hover .nav-link {
+            color: #ddd;
+        }
+
+        .navbar .nav-item .nav-link {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .navbar .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .navbar .nav-item .dropdown-menu {
+            margin-top: 0;
+        }
+
+        .navbar-nav>li {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .navbar .nav-item .dropdown-item {
+            font-size: 14px;
+        }
+
+    }
+</style>
+
+
+<!-- old bg background-color:#0098da -->
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#1a4480; margin-bottom:0;">
+    <div class="mx-lg-auto mr-xs-auto d-sm-flex d-block flex-sm-nowrap" style="text-align:left;">
+
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+                aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://nauticalcharts.noaa.gov/" id="navbarDarkDropdownMenuLink" role="button">
+                        Home
+                    </a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Charts
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/charts/noaa-enc.html">NOAA ENC<sup>&reg;</sup></a></li>
+                        <li><a class="dropdown-item"
+                               href="https://nauticalcharts.noaa.gov/charts/rescheming-and-improving-electronic-navigational-charts.html">Rescheming and Improving
+                            ENCs</a></li>
+                        <li><a class="dropdown-item" href="https://distribution.charts.noaa.gov/ENC/rescheme/">ENC Rescheming
+                            Status</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/charts/noaa-custom-charts.html">NOAA Custom
+                            Charts</a></li>
+                        <hr />
+                        <li><a class="dropdown-item" href="https://devgis.charttools.noaa.gov/pod/">NOAA Custom Chart App</a></li>
+                        <li><a class="dropdown-item" href="https://distribution.charts.noaa.gov/navigation-updates/">NOAA Navigation Updates App</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="https://charts.noaa.gov/InteractiveCatalog/nrnc.shtml">Chart
+                            Locator</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/enconline/enconline.html">ENC Viewer</a>
+                        </li>
+                        <hr>
+                        <li><a class="dropdown-item" href="https://historicalcharts.noaa.gov/">Historical Charts</a></li>
+                        <li><a class="dropdown-item"
+                               href="https://historicalcharts.noaa.gov/search.php?searchType=Nautical%20Chart--Training">Training
+                            Charts</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/charts/chart-updates.html">Chart Updates</a></li>
+
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/charts/chart-carriage-requirements.html">Chart Carriage Requirements</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Publications
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/publications/coast-pilot/index.html">United States Coast
+                            Pilot<sup>&reg;</sup></a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/publications/us-chart-1.html">U.S. Chart No. 1 (Chart Symbols)</a></li>
+                        <li style="padding-left:15px;"><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/publications/docs/distances.pdf">Distances
+                            Between U.S. Ports</a></li>
+                        <hr>
+                        <li style="padding-left:15px;"><a class="dropdown-item"
+                                                          href="https://nauticalcharts.noaa.gov/publications/docs/national-charting-plan.pdf">National Charting Plan</a></li>
+                        <li style="padding-left:15px;"><a class="dropdown-item"
+                                                          href="https://nauticalcharts.noaa.gov/about/docs/about/CoastSurveyStrategicPlanFY23-27.pdf">Strategic Plan 2023-2027</a></li>
+                        <li style="padding-left:15px;"><a class="dropdown-item"
+                                                          href="https://nauticalcharts.noaa.gov/publications/docs/nautical-charting-plan.pdf">Nautical Charting Plan</a></li>
+                        <li style="padding-left:15px;"><a class="dropdown-item"
+                                                          href="https://nauticalcharts.noaa.gov/publications/docs/enc-design-handbook.pdf">ENC Design Handbook</a></li>
+
+                        <hr>
+                        <li style="padding-left:15px;padding-right:15px;"><a class="dropdown-item"
+                                                                             href="https://nauticalcharts.noaa.gov/learn/docs/hydrographic-surveying/ocs-ocean-mapping-strategy.pdf">Coast Survey Ocean Mapping
+                            Strategy</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/publications/national-hydrographic-survey-priorities.html">National
+                            Hydrographic Survey Priorities</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/publications/standards-and-requirements.html">Standards and
+                            Requirements</a></li>
+                        <hr>
+                        <li><a class="dropdown-item"
+                               href="https://repository.library.noaa.gov/gsearch?collection=&type1=mods.related_series&fedora_terms1=NOS+CS&fedora_term_dropdown_documentType_values1=&fedora_term_dropdown_language_values1=&datepickerA1=&datepickerB1=&andor1=AND&type2=mods.related_series&fedora_terms2=&fedora_term_dropdown_documentType_values2=&fedora_term_dropdown_language_values2=&datepickerA2=&datepickerB2=&andor2=AND&fedora_terms3=&fedora_term_dropdown_documentType_values3=&fedora_term_dropdown_language_values3=&datepickerA3=&datepickerB3=">Coast
+                            Survey Technical Documents</a></li>
+
+                        <li style="margin-left:15px;"><a class="dropdown-item"
+                                                         href="https://repository.library.noaa.gov/gsearch?collection=&type1=mods.related_series&fedora_terms1=Technical+Memorandum+NOS+CS&fedora_term_dropdown_documentType_values1=&fedora_term_dropdown_language_values1=&datepickerA1=&datepickerB1=&andor1=AND&type2=mods.related_series&fedora_terms2=&fedora_term_dropdown_documentType_values2=&fedora_term_dropdown_language_values2=&datepickerA2=&datepickerB2=&andor2=AND&fedora_terms3=&fedora_term_dropdown_documentType_values3=&fedora_term_dropdown_language_values3=&datepickerA3=&datepickerB3=">Techical
+                            Memos</a></li>
+                        <li style="margin-left:15px;"><a class="dropdown-item"
+                                                         href="https://repository.library.noaa.gov/gsearch?collection=&type1=mods.related_series&fedora_terms1=Technical+Report+NOS+CS&fedora_term_dropdown_documentType_values1=&fedora_term_dropdown_language_values1=&datepickerA1=&datepickerB1=&andor1=AND&type2=mods.related_series&fedora_terms2=&fedora_term_dropdown_documentType_values2=&fedora_term_dropdown_language_values2=&datepickerA2=&datepickerB2=&andor2=AND&fedora_terms3=&fedora_term_dropdown_documentType_values3=&fedora_term_dropdown_language_values3=&datepickerA3=&datepickerB3=">Technical
+                            Reports</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Data
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/externalsourcedata.html">External Source Data</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/tools-apps.html">Tools &amp; Apps</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/data-management.html">Data Management</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/data-licensing.html">Data Licensing</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/gis-data-and-services.html">GIS Data &amp; Services</a></li>
+                        <li><a class="dropdown-item" href="https://nowcoast.noaa.gov/">nowCOAST&trade;</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/hydrographic-survey-data.html">Hydrographic Survey Data</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/bluetopo_specs.html">BlueTopo&trade; Specifications</a></li>
+
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/current-year-survey-plans.html">Current Year Survey Plans</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/us-maritime-limits-and-boundaries.html">U.S. Maritime Limits and
+                            Boundaries</a></li>
+                        <li><a class="dropdown-item" href="https://tidesandcurrents.noaa.gov">Tides &amp; Currents</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Learn
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/learn/nautical-cartography.html">Nautical Cartography</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/learn/chart-source-data.html">Chart Source Data</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/learn/hydrographic-surveying.html">Hydrographic Surveying</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/hydrographic-surveys-contract-vehicle.html">Hydrographic Surveys Contract Vehicle</a></li>
+
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/data/bluetopo.html">BlueTopo&trade;</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/learn/nbs.html">National Bathymetric Source</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/learn/hydrodynamic-model-development.html">Coastal &amp; Ocean Prediction Models</a></li>
+                        <li><a class="dropdown-item" href="https://marinenavigation.noaa.gov">Precision Marine Navigation</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/learn/educational-activities.html">Educational Activities</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/learn/faq.html">Frequently Asked Questions</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/about/nav-cast.html">Nav-cast Webinars</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/learn/coe.html">NOAA Center of Excellence</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Customer Service
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/customer-service/regional-managers/index.html">Regional Navigation
+                            Managers</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/customer-service/navigation-response.html">Navigation Response Teams</a>
+                        </li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/publications/print-agents.html">Nautical Product Printing and Distribution</a></li>
+
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/customer-service/assist/">Ask a Question / Report an Error</a></li>
+                        <li><a class="dropdown-item" href="https://nsd.rdc.noaa.gov/">Staff Directory</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        About
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/about/about.html">About Coast Survey</a></li>
+                        <li><a class="dropdown-item" href="/about/regulations-and-policies.html">Regulations &amp; Policies</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/about/survey-vessels.html">Survey Vessels</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/about/employment-and-internships.html">Employment &amp; Internships</a>
+                        </li>
+
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/updates/">Coast Survey Blog</a></li>
+                        <li><a class="dropdown-item" href="https://nauticalcharts.noaa.gov/about/contact.html">Contact</a></li>
+                    </ul>
+
+                </li>
+
+
+
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+
+
+<style>
+    .box {
+        text-align: center;
+        margin: auto;
+        margin-top: 20px;
+
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 5px 5px 5px #888888;
+
+    }
+
+    .box img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+        margin-bottom:12px;
+    }
+
+    .box p{
+        font-size:14px;
+    }
+
+
+</style>
+
+
+
+
+
+
+<br>
+<!-- you can use tables or divs for the overall layout -->
+<!-- Begin HTML expected by code -->
+<div id="background">
+    <div id="layout"></div>
+</div>
+<!-- End HTML expected by code -->
+<!-- footer -->
+
+<!-- footer -->
+
+
+
+<div class="row footer" style="margin-top:20px;">
+    <div class="col-3 footer-options">
+        <img class="img-fluid" style="max-width:50px;margin-right:10px;" src="/images/NOAAPlainLogo.png" >
+        <strong>The Nation's Chartmaker</strong>
+
+    </div>
+    <div class="col-6 footer-options">
+        <p><a href="https://nauticalcharts.noaa.gov/about/about.html">About Us</a> | <a href="https://iocm.noaa.gov/">IOCM</a> | <a href="https://nauticalcharts.noaa.gov/hsrp/hsrp.html">HSRP</a> | <a href="https://nauticalcharts.noaa.gov/about/contact.html">Contact</a></p>
+        <p><a href="https://nauticalcharts.noaa.gov/about/privacy-policy.html">Privacy Policy</a> | <a href="http://www.noaa.gov/disclaimer">Disclaimer</a>
+            | <a href="http://www.cio.noaa.gov/services_programs/info_quality.html">Information Quality</a>
+            | <a href="http://www.noaa.gov/foia-freedom-of-information-act">Freedom of Information Act</a> | <a href="https://usa.gov">USA.gov</a>
+            | <a href="https://ready.gov">Ready.gov</a> | <a href="https://www.noaa.gov/inclusion-and-civil-rights">EEO</a> |
+            <a href="https://nauticalcharts.noaa.gov/survey.html">Take our Survey</a></p>
+
+
+        <p style="text-align:center;font-size:12px;">Website owned by: <a href="https://nauticalcharts.noaa.gov/index.html">Office of Coast Survey</a><br />
+            <a href="https://oceanservice.noaa.gov">National Ocean Service</a> | <a href="https://www.noaa.gov">NOAA</a> | <a href="https://commerce.gov">Department of Commerce</a></p>
+    </div>
+
+
+
+    <div class="col-3 footer-options">
+        <p>Connect with Coast Survey</p>
+        <p class="section-title" style="font-size:18px;letter-spacing: 8px;">
+            <a href="https://nauticalcharts.noaa.gov/customer-service/assist/"><i class="bi bi-chat-text"></i></a>
+            <a href="https://twitter.com/NOAAcharts"><i class="bi bi-twitter"></i></a>
+            <a href="https://www.facebook.com/NOAAcharts/"><i class="bi bi-facebook"></i></a>
+            <a href="https://nauticalcharts.noaa.gov/updates/"><i class="bi bi-rss"></i></a>
+            <a href="https://public.govdelivery.com/accounts/USNOAANOS/subscriber/new?topic_id=USNOAANOS_204"><i class="bi bi-newspaper"></i></a>
+        </p>
+    </div>
+
+
+</div>
+
+
+
+
+<!--<script src="https://nauticalcharts.noaa.gov/js/jquery-3.6.0.min.js"></script>-->
+
+
+<script src="/bootstrap5/js/bootstrap.bundle.min.js">
+</script>
+
+<script src="/js/lapse.js"></script>
+
+<script async type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&subagency=NOAA&pua=UA-48302178-1" id="_fed_an_ua_tag"></script>
+
+
+<!-- jQuery - leaving government -->
+<!--<script src="https://nauticalcharts.noaa.gov/js/exit.js" defer></script>-->
+
+</body>
+
+</html>
+
+
+
+</body>
+
+
+</html>
+
+
+<script type="text/javascript">
+    window.onload = function() {
+        var ic = new InteractiveCatalog("layout");
+    };
+
+</script>
+</body>
+
+
+
+
+
+</html>

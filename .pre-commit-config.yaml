@@ -1,0 +1,12 @@
+# Pre-commit hooks for DB repository
+# Install: pip install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  - repo: local
+    hooks:
+      - id: db-check
+        name: DB Format & Structure
+        entry: python3 scripts/pre_commit_db.py
+        language: system
+        files: ^(db-[0-9]+|client/db)/

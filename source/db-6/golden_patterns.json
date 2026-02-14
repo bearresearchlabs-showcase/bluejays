@@ -1,0 +1,22 @@
+{
+  "toc_structure": {
+    "dict_entries": 1,
+    "should_be": 1
+  },
+  "data_dictionary_placement": {
+    "header_count": 0,
+    "should_be": 1
+  },
+  "query_structure": [
+    "Use Case",
+    "Description",
+    "Business Value",
+    "Purpose",
+    "Complexity"
+  ],
+  "no_duplicates": {
+    "duplicate_count": 0,
+    "should_be": 0
+  },
+  "file_naming": "db-6.md"
+}

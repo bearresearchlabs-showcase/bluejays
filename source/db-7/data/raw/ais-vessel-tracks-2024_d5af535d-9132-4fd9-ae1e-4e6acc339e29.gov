@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>NOAA Office for Coastal Management</title>
+    <meta name="description" content="NOAA's Office for Coastal Management provides the technology, information, and management strategies used by local, state, and national organizations to address complex coastal issues.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- iOS - mobile web app -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- iOS - add specific name to home screen icon -->
+    <meta name="apple-mobile-web-app-title" content="">
+    <!-- Android - mobile web app-->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <!-- Windows mobile Phone specific -->
+    <meta name="MobileOptimized" content="width">
+    <!-- Windows task bar - Name a pinned site on Windows task bar -->
+    <meta name="application-name" content="">
+    <!-- Windows task bar - give pinned site a tooltip -->
+    <meta name="msapplication-tooltip" content="">
+
+    <!-- Windows task bar - set default page for pinned site -->
+    <meta name="msapplication-starturl" content="https://coast.noaa.gov?pinned=true">
+    <!-- Windows task bar - Recolor IE's controls manually for a Pinned Site -->
+    <meta name="msapplication-navbutton-color" content="#ff0000">
+    <!-- Blackberry specific -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- Disable implicit prefetching -->
+    <meta http-equiv="x-dns-prefetch-control" content="off">
+
+    <!-- Facebook - controls the information sent to Open Graph when shared -->
+    <meta property="og:title" content="NOAA Office for Coastal Management">
+    <meta property="og:description" content="NOAA's Office for Coastal Management provides the technology, information, and management strategies used by local, state, and national organizations to address complex coastal issues.">
+
+    <!-- Twitter - controls the information sent to Twitter when shared -->
+    <meta name="twitter:url" content="https://coast.noaa.gov/">
+    <meta name="twitter:title" content="NOAA Office for Coastal Management">
+    <meta name="twitter:description" content="NOAA's Office for Coastal Management provides the technology, information, and management strategies used by local, state, and national organizations to address complex coastal issues.">
+    <meta name="twitter:image" content="https://coast.noaa.gov/assets/logos/noaa-badge-full-color.svg">
+
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <!-- Direct search spiders to site map if applicable -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Application CSS file -->
+    <link href="/css/ocm-3f5f9358.css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    <script src="https://coast.noaa.gov/js/federated-analytics.js"></script>
+  </head>
+
+  <body class="index">
+            <!-- Global Alert Banner -->
+            <div class="alert">
+    
+</div>
+            
+            <header id="header">
+    <button class="menu-toggle">
+        <span class="hamburger">Menu</span>
+    </button>
+
+<a href="./" title="Home" class="header-logo" data-ga="Navigation: Home">        <img src="https://coast.noaa.gov/data/home/logos/noaa-badge-full-color-no-outertext.svg" alt="NOAA Logo">
+        <h2 class="ocm-name">Office for<br /><span>Coastal Management</span></h2>
+</a>
+    <nav class="main-nav">
+  <ul class="nav-collapse collapse" id="navcollapse">
+    <form action="https://search.usa.gov/search" method="get" class="search-bar form-search">
+      <input id="affiliate" name="affiliate" type="hidden" value="ocm_search" />
+        <input autocomplete="off" class="usagov-search-autocomplete search-input--main" name="query" id="query" type="text" placeholder="Search" />
+      <button class="submit" type="submit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.114 16.3951L12.83 11.9395C13.9315 10.6301 14.535 8.98262 14.535 7.26749C14.535 3.26026 11.2747 0 7.26749 0C3.26026 0 0 3.26026 0 7.26749C0 11.2747 3.26026 14.535 7.26749 14.535C8.77186 14.535 10.2055 14.0812 11.4311 13.2199L15.7477 17.7093C15.9281 17.8967 16.1708 18 16.4309 18C16.677 18 16.9105 17.9062 17.0878 17.7355C17.4644 17.3731 17.4764 16.7721 17.114 16.3951ZM7.26749 1.89587C10.2295 1.89587 12.6391 4.30552 12.6391 7.26749C12.6391 10.2295 10.2295 12.6391 7.26749 12.6391C4.30552 12.6391 1.89587 10.2295 1.89587 7.26749C1.89587 4.30552 4.30552 1.89587 7.26749 1.89587Z" fill="black"/>
+      </svg></button>
+    </form>
+    <li class="hide-home"><a href="index.html">Home</a></li>
+    <li class="dropdown"> 
+      <a class="dropdown-toggle " data-toggle="dropdown" href="#">Programs<b class="caret"><svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg></b></a>
+      <ul class="dropdown-menu sub-menu-container">
+        <li><a href="/czm" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Programs - CZM')">Coastal Zone Management</a></li>
+        <li><a href="/nerrs" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Programs - NERRS')">National Estuarine Research Reserves</a></li>
+        <li><a href="https://coralreef.noaa.gov" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Programs - Coral Reef Conservation')">Coral Reef Conservation</a></li>
+        <li><a href="/digitalcoast" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Programs - Digital Coast')">Digital Coast</a></li>
+      </ul>
+    </li>
+    <li class="dropdown"> 
+      <a class="dropdown-toggle " data-toggle="dropdown">Funding<b class="caret"><svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg></b></a>
+      <ul class="dropdown-menu sub-menu-container">
+      <li><a href="funding/bil/" class="" role="link" rel="noopener">Bipartisan Infrastructure Law</a></li>
+      <li><a href="/funding/ira/resilience-challenge/" class="" role="link" rel="noopener">Climate Resilience Regional Challenge</a></li> 
+      <li><a href="funding/bil/ncrf/overview.html" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Funding - NCRS')">National Coastal Resilience Fund</a></li>
+       
+        <li><a href="funding/" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Funding - Other Funding Opportunities')">Other Funding Opportunities</a></li>
+      </ul>
+    </li>
+    <li class="dropdown"> 
+      <a class="dropdown-toggle " data-toggle="dropdown">Fellowships<b class="caret"><svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg></b></a>
+      <ul class="dropdown-menu sub-menu-container">
+        <li><a href="fellowship/coastalmanagement.html" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Fellowship - Coastal Management')">Coastal Management</a></li>
+         <li><a href="funding/ira/resilience-challenge/fellowship.html" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Fellowship - Coastal Resilience')">Coastal Resilience</a></li>
+        <li><a onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Fellowship - Coral Reef')" target="_blank" href="https://coralreef.noaa.gov/education/fellowship.html">Coral Reef Management</a></li>
+        <li><a href="fellowship/digitalcoast.html" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Fellowship - Digital Coast')">Digital Coast</a></li>
+        <li><a onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Fellowship - Margret A Davidson')" target="_blank" href="https://coast.noaa.gov/nerrs/research/davidson-fellowship.html">Margaret A. Davidson</a></li>
+      </ul>
+    </li>
+    <li class="dropdown"> 
+      <a class="dropdown-toggle " data-toggle="dropdown">Fast Facts<b class="caret"><svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg></b></a>
+      <ul class="dropdown-menu sub-menu-container">
+        <li><a href="/states" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Fast Facts - State Facts')">State Facts</a></li>
+        <li><a href="/coastal-facts" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Fast Facts - Fast Facts')">Fast Facts</a></li>
+        <li><a href="/states/stories/" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: Fast Facts - Impact Stories')">Impact Stories</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle " data-toggle="dropdown">About<b class="caret"><svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg></b></a>
+      <ul class="dropdown-menu sub-menu-container">
+        <li><a href="/about" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: About - Our Office')">Our Office</a></li>
+        <li><a href="/about/directions" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: About - Directions')">Directions</a></li>
+        <li><a href="/about/employment" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: About - Employment')">Employment</a></li>
+        <li><a href="/about/organization" class="" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: About - Organization')">Organization</a></li>
+        <li><a href="/contactform" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: About - Contact Us')">Contact Us</a></li>
+        <li><a href="gallery/newsletter.html" role="link" rel="noopener" onClick="ga('send', 'event', 'OCM: Coast Menu', 'Click',  'Nav: About - Newsletters')">Newsletters</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+    <form action="https://search.usa.gov/search" method="get" class="desktop-search form-search" aria-label="search bar">
+        <input id="affiliate" name="affiliate" type="hidden" value="ocm_search" />
+        <input autocomplete="off" class="usagov-search-autocomplete search-input--main" name="query" id="query" type="text" placeholder="Search" />
+        <button type="submit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.114 16.3951L12.83 11.9395C13.9315 10.6301 14.535 8.98262 14.535 7.26749C14.535 3.26026 11.2747 0 7.26749 0C3.26026 0 0 3.26026 0 7.26749C0 11.2747 3.26026 14.535 7.26749 14.535C8.77186 14.535 10.2055 14.0812 11.4311 13.2199L15.7477 17.7093C15.9281 17.8967 16.1708 18 16.4309 18C16.677 18 16.9105 17.9062 17.0878 17.7355C17.4644 17.3731 17.4764 16.7721 17.114 16.3951ZM7.26749 1.89587C10.2295 1.89587 12.6391 4.30552 12.6391 7.26749C12.6391 10.2295 10.2295 12.6391 7.26749 12.6391C4.30552 12.6391 1.89587 10.2295 1.89587 7.26749C1.89587 4.30552 4.30552 1.89587 7.26749 1.89587Z" fill="black"/>
+      </svg></button>
+    </form>
+</header>
+
+           <!-- Body of Main Content -->
+           <main class="main-ocm " role="main" id="main">
+              <section class="hero-container">
+
+    <a onClick="ga('send', 'event', 'OCM: Home Arrow', 'Click',  'Hero: Arrow Button')" class="scroll-button-mobile" href="#programs-mobile" aria-label="scroll to continue">
+        <span class="chevron-down"></span>
+    </a>
+
+    <a href="#funding" onClick="ga('send', 'event', 'OCM: Home Arrow', 'Click',  'Hero: Arrow Button')" class="scroll-button-desktop scroll__down" aria-label="Scroll to Continue">
+        <span class="scroll__mouse">
+            <span class="scroll__wheel"></span>
+        </span>
+    </a>
+
+    <div class="hero container--flex">
+
+        <div class="intro-mobile">
+            <h1>Office for Coastal Management</h1>
+            <p class="intro-text">
+                Implements four major programs designed to help coastal and Great Lakes
+                communities and ecosystems thrive.
+            </p>
+            <div id="programs-mobile">
+            
+                <div class="title-container">
+                    <i class="left">-</i><h2>Programs</h2><i class="right">-</i> 
+                </div>
+                
+                <div class="program-container">
+                    <a onClick="ga('send', 'event', 'OCM: Home Hero', 'Click',  'Hero: CZM Button')" target="_blank" href="https://coast.noaa.gov/czm/" class="single-program">
+                            <span>National Coastal Zone Management Program</span>
+                    </a>
+                    <a onClick="ga('send', 'event', 'OCM: Home Hero', 'Click',  'Hero: NERRS Button')" target="_blank" href="https://coast.noaa.gov/nerrs/" class="single-program">
+                        <span>National Estuarine Research Reserve System</span>
+                    </a>
+                    <a onClick="ga('send', 'event', 'OCM: Home Hero', 'Click',  'Hero: Coral Reef Button')" target="_blank" href="https://coralreef.noaa.gov/" class="single-program">
+                        <span>Coral Reef Conservation Program</span>
+                    </a>
+                    <a onClick="ga('send', 'event', 'OCM: Home Hero', 'Click',  'Hero: Digital Coast Button')" target="_blank" href="https://coast.noaa.gov/digitalcoast/" class="single-program">
+                        <span>Digital Coast</span>
+                    </a>
+                </div>
+            </div>
+            <!-- %= link_to "About", "/about", :class => "button button-tiny white", :relative => true, :role => "link", :rel => "noopener" % -->
+        </div>
+    </div>
+
+    <!-- Desktop Programs -->
+        <div class="intro-desktop">
+
+            <div id="programs-desktop">
+
+                <div class="fourth">
+                    <div class="fourth-container">
+                    <div class="column-title">
+                        <h2>National Coastal Zone Management Program</h2>
+                    </div>
+                    <div class="column-details">
+                        <p>Authorized by the Coastal Zone Management Act</p>
+                        <a onClick="ga('send', 'event', 'OCM: Home Hero', 'Click',  'Hero: CZM Button')" target="_blank" class="button button--tiny white" href="https://coast.noaa.gov/czm/">Learn More</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="fourth">
+                    <div class="fourth-container">
+                    <div class="column-title">
+                        <h2>National Estuarine Research Reserve System</h2>
+                    </div>
+                    <div class="column-details">
+                        <p>Authorized by the Coastal Zone Management Act</p>
+                        <a onClick="ga('send', 'event', 'OCM: Home Hero', 'Click',  'Hero: NERRS Button')" target="_blank" class="button button--tiny white" href="https://coast.noaa.gov/nerrs/">Learn More</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="fourth">
+                    <div class="fourth-container">
+                    <div class="column-title">
+                        <h2>Coral Reef Conservation Program</h2>
+                    </div>
+                    <div class="column-details">
+                        <p>Authorized by the Coral Reef Conservation Act</p>
+                        <a onClick="ga('send', 'event', 'OCM: Home Hero', 'Click',  'Hero: Coral Reef Button')" target="_blank" class="button button--tiny white" href="https://coralreef.noaa.gov/">Learn More</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="fourth">
+                    <div class="fourth-container">
+                    <div class="column-title">
+                        <h2>Digital Coast</h2>
+                    </div>
+                    <div class="column-details">
+                        <p>Authorized by the Digital Coast Act
+                        </p>
+                        <a onClick="ga('send', 'event', 'OCM: Home Hero', 'Click',  'Hero: Digital Coast Button')" target="_blank" class="button button--tiny white" href="https://coast.noaa.gov/digitalcoast/">Learn More</a>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</section>
+
+<div id="spotlight-area">
+    <section class="big-block-layout" id="funding">
+    <div class="wrapper">
+        <div class="pane nationalCRF">
+            <div class="pane-border"></div>
+            <div class="pane-container">
+                <div class="pane-title">
+                    <h3><span>Providing</span> grants for community and regional projects that protect habitat and decrease flooding.</h3>
+                </div>
+                <div class="pane-cta">
+                    <a href="/funding/bil/ncrf/overview.html" class="underline-hover-effect">National Coastal Resilience Fund
+                        <svg xmlns="http://www.w3.org/2000/svg" class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path fill="white" d="M7.28033 3.21967C6.98744 2.92678 6.51256 2.92678 6.21967 3.21967C5.92678 3.51256 5.92678 3.98744 6.21967 4.28033L7.28033 3.21967ZM11 8L11.5303 8.53033C11.8232 8.23744 11.8232 7.76256 11.5303 7.46967L11 8ZM6.21967 11.7197C5.92678 12.0126 5.92678 12.4874 6.21967 12.7803C6.51256 13.0732 6.98744 13.0732 7.28033 12.7803L6.21967 11.7197ZM6.21967 4.28033L10.4697 8.53033L11.5303 7.46967L7.28033 3.21967L6.21967 4.28033ZM10.4697 7.46967L6.21967 11.7197L7.28033 12.7803L11.5303 8.53033L10.4697 7.46967Z"></path>
+                        <path stroke="white" d="M1.75 8H11" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="img-side">
+            </div>
+        </div>
+        <div class="pane fellowship">
+        <div class="pane-border"></div>
+            <div class="pane-container">
+                <div class="pane-title">
+                    <h3><span>Creating</span> the next generation of coastal leaders—and advancing the nation’s coastal resource management priorities.</h3>
+                </div>
+                <div class="pane-cta">
+                
+                    <a href="/fellowship/" class="underline-hover-effect">Fellowship Programs
+                        <svg xmlns="http://www.w3.org/2000/svg" class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path fill="white" d="M7.28033 3.21967C6.98744 2.92678 6.51256 2.92678 6.21967 3.21967C5.92678 3.51256 5.92678 3.98744 6.21967 4.28033L7.28033 3.21967ZM11 8L11.5303 8.53033C11.8232 8.23744 11.8232 7.76256 11.5303 7.46967L11 8ZM6.21967 11.7197C5.92678 12.0126 5.92678 12.4874 6.21967 12.7803C6.51256 13.0732 6.98744 13.0732 7.28033 12.7803L6.21967 11.7197ZM6.21967 4.28033L10.4697 8.53033L11.5303 7.46967L7.28033 3.21967L6.21967 4.28033ZM10.4697 7.46967L6.21967 11.7197L7.28033 12.7803L11.5303 8.53033L10.4697 7.46967Z"></path>
+                        <path stroke="white" d="M1.75 8H11" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="img-side">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+    <section class="big-block-layout impact">
+    <div class="wrapper">
+        <div class="pane impact half-pane">
+            
+            <div class="pane-container">
+               
+                <div class="pane-title">
+                    <h3><span>Discover</span> how various programs within NOAA’s Office for Coastal Management are making a difference.</h3>
+                </div>
+                <div class="pane-cta">
+                    <a href="/states/stories/" class="underline-hover-effect">Impact Stories
+                        <svg xmlns="http://www.w3.org/2000/svg" class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path fill="white" d="M7.28033 3.21967C6.98744 2.92678 6.51256 2.92678 6.21967 3.21967C5.92678 3.51256 5.92678 3.98744 6.21967 4.28033L7.28033 3.21967ZM11 8L11.5303 8.53033C11.8232 8.23744 11.8232 7.76256 11.5303 7.46967L11 8ZM6.21967 11.7197C5.92678 12.0126 5.92678 12.4874 6.21967 12.7803C6.51256 13.0732 6.98744 13.0732 7.28033 12.7803L6.21967 11.7197ZM6.21967 4.28033L10.4697 8.53033L11.5303 7.46967L7.28033 3.21967L6.21967 4.28033ZM10.4697 7.46967L6.21967 11.7197L7.28033 12.7803L11.5303 8.53033L10.4697 7.46967Z"></path>
+                            <path stroke="white" d="M1.75 8H11" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+            </div>
+            <div class="img-side">
+                <img src="/assets/facts-svg.svg" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section class="big-block-layout">
+    <div class="wrapper">
+        <div class="pane fast-fact">
+            <div class="pane-container">
+            
+                <div class="pane-title">
+                    <h3>The latest, <span>easy-to-use</span> statistics for all things coastal&mdash;demographics, economics, storm damages, high tide flooding rates, and more.</h3>
+                </div>
+
+                <div class="pane-cta">
+                    <a href="/coastal-facts" class="underline-hover-effect">Fast Facts
+                        <svg xmlns="http://www.w3.org/2000/svg" class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path fill="white" d="M7.28033 3.21967C6.98744 2.92678 6.51256 2.92678 6.21967 3.21967C5.92678 3.51256 5.92678 3.98744 6.21967 4.28033L7.28033 3.21967ZM11 8L11.5303 8.53033C11.8232 8.23744 11.8232 7.76256 11.5303 7.46967L11 8ZM6.21967 11.7197C5.92678 12.0126 5.92678 12.4874 6.21967 12.7803C6.51256 13.0732 6.98744 13.0732 7.28033 12.7803L6.21967 11.7197ZM6.21967 4.28033L10.4697 8.53033L11.5303 7.46967L7.28033 3.21967L6.21967 4.28033ZM10.4697 7.46967L6.21967 11.7197L7.28033 12.7803L11.5303 8.53033L10.4697 7.46967Z"></path>
+                            <path stroke="white" d="M1.75 8H11" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="img-side">
+                <div class="numbers-area">
+                    <div class="numbers-container">
+                        <h3 class="number-element" id="big-number">40</h3>
+                        <p>of the nation's total population live along the coast.</p>
+                    </div>
+                </div>
+            </div>         
+        </div>
+    </div>
+</section>
+
+</div>
+
+<section class="news-carousel">
+    <div class="news-container">
+        <h2>Announcements</h2>
+        <div class="news-carousel__item-wrapper" data-js="news-carousel">
+            
+        
+       
+        <div class="news-carousel__item">
+    <div class="news-carousel__card">
+        <div class="media-wrapper media-wrapper--overlay">
+            <div class="news-carousel__item-inner">
+                    <h4 class="title">NOAA Releases Final Guidance on Designation of New Regional Ocean Partnerships<br/><br/><br/></h4>
+                    <p></p>
+                    <a href="https://coast.noaa.gov/data/coasthome/funding/_pdf/rop-designation-guidance-final.pdf" class="read-more" onClick="ga('send', 'event', 'OCM: Coast Home', 'Click',  'Announcement: Link Clicked')">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+        
+        <div class="news-carousel__item">
+    <div class="news-carousel__card">
+        <div class="media-wrapper media-wrapper--overlay">
+            <div class="news-carousel__item-inner">
+                    <h4 class="title">NOAA Announces Availability of Funds for Regional Ocean Partnership Projects to Address Pressing Ocean and Coastal Management Needs and Enhance Data Sharing</h4>
+                    <p></p>
+                    <a href="funding/bil/rop/overview.html" class="read-more" onClick="ga('send', 'event', 'OCM: Coast Home', 'Click',  'Announcement: Link Clicked')">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+        
+        <div class="news-carousel__item">
+    <div class="news-carousel__card">
+        <div class="media-wrapper media-wrapper--overlay">
+            <div class="news-carousel__item-inner">
+                    <h4 class="title">Announcing 33 Fellowship Positions to Support Climate Resilience Regional Challenge Grant Recipients<br/><br/><br/></h4>
+                    <p></p>
+                    <a href="funding/ira/resilience-challenge/fellowship.html" class="read-more" onClick="ga('send', 'event', 'OCM: Coast Home', 'Click',  'Announcement: Link Clicked')">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>       
+        
+ 
+            
+            <div class="news-carousel__item">
+    <div class="news-carousel__card">
+        <div class="media-wrapper media-wrapper--overlay">
+            <div class="news-carousel__item-inner">
+                    <h4 class="title">Now Available: NOAA’s Sea Level Calculator<br/><br/><br/><br/><br/></h4>
+                    <p></p>
+                    <a href="https://coast.noaa.gov/digitalcoast/tools/sea-level-calculator.html" class="read-more" onClick="ga('send', 'event', 'OCM: Coast Home', 'Click',  'Announcement: Link Clicked')">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>        
+           
+
+   
+        
+            
+
+        
+           
+        
+            
+   
+
+            
+            
+
+            
+           
+        </div>
+    </div>
+</section>
+
+           </main> 
+
+           <footer class="fullpage" role="contentinfo" id="myFooter">
+    <div class="container--flex footer__main">
+        <div class="footer__brand">
+            <span class="brand__logo">
+                <img class="brand__logo" src="/assets/images/noaa-badge-white-1503b556.svg" alt="NOAA logo">
+            </span>
+            <h1>Can't find what you want? <br/>Let us help.</h1>
+            <a href="/contactform/" class="button button--large blue-med" role="link" rel="noopener">Contact Us</a>
+        </div>
+        <div class="footer__spacer"></div>
+        <div class="footer__links">
+            <div class="footer__links-group">
+                <h6 class="list__title">More</h6>
+                <ul class="list--unstyled" role="menu">
+                    <li role="menuitem">
+                        <a href="/PrivacyPolicy/privacypolicy.html" role="link" rel="noopener">Privacy Policy</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="https://www.noaa.gov/disclaimer" role="link" rel="noopener">Disclaimer</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="https://www.usa.gov/" role="link" rel="noopener">USA.gov</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="https://oceanservice.noaa.gov/" role="link" rel="noopener">National Ocean Service</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="https://www.noaa.gov/" role="link" rel="noopener">National Oceanic and Atmospheric Administration</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="https://www.commerce.gov/" role="link" rel="noopener">United States Department of Commerce</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__links-group">
+                <h6 class="list__title">Quick Links</h6>
+                <ul class="list--unstyled" role="menu">
+                    <li role="menuitem" >
+                        <a href="/about/" role="link" rel="noopener">About</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="/czm" role="link" rel="noopener">Coastal Zone Management</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="https://coralreef.noaa.gov" role="link" rel="noopener">Coral Reef Conservation</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="/digitalcoast" role="link" rel="noopener">Digital Coast</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="/nerrs/" role="link" rel="noopener">National Estuarine Research Reserves</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="/regions/pacific/" role="link" rel="noopener">Pacific Office</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__links-group">
+                <h6 class="list__title">Connect</h6>
+                <ul class="list--unstyled" role="menu">
+                    <li role="menuitem">
+                        <a href="https://www.facebook.com/NOAADigitalCoast" role="link" target="_blank" rel="noopener">Facebook</a>
+                    </li>
+                    <li role="menuitem">
+                    <a href="https://www.instagram.com/NOAADigitalCoast" role="link" target="_blank" rel="noopener">Instagram</a>
+                </li>
+                    <li class="menuitem" role="menuitem">
+                        <a href="https://twitter.com/NOAADigCoast" role="link" target="_blank" rel="noopener">X</a>
+                    </li>
+                     <li class="menuitem" role="menuitem">
+       
+                    <li role="menuitem"> 
+                        <a href="https://www.linkedin.com/showcase/noaa-coastal-management" role="link" target="_blank" rel="noopener">LinkedIn</a>
+                    </li>
+                    <li role="menuitem"> 
+                        <a href="https://touchpoints.app.cloud.gov/touchpoints/98b988eb/submit" role="link" target="_blank" rel="noopener">Customer Satisfaction Survey</a>
+                    </li>
+                    <li role="menuitem"> 
+                        <a href="gallery/" role="link" target="_blank" rel="noopener">Multimedia Gallery</a>
+                    </li>
+                    <li role="menuitem"> 
+                        <a href="gallery/newsletter.html" role="link" target="_blank" rel="noopener">Newsletters</a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="https://coast.noaa.gov/contactform/" role="link" target="_blank" rel="noopener">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__links-group">
+                <h6 class="list__title">From The Office</h6>
+                <ul class="list--unstyled" role="menu">
+                    <li role="menuitem"> 
+                        <a href="/idiq" role="link" target="_blank" rel="noopener">Contracting Assistance</a>
+                    </li>
+                    <li role="menuitem"> 
+                        <a href="/about/employment" role="link" target="_blank" rel="noopener">Employment</a>
+                    </li>
+                    <li role="menuitem"> 
+                        <a href="/funding" role="link" target="_blank" rel="noopener">Funding Opportunities</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container--flex footer__sub">
+        <ul class="list--unstyled" role="menu">
+            <li role="menuitem">
+                <span class="link__label">Website Owner:</span>
+                <a href="/" role="link" target="_blank" rel="noopener">NOAA Office for Coastal Management</a>
+            </li>
+            <li role="menuitem">
+                <span class="link__label">Last Modified:</span>
+                <span id="ocm_frontend_last_modified"></span>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+        <!-- Javascript -->
+        <script src="/javascripts/app-7b46e6cc.js"></script>
+
+  </body>
+
+</html>

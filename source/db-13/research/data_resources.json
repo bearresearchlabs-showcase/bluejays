@@ -1,0 +1,183 @@
+{
+  "data_sources": [
+    {
+      "source_name": "Artificial Analysis",
+      "source_type": "api",
+      "source_category": "benchmark",
+      "base_url": "https://artificialanalysis.ai",
+      "api_endpoint": "https://artificialanalysis.ai/models",
+      "description": "Primary source for AI model benchmarks, performance metrics, pricing, and intelligence index scores",
+      "data_available": [
+        "Model metadata (name, creator, license, context window, parameters)",
+        "Intelligence Index scores (v4.0 with 10 evaluations)",
+        "Performance metrics (speed, latency, end-to-end response time)",
+        "Pricing data (input/output/reasoning token pricing)",
+        "Benchmark evaluations (GDPval-AA, Terminal-Bench, SciCode, AA-LCR, AA-Omniscience, IFBench, etc.)",
+        "Model comparisons and rankings",
+        "Openness Index scores"
+      ],
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "authentication_type": "none",
+      "sync_frequency": "daily",
+      "data_format": "web_scraping",
+      "notes": "Website contains comprehensive model comparison data. May require web scraping or API access if available."
+    },
+    {
+      "source_name": "NIST AI RMF",
+      "source_type": "government",
+      "source_category": "benchmark",
+      "base_url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "api_endpoint": null,
+      "description": "National Institute of Standards and Technology AI Risk Management Framework - AI safety and robustness benchmarks",
+      "data_available": [
+        "AI safety benchmarks",
+        "Robustness evaluations",
+        "Bias detection metrics",
+        "Risk assessment frameworks",
+        "Compliance scoring"
+      ],
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "authentication_type": "none",
+      "sync_frequency": "monthly",
+      "data_format": "pdf_reports",
+      "notes": "Government framework documents and benchmark results. May require manual extraction or PDF parsing."
+    },
+    {
+      "source_name": "NSF AI Research",
+      "source_type": "government",
+      "source_category": "research",
+      "base_url": "https://www.nsf.gov",
+      "api_endpoint": "https://api.nsf.gov/services/v1/",
+      "description": "National Science Foundation AI research programs and funded projects",
+      "data_available": [
+        "AI research project data",
+        "Model performance from NSF-funded research",
+        "Research publications and citations",
+        "Benchmark results from research projects"
+      ],
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "authentication_type": "api_key",
+      "sync_frequency": "monthly",
+      "data_format": "json_api",
+      "notes": "NSF API requires API key registration. Provides research project data and publications."
+    },
+    {
+      "source_name": "Data.gov CKAN API",
+      "source_type": "government",
+      "source_category": "benchmark",
+      "base_url": "https://data.gov",
+      "api_endpoint": "https://catalog.data.gov/api/3/action",
+      "description": "Federal open data portal with AI and ML datasets",
+      "data_available": [
+        "AI benchmark datasets",
+        "ML model performance data",
+        "Government AI research datasets",
+        "Public sector AI adoption data"
+      ],
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "authentication_type": "none",
+      "sync_frequency": "weekly",
+      "data_format": "json_api",
+      "notes": "CKAN API for searching and accessing federal open data datasets related to AI and ML."
+    },
+    {
+      "source_name": "DARPA AI Programs",
+      "source_type": "government",
+      "source_category": "research",
+      "base_url": "https://www.darpa.mil",
+      "api_endpoint": null,
+      "description": "Defense Advanced Research Projects Agency AI research programs",
+      "data_available": [
+        "AI research program data",
+        "Benchmark results from DARPA programs",
+        "Model performance metrics",
+        "Research publications"
+      ],
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "authentication_type": "none",
+      "sync_frequency": "quarterly",
+      "data_format": "web_scraping",
+      "notes": "DARPA program information and research results. May require web scraping."
+    },
+    {
+      "source_name": "Papers with Code",
+      "source_type": "research",
+      "source_category": "benchmark",
+      "base_url": "https://paperswithcode.com",
+      "api_endpoint": "https://paperswithcode.com/api/v1/",
+      "description": "Research papers with code implementations and benchmark results",
+      "data_available": [
+        "Model benchmark results from research papers",
+        "Performance metrics",
+        "Research citations",
+        "Code implementations"
+      ],
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "authentication_type": "none",
+      "sync_frequency": "weekly",
+      "data_format": "json_api",
+      "notes": "API access to research papers and benchmark results. Free tier available."
+    },
+    {
+      "source_name": "Hugging Face Model Hub",
+      "source_type": "api",
+      "source_category": "adoption",
+      "base_url": "https://huggingface.co",
+      "api_endpoint": "https://huggingface.co/api",
+      "description": "Model hub with download statistics, likes, and adoption metrics",
+      "data_available": [
+        "Model download statistics",
+        "Model likes and engagement",
+        "Model metadata",
+        "Usage statistics"
+      ],
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "authentication_type": "bearer_token",
+      "sync_frequency": "daily",
+      "data_format": "json_api",
+      "notes": "Hugging Face API provides model metadata and usage statistics. Requires authentication token."
+    },
+    {
+      "source_name": "GitHub API",
+      "source_type": "api",
+      "source_category": "adoption",
+      "base_url": "https://github.com",
+      "api_endpoint": "https://api.github.com",
+      "description": "GitHub repository statistics for open-source AI models",
+      "data_available": [
+        "Repository stars and forks",
+        "Contributor counts",
+        "Commit activity",
+        "Release information"
+      ],
+      "rate_limit_per_hour": 5000,
+      "rate_limit_per_day": null,
+      "authentication_type": "bearer_token",
+      "sync_frequency": "daily",
+      "data_format": "json_api",
+      "notes": "GitHub API for tracking open-source model adoption. Requires authentication for higher rate limits."
+    }
+  ],
+  "coordinate_systems": [],
+  "data_formats": [
+    "JSON",
+    "CSV",
+    "PDF",
+    "Web scraping"
+  ],
+  "usage_notes": [
+    "Artificial Analysis is the primary source for comprehensive benchmark data",
+    "Government sources provide authoritative safety and compliance benchmarks",
+    "Research sources provide academic benchmark results and citations",
+    "Adoption metrics sources provide usage and popularity data",
+    "All sources should be tracked in data_sources table for lineage"
+  ],
+  "last_updated": "2026-02-04"
+}

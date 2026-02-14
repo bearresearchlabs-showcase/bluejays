@@ -1,0 +1,20 @@
+{
+  "id": "db-15",
+  "name": "15 - db-15",
+  "version": "1.0",
+  "created_date": "2026-02-13",
+  "queries_count": 30,
+  "schema_hash": "833268f987da75a34f730b5a0b7277c864016c42420149c525722cdb11fcad3a",
+  "queries_hash": "f2e0af17d3bb46be2e4305564b4d250c099c933e0e272fb05ce000aa6fef7ef3",
+  "deliverable_files": [
+    "schema.sql",
+    "data.sql",
+    "queries.json",
+    "queries.md",
+    "db-15_documentation.html",
+    "db-15_deliverable.json"
+  ],
+  "rl_ready": true,
+  "client_ready": true,
+  "generated_at": "20260214-0132"
+}

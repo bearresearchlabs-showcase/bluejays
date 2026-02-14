@@ -177,7 +177,7 @@ def load_schema_from_queries_md(db_num: int, queries_file: Path):
             columns = []
             column_lines = re.findall(r'\| `([^`]+)` \| `([^`]+)` \|', table_section)
             for col_name, col_type in column_lines:
-                # Convert Databricks types to PostgreSQL
+                # Convert source types to PostgreSQL
                 pg_type = convert_type_to_postgres(col_type)
                 columns.append({'name': col_name, 'type': pg_type})
 
@@ -218,8 +218,8 @@ def load_schema_from_queries_md(db_num: int, queries_file: Path):
         cursor.close()
         conn.close()
 
-def convert_type_to_postgres(databricks_type: str) -> str:
-    """Convert Databricks type to PostgreSQL type"""
+def convert_type_to_postgres(source_type: str) -> str:
+    """Convert source type to PostgreSQL type"""
     type_mapping = {
         'UUID': 'UUID',
         'VARCHAR(255)': 'VARCHAR(255)',
@@ -234,11 +234,11 @@ def convert_type_to_postgres(databricks_type: str) -> str:
         'VARIANT': 'JSONB'
     }
 
-    if databricks_type in type_mapping:
-        return type_mapping[databricks_type]
+    if source_type in type_mapping:
+        return type_mapping[source_type]
 
     for sf_type, pg_type in type_mapping.items():
-        if databricks_type.startswith(sf_type.split('(')[0]):
+        if source_type.startswith(sf_type.split('(')[0]):
             return pg_type
 
     return 'TEXT'

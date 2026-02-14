@@ -1,0 +1,60 @@
+# Scrub Tool for 4x Parallel Worktrees
+
+## Overview
+
+The scrubbing tool (`scripts/scrub_keywords.py`) removes configurable keywords from the repo. It supports **worktree partitioning** for Cursor's 4x Parallel Agents feature, so 4 agents can run in parallel—each processing 1/4 of the files.
+
+## Quick Start
+
+```bash
+# Single run (all files)
+make scrub
+# or
+python3 scripts/scrub_keywords.py
+
+# Dry-run
+python3 scripts/scrub_keywords.py --dry-run
+
+# 4x parallel (run all 4 worktrees in parallel)
+make scrub-4x
+# or
+./scripts/scrub_4x.sh
+```
+
+## Using with Cursor 4x Parallel Agents
+
+When using Cursor's Parallel Agents (4 worktrees), each agent should run:
+
+| Agent | Command |
+|-------|---------|
+| 0 | `python3 scripts/scrub_keywords.py --worktree 0 4` |
+| 1 | `python3 scripts/scrub_keywords.py --worktree 1 4` |
+| 2 | `python3 scripts/scrub_keywords.py --worktree 2 4` |
+| 3 | `python3 scripts/scrub_keywords.py --worktree 3 4` |
+
+**Prompt for Composer 4x:**
+```
+Run the scrub tool across 4 parallel agents. Each agent runs:
+Agent 0: python3 scripts/scrub_keywords.py --worktree 0 4
+Agent 1: python3 scripts/scrub_keywords.py --worktree 1 4
+Agent 2: python3 scripts/scrub_keywords.py --worktree 2 4
+Agent 3: python3 scripts/scrub_keywords.py --worktree 3 4
+```
+
+## Configuration
+
+- **Config file**: `.cursor/scrub_config.yaml`
+- **Keywords**: Pipe-separated list for rg search (e.g. `databricks|snowflake`)
+- **Patterns**: Regex find/replace rules
+- **Exclude**: Files/dirs to skip
+
+## Dependencies
+
+- `pyyaml` for config (install: `pip install pyyaml`)
+- `rg` (ripgrep) for fast file search
+
+## Related
+
+- `scripts/remove_non_postgres_vendors.py` - Hardcoded databricks/snowflake removal (legacy)
+- `make remove-vendors` - Runs remove_non_postgres_vendors.py
+- `.cursor/worktrees.json` - Worktree setup; `scrub-4x` key documents 4x commands

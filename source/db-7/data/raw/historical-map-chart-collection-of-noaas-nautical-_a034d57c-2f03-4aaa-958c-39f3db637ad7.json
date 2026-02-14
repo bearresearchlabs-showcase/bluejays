@@ -1,0 +1,2073 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-44FQGBN8G1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-44FQGBN8G1');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historical Map &amp; Chart Collection of NOAA's Nautical Charts, Hydrographic Surveys, Topo... | InPort</title>
+    <meta name="description" content="The Historical Map and Chart Collection of the Office of Coast Survey contains over 35000 historical maps and charts from the mid 1700s up through the 2020s,...">
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/inport/images/inport-icon-32.png" />
+  <link href="/inport/css/inport-rd.css?v=6.0.5"
+        rel="stylesheet">
+      <script async="" type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&amp;subagency=NOAA&pga4=G-44FQGBN8G1&yt=true&exts=aac,arc,arj,asf,asx,bin,flv,gif,gzip,hqx,jar,mp2,msp,phps,qt,qutm,mxd,ram,sea,sit,tar,torrent,tsv,wav,wpd,xml,z"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin="">
+        <script type="application/ld+json">
+    {
+            "@context" : "http://schema.org/",              "@type" : "Dataset",              "name" : "Historical Map & Chart Collection of NOAA's Nautical Charts, Hydrographic Surveys, Topographic Surveys, Geodetic Surveys, City Plans, and Civil War Battle Maps Starting from the mid 1700's",              "description" : "The Historical Map and Chart Collection of the Office of Coast Survey contains over 35000 historical maps and charts from the mid 1700s up through the 2020s, including the final cancelled editions of NOAA's raster charts. These images are available for viewing or download through the image catalog at https://historicalcharts.noaa.gov/. The Collection includes some of the nation's earliest nauti...",              "url" : "https://www.fisheries.noaa.gov/inport/item/39977",              "keywords" : [
+              "EARTH SCIENCE > LAND SURFACE > TOPOGRAPHY > TERRAIN ELEVATION > TOPOGRAPHICAL RELIEF MAPS",              "EARTH SCIENCE > OCEANS > BATHYMETRY/SEAFLOOR TOPOGRAPHY",              "EARTH SCIENCE > OCEANS > HYDROGRAPHY",              "oceans",              "society",              "Nautical Charting",              "aeronautical charts",              "city plans",              "civil war maps",              "historical charts",              "historical maps",              "marine navigation"          ],              "alternateName" : "historical_chart",              "dateCreated" : "1996-01-01",                      "datePublished" : "2002-01-01",                        "identifier" : [
+        {
+                "@type" : "PropertyValue",                  "value" : "39977",                  "propertyID" : "InPort Catalog ID"          }
+              ],
+            "temporalCoverage" : [
+              "1747/2024"          ],                "spatialCoverage" : [
+                                    {
+                      "@type" : "Place",                  "geo" : {
+                                            "@type" : "GeoShape",                            "box" : "-90 -180 90 180"                                    }
+              }
+                        ,                                    "Africa"
+                        ,                                    "Asia"
+                        ,                                    "Canada"
+                        ,                                    "Europe"
+                        ,                                    "Global"
+                        ,                                    "Greenland"
+                        ,                                    "Mexico"
+                        ,                                    "Middle East"
+                        ,                                    "Pacific Ocean"
+                        ,                                    "Phillipine Islands"
+                        ,                                    "Puerto Rico"
+                        ,                                    "Russia"
+                        ,                                    "South America"
+                        ,                                    "United States"
+                        ,                                    "Virgin Islands"
+                        ,                                    "West Indies"
+                                          ],
+                    "distribution" : [
+                      {
+                    "@type" : "DataDownload",                      "encodingFormat" : "JPEG",                      "description" : "Downloadable JPG Images",                                                "provider" : {
+                        "@type" : "Organization",                          "name" : "Office of Coast Survey (OCS)"                  },
+                                  "contentUrl" : "https://historicalcharts.noaa.gov/"              }                  ],
+            "sourceOrganization" : {
+              "@type" : "Organization",                "name" : "Office of Coast Survey"        },
+            "includedInDataCatalog" : {
+              "@type" : "DataCatalog",                "name" : "InPort",                "url" : "https://www.fisheries.noaa.gov/inport"        }
+                }
+    </script>
+  </head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <div class="system-notices">
+    <div class="fixed-page-fit">
+                </div>
+  </div>
+
+  <div class="fixed-page-fit fixed-header-style cf">
+    <div class="logo-bar">
+      <div class="left">
+        <a href="/inport/"><img class="logo" src="/inport/images/inport-logo.png"
+                                       width="126" height="64"
+                                       title="InPort - NMFS Enterprise Data Management Program"
+                                       alt="InPort"></a>
+      </div>
+      <div class="right">
+
+        <div class="mobile-header-icons">
+                    <a href="/inport/search"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-search.png" width="60" height="60" alt="Search"></a>
+          <a href="/inport/help"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-help.png" width="60" height="60" alt="Help"></a>
+          <span id="mobileNavToggle"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-hamburger.png" width="60" height="60" alt="Show/Hide Menu"></span>
+        </div>
+
+                  <form class="header-search-form"
+                method="get" action="/inport/q">
+            <input type="text" class="field header-search-field"
+                   aria-label="Search the InPort Catalog"
+                   name="keywords" id="quickKeywords" placeholder="Enter Keywords / Cat ID...">
+            <input type="submit" class="button small-button" value="Search">
+          </form>
+              </div>
+    </div>
+  </div>
+
+  <nav class="fixed-page-fit fixed-header-style">
+    <div id="mobileNav" style="display: none;">
+      <ul>
+                  <li><a href="/inport/login">Login</a></li>
+                                      <li><a
+                href="/inport/organizations/nmfs">NMFS</a>
+            </li>
+                      <li><a
+                href="/inport/organizations/nos">NOS</a>
+            </li>
+                      <li><a
+                href="/inport/organizations/partners">Partners</a>
+            </li>
+                          <li><a href="/inport/stats">Stats</a></li>
+                                          <li><a href="/inport/about">About InPort</a></li>
+                <li><a href="/inport/contact">Contact</a></li>
+              </ul>
+    </div>
+
+    <div id="nav" class="header-bar cf">
+      <ul class="sf-menu left">
+                  <li>
+            <span>Login</span>
+            <ul class="submenu submenu-form">
+              <li>
+                <form action="/inport/login/process" method="post"
+                      onsubmit="return loginNotice();">
+                  <input type="hidden" name="_csrf" value="10c25668-e35e-42b5-bb6c-f2c5a1954cb8">
+<div class="form-field-block">
+  <label for="navUsername" class="label">NOAA / InPort Email:</label>
+  <input class="field" type="text" id="navUsername" name="username"
+         aria-label="NOAA / InPort Email" autofocus="autofocus">
+</div>
+<div class="form-field-block">
+  <label for="navPassword" class="label">Password:</label>
+  <input class="field" autocomplete="off" type="password" id="navPassword"
+         name="password" aria-label="Password">
+</div>
+                  <input type="submit" class="button small-button" value="Login">
+                  <div class="submenu-form-content"><a href="/inport/forgot-password">Forgot
+                    your password?</a></div>
+                </form>
+              </li>
+            </ul>
+          </li>
+                <li><span>Catalog</span>
+          <ul class="submenu">
+                                          <li><a
+                    href="/inport/organizations/nmfs">NMFS</a>
+                </li>
+                              <li><a
+                    href="/inport/organizations/nos">NOS</a>
+                </li>
+                              <li><a
+                    href="/inport/organizations/partners">Partners</a>
+                </li>
+                                      <li><a href="/inport/organizations">All Organizations</a></li>
+          </ul>
+        </li>
+                <li><a href="/inport/search">Search</a></li>
+        <li><a href="/inport/stats">Stats</a></li>
+
+        
+        <li><a href="/inport/help">Help</a>
+          <ul class="submenu">
+            <li><a href="/inport/about">About InPort</a></li>
+            <li><a href="/inport/contact">Contact / Support / Training</a></li>
+            <li><a href="/inport/help">Help Guides</a></li>
+            <li><a href="/inport/help/xml-loader">InPort XML Loader</a></li>
+            <li><a href="/inport/help/components">Components</a></li>
+          </ul>
+        </li>
+
+              </ul>
+
+      <div class="user-display right">
+              </div>
+    </div>
+
+  </nav>
+</header>
+<main>
+  <div class="fixed-page-fit fixed-page-main">
+    <header class="page-header">
+
+              <div class="stat right" style="margin-left: 0.625rem; clear: right;">
+                      <div class="stat-label">Completion Rubric</div>
+            <div class="stat-main">
+                              <a href="/inport/item/39977/rubric/data-set-completion"
+                   title="View the full Data Set Completion Rubric for this item">83%</a>
+                          </div>
+            <div class="stat-secondary">
+              29 / 35
+            </div>
+                        <div class="stat-secondary"><a href="/inport/item/39977/rubric/data-set-completion" class="icon icon-score">View Report</a></div>
+                  </div>
+            <div class="breadcrumbs">
+                              <a class="icon icon-mprj"
+               href="/inport/item/37113">
+              OCS Metadata Library</a> &gt;
+                      <a class="icon icon-prj"
+               href="/inport/item/37241">
+              ocs</a> &gt;
+                        </div>
+      <h1 class="force-break" style="margin-top: 2px;">Historical Map &amp; Chart Collection of NOAA's Nautical Charts, Hydrographic Surveys, Topographic Surveys, Geodetic Surveys, City Plans, and Civil War Battle Maps Starting from the...</h1>
+      <strong><span class="icon icon-ds">
+        Data Set
+        (DS)</span></strong>&nbsp;
+      |&nbsp; <strong>Office of Coast Survey
+      (OCS)</strong><br>
+      <span title="The Globally Unique IDentifier (GUID) uniquely identifies InPort records in external systems. It is derived from the InPort namespace and the Catalog Item ID.">GUID: gov.noaa.nmfs.inport:39977</span>&nbsp;
+      |&nbsp; Updated: April 8, 2025&nbsp;
+            |&nbsp; Published / External&nbsp;
+          </header>
+    <div class="page-header-bar cf">
+      <ul class="page-header-options left">
+                <li>
+          <span id="viewAsButton"><span class="icon icon-menu-arrow">View As</span></span>
+          <ul class="options-menu" id="viewAsMenu" style="display: none;">
+            <li><a href="/inport/item/39977/full-list" title="View Catalog Item in Full List format"><span class="icon icon-full-list">Full List View</span></a></li>
+                        <li><span class="menu-item"><strong>EXPORTS</strong></span></li>
+            <li><a href="/inport/item/39977/inport-xml" title="View the InPort XML format"><span class="icon icon-xml">InPort XML</span></a></li>
+                          <li><a href="/inport/item/39977/iso19115" title="View in ISO 19115 format"><span class="icon icon-xml">ISO 19115</span></a></li>
+                                                                <li><a href="/inport/item/39977/waf" title="View the WAF files for this catalog item"><span class="icon icon-waf">WAF Files</span></a></li>
+                      </ul>
+        </li>
+                <li><a href="/inport/hierarchy?select=39977"><span class="icon icon-tree" title="View this Catalog Item within the Catalog Hierarchy">View in Hierarchy</span></a></li>
+              </ul>
+    </div>
+
+    <div class="col-1">
+
+         
+      
+      <div class="tabbed-header">
+        <div id="summaryTab" class="tabbed-header-tab">Summary</div>
+        <div id="itemIdentificationTab" class="tabbed-header-tab">Item Identification</div>
+                  <div id="keywordsSectionTab"
+               class="tabbed-header-tab ">Keywords</div>
+                          <div id="physicalLocationTab"
+              class="tabbed-header-tab ">Physical Location</div>
+                          <div id="dataSetTab"
+              class="tabbed-header-tab ">Data Set Info</div>
+                                                                          <div id="supportRolesTab"
+              class="tabbed-header-tab ">Support Roles</div>
+                          <div id="extentsTab"
+              class="tabbed-header-tab ">Extents</div>
+                          <div id="spatialInfoTab"
+              class="tabbed-header-tab ">Spatial Info</div>
+                          <div id="accessInfoTab"
+              class="tabbed-header-tab ">Access Info</div>
+                          <div id="distributionInfoTab"
+              class="tabbed-header-tab ">Distribution Info</div>
+                                  <div id="urlsTab"
+              class="tabbed-header-tab ">URLs</div>
+                          <div id="activityLogTab"
+              class="tabbed-header-tab ">Activity Log</div>
+                                          <div id="dataQualityTab"
+              class="tabbed-header-tab ">Data Quality</div>
+                          <div id="dataManagementTab"
+              class="tabbed-header-tab ">Data Management</div>
+                          <div id="lineageTab"
+              class="tabbed-header-tab ">Lineage</div>
+                          <div id="acquisitionInfoTab"
+              class="tabbed-header-tab ">Acquisition Info</div>
+                                                        <div id="catalogDetailsTab"
+            class="tabbed-header-tab">Catalog Details</div>
+      </div>
+
+      
+
+
+
+      <!-- Item Summary -->
+      <div id="summary" class="section metadataSection">
+
+        
+        <div class="section__header sh">
+          <h2 class="sh__main">Summary</h2>
+        </div>
+        <div class="section__content">
+          
+                      <p class="small">
+              <strong>Short Citation</strong><br>
+              Office of Coast Survey, 2026: Historical Map &amp; Chart Collection of NOAA's Nautical Charts, Hydrographic Surveys, Topographic Surveys, Geodetic Surveys, City Plans, and Civil War Battle Maps Starting from the mid 1700's, https://www.fisheries.noaa.gov/inport/item/39977.<br>
+              <a href="/inport/item/39977/citation">Full Citation Examples</a>
+            </p>
+                    
+                                    <strong>Abstract</strong><br>
+                        <div class="small">
+                    <p>The Historical Map and Chart Collection of the Office of Coast Survey contains over 35000 historical maps and charts from the mid 1700s up through the 2020s, including the final cancelled editions of NOAA's raster charts. These images are available for viewing or download through the image catalog at https://historicalcharts.noaa.gov/. The Collection includes some of the nation's earliest nautical charts, hydrographic surveys, topographic surveys, bathymetric maps, annual reports, coast pilots, geodetic surveys, city plans, and Civil War battle maps. The Collection is a rich primary historical archive and a testament to the artistry of copper plate engraving technology of the nineteenth and twentieth centuries. Notable offerings include maps of Vancouver's explorations, the &quot;Wilkes Atlas&quot; of the U.S. Whistler's Anacapa Island chart, an extensive Civil War collection, a large scale topographic series of Washington, D.C., city plans, the reengraving of the famous 1792 L'Enfant and Ellicott plan for Washington D.C., and many artistic perspective sketches that were once an integral part of hydrographic surveys and published charts.</p>
+              </div>
+          
+                      <strong>Purpose</strong><br>
+            <div class="small">
+                    <p>Since 1996, the Coast Survey has been engaged in a long term project to develop high resolution digital images of its entire archive of historic maps and charts. These archived maps have very significant historical value in and of themselves, and also provide a thorough documentation of the evolution of cartographic and engraving  techniques over the past two centuries.</p>
+              </div>
+          
+          
+          <div class="cf"></div> <!-- needed to clear browse image float -->
+
+          <div class="inner-col-2">
+            <div class="inner-col-2__main">
+
+              
+              
+              
+              
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Distribution Information</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                                          <ul class="content-list">
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://historicalcharts.noaa.gov/" rel="noopener"
+                                 target="_blank">https://historicalcharts.noaa.gov/</a>
+                                                      </div>
+                                                      <div class="small">
+                              JPEG
+                            </div>
+                                                                                <div class="small">
+                                    <p>Downloadable JPG Images</p>
+                              </div>
+                                                  </li>
+                                              </ul>
+                    
+                                          <strong>Access Constraints:</strong>
+                      <div class="small">
+                              <p>Historical maps and charts on this website are considered to be in the public domain. Historical Charts are not for Navigation. Screen captures of Historical Charts do not fulfill chart carriage requirements for regulated commercial vessels under Titles 33 and 46 of the Code of Federal Regulations. For navigational charts, please visit the Office of Coast Survey website.</p>
+                        </div>
+                    
+                                          <strong>Use Constraints:</strong>
+                      <div class="small">
+                              <p>The Historical Map and Chart  Collection is available for free usage by the general public, other Federal, State or Local agencies, and educational institutions. If the images are used in a publication, presentation or exhibit, the Coast Survey requests an appropriate credit line be included such as &quot;From the Image Archives of the Historical Map &amp; Chart Collection/Office of Coast Survey/National Ocean Service/NOAA&quot;.</p>
+                        </div>
+                                      </div>
+                </div>
+                                            <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Controlled Theme Keywords</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                    <p>
+                                              BATHYMETRY/SEAFLOOR TOPOGRAPHY,                                               HYDROGRAPHY,                                               oceans,                                               society,                                               TOPOGRAPHICAL RELIEF MAPS                                          </p>
+                  </div>
+                </div>
+              
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">URLs</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                    <ul class="content-list">
+                                                                        <li>
+                            <div class="force-break">
+                              <a href="https://historicalcharts.noaa.gov" rel="noopener"
+                                 target="_blank">Historical Map and Chart Website</a>
+                            </div>
+                                                          <div class="small">
+                                      <p>Main webpage.</p>
+                                </div>
+                                                      </li>
+                                                                  </ul>
+                  </div>
+                </div>
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Child Items</h3>
+                  </div>
+                                      <p>
+                      No Child Items for this record.
+                    </p>
+                                  </div>
+              
+            </div>
+
+            <div class="inner-col-2__sidebar">
+
+              <div class="inner-col-section">
+                <div class="inner-col-section__header inner-col-sh">
+                  <h3 class="inner-col-sh__main">Contact Information</h3>
+                </div>
+                <div class="inner-col-section__content force-break">
+                                                                              <p>
+                        <strong>Point of Contact</strong><br>
+                                                Sean  Legeer<br>
+                                  sean.legeer@noaa.gov<br>
+                              </p>
+                                          <p>
+                        <strong>Metadata Contact</strong><br>
+                                                Sean  Legeer<br>
+                                  sean.legeer@noaa.gov<br>
+                              </p>
+                                                      </div>
+              </div>
+
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Extents</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                                        
+                                                                    <div class="add-bottom-grid-margin">
+                          <strong>Geographic Area 1</strong><br>
+                                                      <div id="summaryGeoBoundsMap494389"
+                                 class="geo-bounds-display geo-bounds-small-display"></div>
+                                                        <p>
+                              -180&deg; W,
+                              180&deg; E,
+                              90&deg; N,
+                              -90&deg; S<br>
+                            </p>
+                                                                            </div>
+                                                                  
+                                                              <div class="add-bottom-pad">
+                        <strong>Time Frame 1</strong><br>
+                        1747 - 2024<br>
+                        <div class="small">
+                                                    </div>
+                      </div>
+                                                            </div>
+                </div>
+                          </div>
+          </div>
+
+        </div>
+      </div> <!-- .section: Summary -->
+
+      <!-- Section: Item Identification -->
+      <div id="itemIdentification" class="section metadataSection">
+          <div class="section__header sh">
+    <h2 class="sh__main">Item Identification</h2>
+            </div>
+        <div class="section__content">
+                       <table class="name-value-table">
+                  <tr>
+    <th scope="col">
+              Title:
+          </th>
+    <td class="ellipsisize">
+              Historical Map &amp; Chart Collection of NOAA's Nautical Charts, Hydrographic Surveys, Topographic Surveys, Geodetic Surveys, City Plans, and Civil War Battle Maps Starting from the mid 1700's
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Short Name:
+          </th>
+    <td class="ellipsisize">
+              historical_chart
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Status:
+          </th>
+    <td class="ellipsisize">
+              In Work
+          </td>
+  </tr>
+                                  <tr>
+    <th scope="col">
+              Creation Date:
+          </th>
+    <td class="ellipsisize">
+              1996
+          </td>
+  </tr>
+                                                                                        <tr>
+    <th scope="col">
+              Publication Date:
+          </th>
+    <td class="ellipsisize">
+              2002
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">Abstract:</th>
+    <td class="small">
+            <p>The Historical Map and Chart Collection of the Office of Coast Survey contains over 35000 historical maps and charts from the mid 1700s up through the 2020s, including the final cancelled editions of NOAA's raster charts. These images are available for viewing or download through the image catalog at https://historicalcharts.noaa.gov/. The Collection includes some of the nation's earliest nautical charts, hydrographic surveys, topographic surveys, bathymetric maps, annual reports, coast pilots, geodetic surveys, city plans, and Civil War battle maps. The Collection is a rich primary historical archive and a testament to the artistry of copper plate engraving technology of the nineteenth and twentieth centuries. Notable offerings include maps of Vancouver's explorations, the &quot;Wilkes Atlas&quot; of the U.S. Whistler's Anacapa Island chart, an extensive Civil War collection, a large scale topographic series of Washington, D.C., city plans, the reengraving of the famous 1792 L'Enfant and Ellicott plan for Washington D.C., and many artistic perspective sketches that were once an integral part of hydrographic surveys and published charts.</p>
+      </td>
+  </tr>
+                  <tr>
+    <th scope="col">Purpose:</th>
+    <td class="small">
+            <p>Since 1996, the Coast Survey has been engaged in a long term project to develop high resolution digital images of its entire archive of historic maps and charts. These archived maps have very significant historical value in and of themselves, and also provide a thorough documentation of the evolution of cartographic and engraving  techniques over the past two centuries.</p>
+      </td>
+  </tr>
+                  <tr>
+    <th scope="col">Notes:</th>
+    <td class="small">
+            <p>1531</p>
+      </td>
+  </tr>
+                                <tr>
+    <th scope="col">Supplemental Information:</th>
+    <td class="small">
+            <p>The Coast Survey and its predecessor agencies have been producing maps and chart products for over 150 years. In the early 1800's, the United States consisted of some interior territory and 16 states along the eastern seaboard. Commerce between the states was mostly waterborne. Foreign trade, necessary for the  survival and expansion of our national economy, was entirely by sea. A lack of nautical charts made  navigation dangerous in the unknown watersalong the U.S. coasts and in the young nation's harbors.   Inadequate sketches of a few areas and written descriptions such as Blunt's Coast Pilot were the only printed  information available to the mariner. Shipwrecks were common, insurance rates high, and products of commerce correspondingly highly priced.President Thomas Jefferson, among others, foresaw the need for comprehensive, reliable nautical charts to safeguard shipping. On February 10, 1807, Congress passed an act authorizing President Jefferson &quot;. . . to cause a survey to be taken of coasts of the United States, in which shall be designated the islands and shoals and places of anchorage . . .&quot;The first U.S. Government-produced nautical chart, a black and white print made in 1835 from a stone  engraving, was of Bridgeport Harbor, Connecticut. Although lacking in the detail of today's charts, it was compiled to an exceptional cartographic accuracy that has been a consistent characteristic of U.S. nautical charts throughout the years. Acquisition of a copperplate printing press in 1842 enabled the Coast Survey to  publish a chart of New York Bay and Harbor in 1844 with finer definition than was possible from stone engravings. The addition of color, first added to the charts by hand in the 1800's and then by color lithographic processes in the early 1900's, enhanced the usefulness of the charts.From its inception, Coast Survey was in the forefront of new surveying innovations. It used schooners to  perform surveys, lead lines to measure soundings, and astronomic fixes and dead reckoning to position a  survey ship when out of sight of land on the first hydrographic surveys in late 1834 and early 1835. Through  the maps and charts Coast Survey produced from the early 1800's to present, the history of cartographic  techniques and applications can be traced from early stone engravings to today's computer generated  negatives. Coast Survey historical charts and surveys contain some of the finest landscape perspectives and  harbor views drawn in the 1800's.</p>
+      </td>
+  </tr>
+                                                            </table>
+        </div>
+      </div> <!-- .section Item Identification -->
+
+      <!-- Section: Keywords -->
+              <div id="keywordsSection" class="section metadataSection ">
+            <div class="section__header sh">
+    <h2 class="sh__main">Keywords</h2>
+            </div>
+          <div class="section__content">
+                                             <h3 class="record-block-section-header">Theme Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Science Keywords</td>
+            <td class="force-break">
+              <div>
+  EARTH SCIENCE &gt; LAND SURFACE &gt; TOPOGRAPHY &gt; TERRAIN ELEVATION &gt; TOPOGRAPHICAL RELIEF MAPS
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Science Keywords</td>
+            <td class="force-break">
+              <div>
+  EARTH SCIENCE &gt; OCEANS &gt; BATHYMETRY/SEAFLOOR TOPOGRAPHY
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>Global Change Master Directory (GCMD) Science Keywords</td>
+            <td class="force-break">
+              <div>
+  EARTH SCIENCE &gt; OCEANS &gt; HYDROGRAPHY
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>ISO 19115 Topic Category</td>
+            <td class="force-break">
+              <div>
+  oceans
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>ISO 19115 Topic Category</td>
+            <td class="force-break">
+              <div>
+  society
+  </div>
+            </td>
+          </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NOS Data Explorer Topic Category</td>
+                            <td class="force-break">
+                Nautical Charting
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                aeronautical charts
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                city plans
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                civil war maps
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                historical charts
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                historical maps
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                marine navigation
+              </td>
+            </tr>
+                        </table>
+    </div>
+                                  <h3 class="record-block-section-header">Spatial Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Africa
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Asia
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Canada
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Europe
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Global
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Greenland
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Mexico
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Middle East
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Pacific Ocean
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Phillipine Islands
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Puerto Rico
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Russia
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                South America
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                United States
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                Virgin Islands
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                West Indies
+              </td>
+            </tr>
+                        </table>
+    </div>
+                                                      </div>
+        </div> <!-- .section Keywords -->
+      
+      <!-- Section: Physical Location -->
+              <div id="physicalLocation" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Physical Location</h2>
+            </div>
+          <div class="section__content">
+                                       <table class="name-value-table">
+                    <tr>
+    <th scope="col">
+              Organization:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey
+          </td>
+  </tr>
+                                      <tr>
+    <th scope="col">
+              City:
+          </th>
+    <td class="ellipsisize">
+              Silver Spring
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">
+              State/Province:
+          </th>
+    <td class="ellipsisize">
+              MD
+          </td>
+  </tr>
+                                                                </table>
+          </div>
+        </div> <!-- .section Physical Location -->
+      
+      <!-- Section: Data Set -->
+              <div id="dataSet" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Set Information</h2>
+            </div>
+          <div class="section__content">
+                                                       <table class="name-value-table">
+                                      <tr>
+    <th scope="col">
+              Data Set Scope Code:
+          </th>
+    <td class="ellipsisize">
+              Non-Geographic Data Set
+          </td>
+  </tr>
+                                            <tr>
+    <th scope="col">
+              Maintenance Frequency:
+          </th>
+    <td class="ellipsisize">
+              As Needed
+          </td>
+  </tr>
+                                          <tr>
+    <th scope="col">
+              Data Presentation Form:
+          </th>
+    <td class="ellipsisize">
+              raster images
+          </td>
+  </tr>
+                                                                            <tr>
+    <th scope="col">Distribution Liability:</th>
+    <td class="small">
+            <p>All maps and charts in public domain. Usage is not restricted.</p>
+      </td>
+  </tr>
+                                    </table>
+                      </div>
+        </div> <!-- .section Data Set -->
+      
+      
+      <!-- Section: Entity -->
+      
+      <!-- Section: Data Attributes -->
+      
+      <!-- Section: Procedure -->
+      
+      <!-- Section: Project -->
+      
+      <!-- Section: Publication Info -->
+      
+      <!-- Section: Support Roles -->
+              <div id="supportRoles" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Support Roles</h2>
+            </div>
+          <div class="section__content">
+                                                      <!-- Record ID: 808920, Created By: patrick.keown@noaa.gov (19903), 2018-12-14 10:16+0000, Last Mod By: leland.snyder@noaa.gov (22994), 2025-04-08 19:16+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Data Steward</h3>
+                  <div class="x-small right">CC ID: 808920</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2025-04-04
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Legeer, Sean 
+          </td>
+  </tr>
+                                                                                            <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              sean.legeer@noaa.gov
+          </td>
+  </tr>
+                                                                                                                                                                </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 808921, Created By: patrick.keown@noaa.gov (19903), 2018-12-14 10:16+0000, Last Mod By: tyler.christensen@noaa.gov (18149), 2018-12-14 12:32+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distributor</h3>
+                  <div class="x-small right">CC ID: 808921</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2018-12-14
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Organization):
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS)
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          1315 East West Highway<br>
+              Silver Spring, MD 20910<br>
+          </td>
+</tr>
+                                                                                                                                                                                        <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td>
+      <a href="https://www.nauticalcharts.noaa.gov/" rel="noopener" target="_blank">
+                  https://www.nauticalcharts.noaa.gov/
+              </a>
+    </td>
+  </tr>
+                                                                  </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 1368649, Created By: ben.galdi@noaa.gov (24300), 2025-02-03 17:32+0000, Last Mod By: leland.snyder@noaa.gov (22994), 2025-04-08 19:16+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Metadata Contact</h3>
+                  <div class="x-small right">CC ID: 1368649</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2025-04-04
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Legeer, Sean 
+          </td>
+  </tr>
+                                                                                            <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              sean.legeer@noaa.gov
+          </td>
+  </tr>
+                                                                                                                                                                </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 1368650, Created By: ben.galdi@noaa.gov (24300), 2025-02-03 17:32+0000, Last Mod By: leland.snyder@noaa.gov (22994), 2025-04-08 19:17+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Point of Contact</h3>
+                  <div class="x-small right">CC ID: 1368650</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2025-04-04
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Legeer, Sean 
+          </td>
+  </tr>
+                                                                                            <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              sean.legeer@noaa.gov
+          </td>
+  </tr>
+                                                                                                                                                                </table>
+                </div> <!-- .record-block -->
+                                                </div>
+        </div> <!-- .section Support Roles -->
+      
+        <!-- Section: Extents -->
+              <div id="extents" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Extents</h2>
+            </div>
+          <div class="section__content">
+                                       <table class="name-value-table">
+                    <tr>
+    <th scope="col">
+              Currentness Reference:
+          </th>
+    <td class="ellipsisize">
+              Publication Date
+          </td>
+  </tr>
+              </table>
+
+                                      <!-- Record ID: 494387, Created By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000, Last Mod By: ben.galdi@noaa.gov (24300), 2025-02-03 17:33+0000 -->
+
+              <h3 class="record-block-section-header">Extent Group 1</h3>
+
+                              
+                                                  <!-- Record ID: 494389, Created By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000, Last Mod By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000 -->
+                  <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Extent Group 1 / Geographic Area 1</h3>
+                      <div class="x-small right">CC ID: 494389</div>
+                    </div>
+                    <table class="name-value-table">
+                                              <tr class="extra-cols">
+                          <th scope="col"><strong>W&deg; Bound:</strong></th>
+                          <td>-180</td>
+                          <td class="geo-bounds-cell" rowspan="4">
+                            <div id="geoBoundsMap494389" class="geo-bounds-display geo-bounds-full-display"></div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>E&deg; Bound:</strong></th>
+                          <td>180</td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>N&deg; Bound:</strong></th>
+                          <td>90</td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>S&deg; Bound:</strong></th>
+                          <td>-90</td>
+                        </tr>
+                                                                </table>
+                  </div> <!-- .record-block -->
+                                  
+                                
+                                                  <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Extent Group 1 / Time Frame 1</h3>
+                      <div class="x-small right">CC ID: 494388</div>
+                    </div>
+                    <table class="name-value-table">
+                      <!-- Record ID: 494388, Created By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000, Last Mod By: ben.galdi@noaa.gov (24300), 2025-02-03 17:33+0000 -->
+                            <tr>
+    <th scope="col">
+              Time Frame Type:
+          </th>
+    <td class="ellipsisize">
+              Range
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              Start:
+          </th>
+    <td class="ellipsisize">
+              1747
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              End:
+          </th>
+    <td class="ellipsisize">
+              2024
+          </td>
+  </tr>
+                                                                                                  </table>
+                  </div> <!-- .record-block -->
+                                  
+              
+                                    </div>
+        </div> <!-- .section Extents -->
+      
+      <!-- Section: Spatial Info -->
+              <div id="spatialInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Spatial Information</h2>
+            </div>
+          <div class="section__content">
+                        <!-- Record ID: 587949, Created By: tyler.christensen@noaa.gov (18149), 2017-09-14 10:49+0000, Last Mod By: tyler.christensen@noaa.gov (18149), 2017-09-14 10:49+0000 -->
+
+            <!-- Subsection: Spatial Resolution Info -->
+            
+            <!-- Subsection: Spatial Representation -->
+                          <h3 class="record-block-section-header">Spatial Representation</h3>
+
+              <!-- Sub-Subsection: Spatial Representation Info -->
+                              <div class="record-block">
+                  <div class="record-block-header cf">
+                    <h3 class="left">Representations Used</h3>
+                  </div>
+                  <table class="name-value-table">
+                        <tr>
+    <th scope="col">Grid:</th>
+    <td>
+              Yes
+          </td>
+  </tr>
+                                                                                                                                  </table>
+                </div>
+              
+              <!-- Sub-Subsection: Grid Representations -->
+               
+              <!-- Sub-Subsection: Vector Representations -->
+               
+             
+
+            <!-- Subsection: Reference Systems -->
+                       </div>
+        </div> <!-- .section Spatial Info -->
+      
+      <!-- Section: Access Info -->
+              <div id="accessInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Access Information</h2>
+            </div>
+          <div class="section__content">
+                                                     <!-- ${esc.html($accessInfo.recordDetail.displayString)} -->
+              <table class="name-value-table">
+                                                                                                                                                              <tr>
+    <th scope="col">
+              Security Class:
+          </th>
+    <td class="ellipsisize">
+              Unclassified
+          </td>
+  </tr>
+                                                                                              <tr>
+    <th scope="col">Data Access Constraints:</th>
+    <td class="small">
+            <p>Historical maps and charts on this website are considered to be in the public domain. Historical Charts are not for Navigation. Screen captures of Historical Charts do not fulfill chart carriage requirements for regulated commercial vessels under Titles 33 and 46 of the Code of Federal Regulations. For navigational charts, please visit the Office of Coast Survey website.</p>
+      </td>
+  </tr>
+                      <tr>
+    <th scope="col">Data Use Constraints:</th>
+    <td class="small">
+            <p>The Historical Map and Chart  Collection is available for free usage by the general public, other Federal, State or Local agencies, and educational institutions. If the images are used in a publication, presentation or exhibit, the Coast Survey requests an appropriate credit line be included such as &quot;From the Image Archives of the Historical Map &amp; Chart Collection/Office of Coast Survey/National Ocean Service/NOAA&quot;.</p>
+      </td>
+  </tr>
+                                                    </table>
+                      </div>
+        </div> <!-- .section Access Info -->
+      
+      <!-- Section: Distribution Info -->
+              <div id="distributionInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Distribution Information</h2>
+            </div>
+          <div class="section__content">
+                                      <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 1</h3>
+                  <div class="x-small right">CC ID: 494390</div>
+                </div>
+                <table class="name-value-table">
+                                                              <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://historicalcharts.noaa.gov/" rel="noopener" target="_blank">https://historicalcharts.noaa.gov/</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS) (2018-12-14 - Present)
+          </td>
+  </tr>
+                                              <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Downloadable JPG Images</p>
+      </td>
+  </tr>
+                                                <tr>
+    <th scope="col">
+              File Type (Deprecated):
+          </th>
+    <td class="ellipsisize">
+              sid
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distribution Format:
+          </th>
+    <td class="ellipsisize">
+              JPEG
+          </td>
+  </tr>
+                                                                                                          </table>
+                              </div>
+                      </div>
+        </div> <!-- .section Distribution Info -->
+      
+      <!-- Section: Archive Info -->
+      
+      <!-- Section: URLs -->
+              <div id="urls" class="section metadataSection ">
+            <div class="section__header sh">
+    <h2 class="sh__main">URLs</h2>
+            </div>
+          <div class="section__content">
+                                                     <!-- Record ID: 494382, Created By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000, Last Mod By: ben.galdi@noaa.gov (24300), 2025-02-03 17:46+0000 -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">URL 1</h3>
+                  <div class="x-small right">CC ID: 494382</div>
+                </div>
+                <table class="name-value-table">
+                      <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td><a href="https://historicalcharts.noaa.gov" rel="noopener" target="_blank">https://historicalcharts.noaa.gov</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Name:
+          </th>
+    <td class="ellipsisize">
+              Historical Map and Chart Website
+          </td>
+  </tr>
+                                      <tr>
+                    <th scope="col">URL Type:</th>
+                    <td>
+                      <div>Online Resource</div>
+                                          </td>
+                  </tr>
+                                                              <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Main webpage.</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                    </div>
+        </div> <!-- .section URLs -->
+      
+      <!-- Section: Activity Log -->
+              <div id="activityLog" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Activity Log</h2>
+            </div>
+          <div class="section__content">
+                                      <!-- ${esc.html($activityLog.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Activity Log 1</h3>
+                  <div class="x-small right">CC ID: 494424</div>
+                </div>
+                <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Activity Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2008-11-07
+          </td>
+  </tr>
+                                                                    <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Date that the source FGDC record was last modified.</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                        <!-- ${esc.html($activityLog.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Activity Log 2</h3>
+                  <div class="x-small right">CC ID: 494423</div>
+                </div>
+                <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Activity Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2017-04-05
+          </td>
+  </tr>
+                                                                    <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Converted from FGDC Content Standards for Digital Geospatial Metadata (version FGDC-STD-001-1998) using 'fgdc_to_inport_xml.pl' script. Contact Tyler Christensen (NOS) for details.</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                        <!-- ${esc.html($activityLog.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Activity Log 3</h3>
+                  <div class="x-small right">CC ID: 587948</div>
+                </div>
+                <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Activity Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2017-09-13
+          </td>
+  </tr>
+                                                                    <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Partial upload of Spatial Info section only.</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                        <!-- ${esc.html($activityLog.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Activity Log 4</h3>
+                  <div class="x-small right">CC ID: 1371149</div>
+                </div>
+                <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Activity Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2025-02-18
+          </td>
+  </tr>
+                                                <tr>
+    <th scope="col">
+              Responsible Party:
+          </th>
+    <td class="ellipsisize">
+              Ben  Galdi
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Metadata Updated</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                    </div>
+        </div> <!-- .section Activity Logs -->
+      
+      <!-- Section: Issues -->
+      
+      <!-- Section: Technical Environment -->
+      
+      <!-- Section: Data Quality -->
+              <div id="dataQuality" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Quality</h2>
+            </div>
+          <div class="section__content">
+                                       <!-- ${esc.html($dataQual.recordDetail.displayString)} -->
+            <table class="name-value-table">
+                                                                  <tr>
+    <th scope="col">Horizontal Positional Accuracy:</th>
+    <td class="small">
+            <p>Historical map and chart images are not georeferenced.</p>
+      </td>
+  </tr>
+                                                                                                                                                                                                                              </table>
+          </div>
+        </div> <!-- .section Data Quality -->
+      
+      <!-- Section: Data Management -->
+              <div id="dataManagement" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Management</h2>
+            </div>
+          <div class="section__content">
+                                       <!-- ${esc.html($dataMgmt.recordDetail.displayString)} -->
+            <table class="name-value-table">
+                                      <tr>
+    <th scope="col">
+              Approximate Percentage of Budget for these Data Devoted to Data Management:
+          </th>
+    <td class="ellipsisize">
+              Unknown
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Do these Data Comply with the Data Access Directive?:
+          </th>
+    <td class="ellipsisize">
+              Yes
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Is Access to the Data Limited Based on an Approved Waiver?:
+          </th>
+    <td class="ellipsisize">
+              No
+          </td>
+  </tr>
+                                                                                                                                    </table>
+          </div>
+        </div> <!-- .section Data Management -->
+      
+      <!-- Section: Lineage -->
+              <div id="lineage" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Lineage</h2>
+            </div>
+          <div class="section__content">
+                        <table class="name-value-table">
+                                          </table>
+
+            
+                          <h3 class="record-block-section-header">Process Steps</h3>
+                              <!-- ${esc.html($processStep.recordDetail.displayString)} -->
+                <div class="record-block">
+                  <div class="record-block-header cf">
+                    <h3 class="left">Process Step 1</h3>
+                    <div class="x-small right">CC ID: 1368653</div>
+                  </div>
+                  <table class="name-value-table">
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>The Office of Coast Survey receives relevant map or chart images from various sources and adds the metadata to the database and the images to the archive.</p>
+      </td>
+  </tr>
+                                                    <tr>
+    <th scope="col">
+              Process Contact:
+          </th>
+    <td class="ellipsisize">
+              Galdi, Ben
+          </td>
+  </tr>
+                                                    <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              ben.galdi@noaa.gov
+          </td>
+  </tr>
+                                            </table>
+                </div>
+                                    </div>
+        </div> <!-- .section Lineage -->
+      
+      <!-- Section: Acquisition Info -->
+              <div id="acquisitionInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Acquisition Information</h2>
+            </div>
+          <div class="section__content">
+                        <!-- Subsection: Instruments -->
+                                      <h3 class="record-block-section-header">Instruments</h3>
+                              <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Instrument Unavailable Reason:
+          </th>
+    <td class="ellipsisize">
+              Not Applicable
+          </td>
+  </tr>
+                  </table>
+                          
+            <!-- Subsection: Platforms -->
+                          <h3 class="record-block-section-header">Platforms</h3>
+                              <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Platform Unavailable Reason:
+          </th>
+    <td class="ellipsisize">
+              Not Applicable
+          </td>
+  </tr>
+                  </table>
+                                    </div>
+        </div> <!-- .section Acquisition Info -->
+      
+      <!-- Section: Acronyms -->
+      
+      <!-- Section: Glossary -->
+      
+      <!-- Section: FAQs -->
+      
+      <!-- Section: Child Items -->
+      
+      <!-- Section: Related Items -->
+      
+      <!-- Section: Catalog Details -->
+      <div id="catalogDetails" class="section metadataSection">
+          <div class="section__header sh">
+    <h2 class="sh__main">Catalog Details</h2>
+            </div>
+        <div class="section__content">
+                       <table class="name-value-table">
+                  <tr>
+    <th scope="col">
+              Catalog Item ID:
+          </th>
+    <td class="ellipsisize">
+              39977
+          </td>
+  </tr>
+                  <tr>
+    <th scope="col">
+              <span title="The Globally Unique IDentifier (GUID) uniquely identifies InPort records in external systems. It is derived from the InPort namespace and the Catalog Item ID.">GUID:</span>
+          </th>
+    <td class="ellipsisize">
+              gov.noaa.nmfs.inport:39977
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Created By:
+          </th>
+    <td class="ellipsisize">
+              Tyler Christensen
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Created:
+          </th>
+    <td class="ellipsisize">
+              2017-04-05 13:49+0000
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Last Modified By:
+          </th>
+    <td class="ellipsisize">
+              Leland  Snyder
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Last Modified:
+          </th>
+    <td class="ellipsisize">
+              2025-04-08 19:17+0000
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Published:
+          </th>
+    <td class="ellipsisize">
+              2025-02-28
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Owner Org:
+          </th>
+    <td class="ellipsisize">
+              OCS
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Publication Status:
+          </th>
+    <td class="ellipsisize">
+              Published Externally
+          </td>
+  </tr>
+                                <tr>
+    <th scope="col">
+              Do Not Publish?:
+          </th>
+    <td class="ellipsisize">
+              N
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Last Review Date:
+          </th>
+    <td class="ellipsisize">
+              2025-02-28
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Review Frequency:
+          </th>
+    <td class="ellipsisize">
+              1 Year
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Next Review Date:
+          </th>
+    <td class="ellipsisize">
+              2026-02-28
+          </td>
+  </tr>
+            </table>
+                  </div>
+      </div> <!-- .section Catalog Details -->
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="fixed-page-fit">
+    <nav>
+      <a href="/inport/about">About InPort</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/contact">Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/release-notes">Release Notes</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/system-availability">System Availability</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/privacy">Privacy</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/security">Security</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/pra">Paperwork Reduction Act</a>
+    </nav>
+    <div class="cf">
+      <div class="org-seals">
+        <ul>
+          <li><a href="https://www.fisheries.noaa.gov/national/commercial-fishing/fisheries-information-system-program" title="Fisheries Information System"
+                 rel="noopener" target="_blank"><img src="/inport/images/fis-seal.png" width="52" height="53" alt="FIS"/></a></li>
+          <li><a href="https://www.fisheries.noaa.gov/" title="NOAA Fisheries"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/noaa-fisheries-seal.png" width="52" height="53" alt="NOAA Fisheries"/></a></li>
+          <li><a href="https://www.noaa.gov/" title="National Oceanic &amp; Atmospheric Administration"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/noaa-seal.png" width="52" height="53" alt="NOAA"/></a></li>
+          <li><a href="https://www.commerce.gov/" title="U.S. Department of Commerce"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/doc-seal.png" width="52" height="53" alt="Department of Commerce"/></a></li>
+        </ul>
+      </div>
+      <div class="app-info">
+        <img src="/inport/images/inport-logo-footer.png" width="94" height="48" alt="InPort Logo">
+        <div class="release-info">
+          <strong class="x-small">Release 6.0.5</strong><br>
+          <span class="xx-small">Build FINAL (2025-12-02 18:25 UTC)</span>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .fixed-page-fit -->
+</footer>
+
+<!-- Script Includes -->
+<script src="//code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs"
+        crossorigin="anonymous"></script> <!-- hash generated by srihash.org -->
+<script src="/inport/js/inport.js?v=6.0.5"></script>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+  <script type="text/javascript" src="/inport/js/geobounds.js?v=6.0.5"></script>
+
+<script type="text/javascript">
+  var viewAsMenu = $("#viewAsMenu").hide();
+    
+  $(function() {
+    $("#viewAsButton").click(function() {
+            viewAsMenu.toggle();
+      
+      $(document).one("click", function() {
+        viewAsMenu.hide();
+      });
+
+      return false;
+    });
+
+    
+    
+    registerTab("summary");
+          registerTab("itemIdentification");
+              registerTab("keywordsSection");
+              registerTab("physicalLocation");
+              registerTab("dataSet");
+                                      registerTab("supportRoles");
+              registerTab("extents");
+              registerTab("spatialInfo");
+              registerTab("accessInfo");
+              registerTab("distributionInfo");
+                  registerTab("urls");
+              registerTab("activityLog");
+                      registerTab("dataQuality");
+              registerTab("dataManagement");
+              registerTab("lineage");
+              registerTab( "acquisitionInfo");
+                    registerTab("childItems");
+    registerTab("relatedItems");
+    registerTab("catalogDetails");
+
+    function registerTab(sectionId) {
+      $("#" + sectionId + "Tab").click(function () {
+        activateTab(sectionId);
+        return false;
+      });
+    }
+
+    function activateTab(sectionId) {
+      hideAllElementsWithClass("metadataSection");
+      removeClassFromAllElements("tabbed-header-tab", "selected");
+      document.getElementById(sectionId).style.display = "block";
+      document.getElementById(sectionId + "Tab").classList.add("selected");
+      // Leaflet maps need to be redrawn when their containing element's display is set to none.
+      if (sectionId === "extents") {
+        reinitializeMaps();
+      }
+    }
+
+    /*
+      invalidateSize must be called on any maps after display is set from none to block.
+      The map also needs to be refit to the bounds.
+     */
+    function reinitializeMaps() {
+                                          maps[0].invalidateSize(false);
+            fitBoundsToMap(maps[0],
+                  -90,
+                  -180,
+                  90,
+                  180,
+                  false);
+                                        }
+
+                            loadGeoBoundsMap("summaryGeoBoundsMap494389",
+            -90,
+            -180,
+            90,
+            180
+          );
+              
+      let maps = [];
+                                    maps.push(
+                loadGeoBoundsMap("geoBoundsMap494389",
+                      -90,
+                      -180,
+                      90,
+                      180));
+                            
+        
+                  
+    let anchoredSection = window.location.hash.substring(1);
+    // verify that the hash corresponds to an actual section in the page
+    if (document.getElementById(anchoredSection) == null) {
+      // Have the Summary tab selected by default
+      activateTab("summary");
+    } else {
+      activateTab(anchoredSection);
+    }
+  });
+
+</script>
+<script src="/inport/js/species.js?v=6.0.5"></script>
+</body>
+</html>

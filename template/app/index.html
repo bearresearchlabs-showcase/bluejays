@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Reference — Query Documentation</title>
+  <style>
+    :root { --bg: #0d1117; --fg: #c9d1d9; --accent: #58a6ff; --muted: #8b949e; --border: #30363d; }
+    * { box-sizing: border-box; }
+    body { font-family: ui-monospace, SFMono-Regular, monospace; background: var(--bg); color: var(--fg); margin: 0; padding: 1rem 2rem; line-height: 1.6; }
+    h1 { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; }
+    h2 { font-size: 1.1rem; margin-top: 1.5rem; color: var(--muted); }
+    .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    nav { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    nav a { color: var(--accent); text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .section { margin-bottom: 1.5rem; padding: 1rem; border: 1px solid var(--border); border-radius: 6px; }
+    pre, code { background: #161b22; padding: 0.2em 0.4em; border-radius: 4px; font-size: 0.85em; overflow-x: auto; }
+    pre { padding: 1rem; white-space: pre-wrap; }
+    .query-card { margin: 1rem 0; padding: 1rem; border-left: 3px solid var(--accent); background: #161b22; }
+    .query-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .query-question { font-weight: 600; margin-bottom: 0.5rem; }
+    .tabs { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .tabs button { background: var(--border); border: none; color: var(--fg); padding: 0.4rem 0.8rem; cursor: pointer; border-radius: 4px; font-family: inherit; }
+    .tabs button.active { background: var(--accent); color: var(--bg); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .field-defs { font-size: 0.9rem; }
+    .field-defs dt { color: var(--accent); margin-top: 0.5rem; }
+    .field-defs dd { margin-left: 1rem; color: var(--muted); }
+    #loading { color: var(--muted); }
+    #error { color: #f85149; }
+  </style>
+</head>
+<body>
+  <h1>Template Reference — Query Documentation</h1>
+  <p class="subtitle">Canonical format for queries.md ↔ queries.json. Source: <code>template/queries.json</code></p>
+
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#field-definitions">Field Definitions</a>
+    <a href="#queries">Queries</a>
+  </nav>
+
+  <div id="loading">Loading template/queries.json...</div>
+  <div id="error"></div>
+  <div id="app" style="display:none;">
+    <section id="overview" class="section">
+      <h2>Structure</h2>
+      <p>Template format: JSON array. First element may contain <code>_field_definitions</code>. Remaining elements are query objects.</p>
+      <p>Required fields per query: <code>db_id</code>, <code>question_id</code>, <code>question</code>, <code>SQL</code>, <code>evidence</code>, <code>difficulty</code>, <code>query_category</code>, <code>tables_used</code>, <code>schema_context</code>, <code>expected_output</code>.</p>
+    </section>
+
+    <section id="field-definitions" class="section">
+      <h2>Field Definitions</h2>
+      <div id="field-defs" class="field-defs"></div>
+    </section>
+
+    <section id="queries" class="section">
+      <h2>Queries (<span id="query-count">0</span>)</h2>
+      <div id="query-list"></div>
+    </section>
+  </div>
+
+  <script>
+    (function() {
+      // When served from template/ root: /app/index.html, queries.json at /queries.json
+      const path = window.location.pathname;
+      const base = path.includes('/app/') ? path.replace(/\/app\/.*$/, '') : path.replace(/\/?index\.html?$/, '');
+      const url = (base || '/') + (base && !base.endsWith('/') ? '/' : '') + 'queries.json';
+
+      fetch(url)
+        .then(r => r.ok ? r.json() : Promise.reject(new Error(r.status + ' ' + r.statusText)))
+        .then(data => {
+          document.getElementById('loading').style.display = 'none';
+          document.getElementById('app').style.display = 'block';
+
+          const isArray = Array.isArray(data);
+          const rawQueries = isArray ? data : (data.queries || data.data?.queries || []);
+          const fieldDefs = isArray && rawQueries[0]?._field_definitions ? rawQueries[0]._field_definitions : null;
+          const queries = isArray ? rawQueries.filter(q => q && q.question_id) : rawQueries;
+
+          document.getElementById('query-count').textContent = queries.length;
+
+          if (fieldDefs) {
+            const dl = document.getElementById('field-defs');
+            dl.innerHTML = '<dl>' + Object.entries(fieldDefs).map(([k, v]) =>
+              `<dt>${k}</dt><dd>${escapeHtml(String(v))}</dd>`
+            ).join('') + '</dl>';
+          } else {
+            document.getElementById('field-definitions').style.display = 'none';
+          }
+
+          const list = document.getElementById('query-list');
+          queries.forEach((q, i) => {
+            const card = document.createElement('div');
+            card.className = 'query-card';
+            const meta = `${q.difficulty || '?'} / ${q.query_category || '?'} · tables: ${(q.tables_used || []).join(', ') || '—'}`;
+            card.innerHTML = `
+              <div class="query-meta">Query ${q.question_id || i+1} — ${escapeHtml(meta)}</div>
+              <div class="query-question">${escapeHtml(q.question || '')}</div>
+              <div class="tabs">
+                <button class="active" data-tab="sql">SQL</button>
+                <button data-tab="evidence">Evidence</button>
+                <button data-tab="schema">Schema Context</button>
+              </div>
+              <div class="tab-content active" data-tab="sql"><pre>${escapeHtml(q.SQL || q.sql || '')}</pre></div>
+              <div class="tab-content" data-tab="evidence"><pre>${escapeHtml(q.evidence || '')}</pre></div>
+              <div class="tab-content" data-tab="schema"><pre>${escapeHtml(JSON.stringify(q.schema_context || {}, null, 2))}</pre></div>
+            `;
+            card.querySelectorAll('.tabs button').forEach(btn => {
+              btn.addEventListener('click', () => {
+                card.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+                card.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                card.querySelector(`.tab-content[data-tab="${btn.dataset.tab}"]`).classList.add('active');
+              });
+            });
+            list.appendChild(card);
+          });
+        })
+        .catch(err => {
+          document.getElementById('loading').style.display = 'none';
+          document.getElementById('error').textContent = 'Failed to load: ' + err.message + '. Serve from template/ dir or set base path.';
+        });
+
+      function escapeHtml(s) {
+        const d = document.createElement('div');
+        d.textContent = s;
+        return d.innerHTML;
+      }
+    })();
+  </script>
+</body>
+</html>

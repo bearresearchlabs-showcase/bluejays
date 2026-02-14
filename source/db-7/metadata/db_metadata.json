@@ -1,0 +1,20 @@
+{
+  "id": "db-7",
+  "name": "- db-7",
+  "version": "1.0",
+  "created_date": "2026-02-13",
+  "queries_count": 30,
+  "schema_hash": "52ba2135fa46c789cece275c733ae0847426196e6eb2a151bb8f3f5ea240e4bd",
+  "queries_hash": "c6e67d40e72b397a284f8cf69d2d273840b22e5228ba4bb90eb3f312065a118a",
+  "deliverable_files": [
+    "schema.sql",
+    "data.sql",
+    "queries.json",
+    "queries.md",
+    "db-7_documentation.html",
+    "db-7_deliverable.json"
+  ],
+  "rl_ready": true,
+  "client_ready": true,
+  "generated_at": "20260214-0132"
+}

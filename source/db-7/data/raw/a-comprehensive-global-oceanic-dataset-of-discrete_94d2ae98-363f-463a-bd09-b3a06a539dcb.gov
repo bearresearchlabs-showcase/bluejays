@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">
+<html lang="en" dir="ltr" version="HTML+RDFa 1.1"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:sioc="http://rdfs.org/sioc/ns#"
+  xmlns:sioct="http://rdfs.org/sioc/types#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xmlns:schema="http://schema.org/">
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+	
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LJPL4R0G4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4LJPL4R0G4');
+</script>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/images/favicon-32.png" type="image/png" />
+<link rel="apple-touch-icon" href="https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/images/apple-touch-icon-180x180.png" type="image/png" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<meta name="google-site-verification" content="OKdY3k4Ey_lM5fcuJC6tST16SWWjJM_yYpHH6TxjNxs" />
+<meta name="generator" content="Drupal 7 (https://www.drupal.org)" />
+<link rel="canonical" href="https://www.pmel.noaa.gov/" />
+<link rel="shortlink" href="https://www.pmel.noaa.gov/" />
+<meta property="og:site_name" content="NOAA Pacific Marine Environmental Laboratory (PMEL)" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.pmel.noaa.gov/" />
+<meta property="og:title" content="NOAA Pacific Marine Environmental Laboratory (PMEL)" />
+  <title>NOAA Pacific Marine Environmental Laboratory (PMEL) |</title>  
+  <style type="text/css" media="all">
+@import url("https://www.pmel.noaa.gov/modules/system/system.base.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/modules/system/system.menus.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/modules/system/system.messages.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/modules/system/system.theme.css?t9wzgq");
+</style>
+<style type="text/css" media="all">
+@import url("https://www.pmel.noaa.gov/sites/all/modules/views_slideshow/views_slideshow.css?t9wzgq");
+</style>
+<style type="text/css" media="all">
+@import url("https://www.pmel.noaa.gov/sites/all/modules/calendar/css/calendar_multiday.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/modules/field/theme/field.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/modules/scald/modules/fields/mee/css/editor-global.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/modules/node/node.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/modules/scald_file/scald_file.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/modules/search/search.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/modules/user/user.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/modules/views/css/views.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/modules/ckeditor/css/ckeditor.css?t9wzgq");
+</style>
+<style type="text/css" media="all">
+@import url("https://www.pmel.noaa.gov/sites/all/modules/colorbox/styles/default/colorbox_style.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/modules/ctools/css/ctools.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/modules/views_slideshow/contrib/views_slideshow_cycle/views_slideshow_cycle.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/modules/custom_search/custom_search.css?t9wzgq");
+</style>
+<style type="text/css" media="all">
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/alpha/css/alpha-reset.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/alpha/css/alpha-mobile.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/alpha/css/alpha-alpha.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/omega/css/formalize.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/omega/css/omega-text.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/omega/css/omega-branding.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/omega/css/omega-menu.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/omega/css/omega-forms.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/omega/css/omega-visuals.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/css/global.css?t9wzgq");
+</style>
+
+<!--[if (lt IE 9)&(!IEMobile)]>
+<style type="text/css" media="all">
+@import url("https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/css/pacific-marine-alpha-default.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/css/pacific-marine-alpha-default-normal.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/normal/alpha-default-normal-12.css?t9wzgq");
+</style>
+<![endif]-->
+
+<!--[if gte IE 9]><!-->
+<style type="text/css" media="all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation:landscape)">
+@import url("https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/css/pacific-marine-alpha-default.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/css/pacific-marine-alpha-default-narrow.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/narrow/alpha-default-narrow-12.css?t9wzgq");
+</style>
+<!--<![endif]-->
+
+<!--[if gte IE 9]><!-->
+<style type="text/css" media="all and (min-width: 980px) and (min-device-width: 980px), all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation:landscape)">
+@import url("https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/css/pacific-marine-alpha-default.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/css/pacific-marine-alpha-default-normal.css?t9wzgq");
+@import url("https://www.pmel.noaa.gov/sites/all/themes/omega/alpha/css/grid/alpha_default/normal/alpha-default-normal-12.css?t9wzgq");
+</style>
+<!--<![endif]-->
+	
+	<script id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&subagency=NOAA"></script>
+	
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js "></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.migrateMute=true;jQuery.migrateTrace=false;
+//--><!]]>
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-migrate@3.5.2/dist/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/misc/jquery-extend-3.4.0.js?v=3.7.1"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/misc/jquery-html-prefilter-3.5.0-backport.js?v=3.7.1"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/misc/jquery.once.js?v=1.2"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/misc/drupal.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/jquery_update/js/jquery_browser.js?v=0.0.1"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/views_slideshow/js/views_slideshow.js?v=1.0"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/carhartl/jquery-cookie@1.4.1/jquery.cookie.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/jquery-form/form@4.3.0/dist/jquery.form.min.js"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/misc/form-single-submit.js?v=7.103"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/misc/ajax.js?v=7.103"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/jquery_update/js/jquery_update.js?v=0.0.1"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/entityreference/js/entityreference.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/libraries/colorbox/jquery.colorbox-min.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/colorbox/js/colorbox.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/colorbox/styles/default/colorbox_style.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/custom_search/js/custom_search.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/libraries/jquery.cycle/jquery.cycle.all.min.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/views_slideshow/contrib/views_slideshow_cycle/js/views_slideshow_cycle.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/views/js/base.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/misc/progress.js?v=7.103"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/scald_file/scald_file.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/scald/modules/providers/scald_image/scald_image.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/views/js/ajax_view.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/js/pacific_marine.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/modules/jquery_update/js/jquery_position.js?v=0.0.1"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/themes/omega/omega/js/jquery.formalize.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/themes/omega/omega/js/omega-mediaqueries.js?t9wzgq"></script>
+<script type="text/javascript" src="https://www.pmel.noaa.gov/sites/all/themes/omega/omega/js/omega-equalheights.js?t9wzgq"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","setHasJsCookie":0,"ajaxPageState":{"theme":"pacific_marine","theme_token":"5xF8C1ZPwGVXmb1zJEG_Xqs7WwJUCCwAc1bUMXIcwao","jquery_version":"3.7.1","jquery_version_token":"qLeLjvLWK-jDrE8g71MaoXB12DJWdikNDmpaoO6tw8k","js":{"https:\/\/code.jquery.com\/jquery-3.7.1.js ":1,"0":1,"https:\/\/cdn.jsdelivr.net\/npm\/jquery-migrate@3.5.2\/dist\/jquery-migrate.min.js":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/jquery_update\/js\/jquery_browser.js":1,"sites\/all\/modules\/views_slideshow\/js\/views_slideshow.js":1,"https:\/\/cdn.jsdelivr.net\/gh\/carhartl\/jquery-cookie@1.4.1\/jquery.cookie.js":1,"https:\/\/cdn.jsdelivr.net\/gh\/jquery-form\/form@4.3.0\/dist\/jquery.form.min.js":1,"misc\/form-single-submit.js":1,"misc\/ajax.js":1,"sites\/all\/modules\/jquery_update\/js\/jquery_update.js":1,"sites\/all\/modules\/entityreference\/js\/entityreference.js":1,"sites\/all\/libraries\/colorbox\/jquery.colorbox-min.js":1,"sites\/all\/modules\/colorbox\/js\/colorbox.js":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.js":1,"sites\/all\/modules\/custom_search\/js\/custom_search.js":1,"sites\/all\/libraries\/jquery.cycle\/jquery.cycle.all.min.js":1,"sites\/all\/modules\/views_slideshow\/contrib\/views_slideshow_cycle\/js\/views_slideshow_cycle.js":1,"sites\/all\/modules\/views\/js\/base.js":1,"misc\/progress.js":1,"sites\/all\/modules\/scald_file\/scald_file.js":1,"sites\/all\/modules\/scald\/modules\/providers\/scald_image\/scald_image.js":1,"sites\/all\/modules\/views\/js\/ajax_view.js":1,"sites\/all\/themes\/pacific_marine\/js\/pacific_marine.js":1,"sites\/all\/modules\/jquery_update\/js\/jquery_position.js":1,"sites\/all\/themes\/omega\/omega\/js\/jquery.formalize.js":1,"sites\/all\/themes\/omega\/omega\/js\/omega-mediaqueries.js":1,"sites\/all\/themes\/omega\/omega\/js\/omega-equalheights.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/modules\/views_slideshow\/views_slideshow.css":1,"sites\/all\/modules\/calendar\/css\/calendar_multiday.css":1,"modules\/field\/theme\/field.css":1,"sites\/all\/modules\/scald\/modules\/fields\/mee\/css\/editor-global.css":1,"modules\/node\/node.css":1,"sites\/all\/modules\/scald_file\/scald_file.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/css\/ckeditor.css":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/views_slideshow\/contrib\/views_slideshow_cycle\/views_slideshow_cycle.css":1,"sites\/all\/modules\/custom_search\/custom_search.css":1,"sites\/all\/themes\/omega\/alpha\/css\/alpha-reset.css":1,"sites\/all\/themes\/omega\/alpha\/css\/alpha-mobile.css":1,"sites\/all\/themes\/omega\/alpha\/css\/alpha-alpha.css":1,"sites\/all\/themes\/omega\/omega\/css\/formalize.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-text.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-branding.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-menu.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-forms.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-visuals.css":1,"sites\/all\/themes\/pacific_marine\/css\/global.css":1,"ie::normal::sites\/all\/themes\/pacific_marine\/css\/pacific-marine-alpha-default.css":1,"ie::normal::sites\/all\/themes\/pacific_marine\/css\/pacific-marine-alpha-default-normal.css":1,"ie::normal::sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/normal\/alpha-default-normal-12.css":1,"narrow::sites\/all\/themes\/pacific_marine\/css\/pacific-marine-alpha-default.css":1,"narrow::sites\/all\/themes\/pacific_marine\/css\/pacific-marine-alpha-default-narrow.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/narrow\/alpha-default-narrow-12.css":1,"normal::sites\/all\/themes\/pacific_marine\/css\/pacific-marine-alpha-default.css":1,"normal::sites\/all\/themes\/pacific_marine\/css\/pacific-marine-alpha-default-normal.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/normal\/alpha-default-normal-12.css":1}},"colorbox":{"opacity":"0.85","current":"{current} of {total}","previous":"\u00ab Prev","next":"Next \u00bb","close":"Close","maxWidth":"98%","maxHeight":"98%","fixed":true,"mobiledetect":true,"mobiledevicewidth":"480px","file_public_path":"\/sites\/default\/files","specificPagesDefaultValue":"admin*\nimagebrowser*\nimg_assist*\nimce*\nnode\/add\/*\nnode\/*\/edit\nprint\/*\nprintpdf\/*\nsystem\/ajax\nsystem\/ajax\/*"},"custom_search":{"form_target":"_self","solr":0},"viewsSlideshow":{"pmel_themes-page_1":{"methods":{"goToSlide":["viewsSlideshowPager","viewsSlideshowSlideCounter","viewsSlideshowCycle"],"nextSlide":["viewsSlideshowPager","viewsSlideshowSlideCounter","viewsSlideshowCycle"],"pause":["viewsSlideshowControls","viewsSlideshowCycle"],"play":["viewsSlideshowControls","viewsSlideshowCycle"],"previousSlide":["viewsSlideshowPager","viewsSlideshowSlideCounter","viewsSlideshowCycle"],"transitionBegin":["viewsSlideshowPager","viewsSlideshowSlideCounter"],"transitionEnd":[]},"paused":0}},"viewsSlideshowPager":{"pmel_themes-page_1":{"bottom":{"type":"viewsSlideshowPagerFields","master_pager":"0"}}},"viewsSlideshowPagerFields":{"pmel_themes-page_1":{"bottom":{"activatePauseOnHover":0}}},"viewsSlideshowCycle":{"#views_slideshow_cycle_main_pmel_themes-page_1":{"num_divs":4,"id_prefix":"#views_slideshow_cycle_main_","div_prefix":"#views_slideshow_cycle_div_","vss_id":"pmel_themes-page_1","effect":"fade","transition_advanced":1,"timeout":5000,"speed":700,"delay":0,"sync":1,"random":0,"pause":1,"pause_on_click":0,"play_on_hover":0,"action_advanced":0,"start_paused":0,"remember_slide":0,"remember_slide_days":1,"pause_in_middle":0,"pause_when_hidden":0,"pause_when_hidden_type":"full","amount_allowed_visible":"","nowrap":0,"pause_after_slideshow":0,"fixed_height":1,"items_per_slide":1,"wait_for_image_load":1,"wait_for_image_load_timeout":3000,"cleartype":0,"cleartypenobg":0,"advanced_options":"{}"}},"views":{"ajax_path":"\/views\/ajax","ajaxViews":{"views_dom_id:074446524d3c9085a05e2d43d0c9b854":{"view_name":"pmel_themes","view_display_id":"page","view_args":"","view_path":"home","view_base_path":"home","view_dom_id":"074446524d3c9085a05e2d43d0c9b854","pager_element":0},"views_dom_id:5cd078a2bf6d81562177cee67e3023b0":{"view_name":"what_s_new","view_display_id":"block","view_args":"","view_path":"home","view_base_path":"whats-new","view_dom_id":"5cd078a2bf6d81562177cee67e3023b0","pager_element":0},"views_dom_id:c092faa9ed5c72f8dd40b76f6d2d8e8c":{"view_name":"pmel_in_the_media","view_display_id":"block","view_args":"","view_path":"home","view_base_path":"media\/pmel-in-the-news","view_dom_id":"c092faa9ed5c72f8dd40b76f6d2d8e8c","pager_element":0}}},"urlIsAjaxTrusted":{"\/views\/ajax":true,"\/":true},"better_exposed_filters":{"views":{"pmel_themes":{"displays":{"page":{"filters":[]}}},"what_s_new":{"displays":{"block":{"filters":[]}}},"pmel_in_the_media":{"displays":{"block":{"filters":[]}}},"featured_publications":{"displays":{"block":{"filters":[]}}}}},"scaldFile":{"path":"sites\/all\/modules\/scald_file\/scald_file.css"},"omega":{"layouts":{"primary":"normal","order":["narrow","normal"],"queries":{"narrow":"all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation:landscape)","normal":"all and (min-width: 980px) and (min-device-width: 980px), all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation:landscape)"}}}});
+//--><!]]>
+</script>
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body class="html front not-logged-in page-home">
+  <div id="body-bg-top"></div>
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <div class="page clearfix" id="page">
+      <header id="section-header" class="section section-header">
+  <div id="zone-header-wrapper" class="zone-wrapper zone-header-wrapper clearfix">  
+  <div id="zone-header" class="zone zone-header clearfix container-12">
+    <div class="grid-7 region region-branding" id="region-branding">
+  <div class="region-inner region-branding-inner">
+        <div class="branding-data clearfix">
+            <div class="logo-img">
+        <a href="/" rel="home" title="" class="active"><img src="https://www.pmel.noaa.gov/sites/all/themes/pacific_marine/images/pmel_logo_full.png" alt="" id="logo" /></a>      </div>
+                </div>
+          </div>
+</div><div class="grid-5 region region-header-first" id="region-header-first">
+  <div class="region-inner region-header-first-inner">
+    <div class="block block-block block-4 block-block-4 odd block-without-title" id="block-block-4">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div id="noaa-doc">
+<div class="logos">
+<div class="logo" id="doc-logo"><a href="https://www.commerce.gov" target="_blank"><img alt="Department of Commerce logo" src="/sites/all/themes/pacific_marine/images/doc_logo.png" style="width: 40px; height: 40px;" /></a></div>
+<div class="logo" id="noaa-logo"><a href="https://www.noaa.gov" target="_blank"><img alt="National Oceanic and Atmospheric Administration logo" src="/sites/all/themes/pacific_marine/images/noaa_logo.png " style="width: 40px; height: 40px;" /></a></div>
+</div>
+<!-- original: noaalogo2.png --><div class="words">National Oceanic and<br />
+Atmospheric Administration<br /><span id="doc">United States Department of Commerce</span></div>
+</div>
+    </div>
+  </div>
+</div><div class="block block-search block-form block-search-form even block-without-title" id="block-search-form">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <form class="search-form" role="search" action="/" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
+      <h2 class="element-invisible">Search form</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label class="element-invisible" for="edit-search-block-form--2">Search PMEL </label>
+ <input title="Enter the terms you wish to search for." class="custom-search-box form-text" placeholder="Search PMEL Home" type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="18" maxlength="128" />
+</div>
+<div class="form-actions form-wrapper" id="edit-actions"><input style="display:none;" type="submit" id="edit-submit" name="op" value="" class="form-submit" /></div><input type="hidden" name="form_build_id" value="form-W1yg3iEp8VmT9aN1DCierTDJHraRIT-jyJoyivalTwM" />
+<input type="hidden" name="form_id" value="search_block_form" />
+</div>
+</div></form>    </div>
+  </div>
+</div>  </div>
+</div>  </div>
+</div><div id="zone-menu-wrapper" class="zone-wrapper zone-menu-wrapper clearfix">  
+  <div id="zone-menu" class="zone zone-menu clearfix container-12">
+    <div class="grid-12 region region-menu" id="region-menu">
+  <div class="region-inner region-menu-inner">
+        <div class="block block-system block-menu block-main-menu block-system-main-menu odd block-without-title" id="block-system-main-menu">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <ul class="menu"><li class="first leaf"><a href="/" class="active">Home</a></li>
+<li class="expanded"><a href="/about-pmel">About Us</a><ul class="menu"><li class="first leaf"><a href="/about-pmel">About PMEL</a></li>
+<li class="leaf"><a href="/about-pmel/strategic-plan">Strategic Plan</a></li>
+<li class="leaf"><a href="/about-pmel/organization">Organization</a></li>
+<li class="leaf"><a href="/partners">Partners</a></li>
+<li class="leaf"><a href="/people">People</a></li>
+<li class="expanded"><a href="/awards">Awards</a><ul class="menu"><li class="first leaf"><a href="/awards">View by Organization</a></li>
+<li class="last leaf"><a href="/awards-by-year">View by Year</a></li>
+</ul></li>
+<li class="leaf"><a href="/career-opportunities">Career Opportunities</a></li>
+<li class="leaf"><a href="/contact-us">Contact Us</a></li>
+<li class="last leaf"><a href="/50-years">PMEL - 50 Years</a></li>
+</ul></li>
+<li class="expanded"><a href="/research">Research</a><ul class="menu"><li class="first leaf"><a href="/research">Research to Applications</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/acoustics/" target="_blank">Acoustics</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/arctic/" target="_blank">Arctic</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/acg/" target="_blank">Atmospheric Chemistry</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/cwi/" target="_blank">Climate-Weather Interface</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/eoi/" target="_blank">Earth-Ocean Interactions</a></li>
+<li class="leaf"><a href="https://www.ecofoci.noaa.gov/" target="_blank">Ecosystems &amp; Fisheries-Oceanography Coordinated Investigations</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/edd/" target="_blank">Engineering</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/gobop/" target="_blank">Global Observations of Biogeochemistry and Ocean Physics</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/gtmba" target="_blank">Global Tropical Moored Buoy Array</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/co2/" target="_blank">Ocean Carbon</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/ocs/" target="_blank">Ocean Climate Stations</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/ocean-molecular-ecology/" target="_blank">Ocean Molecular Ecology</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov/wbc/">Pacific Western Boundary Currents</a></li>
+<li class="leaf"><a href="/project/science-data-integration">Science Data Integration</a></li>
+<li class="last leaf"><a href="https://nctr.pmel.noaa.gov/" target="_blank">Tsunami</a></li>
+</ul></li>
+<li class="expanded"><a href="http://www.pmel.noaa.gov/public/pmel/globe/">Data</a><ul class="menu"><li class="first leaf"><a href="http://www.pmel.noaa.gov/public/pmel/globe/">Global Display</a></li>
+<li class="last leaf"><a href="/data-links">Data Links</a></li>
+</ul></li>
+<li class="expanded"><a href="/pmel-publications-search">Publications</a><ul class="menu"><li class="first leaf"><a href="/pmel-publications-search">Search Publications</a></li>
+<li class="leaf"><a href="/publications/featured">Feature Publications</a></li>
+<li class="last leaf"><a href="/publications/outstanding">Outstanding Scientific Publications</a></li>
+</ul></li>
+<li class="expanded"><a href="/education">Education</a><ul class="menu"><li class="first leaf"><a href="/education">Educational Resources</a></li>
+<li class="leaf"><a href="/pmel-interns">PMEL Interns</a></li>
+<li class="leaf"><a href="/noaa-pmel-videos">NOAA PMEL Videos</a></li>
+<li class="leaf"><a href="/noaa-science-camp">NOAA Science Camp</a></li>
+<li class="last leaf"><a href="/OutreachEventsandSeminars">Outreach Events and Seminars</a></li>
+</ul></li>
+<li class="last expanded"><a href="/media">Media</a><ul class="menu"><li class="first leaf"><a href="/media">Media Contacts</a></li>
+<li class="leaf"><a href="/noaa-pmel-videos">NOAA PMEL Videos</a></li>
+<li class="leaf"><a href="/galleries">Photo Galleries</a></li>
+<li class="leaf"><a href="/media/pmel-in-the-news">PMEL in the News</a></li>
+<li class="last leaf"><a href="/whats-new">What&#039;s New Archive</a></li>
+</ul></li>
+</ul>    </div>
+  </div>
+</div>  </div>
+</div>
+  </div>
+</div></header>    
+      <section id="section-content" class="section section-content">
+  <div id="zone-preface-wrapper" class="zone-wrapper zone-preface-wrapper clearfix">  
+  <div id="zone-preface" class="zone zone-preface clearfix equal-height-container container-12">
+    <div class="grid-3 region region-preface-first equal-height-element" id="region-preface-first">
+  <div class="region-inner region-preface-first-inner">
+      </div>
+</div><div class="grid-9 region region-preface-second equal-height-element" id="region-preface-second">
+  <div class="region-inner region-preface-second-inner">
+      </div>
+</div>  </div>
+</div><div id="zone-content-wrapper" class="zone-wrapper zone-content-wrapper clearfix no-sidebar">  
+  <div id="zone-content" class="zone zone-content clearfix equal-height-container container-12">    
+        
+        <div class="grid-12 region region-content equal-height-element" id="region-content">
+  <div class="region-inner region-content-inner">
+    <a id="main-content"></a>
+                        <div class="block block-system block-main block-system-main odd block-without-title" id="block-system-main">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div class="view view-pmel-themes view-id-pmel_themes view-display-id-page view-dom-id-074446524d3c9085a05e2d43d0c9b854">
+        
+  
+  
+      <div class="view-content">
+      
+  <div class="skin-default">
+    
+    <div id="views_slideshow_cycle_main_pmel_themes-page_1" class="views_slideshow_cycle_main views_slideshow_main"><div id="views_slideshow_cycle_teaser_section_pmel_themes-page_1" class="views-slideshow-cycle-main-frame views_slideshow_cycle_teaser_section">
+  <div id="views_slideshow_cycle_div_pmel_themes-page_1_0" class="views-slideshow-cycle-main-frame-row views_slideshow_cycle_slide views_slideshow_slide views-row-1 views-row-first views-row-odd" aria-labelledby='views_slideshow_pager_field_item_bottom_pmel_themes-page_1_0'>
+  <div class="views-slideshow-cycle-main-frame-row-item views-row views-row-0 views-row-odd views-row-first">
+    
+  <div class="views-field views-field-field-banner-image">        <div class="field-content"><a href="/pmel-theme/ocean-atmosphere-research"><img typeof="foaf:Image" src="https://www.pmel.noaa.gov/sites/default/files/styles/landing_page_banner/public/thumbnails/image/rotator-ocean-atmosphere.jpg?itok=I5-sKHcd&amp;c=fe315a4c5dc213771ba56eb0413be35c" alt="Two men cling to buoy at sea with NOAA ship in background" /></a></div>  </div></div>
+</div>
+<div id="views_slideshow_cycle_div_pmel_themes-page_1_1" class="views-slideshow-cycle-main-frame-row views_slideshow_cycle_slide views_slideshow_slide views-row-2 views_slideshow_cycle_hidden views-row-even" aria-labelledby='views_slideshow_pager_field_item_bottom_pmel_themes-page_1_1'>
+  <div class="views-slideshow-cycle-main-frame-row-item views-row views-row-0 views-row-odd">
+    
+  <div class="views-field views-field-field-banner-image">        <div class="field-content"><a href="/pmel-theme/marine-ecosystem-research"><img typeof="foaf:Image" src="https://www.pmel.noaa.gov/sites/default/files/styles/landing_page_banner/public/thumbnails/image/rotator_marine_ecosystems.jpg?itok=JwmQsKXG&amp;c=e1ab638bb8a3ccd248a88d9194790cb7" alt="Banner image text: &quot;Ecosystems: Understanding and predicting impacts of natural, physical, chemical, geological and anthropogenic processes&quot;" /></a></div>  </div></div>
+</div>
+<div id="views_slideshow_cycle_div_pmel_themes-page_1_2" class="views-slideshow-cycle-main-frame-row views_slideshow_cycle_slide views_slideshow_slide views-row-3 views_slideshow_cycle_hidden views-row-odd" aria-labelledby='views_slideshow_pager_field_item_bottom_pmel_themes-page_1_2'>
+  <div class="views-slideshow-cycle-main-frame-row-item views-row views-row-0 views-row-odd">
+    
+  <div class="views-field views-field-field-banner-image">        <div class="field-content"><a href="/pmel-theme/oceans-and-coastal-processes-research"><img typeof="foaf:Image" src="https://www.pmel.noaa.gov/sites/default/files/styles/landing_page_banner/public/thumbnails/image/rotator_ocean_processes.jpg?itok=NOKj7X4M&amp;c=e1ab638bb8a3ccd248a88d9194790cb7" alt="Banner Image text: &quot;Oceans and Coastal Processes: Understanding ocean physics and interactions between the ocean, the seafloor and atmosphere&quot;" /></a></div>  </div></div>
+</div>
+<div id="views_slideshow_cycle_div_pmel_themes-page_1_3" class="views-slideshow-cycle-main-frame-row views_slideshow_cycle_slide views_slideshow_slide views-row-4 views_slideshow_cycle_hidden views-row-last views-row-even" aria-labelledby='views_slideshow_pager_field_item_bottom_pmel_themes-page_1_3'>
+  <div class="views-slideshow-cycle-main-frame-row-item views-row views-row-0 views-row-odd">
+    
+  <div class="views-field views-field-field-banner-image">        <div class="field-content"><a href="/pmel-theme/research-innovation"><img typeof="foaf:Image" src="https://www.pmel.noaa.gov/sites/default/files/styles/landing_page_banner/public/thumbnails/image/rotator_innovation.jpg?itok=BmT4137G&amp;c=e1ab638bb8a3ccd248a88d9194790cb7" alt="Banner image text: &quot;Innovations: Implementing new and improved ways of conducting and communicating science&quot;" /></a></div>  </div></div>
+</div>
+</div>
+</div>
+          <div class="views-slideshow-controls-bottom clearfix">
+        <div id="widget_pager_bottom_pmel_themes-page_1" class="views-slideshow-pager-fields widget_pager widget_pager_bottom views_slideshow_pager_field">
+  <div id="views_slideshow_pager_field_item_bottom_pmel_themes-page_1_0" class="views-slideshow-pager-field-item views_slideshow_pager_field_item views-row-odd views-row-first" aria-controls="views_slideshow_cycle_div_pmel_themes-page_1_0">
+  <div class="views-field-title">
+    <div class="views-content-title">
+    <a href="/pmel-theme/ocean-atmosphere-research">Ocean-Atmosphere Research</a>  </div>
+</div>
+</div>
+<div id="views_slideshow_pager_field_item_bottom_pmel_themes-page_1_1" class="views-slideshow-pager-field-item views_slideshow_pager_field_item views-row-even" aria-controls="views_slideshow_cycle_div_pmel_themes-page_1_1">
+  <div class="views-field-title">
+    <div class="views-content-title">
+    <a href="/pmel-theme/marine-ecosystem-research">Marine Ecosystem Research</a>  </div>
+</div>
+</div>
+<div id="views_slideshow_pager_field_item_bottom_pmel_themes-page_1_2" class="views-slideshow-pager-field-item views_slideshow_pager_field_item views-row-odd" aria-controls="views_slideshow_cycle_div_pmel_themes-page_1_2">
+  <div class="views-field-title">
+    <div class="views-content-title">
+    <a href="/pmel-theme/oceans-and-coastal-processes-research">Oceans and Coastal Processes Research</a>  </div>
+</div>
+</div>
+<div id="views_slideshow_pager_field_item_bottom_pmel_themes-page_1_3" class="views-slideshow-pager-field-item views_slideshow_pager_field_item views-row-even views-row-last" aria-controls="views_slideshow_cycle_div_pmel_themes-page_1_3">
+  <div class="views-field-title">
+    <div class="views-content-title">
+    <a href="/pmel-theme/research-innovation">Research Innovation</a>  </div>
+</div>
+</div>
+</div>
+      </div>
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>    </div>
+  </div>
+</div>      </div>
+</div>  </div>
+</div><div id="zone-postscript-wrapper" class="zone-wrapper zone-postscript-wrapper clearfix">  
+  <div id="zone-postscript" class="zone zone-postscript clearfix equal-height-container container-12">
+    <div class="grid-6 region region-postscript-first equal-height-element" id="region-postscript-first">
+  <div class="region-inner region-postscript-first-inner">
+    <section class="block block-views block-what-s-new-block block-views-what-s-new-block odd" id="block-views-what-s-new-block">
+  <div class="block-inner clearfix">
+              <h2 class="block-title">What's New </h2>
+            
+    <div class="content clearfix">
+      <div class="view view-what-s-new view-id-what_s_new view-display-id-block view-dom-id-5cd078a2bf6d81562177cee67e3023b0">
+        
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div>        <h3><a href="/news-story/dr-richard-feely-ecoshock-podcast-meet-evil-twin-ocean-acidification">Dr. Richard Feely on Ecoshock Podcast: Meet the Evil Twin - Ocean Acidification</a></h3>  </div>  
+  <div class="views-field views-field-nothing">        <span class="field-content"><div class="image-caption-wrapper">
+<div class="whats-new-image"><a href="/news-story/dr-richard-feely-ecoshock-podcast-meet-evil-twin-ocean-acidification"><img typeof="foaf:Image" src="https://www.pmel.noaa.gov/sites/default/files/styles/home_block_images/public/Richard-Feely-talking-in-front-of-the-NOAA-Ship-Jordan.jpg?itok=3EmfeaJB&amp;c=bb1d7db0c5246e58d381efeb144f7703" alt="Richard on the dock in front of the NOAA Ship David Starr Jordan." /></a></div>
+<div class="img-caption"></div>
+</div></span>  </div>  
+  <div class="views-field views-field-changed">        <span class="field-content">January 27, 2026</span>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p>Recently retired NOAA Pacific Marine Environmental Laboratory (PMEL) senior scientist Dr. Richard Feely was featured on a podcast called Ecoshock hosted by Alex Smith. The podcast addresses earth science issues like climate change and ocean acidification, and provides insights from subject matter experts.</p>
+<p>Richard Feely is a pioneering researcher in carbon cycling and ocean acidification, and spent the past 51 years with NOAA. He is often called the "grandfather of ocean acidification" for his decades of research into how the ocean absorbs human-emitted carbon dioxide. His research established ocean acidification as a global environmental crisis.</p>
+<p> </p>
+<p><strong>Podcast and Audio file links:</strong></p>
+<p>"<a href="https://www.ecoshock.org/2026/01/meet-the-evil-twin-ocean-acidification.html" target="_blank">Meet the Evil Twin - Ocean Acidification</a>" - Posted January 7, 2026, by Radio Ecoshock<br /><a href="/public/pmel/audio/ES_Feely.mp3">Podcast audio only (MP3)</a> [... <a href="/news-story/dr-richard-feely-ecoshock-podcast-meet-evil-twin-ocean-acidification" class="views-more-link">more</a></div>  </div>  </div>
+    </div>
+  
+  
+  
+  
+      <div class="view-footer">
+      <p><a href="whats-new">What's New Archive</a></p>
+    </div>
+  
+  
+</div>    </div>
+  </div>
+</section>  </div>
+</div><div class="grid-3 region region-postscript-second equal-height-element" id="region-postscript-second">
+  <div class="region-inner region-postscript-second-inner">
+    <section class="block block-views block-pmel-in-the-media-block block-views-pmel-in-the-media-block odd" id="block-views-pmel-in-the-media-block">
+  <div class="block-inner clearfix">
+              <h2 class="block-title">PMEL in the News</h2>
+            
+    <div class="content clearfix">
+      <div class="view view-pmel-in-the-media view-id-pmel_in_the_media view-display-id-block view-dom-id-c092faa9ed5c72f8dd40b76f6d2d8e8c">
+        
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first">
+      
+  <div>        <h4><a href="https://alaskapublic.org/news/environment/2025-09-24/tracking-algae-and-climate-change-from-the-sky-with-arctic-air" target="_blank">Tracking algae and climate change from the sky with Arctic AIR</a></h4>  </div>  
+  <div class="pub-date">        <div><span  property="schema:datePublished" datatype="xsd:dateTime" content="2025-09-24T00:00:00-07:00" class="date-display-single">September 24, 2025</span></div>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p>A specialized plane, camera and a crew of four are in Alaska to understand the ecosystems of the Bering and Chukchi seas. UW CICOES / NOAA PMEL scientist Jiaxu Zhang, the ArcticAIR project lead, is quoted.</p>
+</div>  </div>  </div>
+  <div class="views-row views-row-2 views-row-even">
+      
+  <div>        <h4><a href="https://www.abc.net.au/listen/programs/futuretense/cooperation-conflict-high-seas-law-ocean-decade-climate-data/105663512" target="_blank">Cooperation, not conflict on the High Seas</a></h4>  </div>  
+  <div class="pub-date">        <div><span  property="schema:datePublished" datatype="xsd:dateTime" content="2025-08-28T00:00:00-07:00" class="date-display-single">August 28, 2025</span></div>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p>[Podcast] Today on Future Tense on ABC Radio National, we'll look at the progress of two ocean-related initiatives, efforts where nations, non-governed organizations, and companies, are coming together to build a framework for how we regulate and protect...</div>  </div>  </div>
+  <div class="views-row views-row-3 views-row-odd views-row-last">
+      
+  <div>        <h4><a href="https://www.nytimes.com/2025/07/30/science/russia-earthquake-tsunami-physics.html?unlocked_article_code=1.aU8.IS0e.0_RD4_fmdZ8L&amp;smid=url-share" target="_blank">Why did such a powerful earthquake produce such a weak tsunami?</a></h4>  </div>  
+  <div class="pub-date">        <div><span  property="schema:datePublished" datatype="xsd:dateTime" content="2025-07-30T00:00:00-07:00" class="date-display-single">July 30, 2025</span></div>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p>The quake in Russia on Wednesday was among the strongest ever recorded — but in many places, the resulting wave was small.</p>
+</div>  </div>  </div>
+    </div>
+  
+  
+  
+  
+      <div class="view-footer">
+      <p><a href="media/pmel-in-the-news">PMEL in the News Archive</a></p>
+    </div>
+  
+  
+</div>    </div>
+  </div>
+</section>  </div>
+</div><div class="grid-3 region region-postscript-third equal-height-element" id="region-postscript-third">
+  <div class="region-inner region-postscript-third-inner">
+    <section class="block block-views block-featured-publications-block block-views-featured-publications-block odd" id="block-views-featured-publications-block">
+  <div class="block-inner clearfix">
+              <h2 class="block-title">Feature Publication </h2>
+            
+    <div class="content clearfix">
+      <div class="view view-featured-publications view-id-featured_publications view-display-id-block view-dom-id-c73eb7b81d5e734bf107a35e88e895f2">
+        
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div>        <h4><a href="/featured-publication/method-addressing-ocean-acidification-passes-first-small-scale-test">A method of addressing ocean acidification passes a first, small-scale test</a></h4>  </div>  
+  <div class="views-field views-field-field-featured-pub-publish-date pub-date">        <div class="field-content"><span  property="schema:datePublished" datatype="xsd:dateTime" content="2025-09-25T00:00:00-07:00" class="date-display-single">September 25, 2025</span></div>  </div>  
+  <div class="views-field views-field-field-featured-pub-image">        <div class="field-content"><a href="/featured-publication/method-addressing-ocean-acidification-passes-first-small-scale-test"><img typeof="foaf:Image" src="https://www.pmel.noaa.gov/sites/default/files/styles/home_block_images/public/Sequim-Bay-WA.jpg?itok=y3OWX4uI&amp;c=f8c20d5f8c464ef701edc5bf0be96ca4" alt="Person kneels on dock overlooking Sequim Bay on a dark, cloudy day" /></a><blockquote class="image-field-caption">
+  <p>A researcher with the Pacific Northwest National Laboratory collects samples from Sequim Bay, Washington that will be analyzed for total alkalinity and dissolved inorganic carbon measurements during the February 2025 alkalinity release experiment. Credit: Nick Ward, PNNL</p>
+</blockquote>
+</div>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p><em>Carefully enhanced wastewater could one day benefit coastal marine resources</em></p>
+<p>The continual rise of carbon dioxide in the atmosphere isn't just changing weather patterns, it's also silently altering the chemistry of the global... <a href="/featured-publication/method-addressing-ocean-acidification-passes-first-small-scale-test" class="views-more-link">more</a></div>  </div>  </div>
+    </div>
+  
+  
+  
+  
+      <div class="view-footer">
+      <p><a href="/publications/featured">Publications Archive</a></p>
+    </div>
+  
+  
+</div>    </div>
+  </div>
+</section>  </div>
+</div>  </div>
+</div></section>    
+  
+      <footer id="section-footer" class="section section-footer">
+  <div id="zone-footer-wrapper" class="zone-wrapper zone-footer-wrapper clearfix">  
+  <div id="zone-footer" class="zone zone-footer clearfix container-12">
+    <div class="grid-8 region region-footer-first" id="region-footer-first">
+  <div class="region-inner region-footer-first-inner">
+    <div class="block block-block block-1 block-block-1 odd block-without-title" id="block-block-1">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <p><img alt="PMEL logo" src="/sites/all/themes/pacific_marine/images/PMEL-meatball-logo-sm.png" style="width: 110px; height: 110px;" /></p>
+<!--<p><img alt="PMEL 50th anniversary logo with golden ribbon" src="/sites/all/themes/pacific_marine/images/PMEL_50th_Logo_vFINAL_emblem_sm.png" style="width: 110px; height: 110px;" /></p>-->    </div>
+  </div>
+</div><div class="block block-block block-2 block-block-2 even block-without-title" id="block-block-2">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <p><a href="https://www.noaa.gov">National Oceanic and Atmospheric Administration</a><br /><a href="https://www.pmel.noaa.gov">Pacific Marine Environmental Laboratory</a><br /><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#97;&#114;&#46;&#112;&#109;&#101;&#108;&#46;&#119;&#101;&#98;&#109;&#97;&#115;&#116;&#101;&#114;&#64;&#110;&#111;&#97;&#97;&#46;&#103;&#111;&#118;">&#111;&#97;&#114;&#46;&#112;&#109;&#101;&#108;&#46;&#119;&#101;&#98;&#109;&#97;&#115;&#116;&#101;&#114;&#64;&#110;&#111;&#97;&#97;&#46;&#103;&#111;&#118;</a> | <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBm3oBWv4LARql--ZXl-KQNIJDJdHdWocj1XZqEx-4a5OMEA/viewform?usp=sf_link" target="_blank">Provide Feedback</a></p>
+    </div>
+  </div>
+</div><div class="block block-menu block-menu-footer-first-menu block-menu-menu-footer-first-menu odd block-without-title" id="block-menu-menu-footer-first-menu">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <ul class="menu"><li class="first leaf"><a href="https://www.commerce.gov" title="The United States Department of Commerce">DOC</a></li>
+<li class="leaf"><a href="https://www.noaa.gov" title="The National Oceanographic and Atmospheric Administration">NOAA</a></li>
+<li class="leaf"><a href="https://www.research.noaa.gov/" title="Department of Commerce &gt; NOAA &gt; Office of Oceanic and Atmospheric Research">OAR</a></li>
+<li class="leaf"><a href="https://www.pmel.noaa.gov">PMEL</a></li>
+<li class="leaf"><a href="https://www.noaa.gov/protecting-your-privacy" target="_blank">Privacy Policy</a></li>
+<li class="leaf"><a href="https://www.noaa.gov/disclaimer" target="_blank">Disclaimer</a></li>
+<li class="last leaf"><a href="/accessibility">Accessibility</a></li>
+</ul>    </div>
+  </div>
+</div>  </div>
+</div><div class="grid-4 region region-footer-second" id="region-footer-second">
+  <div class="region-inner region-footer-second-inner">
+    <div class="block block-block block-3 block-block-3 odd block-without-title" id="block-block-3">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <p><a href="https://www.youtube.com/user/NOAAPMEL" target="_blank"><img alt="PMEL's YouTube channel" src="/sites/all/themes/pacific_marine/images/iconfinder_youtube_386763.png" title="PMEL's YouTube channel" width="40" /></a> <a href="https://www.linkedin.com/showcase/noaapmel" target="_blank"><img alt="PMEL's LinkedIn Showcase page" src="/sites/default/files/thumbnails/image/Iinkedin-Blue-40.png" title="PMEL's LinkedIn Showcase page" width="40" /></a> <a href="https://www.instagram.com/noaapmel" target="_blank"><img alt="PMEL's Instagram" src="/sites/all/themes/pacific_marine/images/6636603_instagram_social media_social network_icon.png" title="PMEL's Instagram" width="40" /></a> <a href="https://noaapmel.smugmug.com" target="_blank"><img alt="Visit PMEL's SmugMug account" src="/sites/all/themes/pacific_marine/images/iconfinder_smugmug_386705.png" title="Check out PMEL's SmugMug photos" width="40" /></a> <a href="/list-pmel-rss-feeds"><img alt="Check out PMEL's RSS feeds" src="/sites/all/themes/pacific_marine/images/iconfinder_social_style_3_rss_341106.png" title="PMEL's RSS feeds" width="40" /></a></p>
+    </div>
+  </div>
+</div><div class="block block-menu block-menu-footer-second-menu block-menu-menu-footer-second-menu even block-without-title" id="block-menu-menu-footer-second-menu">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <ul class="menu"><li class="first leaf"><a href="/contact-us">Contact Us</a></li>
+<li class="leaf"><a href="/sitemap" title="Site map of pages within the NOAA PMEL website.">Sitemap</a></li>
+<li class="last leaf"><a href="https://sites.google.com/noaa.gov/pmelhub/home" target="_blank">Internal</a></li>
+</ul>    </div>
+  </div>
+</div><div class="block block-menu block-menu-footer-additional-links block-menu-menu-footer-additional-links odd block-without-title" id="block-menu-menu-footer-additional-links">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <ul class="menu"><li class="first last leaf"><a href="https://sites.google.com/noaa.gov/pmel-internal/" target="_blank">IT Info &amp; Policy</a></li>
+</ul>    </div>
+  </div>
+</div>  </div>
+</div>  </div>
+</div></footer>  </div>  <div class="region region-page-bottom" id="region-page-bottom">
+  <div class="region-inner region-page-bottom-inner">
+      </div>
+</div>  <div id="body-bg-bottom"></div>
+</body>
+</html>

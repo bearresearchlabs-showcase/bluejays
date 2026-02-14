@@ -1,0 +1,1548 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="X-UA-Compatible" content="IE=Edge" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>NOAA Library - Homepage - NOAA Library at National Oceanic and Atmospheric Administration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noarchive" />
+<link rel="shortcut icon" type="image/jpg" href="https://library.noaa.gov/ld.php?content_id=76429500"/>
+
+
+<!-- public_metadata.twig -->
+
+    <!-- auto generated dublin core metadata -->
+    <meta name="DC.Title" content="NOAA Library: Homepage: NOAA Library"/>
+    <meta name="DC.Creator" content="Zhou Yuning"/>
+    <meta name="DC.Subject" content=""/>
+    <meta name="DC.Description" content=""/>
+    <meta name="DC.Publishers" content="National Oceanic and Atmospheric Administration"/>
+    <meta name="DC.Rights" content="Copyright National Oceanic and Atmospheric Administration 2026"/>
+    <meta name="DC.Language" content="en"/>
+    <meta name="DC.Identifier" content="https://library.noaa.gov/home/home"/>
+    <meta name="DC.Date.Created" content="Oct 16, 2024"/>
+    <meta name="DC.Date.Modified" content="Feb 2, 2026"/>
+    
+
+<meta property="og:title" content="NOAA Library: Homepage: NOAA Library">
+<meta property="og:description" content="NOAA Library: Homepage: NOAA Library">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://library.noaa.gov/home/home">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@springshare">
+
+
+
+<link rel="stylesheet" href="https://static-assets-us.libguides.com/web/jquery/css/jquery-ui.min.css?2691" />
+
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+<link rel="stylesheet" type="text/css" href="https://static-assets-us.libguides.com/web/slick-1.8.1/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="https://static-assets-us.libguides.com/web/slick-1.8.1/slick/slick-theme.css">
+
+    <link rel="stylesheet" href="https://static-assets-us.libguides.com/web/css3.23.4/lg-public.min.css" />
+
+<script type="text/javascript" src="https://static-assets-us.libguides.com/web/jquery/js/1.12.4_jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        jQuery(".dropdown-toggle").on("click", function(e){
+            jQuery(this).siblings("ul.s-lg-subtab-ul.dropdown-menu").toggle();
+        });
+                        var s_lg_guide_name = jQuery('#s-lg-guide-name');
+        if (s_lg_guide_name.length) {
+            if (jQuery.trim(s_lg_guide_name.text()) === '') {
+                s_lg_guide_name.remove();
+            }
+        }
+    });
+</script>
+
+    <script src="//code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script>
+        jQuery.ui ||
+        document.write('<script src="https://static-assets-us.libguides.com/web/jquery/js/jquery-ui.min.js?2691">\x3C/script>');
+    </script>
+
+    <script type="text/javascript" src="https://static-assets-us.libguides.com/web/js3.23.4/lg-public.min.js"></script>
+<style>/** bootstrap_tab_css.twig **/
+#s-lg-tabs-container .nav-tabs > li > a,
+#s-lg-tabs-container .nav-tabs > li > button,
+#s-lg-tabs-container .nav-pills > li > a,
+#s-lg-tabs-container .nav-pills > li > button {
+    border: 1px solid transparent; -webkit-border-radius: 4px 4px 0 0; -moz-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+    background-color: #e0e9ff;
+    color: #003087;
+    font-weight: bold;
+    padding: 4px 15px;
+}
+
+#s-lg-tabs-container .nav-tabs {
+    border-bottom: 0;
+}
+
+#s-lg-tabs-container .nav-tabs > li#s-lg-admin-tab-add > a {
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+
+#s-lg-tabs-container .nav-tabs > li > a:hover,
+#s-lg-tabs-container .nav-tabs > li > button:hover,
+#s-lg-tabs-container .nav-pills > li > a:hover,
+#s-lg-tabs-container .nav-pills > li > button:hover {
+    border: 1px solid transparent; -webkit-border-radius: 4px 4px 0 0; -moz-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+    background-color: #003087;
+    color: #ffffff;
+}
+
+#s-lg-tabs-container .nav-tabs > .active > a,
+#s-lg-tabs-container .nav-tabs > .active > button,
+#s-lg-tabs-container .nav-pills > .active > a,
+#s-lg-tabs-container .nav-pills > .active > button {
+    color: #ffffff;
+    cursor: default;
+    background-color: #003087;
+    border: 1px solid transparent; -webkit-border-radius: 4px 4px 0 0; -moz-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+    border-bottom-color: transparent;
+    font-weight: bold;
+}
+
+#s-lg-tabs-container .nav-tabs > .active > .s-lg-subtab-ul > .active > a,
+#s-lg-tabs-container .nav-tabs > .active > .s-lg-subtab-ul > .active > button {
+    color: #ffffff;
+    cursor: default;
+    background-color: #003087;
+    border-bottom-color: transparent;
+}
+
+#s-lg-tabs-container .nav-tabs > .active > a:hover,
+#s-lg-tabs-container .nav-pills > .active > a:hover,
+#s-lg-tabs-container .nav-tabs > .active > button:hover,
+#s-lg-tabs-container .nav-pills > .active > button:hover {
+    color: #ffffff;
+    cursor: pointer;
+    background-color: #003087;
+    border: 1px solid transparent; -webkit-border-radius: 4px 4px 0 0; -moz-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+    border-bottom-color: transparent;
+    font-weight: bold;
+}
+
+#s-lg-tabs-container .nav .dropdown-toggle .caret {
+    border-top-color: #e1e1e1;
+}
+
+#s-lg-tabs-container .nav-tabs button.dropdown-toggle .caret {
+    margin-left: 2px;
+    margin-top: -3px;
+}
+
+#s-lg-tabs-container .nav-tabs > li > a.s-lg-tab-drop {
+    border-radius: 0 4px 0 0;
+    padding: 4px 6px 4px 3px;
+    border-left: 1px solid transparent;
+}
+
+#s-lg-tabs-container .nav-tabs > li > button.s-lg-tab-drop {
+    border-radius: 0 4px 0 0;
+    padding: 4px 6px 0px 3px;
+    border-left: 1px solid transparent;
+    margin-right: 2px;
+}
+
+#s-lg-tabs-container .nav-tabs > li > a.s-lg-tab-drop:hover {
+    border-radius: 0 4px 0 0;
+    border-left: 1px solid #bbb;
+    padding: 4px 6px 4px 3px;
+}
+
+#s-lg-tabs-container .nav-tabs > li > button.s-lg-tab-drop:hover {
+    border-radius: 0 4px 0 0;
+    border-left: 1px solid #bbb;
+    padding: 4px 6px 0px 3px;
+}
+
+#s-lg-tabs-container .nav-tabs > li > a.s-lg-tab-top-link,
+#s-lg-tabs-container .nav-tabs > li > a.s-lg-tab-top-link:hover,
+#s-lg-tabs-container .nav-tabs > li > button.s-lg-tab-top-link,
+#s-lg-tabs-container .nav-tabs > li > button.s-lg-tab-top-link:hover {
+    border-radius: 4px 0 0 0;
+    font-weight: bold;
+    padding: 4px 5px 4px 10px;
+}
+
+.nav-tabs > li > a.s-lg-tab-top-link,
+.nav-tabs > li > button.s-lg-tab-top-link {
+    margin-right: 0px;
+}
+
+#s-lg-tabs-container .nav-pills > li > a.s-lg-tab-drop,
+#s-lg-tabs-container .nav-pills > li > button.s-lg-tab-drop {
+    border-radius: 0 4px 0 0;
+    padding: 4px 8px 4px 8px;
+    border-left: 1px solid transparent;
+    position: absolute;
+    right: 0;
+}
+
+#s-lg-tabs-container .nav-pills > li > a.s-lg-tab-drop:hover,
+#s-lg-tabs-container .nav-pills > li > button.s-lg-tab-drop:hover {
+    border-radius: 0 4px 0 0;
+    border-left: 1px solid #bbb;
+    padding: 4px 8px 4px 8px;
+}
+
+#s-lg-tabs-container .nav-pills > li > a.s-lg-tab-top-link,
+#s-lg-tabs-container .nav-pills > li > a.s-lg-tab-top-link:hover,
+#s-lg-tabs-container .nav-pills > li > button.s-lg-tab-top-link,
+#s-lg-tabs-container .nav-pills > li > button.s-lg-tab-top-link:hover {
+    width: 100%;
+    float: left;
+    border-radius: 4px 0 0 0;
+    font-weight: bold;
+    padding: 4px 15px 4px 15px;
+}
+
+/** !bootstrap_tab_css.twig **/
+ .s-lib-box {border-color: #cccccc;
+                border-width: 1px;
+                box-shadow: 0 8px 6px -6px #AAAAAA;
+                border-radius: 4px 4px 4px 4px;
+                background-color: #fff;
+            }
+            .s-lib-box-std .s-lib-box-title {background-color: #003087; background-image: none;color: #ffffff;
+                border-bottom: 1px solid #cccccc;
+            }
+            .s-lib-box .s-lib-box-title {background-color: #003087; background-image: none;color: #ffffff;
+                border-bottom: 1px solid #cccccc;
+                border-radius: 3px 3px 0px 0px;
+            }
+            .s-lib-box .s-lg-box-footer {
+                border-radius: 0px 0px 3px 3px;
+            }</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>	
+/*  #s-lib-bc {display: none;} */       
+#s-lib-bc-site {display: none}
+#s-lib-bc-group {display: none}
+#s-lib-footer-public {display: none;}
+/*  #s-lg-guide-header-search {display: none;} */
+.s-lib-box .s-lib-box-title {  font-size:16px; font-weight: 500;}
+#s-lib-bc .breadcrumb {font-size:14px;}
+.alert {padding:5px}
+/* Google Font montserrat */
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+	  font-size: 16px;
+	  color: #28282A;
+}
+
+a { color: #0085CA;
+	/* font-size: 16px;  */
+font-weight:600;
+}
+
+h1, h2, h3, h4 {
+      font-weight: 700
+}
+body.s-lg-guide-body {padding: 0px;}
+body.s-lib-public-body { padding: 0px;}
+
+.container {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+/* full-width (782px and up) navbar color styling first
+    (so that it can be overwritten by narrow-width styling when needed,
+    and so that they don't interfere with each other) */
+
+/*size for nav bar */
+.nav.navbar-nav.navbar-nav{
+    min-height: 60px;
+    vertical-align: middle;
+}
+.nav.navbar-nav.navbar-nav li a{
+    font-size: 16px;
+	line-height: unset;
+}
+.nav.navbar-nav.navbar-nav li a.list-menu{
+    line-height: 2.25;
+}
+
+/*text color for nav bar */
+.nav.navbar-nav.navbar-nav li a {
+    color: white;
+    font-weight: 500;
+}
+
+/* navbar background-color */
+.nav.navbar-nav.navbar-nav li a:active, .nav.navbar-nav.navbar-nav li a:focus,
+.nav.navbar-nav.navbar-nav li a:hover{
+    background-color: white;
+    color: rgba(0, 47, 135, .9);
+    border-radius: 5px;
+}
+a.list-menu:hover {
+    background: #0094e0;
+    color: white;
+}
+
+/* background color of navbar*/
+.navbar-default {
+    background: rgba(0, 47, 135, .9);
+}
+.dropdown.open .dropdown-menu {
+    background: rgba(0, 47, 135, .9);
+}
+.dropdown:hover .dropdown-menu { /*styling for mouseover menu*/
+    background: rgba(0, 47, 135, .9);
+}
+
+/*active text color for nav bar */
+.nav.navbar-nav.navbar-nav li a:active {
+    background-color: white;
+    border-radius: 4px;
+    color: rgba(0, 47, 135, .9);
+}
+/* navbar css dropdown focus*/
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:active {
+            background-color: rgba(0, 47, 135, .9);
+}
+
+.caret, .toggle-pointer {
+    text-align: left;
+    font-weight: normal;
+    }
+    .caret, .toggle-pointer{
+    margin-left: 10px;
+    }
+	
+.navbar.navbar-default {
+    background-color: rgba(0, 47, 135, .9);
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+/* end of full-width navbar section */
+
+/*styling for collapsed navbar*/
+@media (max-width: 992px) { /* small viewport */
+   #discovericon { display:none !important;} 
+	body {font-size: 14px; line-height:1.5;}
+	a {font-size: 14px;}
+  }
+@media (max-width: 767px) { /* small or narrow viewport */
+	body {font-size: 14px; line-height:1.5;}
+	a {font-size: 14px;}
+ .caret, .toggle-pointer{
+    float: right;
+    margin: 10px;
+    }
+    .toggle-pointer{
+    border: 20px;
+    }
+    .caret{
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid;
+    }
+
+    .navbar.navbar-default.navbar-static-top {
+    /* background-color: white; */
+    }
+    html, body.s-lib-public-body  {
+        padding-top: 0px;
+    padding-bottom: 0px;
+    }
+    .nav.navbar-nav.navbar-nav li a{  /* main nav menu links*/
+    background-color: white;
+    border-radius: 4px;
+    color:  rgb(51, 122, 183);
+    font-size: 16px;
+    }
+
+    #collapsemenu.navbar-collapse.collapse.in {
+        background-color: white;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: rgb(51, 65, 85);
+    }
+
+    div#collapsemenu {
+        width: 100%;
+    }
+
+    #collapsemenu.navbar-collapse.collapse.in {
+        background-color: white;
+    }
+
+    /*remove bold font from smaller-width dropdown-menu list items*/
+    a.list-menu {
+    font-weight: normal !important;
+    }
+
+    /*text color and bg for collapsed nav bar */
+    /*text color for nav bar */
+    .nav.navbar-nav.navbar-nav li a {
+        color: rgb(51, 122, 183);
+    font-weight: bold;
+    }
+    .nav.navbar-nav.navbar-nav li a:hover {  /* mouseover submenu items*/
+        background-color: rgb(249, 250, 251) !important;
+        border-radius: 4px;
+        color: rgb(51, 122, 183) !important;
+    }
+    .dropdown:hover .dropdown-menu, .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus{
+    color: rgb(51, 122, 183);;
+    }
+    .dropdown .dropdown-menu, .dropdown.open .dropdown-menu {
+    background: white;
+    color: rgb(51, 122, 183); 
+    }
+
+
+    /* color hamburger */
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+        /* background-color: white; */
+        color: rgb(51, 122, 183);
+    }
+
+    .navbar-default .navbar-toggle{
+    background-color: white;
+    color: rgb(51, 122, 183);
+	border-color: rgb(51, 122, 183);
+	margin-top:20px;
+    }
+
+    /* change color of icons in hamburger*/
+    .navbar-default .navbar-toggle .icon-bar {
+    background-color: rgb(51, 122, 183);
+    }
+	
+	.navbar.navbar-default {
+    background-color: transparent;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+	min-height: 10px;
+    margin-bottom: 0px;
+}
+
+} /* closing of 767 (prev 767) media query*/
+
+/*-----------------------------Media Queries------------------------------------*/
+
+
+/* Remove the shadow on collapsed navbar */
+.navbar.navbar-default .navbar-collapse {
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/* new header settings */
+
+.site-header.header-wrap {
+    /* flex container */
+    display: flex;
+    min-height: 100px;
+    flex-wrap: wrap;
+}
+.site-header-section-left {
+    flex-grow: 8;
+    margin-left: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.site-header-section-left h1{
+    margin-left: 0px;
+}
+.site-header-section-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    line-height: 1.6em;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.site-header-section-right#navbar_and_contact {
+    flex-flow: column;
+}
+.site-header-assistance {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(0,136,204)
+}
+
+/*remove bold font from dropdown-menu list items*/
+/*a.list-menu {
+    font-weight: 400 !important;
+}*/
+
+/*remove bold font for side-nav bar */
+#s-lg-tabs-container .nav-pills > li > a, #s-lg-tabs-container .nav-tabs > li > a {
+	font-weight: 400 !important;
+    color: #003087;
+}
+.s-lg-tabs-side .s-lg-boxnav .list-group-item {background-color:#ffffff; border: 1px solid #e3f0ff; }
+
+/* black line on top of footer */
+.footer-bar {
+    min-height: 4px;
+    background-color: black;
+    width: 100%;
+    }
+
+/* site search bar */
+.site-header-search {
+ margin-top: 25px;
+margin-bottom: -25px;
+}
+
+/* scrollable menu */
+ul.dropdown-menu.dropdown-menu-right.scrollable-menu {
+	background: rgba(0, 47, 135, .9);
+}
+
+
+/* hide guide search */
+#s-lg-guide-search-form {
+display: none;
+}
+
+/* hide facet on search result */
+.s-lg-facet-div {
+ display:none;
+}
+
+/* hide author from search results */
+.s-srch-result-author {
+  display: none;
+}
+
+.dropdown-menu>li>a  {
+color: white;
+}
+
+/* increase font size on search result */
+.s-srch-result-highlights {
+font-size: 16px;
+}
+
+
+.footer-spacing {
+    min-height: 60px;
+    background-color: #3F3F3F;
+    width: 100%;
+}
+
+.footer-text {
+    color: white;
+    }
+
+/* styling links for footer*/
+.footer-text a:link {
+    color: white;
+}
+
+/* visited link */
+.footer-text a:visited {
+    color: white;
+}
+
+/* mouse over link */
+.footer-text a:hover {
+    color: white;
+}
+
+/* selected link */
+.footer-text a:active {
+    color: white;
+}
+
+
+    /* footer bg color */
+.footer-div {
+    background-color: #3F3F3F;
+    padding-bottom: 20px;
+    }
+
+.contact-us {
+    color: #a2c8e3;
+    font-size: 110%;
+font-weight: 500;
+}
+
+.footer-right {
+line-height: 110%;
+margin-top: 15px;
+}
+
+.footer-center {
+    line-height: 190%;
+}
+
+#s-lib-footer-public {
+background-color: white;
+}
+
+#footer-fa-icons {
+font-size: 25px;
+}
+
+/* -- Urgent banner settings --*/
+.banner-urgent {
+    background-color: #d54042;
+    padding: 10px;
+}
+.banner-urgent p, .banner-urgent a{
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/*-------------libguides guide------*/
+div.s-lg-rss-39945580 div.s-lg-title > a {
+    display: none;
+}
+
+div.s-lg-rss-39945580 ul.s-lg-rss-list {
+    list-style: none;
+}
+/*-------------multi-column QuickLink nav------*/
+.dropdown-menu {
+	min-width: 200px;
+}
+.dropdown-menu.columns-2 {
+	min-width: 400px;
+}
+.dropdown-menu.columns-3 {
+	min-width: 600px;
+}
+@media (max-width: 767px) {
+	.dropdown-menu.multi-column {
+		min-width: 240px !important;
+		overflow-x: hidden;
+	}
+}
+
+</style>
+<script src="https://kit.fontawesome.com/8bb449f643.js" crossorigin="anonymous"></script>
+<!-- script src="https://code.jquery.com/jquery-2.0.0.js"></script>-->
+<script>
+<!-- Google Tag Manager --> 
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K2XNSVMQ');
+<!-- End Google Tag Manager -->
+
+
+$(document).ready(function() {
+// remove external link fa icons
+$('.fa-external-link').remove();
+
+
+function bindNavbar() {
+    if ($(window).width() > 767) {
+        $('.navbar-default .dropdown').on('mouseover', function(){
+            $('.dropdown-toggle', this).next('.dropdown-menu').show();
+            }).on('mouseout', function(){
+                $('.dropdown-toggle', this).next('.dropdown-menu').hide();
+            });
+    } else {
+    $('.navbar-default .dropdown').off('mouseover').off('mouseout');
+    }
+} // close bindNavBar fn
+bindNavbar();
+
+// watch for "open" and make sure the menu is open if it has that class
+const menuOpenCallback = mutations => {
+    mutations.forEach(mutation => {
+        if(mutation.type === "attributes" && mutation.attributeName === "class"){
+        let currentlyOpen = mutation.target.classList.contains("open");
+        if(currentlyOpen){
+            $('.open > .dropdown-toggle', this).next('.dropdown-menu').show();
+            console.log("Issued show command");
+        } else {
+            $('.dropdown-toggle', this).next('.dropdown-menu').hide();
+            console.log("Issued hide command");
+        }
+        }
+    })
+} // close menuOpenCallback definition
+
+const classObserver = new MutationObserver(menuOpenCallback)
+function bindClassObserver() {
+    classObserver.observe(document.getElementById("collapsemenu"),
+        {subtree: true, attributes: true, attributeFilter: ["class"]}
+        );
+    // console.log("classObserver ON");
+    /* 
+    // -- if toggling based on viewport, then instead: 
+    if ($(window).width() > 767){
+        classObserver.observe(document.getElementById("collapsemenu"),
+        {subtree: true, attributes: true, attributeFilter: ["class"]}
+        );
+        console.log("classObserver ON");
+    } else {
+        classObserver.disconnect();
+        console.log("classObserver OFF");
+    }*/
+}
+bindClassObserver();
+
+$(window).resize(function() {
+    bindNavbar();
+    //bindClassObserver();
+});
+
+// hide LibGuides share button in a-z database 
+$("div.s-lg-az-result > div.s-lg-az-result-share").hide();
+
+
+}); // close of document ready
+</script><style>#s-lib-bc {display: none;}  body {overflow-x:hidden;} .pad-top-med {padding-top:0px;}
+.container-fluid {margin-bottom:-20px;}
+#librarydiscover {margin-top:30px;margin-left:10px;}
+#discovericon {margin-top:20px;}
+#Row1 {width:103vw; position: relative; left: calc(-51vw + 50%); margin-top: -10px;}
+#s-lg-content-79023374, #s-lg-content-79705232{ background-color: rgba(0,47,135, .1);}
+#s-lg-box-33643006, #s-lg-box-33998390 {margin-bottom: 0px;}
+#s-lg-content-79907280 { background-color:#ffffff;;} 
+#s-lg-widget-1739472768762 {font-size:14px}
+.one-card  { box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+   transition: 0.3s; border-radius: 5px; margin: 20px 0px; padding:15px 2px 0px 2px; background-color: rgba(0,47,135, .10);   min-height:130px; }
+.one-card:hover {cursor: pointer;   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 1)}
+#infocard a:hover {text-decoration: none!important;}
+#infocard a {color: #3F3F3F}  .one-card p {font-size:14px;} .one-card h5 {font-size: 18px;} .input-group-addon, .input-group-btn, .input-group .form-control { margin:0px; border-radius: 0;}
+#primo {border-style:solid; border-color: rgba(0,47,135, .7); border-radius:3px}
+.form-control { background-color: #ffffff; color:#000000;}
+.search-info a:link { padding-left: 5px; color: #28282A; font-size: 14px;}
+.gallery-container {padding:5px 10px;} .gallery-container h2>a {font-size:24px;font-weight:700;} .gallery-container a:hover {text-decoration:none;}</style>
+<script type="text/javascript">
+     function searchPrimo() { document.getElementById("primoQuery").value = "any,contains," + document.getElementById("primoQueryTemp").value; document.forms["searchForm"].submit();}
+window.onload= function(){ document.getElementsByClassName("swiper-button-next").click();}</script><script type="module" src="https://d2jv02qf7xgjwx.cloudfront.net/sites/13753/include/discovery-showcase.bundled.js"></script><script>
+    var springStats = springStats || {};
+    springStats.saConfig = springStats.saConfig || {
+        site_id: 13753,
+        tracking_parameters: {"_st_guide_id":1432180,"_st_page_id":10630971,"_st_site_id":13753},
+        tracking_server_host: "libguides-proc.springyaws.com"
+    };
+</script>
+<script  src="https://static-assets-us.libguides.com/web/js/sa.min.js?3116"></script>
+<script>
+			springSpace.Common = springSpace.Common || { };
+			springSpace.Common.constant = {
+					PROCESSING: {
+						ACTION_DISPLAY_POLL: 159
+					}
+			};
+			springSpace.Common.baseURL = "https://library.noaa.gov/";
+			
+			handleScroll=function() {
+                if (false) {
+					var target_elt = "#s-lg-page-section-10630971";
+					jQuery("html, body").animate({ scrollTop: jQuery(target_elt).offset().top }, 750);
+					if (jQuery(this).scrollTop() > 220) {
+						jQuery("#s-lib-scroll-top").fadeIn(750);
+					}
+				}
+			}
+	   </script>
+        <script>
+            // Enable tooltips.
+            jQuery(function () {
+                try {
+                    springSpace.UI.initPopOvers(false);
+                    jQuery(".az-bs-tooltip").tooltip();
+                } catch (e) { }
+            });
+        jQuery(document).ready(function () {
+            springSpace.springTrack.trackPage({_st_type_id: '1',_st_guide_id: '1432180',_st_page_id: '10630971'});
+        });
+            jQuery(document).ready(function() {
+                handleScroll();
+            });
+        </script><!-- BEGIN: Analytics code --><script async src="https://www.googletagmanager.com/gtag/js?id=G-1SFKLVRML4"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1SFKLVRML4');
+</script>
+
+<script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&subagency=NOAA"></script>
+
+<link rel="canonical" href="http://library.noaa.gov/" /><!-- END: Analytics code --></head><body class="s-lg-guide-body">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K2XNSVMQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<a id="s-lg-public-skiplink" class="alert-info" href="#s-lg-guide-main">Skip to Main Content</a>
+
+<!-- BEGIN: Page Header -->
+<div class="container-fluid">
+  <div class="row">
+   <!-- Site Alert Banner <div class="site-header-top-banner banner-urgent"> 
+  <div class ="alert alert-warning">
+       <p class="container" style="font-size:14px; color: black; text-align: center;"><a href="https://www.cloudflarestatus.com/" target="_blank">Cloudflare Outage</a> A global Cloudflare outage is affecting many websites across the Internet, including databases, journals, and articles access.</p>
+      </div> -->
+
+    <div class="col-12 site-header header-wrap container">
+      <div class="site-header-section-left">
+        <!--header logo-->
+        <h1 class="logo container"  style="max-width:411px;min-width: 130px;">
+          <a title="NOAA Central Library" href="https://library.noaa.gov/">
+            <picture> <!-- Logo sets-->
+              <!-- small/narrow/mobile viewport logo-->
+              <source srcset="https://d2jv02qf7xgjwx.cloudfront.net/accounts/157306/images/NOAA-Lockup-NCL_-_Mobile_188x81.png"
+                media="(max-width: 544px)" width="188" height="81" alt="NOAA library logo">
+              <!-- large/desktop viewport logo
+              <source srcset="https://d2jv02qf7xgjwx.cloudfront.net/accounts/157306/images/NOAA_Library_Banner.png"
+                media="(max-width: 1500px)"
+                height="100" width="408" alt="NOAA library logo">-->
+ <source srcset="https://d2jv02qf7xgjwx.cloudfront.net/customers/6258/images/NOAA-Library-Standard_1600x261.png"
+                media="(max-width: 1500px)"
+                height="100" width="408" alt="NOAA library logo">
+              <!-- extra-large viewport logo (responsive size)
+              <source srcset="https://d2jv02qf7xgjwx.cloudfront.net/accounts/157306/images/NOAA_Library_Banner.png" alt="NOAA library logo">-->
+              <source srcset="https://d2jv02qf7xgjwx.cloudfront.net/customers/6258/images/NOAA-Library-Standard_1600x261.png" alt="NOAA library logo">
+              <!-- default/fallback logo; e.g., for older browsers and devices-->
+              <img decoding="async" loading="lazy"
+                src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/157306/images/NOAA-Lockup-NCL_-_Mobile_188x81.png"
+                id="noaaCentralLibrary" class="img-responsive" alt="NOAA library logo">
+            </picture>
+            <span class="sr-only">NOAA Library</span>
+          </a>
+        </h1>
+        <!--end header logo-->
+      </div>
+      <div class="site-header-section-right" id="navbar_and_contact">
+        <div class="site-header-search">
+			<form role="search" class="form-inline pull-right" action="/srch.php"><span></span>
+			   <div class="form-group">
+				   <div class="s-lg-public-search-field">
+					   <label class="control-label sr-only" for="s-lg-guide-search">Search Site</label>
+					   <div class="input-group">
+						   <input type="text" id="s-lg-guide-search" name="q" class="form-control" maxlength="260" placeholder="Search Site" aria-label="Search Site">
+						   <span class="input-group-btn">
+							   <button class="btn btn-default" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+						   </span>
+					   </div>
+				   </div>
+			   </div>
+		   </form>
+       </div>
+
+        <div class="navbar navbar-default navbar-static-top">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsemenu">
+            <span class="sr-only">Main menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+     </div>
+    </div>
+        <!-- END need assistance/contact button-->
+    <nav class="navbar navbar-default navbar-static-top">
+        <!-- previous location of navbar-toggle button-->
+        <div class="container site-header">
+          <div class="collapse navbar-collapse" id="collapsemenu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="/about-us"> 
+				<!-- <i class="toggle-pointer fa fa-university"></i>  -->
+				About Us<span class="toggle-pointer fa fa-chevron-down"></span></a>
+					 <ul class="dropdown-menu">
+								<li><a class="list-menu" href="/mission/">Vision and Mission</a></li>
+								<li><a class="list-menu" href="/use-the-library">Use the Library</a></li>
+								<li><a class="list-menu" href="/library-locations">Library Locations</a></li>
+								<!-- <li><a class="list-menu" href="/strategicdocuments">Strategic Documents</a></li> -->
+								<li><a class="list-menu" href="/contact">Contact Us</a></li>
+				    </ul>
+              </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		  <!-- <i class="toggle-pointer fa fa-tasks"></i>  -->
+		  Resources<span class="toggle-pointer fa fa-chevron-down"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="list-menu" href="https://discover.library.noaa.gov" target="_blank">Discover Search</a></li>
+                  <li><a class="list-menu" href="https://repository.library.noaa.gov/" target="_blank">Institutional Repository</a></li>           
+				  <li><a class="list-menu" href="/az.php"  target="_blank">Databases</a></li>
+                  <li><a class="list-menu" href="/journal-finder">E-Journals</a></li>
+                  <li><a class="list-menu" href="/ebooks">E-Books</a></li>		 
+                  <li><a class="list-menu" href="/subject-guides">Subject Guides</a></li>
+		  <li><a class="list-menu" href="https://docs.google.com/document/d/1OrFGkT6dVgSkLHhYhHaczmBG89KZTZP2BVei9_tM28Q/" target="_blank">EndNote for NOAA Staff</a></li>
+<li><a class="list-menu" href="/Section508">Section 508 Compliance</a></li>
+  			      <li><a class="list-menu" href="/collections">Collections</a></li>
+                </ul>
+          </li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/services">
+			  <!-- <i class="toggle-pointer fa fa-users"></i>  -->
+			  Services<span class="toggle-pointer fa fa-chevron-down"></span></a>
+                <ul class="dropdown-menu">
+				      <li><a class="list-menu" href="/ask-a-question">Ask a Question</a></li>
+                                                      
+<li><a class="list-menu" href="/research">Research Services</a>
+<li><a class="list-menu" href="/evidencesynthesis">Evidence Synthesis</a>
+<li><a class="list-menu" href="/research/citationmgmt">Citation Management</a>
+					 <li><a class="list-menu" href="/author-publishing">Author & Publishing</a></li>
+   <li><a class="list-menu" href="/openaccesspublishing">Open Access & APC</a></li>
+                                        <li><a class="list-menu" href="/bibliometrics">Bibliometrics</a></li> 		
+                                      <!-- <li><a class="list-menu" href="/Section508">Section 508 Compliance</a></li>-->
+<li><a class="list-menu" href="/interlibraryloan">Interlibrary Loan (ILL)</a></li>  
+                </ul>
+              </li>
+			  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+			  <!-- <i class="toggle-pointer fa fa-info-circle"></i>  -->
+			  Trainings & Events<span class="toggle-pointer fa fa-chevron-down"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="list-menu" href="/seminars">Seminar Service</a></li>
+                    <li><a class="list-menu" href="/Events-and-programs">Events & Programs</a></li>			  
+                    <li><a class="list-menu" href="/training">Resource Trainings</a></li>
+				</ul>
+              </li> 
+  <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Publishing Tools<span -->
+                <!-- class="toggle-pointer fa fa-chevron-down"></span></a> -->
+            <!-- <ul class="dropdown-menu"> -->
+              <!-- <li><a class="list-menu" href="/Publishing">Publishing and Scholarly Communications</a></li> -->
+              <!-- <li><a class="list-menu" href="/openaccesspublishing">Open Access Publishing</a></li> -->
+              <!-- <li><a class="list-menu" href="/Section508">Section 508 Compliance</a></li> -->
+              <!-- <li><a class="list-menu" href="/ORCID">ORCID for Researchers</a></li> -->
+              <!-- <li><a class="list-menu" href="/predatorypublishing">Predatory Publishing</a></li> -->
+            <!-- </ul> -->
+          <!-- </li> -->
+
+              <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Collections<span -->
+                    <!-- class="toggle-pointer fa fa-chevron-down"></span></a> -->
+                <!-- <ul class="dropdown-menu"> -->
+                  <!-- <li><a class="list-menu" href="/coast-geodetic-survey">Coast and Geodetic Survey Heritage</a></li> -->
+                  <!-- <li><a class="list-menu" href="/fisheries-heritage">Fisheries Heritage</a></li> -->
+                  <!-- <li><a class="list-menu" href="/noaa-collections">NOAA Collections</a></li> -->
+                  <!-- <li><a class="list-menu" href="/rare-book">Rare Books &amp; Archive</a></li> -->
+                 <!-- <li><a class="list-menu" href="https://www.noaa.gov/digital-collections" target="_blank">NOAA Digital Collections</a></li> -->
+                 <!-- <li><a class="list-menu" href="/weather-climate">Weather and Climate</a></li> -->
+                <!-- </ul> -->
+              <!-- </li> -->
+            </ul>
+			
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+				  <!-- <i class="toggle-pointer fa fa-link"></i>  -->
+				  Quick Links<span class="toggle-pointer fa fa-link"></span></a>
+				  <ul class="dropdown-menu">
+                                        <li><a class="list-menu" href="/weather-climate/daily-weather-maps">Daily Weather Maps</a></li>
+                                       <li role="separator" class="divider"></li>
+                                        <li><a class="list-menu" href="/openathens">OpenAthens Guide</a></li>
+					<li><a class="list-menu" href="/Section508">Section 508 Guide</a></li>
+					<li><a class="list-menu" target="_blank" href="https://docs.google.com/presentation/d/1kReCyyLQ7tYKZHRdzkK5dK-TjoDWH8-SD4l0HGU-7m4/edit">Library Orientation</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a class="list-menu" href="https://go.openathens.net/redirector/noaa.gov?url=https%3A%2F%2Fwww.science.org%2Fjournal%2Fscience" target="_blank">Science (AAAS)</a></li>
+                                        <li><a class="list-menu" href="https://go.openathens.net/redirector/noaa.gov?url=https%3A%2F%2Fwww.webofscience.com%2Fwos" target="_blank">Web of Science (Clarivate)</a></li>
+					<li><a class="list-menu" href="https://go.openathens.net/redirector/noaa.gov?url=https%3A%2F%2Fwww.sciencedirect.com%2F" target="_blank">ScienceDirect (Elsevier)</a></li>
+					
+				  </ul>
+				</li>
+			  </ul>
+          </div>
+        </div>
+      </nav>
+	  <!--nav bar close-->
+    </div>
+</div>
+
+<!-- END: Page Header -->
+<!-- BEGIN: Guide Info Header -->
+<div id="s-lg-guide-header" class="container s-lib-header s-lib-side-borders">
+   
+    <div class="pull-right">
+        <!-- <div id="s-lg-guide-header-search"> -->
+            <!-- 
+<div id="s-lg-guide-search-box">
+    <form role="search" id="s-lg-guide-search-form" action="https://library.noaa.gov/srch.php" method="GET">
+        <div class="input-group input-group-sm">
+            <input 
+                type="text" 
+                id="s-lg-guide-search-terms" 
+                name="q" 
+                class="form-control"
+                maxlength="260" 
+                placeholder="Enter Search Words">
+                
+            <label class="sr-only" for="s-lg-guide-search-terms">Enter Search Words</label>
+
+            
+            
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                    Search
+                </button>
+            </span>
+        </div>
+    </form>
+</div>
+        </div> -->
+        
+    </div>
+    <div id="s-lg-guide-header-info">
+          <!--<h1 id="s-lg-guide-name">Homepage: NOAA Library</h1>-->
+        <div id="s-lg-guide-desc-container">
+            <span id="s-lg-guide-description"></span>
+        </div>
+    </div>
+</div>
+<!-- END: Guide Info Header -->
+<div id="s-lg-tabs-container" class="container s-lib-side-borders pad-top-med">
+    <div id="s-lg-guide-tabs" class="tabs" role="navigation" aria-label="Guide Pages">
+        <ul class="nav nav-tabs split-button-nav">
+            
+        </ul>
+    </div>
+</div>
+<div id="s-lg-guide-tabs-title-bar" class="container s-lib-side-borders"></div>
+<!-- BEGIN: Guide Content -->
+<div id="s-lg-guide-main" class="container s-lib-main s-lib-side-borders" tabindex="-1">
+    
+	<div class="row s-lg-row" id="Row1"> 
+		<div id="s-lg-col-1" class="col-md-12">
+			 <div class="s-lg-col-boxes">
+				  <div id="s-lg-box-wrapper-39558708" class="s-lg-box-wrapper-39558708">
+
+
+    <div id="s-lg-box-33643006-container" class="s-lib-box-container">
+        <div id="s-lg-box-33643006" class="s-lib-box s-lib-box-std s-lib-floating-box">
+                        <div id="s-lg-box-collapse-33643006" >
+                <div class="s-lib-box-content s-lib-floating-box-content">
+                    <div id="s-lg-content-79023374" class="  clearfix">
+     <!-- <div class="site-header-top-banner ">
+      <div class ="alert alert-warning">
+       <p class="container" style=" color: black; text-align: center; font-size:16px"> NOAA Staff! Help shape the library's future: <a rel="noreferrer noopener" href="https://forms.gle/za3UG6obgFzqxGfx5" style="font-size:16px" target="_blank">Take the Library's needs assessment survey</a>!</strong></p>
+      </div></div>-->
+<br>
+<div id="discovericon" class="col-md-2 col-md-offset-1">
+ <image style="float:right;" src="https://d2jv02qf7xgjwx.cloudfront.net/customers/6258/images/discover-logo.png"><!--DISCOVER--></div> 
+<div id="librarydiscover" class="col-md-7">
+		<!-- add search widget code here-->
+		<form id="primo" name="searchForm" method="get" action="https://discover.library.noaa.gov/discovery/search" target="_blank" enctype="application/x-www-form-urlencoded; charset=utf-8" onsubmit="searchPrimo()">
+			<div class="input-group input-group-lg">
+				<input type="hidden" name="vid" value="01NOAA_INST:NOAA">
+				<input type="hidden" name="tab" value="Everything">
+				<!-- <input type="hidden" name="search_scope" value="MyInst_and_CI">-->
+				<input type="hidden" name="lang" value="en">
+				<input type="hidden" name="query" id="primoQuery"><input type="hidden" name="pcAvailability" value="true">
+				<input type="text" id="primoQueryTemp" aria-label="enter search terms" class="form-control" value="" autofocus placeholder="Search articles, journals, books, databases and more...">
+				<span class="input-group-btn">
+					<button aria-label="submit" class="btn btn-primary" style="border-radius:0" type="submit" value="SUBMIT" ><span aria-hidden="true">SEARCH</span>
+					</button>
+				</span>
+			</div>
+		</form>
+		<p class="search-info"><a href="https://discover.library.noaa.gov/discovery/search?vid=01NOAA_INST:NOAA&amp;mode=advanced" target="_blank" rel="noopener">Advanced Search</a><!--<a style="float:right" href="https://youtu.be/ZBs0CYYF5lU" target="_blank" rel="noopener">How To Use Library Discover (7 Min)</a>--></p>
+<br>
+</div>
+<div class="col-md-2"></div>
+
+    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+			 </div>
+		</div>
+   </div> <!--end row 1-->
+<div class="row s-lg-row" id="Row2"> 
+		<div id="s-lg-col-1" class="col-md-12">
+			 <div class="s-lg-col-boxes">
+				  <div id="s-lg-box-wrapper-39980845" class="s-lg-box-wrapper-39980845">
+
+
+    <div id="s-lg-box-33998390-container" class="s-lib-box-container">
+        <div id="s-lg-box-33998390" class="s-lib-box s-lib-box-std s-lib-floating-box">
+                        <div id="s-lg-box-collapse-33998390" >
+                <div class="s-lib-box-content s-lib-floating-box-content">
+                    <div id="s-lg-content-79907280" class="  clearfix">
+    <div id="infocard" class="card-group">
+   <div class="text-center col-md-2 col-sm-4">
+    <a target="_new" href="/az/databases"><div class="one-card">
+      <i class="fa fa-tasks fa-3x"></i>
+	  <div class="card-body">
+          <h5 class="card-title">Databases</h5>
+         <!-- <p>Explore and search library subscribed databases.</p> -->
+	  </div>
+   </div></a>
+   </div>
+     <div class="text-center col-md-2 col-sm-4">
+    <a href="/journal-finder"><div class="one-card">
+      <i class="fa fa-newspaper-o fa-3x"></i>
+	  <div class="card-body">
+          <h5 class="card-title">Journals</h5>
+         <!-- <p>Explore and search library subscribed databases.</p> -->
+	  </div>
+   </div></a>
+   </div>
+      <div class="text-center col-md-2 col-sm-4">
+     <a href="/author-publishing"><div class="one-card">
+      <i class="fa fa-users fa-3x"></i>
+	  <div class="card-body">
+          <h5 class="card-title">Author & Publishing</h5>
+       <!-- <p>Explore and search library subscribed databases.</p> -->
+	  </div>
+   </div></a>
+   </div>
+   <div class="text-center col-md-2 col-sm-4">
+    <a target="_new" href="https://repository.library.noaa.gov/"><div class="one-card">
+      <i class="fa fa-archive fa-3x"></i>
+	  <div class="card-body">
+          <h5 class="card-title">Institutional Repository</h5>
+        <!-- <p>Explore and search library subscribed databases.</p> -->
+	  </div>
+   </div></a>
+   </div>
+<div class="text-center col-md-2 col-sm-4">
+    <a href="/subject-guides"><div class="one-card">
+      <i class="fa fa-info-circle fa-3x"></i>
+	  <div class="card-body">
+          <h5 class="card-title">Subject Guides</h5>
+         <!-- <p>Explore and search library subscribed databases.</p> -->
+	  </div>
+   </div></a>
+   </div>
+   <div class="text-center col-md-2 col-sm-4">
+    <a href="/ask-a-question"><div class="one-card">
+      <i class="fa fa-question-circle fa-3x"></i>
+	  <div class="card-body">
+          <h5 class="card-title">Ask a Question</h5>
+         <!-- <p>Explore and search library subscribed databases.</p> -->
+	  </div>
+   </div></a>
+   </div>
+</div>
+
+    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div><div id="s-lg-box-wrapper-39950126" class="s-lg-box-wrapper-39950126">
+
+
+    <div id="s-lg-box-33972294-container" class="s-lib-box-container">
+        <div id="s-lg-box-33972294" class="s-lib-box s-lib-box-std s-lib-floating-box">
+                        <div id="s-lg-box-collapse-33972294" >
+                <div class="s-lib-box-content s-lib-floating-box-content">
+                    <div id="s-lg-content-79912224" class="  clearfix">
+    <div style="text-align:center; margin-top:10px"><h3 style="display:inline;">News &amp; Research Highlights</h3><a style="display:inline-block; float:right; margin-right: 10px" class="btn btn-default" href="/blogs/news-research-highlights" role="button">View All</a></div>
+
+
+    </div><div id="s-lg-content-79912316" class="s-lg-widget ">
+    <script>
+    var springStats = springStats || {};
+    springStats.saConfig = springStats.saConfig || {
+        site_id: 13753,
+        tracking_parameters: {"_st_site_id":13753},
+        tracking_server_host: "libguides-proc.springyaws.com"
+    };
+</script>
+<script  src="//lgapi-us.libapps.com/web/js/sa.min.js?3116"></script>
+
+
+<script>
+    springSpace.Common = springSpace.Common || {};
+    springSpace.Common.constant = {PROCESSING: {ACTION_DISPLAY_POLL: 159 }};
+    springSpace.Common.baseURL = "//lgapi-us.libapps.com'/";
+    springSpace.Common.apiLoad = true;
+</script>
+<script>springshare_widget_config_1739472768762 = { path: 'blogs', link_text: 'Blogs' };</script><div id="s-lg-widget-1739472768762"></div><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://lgapi-us.libapps.com/widgets.php?site_id=13753&widget_type=12&widget_embed_type=1&output_format=1&widget_title=Blog+Posts&widget_height=250&widget_width=100%25&widget_link_color=2954d1&window_target=2&display_teaser=1&display_post=0&display_images=0&num_results=3&enable_more_results=0&blog_id=0&blog_settings_id=0&blog_config_id=762&display_post_date=0&include_jquery=0&config_id=1739472768762";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","s-lg-widget-script-1739472768762");</script>
+    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+			 </div>
+		</div>
+   </div> <!--end row 2-->
+<div class="row s-lg-row" id="Row3"> 
+		<div id="s-lg-col-3" class="col-md-6 ">
+			 <div class="s-lg-col-boxes">
+				  <div id="s-lg-box-wrapper-40005888" class="s-lg-box-wrapper-40005888">
+
+
+    <div id="s-lg-box-34019260-container" class="s-lib-box-container">
+        <div id="s-lg-box-34019260" class="s-lib-box s-lib-box-std">
+                            <h2 class="s-lib-box-title">
+                    Upcoming Trainings
+                                    </h2>
+                        <div id="s-lg-box-collapse-34019260" >
+                <div class="s-lib-box-content">
+                    <div id="s-lg-content-79956103" class="  clearfix">
+    <iframe src="https://calendar.google.com/calendar/embed?height=350&wkst=1&ctz=America%2FNew_York&showPrint=0&mode=AGENDA&src=Y19lNTAwYmNlODc4MDY4NDIxMjYyZjM0NzhkNWIxZDM3ZmVhZTE0ODJkZWM3NTRiMjI2NzNlYzhhMWE1MmY0MjQ1QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&color=%233F51B5" style="border:solid 1px #777" width="800" height="350" frameborder="0" scrolling="no"></iframe>
+
+    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+			 </div>
+		</div>
+		<div id="s-lg-col-4" class="col-md-6">
+			 <div class="s-lg-col-boxes">
+				  <div id="s-lg-box-wrapper-39922796" class="s-lg-box-wrapper-39922796">
+
+
+    <div id="s-lg-box-18948730-container" class="s-lib-box-container">
+        <div id="s-lg-box-18948730" class="s-lib-box s-lib-box-std">
+                            <h2 class="s-lib-box-title">
+                    Upcoming Seminars
+                                    </h2>
+                        <div id="s-lg-box-collapse-18948730" >
+                <div class="s-lib-box-content">
+                    
+
+                                
+                
+        
+        
+    
+    <div id="s-lib-cpane-39922796" aria-label="This box contains rotating images">
+                                                                    
+            
+            
+            
+            <div style="width:100%;">
+                                                                               <a href=" https://vimeo.com/event/5647540" class="" target="_blank">                                    <img loading="lazy" src="https://d2jv02qf7xgjwx.cloudfront.net/customers/6258/images/2.4.2026_seminar_graphic.jpg" alt="The Skywarn Spotter Program: The vital role of citizen scientists in severe weather" class=""
+                        style="max-height: 75vh; margin: 0 auto; min-width: 0; width: auto;">
+                            </a>
+                            
+            </div>
+                                                                    
+            
+            
+            
+            <div style="width:100%;">
+                                                                               <a href="https://vimeo.com/event/5671899" class="" target="_blank">                                    <img loading="lazy" src="https://d2jv02qf7xgjwx.cloudfront.net/customers/6258/images/2.5.2026.jpg" alt="Seminar: Extending Close-Kin Mark-Recapture to Protogynous Fishes: A Simulation-Based Evaluation of Model Performance for Gulf Gag Grouper" class=""
+                        style="max-height: 75vh; margin: 0 auto; min-width: 0; width: auto;">
+                            </a>
+                            
+            </div>
+                                                                    
+            
+            
+            
+            <div style="width:100%;">
+                                                                               <a href="https://vimeo.com/event/5694352" class="" target="_blank">                                    <img loading="lazy" src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/168535/images/02252026_Omics_Jackson.jpg" alt="" class=""
+                        style="max-height: 75vh; margin: 0 auto; min-width: 0; width: auto;">
+                            </a>
+                            
+            </div>
+                                                                    
+            
+            
+            
+            <div style="width:100%;">
+                                                                               <a href="https://vimeo.com/event/5693874" class="" target="_blank">                                    <img loading="lazy" src="https://d2jv02qf7xgjwx.cloudfront.net/customers/6258/images/2.11.2026__1_.jpg" alt="Developing climate- and ecosystem-informed single-species stock assessments: case studies from the West Coast" class=""
+                        style="max-height: 75vh; margin: 0 auto; min-width: 0; width: auto;">
+                            </a>
+                            
+            </div>
+                                                                    
+            
+            
+            
+            <div style="width:100%;">
+                                                                               <a href="https://vimeo.com/event/5689440" class="" target="_blank">                                    <img loading="lazy" src="https://d2jv02qf7xgjwx.cloudfront.net/customers/6258/images/2.19.2026__1_.jpg" alt="Smart Sensors and Citizen Science in Maritime Weather Monitoring" class=""
+                        style="max-height: 75vh; margin: 0 auto; min-width: 0; width: auto;">
+                            </a>
+                            
+            </div>
+                                                                    
+            
+            
+            
+            <div style="width:100%;">
+                                                                               <a href="https://library.noaa.gov/training" class="" target="_blank">                                    <img loading="lazy" src="https://d2jv02qf7xgjwx.cloudfront.net/accounts/408540/images/DRT_image.png" alt="Digital Resource Training every Wednesday at noon eastern time. topics rotate weekly" class=""
+                        style="max-height: 75vh; margin: 0 auto; min-width: 0; width: auto;">
+                            </a>
+                            
+            </div>
+            </div>
+            <div class="text-center slick_play_pause">
+            <button id="toggle_s-lib-cpane-39922796" aria-label="Pause" type="button">
+                <i class="fa fa-solid fa-pause-circle-o"></i>
+            </button>
+        </div>
+    
+    <script>jQuery("#s-lib-cpane-39922796").parent().css("opacity", 0);</script>
+    <link rel="stylesheet" href="//lgapi-us.libapps.com/web/slick-1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="//lgapi-us.libapps.com/web/slick-1.8.1/slick/slick-theme.css">
+
+    <style>
+        .slick-next {
+            right: -25px;
+            z-index: 2;
+        }
+        .slick-prev {
+            left: -20px;
+            z-index: 2;
+        }
+        .slick-prev:before, .slick-next:before {
+            color: black;
+        }
+
+        #s-lib-cpane-39922796 .slick-slide a img,
+        #s-lib-cpane-39922796 .slick-slide img {
+            min-width: 100%;
+            width: 100%;
+                    }
+
+        .slick-slider {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .s-lib-cpane-slide-left,
+        .s-lib-cpane-slide-right {
+            width: 75%;
+            display: inline-block;
+            min-width: 100%;
+        }
+
+        #s-lib-cpane-39922796 .s-lib-cpane-caption {
+                                    padding: 10px;
+            width: 100%;
+            display: block;
+            vertical-align: top;
+        }
+
+        #s-lib-cpane-39922796 h3 a {
+                    }
+
+        .s-lib-box-content[max-width~="269px"] .dl-horizontal dt {
+            float: none;
+            width: auto;
+            overflow: auto;
+            clear: none;
+            text-align: left;
+            text-overflow: clip;
+            white-space: normal;
+        }
+
+        .s-lib-box-content[max-width~="269px"] .dl-horizontal dd {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .dl-horizontal dd {
+            overflow: hidden;
+            margin-left: 45%;
+            width: 55%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+
+        .dl-horizontal dt {
+            width: 30%;
+        }
+
+        .slick_play_pause button {
+            color: #2F5EA2;
+            font-size: 24px;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+
+        .slick-dots button:focus {
+            outline: -webkit-focus-ring-color auto 1px !important;
+        }
+
+        .slick_play_pause button:focus {
+            outline: -webkit-focus-ring-color auto 1px;
+        }
+    </style>
+
+    <script src="//lgapi-us.libapps.com/web/slick-1.8.1/slick/slick.min.js"></script>
+    <script src="//lgapi-us.libapps.com/web/css-element-queries-1.2.3/src/ResizeSensor.js"></script>
+    <script src="//lgapi-us.libapps.com/web/css-element-queries-1.2.3/src/ElementQueries.js"></script>
+
+    <script>
+        jQuery(function() {
+            jQuery("#s-lib-cpane-39922796").on("init", function() {
+                jQuery("#s-lib-cpane-39922796").parent().css("opacity", 1);
+            });
+
+            var initCarousel = function() {
+                jQuery("#s-lib-cpane-39922796").slick({"pane_id_list":["7981086","7990316","8011079","8010169","8010173","6029160"],"max_height":"75%","position":"none","autoplay":true,"autoplaySpeed":12000,"dots":false,"responsive":[{"breakpoint":600,"settings":{"slidesToShow":1,"slidesPerRow":1,"slidesToScroll":1,"dots":false}}]});
+            };
+
+            if (jQuery("#s-lg-box-18948730").parents().eq(1).attr("id")?.includes("widget")) {
+                setTimeout(initCarousel, 500);
+            } else {
+                initCarousel();
+            }
+
+            jQuery("#toggle_s-lib-cpane-39922796").on("click", function() {
+                var $btn = jQuery(this);
+                var isPaused = $btn.attr("aria-label") === "Pause";
+
+                jQuery("#s-lib-cpane-39922796").slick(isPaused ? "slickPause" : "slickPlay");
+                $btn.attr("aria-label", isPaused ? "Play" : "Pause");
+                $btn.html('<i class="fa fa-solid ' + (isPaused ? 'fa-play-circle-o' : 'fa-pause-circle-o') + '"></i>');
+            });
+
+            jQuery("div.slick-track").attr("aria-label", "slideshow");
+        });
+    </script>
+
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+			 </div>
+		</div>			
+   </div> <!--end row 3--->
+<div class="row s-lg-row" id="Row4"> 
+		<div id="s-lg-col-10" class="col-md-12 ">
+			 <div class="s-lg-col-boxes">
+				  <div id="s-lg-box-wrapper-39803002" class="s-lg-box-wrapper-39803002">
+
+
+    <div id="s-lg-box-33849749-container" class="s-lib-box-container">
+        <div id="s-lg-box-33849749" class="s-lib-box s-lib-box-std s-lib-floating-box">
+                        <div id="s-lg-box-collapse-33849749" >
+                <div class="s-lib-box-content s-lib-floating-box-content">
+                    <div id="s-lg-content-79705232" class="  clearfix">
+    <search-carousel titleText="New & Popular" titleLink="https://discover.library.noaa.gov/discovery/search?query=user_tags,exact,new-and-popular,AND&vid=01NOAA_INST:NOAA&mode=advanced" defaultThumbnailUrl="https://github.com/ExLibrisGroup/Discovery-Showcase-demo/blob/9a0634a3037a0b6a0fa08f990d4c9b9b78063fac/default.png" searchUrl="https://discover.library.noaa.gov/primaws/rest/external/pnxs?acTriggered=false&blendFacetsSeparately=false&citationTrailFilterByAvailability=true&disableCache=false&getMore=0&inst=01NOAA_INST&isCDSearch=false&lang=en&limit=10&mode=advanced&newspapersActive=false&newspapersSearch=false&offset=0&otbRanking=false&pcAvailability=false&q=user_tags,exact,new-and-popular,AND&qExclude=&qInclude=&rapido=false&refEntryActive=true&rtaLinks=true&scope=MyInst_and_CI&searchInFulltextUserSelection=true&skipDelivery=Y&sort=rank&tab=Everything&vid=01NOAA_INST:NOAA" style="--width-param:900px">
+</search-carousel>
+
+    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+			 </div>
+		</div>
+   </div> <!--end row 4--->
+    
+</div>
+<!-- END: Guide Content -->
+<!-- BEGIN: Page Footer -->
+<!-- <div id="s-lib-footer-public" -->
+     <!-- class="s-lib-footer footer container s-lib-side-borders"> -->
+    <!-- <div id="s-lg-guide-header-meta" class="pad-top-sm pad-left-med clearfix"> -->
+        <!-- <ul id="s-lg-guide-header-attributes" class=""> -->
+            <!-- <li id="s-lg-guide-header-updated" class="s-lg-h-separator"> -->
+                <!-- <span class="s-lg-guide-label">Last Updated:</span> <span class="s-lg-text-greyout">Feb 2, 2026 5:14 PM</span>            </li> -->
+            <!-- <li id="s-lg-guide-header-url" class="s-lg-h-separator"> -->
+                <!-- <span class="s-lg-guide-label">URL:</span> <span class="s-lg-text-greyout">https://library.noaa.gov/home</span> -->
+            <!-- </li> -->
+            <!-- <li id="s-lg-guide-print-url"> -->
+                <!-- <a href="javascript: window.print();"><i class="fa fa-print" aria-hidden="true" title="Print Page"></i> Print Page</a> -->
+            <!-- </li> -->
+        <!-- </ul> -->
+        <!-- <div id="s-lib-footer-login-link" class="pull-right pad-right-med"> -->
+            <!-- <a href="https://noaa.libapps.com/libapps/login.php?site_id=13753&target64=L2xpYmd1aWRlcy9hZG1pbl9jLnBocD9nPTE0MzIxODAmcD0xMDYzMDk3MQ==">Login to LibApps</a>        </div> -->
+    <!-- </div> -->
+    <!-- <div class="pad-bottom-sm clearfix"> -->
+        <!-- <div id="s-lib-footer-support-link" class="pull-right pad-right-med"> -->
+            <!-- <a href="mailto:ncl.webmaster@noaa.gov">Report a problem.</a>        </div> -->
+        <!-- <div id="s-lg-guide-header-subjects" class="pad-top-sm pad-left-med pad-right-med pull-left"> -->
+            <!--  -->
+        <!-- </div> -->
+        <!-- <div id="s-lg-guide-header-tags" class="pad-top-sm pad-left-med"> -->
+            <!--  -->
+        <!-- </div> -->
+    <!-- </div> -->
+<!-- </div> -->
+<!-- END: Page Footer -->
+<!-- scroll_top.twig -->
+<div id="s-lib-scroll-top">
+    <a href="javascript:void(0);" onclick="jQuery('body').focus();" title="Back to Top"
+       aria-label="Back to Top">
+        <span class="fa-stack fa-lg" aria-hidden="true">
+            <i class="fa fa-square-o fa-stack-2x"></i>
+            <i class="fa fa-angle-double-up fa-stack-1x" style="position:relative; bottom:2px;"></i>
+        </span>
+    </a>
+</div>
+<!-- !scroll_top.twig -->
+<div id="s-lib-alert" title=""><div id="s-lib-alert-content"></div></div>
+                <!-- BEGIN: Custom Footer -->
+                
+<div class= "container-fluid">
+	<div class="row footer-div">
+	  <div class="footer-spacing"></div>
+
+       <div class="container">
+	<div class="col-12 footer-text"> <!-- end of col-12-->
+
+
+		<div class="col-md-3">
+						<h4 class="contact-us">LIBRARY HEADQUARTERS</h4>
+			<p>
+				
+				<a href="mailto:library.reference@noaa.gov"><strong><span class="fa fa-file"></span>
+				   Email Us:</strong> library.reference@noaa.gov</a><br />
+				<a href="https://docs.google.com/a/noaa.gov/forms/d/e/1FAIpQLSdsbo0FfZig0rVaHC816h9vWdVEbaLKHXdeqJ7Y-Ck3yBOsrA/viewform"><span class="fa fa-envelope"></span>
+				   Suggestion Form</a></br/>
+			</p>
+
+			<p></p>
+			<h4 class="contact-us">STAY CONNECTED</h4>
+				<div id="footer-fa-icons">
+<a target="_blank" href="https://x.com/NOAALibrary/"><svg xmlns="http://www.w3.org/2000/svg" style="width:1em;height:1em;vertical-align:-0.125em;" aria-hidden="true" focusable="false" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a>
+<a target="_blank" class="fa fa-youtube-play" href="https://www.youtube.com/channel/UCxK2oekvetMp6zPSTWN63_g"><span class="sr-only">YouTube</span></a>
+				</div> </div>
+		<div class="col-md-3">
+			<h4 class="contact-us">ABOUT US</h4>
+					<a href="/mission/">Vision and Mission</a><br>
+                                        <a href="/use-the-library">Use the Library</a><br>
+					<a href="/library-locations">Library Locations</a><br>
+					<a href="/contact">Contact Us</a>
+	</div>
+	<div class="col-md-3">
+		<div class="row footer-div">
+			<div class="col-md-12">
+				<h4 class="contact-us">NOAA LINKS</h4>
+					<a href="https://www.noaa.gov/privacy" target="_blank">NOAA Privacy Statement</a><br>
+					<a href="https://www.noaa.gov/accessibility" target="_blank">Web Accessibility Statement</a><br>
+					<a href="https://www.noaa.gov/disclaimer" target="_blank">Disclaimer for External Links</a><br>
+					<a href="https://www.noaa.gov/" target="_blank">NOAA</a> | <a href="https://research.noaa.gov/" target="_blank">OAR</a> | <a href="https://oss.research.noaa.gov/" target="_blank">OSS</a>
+	</div>
+</div>
+</div>
+
+<div class="col-md-3">
+	<div class="row footer-div">
+		<div class="col-md-12">
+			<h4 class="contact-us">CONTACT US</h4>
+			<a href="https://www.usa.gov/">USA.gov</a><br>
+			<a href="https://www.commerce.gov/">Dept. of Commerce</a><br>
+			<a href="https://www.noaa.gov/foia-freedom-of-information-act">FOIA</a><br>
+		<a href="https://research.noaa.gov/">NOAA Research</a><br>
+		</div>
+	</div>
+	</div>
+	</div> <!-- end of col-12-->
+</div>
+</div>
+</div>
+
+		<!-- END: Custom Footer -->
+</body></html>

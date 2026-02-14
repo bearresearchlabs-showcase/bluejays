@@ -143,12 +143,6 @@ def cleanup_root_directory(root_dir=None):
             changes_made.append(f"Moved {filename} to results/")
             logger.info(f"  Moved: {filename} -> results/")
     
-    # Keep validation_summary.json at root (if it's the main summary)
-    validation_summary = root_dir / "validation_summary.json"
-    if validation_summary.exists():
-        # Check if it's the most recent/important one
-        logger.info(f"  Kept: validation_summary.json (main summary file)")
-    
     # 5. Check top-level data/ directory
     root_data_dir = root_dir / "data"
     if root_data_dir.exists():
@@ -174,7 +168,56 @@ def cleanup_root_directory(root_dir=None):
             else:
                 logger.info(f"  Kept: root data/ directory (db-6/data/ not found)")
     
-    # 6. Keep deliverable_structure_manifest.json at root (it's actively used)
+    # 6. Move queries templates to template/ (single source of truth)
+    template_dir = root_dir / "template"
+    for src_name, dest_name in [
+        ("queries_template.json", "queries.json"),
+        ("queries_template.md", "queries.md"),
+    ]:
+        src = root_dir / src_name
+        if src.exists():
+            template_dir.mkdir(parents=True, exist_ok=True)
+            dest = template_dir / dest_name
+            if not dest.exists() or src.stat().st_mtime > dest.stat().st_mtime:
+                shutil.copy2(str(src), str(dest))
+            src.unlink()
+            changes_made.append(f"Moved {src_name} to template/{dest_name}")
+            logger.info(f"  Moved: {src_name} -> template/{dest_name}")
+
+    # 7. Move program_economics.py to scripts/ (if not already there)
+    prog_econ = root_dir / "program_economics.py"
+    dest_prog = root_dir / "scripts" / "program_economics.py"
+    if prog_econ.exists() and not dest_prog.exists():
+        shutil.move(str(prog_econ), str(dest_prog))
+        changes_made.append("Moved program_economics.py to scripts/")
+        logger.info("  Moved: program_economics.py -> scripts/")
+
+    # 8. Move stray reports: AUDIT_* to archive/reports/; compliance, gdpval, validation_summary to results/
+    reports_archive = root_dir / "archive" / "reports"
+    for name in ("AUDIT_INDEX.txt", "AUDIT_REPORT_2026-02-14.json"):
+        src = root_dir / name
+        if src.exists():
+            reports_archive.mkdir(parents=True, exist_ok=True)
+            dest = reports_archive / name
+            if dest.exists():
+                timestamp = datetime.now().strftime('%Y%m%d-%H%M%S')
+                dest = reports_archive / f"{src.stem}_{timestamp}{src.suffix}"
+            shutil.move(str(src), str(dest))
+            changes_made.append(f"Moved {name} to archive/reports/")
+            logger.info(f"  Moved: {name} -> archive/reports/")
+    for name in ("compliance_report.json", "gdpval_validation_report.json", "gdpval_langgraph_report.json", "validation_summary.json"):
+        src = root_dir / name
+        if src.exists():
+            dest = results_dir / name
+            if dest.exists():
+                reports_archive.mkdir(parents=True, exist_ok=True)
+                timestamp = datetime.now().strftime('%Y%m%d-%H%M%S')
+                shutil.copy2(str(src), str(reports_archive / f"{src.stem}_{timestamp}{src.suffix}"))
+            shutil.move(str(src), str(dest))
+            changes_made.append(f"Moved {name} to results/")
+            logger.info(f"  Moved: {name} -> results/")
+
+    # 9. Keep deliverable_structure_manifest.json at root (it's actively used)
     manifest = root_dir / "deliverable_structure_manifest.json"
     if manifest.exists():
         logger.info(f"  Kept: deliverable_structure_manifest.json (active manifest)")

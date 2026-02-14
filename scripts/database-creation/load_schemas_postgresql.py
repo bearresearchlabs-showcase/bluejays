@@ -64,7 +64,7 @@ def extract_schema_from_queries_md(queries_file: Path) -> Dict[str, List[Dict]]:
         columns = []
         column_lines = re.findall(r'\| `([^`]+)` \| `([^`]+)` \|', table_section)
         for col_name, col_type in column_lines:
-            # Convert Databricks types to PostgreSQL
+            # Convert source types to PostgreSQL
             pg_type = convert_type_to_postgres(col_type)
             columns.append({
                 'name': col_name,
@@ -76,8 +76,8 @@ def extract_schema_from_queries_md(queries_file: Path) -> Dict[str, List[Dict]]:
 
     return tables
 
-def convert_type_to_postgres(databricks_type: str) -> str:
-    """Convert Databricks type to PostgreSQL type"""
+def convert_type_to_postgres(source_type: str) -> str:
+    """Convert source type to PostgreSQL type"""
     type_mapping = {
         'UUID': 'UUID',
         'VARCHAR(255)': 'VARCHAR(255)',

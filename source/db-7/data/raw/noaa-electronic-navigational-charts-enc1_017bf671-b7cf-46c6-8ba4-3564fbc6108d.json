@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOAA Custom Chart</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico"> <!-- icon displayed to the left of the page title in the browser tab -->
+    <link rel="stylesheet" href="//js.arcgis.com/3.31/dojo/resources/dojo.css">
+    <link rel="stylesheet" href="//js.arcgis.com/3.31/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" type="text/css" href="jimu.js/css/jimu-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/DisplaySettings.css" />
+    <link rel="stylesheet" type="text/css" href="css/Coordinate.css" />
+    <link rel="stylesheet" type="text/css" href="css/MaritimeIdentify.css" />
+    <link rel="stylesheet" href="https://js.arcgis.com/3.31/esri/css/esri.css" />
+    <link rel="stylesheet" type="text/css" href="widgets/AddData/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="widgets/LayerList/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/PersonalChartCatalog.css" />
+    <link rel="stylesheet" type="text/css" href="css/CompassRose.css" />
+    <link rel="stylesheet" type="text/css" href="css/CCB.css" />
+    <script>
+        var dojoConfig = {
+            async : true,
+            //baseUrl: "/js/",
+            tlmSiblingOfDojo : false,
+            isDebug : 0,
+            packages : [{
+                name : "js",
+                location : "/../js"
+                }, {
+                name: "jimu",
+                location: "/../jimu.js"
+
+                }, {
+                name: "widgets",
+                location: "/../widgets"
+
+                }, {
+                name: "libs",
+                location: "/../libs"
+
+            }]
+        };
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://js.arcgis.com/3.31/"></script>
+    <script type="text/javascript">
+            require(["dojo/parser", "js/ccbAppController", "dijit/layout/ContentPane", "libs/caja-html-sanitizer-minified", "dojo/domReady!"], function (parser, appController) {
+                // Explicitly parse the page first
+                parser.parse();
+                // now configure the dijits and tasks
+                appController.startup();
+                appController.initializeMap();
+                esri.config.defaults.io.proxyUrl = "proxy/proxy.ashx";
+            });
+    </script>
+    <!-- Analytics -->
+    <script src="//dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&amp;subagency=NOAA" id="_fed_an_ua_tag"></script>
+</head>
+<body class="claro">
+    <div class="container">
+        <div id="header">
+            <!--NOAA Logo -->
+            <div id="headerLogo">
+                <a href="https://nauticalcharts.noaa.gov/" target="_blank">
+                    <img id="headerLogoImage"/>
+                </a>
+            </div>
+
+            <!-- OCS Title  -->
+            <div id="OCSTitle">
+                <a href="https://nauticalcharts.noaa.gov" target="_blank">
+                    <div id="OCSMainTitle"></div>
+                    <div id="OCSSubtitle"></div>
+                    <div id="DOCSubtitle"></div>
+                </a>
+            </div>
+
+            <!--NCC Title -->
+            <div id="headerTitle">
+                <div id="headerMainTitle"></div>
+                <div id="headerSubtitle"></div>
+                <div id="headerChartCatalogTitle"></div>
+            </div>
+
+            <div id="right-header">
+                <!-- Comment out the next 3 lines to remove the help link from the ccb application.  The referenced help URL or PDF setting is in the ccbAppController.js  Search for "helpLink" -->
+                <!--    <div>
+                    <a href="#" id="helpLink" class="helpLinkClass" title="Help">Help</a>
+                    </div> -->
+               <button id="signin-button" style="display: none">Sign In</button>
+                <div id="user-name"></div>
+            </div>
+        </div>
+        <div id="headerShadow"></div>
+        <div id="mapDiv">
+            <div id="map" class="wide"></div>
+            <div id="search"></div>
+            <div id ="HomeButton"></div>
+            <div id ="MyLocation"></div>
+            <div id ="ScaleBar"></div>
+            <div id ="Identify"></div>
+            <div id="Coordinate"></div>
+        </div>
+        <div id="left-tabs">
+            <div id="helpDocumentation" class="unselected helpDocumentation-tab" title="Help & Feedback"></div>
+            <div id="displaySettings" class="unselected displaySettings-tab" tabindex="50" title="Layer Settings"></div>
+<!--            <div id="addData" class="unselected addData-tab" tabindex="60" title="Add data" style="display: none"></div>-->
+<!--            <div id="layerList" class="unselected layerList-tab" tabindex="100" title="Layer list" style="display: none"></div>-->
+            <div id="defineProduct" class="unselected defineProduct-tab" tabindex="150" title="Chart Settings"></div>
+            <div id="compassRose" class="unselected compassRose-tab" tabindex="250" title="Compass rose"></div>
+            <div id="exportProduct" class="unselected exportProduct-tab" tabindex="500" title="Export Functions">
+               <!-- <div id="inQueue">
+                    <img src="images/circle.png" class="inQueueIcon" />
+                    <div id="inQueueCount" class="inQueueLabel"></div>
+                </div>-->
+            </div>
+            <div id="panelOpen" class="unselected panelOpen-tab"></div> <!-- Toggle arrow for opening left sidepanel -->
+        </div>
+        <!--Collapsible left sidepanel  -->
+        <div id="left-panels">
+            <!--Horizontal tab icons bar on top of left sidepanel window -->
+            <div id ="tabList" class="tabList">
+                <div id="helpDocumentationPanel" class="unselected helpDocumentation-tab" title="Help & Feedback"></div>
+                <div id="displaySettingsPanel" class="unselected displaySettings-tab"  title="Layer Settings" ></div>
+                <div id="defineProductPanel" class="unselected defineProduct-tab"  title="Chart Settings"></div>
+                <div id="compassRosePanel" class="unselected compassRose-tab" title="Compass rose"></div>
+                <div id="exportProductPanel" class="unselected exportProduct-tab"  title="Export Functions" >
+                    <div id="inQueue">
+                        <img src="images/circle.png" class="inQueueIcon" />
+                        <div id="inQueueCount" class="inQueueLabel"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--For styling purpose -->
+            <div id="tabDivision" class="tabDivision"></div>
+
+            <!--Sidepanel's title -->
+            <div id="title" class="title">
+                <div id="title-label" class="title-label">Home</div>
+                <div class="title-angle"></div>
+            </div>
+
+            <!--Sidepanel's content -->
+            <div id="utilityPanel" class="closed-state">
+                <!--Header on top of left sidepanel for small browser size-->
+                <div id="smallViewportHeader">
+                    <!--NOAA Logo -->
+                    <div id="smallViewportHeader-Logo">
+                        <a href="https://nauticalcharts.noaa.gov/" target="_blank">
+                            <img id="smallViewportHeader-LogoImage"/>
+                        </a>
+                    </div>
+                    <div id="smallViewportHeader-Title">
+                        <div id="smallViewportHeader-MainTitle"></div>
+                        <div id="smallViewportHeader-Subtitle"></div>
+                        <div id="smallViewportHeader-ChartCatalogSubtitle"></div>
+                    </div>
+                </div>
+
+                <div id="helpDocumentation-content" class="panel"></div>
+                <div id="displaySettings-content" class="panel"></div>
+                <!-- <div id="addData-content" class="panel"></div>-->
+                <!-- <div id="layerList-content" class="panel"></div>-->
+                <div id="defineProduct-content" class="panel"></div>
+                <div id="exportProduct-content" class="panel"></div>
+                <div id="compassRose-content" class="panel"></div>
+            </div>
+            <!--Close left sidepanel window -->
+            <div id="panelClose" class="panelClose">
+                <div id="close_button" class="close-button"></div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div id="footerTitle">
+                <div id="footerMainTitle">
+                    <a href="https://www.nauticalcharts.noaa.gov/index.html" target="_blank">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="https://nauticalcharts.noaa.gov/publications/docs/us-chart-1/ChartNo1.pdf" target="_blank">Legend</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="https://www.nauticalcharts.noaa.gov/about/contact.html" target="_blank">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="https://nauticalcharts.noaa.gov/about/privacy-policy.html" target="_blank">Privacy Policy</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="http://www.noaa.gov/disclaimer" target="_blank">Disclaimer</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="http://www.cio.noaa.gov/services_programs/info_quality.html" target="_blank">Information Quality</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="http://www.noaa.gov/foia-freedom-of-information-act" target="_blank">Freedom of Information Act</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="https://www.usa.gov/" target="_blank">USA.gov</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="https://www.ready.gov/" target="_blank">Ready.gov</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="http://www.eeo.noaa.gov/noaa/" target="_blank">EEO</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="https://nauticalcharts.noaa.gov/survey.html" target="_blank">Take our Survey</a>
+                </div>
+                <div id="footerSubtitle">
+                    Website owned by:
+                    <a href="https://www.nauticalcharts.noaa.gov/index.html" target="_blank">Office of Coast Survey</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="env.js"></script> <!--This script declares  global variable -->
+</body>
+</html>

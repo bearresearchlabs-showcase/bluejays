@@ -1,0 +1,17 @@
+{
+  "database": "db-7",
+  "test_date": "20260214-0004",
+  "postgresql": {
+    "available": false,
+    "queries": []
+  },
+  "summary": {
+    "total_queries": 30,
+    "postgresql": {
+      "tested": 0,
+      "successful": 0,
+      "failed": 0,
+      "success_rate": 0
+    }
+  }
+}

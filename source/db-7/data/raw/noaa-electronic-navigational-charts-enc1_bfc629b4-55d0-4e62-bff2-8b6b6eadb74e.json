@@ -1,0 +1,182 @@
+<html lang="en">
+<head>
+<title>MaritimeChartService: MapServer</title>
+<link href="/arcgis/rest/static/main.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<table width="100%" class="userTable">
+<tr>
+<td class="titlecell">
+ArcGIS REST Services Directory
+</td>
+<td align="right">
+<a href="https://gis.charttools.noaa.gov/arcgis/rest/login">Login</a>
+| <a href="https://gis.charttools.noaa.gov/arcgis/tokens/">Get Token</a>
+</td>
+</tr>
+</table>
+<table width="100%" class="navTable">
+<tr valign="top">
+<td class="breadcrumbs">
+<a href="/arcgis/rest/services">Home</a>
+&gt; <a href="/arcgis/rest/services">services</a>
+&gt; <a href="/arcgis/rest/services/MCS">MCS</a>
+&gt; <a href="/arcgis/rest/services/MCS/ENCOnline/MapServer">ENCOnline (MapServer)</a>
+&gt; <a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService">MaritimeChartService</a>
+&gt; <a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer">MapServer</a>
+</td>
+<td align="right">
+<a href="https://gis.charttools.noaa.gov/arcgis/sdk/rest/02ss/02ss00000057000000.htm" target="_blank">Help</a> | <a href="https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer?f=help" target="_blank">API Reference</a>
+</td>
+</tr>
+</table><table>
+<tr>
+<td class="apiref">
+<a href="?f=pjson" target="_blank">JSON</a>
+</td>
+</tr>
+</table>
+<h2>MaritimeChartService: MapServer</h2>
+<div class="rbody">
+<b>currentVersion</b>: 10.9<br/><br/>
+<b>serviceDescription</b>: ArcGIS for Maritime Server's Maritime Chart Service capability is a Server Object Extension that provides both OGC WMS and Esri REST services to quickly view and query your S-57 or S-63 encrypted datasets.<br/><br/>
+<b>mapName</b>: Maritime Chart Service<br/><br/>
+<b>description</b>: <br/><br/>
+<b>copyrightText</b>: <br/><br/>
+<b>layers</b>: (13)<ul>
+<b>id</b>: 0<br/>
+<b>name</b>: Information about the chart display<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: true<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 1<br/>
+<b>name</b>: Natural and man-made features, port features<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: true<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 2<br/>
+<b>name</b>: Depths, currents, etc<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: true<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 3<br/>
+<b>name</b>: Seabed, obstructions, pipelines<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: true<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 4<br/>
+<b>name</b>: Traffic routes<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: true<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 5<br/>
+<b>name</b>: Special areas<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: true<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 6<br/>
+<b>name</b>: Buoys, beacons, lights, fog signals, radar<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: true<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 7<br/>
+<b>name</b>: Services and small craft facilities<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: true<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 8<br/>
+<b>name</b>: Data quality<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: false<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 9<br/>
+<b>name</b>: Low accuracy<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: false<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 10<br/>
+<b>name</b>: Additional chart information<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: false<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 11<br/>
+<b>name</b>: Shallow water pattern<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: false<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/>
+<b>id</b>: 12<br/>
+<b>name</b>: Overscale warning<br/>
+<b>type</b>: Feature Layer<br/>
+<b>defaultVisibility</b>: false<br/>
+<b>parentLayerId</b>: -1<br/>
+<b>subLayerIds</b>: N/A<br/>
+<b>minScale</b>: 0<br/>
+<b>maxScale</b>: 0<br/><br/></ul>
+<b>tables</b>: <i>None</i><br/><br/>
+<b>spatialReference</b>: 102100<br/><br/>
+<b>singleFusedMapCache</b>: false<br/><br/>
+<b>initialExtent</b>: <ul><i>Extent</i>:<br/>XMin: -2.0037508342789244E7<br/>YMin: -1.4549645634720478E7<br/>XMax: 2.0037508342789244E7<br/>YMax: 1.6655541933026034E7<br/>Spatial Reference: 102100<br/></ul>
+<b>fullExtent</b>: <ul><i>Extent</i>:<br/>XMin: -1.992618885199597E7<br/>YMin: -3.0240971958386254E7<br/>XMax: 1.992618885199597E7<br/>YMax: 3.0240971958386205E7<br/>Spatial Reference: 102100<br/></ul>
+<b>units</b>: esriMeters<br/><br/>
+<b>supportedImageFormatTypes</b>: PNG, PDF<br/><br/>
+<b>capabilities</b>: Map,Query<br/><br/>
+<b>documentInfo</b>: <ul>
+<b>title</b>: Maritime Chart Service<br/>
+<b>author</b>: ArcGIS for Maritime Server<br/>
+<b>comments</b>: Not to be used for navigation.<br/>
+<b>subject</b>: S-57 Web Services<br/>
+<b>category</b>: S-57<br/>
+<b>keywords</b>: S-57<br/></ul><br/>
+<br/><br/>
+<b>Supported Operations: </b>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/export">export</a>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/identify">identify</a>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/find">find</a>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/query">query</a>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/identifyDatasets">identifyDatasets</a>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/queryDatasets">queryDatasets</a>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/entitlement">entitlement</a>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/mcsServiceStatus">mcsServiceStatus</a>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/layers">layers</a>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/notes">notes</a>
+&nbsp;&nbsp;<a href="/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer/parameters">parameters</a>
+<br/><br/></div>
+<br/><br/>
+</body>
+</html>

@@ -1,0 +1,331 @@
+{
+  "source_metadata": {
+    "artificial_analysis": {
+      "source_name": "Artificial Analysis",
+      "source_id": "ARTIFICIAL_ANALYSIS",
+      "source_type": "api",
+      "source_category": "benchmark",
+      "authority": "Independent AI benchmarking organization",
+      "base_url": "https://artificialanalysis.ai",
+      "api_endpoint": "https://artificialanalysis.ai/models",
+      "authentication": {
+        "type": "none",
+        "api_key_required": false,
+        "oauth_required": false
+      },
+      "rate_limits": {
+        "per_hour": null,
+        "per_day": null,
+        "notes": "No official rate limits, but respectful scraping recommended"
+      },
+      "data_collection": {
+        "method": "web_scraping",
+        "frequency": "daily",
+        "last_collection": null,
+        "next_collection": null,
+        "collection_notes": "Website contains comprehensive model comparison data. May require web scraping or API access if available."
+      },
+      "data_schema": {
+        "models": {
+          "model_name": "string",
+          "creator_company": "string",
+          "license_type": "string",
+          "context_window": "integer",
+          "intelligence_index": "float",
+          "output_speed": "float",
+          "price_per_million_tokens": "float",
+          "latency": "float"
+        },
+        "benchmarks": {
+          "benchmark_name": "string",
+          "score": "float",
+          "percentile_rank": "float",
+          "evaluation_date": "date"
+        }
+      },
+      "ngda_theme": null,
+      "catalog_type": null,
+      "data_formats": ["HTML", "JSON"],
+      "coordinate_system": null,
+      "extraction_history": []
+    },
+    "nist_ai_rmf": {
+      "source_name": "NIST AI RMF",
+      "source_id": "NIST_AI_RMF",
+      "source_type": "government",
+      "source_category": "benchmark",
+      "authority": "National Institute of Standards and Technology",
+      "base_url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "api_endpoint": null,
+      "authentication": {
+        "type": "none",
+        "api_key_required": false,
+        "oauth_required": false
+      },
+      "rate_limits": {
+        "per_hour": null,
+        "per_day": null,
+        "notes": "Government website, no rate limits"
+      },
+      "data_collection": {
+        "method": "pdf_extraction",
+        "frequency": "monthly",
+        "last_collection": null,
+        "next_collection": null,
+        "collection_notes": "Government framework documents and benchmark results. May require manual extraction or PDF parsing."
+      },
+      "data_schema": {
+        "benchmarks": {
+          "benchmark_name": "string",
+          "safety_score": "float",
+          "robustness_score": "float",
+          "bias_score": "float",
+          "compliance_level": "string"
+        }
+      },
+      "ngda_theme": null,
+      "catalog_type": null,
+      "data_formats": ["PDF", "HTML"],
+      "coordinate_system": null,
+      "extraction_history": []
+    },
+    "nsf_ai_research": {
+      "source_name": "NSF AI Research",
+      "source_id": "NSF_AI_RESEARCH",
+      "source_type": "government",
+      "source_category": "research",
+      "authority": "National Science Foundation",
+      "base_url": "https://www.nsf.gov",
+      "api_endpoint": "https://api.nsf.gov/services/v1/",
+      "authentication": {
+        "type": "api_key",
+        "api_key_required": true,
+        "oauth_required": false,
+        "registration_url": "https://www.nsf.gov/developers/"
+      },
+      "rate_limits": {
+        "per_hour": null,
+        "per_day": null,
+        "notes": "No official rate limits specified"
+      },
+      "data_collection": {
+        "method": "api",
+        "frequency": "monthly",
+        "last_collection": null,
+        "next_collection": null,
+        "collection_notes": "NSF API requires API key registration. Provides research project data and publications."
+      },
+      "data_schema": {
+        "projects": {
+          "project_id": "string",
+          "title": "string",
+          "principal_investigator": "string",
+          "award_amount": "float",
+          "start_date": "date",
+          "end_date": "date"
+        }
+      },
+      "ngda_theme": null,
+      "catalog_type": null,
+      "data_formats": ["JSON"],
+      "coordinate_system": null,
+      "extraction_history": []
+    },
+    "data_gov_ckan": {
+      "source_name": "Data.gov CKAN API",
+      "source_id": "DATA_GOV_CKAN",
+      "source_type": "government",
+      "source_category": "benchmark",
+      "authority": "U.S. General Services Administration",
+      "base_url": "https://data.gov",
+      "api_endpoint": "https://catalog.data.gov/api/3/action",
+      "authentication": {
+        "type": "none",
+        "api_key_required": false,
+        "oauth_required": false
+      },
+      "rate_limits": {
+        "per_hour": null,
+        "per_day": null,
+        "notes": "No official rate limits, but respectful usage recommended"
+      },
+      "data_collection": {
+        "method": "api",
+        "frequency": "weekly",
+        "last_collection": null,
+        "next_collection": null,
+        "collection_notes": "CKAN API for searching and accessing federal open data datasets related to AI and ML."
+      },
+      "data_schema": {
+        "datasets": {
+          "dataset_id": "string",
+          "title": "string",
+          "organization": "string",
+          "tags": "array",
+          "resources": "array"
+        }
+      },
+      "ngda_theme": null,
+      "catalog_type": null,
+      "data_formats": ["JSON", "CSV", "XML"],
+      "coordinate_system": null,
+      "extraction_history": []
+    },
+    "papers_with_code": {
+      "source_name": "Papers with Code",
+      "source_id": "PAPERS_WITH_CODE",
+      "source_type": "research",
+      "source_category": "benchmark",
+      "authority": "Papers with Code",
+      "base_url": "https://paperswithcode.com",
+      "api_endpoint": "https://paperswithcode.com/api/v1/",
+      "authentication": {
+        "type": "none",
+        "api_key_required": false,
+        "oauth_required": false
+      },
+      "rate_limits": {
+        "per_hour": null,
+        "per_day": null,
+        "notes": "Free tier available, no rate limits specified"
+      },
+      "data_collection": {
+        "method": "api",
+        "frequency": "weekly",
+        "last_collection": null,
+        "next_collection": null,
+        "collection_notes": "API access to research papers and benchmark results. Free tier available."
+      },
+      "data_schema": {
+        "papers": {
+          "paper_id": "string",
+          "title": "string",
+          "authors": "array",
+          "benchmark_results": "array",
+          "code_url": "string"
+        }
+      },
+      "ngda_theme": null,
+      "catalog_type": null,
+      "data_formats": ["JSON"],
+      "coordinate_system": null,
+      "extraction_history": []
+    },
+    "hugging_face": {
+      "source_name": "Hugging Face Model Hub",
+      "source_id": "HUGGING_FACE",
+      "source_type": "api",
+      "source_category": "adoption",
+      "authority": "Hugging Face",
+      "base_url": "https://huggingface.co",
+      "api_endpoint": "https://huggingface.co/api",
+      "authentication": {
+        "type": "bearer_token",
+        "api_key_required": true,
+        "oauth_required": false,
+        "token_url": "https://huggingface.co/settings/tokens"
+      },
+      "rate_limits": {
+        "per_hour": null,
+        "per_day": null,
+        "notes": "Rate limits depend on authentication level"
+      },
+      "data_collection": {
+        "method": "api",
+        "frequency": "daily",
+        "last_collection": null,
+        "next_collection": null,
+        "collection_notes": "Hugging Face API provides model metadata and usage statistics. Requires authentication token."
+      },
+      "data_schema": {
+        "models": {
+          "model_id": "string",
+          "model_name": "string",
+          "downloads": "integer",
+          "likes": "integer",
+          "tags": "array"
+        }
+      },
+      "ngda_theme": null,
+      "catalog_type": null,
+      "data_formats": ["JSON"],
+      "coordinate_system": null,
+      "extraction_history": []
+    },
+    "github": {
+      "source_name": "GitHub API",
+      "source_id": "GITHUB",
+      "source_type": "api",
+      "source_category": "adoption",
+      "authority": "GitHub",
+      "base_url": "https://github.com",
+      "api_endpoint": "https://api.github.com",
+      "authentication": {
+        "type": "bearer_token",
+        "api_key_required": true,
+        "oauth_required": false,
+        "token_url": "https://github.com/settings/tokens"
+      },
+      "rate_limits": {
+        "per_hour": 5000,
+        "per_day": null,
+        "notes": "5000 requests per hour for authenticated requests"
+      },
+      "data_collection": {
+        "method": "api",
+        "frequency": "daily",
+        "last_collection": null,
+        "next_collection": null,
+        "collection_notes": "GitHub API for tracking open-source model adoption. Requires authentication for higher rate limits."
+      },
+      "data_schema": {
+        "repositories": {
+          "repo_id": "string",
+          "name": "string",
+          "stars": "integer",
+          "forks": "integer",
+          "watchers": "integer"
+        }
+      },
+      "ngda_theme": null,
+      "catalog_type": null,
+      "data_formats": ["JSON"],
+      "coordinate_system": null,
+      "extraction_history": []
+    }
+  },
+  "data_lineage": {
+    "description": "Tracks data flow from sources through ETL pipelines to database tables",
+    "lineage_mapping": {
+      "artificial_analysis": {
+        "tables": ["ai_models", "model_performance_metrics", "benchmark_evaluations", "model_comparisons", "model_pricing_history", "model_performance_history"],
+        "transformation_steps": ["extract", "normalize", "enrich", "load"]
+      },
+      "nist_ai_rmf": {
+        "tables": ["government_benchmark_data"],
+        "transformation_steps": ["extract", "parse_pdf", "normalize", "load"]
+      },
+      "nsf_ai_research": {
+        "tables": ["government_benchmark_data"],
+        "transformation_steps": ["extract", "normalize", "enrich", "load"]
+      },
+      "data_gov_ckan": {
+        "tables": ["government_benchmark_data"],
+        "transformation_steps": ["extract", "normalize", "load"]
+      },
+      "papers_with_code": {
+        "tables": ["benchmark_evaluations"],
+        "transformation_steps": ["extract", "normalize", "enrich", "load"]
+      },
+      "hugging_face": {
+        "tables": ["model_adoption_metrics"],
+        "transformation_steps": ["extract", "normalize", "load"]
+      },
+      "github": {
+        "tables": ["model_adoption_metrics"],
+        "transformation_steps": ["extract", "normalize", "load"]
+      }
+    }
+  },
+  "last_updated": "2026-02-04"
+}

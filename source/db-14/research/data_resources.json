@@ -1,0 +1,445 @@
+{
+  "database": "db-14",
+  "description": "Cloud Instance Cost  Database - Data Sources Documentation",
+  "last_updated": "2026-02-05",
+  "data_sources": [
+    {
+      "source_id": "SRC001",
+      "source_name": "Vantage.sh Instances Website",
+      "source_type": "website",
+      "website_url": "https://instances.vantage.sh/",
+      "aws_url": "https://instances.vantage.sh/",
+      "azure_url": "https://instances.vantage.sh/azure",
+      "gcp_url": "https://instances.vantage.sh/gcp",
+      "api_endpoint": null,
+      "api_documentation": "https://handbook.vantage.sh/tools/instances/",
+      "authentication_required": false,
+      "api_key_required": false,
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "HTML, JSON (via export)",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "AWS EC2 Instances",
+        "Azure VM Instances",
+        "GCP Compute Engine Instances",
+        "Instance Specifications",
+        "Pricing Data",
+        "Performance Metrics",
+        "CoreMark Scores",
+        "FFmpeg FPS",
+        "Network Performance",
+        "Storage Types"
+      ],
+      "update_frequency": "daily",
+      "historical_data_available": false,
+      "historical_range_years": 0,
+      "usage_notes": "Comprehensive cloud instance comparison website. Provides export functionality for CSV/JSON. Includes performance benchmarks (CoreMark, FFmpeg FPS) and detailed pricing across all pricing models.",
+      "best_practices": [
+        "Use export functionality to download data in bulk",
+        "Filter by region, pricing unit, and cost type before export",
+        "Respect rate limits when scraping",
+        "Cache exported data for analysis",
+        "Combine with official APIs for validation"
+      ],
+      "export_options": [
+        "CSV export",
+        "JSON export",
+        "Filtered exports by provider, region, instance family"
+      ]
+    },
+    {
+      "source_id": "SRC002",
+      "source_name": "Infracost Cloud Pricing API",
+      "source_type": "api",
+      "api_endpoint": "https://pricing.api.infracost.io/graphql",
+      "api_documentation": "https://www.infracost.io/docs/supported_resources/cloud_pricing_api",
+      "authentication_required": true,
+      "api_key_required": true,
+      "api_key_registration": "https://www.infracost.io/cloud-pricing-api",
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "GraphQL",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "AWS Pricing",
+        "Azure Pricing",
+        "GCP Pricing",
+        "Over 3 Million Prices",
+        "Historical Pricing Data",
+        "Reserved Instance Pricing",
+        "Spot Instance Pricing"
+      ],
+      "update_frequency": "weekly",
+      "historical_data_available": true,
+      "historical_range_years": 2,
+      "usage_notes": "GraphQL API containing over 3 million prices from AWS, Azure, and Google Cloud. Automatically updated weekly. Requires API key registration.",
+      "best_practices": [
+        "Register for API key at infracost.io",
+        "Use GraphQL queries for efficient data retrieval",
+        "Cache responses to minimize API calls",
+        "Use for bulk pricing data extraction",
+        "Combine with instance specifications from other sources"
+      ]
+    },
+    {
+      "source_id": "SRC003",
+      "source_name": "CloudPrice Developer Portal",
+      "source_type": "api",
+      "api_endpoint": "https://developer.cloudprice.net/",
+      "api_documentation": "https://developer.cloudprice.net/docs",
+      "authentication_required": true,
+      "api_key_required": true,
+      "api_key_registration": "https://developer.cloudprice.net/",
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "REST API, JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Unified Pricing APIs",
+        "Instance Specifications",
+        "On-Demand Pricing",
+        "Spot Pricing",
+        "Reserved Instance Pricing",
+        "Historical Pricing",
+        "Pricing Recommendations"
+      ],
+      "update_frequency": "real-time",
+      "historical_data_available": true,
+      "historical_range_years": 1,
+      "usage_notes": "Unified pricing and instance specifications APIs for AWS, Azure, and GCP with sub-50ms response times. Includes historical data and pricing recommendations.",
+      "best_practices": [
+        "Register for API access",
+        "Use REST endpoints for structured queries",
+        "Leverage pricing recommendation endpoints",
+        "Cache frequently accessed data",
+        "Use for real-time pricing queries"
+      ]
+    },
+    {
+      "source_id": "SRC004",
+      "source_name": "AWS Price List API",
+      "source_type": "api",
+      "api_endpoint": "https://api.pricing.us-east-1.amazonaws.com",
+      "api_documentation": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html",
+      "authentication_required": true,
+      "api_key_required": true,
+      "aws_credentials_required": true,
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "EC2 Instance Pricing",
+        "On-Demand Pricing",
+        "Reserved Instance Pricing",
+        "Spot Instance Pricing",
+        "Savings Plans Pricing",
+        "Regional Pricing Variations"
+      ],
+      "update_frequency": "real-time",
+      "historical_data_available": false,
+      "historical_range_years": 0,
+      "usage_notes": "Official AWS API for current pricing data. Requires AWS credentials. Provides real-time pricing for all AWS services including EC2 instances.",
+      "best_practices": [
+        "Use AWS SDK for API access",
+        "Cache pricing data (updates infrequently)",
+        "Handle regional variations",
+        "Use for official AWS pricing validation",
+        "Combine with instance specifications from EC2 API"
+      ]
+    },
+    {
+      "source_id": "SRC005",
+      "source_name": "AWS EC2 Describe Instances API",
+      "source_type": "api",
+      "api_endpoint": "https://ec2.amazonaws.com",
+      "api_documentation": "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstanceTypes.html",
+      "authentication_required": true,
+      "api_key_required": true,
+      "aws_credentials_required": true,
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "EC2 Instance Types",
+        "Instance Specifications",
+        "vCPU Count",
+        "Memory Specifications",
+        "Network Performance",
+        "Storage Options",
+        "GPU Specifications"
+      ],
+      "update_frequency": "real-time",
+      "historical_data_available": false,
+      "historical_range_years": 0,
+      "usage_notes": "Official AWS EC2 API for instance type specifications. Use DescribeInstanceTypes for detailed specifications. Requires AWS credentials.",
+      "best_practices": [
+        "Use AWS SDK (boto3) for Python",
+        "Cache instance type data (changes infrequently)",
+        "Combine with pricing API for complete data",
+        "Handle pagination for large result sets",
+        "Use for official AWS instance specifications"
+      ]
+    },
+    {
+      "source_id": "SRC006",
+      "source_name": "Azure Retail Prices API",
+      "source_type": "api",
+      "api_endpoint": "https://prices.azure.com/api/retail/prices",
+      "api_documentation": "https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices",
+      "authentication_required": false,
+      "api_key_required": false,
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Azure VM Pricing",
+        "On-Demand Pricing",
+        "Reserved Instance Pricing",
+        "Spot Pricing",
+        "Regional Pricing",
+        "Operating System Pricing"
+      ],
+      "update_frequency": "daily",
+      "historical_data_available": false,
+      "historical_range_years": 0,
+      "usage_notes": "Official Azure API for retail pricing data. No authentication required. Provides current pricing for all Azure services including VMs.",
+      "best_practices": [
+        "Use pagination for large datasets",
+        "Filter by serviceFamily for VMs",
+        "Cache pricing data (updates daily)",
+        "Handle regional variations",
+        "Use for official Azure pricing validation"
+      ]
+    },
+    {
+      "source_id": "SRC007",
+      "source_name": "Azure VM Sizes API",
+      "source_type": "api",
+      "api_endpoint": "https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/vmSizes",
+      "api_documentation": "https://learn.microsoft.com/en-us/rest/api/compute/virtual-machine-sizes/list",
+      "authentication_required": true,
+      "api_key_required": true,
+      "azure_credentials_required": true,
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Azure VM Sizes",
+        "Instance Specifications",
+        "vCPU Count",
+        "Memory Specifications",
+        "Storage Options",
+        "Regional Availability"
+      ],
+      "update_frequency": "real-time",
+      "historical_data_available": false,
+      "historical_range_years": 0,
+      "usage_notes": "Official Azure API for VM size specifications. Requires Azure credentials. Provides detailed specifications for all VM sizes by region.",
+      "best_practices": [
+        "Use Azure SDK for Python",
+        "Cache VM size data (changes infrequently)",
+        "Query by location for regional availability",
+        "Combine with pricing API for complete data",
+        "Use for official Azure VM specifications"
+      ]
+    },
+    {
+      "source_id": "SRC008",
+      "source_name": "Google Cloud Billing Catalog API",
+      "source_type": "api",
+      "api_endpoint": "https://cloudbilling.googleapis.com/v1/services",
+      "api_documentation": "https://cloud.google.com/billing/docs/how-to/catalog-api",
+      "authentication_required": true,
+      "api_key_required": true,
+      "gcp_credentials_required": true,
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "GCP Compute Engine Pricing",
+        "On-Demand Pricing",
+        "Committed Use Discounts",
+        "Sustained Use Discounts",
+        "Preemptible Instance Pricing",
+        "Regional Pricing"
+      ],
+      "update_frequency": "real-time",
+      "historical_data_available": false,
+      "historical_range_years": 0,
+      "usage_notes": "Official Google Cloud API for billing catalog and pricing data. Requires GCP credentials. Provides current pricing for all GCP services including Compute Engine.",
+      "best_practices": [
+        "Use Google Cloud SDK",
+        "Cache pricing data (updates infrequently)",
+        "Handle regional variations",
+        "Account for sustained use discounts",
+        "Use for official GCP pricing validation"
+      ]
+    },
+    {
+      "source_id": "SRC009",
+      "source_name": "Google Cloud Compute Machine Types API",
+      "source_type": "api",
+      "api_endpoint": "https://compute.googleapis.com/compute/v1/projects/{project}/zones/{zone}/machineTypes",
+      "api_documentation": "https://cloud.google.com/compute/docs/reference/rest/v1/machineTypes",
+      "authentication_required": true,
+      "api_key_required": true,
+      "gcp_credentials_required": true,
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "GCP Machine Types",
+        "Instance Specifications",
+        "vCPU Count",
+        "Memory Specifications",
+        "Local SSD Options",
+        "Regional Availability"
+      ],
+      "update_frequency": "real-time",
+      "historical_data_available": false,
+      "historical_range_years": 0,
+      "usage_notes": "Official Google Cloud API for machine type specifications. Requires GCP credentials. Provides detailed specifications for all machine types by zone.",
+      "best_practices": [
+        "Use Google Cloud SDK",
+        "Cache machine type data (changes infrequently)",
+        "Query by zone for regional availability",
+        "Combine with billing API for complete data",
+        "Use for official GCP machine type specifications"
+      ]
+    },
+    {
+      "source_id": "SRC010",
+      "source_name": "Cloud.gov Pricing",
+      "source_type": "website",
+      "website_url": "https://cloud.gov/pricing",
+      "api_endpoint": null,
+      "api_documentation": "https://cloud.gov/docs/overview/pricing/",
+      "authentication_required": false,
+      "api_key_required": false,
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "HTML",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Federal Cloud Services Pricing",
+        "Government Cloud Pricing",
+        "Credit-Based Pricing",
+        "Sandbox Environments",
+        "Enterprise Deployments"
+      ],
+      "update_frequency": "monthly",
+      "historical_data_available": false,
+      "historical_range_years": 0,
+      "usage_notes": "Federal-first cloud procurement platform. Provides straightforward pricing through credit-based system. Designed specifically for government agencies.",
+      "best_practices": [
+        "Use for government-specific pricing context",
+        "Compare with commercial cloud pricing",
+        "Account for Interagency Agreement (IAA) models",
+        "Use for federal cloud cost "
+      ]
+    },
+    {
+      "source_id": "SRC011",
+      "source_name": "Data.gov Cloud Datasets",
+      "source_type": "api",
+      "api_endpoint": "https://catalog.data.gov/api/3/action",
+      "api_documentation": "https://catalog.data.gov/api/3/action/help",
+      "authentication_required": false,
+      "api_key_required": false,
+      "rate_limit_per_hour": 1000,
+      "rate_limit_per_day": 10000,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Federal Cloud Spending",
+        "Cloud Procurement Data",
+        "Agency Cloud Usage",
+        "Cloud Cost Analysis"
+      ],
+      "update_frequency": "varies_by_dataset",
+      "historical_data_available": true,
+      "historical_range_years": 5,
+      "usage_notes": "Federal open data portal. Use package_search endpoint to find cloud-related datasets. Includes federal cloud spending and procurement data.",
+      "best_practices": [
+        "Search for 'cloud', 'AWS', 'Azure', 'GCP' keywords",
+        "Filter by relevant federal agencies",
+        "Download datasets for historical analysis",
+        "Use for government cloud cost "
+      ]
+    }
+  ],
+  "coordinate_reference_systems": {
+    "cloud_regions": {
+      "primary": "N/A",
+      "description": "Cloud regions are logical, not geographic coordinates",
+      "units": "region_codes"
+    }
+  },
+  "data_collection_strategy": {
+    "cloud_providers": {
+      "target_count": 3,
+      "sources": ["vantage.sh", "official_apis"],
+      "update_frequency": "daily"
+    },
+    "cloud_regions": {
+      "target_count": 100,
+      "sources": ["official_apis", "vantage.sh"],
+      "update_frequency": "weekly"
+    },
+    "instance_families": {
+      "target_count": 50,
+      "sources": ["official_apis", "vantage.sh"],
+      "update_frequency": "weekly"
+    },
+    "cloud_instances": {
+      "target_count": 2000,
+      "sources": ["vantage.sh", "official_apis", "infracost_api"],
+      "update_frequency": "daily",
+      "retention_years": 2
+    },
+    "instance_pricing": {
+      "target_count": 50000,
+      "sources": ["vantage.sh", "official_apis", "infracost_api", "cloudprice_api"],
+      "update_frequency": "daily",
+      "retention_years": 2
+    },
+    "performance_metrics": {
+      "target_count": 5000,
+      "sources": ["vantage.sh", "third_party_benchmarks"],
+      "update_frequency": "monthly",
+      "retention_years": 3
+    },
+    "historical_pricing": {
+      "target_count": 100000,
+      "sources": ["infracost_api", "cloudprice_api", "manual_tracking"],
+      "update_frequency": "daily",
+      "retention_years": 2
+    },
+    "cost_optimization_recommendations": {
+      "target_count": 10000,
+      "sources": ["calculated", "ai_generated"],
+      "update_frequency": "daily",
+      "retention_years": 1
+    }
+  },
+  "total_target_data_size_gb": 2.0,
+  "notes": [
+    "Vantage.sh provides comprehensive instance comparison data with performance benchmarks",
+    "Official cloud provider APIs provide authoritative pricing and specifications",
+    "Infracost and CloudPrice APIs provide unified access to multi-cloud pricing",
+    "Data.gov provides federal cloud spending context for government cost ",
+    "Performance metrics (CoreMark, FFmpeg FPS) are available from vantage.sh",
+    "Historical pricing data requires third-party APIs or manual tracking",
+    "All pricing data should be validated against official provider APIs",
+    "Rate limits should be respected for all API sources",
+    "Cache frequently accessed data to minimize API calls",
+    "Combine multiple sources for comprehensive cost "
+  ]
+}

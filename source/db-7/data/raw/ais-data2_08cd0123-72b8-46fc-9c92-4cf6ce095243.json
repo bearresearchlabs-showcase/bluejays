@@ -1,0 +1,2622 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-44FQGBN8G1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-44FQGBN8G1');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIS data | InPort</title>
+    <meta name="description" content="Automatic identification system (AIS) data are used to identify and track vessels for various purposes (primarily navigational safety). These data can be use...">
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/inport/images/inport-icon-32.png" />
+  <link href="/inport/css/inport-rd.css?v=6.0.5"
+        rel="stylesheet">
+      <script async="" type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&amp;subagency=NOAA&pga4=G-44FQGBN8G1&yt=true&exts=aac,arc,arj,asf,asx,bin,flv,gif,gzip,hqx,jar,mp2,msp,phps,qt,qutm,mxd,ram,sea,sit,tar,torrent,tsv,wav,wpd,xml,z"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin="">
+        <script type="application/ld+json">
+    {
+            "@context" : "http://schema.org/",              "@type" : "Dataset",              "name" : "AIS data",              "description" : "Automatic identification system (AIS) data are used to identify and track vessels for various purposes (primarily navigational safety). These data can be used to study vessel traffic, such as ship routing and speed over ground (SOG). Source data were obtained from the United States Coast Guard Navigation Center (USCG NAVCEN) for the period from June 2008 to December 2015. Derived data resulting...",              "url" : "https://www.fisheries.noaa.gov/inport/item/54048",              "keywords" : [
+              "GIS",              "maritime shipping",              "ship traffic",              "vessel density",              "vessel speed"          ],              "alternateName" : "AIS data",              "dateCreated" : "2017-01-01",                      "datePublished" : "2018-03-01",                        "identifier" : [
+        {
+                "@type" : "PropertyValue",                  "value" : "54048",                  "propertyID" : "InPort Catalog ID"          }
+                  ,{
+                  "@type" : "PropertyValue",                    "value" : "10.17632/4tgwv45bz8.1",                    "propertyID" : "DOI"            }
+              ],
+            "temporalCoverage" : [
+              "2008/2015"          ],                "spatialCoverage" : [
+                                    {
+                      "@type" : "Place",                  "geo" : {
+                                            "@type" : "GeoShape",                            "box" : "30.5 -128.9 42 -116.6"                                    }
+              }
+                        ,                                    "California coast within Exclusive Economic Zone (EEZ).  Small area off the coast of northern Baja California in Mexico."
+                        ,                                    "California"
+                        ,                                    "EEZ"
+                        ,                                    "Exclusive Economic Zone"
+                        ,                                    "Mexico"
+                        ,                                    "Northern Baja California"
+                                          ],
+                    "distribution" : [
+                      {
+                    "@type" : "DataDownload",                      "encodingFormat" : "ESRI File Geodatabase",                      "description" : "Raster data within a file geodatabase.  Downloadable file is compressed file (zip).",                      "name" : "moore_etal_2018_OCMA_gdb .zip",                                "provider" : {
+                        "@type" : "Organization",                          "name" : "Southwest Fisheries Science Center (SWFSC)"                  },
+                                  "contentUrl" : "https://dx.doi.org/10.17632/4tgwv45bz8.1"              }                  ],
+            "sourceOrganization" : {
+              "@type" : "Organization",                "name" : "Southwest Fisheries Science Center"        },
+              "creator" : [
+                      {
+                    "@type" : "Person",                      "name" : "Thomas J Moore"              }                  ],
+            "includedInDataCatalog" : {
+              "@type" : "DataCatalog",                "name" : "InPort",                "url" : "https://www.fisheries.noaa.gov/inport"        }
+                }
+    </script>
+  </head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <div class="system-notices">
+    <div class="fixed-page-fit">
+                </div>
+  </div>
+
+  <div class="fixed-page-fit fixed-header-style cf">
+    <div class="logo-bar">
+      <div class="left">
+        <a href="/inport/"><img class="logo" src="/inport/images/inport-logo.png"
+                                       width="126" height="64"
+                                       title="InPort - NMFS Enterprise Data Management Program"
+                                       alt="InPort"></a>
+      </div>
+      <div class="right">
+
+        <div class="mobile-header-icons">
+                    <a href="/inport/search"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-search.png" width="60" height="60" alt="Search"></a>
+          <a href="/inport/help"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-help.png" width="60" height="60" alt="Help"></a>
+          <span id="mobileNavToggle"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-hamburger.png" width="60" height="60" alt="Show/Hide Menu"></span>
+        </div>
+
+                  <form class="header-search-form"
+                method="get" action="/inport/q">
+            <input type="text" class="field header-search-field"
+                   aria-label="Search the InPort Catalog"
+                   name="keywords" id="quickKeywords" placeholder="Enter Keywords / Cat ID...">
+            <input type="submit" class="button small-button" value="Search">
+          </form>
+              </div>
+    </div>
+  </div>
+
+  <nav class="fixed-page-fit fixed-header-style">
+    <div id="mobileNav" style="display: none;">
+      <ul>
+                  <li><a href="/inport/login">Login</a></li>
+                                      <li><a
+                href="/inport/organizations/nmfs">NMFS</a>
+            </li>
+                      <li><a
+                href="/inport/organizations/nos">NOS</a>
+            </li>
+                      <li><a
+                href="/inport/organizations/partners">Partners</a>
+            </li>
+                          <li><a href="/inport/stats">Stats</a></li>
+                                          <li><a href="/inport/about">About InPort</a></li>
+                <li><a href="/inport/contact">Contact</a></li>
+              </ul>
+    </div>
+
+    <div id="nav" class="header-bar cf">
+      <ul class="sf-menu left">
+                  <li>
+            <span>Login</span>
+            <ul class="submenu submenu-form">
+              <li>
+                <form action="/inport/login/process" method="post"
+                      onsubmit="return loginNotice();">
+                  <input type="hidden" name="_csrf" value="66ae68ba-6a35-4cc5-809b-0f8f07e6cc28">
+<div class="form-field-block">
+  <label for="navUsername" class="label">NOAA / InPort Email:</label>
+  <input class="field" type="text" id="navUsername" name="username"
+         aria-label="NOAA / InPort Email" autofocus="autofocus">
+</div>
+<div class="form-field-block">
+  <label for="navPassword" class="label">Password:</label>
+  <input class="field" autocomplete="off" type="password" id="navPassword"
+         name="password" aria-label="Password">
+</div>
+                  <input type="submit" class="button small-button" value="Login">
+                  <div class="submenu-form-content"><a href="/inport/forgot-password">Forgot
+                    your password?</a></div>
+                </form>
+              </li>
+            </ul>
+          </li>
+                <li><span>Catalog</span>
+          <ul class="submenu">
+                                          <li><a
+                    href="/inport/organizations/nmfs">NMFS</a>
+                </li>
+                              <li><a
+                    href="/inport/organizations/nos">NOS</a>
+                </li>
+                              <li><a
+                    href="/inport/organizations/partners">Partners</a>
+                </li>
+                                      <li><a href="/inport/organizations">All Organizations</a></li>
+          </ul>
+        </li>
+                <li><a href="/inport/search">Search</a></li>
+        <li><a href="/inport/stats">Stats</a></li>
+
+        
+        <li><a href="/inport/help">Help</a>
+          <ul class="submenu">
+            <li><a href="/inport/about">About InPort</a></li>
+            <li><a href="/inport/contact">Contact / Support / Training</a></li>
+            <li><a href="/inport/help">Help Guides</a></li>
+            <li><a href="/inport/help/xml-loader">InPort XML Loader</a></li>
+            <li><a href="/inport/help/components">Components</a></li>
+          </ul>
+        </li>
+
+              </ul>
+
+      <div class="user-display right">
+              </div>
+    </div>
+
+  </nav>
+</header>
+<main>
+  <div class="fixed-page-fit fixed-page-main">
+    <header class="page-header">
+
+              <div class="stat right" style="margin-left: 0.625rem; clear: right;">
+                      <div class="stat-label">Completion Rubric</div>
+            <div class="stat-main">
+                              <a href="/inport/item/54048/rubric/data-set-completion"
+                   title="View the full Data Set Completion Rubric for this item">100%</a>
+                          </div>
+            <div class="stat-secondary">
+              35 / 35
+            </div>
+                        <div class="stat-secondary"><a href="/inport/item/54048/rubric/data-set-completion" class="icon icon-score">View Report</a></div>
+                  </div>
+            <div class="breadcrumbs">
+                              <a class="icon icon-mprj"
+               href="/inport/item/1370">
+              SWFSC Metadata Library</a> &gt;
+                      <a class="icon icon-prj"
+               href="/inport/item/10795">
+              Marine Mammal and Turtle Division</a> &gt;
+                      <a class="icon icon-prj"
+               href="/inport/item/30735">
+              Research Portfolio</a> &gt;
+                      <a class="icon icon-prj"
+               href="/inport/item/30581">
+              Marine Mammal Spatial Habitat and Risk Program...</a> &gt;
+                        </div>
+      <h1 class="force-break" style="margin-top: 2px;">AIS data</h1>
+      <strong><span class="icon icon-ds">
+        Data Set
+        (DS)</span></strong>&nbsp;
+      |&nbsp; <strong>Southwest Fisheries Science Center
+      (SWFSC)</strong><br>
+      <span title="The Globally Unique IDentifier (GUID) uniquely identifies InPort records in external systems. It is derived from the InPort namespace and the Catalog Item ID.">GUID: gov.noaa.nmfs.inport:54048</span>&nbsp;
+      |&nbsp; Updated: September 25, 2025&nbsp;
+            |&nbsp; Published / External&nbsp;
+          </header>
+    <div class="page-header-bar cf">
+      <ul class="page-header-options left">
+                <li>
+          <span id="viewAsButton"><span class="icon icon-menu-arrow">View As</span></span>
+          <ul class="options-menu" id="viewAsMenu" style="display: none;">
+            <li><a href="/inport/item/54048/full-list" title="View Catalog Item in Full List format"><span class="icon icon-full-list">Full List View</span></a></li>
+                        <li><span class="menu-item"><strong>EXPORTS</strong></span></li>
+            <li><a href="/inport/item/54048/inport-xml" title="View the InPort XML format"><span class="icon icon-xml">InPort XML</span></a></li>
+                          <li><a href="/inport/item/54048/iso19115" title="View in ISO 19115 format"><span class="icon icon-xml">ISO 19115</span></a></li>
+                                                                <li><a href="/inport/item/54048/waf" title="View the WAF files for this catalog item"><span class="icon icon-waf">WAF Files</span></a></li>
+                      </ul>
+        </li>
+                <li><a href="/inport/hierarchy?select=54048"><span class="icon icon-tree" title="View this Catalog Item within the Catalog Hierarchy">View in Hierarchy</span></a></li>
+              </ul>
+    </div>
+
+    <div class="col-1">
+
+         
+      
+      <div class="tabbed-header">
+        <div id="summaryTab" class="tabbed-header-tab">Summary</div>
+        <div id="itemIdentificationTab" class="tabbed-header-tab">Item Identification</div>
+                  <div id="keywordsSectionTab"
+               class="tabbed-header-tab ">Keywords</div>
+                          <div id="physicalLocationTab"
+              class="tabbed-header-tab ">Physical Location</div>
+                          <div id="dataSetTab"
+              class="tabbed-header-tab ">Data Set Info</div>
+                                                                          <div id="supportRolesTab"
+              class="tabbed-header-tab ">Support Roles</div>
+                          <div id="extentsTab"
+              class="tabbed-header-tab ">Extents</div>
+                          <div id="spatialInfoTab"
+              class="tabbed-header-tab ">Spatial Info</div>
+                          <div id="accessInfoTab"
+              class="tabbed-header-tab ">Access Info</div>
+                          <div id="distributionInfoTab"
+              class="tabbed-header-tab ">Distribution Info</div>
+                                  <div id="urlsTab"
+              class="tabbed-header-tab ">URLs</div>
+                                          <div id="technicalEnvironmentTab"
+              class="tabbed-header-tab ">Tech Environment</div>
+                          <div id="dataQualityTab"
+              class="tabbed-header-tab ">Data Quality</div>
+                          <div id="dataManagementTab"
+              class="tabbed-header-tab ">Data Management</div>
+                          <div id="lineageTab"
+              class="tabbed-header-tab ">Lineage</div>
+                          <div id="acquisitionInfoTab"
+              class="tabbed-header-tab ">Acquisition Info</div>
+                                                        <div id="catalogDetailsTab"
+            class="tabbed-header-tab">Catalog Details</div>
+      </div>
+
+      
+
+
+
+      <!-- Item Summary -->
+      <div id="summary" class="section metadataSection">
+
+        
+        <div class="section__header sh">
+          <h2 class="sh__main">Summary</h2>
+        </div>
+        <div class="section__content">
+          
+                      <p class="small">
+              <strong>Short Citation</strong><br>
+              Southwest Fisheries Science Center, 2026: AIS data, https://www.fisheries.noaa.gov/inport/item/54048.<br>
+              <a href="/inport/item/54048/citation">Full Citation Examples</a>
+            </p>
+                                <p class="small">
+              <strong>DOI:</strong>
+                              10.17632/4tgwv45bz8.1
+                          </p>
+          
+                                    <strong>Abstract</strong><br>
+                        <div class="small">
+                    <p>Automatic identification system (AIS) data are used to identify and track vessels for various purposes (primarily navigational safety). These data can be used to study vessel traffic, such as ship routing and speed over ground (SOG). Source data were obtained from the United States Coast Guard Navigation Center (USCG NAVCEN) for the period from June 2008 to December 2015. Derived data resulting from the processing of the source data are described here. This data set presents annual raster data (1 square kilometer grid size) off California from 2008-2015 for cumulative ship traffic density (kilometers/day) and mean SOG (knots; distance-weighted). The universe of data is limited to vessels with a length greater than or equal to 80 meters. The data are analyzed in three groups: freight vessels (container, general cargo, bulk carrier, refrigerated cargo, vehicle carrier, etc.), tanker vessels (crude oil, chemical/products, liquid petroleum gas, etc.) and all vessels (the previously noted vessels, plus passenger vessels and other vessel classes). The data are contained in a file geodatabase format as raster data sets. Metadata for the overall data set are contained at the level of the file geodatabase. The data were generated and used for a research article (Moore et al. 2018):</p>
+      <p>Moore, T.J., Redfern, J.V., Carver, M., Hastings, S., Adams, J.D., Silber, G.K., 2018. Exploring Ship Traffic Variability off California. Ocean and Coastal Management. https://doi.org/10.1016/j.ocecoaman.2018.03.010</p>
+      <p>See this manuscript for more information on the data description, issues, and processing methods.</p>
+              </div>
+          
+                      <strong>Purpose</strong><br>
+            <div class="small">
+                    <p>These data were developed to support conservation research related to marine mammal risk assessment (e.g., ship strike risk).</p>
+              </div>
+          
+          
+          <div class="cf"></div> <!-- needed to clear browse image float -->
+
+          <div class="inner-col-2">
+            <div class="inner-col-2__main">
+
+              
+              
+              
+              
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Distribution Information</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                                          <ul class="content-list">
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://dx.doi.org/10.17632/4tgwv45bz8.1" rel="noopener"
+                                 target="_blank">moore_etal_2018_OCMA_gdb .zip</a>
+                                                      </div>
+                                                      <div class="small">
+                              ESRI File Geodatabase, 112 MB
+                            </div>
+                                                                                <div class="small">
+                                    <p>Raster data within a file geodatabase.  Downloadable file is compressed file (zip).</p>
+                              </div>
+                                                  </li>
+                                              </ul>
+                    
+                                          <strong>Access Constraints:</strong>
+                      <div class="small">
+                              <p>No constraints for access to data that are published in the Mendeley Data repository.</p>
+                        </div>
+                    
+                                          <strong>Use Constraints:</strong>
+                      <div class="small">
+                              <p>If these data are used, please make reference to the following citations:</p>
+      <p>Moore, T.J., Redfern, J.V., Carver, M., Hastings, S., Adams, J.D., Silber, G.K., 2018. Exploring ship traffic variability off California. Ocean &amp; Coastal Management 163, 515-527. DOI: 10.1016/j.ocecoaman.2018.03.010</p>
+      <p>Moore, T.J., 2018. Vessel density and vessel speed data off California: 2008-2015, Mendeley Data, v1. DOI: 10.17632/4tgwv45bz8.1</p>
+                        </div>
+                                      </div>
+                </div>
+                            
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">URLs</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                    <ul class="content-list">
+                                                                        <li>
+                            <div class="force-break">
+                              <a href="https://doi.org/10.1016/j.ocecoaman.2018.03.010" rel="noopener"
+                                 target="_blank">Journal Article</a>
+                            </div>
+                                                          <div class="small">
+                                      <p>Moore, T.J., Redfern, J.V., Carver, M., Hastings, S., Adams, J.D., Silber, G.K., 2018. Exploring ship traffic variability off California. Ocean &amp; Coastal Management 163, 515-527. DOI: 10.1016/j.ocecoaman.2018.03.010</p>
+                                </div>
+                                                      </li>
+                                                                                                <li>
+                            <div class="force-break">
+                              <a href="https://dx.doi.org/10.17632/4tgwv45bz8.1" rel="noopener"
+                                 target="_blank">Mendeley Data</a>
+                            </div>
+                                                          <div class="small">
+                                      <p>Moore, T.J., 2018. Vessel density and vessel speed data off California: 2008-2015, Mendeley Data, v1. DOI: 10.17632/4tgwv45bz8.1</p>
+                                </div>
+                                                      </li>
+                                                                  </ul>
+                  </div>
+                </div>
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Child Items</h3>
+                  </div>
+                                      <p>
+                      No Child Items for this record.
+                    </p>
+                                  </div>
+              
+            </div>
+
+            <div class="inner-col-2__sidebar">
+
+              <div class="inner-col-section">
+                <div class="inner-col-section__header inner-col-sh">
+                  <h3 class="inner-col-sh__main">Contact Information</h3>
+                </div>
+                <div class="inner-col-section__content force-break">
+                                                                              <p>
+                        <strong>Point of Contact</strong><br>
+                                                Jeff E Moore<br>
+                                  Jeff.E.Moore@noaa.gov<br>
+        (858) 546-7161<br>
+                            </p>
+                                          <p>
+                        <strong>Metadata Contact</strong><br>
+                                                Jeff E Moore<br>
+                                  Jeff.E.Moore@noaa.gov<br>
+        (858) 546-7161<br>
+                            </p>
+                                                      </div>
+              </div>
+
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Extents</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                                        
+                                                                    <div class="add-bottom-grid-margin">
+                          <strong>Geographic Area 1</strong><br>
+                                                      <div id="summaryGeoBoundsMap784591"
+                                 class="geo-bounds-display geo-bounds-small-display"></div>
+                                                        <p>
+                              -128.9&deg; W,
+                              -116.6&deg; E,
+                              42&deg; N,
+                              30.5&deg; S<br>
+                            </p>
+                                                                                <div class="small">
+                                    <p>California coast within Exclusive Economic Zone (EEZ).  Small area off the coast of northern Baja California in Mexico.</p>
+                              </div>
+                                                  </div>
+                                                                  
+                                                              <div class="add-bottom-pad">
+                        <strong>Time Frame 1</strong><br>
+                        2008 - 2015<br>
+                        <div class="small">
+                                <p>Annual data sets.  Source data begins in June for 2008.</p>
+                          </div>
+                      </div>
+                                                            </div>
+                </div>
+                          </div>
+          </div>
+
+        </div>
+      </div> <!-- .section: Summary -->
+
+      <!-- Section: Item Identification -->
+      <div id="itemIdentification" class="section metadataSection">
+          <div class="section__header sh">
+    <h2 class="sh__main">Item Identification</h2>
+            </div>
+        <div class="section__content">
+                       <table class="name-value-table">
+                  <tr>
+    <th scope="col">
+              Title:
+          </th>
+    <td class="ellipsisize">
+              AIS data
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Short Name:
+          </th>
+    <td class="ellipsisize">
+              AIS data
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Status:
+          </th>
+    <td class="ellipsisize">
+              On Going
+          </td>
+  </tr>
+                                  <tr>
+    <th scope="col">
+              Creation Date:
+          </th>
+    <td class="ellipsisize">
+              2017
+          </td>
+  </tr>
+                                                                                        <tr>
+    <th scope="col">
+              Publication Date:
+          </th>
+    <td class="ellipsisize">
+              2018-03
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">Abstract:</th>
+    <td class="small">
+            <p>Automatic identification system (AIS) data are used to identify and track vessels for various purposes (primarily navigational safety). These data can be used to study vessel traffic, such as ship routing and speed over ground (SOG). Source data were obtained from the United States Coast Guard Navigation Center (USCG NAVCEN) for the period from June 2008 to December 2015. Derived data resulting from the processing of the source data are described here. This data set presents annual raster data (1 square kilometer grid size) off California from 2008-2015 for cumulative ship traffic density (kilometers/day) and mean SOG (knots; distance-weighted). The universe of data is limited to vessels with a length greater than or equal to 80 meters. The data are analyzed in three groups: freight vessels (container, general cargo, bulk carrier, refrigerated cargo, vehicle carrier, etc.), tanker vessels (crude oil, chemical/products, liquid petroleum gas, etc.) and all vessels (the previously noted vessels, plus passenger vessels and other vessel classes). The data are contained in a file geodatabase format as raster data sets. Metadata for the overall data set are contained at the level of the file geodatabase. The data were generated and used for a research article (Moore et al. 2018):</p>
+      <p>Moore, T.J., Redfern, J.V., Carver, M., Hastings, S., Adams, J.D., Silber, G.K., 2018. Exploring Ship Traffic Variability off California. Ocean and Coastal Management. https://doi.org/10.1016/j.ocecoaman.2018.03.010</p>
+      <p>See this manuscript for more information on the data description, issues, and processing methods.</p>
+      </td>
+  </tr>
+                  <tr>
+    <th scope="col">Purpose:</th>
+    <td class="small">
+            <p>These data were developed to support conservation research related to marine mammal risk assessment (e.g., ship strike risk).</p>
+      </td>
+  </tr>
+                                <tr>
+    <th scope="col">Other Citation Details:</th>
+    <td class="small">
+            <p>To cite these data please reference:</p>
+      <p>Moore, T.J., Redfern, J.V., Carver, M., Hastings, S., Adams, J.D., Silber, G.K., 2018. Exploring ship traffic variability off California. Ocean &amp; Coastal Management 163, 515-527. DOI: 10.1016/j.ocecoaman.2018.03.010</p>
+      <p>Moore, T.J., 2018. Vessel density and vessel speed data off California: 2008-2015, Mendeley Data, v1. DOI: 10.17632/4tgwv45bz8.1</p>
+      </td>
+  </tr>
+                                  <tr>
+    <th scope="col">
+              DOI (Digital Object Identifier):
+          </th>
+    <td class="ellipsisize">
+              10.17632/4tgwv45bz8.1
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              DOI Registration Authority:
+          </th>
+    <td class="ellipsisize">
+              DataCite
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              DOI Issue Date:
+          </th>
+    <td class="ellipsisize">
+              2018-03-26
+          </td>
+  </tr>
+            </table>
+        </div>
+      </div> <!-- .section Item Identification -->
+
+      <!-- Section: Keywords -->
+              <div id="keywordsSection" class="section metadataSection ">
+            <div class="section__header sh">
+    <h2 class="sh__main">Keywords</h2>
+            </div>
+          <div class="section__content">
+                                             <h3 class="record-block-section-header">Theme Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                GIS
+              </td>
+            </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                maritime shipping
+              </td>
+            </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                ship traffic
+              </td>
+            </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                vessel density
+              </td>
+            </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                vessel speed
+              </td>
+            </tr>
+                        </table>
+    </div>
+                    <h3 class="record-block-section-header">Temporal Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                2008-2015
+              </td>
+            </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                annual
+              </td>
+            </tr>
+                        </table>
+    </div>
+                    <h3 class="record-block-section-header">Spatial Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                California
+              </td>
+            </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                EEZ
+              </td>
+            </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                Exclusive Economic Zone
+              </td>
+            </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                Mexico
+              </td>
+            </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                Northern Baja California
+              </td>
+            </tr>
+                        </table>
+    </div>
+                                  <h3 class="record-block-section-header">Instrument Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                AIS
+              </td>
+            </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                automatic identification system
+              </td>
+            </tr>
+                        </table>
+    </div>
+                    <h3 class="record-block-section-header">Platform Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NA</td>
+                            <td class="force-break">
+                Terrestrial AIS Receivers
+              </td>
+            </tr>
+                        </table>
+    </div>
+            </div>
+        </div> <!-- .section Keywords -->
+      
+      <!-- Section: Physical Location -->
+              <div id="physicalLocation" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Physical Location</h2>
+            </div>
+          <div class="section__content">
+                                       <table class="name-value-table">
+                    <tr>
+    <th scope="col">
+              Organization:
+          </th>
+    <td class="ellipsisize">
+              Southwest Fisheries Science Center
+          </td>
+  </tr>
+                                      <tr>
+    <th scope="col">
+              City:
+          </th>
+    <td class="ellipsisize">
+              La Jolla
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">
+              State/Province:
+          </th>
+    <td class="ellipsisize">
+              CA
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">
+              Country:
+          </th>
+    <td class="ellipsisize">
+              USA
+          </td>
+  </tr>
+                                            </table>
+          </div>
+        </div> <!-- .section Physical Location -->
+      
+      <!-- Section: Data Set -->
+              <div id="dataSet" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Set Information</h2>
+            </div>
+          <div class="section__content">
+                                                       <table class="name-value-table">
+                                      <tr>
+    <th scope="col">
+              Data Set Scope Code:
+          </th>
+    <td class="ellipsisize">
+              Data Set
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">
+              Data Set Type:
+          </th>
+    <td class="ellipsisize">
+              GIS dataset of raster files
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">
+              Maintenance Frequency:
+          </th>
+    <td class="ellipsisize">
+              None Planned
+          </td>
+  </tr>
+                                          <tr>
+    <th scope="col">
+              Data Presentation Form:
+          </th>
+    <td class="ellipsisize">
+              Map (digital)
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">Entity Attribute Overview:</th>
+    <td class="small">
+            <p>The raster data set names are formatted as follows:</p>
+      <p>shiptraffic_calif_YYYY_SMOEMO_ATTRIB_lenge80_ENT_prj</p>
+      <p>YYYY = year (2008-2015)</p>
+      <p>SMOEMO = start month and end month (jundec or jandec)</p>
+      <p>ATTRIB = mean vessel density (kmperday) or mean distance-weighted vessel speed over ground (sog)</p>
+      <p>ENT = type of vessels: frt (freight) or tnk (tanker) or all (frt + tnk + other vessel types).</p>
+      <p>The universe of vessels is large vessels (&gt;= 80 meters in length).  Vessel types are discussed in more detail in the journal article associated with these data and the supplemental online information for that article.</p>
+      </td>
+  </tr>
+                                                                                          </table>
+                      </div>
+        </div> <!-- .section Data Set -->
+      
+      
+      <!-- Section: Entity -->
+      
+      <!-- Section: Data Attributes -->
+      
+      <!-- Section: Procedure -->
+      
+      <!-- Section: Project -->
+      
+      <!-- Section: Publication Info -->
+      
+      <!-- Section: Support Roles -->
+              <div id="supportRoles" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Support Roles</h2>
+            </div>
+          <div class="section__content">
+                                                      <!-- Record ID: 784602, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-04 14:09+0000, Last Mod By: lincoln.rehm@noaa.gov (23076), 2025-09-25 15:13+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Data Steward</h3>
+                  <div class="x-small right">CC ID: 784602</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2025
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Moore, Jeff E
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          8901 La Jolla Shores Dr<br>
+              La Jolla, CA 92037<br>
+              USA
+      </td>
+</tr>
+                                                                                          <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              Jeff.E.Moore@noaa.gov
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              (858) 546-7161
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Fax:
+          </th>
+    <td class="ellipsisize">
+              (858) 546-7003
+          </td>
+  </tr>
+                                                                          <tr>
+    <th scope="col">
+              Business Hours:
+          </th>
+    <td class="ellipsisize">
+              M-F 8:00 - 16:00
+          </td>
+  </tr>
+                                          </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 838916, Created By: jessica.redfern@noaa.gov (11477), 2019-05-06 11:44+0000, Last Mod By: jessica.redfern@noaa.gov (11477), 2019-05-29 18:05+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distributor</h3>
+                  <div class="x-small right">CC ID: 838916</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2019-05-06
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Organization):
+          </th>
+    <td class="ellipsisize">
+              Southwest Fisheries Science Center (SWFSC)
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          8901 La Jolla Shores Dr.<br>
+              La Jolla, CA 92037<br>
+              USA
+      </td>
+</tr>
+                                                                                                                  <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              (858)546-7000
+          </td>
+  </tr>
+                                                                          <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td>
+      <a href="https://swfsc.noaa.gov/" rel="noopener" target="_blank">
+                  https://swfsc.noaa.gov/
+              </a>
+    </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Business Hours:
+          </th>
+    <td class="ellipsisize">
+              8:00-16:30
+          </td>
+  </tr>
+                                          </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 784599, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-04 13:56+0000, Last Mod By: lincoln.rehm@noaa.gov (23076), 2025-09-25 15:13+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Metadata Contact</h3>
+                  <div class="x-small right">CC ID: 784599</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2025
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Moore, Jeff E
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          8901 La Jolla Shores Dr<br>
+              La Jolla, CA 92037<br>
+              USA
+      </td>
+</tr>
+                                                                                          <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              Jeff.E.Moore@noaa.gov
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              (858) 546-7161
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Fax:
+          </th>
+    <td class="ellipsisize">
+              (858) 546-7003
+          </td>
+  </tr>
+                                                                          <tr>
+    <th scope="col">
+              Business Hours:
+          </th>
+    <td class="ellipsisize">
+              M-F 8:00 - 16:00
+          </td>
+  </tr>
+                                          </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 784603, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-04 14:11+0000, Last Mod By: lincoln.rehm@noaa.gov (23076), 2025-09-25 15:13+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Point of Contact</h3>
+                  <div class="x-small right">CC ID: 784603</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2025
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Moore, Jeff E
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          8901 La Jolla Shores Dr<br>
+              La Jolla, CA 92037<br>
+              USA
+      </td>
+</tr>
+                                                                                          <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              Jeff.E.Moore@noaa.gov
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Phone:
+          </th>
+    <td class="ellipsisize">
+              (858) 546-7161
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Fax:
+          </th>
+    <td class="ellipsisize">
+              (858) 546-7003
+          </td>
+  </tr>
+                                                                          <tr>
+    <th scope="col">
+              Business Hours:
+          </th>
+    <td class="ellipsisize">
+              M-F 8:00 - 16:00
+          </td>
+  </tr>
+                                          </table>
+                </div> <!-- .record-block -->
+                                                    <a href="/inport/item/54048/support-roles/historical"
+                class="button small-button">View Historical Support Roles</a>
+                      </div>
+        </div> <!-- .section Support Roles -->
+      
+        <!-- Section: Extents -->
+              <div id="extents" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Extents</h2>
+            </div>
+          <div class="section__content">
+                                       <table class="name-value-table">
+                    <tr>
+    <th scope="col">
+              Currentness Reference:
+          </th>
+    <td class="ellipsisize">
+              Ground Condition
+          </td>
+  </tr>
+              </table>
+
+                                      <!-- Record ID: 784590, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-04 13:27+0000, Last Mod By: thomas.j.moore@noaa.gov (8082), 2018-10-04 14:22+0000 -->
+
+              <h3 class="record-block-section-header">Extent Group 1</h3>
+
+                                                <table class="name-value-table">
+                        <tr>
+    <th scope="col">Extent Description:</th>
+    <td class="small">
+            <p>Geographic Extent (Horizontal) and Temporal Extent (Annual)</p>
+      </td>
+  </tr>
+                    </table>
+                
+                                                  <!-- Record ID: 784591, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-04 13:32+0000, Last Mod By: thomas.j.moore@noaa.gov (8082), 2018-10-04 13:32+0000 -->
+                  <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Extent Group 1 / Geographic Area 1</h3>
+                      <div class="x-small right">CC ID: 784591</div>
+                    </div>
+                    <table class="name-value-table">
+                                              <tr class="extra-cols">
+                          <th scope="col"><strong>W&deg; Bound:</strong></th>
+                          <td>-128.9</td>
+                          <td class="geo-bounds-cell" rowspan="4">
+                            <div id="geoBoundsMap784591" class="geo-bounds-display geo-bounds-full-display"></div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>E&deg; Bound:</strong></th>
+                          <td>-116.6</td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>N&deg; Bound:</strong></th>
+                          <td>42</td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>S&deg; Bound:</strong></th>
+                          <td>30.5</td>
+                        </tr>
+                                                                    <tr>
+                          <th scope="col">Description</th>
+                          <td class="small" colspan="2">
+                                  <p>California coast within Exclusive Economic Zone (EEZ).  Small area off the coast of northern Baja California in Mexico.</p>
+                            </td>
+                        </tr>
+                                          </table>
+                  </div> <!-- .record-block -->
+                                  
+                                
+                                                  <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Extent Group 1 / Time Frame 1</h3>
+                      <div class="x-small right">CC ID: 784605</div>
+                    </div>
+                    <table class="name-value-table">
+                      <!-- Record ID: 784605, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-04 14:19+0000, Last Mod By: thomas.j.moore@noaa.gov (8082), 2018-10-04 14:22+0000 -->
+                            <tr>
+    <th scope="col">
+              Time Frame Type:
+          </th>
+    <td class="ellipsisize">
+              Range
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              Start:
+          </th>
+    <td class="ellipsisize">
+              2008
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              End:
+          </th>
+    <td class="ellipsisize">
+              2015
+          </td>
+  </tr>
+                                                                                <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Annual data sets.  Source data begins in June for 2008.</p>
+      </td>
+  </tr>
+                      </table>
+                  </div> <!-- .record-block -->
+                                  
+              
+                                    </div>
+        </div> <!-- .section Extents -->
+      
+      <!-- Section: Spatial Info -->
+              <div id="spatialInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Spatial Information</h2>
+            </div>
+          <div class="section__content">
+                        <!-- Record ID: 784537, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-03 21:58+0000, Last Mod By: thomas.j.moore@noaa.gov (8082), 2018-10-04 13:07+0000 -->
+
+            <!-- Subsection: Spatial Resolution Info -->
+                          <h3 class="record-block-section-header">Spatial Resolution</h3>
+              <div class="record-block">
+                <table class="name-value-table">
+                                          <tr>
+    <th scope="col">Horizontal Distance:</th>
+    <td>
+              1.0
+        Kilometer
+          </td>
+  </tr>
+                                                                  <tr>
+    <th scope="col">Level of Detail Description:</th>
+    <td class="small">
+            <p>One square kilometer grid cells.</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+            
+            <!-- Subsection: Spatial Representation -->
+                          <h3 class="record-block-section-header">Spatial Representation</h3>
+
+              <!-- Sub-Subsection: Spatial Representation Info -->
+                              <div class="record-block">
+                  <div class="record-block-header cf">
+                    <h3 class="left">Representations Used</h3>
+                  </div>
+                  <table class="name-value-table">
+                        <tr>
+    <th scope="col">Grid:</th>
+    <td>
+              Yes
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">Vector:</th>
+    <td>
+              No
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">Text / Table:</th>
+    <td>
+              No
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">TIN:</th>
+    <td>
+              No
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">Stereo Model:</th>
+    <td>
+              No
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">Video:</th>
+    <td>
+              No
+          </td>
+  </tr>
+                    </table>
+                </div>
+              
+              <!-- Sub-Subsection: Grid Representations -->
+                                                <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Grid Representation 1</h3>
+                      <div class="x-small right">CC ID: 784584</div>
+                    </div>
+                    <table class="name-value-table">
+                            <tr>
+    <th scope="col">
+              Dimension Count:
+          </th>
+    <td class="ellipsisize">
+              3
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              Cell Geometry:
+          </th>
+    <td class="ellipsisize">
+              Area
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">Transformation Parameters Available?:</th>
+    <td>
+              Yes
+          </td>
+  </tr>
+                                                <tr class="subtable-header">
+  <td colspan="2"><h4>Axis Dimension 1</h4></td>
+</tr>
+                        <tr>
+                          <td colspan="2">
+                            <table class="name-value-subtable">
+                              <tr>
+                                      <tr>
+    <th scope="col">
+              Dimension Type:
+          </th>
+    <td class="ellipsisize">
+              Row
+          </td>
+  </tr>
+                                        <tr>
+    <th scope="col">
+              Size:
+          </th>
+    <td class="ellipsisize">
+              1278
+          </td>
+  </tr>
+                                        <tr>
+    <th scope="col">
+              Resolution Type:
+          </th>
+    <td class="ellipsisize">
+              Length
+          </td>
+  </tr>
+                                      <tr>
+    <th scope="col">Resolution:</th>
+    <td>
+              1.0
+        Kilometer
+          </td>
+  </tr>
+                                                                  </tr>
+                            </table>
+                          </td>
+                        </tr>
+                                                                  </table>
+                  </div>
+                                                    <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Grid Representation 2</h3>
+                      <div class="x-small right">CC ID: 784586</div>
+                    </div>
+                    <table class="name-value-table">
+                            <tr>
+    <th scope="col">
+              Dimension Count:
+          </th>
+    <td class="ellipsisize">
+              3
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              Cell Geometry:
+          </th>
+    <td class="ellipsisize">
+              Area
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">Transformation Parameters Available?:</th>
+    <td>
+              Yes
+          </td>
+  </tr>
+                                                <tr class="subtable-header">
+  <td colspan="2"><h4>Axis Dimension 1</h4></td>
+</tr>
+                        <tr>
+                          <td colspan="2">
+                            <table class="name-value-subtable">
+                              <tr>
+                                      <tr>
+    <th scope="col">
+              Dimension Type:
+          </th>
+    <td class="ellipsisize">
+              Column
+          </td>
+  </tr>
+                                        <tr>
+    <th scope="col">
+              Size:
+          </th>
+    <td class="ellipsisize">
+              1084
+          </td>
+  </tr>
+                                        <tr>
+    <th scope="col">
+              Resolution Type:
+          </th>
+    <td class="ellipsisize">
+              Distance
+          </td>
+  </tr>
+                                      <tr>
+    <th scope="col">Resolution:</th>
+    <td>
+              1.0
+        Kilometer
+          </td>
+  </tr>
+                                                                  </tr>
+                            </table>
+                          </td>
+                        </tr>
+                                                                  </table>
+                  </div>
+                                                    <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Grid Representation 3</h3>
+                      <div class="x-small right">CC ID: 784588</div>
+                    </div>
+                    <table class="name-value-table">
+                            <tr>
+    <th scope="col">
+              Dimension Count:
+          </th>
+    <td class="ellipsisize">
+              3
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              Cell Geometry:
+          </th>
+    <td class="ellipsisize">
+              Area
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">Transformation Parameters Available?:</th>
+    <td>
+              Yes
+          </td>
+  </tr>
+                                                <tr class="subtable-header">
+  <td colspan="2"><h4>Axis Dimension 1</h4></td>
+</tr>
+                        <tr>
+                          <td colspan="2">
+                            <table class="name-value-subtable">
+                              <tr>
+                                      <tr>
+    <th scope="col">
+              Dimension Type:
+          </th>
+    <td class="ellipsisize">
+              Time
+          </td>
+  </tr>
+                                        <tr>
+    <th scope="col">
+              Size:
+          </th>
+    <td class="ellipsisize">
+              1
+          </td>
+  </tr>
+                                                                                                            <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Gridded data for annual periods.</p>
+      </td>
+  </tr>
+                                </tr>
+                            </table>
+                          </td>
+                        </tr>
+                                                                  </table>
+                  </div>
+                                                 
+              <!-- Sub-Subsection: Vector Representations -->
+               
+             
+
+            <!-- Subsection: Reference Systems -->
+                       </div>
+        </div> <!-- .section Spatial Info -->
+      
+      <!-- Section: Access Info -->
+              <div id="accessInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Access Information</h2>
+            </div>
+          <div class="section__content">
+                                                     <!-- ${esc.html($accessInfo.recordDetail.displayString)} -->
+              <table class="name-value-table">
+                                                                                                                                                              <tr>
+    <th scope="col">
+              Security Class:
+          </th>
+    <td class="ellipsisize">
+              Unclassified
+          </td>
+  </tr>
+                                                          <tr>
+    <th scope="col">Data Access Policy:</th>
+    <td class="small">
+            <p>The data are accessible via Mendeley Data at the following URL:</p>
+      <p>https://dx.doi.org/10.17632/4tgwv45bz8.1</p>
+      </td>
+  </tr>
+                      <tr>
+    <th scope="col">Data Access Procedure:</th>
+    <td class="small">
+            <p>Downloadable data in the Mendeley Data repository.</p>
+      </td>
+  </tr>
+                      <tr>
+    <th scope="col">Data Access Constraints:</th>
+    <td class="small">
+            <p>No constraints for access to data that are published in the Mendeley Data repository.</p>
+      </td>
+  </tr>
+                      <tr>
+    <th scope="col">Data Use Constraints:</th>
+    <td class="small">
+            <p>If these data are used, please make reference to the following citations:</p>
+      <p>Moore, T.J., Redfern, J.V., Carver, M., Hastings, S., Adams, J.D., Silber, G.K., 2018. Exploring ship traffic variability off California. Ocean &amp; Coastal Management 163, 515-527. DOI: 10.1016/j.ocecoaman.2018.03.010</p>
+      <p>Moore, T.J., 2018. Vessel density and vessel speed data off California: 2008-2015, Mendeley Data, v1. DOI: 10.17632/4tgwv45bz8.1</p>
+      </td>
+  </tr>
+                                                    </table>
+                      </div>
+        </div> <!-- .section Access Info -->
+      
+      <!-- Section: Distribution Info -->
+              <div id="distributionInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Distribution Information</h2>
+            </div>
+          <div class="section__content">
+                                      <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 1</h3>
+                  <div class="x-small right">CC ID: 784598</div>
+                </div>
+                <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Start Date:
+          </th>
+    <td class="ellipsisize">
+              2018-03-26
+          </td>
+  </tr>
+                                        <tr>
+                      <th scope="col">End Date:</th>
+                      <td>
+                                                  Present
+                                              </td>
+                    </tr>
+                                        <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://dx.doi.org/10.17632/4tgwv45bz8.1" rel="noopener" target="_blank">https://dx.doi.org/10.17632/4tgwv45bz8.1</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              Southwest Fisheries Science Center (SWFSC) (2019-05-06 - Present)
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Name:
+          </th>
+    <td class="ellipsisize">
+              moore_etal_2018_OCMA_gdb .zip
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Raster data within a file geodatabase.  Downloadable file is compressed file (zip).</p>
+      </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2018-03-26 00:00:00
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Type (Deprecated):
+          </th>
+    <td class="ellipsisize">
+              ESRI File geodatabase
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distribution Format:
+          </th>
+    <td class="ellipsisize">
+              ESRI File Geodatabase
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Size:
+          </th>
+    <td class="ellipsisize">
+              112 MB
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Application Version:
+          </th>
+    <td class="ellipsisize">
+              10.4.1
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Compression:
+          </th>
+    <td class="ellipsisize">
+              Zip
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Review Status:
+          </th>
+    <td class="ellipsisize">
+              Chked Viruses Inapp Content
+          </td>
+  </tr>
+                  </table>
+                              </div>
+                      </div>
+        </div> <!-- .section Distribution Info -->
+      
+      <!-- Section: Archive Info -->
+      
+      <!-- Section: URLs -->
+              <div id="urls" class="section metadataSection ">
+            <div class="section__header sh">
+    <h2 class="sh__main">URLs</h2>
+            </div>
+          <div class="section__content">
+                                                     <!-- Record ID: 784525, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-03 21:41+0000, Last Mod By: thomas.j.moore@noaa.gov (8082), 2018-10-03 21:45+0000 -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">URL 1</h3>
+                  <div class="x-small right">CC ID: 784525</div>
+                </div>
+                <table class="name-value-table">
+                      <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td><a href="https://doi.org/10.1016/j.ocecoaman.2018.03.010" rel="noopener" target="_blank">https://doi.org/10.1016/j.ocecoaman.2018.03.010</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Name:
+          </th>
+    <td class="ellipsisize">
+              Journal Article
+          </td>
+  </tr>
+                                      <tr>
+                    <th scope="col">URL Type:</th>
+                    <td>
+                      <div>Online Resource</div>
+                                          </td>
+                  </tr>
+                                                              <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Moore, T.J., Redfern, J.V., Carver, M., Hastings, S., Adams, J.D., Silber, G.K., 2018. Exploring ship traffic variability off California. Ocean &amp; Coastal Management 163, 515-527. DOI: 10.1016/j.ocecoaman.2018.03.010</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                        <!-- Record ID: 784526, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-03 21:41+0000, Last Mod By: thomas.j.moore@noaa.gov (8082), 2018-10-03 21:45+0000 -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">URL 2</h3>
+                  <div class="x-small right">CC ID: 784526</div>
+                </div>
+                <table class="name-value-table">
+                      <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td><a href="https://dx.doi.org/10.17632/4tgwv45bz8.1" rel="noopener" target="_blank">https://dx.doi.org/10.17632/4tgwv45bz8.1</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Name:
+          </th>
+    <td class="ellipsisize">
+              Mendeley Data
+          </td>
+  </tr>
+                                      <tr>
+                    <th scope="col">URL Type:</th>
+                    <td>
+                      <div>Online Resource</div>
+                                          </td>
+                  </tr>
+                                                              <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Moore, T.J., 2018. Vessel density and vessel speed data off California: 2008-2015, Mendeley Data, v1. DOI: 10.17632/4tgwv45bz8.1</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                    </div>
+        </div> <!-- .section URLs -->
+      
+      <!-- Section: Activity Log -->
+      
+      <!-- Section: Issues -->
+      
+      <!-- Section: Technical Environment -->
+              <div id="technicalEnvironment" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Technical Environment</h2>
+            </div>
+          <div class="section__content">
+                                       <!-- Record ID: 784597, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-04 13:42+0000, Last Mod By: thomas.j.moore@noaa.gov (8082), 2018-10-04 13:46+0000 -->
+            <table class="name-value-table">
+                  <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>The data were processed and analyzed with ArcGIS Desktop version 10.4.1 software and the Spatial Analyst extension in a Windows 7 environment.  The data are stored as raster data sets in a file geodatabase.  The overall size of the file geodatabase is about 112 MB.</p>
+      </td>
+  </tr>
+              </table>
+          </div>
+        </div> <!-- .section Technical Environment -->
+      
+      <!-- Section: Data Quality -->
+              <div id="dataQuality" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Quality</h2>
+            </div>
+          <div class="section__content">
+                                       <!-- ${esc.html($dataQual.recordDetail.displayString)} -->
+            <table class="name-value-table">
+                                                                                                                                                                                                                                                  <tr>
+    <th scope="col">Completeness Report:</th>
+    <td class="small">
+            <p>Some days of data were missing in a few years, and especially in the first year (2008) of data collection/archiving by the USCG.</p>
+      </td>
+  </tr>
+                                    <tr>
+    <th scope="col">Quality Control Procedures Employed:</th>
+    <td class="small">
+            <p>The data processing methods and quality control procedures are discussed in the following journal article and supplemental online information published with the article:</p>
+      <p>Moore, T.J., Redfern, J.V., Carver, M., Hastings, S., Adams, J.D., Silber, G.K., 2018. Exploring ship traffic variability off California. Ocean &amp; Coastal Management 163, 515-527. DOI: 10.1016/j.ocecoaman.2018.03.010</p>
+      </td>
+  </tr>
+              </table>
+          </div>
+        </div> <!-- .section Data Quality -->
+      
+      <!-- Section: Data Management -->
+              <div id="dataManagement" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Management</h2>
+            </div>
+          <div class="section__content">
+                                       <!-- ${esc.html($dataMgmt.recordDetail.displayString)} -->
+            <table class="name-value-table">
+                    <tr>
+    <th scope="col">
+              Have Resources for Management of these Data Been Identified?:
+          </th>
+    <td class="ellipsisize">
+              No
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Approximate Percentage of Budget for these Data Devoted to Data Management:
+          </th>
+    <td class="ellipsisize">
+              Unknown
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Do these Data Comply with the Data Access Directive?:
+          </th>
+    <td class="ellipsisize">
+              No
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Is Access to the Data Limited Based on an Approved Waiver?:
+          </th>
+    <td class="ellipsisize">
+              No
+          </td>
+  </tr>
+                                        <tr>
+    <th scope="col">
+              Approximate Delay Between Data Collection and Dissemination:
+          </th>
+    <td class="ellipsisize">
+              365
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">If Delay is Longer than Latency of Automated Processing, Indicate Under What Authority Data Access is Delayed:</th>
+    <td class="small">
+            <p>The source (raw) data from the USCG were collected from 2012 to 2016 and are not available for dissemination.  The processing of the data occurred during the period of 2016-2017.  The derived data were made available approximately one year after processing was completed.</p>
+      </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Actual or Planned Long-Term Data Archive Location:
+          </th>
+    <td class="ellipsisize">
+              To Be Determined
+          </td>
+  </tr>
+                                    <tr>
+    <th scope="col">If To Be Determined, Unable to Archive, or No Archiving Intended, Explain:</th>
+    <td class="small">
+            <p>Derived data reside in the Mendeley Data repository but a copy can be archived at another resource as deemed suitable.  Through Mendeley Data, however, the data are archived on the Data Archiving and Network Services (DANS; https://dans.knaw.nl/en) to preserve the data over the long term.</p>
+      </td>
+  </tr>
+                                    <tr>
+    <th scope="col">
+              Approximate Delay Between Data Collection and Archiving:
+          </th>
+    <td class="ellipsisize">
+              365
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">How Will the Data Be Protected from Accidental or Malicious Modification or Deletion Prior to Receipt by the Archive?:</th>
+    <td class="small">
+            <p>The derived data were disseminated and archived within approximately one year after the data processing was completed.  Mendeley Data is the data repository and has received industry standard certification for this role.  The data are stored on Amazon S3 servers to ensure the integrity and security of these data.  The source data are secured and protected through encryption with multiple backup copies.  Source data are backed up locally and offsite with data protections in place.</p>
+      </td>
+  </tr>
+              </table>
+          </div>
+        </div> <!-- .section Data Management -->
+      
+      <!-- Section: Lineage -->
+              <div id="lineage" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Lineage</h2>
+            </div>
+          <div class="section__content">
+                        <table class="name-value-table">
+                                <tr>
+    <th scope="col">Lineage Statement:</th>
+    <td class="small">
+            <p>Source data should be obtained from the data provider (USCG).</p>
+      </td>
+  </tr>
+              </table>
+
+                          <h3 class="record-block-section-header">Sources</h3>
+                              <!-- Record ID: 784710, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-04 17:55+0000, Last Mod By: thomas.j.moore@noaa.gov (8082), 2018-10-04 18:10+0000 -->
+                <div class="record-block">
+                  <div class="record-block-header cf">
+                    <h3 class="left force-break">USCG Authoritative Vessel Identification Service (AVIS), 2016</h3>
+                    <div class="x-small right">CC ID: 784710</div>
+                  </div>
+                  <table class="name-value-table">
+                                                                          <tr>
+    <th scope="col">
+              Contact Name:
+          </th>
+    <td class="ellipsisize">
+              USCG Navigation Center (NAVCEN)
+          </td>
+  </tr>
+                                                    <tr>
+    <th scope="col">
+              Extent Type:
+          </th>
+    <td class="ellipsisize">
+              Range
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Extent Start Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2006-10-11
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Extent End Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2016-01-29
+          </td>
+  </tr>
+                                                                                                                                      </table>
+                </div>
+                              <!-- Record ID: 784601, Created By: thomas.j.moore@noaa.gov (8082), 2018-10-04 14:05+0000, Last Mod By: thomas.j.moore@noaa.gov (8082), 2018-10-04 18:10+0000 -->
+                <div class="record-block">
+                  <div class="record-block-header cf">
+                    <h3 class="left force-break">USCG Nationwide AIS (NAIS) Data, 2008-2015</h3>
+                    <div class="x-small right">CC ID: 784601</div>
+                  </div>
+                  <table class="name-value-table">
+                                                                          <tr>
+    <th scope="col">
+              Contact Name:
+          </th>
+    <td class="ellipsisize">
+              USCG Navigation Center (NAVCEN)
+          </td>
+  </tr>
+                                                    <tr>
+    <th scope="col">
+              Extent Type:
+          </th>
+    <td class="ellipsisize">
+              Continuing
+          </td>
+  </tr>
+                            <tr>
+    <th scope="col">
+              Extent Start Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2008-06
+          </td>
+  </tr>
+                                                                          <tr class="ellipsisize">
+    <th scope="col">Citation URL:</th>
+    <td><a href="https://www.navcen.uscg.gov/?pageName=NAISdisclaimer" rel="noopener" target="_blank">https://www.navcen.uscg.gov/?pageName=NAISdisclaimer</a></td>
+  </tr>
+                                                  <tr>
+    <th scope="col">Citation URL Description:</th>
+    <td class="small">
+            <p>USCG NAVCEN Nationwide AIS Data Requests</p>
+      </td>
+  </tr>
+                                          </table>
+                </div>
+                          
+                          <h3 class="record-block-section-header">Process Steps</h3>
+                              <!-- ${esc.html($processStep.recordDetail.displayString)} -->
+                <div class="record-block">
+                  <div class="record-block-header cf">
+                    <h3 class="left">Process Step 1</h3>
+                    <div class="x-small right">CC ID: 784711</div>
+                  </div>
+                  <table class="name-value-table">
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>The data processing methods and quality control procedures are discussed in the following journal article and supplemental online information published with the article:</p>
+      <p>Moore, T.J., Redfern, J.V., Carver, M., Hastings, S., Adams, J.D., Silber, G.K., 2018. Exploring ship traffic variability off California. Ocean &amp; Coastal Management 163, 515-527. DOI: 10.1016/j.ocecoaman.2018.03.010</p>
+      </td>
+  </tr>
+                                                                                                                                            </table>
+                </div>
+                                    </div>
+        </div> <!-- .section Lineage -->
+      
+      <!-- Section: Acquisition Info -->
+              <div id="acquisitionInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Acquisition Information</h2>
+            </div>
+          <div class="section__content">
+                        <!-- Subsection: Instruments -->
+                                      <h3 class="record-block-section-header">Instruments</h3>
+                              <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Instrument Unavailable Reason:
+          </th>
+    <td class="ellipsisize">
+              Not Applicable
+          </td>
+  </tr>
+                  </table>
+                          
+            <!-- Subsection: Platforms -->
+                          <h3 class="record-block-section-header">Platforms</h3>
+                              <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Platform Unavailable Reason:
+          </th>
+    <td class="ellipsisize">
+              Not Applicable
+          </td>
+  </tr>
+                  </table>
+                                    </div>
+        </div> <!-- .section Acquisition Info -->
+      
+      <!-- Section: Acronyms -->
+      
+      <!-- Section: Glossary -->
+      
+      <!-- Section: FAQs -->
+      
+      <!-- Section: Child Items -->
+      
+      <!-- Section: Related Items -->
+      
+      <!-- Section: Catalog Details -->
+      <div id="catalogDetails" class="section metadataSection">
+          <div class="section__header sh">
+    <h2 class="sh__main">Catalog Details</h2>
+            </div>
+        <div class="section__content">
+                       <table class="name-value-table">
+                  <tr>
+    <th scope="col">
+              Catalog Item ID:
+          </th>
+    <td class="ellipsisize">
+              54048
+          </td>
+  </tr>
+                  <tr>
+    <th scope="col">
+              <span title="The Globally Unique IDentifier (GUID) uniquely identifies InPort records in external systems. It is derived from the InPort namespace and the Catalog Item ID.">GUID:</span>
+          </th>
+    <td class="ellipsisize">
+              gov.noaa.nmfs.inport:54048
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Created By:
+          </th>
+    <td class="ellipsisize">
+              Thomas J Moore
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Created:
+          </th>
+    <td class="ellipsisize">
+              2018-10-03 21:08+0000
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Last Modified By:
+          </th>
+    <td class="ellipsisize">
+              Lincoln Rehm
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Last Modified:
+          </th>
+    <td class="ellipsisize">
+              2025-09-25 15:13+0000
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Published:
+          </th>
+    <td class="ellipsisize">
+              2018-10-10
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Owner Org:
+          </th>
+    <td class="ellipsisize">
+              SWFSC
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Publication Status:
+          </th>
+    <td class="ellipsisize">
+              Published Externally
+          </td>
+  </tr>
+                                <tr>
+    <th scope="col">
+              Do Not Publish?:
+          </th>
+    <td class="ellipsisize">
+              N
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Last Review Date:
+          </th>
+    <td class="ellipsisize">
+              2018-10-10
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Review Frequency:
+          </th>
+    <td class="ellipsisize">
+              1 Year
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Next Review Date:
+          </th>
+    <td class="ellipsisize">
+              2019-10-10
+          </td>
+  </tr>
+            </table>
+                  </div>
+      </div> <!-- .section Catalog Details -->
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="fixed-page-fit">
+    <nav>
+      <a href="/inport/about">About InPort</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/contact">Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/release-notes">Release Notes</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/system-availability">System Availability</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/privacy">Privacy</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/security">Security</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/pra">Paperwork Reduction Act</a>
+    </nav>
+    <div class="cf">
+      <div class="org-seals">
+        <ul>
+          <li><a href="https://www.fisheries.noaa.gov/national/commercial-fishing/fisheries-information-system-program" title="Fisheries Information System"
+                 rel="noopener" target="_blank"><img src="/inport/images/fis-seal.png" width="52" height="53" alt="FIS"/></a></li>
+          <li><a href="https://www.fisheries.noaa.gov/" title="NOAA Fisheries"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/noaa-fisheries-seal.png" width="52" height="53" alt="NOAA Fisheries"/></a></li>
+          <li><a href="https://www.noaa.gov/" title="National Oceanic &amp; Atmospheric Administration"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/noaa-seal.png" width="52" height="53" alt="NOAA"/></a></li>
+          <li><a href="https://www.commerce.gov/" title="U.S. Department of Commerce"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/doc-seal.png" width="52" height="53" alt="Department of Commerce"/></a></li>
+        </ul>
+      </div>
+      <div class="app-info">
+        <img src="/inport/images/inport-logo-footer.png" width="94" height="48" alt="InPort Logo">
+        <div class="release-info">
+          <strong class="x-small">Release 6.0.5</strong><br>
+          <span class="xx-small">Build FINAL (2025-12-02 18:25 UTC)</span>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .fixed-page-fit -->
+</footer>
+
+<!-- Script Includes -->
+<script src="//code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs"
+        crossorigin="anonymous"></script> <!-- hash generated by srihash.org -->
+<script src="/inport/js/inport.js?v=6.0.5"></script>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+  <script type="text/javascript" src="/inport/js/geobounds.js?v=6.0.5"></script>
+
+<script type="text/javascript">
+  var viewAsMenu = $("#viewAsMenu").hide();
+    
+  $(function() {
+    $("#viewAsButton").click(function() {
+            viewAsMenu.toggle();
+      
+      $(document).one("click", function() {
+        viewAsMenu.hide();
+      });
+
+      return false;
+    });
+
+    
+    
+    registerTab("summary");
+          registerTab("itemIdentification");
+              registerTab("keywordsSection");
+              registerTab("physicalLocation");
+              registerTab("dataSet");
+                                      registerTab("supportRoles");
+              registerTab("extents");
+              registerTab("spatialInfo");
+              registerTab("accessInfo");
+              registerTab("distributionInfo");
+                  registerTab("urls");
+                      registerTab("technicalEnvironment");
+              registerTab("dataQuality");
+              registerTab("dataManagement");
+              registerTab("lineage");
+              registerTab( "acquisitionInfo");
+                    registerTab("childItems");
+    registerTab("relatedItems");
+    registerTab("catalogDetails");
+
+    function registerTab(sectionId) {
+      $("#" + sectionId + "Tab").click(function () {
+        activateTab(sectionId);
+        return false;
+      });
+    }
+
+    function activateTab(sectionId) {
+      hideAllElementsWithClass("metadataSection");
+      removeClassFromAllElements("tabbed-header-tab", "selected");
+      document.getElementById(sectionId).style.display = "block";
+      document.getElementById(sectionId + "Tab").classList.add("selected");
+      // Leaflet maps need to be redrawn when their containing element's display is set to none.
+      if (sectionId === "extents") {
+        reinitializeMaps();
+      }
+    }
+
+    /*
+      invalidateSize must be called on any maps after display is set from none to block.
+      The map also needs to be refit to the bounds.
+     */
+    function reinitializeMaps() {
+                                          maps[0].invalidateSize(false);
+            fitBoundsToMap(maps[0],
+                  30.5,
+                  -128.9,
+                  42,
+                  -116.6,
+                  false);
+                                        }
+
+                            loadGeoBoundsMap("summaryGeoBoundsMap784591",
+            30.5,
+            -128.9,
+            42,
+            -116.6
+          );
+              
+      let maps = [];
+                                    maps.push(
+                loadGeoBoundsMap("geoBoundsMap784591",
+                      30.5,
+                      -128.9,
+                      42,
+                      -116.6));
+                            
+        
+                  
+    let anchoredSection = window.location.hash.substring(1);
+    // verify that the hash corresponds to an actual section in the page
+    if (document.getElementById(anchoredSection) == null) {
+      // Have the Summary tab selected by default
+      activateTab("summary");
+    } else {
+      activateTab(anchoredSection);
+    }
+  });
+
+</script>
+<script src="/inport/js/species.js?v=6.0.5"></script>
+</body>
+</html>

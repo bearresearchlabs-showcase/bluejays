@@ -1,0 +1,2804 @@
+openapi: 3.0.3
+info:
+  title: Database db-15 - Database API Specification
+  description: 'The Electricity Cost and Solar Rebate Database (db-15) provides comprehensive
+    data on electricity rates across the United States, organized by rate codes, utilities,
+    and geographic regions. The database also includes extensive solar panel rebate
+    and incentive information from federal, state, and utility sources.
+
+
+    This database is designed to mirror and index the electricity rate and solar rebate
+    data available from poweroutage.us and other reputable sources, providing marketing
+    insights and comprehensive cost analysis for electricity consumers and solar energy
+    adopters.
+
+
+    - Comprehensive Rate Data: Electricity rates from 3,700+ U.S. utilities organized
+    by rate codes
+
+    - Geographic Analysis: Location-based rate queries by state, county, and zip code
+
+    - Rate Structure Analysis: Support for tiered rates, time-of-use rates, and demand
+    charges
+
+    - Solar Rebate Database: Federal, state, and utility-level solar rebates and incentives
+
+    - Historical Trends: Historical rate data for trend analysis and forecasting
+
+    - Cross-Source Validation: Data validated against multiple authoritative sources
+
+
+    - PostgreSQL: Full support with standard SQL features
+
+    - , : Compatible with Delta Lake and distributed query execution
+
+    - , : Full support with standard SQL features
+
+
+    - OpenEI Utility Rates API: Comprehensive utility rate database (3,700+ utilities)
+
+    - EIA Form 861: Annual Electric Power Industry Report
+
+    - EIA State Electricity Profiles: State-level electricity prices
+
+    - DSIRE: Database of State Incentives for Renewables & Efficiency
+
+    - DOE Tax Credits: Federal solar and renewable energy incentives
+
+    - EPA Energy Star: Energy Star rebate finder
+
+    - State Utility Commissions: State-specific rate filings
+
+    - PowerOutage.us: Electricity rates organized by rate codes
+
+    - Data.gov: Additional federal electricity datasets
+
+
+    ---
+
+
+    ---
+
+
+    This section provides a comprehensive data dictionary for all tables in the database,
+    including column names, data types, constraints, and descriptions. Tables are
+    organized by functional category for easier navigation.
+
+
+    The Electricity Cost and Solar Rebate Database consists of 18 main tables designed
+    to store comprehensive electricity rate data, utility information, solar rebates,
+    and geographic data across the United States.
+
+
+    Stores U.S. state information for geographic organization.
+
+
+    Key Columns:
+
+    - `state_id` (VARCHAR(2), PK) - Two-letter state code (e.g., ''CA'', ''NY'')
+
+    - `state_name` (VARCHAR(100)) - State name
+
+    - `state_full_name` (VARCHAR(100)) - Full state name
+
+    - `region` (VARCHAR(50)) - Census region (''Northeast'', ''South'', ''Midwest'',
+    ''West'')
+
+    - `division` (VARCHAR(50)) - Census division
+
+    - `timezone` (VARCHAR(50)) - State timezone
+
+    - `is_active` (BOOLEAN) - Active state flag
+
+
+    Stores county information for geographic rate areas.
+
+
+    Key Columns:
+
+    - `county_id` (VARCHAR(255), PK)
+
+    - `state_id` (VARCHAR(2), FK) - References states
+
+    - `county_name` (VARCHAR(100)) - County name
+
+    - `county_fips_code` (VARCHAR(5)) - 5-digit FIPS code
+
+    - `county_seat` (VARCHAR(100)) - County seat city
+
+    - `population` (INTEGER) - County population
+
+    - `area_sq_miles` (NUMERIC(10, 2)) - County area
+
+
+    Stores zip code information for location-based rate queries.
+
+
+    Key Columns:
+
+    - `zip_code` (VARCHAR(10), PK)
+
+    - `state_id` (VARCHAR(2), FK) - References states
+
+    - `county_id` (VARCHAR(255), FK) - References counties
+
+    - `city` (VARCHAR(100)) - City name
+
+    - `latitude` (NUMERIC(10, 7)) - WGS84 latitude
+
+    - `longitude` (NUMERIC(10, 7)) - WGS84 longitude
+
+    - `timezone` (VARCHAR(50)) - Zip code timezone
+
+
+    Stores electric utility company information (3,700+ utilities).
+
+
+    Key Columns:
+
+    - `utility_id` (VARCHAR(255), PK)
+
+    - `utility_name` (VARCHAR(255)) - Utility company name
+
+    - `utility_display_name` (VARCHAR(255)) - Display name
+
+    - `utility_type` (VARCHAR(50)) - ''Investor-Owned'', ''Municipal'', ''Cooperative'',
+    ''Federal'', ''Power Marketer''
+
+    - `state_id` (VARCHAR(2), FK) - References states
+
+    - `service_territory_description` (TEXT) - Service area description
+
+    - `eia_utility_id` (VARCHAR(50)) - EIA Form 861 utility identifier
+
+    - `openei_utility_id` (VARCHAR(50)) - OpenEI utility identifier
+
+    - `website_url` (VARCHAR(500)) - Utility website
+
+    - `total_customers` (INTEGER) - Total customer count
+
+    - `total_mwh_sold` (NUMERIC(15, 2)) - Total MWh sold
+
+
+    Stores rate code classifications and categories.
+
+
+    Key Columns:
+
+    - `rate_code_id` (VARCHAR(255), PK)
+
+    - `rate_code` (VARCHAR(100)) - Rate code identifier
+
+    - `rate_code_description` (TEXT) - Rate code description
+
+    - `rate_code_category` (VARCHAR(100)) - ''Residential'', ''Commercial'', ''Industrial'',
+    ''Agricultural'', ''Lighting''
+
+    - `sector` (VARCHAR(50)) - ''Residential'', ''Commercial'', ''Industrial'', ''Lighting''
+
+    - `rate_structure_type` (VARCHAR(100)) - ''Flat'', ''Tiered'', ''Time-of-Use'',
+    ''Demand'', ''Hybrid''
+
+    - `is_active` (BOOLEAN) - Active rate code flag
+
+
+    Stores detailed rate structure information.
+
+
+    Key Columns:
+
+    - `rate_structure_id` (VARCHAR(255), PK)
+
+    - `utility_id` (VARCHAR(255), FK) - References utility_companies
+
+    - `rate_code_id` (VARCHAR(255), FK) - References rate_codes
+
+    - `rate_name` (VARCHAR(255)) - Rate structure name
+
+    - `rate_description` (TEXT) - Rate structure description
+
+    - `effective_date` (DATE) - Rate effective date
+
+    - `expiration_date` (DATE) - Rate expiration date
+
+    - `approval_status` (VARCHAR(50)) - ''Approved'', ''Pending'', ''Proposed'', ''Expired''
+
+    - `regulatory_authority` (VARCHAR(255)) - State PUC/PSC
+
+    - `tariff_filing_number` (VARCHAR(100)) - Tariff filing number
+
+    - `is_current` (BOOLEAN) - Current rate flag
+
+
+    Core table storing electricity rate pricing information.
+
+
+    Key Columns:
+
+    - `rate_id` (VARCHAR(255), PK)
+
+    - `rate_structure_id` (VARCHAR(255), FK) - References rate_structures
+
+    - `utility_id` (VARCHAR(255), FK) - References utility_companies
+
+    - `rate_code_id` (VARCHAR(255), FK) - References rate_codes
+
+    - `state_id` (VARCHAR(2), FK) - References states
+
+    - `rate_type` (VARCHAR(50)) - ''Residential'', ''Commercial'', ''Industrial'',
+    ''Lighting''
+
+    - `billing_period` (VARCHAR(50)) - ''Monthly'', ''Daily'', ''Hourly''
+
+    - `fixed_charge_usd` (NUMERIC(10, 4)) - Monthly fixed charge
+
+    - `energy_charge_usd_per_kwh` (NUMERIC(10, 6)) - Base energy charge per kWh
+
+    - `demand_charge_usd_per_kw` (NUMERIC(10, 4)) - Demand charge per kW
+
+    - `minimum_charge_usd` (NUMERIC(10, 4)) - Minimum monthly charge
+
+    - `currency` (VARCHAR(10)) - Currency code (default ''USD'')
+
+    - `effective_date` (DATE) - Rate effective date
+
+    - `expiration_date` (DATE) - Rate expiration date
+
+    - `is_current` (BOOLEAN) - Current rate flag
+
+    - `data_source` (VARCHAR(100)) - ''openei'', ''eia'', ''state_commission'', ''poweroutage_us''
+
+
+    Stores tiered rate structure tiers (e.g., Tier 1: 0-500 kWh, Tier 2: 501-1000
+    kWh).
+
+
+    Key Columns:
+
+    - `tier_id` (VARCHAR(255), PK)
+
+    - `rate_structure_id` (VARCHAR(255), FK) - References rate_structures
+
+    - `tier_number` (INTEGER) - Tier number (1, 2, 3, etc.)
+
+    - `tier_name` (VARCHAR(100)) - Tier name
+
+    - `tier_start_kwh` (NUMERIC(10, 2)) - Tier start kWh
+
+    - `tier_end_kwh` (NUMERIC(10, 2)) - Tier end kWh (NULL for unlimited)
+
+    - `energy_charge_usd_per_kwh` (NUMERIC(10, 6)) - Energy charge for this tier
+
+    - `effective_date` (DATE) - Tier effective date
+
+    - `expiration_date` (DATE) - Tier expiration date
+
+
+    Stores time-of-use rate periods (e.g., Peak, Off-Peak, Super Off-Peak).
+
+
+    Key Columns:
+
+    - `tou_period_id` (VARCHAR(255), PK)
+
+    - `rate_structure_id` (VARCHAR(255), FK) - References rate_structures
+
+    - `period_name` (VARCHAR(100)) - ''Peak'', ''Off-Peak'', ''Super Off-Peak'', ''Mid-Peak''
+
+    - `period_start_time` (TIME) - Period start time
+
+    - `period_end_time` (TIME) - Period end time
+
+    - `day_of_week` (VARCHAR(20)) - ''Monday'', ''Weekday'', ''Weekend'', ''All''
+
+    - `season` (VARCHAR(50)) - ''Summer'', ''Winter'', ''Spring'', ''Fall'', ''All''
+
+    - `energy_charge_usd_per_kwh` (NUMERIC(10, 6)) - Energy charge for this period
+
+    - `effective_date` (DATE) - Period effective date
+
+    - `expiration_date` (DATE) - Period expiration date
+
+
+    Maps geographic areas to specific rate structures.
+
+
+    Key Columns:
+
+    - `rate_area_id` (VARCHAR(255), PK)
+
+    - `rate_structure_id` (VARCHAR(255), FK) - References rate_structures
+
+    - `state_id` (VARCHAR(2), FK) - References states
+
+    - `county_id` (VARCHAR(255), FK) - References counties
+
+    - `zip_code` (VARCHAR(10), FK) - References zip_codes
+
+    - `service_area_name` (VARCHAR(255)) - Service area name
+
+    - `service_area_description` (TEXT) - Service area description
+
+    - `latitude_min`, `latitude_max` (NUMERIC(10, 7)) - Bounding box
+
+    - `longitude_min`, `longitude_max` (NUMERIC(10, 7)) - Bounding box
+
+    - `effective_date` (DATE) - Area effective date
+
+    - `expiration_date` (DATE) - Area expiration date
+
+
+    Tracks rate changes over time for trend analysis.
+
+
+    Key Columns:
+
+    - `historical_rate_id` (VARCHAR(255), PK)
+
+    - `rate_id` (VARCHAR(255), FK) - References electricity_rates
+
+    - `utility_id` (VARCHAR(255), FK) - References utility_companies
+
+    - `rate_code_id` (VARCHAR(255), FK) - References rate_codes
+
+    - `state_id` (VARCHAR(2), FK) - References states
+
+    - `fixed_charge_usd` (NUMERIC(10, 4)) - Historical fixed charge
+
+    - `energy_charge_usd_per_kwh` (NUMERIC(10, 6)) - Historical energy charge
+
+    - `demand_charge_usd_per_kw` (NUMERIC(10, 4)) - Historical demand charge
+
+    - `effective_date` (DATE) - Historical rate effective date
+
+    - `change_type` (VARCHAR(50)) - ''rate_increase'', ''rate_decrease'', ''new_rate'',
+    ''rate_expired''
+
+    - `change_percentage` (NUMERIC(8, 4)) - Rate change percentage
+
+    - `change_amount` (NUMERIC(10, 6)) - Rate change amount
+
+    - `change_reason` (TEXT) - Reason for rate change
+
+
+    Stores federal solar and renewable energy incentives.
+
+
+    Key Columns:
+
+    - `federal_incentive_id` (VARCHAR(255), PK)
+
+    - `incentive_name` (VARCHAR(255)) - Incentive name
+
+    - `incentive_type` (VARCHAR(50)) - ''Tax Credit'', ''Rebate'', ''Grant'', ''Loan'',
+    ''Performance-Based''
+
+    - `incentive_description` (TEXT) - Incentive description
+
+    - `eligible_technologies` (TEXT[]) - Array of eligible technologies
+
+    - `eligible_sectors` (TEXT[]) - Array of eligible sectors
+
+    - `incentive_amount_usd` (NUMERIC(15, 2)) - Incentive amount
+
+    - `incentive_percentage` (NUMERIC(5, 2)) - Percentage-based incentive
+
+    - `incentive_unit` (VARCHAR(50)) - ''per_watt'', ''per_system'', ''percentage'',
+    ''fixed_amount''
+
+    - `maximum_incentive_usd` (NUMERIC(15, 2)) - Maximum incentive amount
+
+    - `minimum_system_size_kw` (NUMERIC(10, 2)) - Minimum system size
+
+    - `maximum_system_size_kw` (NUMERIC(10, 2)) - Maximum system size
+
+    - `effective_date` (DATE) - Incentive effective date
+
+    - `expiration_date` (DATE) - Incentive expiration date
+
+    - `is_active` (BOOLEAN) - Active incentive flag
+
+    - `program_website_url` (VARCHAR(500)) - Program website
+
+    - `data_source` (VARCHAR(100)) - ''doe'', ''dsire'', ''irs''
+
+
+    Stores state-level solar and renewable energy incentives.
+
+
+    Key Columns:
+
+    - `state_incentive_id` (VARCHAR(255), PK)
+
+    - `state_id` (VARCHAR(2), FK) - References states
+
+    - `incentive_name` (VARCHAR(255)) - Incentive name
+
+    - `incentive_type` (VARCHAR(50)) - ''Tax Credit'', ''Rebate'', ''Grant'', ''Loan'',
+    ''Performance-Based'', ''Property Tax Exemption''
+
+    - `incentive_description` (TEXT) - Incentive description
+
+    - `eligible_technologies` (TEXT[]) - Array of eligible technologies
+
+    - `eligible_sectors` (TEXT[]) - Array of eligible sectors
+
+    - `incentive_amount_usd` (NUMERIC(15, 2)) - Incentive amount
+
+    - `incentive_percentage` (NUMERIC(5, 2)) - Percentage-based incentive
+
+    - `incentive_unit` (VARCHAR(50)) - ''per_watt'', ''per_system'', ''percentage'',
+    ''fixed_amount''
+
+    - `maximum_incentive_usd` (NUMERIC(15, 2)) - Maximum incentive amount
+
+    - `minimum_system_size_kw` (NUMERIC(10, 2)) - Minimum system size
+
+    - `maximum_system_size_kw` (NUMERIC(10, 2)) - Maximum system size
+
+    - `effective_date` (DATE) - Incentive effective date
+
+    - `expiration_date` (DATE) - Incentive expiration date
+
+    - `is_active` (BOOLEAN) - Active incentive flag
+
+    - `program_website_url` (VARCHAR(500)) - Program website
+
+    - `regulatory_authority` (VARCHAR(255)) - State agency administering program
+
+    - `data_source` (VARCHAR(100)) - ''dsire'', ''state_commission'', ''state_energy_office''
+
+
+    Stores utility-level solar and renewable energy incentives.
+
+
+    Key Columns:
+
+    - `utility_incentive_id` (VARCHAR(255), PK)
+
+    - `utility_id` (VARCHAR(255), FK) - References utility_companies
+
+    - `state_id` (VARCHAR(2), FK) - References states
+
+    - `incentive_name` (VARCHAR(255)) - Incentive name
+
+    - `incentive_type` (VARCHAR(50)) - ''Rebate'', ''Performance-Based'', ''Net Metering'',
+    ''Feed-in Tariff'', ''Buy-Back Program''
+
+    - `incentive_description` (TEXT) - Incentive description
+
+    - `eligible_technologies` (TEXT[]) - Array of eligible technologies
+
+    - `eligible_sectors` (TEXT[]) - Array of eligible sectors
+
+    - `incentive_amount_usd` (NUMERIC(15, 2)) - Incentive amount
+
+    - `incentive_percentage` (NUMERIC(5, 2)) - Percentage-based incentive
+
+    - `incentive_unit` (VARCHAR(50)) - ''per_watt'', ''per_kwh'', ''percentage'',
+    ''fixed_amount''
+
+    - `maximum_incentive_usd` (NUMERIC(15, 2)) - Maximum incentive amount
+
+    - `minimum_system_size_kw` (NUMERIC(10, 2)) - Minimum system size
+
+    - `maximum_system_size_kw` (NUMERIC(10, 2)) - Maximum system size
+
+    - `net_metering_capacity_limit_kw` (NUMERIC(10, 2)) - Net metering capacity limit
+
+    - `feed_in_tariff_rate_usd_per_kwh` (NUMERIC(10, 6)) - Feed-in tariff rate
+
+    - `effective_date` (DATE) - Incentive effective date
+
+    - `expiration_date` (DATE) - Incentive expiration date
+
+    - `is_active` (BOOLEAN) - Active incentive flag
+
+    - `program_website_url` (VARCHAR(500)) - Program website
+
+    - `data_source` (VARCHAR(100)) - ''dsire'', ''utility_website'', ''state_commission''
+
+
+    Aggregates all available rebates for a given location/utility.
+
+
+    Key Columns:
+
+    - `aggregation_id` (VARCHAR(255), PK)
+
+    - `state_id` (VARCHAR(2), FK) - References states
+
+    - `utility_id` (VARCHAR(255), FK) - References utility_companies
+
+    - `zip_code` (VARCHAR(10), FK) - References zip_codes
+
+    - `total_federal_incentives_usd` (NUMERIC(15, 2)) - Total federal incentives
+
+    - `total_state_incentives_usd` (NUMERIC(15, 2)) - Total state incentives
+
+    - `total_utility_incentives_usd` (NUMERIC(15, 2)) - Total utility incentives
+
+    - `total_combined_incentives_usd` (NUMERIC(15, 2)) - Total combined incentives
+
+    - `federal_incentive_count` (INTEGER) - Number of federal incentives
+
+    - `state_incentive_count` (INTEGER) - Number of state incentives
+
+    - `utility_incentive_count` (INTEGER) - Number of utility incentives
+
+    - `total_incentive_count` (INTEGER) - Total incentive count
+
+    - `calculation_date` (DATE) - Aggregation calculation date
+
+
+    Compares rates across utilities, states, and rate codes.
+
+
+    Key Columns:
+
+    - `comparison_id` (VARCHAR(255), PK)
+
+    - `rate_id_1` (VARCHAR(255), FK) - References electricity_rates
+
+    - `rate_id_2` (VARCHAR(255), FK) - References electricity_rates
+
+    - `comparison_metric` (VARCHAR(100)) - ''price_per_kwh'', ''total_monthly_cost'',
+    ''cost_efficiency''
+
+    - `usage_kwh_per_month` (NUMERIC(10, 2)) - Usage level for comparison
+
+    - `rate_1_cost_usd` (NUMERIC(15, 2)) - Rate 1 cost
+
+    - `rate_2_cost_usd` (NUMERIC(15, 2)) - Rate 2 cost
+
+    - `cost_difference_usd` (NUMERIC(15, 2)) - Cost difference
+
+    - `cost_difference_percentage` (NUMERIC(8, 4)) - Cost difference percentage
+
+    - `comparison_date` (DATE) - Comparison date
+
+
+    Tracks data extraction operations from various sources.
+
+
+    Key Columns:
+
+    - `extraction_id` (VARCHAR(255), PK)
+
+    - `source_id` (VARCHAR(100)) - References source_id from data_resources.json
+
+    - `source_name` (VARCHAR(255)) - Source name
+
+    - `extraction_type` (VARCHAR(50)) - ''api'', ''web_scrape'', ''file_download'',
+    ''manual''
+
+    - `extraction_status` (VARCHAR(50)) - ''success'', ''failed'', ''partial'', ''in_progress''
+
+    - `records_extracted` (INTEGER) - Records extracted
+
+    - `records_loaded` (INTEGER) - Records loaded
+
+    - `records_failed` (INTEGER) - Records failed
+
+    - `extraction_start_time` (TIMESTAMP_NTZ) - Extraction start time
+
+    - `extraction_end_time` (TIMESTAMP_NTZ) - Extraction end time
+
+    - `extraction_duration_seconds` (INTEGER) - Extraction duration
+
+    - `error_message` (TEXT) - Error message if failed
+
+    - `extraction_metadata` (JSON) - Additional extraction metadata
+
+
+    The schema includes comprehensive indexes for performance optimization:
+
+
+    - Indexes on foreign keys (utility_id, rate_code_id, state_id, etc.)
+
+    - Indexes on date fields (effective_date, expiration_date)
+
+    - Indexes on geographic fields (zip_code, latitude, longitude)
+
+    - Indexes on status fields (is_current, is_active)
+
+    - Composite indexes for common query patterns
+
+
+    - States → Counties → Zip Codes: Geographic hierarchy
+
+    - States → Utility Companies: Utilities operate in states
+
+    - Utility Companies → Rate Structures → Electricity Rates: Rate organization
+
+    - Rate Codes → Rate Structures: Rate code classification
+
+    - Rate Structures → Tiered Rate Tiers: Tiered rate details
+
+    - Rate Structures → Time-of-Use Periods: TOU rate details
+
+    - Geographic Rate Areas → Rate Structures: Geographic mapping
+
+    - Electricity Rates → Historical Electricity Rates: Rate history
+
+    - States → State Incentives: State-level incentives
+
+    - Utility Companies → Utility Incentives: Utility-level incentives
+
+    - Solar Rebate Aggregations: Aggregates federal, state, and utility incentives
+
+
+    ---
+
+    Last Updated: 2026-02-04
+
+
+    ---
+
+
+    This data dictionary provides comprehensive column-level documentation for all
+    tables in the Electricity Cost and Solar Rebate Database.
+
+
+    Stores U.S. state information for geographic organization.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | state_id | VARCHAR(2) | PRIMARY KEY | Two-letter state code (e.g., ''CA'', ''NY'',
+    ''TX'') |
+
+    | state_name | VARCHAR(100) | NOT NULL | State name (e.g., ''California'', ''New
+    York'') |
+
+    | state_full_name | VARCHAR(100) | | Full state name with official designation
+    |
+
+    | region | VARCHAR(50) | | Census region (''Northeast'', ''South'', ''Midwest'',
+    ''West'') |
+
+    | division | VARCHAR(50) | | Census division within region |
+
+    | timezone | VARCHAR(50) | | Primary timezone for the state |
+
+    | is_active | BOOLEAN | DEFAULT TRUE | Whether state is currently active |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Stores county information for geographic rate areas.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | county_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for county |
+
+    | state_id | VARCHAR(2) | NOT NULL, FK → states | Two-letter state code |
+
+    | county_name | VARCHAR(100) | NOT NULL | County name |
+
+    | county_fips_code | VARCHAR(5) | | 5-digit FIPS code (state + county) |
+
+    | county_seat | VARCHAR(100) | | County seat city name |
+
+    | population | INTEGER | | County population (latest census) |
+
+    | area_sq_miles | NUMERIC(10, 2) | | County area in square miles |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Stores zip code information for location-based rate queries.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | zip_code | VARCHAR(10) | PRIMARY KEY | Zip code (5-digit or 9-digit with hyphen)
+    |
+
+    | state_id | VARCHAR(2) | NOT NULL, FK → states | Two-letter state code |
+
+    | county_id | VARCHAR(255) | FK → counties | County identifier |
+
+    | city | VARCHAR(100) | | City name for zip code |
+
+    | latitude | NUMERIC(10, 7) | | WGS84 latitude coordinate |
+
+    | longitude | NUMERIC(10, 7) | | WGS84 longitude coordinate |
+
+    | timezone | VARCHAR(50) | | Timezone for zip code area |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Stores electric utility company information (3,700+ utilities).
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | utility_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for utility |
+
+    | utility_name | VARCHAR(255) | NOT NULL | Utility company name |
+
+    | utility_display_name | VARCHAR(255) | | Human-readable display name |
+
+    | utility_type | VARCHAR(50) | | Utility type (''Investor-Owned'', ''Municipal'',
+    ''Cooperative'', ''Federal'', ''Power Marketer'') |
+
+    | state_id | VARCHAR(2) | NOT NULL, FK → states | Primary state of operation |
+
+    | service_territory_description | TEXT | | Description of service territory |
+
+    | eia_utility_id | VARCHAR(50) | | EIA Form 861 utility identifier |
+
+    | openei_utility_id | VARCHAR(50) | | OpenEI utility identifier |
+
+    | website_url | VARCHAR(500) | | Utility company website URL |
+
+    | customer_service_phone | VARCHAR(50) | | Customer service phone number |
+
+    | total_customers | INTEGER | | Total number of customers |
+
+    | total_mwh_sold | NUMERIC(15, 2) | | Total MWh sold annually |
+
+    | is_active | BOOLEAN | DEFAULT TRUE | Whether utility is currently active |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Stores rate code classifications and categories.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | rate_code_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for rate code
+    |
+
+    | rate_code | VARCHAR(100) | NOT NULL | Rate code identifier (e.g., ''R-1'', ''GS-1'',
+    ''E-1'') |
+
+    | rate_code_description | TEXT | | Detailed description of rate code |
+
+    | rate_code_category | VARCHAR(100) | | Category (''Residential'', ''Commercial'',
+    ''Industrial'', ''Agricultural'', ''Lighting'') |
+
+    | sector | VARCHAR(50) | | Sector (''Residential'', ''Commercial'', ''Industrial'',
+    ''Lighting'') |
+
+    | rate_structure_type | VARCHAR(100) | | Structure type (''Flat'', ''Tiered'',
+    ''Time-of-Use'', ''Demand'', ''Hybrid'') |
+
+    | is_active | BOOLEAN | DEFAULT TRUE | Whether rate code is currently active |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Stores detailed rate structure information.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | rate_structure_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for rate
+    structure |
+
+    | utility_id | VARCHAR(255) | NOT NULL, FK → utility_companies | Utility company
+    identifier |
+
+    | rate_code_id | VARCHAR(255) | NOT NULL, FK → rate_codes | Rate code identifier
+    |
+
+    | rate_name | VARCHAR(255) | NOT NULL | Rate structure name |
+
+    | rate_description | TEXT | | Detailed rate structure description |
+
+    | effective_date | DATE | NOT NULL | Date rate structure becomes effective |
+
+    | expiration_date | DATE | | Date rate structure expires (NULL if ongoing) |
+
+    | approval_status | VARCHAR(50) | | Status (''Approved'', ''Pending'', ''Proposed'',
+    ''Expired'') |
+
+    | regulatory_authority | VARCHAR(255) | | State PUC/PSC regulatory authority |
+
+    | tariff_filing_number | VARCHAR(100) | | Tariff filing number with regulatory
+    authority |
+
+    | is_current | BOOLEAN | DEFAULT TRUE | Whether rate structure is currently active
+    |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Core table storing electricity rate pricing information.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | rate_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for rate |
+
+    | rate_structure_id | VARCHAR(255) | NOT NULL, FK → rate_structures | Rate structure
+    identifier |
+
+    | utility_id | VARCHAR(255) | NOT NULL, FK → utility_companies | Utility company
+    identifier |
+
+    | rate_code_id | VARCHAR(255) | NOT NULL, FK → rate_codes | Rate code identifier
+    |
+
+    | state_id | VARCHAR(2) | NOT NULL, FK → states | State identifier |
+
+    | rate_type | VARCHAR(50) | | Rate type (''Residential'', ''Commercial'', ''Industrial'',
+    ''Lighting'') |
+
+    | billing_period | VARCHAR(50) | | Billing period (''Monthly'', ''Daily'', ''Hourly'')
+    |
+
+    | fixed_charge_usd | NUMERIC(10, 4) | | Monthly fixed charge in USD |
+
+    | fixed_charge_unit | VARCHAR(50) | | Fixed charge unit (''per_month'', ''per_day'',
+    ''per_customer'') |
+
+    | energy_charge_usd_per_kwh | NUMERIC(10, 6) | | Base energy charge per kWh in
+    USD |
+
+    | demand_charge_usd_per_kw | NUMERIC(10, 4) | | Demand charge per kW in USD |
+
+    | minimum_charge_usd | NUMERIC(10, 4) | | Minimum monthly charge in USD |
+
+    | currency | VARCHAR(10) | DEFAULT ''USD'' | Currency code |
+
+    | effective_date | DATE | NOT NULL | Rate effective date |
+
+    | expiration_date | DATE | | Rate expiration date (NULL if ongoing) |
+
+    | is_current | BOOLEAN | DEFAULT TRUE | Whether rate is currently active |
+
+    | data_source | VARCHAR(100) | | Data source (''openei'', ''eia'', ''state_commission'',
+    ''poweroutage_us'') |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Stores tiered rate structure tiers (e.g., Tier 1: 0-500 kWh, Tier 2: 501-1000
+    kWh).
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | tier_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for tier |
+
+    | rate_structure_id | VARCHAR(255) | NOT NULL, FK → rate_structures | Rate structure
+    identifier |
+
+    | tier_number | INTEGER | NOT NULL | Tier number (1, 2, 3, etc.) |
+
+    | tier_name | VARCHAR(100) | | Tier name or description |
+
+    | tier_start_kwh | NUMERIC(10, 2) | | Starting kWh for tier (inclusive) |
+
+    | tier_end_kwh | NUMERIC(10, 2) | | Ending kWh for tier (NULL for unlimited tier)
+    |
+
+    | energy_charge_usd_per_kwh | NUMERIC(10, 6) | NOT NULL | Energy charge per kWh
+    for this tier |
+
+    | effective_date | DATE | NOT NULL | Tier effective date |
+
+    | expiration_date | DATE | | Tier expiration date |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Stores time-of-use rate periods (e.g., Peak, Off-Peak, Super Off-Peak).
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | tou_period_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for TOU period
+    |
+
+    | rate_structure_id | VARCHAR(255) | NOT NULL, FK → rate_structures | Rate structure
+    identifier |
+
+    | period_name | VARCHAR(100) | NOT NULL | Period name (''Peak'', ''Off-Peak'',
+    ''Super Off-Peak'', ''Mid-Peak'') |
+
+    | period_start_time | TIME | NOT NULL | Period start time |
+
+    | period_end_time | TIME | NOT NULL | Period end time |
+
+    | day_of_week | VARCHAR(20) | | Day of week (''Monday'', ''Weekday'', ''Weekend'',
+    ''All'') |
+
+    | season | VARCHAR(50) | | Season (''Summer'', ''Winter'', ''Spring'', ''Fall'',
+    ''All'') |
+
+    | energy_charge_usd_per_kwh | NUMERIC(10, 6) | NOT NULL | Energy charge per kWh
+    for this period |
+
+    | effective_date | DATE | NOT NULL | Period effective date |
+
+    | expiration_date | DATE | | Period expiration date |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Maps geographic areas to specific rate structures.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | rate_area_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for rate area
+    |
+
+    | rate_structure_id | VARCHAR(255) | NOT NULL, FK → rate_structures | Rate structure
+    identifier |
+
+    | state_id | VARCHAR(2) | FK → states | State identifier |
+
+    | county_id | VARCHAR(255) | FK → counties | County identifier |
+
+    | zip_code | VARCHAR(10) | FK → zip_codes | Zip code |
+
+    | service_area_name | VARCHAR(255) | | Service area name |
+
+    | service_area_description | TEXT | | Service area description |
+
+    | latitude_min | NUMERIC(10, 7) | | Minimum latitude (bounding box) |
+
+    | latitude_max | NUMERIC(10, 7) | | Maximum latitude (bounding box) |
+
+    | longitude_min | NUMERIC(10, 7) | | Minimum longitude (bounding box) |
+
+    | longitude_max | NUMERIC(10, 7) | | Maximum longitude (bounding box) |
+
+    | effective_date | DATE | NOT NULL | Area effective date |
+
+    | expiration_date | DATE | | Area expiration date |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Tracks rate changes over time for trend analysis.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | historical_rate_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for historical
+    rate |
+
+    | rate_id | VARCHAR(255) | NOT NULL, FK → electricity_rates | Current rate identifier
+    |
+
+    | utility_id | VARCHAR(255) | NOT NULL, FK → utility_companies | Utility company
+    identifier |
+
+    | rate_code_id | VARCHAR(255) | NOT NULL, FK → rate_codes | Rate code identifier
+    |
+
+    | state_id | VARCHAR(2) | NOT NULL, FK → states | State identifier |
+
+    | fixed_charge_usd | NUMERIC(10, 4) | | Historical fixed charge |
+
+    | energy_charge_usd_per_kwh | NUMERIC(10, 6) | | Historical energy charge per
+    kWh |
+
+    | demand_charge_usd_per_kw | NUMERIC(10, 4) | | Historical demand charge per kW
+    |
+
+    | effective_date | DATE | NOT NULL | Historical rate effective date |
+
+    | change_type | VARCHAR(50) | | Change type (''rate_increase'', ''rate_decrease'',
+    ''new_rate'', ''rate_expired'') |
+
+    | change_percentage | NUMERIC(8, 4) | | Rate change percentage |
+
+    | change_amount | NUMERIC(10, 6) | | Rate change amount |
+
+    | change_reason | TEXT | | Reason for rate change |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Stores federal solar and renewable energy incentives.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | federal_incentive_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for federal
+    incentive |
+
+    | incentive_name | VARCHAR(255) | NOT NULL | Incentive name (e.g., ''Solar Investment
+    Tax Credit'') |
+
+    | incentive_type | VARCHAR(50) | | Incentive type (''Tax Credit'', ''Rebate'',
+    ''Grant'', ''Loan'', ''Performance-Based'') |
+
+    | incentive_description | TEXT | | Detailed incentive description |
+
+    | eligible_technologies | TEXT[] | | Array of eligible technologies |
+
+    | eligible_sectors | TEXT[] | | Array of eligible sectors |
+
+    | incentive_amount_usd | NUMERIC(15, 2) | | Incentive amount in USD |
+
+    | incentive_percentage | NUMERIC(5, 2) | | Percentage-based incentive (e.g., 30%
+    for ITC) |
+
+    | incentive_unit | VARCHAR(50) | | Incentive unit (''per_watt'', ''per_system'',
+    ''percentage'', ''fixed_amount'') |
+
+    | maximum_incentive_usd | NUMERIC(15, 2) | | Maximum incentive amount in USD |
+
+    | minimum_system_size_kw | NUMERIC(10, 2) | | Minimum system size in kW |
+
+    | maximum_system_size_kw | NUMERIC(10, 2) | | Maximum system size in kW |
+
+    | effective_date | DATE | NOT NULL | Incentive effective date |
+
+    | expiration_date | DATE | | Incentive expiration date |
+
+    | is_active | BOOLEAN | DEFAULT TRUE | Whether incentive is currently active |
+
+    | program_website_url | VARCHAR(500) | | Program website URL |
+
+    | program_contact_info | TEXT | | Program contact information |
+
+    | data_source | VARCHAR(100) | | Data source (''doe'', ''dsire'', ''irs'') |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Stores state-level solar and renewable energy incentives.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | state_incentive_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for state
+    incentive |
+
+    | state_id | VARCHAR(2) | NOT NULL, FK → states | Two-letter state code |
+
+    | incentive_name | VARCHAR(255) | NOT NULL | Incentive name |
+
+    | incentive_type | VARCHAR(50) | | Incentive type (''Tax Credit'', ''Rebate'',
+    ''Grant'', ''Loan'', ''Performance-Based'', ''Property Tax Exemption'') |
+
+    | incentive_description | TEXT | | Detailed incentive description |
+
+    | eligible_technologies | TEXT[] | | Array of eligible technologies |
+
+    | eligible_sectors | TEXT[] | | Array of eligible sectors |
+
+    | incentive_amount_usd | NUMERIC(15, 2) | | Incentive amount in USD |
+
+    | incentive_percentage | NUMERIC(5, 2) | | Percentage-based incentive |
+
+    | incentive_unit | VARCHAR(50) | | Incentive unit (''per_watt'', ''per_system'',
+    ''percentage'', ''fixed_amount'') |
+
+    | maximum_incentive_usd | NUMERIC(15, 2) | | Maximum incentive amount in USD |
+
+    | minimum_system_size_kw | NUMERIC(10, 2) | | Minimum system size in kW |
+
+    | maximum_system_size_kw | NUMERIC(10, 2) | | Maximum system size in kW |
+
+    | effective_date | DATE | NOT NULL | Incentive effective date |
+
+    | expiration_date | DATE | | Incentive expiration date |
+
+    | is_active | BOOLEAN | DEFAULT TRUE | Whether incentive is currently active |
+
+    | program_website_url | VARCHAR(500) | | Program website URL |
+
+    | program_contact_info | TEXT | | Program contact information |
+
+    | regulatory_authority | VARCHAR(255) | | State agency administering program |
+
+    | data_source | VARCHAR(100) | | Data source (''dsire'', ''state_commission'',
+    ''state_energy_office'') |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Stores utility-level solar and renewable energy incentives.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | utility_incentive_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for utility
+    incentive |
+
+    | utility_id | VARCHAR(255) | NOT NULL, FK → utility_companies | Utility company
+    identifier |
+
+    | state_id | VARCHAR(2) | NOT NULL, FK → states | State identifier |
+
+    | incentive_name | VARCHAR(255) | NOT NULL | Incentive name |
+
+    | incentive_type | VARCHAR(50) | | Incentive type (''Rebate'', ''Performance-Based'',
+    ''Net Metering'', ''Feed-in Tariff'', ''Buy-Back Program'') |
+
+    | incentive_description | TEXT | | Detailed incentive description |
+
+    | eligible_technologies | TEXT[] | | Array of eligible technologies |
+
+    | eligible_sectors | TEXT[] | | Array of eligible sectors |
+
+    | incentive_amount_usd | NUMERIC(15, 2) | | Incentive amount in USD |
+
+    | incentive_percentage | NUMERIC(5, 2) | | Percentage-based incentive |
+
+    | incentive_unit | VARCHAR(50) | | Incentive unit (''per_watt'', ''per_kwh'',
+    ''percentage'', ''fixed_amount'') |
+
+    | maximum_incentive_usd | NUMERIC(15, 2) | | Maximum incentive amount in USD |
+
+    | minimum_system_size_kw | NUMERIC(10, 2) | | Minimum system size in kW |
+
+    | maximum_system_size_kw | NUMERIC(10, 2) | | Maximum system size in kW |
+
+    | net_metering_capacity_limit_kw | NUMERIC(10, 2) | | Net metering capacity limit
+    in kW |
+
+    | feed_in_tariff_rate_usd_per_kwh | NUMERIC(10, 6) | | Feed-in tariff rate per
+    kWh |
+
+    | effective_date | DATE | NOT NULL | Incentive effective date |
+
+    | expiration_date | DATE | | Incentive expiration date |
+
+    | is_active | BOOLEAN | DEFAULT TRUE | Whether incentive is currently active |
+
+    | program_website_url | VARCHAR(500) | | Program website URL |
+
+    | program_contact_info | TEXT | | Program contact information |
+
+    | data_source | VARCHAR(100) | | Data source (''dsire'', ''utility_website'',
+    ''state_commission'') |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Aggregates all available rebates for a given location/utility.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | aggregation_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for aggregation
+    |
+
+    | state_id | VARCHAR(2) | NOT NULL, FK → states | State identifier |
+
+    | utility_id | VARCHAR(255) | FK → utility_companies | Utility identifier |
+
+    | zip_code | VARCHAR(10) | FK → zip_codes | Zip code |
+
+    | total_federal_incentives_usd | NUMERIC(15, 2) | | Total federal incentives in
+    USD |
+
+    | total_state_incentives_usd | NUMERIC(15, 2) | | Total state incentives in USD
+    |
+
+    | total_utility_incentives_usd | NUMERIC(15, 2) | | Total utility incentives in
+    USD |
+
+    | total_combined_incentives_usd | NUMERIC(15, 2) | | Total combined incentives
+    in USD |
+
+    | federal_incentive_count | INTEGER | DEFAULT 0 | Number of federal incentives
+    |
+
+    | state_incentive_count | INTEGER | DEFAULT 0 | Number of state incentives |
+
+    | utility_incentive_count | INTEGER | DEFAULT 0 | Number of utility incentives
+    |
+
+    | total_incentive_count | INTEGER | DEFAULT 0 | Total incentive count |
+
+    | calculation_date | DATE | NOT NULL | Date aggregation was calculated |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Compares rates across utilities, states, and rate codes.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | comparison_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for comparison
+    |
+
+    | rate_id_1 | VARCHAR(255) | NOT NULL, FK → electricity_rates | First rate identifier
+    |
+
+    | rate_id_2 | VARCHAR(255) | NOT NULL, FK → electricity_rates | Second rate identifier
+    |
+
+    | comparison_metric | VARCHAR(100) | | Comparison metric (''price_per_kwh'', ''total_monthly_cost'',
+    ''cost_efficiency'') |
+
+    | usage_kwh_per_month | NUMERIC(10, 2) | | Usage level in kWh/month for comparison
+    |
+
+    | rate_1_cost_usd | NUMERIC(15, 2) | | Cost for rate 1 in USD |
+
+    | rate_2_cost_usd | NUMERIC(15, 2) | | Cost for rate 2 in USD |
+
+    | cost_difference_usd | NUMERIC(15, 2) | | Cost difference in USD |
+
+    | cost_difference_percentage | NUMERIC(8, 4) | | Cost difference percentage |
+
+    | comparison_date | DATE | NOT NULL | Date comparison was performed |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    Tracks data extraction operations from various sources.
+
+
+    | Column Name | Data Type | Constraints | Description |
+
+    |------------|-----------|-------------|-------------|
+
+    | extraction_id | VARCHAR(255) | PRIMARY KEY | Unique identifier for extraction
+    |
+
+    | source_id | VARCHAR(100) | NOT NULL | Source identifier from data_resources.json
+    |
+
+    | source_name | VARCHAR(255) | NOT NULL | Source name |
+
+    | extraction_type | VARCHAR(50) | | Extraction type (''api'', ''web_scrape'',
+    ''file_download'', ''manual'') |
+
+    | extraction_status | VARCHAR(50) | | Extraction status (''success'', ''failed'',
+    ''partial'', ''in_progress'') |
+
+    | records_extracted | INTEGER | DEFAULT 0 | Number of records extracted |
+
+    | records_loaded | INTEGER | DEFAULT 0 | Number of records loaded |
+
+    | records_failed | INTEGER | DEFAULT 0 | Number of records failed |
+
+    | extraction_start_time | TIMESTAMP_NTZ | NOT NULL | Extraction start timestamp
+    |
+
+    | extraction_end_time | TIMESTAMP_NTZ | | Extraction end timestamp |
+
+    | extraction_duration_seconds | INTEGER | | Extraction duration in seconds |
+
+    | error_message | TEXT | | Error message if extraction failed |
+
+    | extraction_metadata | JSON | | Additional extraction metadata |
+
+    | last_updated | TIMESTAMP_NTZ | DEFAULT CURRENT_TIMESTAMP() | Last update timestamp
+    |
+
+
+    ---
+
+    Last Updated: 2026-02-04
+
+
+    ---
+
+
+    ---
+
+
+    ---
+
+
+    This database includes 30 production SQL queries, each designed to solve specific
+    business problems for companies with $1M+ ARR. Each query includes:
+
+
+    - Business Use Case: The specific business problem this query solves
+
+    - Description: Technical explanation of what the query does
+
+    - Client Deliverable: What output or report this query generates
+
+    - Business Value: The business impact and value delivered
+
+    - Complexity: Technical complexity indicators
+
+    - SQL Code: Complete, production-ready SQL query
+
+
+    ---
+
+
+    Use Case: Utility Rate Analysis Platform - Comprehensive Rate Analysis Dashboard
+    for Energy Consultants
+
+
+    Description: Enterprise-level electricity rate analysis with multi-level CTE nesting,
+    geographic aggregations, rate code classifications, utility comparisons, and advanced
+    window functions. Demonstrates production patterns used by energy consulting firms
+    and utility rate intelligence platforms.
+
+
+    Use Case: Utility Rate Analysis Platform - Comprehensive Rate Analysis Dashboard
+    for Energy Consultants
+
+
+    Business Value: Comprehensive rate analysis report showing rates by state, utility,
+    rate code, and geographic region with cost comparisons, rate trends, and market
+    intelligence. Enables energy consultants to provide data-driven rate recommendations
+    to clients.
+
+
+    Purpose: Quantifies electricity rate variations across geographic regions and
+    rate codes, enabling comprehensive cost intelligence for energy decision-making.
+
+
+    Complexity: Deep nested CTEs (7+ levels), geographic aggregations, complex joins
+    across multiple tables, window functions with multiple frame clauses, percentile
+    calculations, rate trend analysis, correlated subqueries
+
+
+    Expected Output: Comprehensive rate analysis with geographic aggregations, rate
+    code classifications, utility comparisons, and cost intelligence metrics.
+
+
+    ---
+
+
+    Use Case: Energy Cost Optimization Platform - Tiered Rate and TOU Analysis for
+    Commercial Energy Management
+
+
+    Description: Enterprise-level recursive rate structure analysis using recursive
+    CTE for tiered rate calculations, time-of-use period analysis, rate optimization
+    scenarios, and multi-level rate structure traversal. Implements production patterns
+    for analyzing complex rate structures with multiple tiers and TOU periods.
+
+
+    Use Case: Energy Cost Optimization Platform - Tiered Rate and TOU Analysis for
+    Commercial Energy Management
+
+
+    Business Value: Comprehensive tiered rate and TOU analysis showing optimal rate
+    selection based on usage patterns, tier thresholds, and time-of-use periods. Enables
+    commercial energy managers to optimize electricity costs through strategic rate
+    selection and usage pattern adjustments.
+
+
+    Purpose: Provides detailed analysis of tiered and TOU rate structures enabling
+    clients to optimize electricity costs through usage pattern optimization and rate
+    selection.
+
+
+    Complexity: Advanced recursive CTE with tier calculations, TOU period analysis,
+    multi-level rate structure traversal, usage scenario modeling, cost optimization
+    calculations, multiple CTE nesting levels (6+)
+
+
+    Expected Output: Comprehensive tiered rate and TOU analysis with usage scenarios,
+    cost calculations, and optimization recommendations.
+
+
+    ---
+
+
+    Use Case: Solar Installation Platform - Comprehensive Rebate Analysis and Optimization
+    for Solar Sales Teams
+
+
+    Description: Enterprise-level solar rebate analysis with multi-source incentive
+    aggregation (federal, state, utility), rebate optimization calculations, geographic
+    rebate intelligence, and comprehensive incentive stacking analysis. Demonstrates
+    production patterns used by solar installation companies and energy consulting
+    firms.
+
+
+    Use Case: Solar Installation Platform - Comprehensive Rebate Analysis and Optimization
+    for Solar Sales Teams
+
+
+    Business Value: Comprehensive solar rebate analysis showing all available incentives
+    (federal, state, utility) by location, rebate stacking optimization, total savings
+    calculations, and ROI analysis. Enables solar sales teams to provide accurate
+    rebate information and maximize customer savings.
+
+
+    Purpose: Aggregates and optimizes solar rebates from multiple sources enabling
+    clients to maximize solar installation savings through strategic rebate stacking.
+
+
+    Complexity: Deep nested CTEs (8+ levels), multi-source data aggregation, rebate
+    stacking calculations, geographic matching, incentive eligibility analysis, ROI
+    calculations, window functions with complex aggregations
+
+
+    Expected Output: Comprehensive solar rebate aggregation with federal, state, and
+    utility incentives, rebate stacking optimization, and total savings calculations.
+
+
+    ---
+
+
+    Use Case: Energy Market Analysis Platform - Historical Rate Trend Analysis and
+    Forecasting for Energy Traders
+
+
+    Description: Enterprise-level historical rate trend analysis with time-series
+    analysis, rate volatility calculations, forecasting metrics, and comprehensive
+    trend identification. Demonstrates production patterns used by energy market analysts
+    and rate forecasting platforms.
+
+
+    Use Case: Energy Market Analysis Platform - Historical Rate Trend Analysis and
+    Forecasting for Energy Traders
+
+
+    Business Value: Comprehensive historical rate trend analysis showing rate changes
+    over time, volatility metrics, trend identification, and forecasting indicators.
+    Enables energy traders and market analysts to understand rate trends and make
+    informed decisions.
+
+
+    Purpose: Analyzes historical rate trends enabling clients to understand rate volatility,
+    identify patterns, and forecast future rate movements.
+
+
+    Complexity: Deep nested CTEs (7+ levels), time-series analysis, window functions
+    with multiple frame clauses, volatility calculations, trend identification, forecasting
+    metrics, correlated subqueries
+
+
+    Expected Output: Historical rate trend analysis with time-series metrics, volatility
+    calculations, and trend identification.
+
+
+    ---
+
+
+    Use Case: Energy Market Research Platform - Cross-State Rate Comparison and Competitive
+    Analysis for Market Analysts
+
+
+    Description: Enterprise-level geographic rate comparison with cross-state benchmarking,
+    market intelligence metrics, competitive positioning analysis, and comprehensive
+    rate comparison matrices. Demonstrates production patterns used by energy market
+    research firms and competitive intelligence platforms.
+
+
+    Use Case: Energy Market Research Platform - Cross-State Rate Comparison and Competitive
+    Analysis for Market Analysts
+
+
+    Business Value: Comprehensive geographic rate comparison showing rates across
+    states, regions, and utilities with competitive positioning, market share analysis,
+    and benchmarking metrics. Enables market analysts to understand competitive landscape
+    and market dynamics.
+
+
+    Purpose: Provides cross-state rate comparisons enabling clients to understand
+    competitive positioning and market dynamics across geographic regions.
+
+
+    Complexity: Deep nested CTEs (8+ levels), cross-state comparisons, competitive
+    positioning analysis, market share calculations, benchmarking metrics, complex
+    joins, window functions with multiple partitions
+
+
+    Expected Output: Geographic rate comparison matrix with cross-state benchmarking,
+    competitive positioning, and market intelligence metrics.
+
+
+    ---
+
+
+    Use Case: Utility Performance Analysis Platform - Competitive Benchmarking for
+    Utility Executives
+
+
+    Description: Enterprise-level utility performance benchmarking with rate competitiveness
+    analysis, market positioning metrics, comprehensive performance indicators, and
+    peer comparison analysis. Demonstrates production patterns used by utility performance
+    analysis platforms and competitive intelligence systems.
+
+
+    Use Case: Utility Performance Analysis Platform - Competitive Benchmarking for
+    Utility Executives
+
+
+    Business Value: Comprehensive utility performance benchmarking showing rate competitiveness,
+    market positioning, performance metrics compared to peers, and competitive advantage
+    identification. Enables utility executives to understand competitive positioning
+    and identify strategic improvement opportunities.
+
+
+    Purpose: Benchmarks utility performance enabling executives to understand competitive
+    positioning, identify improvement opportunities, and make data-driven strategic
+    decisions.
+
+
+    Complexity: Deep nested CTEs (7+ levels), utility benchmarking, competitive positioning
+    analysis, performance metrics, window functions with multiple partitions, peer
+    comparison calculations, market share analysis
+
+
+    Expected Output: Utility performance benchmarking report with rate competitiveness
+    metrics, market positioning, and peer comparisons.
+
+
+    ---
+
+
+    Use Case: Market Research Platform - Rate Code Market Share Analysis for Energy
+    Market Analysts
+
+
+    Description: Enterprise-level rate code market share analysis with utility distribution
+    intelligence, adoption rates, market penetration metrics, and comprehensive market
+    dynamics. Demonstrates production patterns used by market research platforms and
+    energy market analysis systems.
+
+
+    Use Case: Market Research Platform - Rate Code Market Share Analysis for Energy
+    Market Analysts
+
+
+    Business Value: Comprehensive rate code market share analysis showing adoption
+    rates, utility distribution, market penetration across states and regions, and
+    market dynamics. Enables market analysts to understand adoption patterns and market
+    evolution.
+
+
+    Purpose: Analyzes rate code market share enabling market analysts to understand
+    adoption patterns, market dynamics, and competitive landscape.
+
+
+    Complexity: Deep nested CTEs (6+ levels), market share calculations, adoption
+    rate analysis, distribution metrics, window functions, market penetration calculations
+
+
+    Expected Output: Rate code market share analysis with adoption rates, utility
+    distribution, and market penetration metrics.
+
+
+    ---
+
+
+    Use Case: Solar Financial Analysis Platform - ROI and Payback Analysis for Solar
+    Investment Advisors
+
+
+    Description: Enterprise-level solar rebate ROI analysis with payback period calculations,
+    net present value analysis, comprehensive financial metrics, and investment optimization.
+    Demonstrates production patterns used by solar financial analysis platforms and
+    investment advisory systems.
+
+
+    Use Case: Solar Financial Analysis Platform - ROI and Payback Analysis for Solar
+    Investment Advisors
+
+
+    Business Value: Comprehensive solar rebate ROI analysis showing payback periods,
+    net present value, financial returns, and investment optimization for solar installations.
+    Enables solar investment advisors to provide accurate financial analysis and investment
+    recommendations.
+
+
+    Purpose: Calculates solar investment ROI enabling advisors to provide accurate
+    financial analysis, investment recommendations, and payback period calculations.
+
+
+    Complexity: Deep nested CTEs (8+ levels), ROI calculations, NPV analysis, payback
+    period calculations, financial metrics, time-series analysis, rebate stacking
+    optimization
+
+
+    Expected Output: Solar rebate ROI analysis with payback periods, NPV calculations,
+    and financial return metrics.
+
+
+    ---
+
+
+    Use Case: Energy Market Analysis Platform - Cross-State Rate Comparison for Market
+    Researchers
+
+
+    Description: Enterprise-level cross-state rate comparison with regional market
+    dynamics, competitive analysis, market trend identification, and comprehensive
+    regional benchmarking. Demonstrates production patterns used by energy market
+    intelligence platforms and regional analysis systems.
+
+
+    Use Case: Energy Market Analysis Platform - Cross-State Rate Comparison for Market
+    Researchers
+
+
+    Business Value: Comprehensive cross-state rate comparison showing regional market
+    dynamics, competitive positioning, market trends, and regional benchmarking. Enables
+    market researchers to understand regional market dynamics and competitive landscape.
+
+
+    Purpose: Compares rates across states enabling researchers to understand regional
+    market dynamics, competitive positioning, and market trends.
+
+
+    Complexity: Deep nested CTEs (7+ levels), cross-state comparisons, regional analysis,
+    market dynamics, complex aggregations, trend identification
+
+
+    Expected Output: Cross-state rate comparison with regional market dynamics, competitive
+    analysis, and market trends.
+
+
+    ---
+
+
+    Use Case: Rate Structure Analysis Platform - Complexity Analysis for Rate Design
+    Engineers
+
+
+    Description: Enterprise-level rate structure complexity analysis with multi-tier
+    optimization, structure comparison, complexity metrics, and optimization opportunities
+    identification. Demonstrates production patterns used by rate design engineering
+    platforms and structure analysis systems.
+
+
+    Use Case: Rate Structure Analysis Platform - Complexity Analysis for Rate Design
+    Engineers
+
+
+    Business Value: Comprehensive rate structure complexity analysis showing structure
+    comparisons, complexity metrics, optimization opportunities, and multi-tier analysis.
+    Enables rate design engineers to understand structure variations and identify
+    optimization opportunities.
+
+
+    Purpose: Analyzes rate structure complexity enabling engineers to understand structure
+    variations, identify optimization opportunities, and design efficient rate structures.
+
+
+    Complexity: Deep nested CTEs (8+ levels), complexity metrics, multi-tier analysis,
+    structure comparison, optimization calculations, tier optimization algorithms
+
+
+    Expected Output: Rate structure complexity analysis with complexity metrics, multi-tier
+    optimization, and structure comparisons.
+
+
+    ---
+
+
+    Use Case: Solar Incentive Tracking Platform - Historical Rebate Trends and Expiration
+    Analysis for Solar Companies
+
+
+    Description: Enterprise-level historical rebate trend analysis with incentive
+    expiration intelligence, rebate lifecycle tracking, expiration forecasting, and
+    comprehensive trend identification. Demonstrates production patterns used by solar
+    incentive tracking platforms and rebate management systems.
+
+
+    Use Case: Solar Incentive Tracking Platform - Historical Rebate Trends and Expiration
+    Analysis for Solar Companies
+
+
+    Business Value: Comprehensive historical rebate trend analysis showing rebate
+    changes over time, expiration forecasts, lifecycle tracking, and trend identification.
+    Enables solar companies to plan for expiring incentives and optimize rebate timing.
+
+
+    Purpose: Analyzes historical rebate trends enabling companies to understand rebate
+    evolution, forecast expirations, and optimize rebate utilization timing.
+
+
+    Complexity: Deep nested CTEs (7+ levels), time-series analysis, expiration forecasting,
+    lifecycle tracking, trend identification, window functions with temporal analysis
+
+
+    Expected Output: Historical rebate trend analysis with expiration forecasts, lifecycle
+    tracking, and trend identification.
+
+
+    ---
+
+
+    Use Case: Location-Based Rate Optimization Platform - Zip Code Level Rate Analysis
+    for Energy Consultants
+
+
+    Description: Enterprise-level geographic rate optimization with zip code level
+    intelligence, location-based rate recommendations, and comprehensive geographic
+    cost analysis. Demonstrates production patterns used by location-based rate optimization
+    platforms and geographic intelligence systems.
+
+
+    Use Case: Location-Based Rate Optimization Platform - Zip Code Level Rate Analysis
+    for Energy Consultants
+
+
+    Business Value: Comprehensive geographic rate optimization showing optimal rates
+    by zip code, location-based recommendations, and geographic cost analysis. Enables
+    energy consultants to provide location-specific rate recommendations.
+
+
+    Purpose: Optimizes rates by geographic location enabling consultants to provide
+    location-specific recommendations and cost analysis.
+
+
+    Complexity: Deep nested CTEs (7+ levels), geographic aggregations, zip code analysis,
+    location-based optimization, spatial matching, complex joins
+
+
+    Expected Output: Geographic rate optimization with zip code level intelligence
+    and location-based recommendations.
+
+
+    ---
+
+
+    Use Case: Utility Portfolio Management Platform - Rate Code Diversity Analysis
+    for Utility Strategists
+
+
+    Description: Enterprise-level utility rate portfolio analysis with rate code diversity
+    metrics, portfolio optimization, and comprehensive rate offering analysis. Demonstrates
+    production patterns used by utility portfolio management platforms and rate strategy
+    systems.
+
+
+    Use Case: Utility Portfolio Management Platform - Rate Code Diversity Analysis
+    for Utility Strategists
+
+
+    Business Value: Comprehensive utility rate portfolio analysis showing rate code
+    diversity, portfolio optimization opportunities, and comprehensive rate offering
+    metrics. Enables utility strategists to optimize rate portfolios and identify
+    gaps.
+
+
+    Purpose: Analyzes utility rate portfolios enabling strategists to understand portfolio
+    diversity, identify optimization opportunities, and optimize rate offerings.
+
+
+    Complexity: Deep nested CTEs (7+ levels), portfolio analysis, diversity metrics,
+    optimization calculations, rate offering analysis, window functions
+
+
+    Expected Output: Utility rate portfolio analysis with diversity metrics and optimization
+    recommendations.
+
+
+    ---
+
+
+    Use Case: Solar Economics Platform - Installation Economics and Net Metering Analysis
+    for Solar Installers
+
+
+    Description: Enterprise-level solar installation economics analysis with net metering
+    analysis, feed-in tariff evaluation, and comprehensive financial modeling. Demonstrates
+    production patterns used by solar economics platforms and installation financial
+    analysis systems.
+
+
+    Use Case: Solar Economics Platform - Installation Economics and Net Metering Analysis
+    for Solar Installers
+
+
+    Business Value: Comprehensive solar installation economics showing net metering
+    benefits, feed-in tariff analysis, and financial modeling. Enables solar installers
+    to provide accurate economic analysis and installation recommendations.
+
+
+    Purpose: Analyzes solar installation economics enabling installers to provide
+    accurate financial analysis and optimize installation economics.
+
+
+    Complexity: Deep nested CTEs (8+ levels), net metering calculations, feed-in tariff
+    analysis, financial modeling, ROI calculations, time-series analysis
+
+
+    Expected Output: Solar installation economics with net metering analysis and financial
+    modeling.
+
+
+    ---
+
+
+    Use Case: Rate Risk Analysis Platform - Volatility and Risk Assessment for Energy
+    Risk Managers
+
+
+    Description: Enterprise-level rate volatility analysis with risk assessment metrics,
+    volatility calculations, and comprehensive risk classification. Demonstrates production
+    patterns used by rate risk analysis platforms and volatility assessment systems.
+
+
+    Use Case: Rate Risk Analysis Platform - Volatility and Risk Assessment for Energy
+    Risk Managers
+
+
+    Business Value: Comprehensive rate volatility analysis showing volatility metrics,
+    risk assessments, and risk classifications. Enables energy risk managers to understand
+    rate volatility and manage risk exposure.
+
+
+    Purpose: Analyzes rate volatility enabling risk managers to understand volatility
+    patterns, assess risk levels, and manage risk exposure.
+
+
+    Complexity: Deep nested CTEs (7+ levels), volatility calculations, risk metrics,
+    time-series analysis, statistical analysis, window functions
+
+
+    Expected Output: Rate volatility analysis with risk assessment metrics and risk
+    classifications.
+
+
+    ---
+
+
+    Use Case: Market Segmentation Platform - Rate Type Distribution Analysis for Market
+    Analysts
+
+
+    Description: Enterprise-level market segmentation analysis with rate type distribution,
+    customer segment analysis, and comprehensive market intelligence. Demonstrates
+    production patterns used by market segmentation platforms and customer analytics
+    systems.
+
+
+    Use Case: Market Segmentation Platform - Rate Type Distribution Analysis for Market
+    Analysts
+
+
+    Business Value: Comprehensive market segmentation analysis showing rate type distributions,
+    customer segment analysis, and market intelligence. Enables market analysts to
+    understand market segments and distribution patterns.
+
+
+    Purpose: Analyzes market segmentation enabling analysts to understand rate type
+    distributions and customer segment patterns.
+
+
+    Complexity: Deep nested CTEs (6+ levels), market segmentation, distribution analysis,
+    customer segment analysis, aggregations
+
+
+    Expected Output: Market segmentation analysis with rate type distributions and
+    customer segment metrics.
+
+
+    ---
+
+
+    Use Case: Competitive Analysis Platform - Cross-Utility Rate Comparison for Energy
+    Consultants
+
+
+    Description: Enterprise-level cross-utility rate comparison with competitive positioning,
+    utility benchmarking, and comprehensive competitive analysis. Demonstrates production
+    patterns used by competitive intelligence platforms and utility comparison systems.
+
+
+    Use Case: Competitive Analysis Platform - Cross-Utility Rate Comparison for Energy
+    Consultants
+
+
+    Business Value: Comprehensive cross-utility rate comparison showing competitive
+    positioning, utility benchmarking, and competitive analysis. Enables energy consultants
+    to compare utilities and provide competitive recommendations.
+
+
+    Purpose: Compares utilities enabling consultants to understand competitive positioning
+    and provide competitive recommendations.
+
+
+    Complexity: Deep nested CTEs (7+ levels), cross-utility comparisons, competitive
+    positioning, benchmarking, complex joins
+
+
+    Expected Output: Cross-utility rate comparison with competitive positioning and
+    benchmarking.
+
+
+    ---
+
+
+    Use Case: Rebate Optimization Platform - Maximum Savings Calculations for Solar
+    Sales Teams
+
+
+    Description: Enterprise-level rebate stacking optimization with maximum savings
+    calculations, rebate combination analysis, and comprehensive optimization algorithms.
+    Demonstrates production patterns used by rebate optimization platforms and savings
+    maximization systems.
+
+
+    Use Case: Rebate Optimization Platform - Maximum Savings Calculations for Solar
+    Sales Teams
+
+
+    Business Value: Comprehensive rebate stacking optimization showing maximum savings,
+    rebate combinations, and optimization recommendations. Enables solar sales teams
+    to maximize customer savings through optimal rebate stacking.
+
+
+    Purpose: Optimizes rebate stacking enabling sales teams to maximize customer savings
+    through optimal rebate combinations.
+
+
+    Complexity: Deep nested CTEs (8+ levels), rebate stacking, optimization algorithms,
+    combination analysis, maximum savings calculations
+
+
+    Expected Output: Rebate stacking optimization with maximum savings calculations.
+
+
+    ---
+
+
+    Use Case: Market Penetration Platform - Rate Code Adoption Analysis for Market
+    Researchers
+
+
+    Description: Enterprise-level rate code adoption analysis with utility market
+    penetration, adoption rates, and comprehensive market penetration metrics. Demonstrates
+    production patterns used by market penetration analysis platforms and adoption
+    tracking systems.
+
+
+    Use Case: Market Penetration Platform - Rate Code Adoption Analysis for Market
+    Researchers
+
+
+    Business Value: Comprehensive rate code adoption analysis showing market penetration,
+    adoption rates, and market penetration metrics. Enables market researchers to
+    understand rate code adoption patterns and market penetration.
+
+
+    Purpose: Analyzes rate code adoption enabling researchers to understand adoption
+    patterns and market penetration.
+
+
+    Complexity: Deep nested CTEs (6+ levels), adoption analysis, market penetration
+    calculations, adoption rate metrics, aggregations
+
+
+    Expected Output: Rate code adoption analysis with market penetration metrics.
+
+
+    ---
+
+
+    Use Case: Geographic Analysis Platform - State-Level Rebate Aggregations for Solar
+    Market Analysts
+
+
+    Description: Enterprise-level geographic rebate intelligence with state-level
+    aggregations, rebate distribution analysis, and comprehensive geographic intelligence.
+    Demonstrates production patterns used by geographic intelligence platforms and
+    rebate distribution systems.
+
+
+    Use Case: Geographic Analysis Platform - State-Level Rebate Aggregations for Solar
+    Market Analysts
+
+
+    Business Value: Comprehensive geographic rebate intelligence showing state-level
+    aggregations, rebate distributions, and geographic intelligence. Enables solar
+    market analysts to understand rebate distributions across states.
+
+
+    Purpose: Aggregates rebates by geography enabling analysts to understand rebate
+    distributions and geographic patterns.
+
+
+    Complexity: Deep nested CTEs (6+ levels), geographic aggregations, state-level
+    analysis, rebate distribution, aggregations
+
+
+    Expected Output: Geographic rebate intelligence with state-level aggregations.
+
+
+    ---
+
+
+    Use Case: Forecasting Platform - Rate Trend Prediction for Energy Market Forecasters
+
+
+    Description: Enterprise-level rate trend forecasting with predictive analytics,
+    trend prediction, and comprehensive forecasting models. Demonstrates production
+    patterns used by forecasting platforms and predictive analytics systems.
+
+
+    Use Case: Forecasting Platform - Rate Trend Prediction for Energy Market Forecasters
+
+
+    Business Value: Comprehensive rate trend forecasting showing trend predictions,
+    forecasting models, and predictive analytics. Enables energy market forecasters
+    to predict rate trends and make informed forecasts.
+
+
+    Purpose: Forecasts rate trends enabling forecasters to predict future rate movements
+    and make informed forecasts.
+
+
+    Complexity: Deep nested CTEs (7+ levels), time-series forecasting, predictive
+    analytics, trend prediction, statistical modeling
+
+
+    Expected Output: Rate trend forecasting with predictive analytics and trend predictions.
+
+
+    ---
+
+
+    Use Case: Rate Strategy Platform - Portfolio Optimization for Utility Strategists
+
+
+    Description: Enterprise-level utility rate strategy analysis with rate code portfolio
+    optimization, strategy evaluation, and comprehensive optimization recommendations.
+    Demonstrates production patterns used by rate strategy platforms and portfolio
+    optimization systems.
+
+
+    Use Case: Rate Strategy Platform - Portfolio Optimization for Utility Strategists
+
+
+    Business Value: Comprehensive utility rate strategy analysis showing portfolio
+    optimization, strategy evaluation, and optimization recommendations. Enables utility
+    strategists to optimize rate portfolios and strategies.
+
+
+    Purpose: Analyzes utility rate strategies enabling strategists to optimize portfolios
+    and evaluate strategies.
+
+
+    Complexity: Deep nested CTEs (7+ levels), strategy analysis, portfolio optimization,
+    optimization algorithms, strategy evaluation
+
+
+    Expected Output: Utility rate strategy analysis with portfolio optimization recommendations.
+
+
+    ---
+
+
+    Use Case: Market Analysis Platform - Incentive Availability Analysis for Solar
+    Market Analysts
+
+
+    Description: Enterprise-level solar rebate market intelligence with incentive
+    availability analysis, market coverage, and comprehensive market intelligence.
+    Demonstrates production patterns used by market intelligence platforms and incentive
+    tracking systems.
+
+
+    Use Case: Market Analysis Platform - Incentive Availability Analysis for Solar
+    Market Analysts
+
+
+    Business Value: Comprehensive solar rebate market intelligence showing incentive
+    availability, market coverage, and market intelligence. Enables solar market analysts
+    to understand incentive availability and market coverage.
+
+
+    Purpose: Analyzes rebate market intelligence enabling analysts to understand incentive
+    availability and market coverage.
+
+
+    Complexity: Deep nested CTEs (7+ levels), market intelligence, availability analysis,
+    market coverage, aggregations
+
+
+    Expected Output: Solar rebate market intelligence with incentive availability
+    analysis.
+
+
+    ---
+
+
+    Use Case: Regional Analysis Platform - Cross-Regional Rate Comparison for Regional
+    Analysts
+
+
+    Description: Enterprise-level cross-regional rate comparison with market share
+    analysis, regional benchmarking, and comprehensive regional comparison. Demonstrates
+    production patterns used by regional analysis platforms and market share systems.
+
+
+    Use Case: Regional Analysis Platform - Cross-Regional Rate Comparison for Regional
+    Analysts
+
+
+    Business Value: Comprehensive cross-regional rate comparison showing market share,
+    regional benchmarking, and regional comparison. Enables regional analysts to understand
+    regional differences and market shares.
+
+
+    Purpose: Compares rates across regions enabling analysts to understand regional
+    differences and market shares.
+
+
+    Complexity: Deep nested CTEs (7+ levels), cross-regional comparisons, market share
+    analysis, regional benchmarking, aggregations
+
+
+    Expected Output: Cross-regional rate comparison with market share analysis.
+
+
+    ---
+
+
+    Use Case: Performance Analysis Platform - Cost Efficiency Analysis for Rate Design
+    Engineers
+
+
+    Description: Enterprise-level rate structure performance analysis with cost efficiency
+    metrics, performance evaluation, and comprehensive performance indicators. Demonstrates
+    production patterns used by performance analysis platforms and efficiency evaluation
+    systems.
+
+
+    Use Case: Performance Analysis Platform - Cost Efficiency Analysis for Rate Design
+    Engineers
+
+
+    Business Value: Comprehensive rate structure performance analysis showing cost
+    efficiency metrics, performance evaluation, and performance indicators. Enables
+    rate design engineers to evaluate structure performance and efficiency.
+
+
+    Purpose: Analyzes rate structure performance enabling engineers to evaluate performance
+    and efficiency.
+
+
+    Complexity: Deep nested CTEs (7+ levels), performance analysis, efficiency metrics,
+    performance evaluation, aggregations
+
+
+    Expected Output: Rate structure performance analysis with cost efficiency metrics.
+
+
+    ---
+
+
+    Use Case: Hierarchy Analysis Platform - Multi-Level Rate Structure Traversal for
+    Rate Design Engineers
+
+
+    Description: Enterprise-level recursive rate code hierarchy analysis using recursive
+    CTE for multi-level rate structure traversal, hierarchy relationships, and comprehensive
+    hierarchy analysis. Demonstrates production patterns used by hierarchy analysis
+    platforms and recursive traversal systems.
+
+
+    Use Case: Hierarchy Analysis Platform - Multi-Level Rate Structure Traversal for
+    Rate Design Engineers
+
+
+    Business Value: Comprehensive recursive rate code hierarchy analysis showing multi-level
+    structures, hierarchy relationships, and hierarchy traversal. Enables rate design
+    engineers to understand rate code hierarchies and relationships.
+
+
+    Purpose: Analyzes rate code hierarchies enabling engineers to understand multi-level
+    structures and relationships.
+
+
+    Complexity: Advanced recursive CTE (6+ levels), hierarchy traversal, multi-level
+    analysis, recursive relationships, cycle detection
+
+
+    Expected Output: Recursive rate code hierarchy analysis with multi-level traversal.
+
+
+    ---
+
+
+    Use Case: Analysis Dashboard Platform - Multi-Dimensional Rate Analysis for Executives
+
+
+    Description: Enterprise-level comprehensive rate intelligence dashboard with multi-dimensional
+    analysis, dashboard metrics, and comprehensive intelligence aggregation. Demonstrates
+    production patterns used by intelligence dashboard platforms and multi-dimensional
+    analysis systems.
+
+
+    Use Case: Analysis Dashboard Platform - Multi-Dimensional Rate Analysis for Executives
+
+
+    Business Value: Comprehensive rate intelligence dashboard showing multi-dimensional
+    analysis, dashboard metrics, and intelligence aggregation. Enables executives
+    to understand rate intelligence across multiple dimensions.
+
+
+    Purpose: Aggregates rate intelligence enabling executives to understand comprehensive
+    rate intelligence across dimensions.
+
+
+    Complexity: Deep nested CTEs (8+ levels), multi-dimensional analysis, dashboard
+    aggregation, comprehensive metrics, complex joins
+
+
+    Expected Output: Comprehensive rate intelligence dashboard with multi-dimensional
+    analysis.
+
+
+    ---
+
+
+    Use Case: Competitive Analysis Platform - Market Positioning Analysis for Solar
+    Companies
+
+
+    Description: Enterprise-level solar rebate competitive analysis with market positioning
+    intelligence, competitive benchmarking, and comprehensive competitive metrics.
+    Demonstrates production patterns used by competitive analysis platforms and market
+    positioning systems.
+
+
+    Use Case: Competitive Analysis Platform - Market Positioning Analysis for Solar
+    Companies
+
+
+    Business Value: Comprehensive solar rebate competitive analysis showing market
+    positioning, competitive benchmarking, and competitive metrics. Enables solar
+    companies to understand competitive positioning and market dynamics.
+
+
+    Purpose: Analyzes rebate competitiveness enabling companies to understand market
+    positioning and competitive dynamics.
+
+
+    Complexity: Deep nested CTEs (7+ levels), competitive analysis, market positioning,
+    benchmarking, competitive metrics
+
+
+    Expected Output: Solar rebate competitive analysis with market positioning intelligence.
+
+
+    ---
+
+
+    Use Case: Clustering Analysis Platform - Regional Pattern Identification for Market
+    Researchers
+
+
+    Description: Enterprise-level geographic rate clustering analysis with regional
+    pattern identification, cluster analysis, and comprehensive pattern recognition.
+    Demonstrates production patterns used by clustering analysis platforms and pattern
+    recognition systems.
+
+
+    Use Case: Clustering Analysis Platform - Regional Pattern Identification for Market
+    Researchers
+
+
+    Business Value: Comprehensive geographic rate clustering analysis showing regional
+    patterns, cluster identification, and pattern recognition. Enables market researchers
+    to identify regional patterns and clusters.
+
+
+    Purpose: Analyzes geographic rate clusters enabling researchers to identify regional
+    patterns and clusters.
+
+
+    Complexity: Deep nested CTEs (7+ levels), clustering analysis, pattern identification,
+    regional analysis, aggregations
+
+
+    Expected Output: Geographic rate clustering analysis with regional pattern identification.
+
+
+    ---
+
+
+    Use Case: Enterprise Optimization Platform - Comprehensive Cost Analysis for Energy
+    Managers
+
+
+    Description: Enterprise-level rate optimization platform with comprehensive cost
+    intelligence, optimization algorithms, and comprehensive cost analysis. Demonstrates
+    production patterns used by enterprise optimization platforms and cost intelligence
+    systems.
+
+
+    Use Case: Enterprise Optimization Platform - Comprehensive Cost Analysis for Energy
+    Managers
+
+
+    Business Value: Comprehensive rate optimization platform showing cost intelligence,
+    optimization recommendations, and comprehensive cost analysis. Enables energy
+    managers to optimize costs and make informed decisions.
+
+
+    Purpose: Optimizes rates enabling managers to minimize costs and maximize efficiency
+    through comprehensive cost intelligence.
+
+
+    Complexity: Deep nested CTEs (9+ levels), optimization algorithms, cost intelligence,
+    comprehensive analysis, multi-dimensional optimization
+
+
+    Expected Output: Enterprise rate optimization platform with comprehensive cost
+    intelligence.
+
+
+    ---
+
+
+    All queries in this database are designed to work across multiple database platforms:
+
+
+    - PostgreSQL: Full support with standard SQL features
+
+
+    Queries use standard SQL syntax and avoid platform-specific features to ensure
+    compatibility.
+
+
+    ---
+
+
+    Document Information:
+
+
+    - Generated: 20260214-0148
+
+    - Database: db-15
+
+    - Type: Electricity Cost and Solar Rebate Database
+
+    - Queries: 30 production queries
+
+    - Status: ✅ Complete Comprehensive Deliverable'
+  version: 1.0.0
+  contact:
+    name: Database Team
+  license:
+    name: MIT
+servers:
+- url: postgresql://localhost:5432/db_15
+  description: PostgreSQL Server with PostGIS
+tags:
+- name: schema
+  description: Database schema information
+- name: tables
+  description: Table definitions and structures
+- name: spatial
+  description: Spatial data types and operations
+- name: queries
+  description: SQL query definitions and metadata
+- name: relationships
+  description: Table relationships and foreign keys
+paths:
+  /schema:
+    get:
+      tags:
+      - schema
+      summary: Get database schema overview
+      description: Returns overview information about the database schema
+      responses:
+        '200':
+          description: Schema overview
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaOverview'
+  /tables:
+    get:
+      tags:
+      - tables
+      summary: List all tables
+      description: Returns a list of all tables in the database
+      responses:
+        '200':
+          description: List of tables
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Table'
+  /tables/{tableName}:
+    get:
+      tags:
+      - tables
+      summary: Get table details
+      description: Returns detailed information about a specific table
+      parameters:
+      - name: tableName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Name of the table
+      responses:
+        '200':
+          description: Table details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+  /queries:
+    get:
+      tags:
+      - queries
+      summary: List all SQL queries
+      description: Returns metadata for all SQL queries
+      responses:
+        '200':
+          description: List of queries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Query'
+  /queries/{queryNumber}:
+    get:
+      tags:
+      - queries
+      summary: Get query details
+      description: Returns detailed information and SQL code for a specific query
+      parameters:
+      - name: queryNumber
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Query number (1-30)
+      responses:
+        '200':
+          description: Query details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+  /spatial/operations:
+    get:
+      tags:
+      - spatial
+      summary: List spatial operations
+      description: Returns available spatial operations and functions
+      responses:
+        '200':
+          description: List of spatial operations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SpatialOperation'
+components:
+  schemas:
+    SchemaOverview:
+      type: object
+      properties:
+        database_name:
+          type: string
+          example: db-1
+        database_type:
+          type: string
+          example: Chat/Messaging System
+        created_date:
+          type: string
+          format: date
+          example: '2026-02-03'
+        total_tables:
+          type: integer
+          example: 11
+        supported_platforms:
+          type: array
+          items:
+            type: string
+          example:
+          - PostgreSQL
+        table_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableGroup'
+    TableGroup:
+      type: object
+      properties:
+        name:
+          type: string
+          example: User Management
+        tables:
+          type: array
+          items:
+            type: string
+          example:
+          - profiles
+    Table:
+      type: object
+      required:
+      - name
+      - columns
+      properties:
+        name:
+          type: string
+          example: profiles
+        description:
+          type: string
+          example: Stores user profile information
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+        indexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Index'
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Constraint'
+        foreign_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForeignKey'
+    Column:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          example: id
+        type:
+          type: string
+          example: UUID
+        nullable:
+          type: boolean
+          example: false
+        default:
+          type: string
+          nullable: true
+          example: gen_random_uuid()
+        description:
+          type: string
+          example: Primary key - unique user identifier
+        primary_key:
+          type: boolean
+          example: true
+    Index:
+      type: object
+      properties:
+        name:
+          type: string
+          example: idx_profiles_username
+        columns:
+          type: array
+          items:
+            type: string
+          example:
+          - username
+        unique:
+          type: boolean
+          example: true
+        type:
+          type: string
+          example: btree
+    Constraint:
+      type: object
+      properties:
+        name:
+          type: string
+          example: pk_profiles
+        type:
+          type: string
+          enum:
+          - PRIMARY KEY
+          - UNIQUE
+          - CHECK
+          - NOT NULL
+          example: PRIMARY KEY
+        columns:
+          type: array
+          items:
+            type: string
+          example:
+          - id
+    ForeignKey:
+      type: object
+      properties:
+        name:
+          type: string
+          example: fk_chats_created_by
+        from_table:
+          type: string
+          example: chats
+        from_column:
+          type: string
+          example: created_by
+        to_table:
+          type: string
+          example: profiles
+        to_column:
+          type: string
+          example: id
+    Query:
+      type: object
+      required:
+      - number
+      - title
+      - sql
+      properties:
+        number:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: Production-Grade User Activity Analysis
+        description:
+          type: string
+          example: Enterprise-level user activity analysis
+        complexity:
+          type: string
+          example: Deep nested CTEs (5+ levels)
+        sql:
+          type: string
+          example: WITH user_registration_cohorts AS (...)
+        expected_output:
+          type: string
+          example: Top 20 users ranked by message activity
+        categories:
+          type: array
+          items:
+            type: string
+          example:
+          - User Activity Analysis
+          - Cohort Analytics
+        database_compatibility:
+          type: object
+          properties:
+            postgresql:
+              type: boolean
+              example: true
+        businessUseCase:
+          type: string
+          example: Custom Weather Impact Modeling
+        clientDeliverable:
+          type: string
+          example: Forecast accuracy report
+        businessValue:
+          type: string
+          example: Quantifies forecast reliability
+        spatial_operations:
+          type: array
+          items:
+            type: string
+          example:
+          - ST_WITHIN
+          - ST_DISTANCE
+    SpatialColumn:
+      type: object
+      properties:
+        name:
+          type: string
+          example: grid_cell_geom
+        type:
+          type: string
+          enum:
+          - GEOGRAPHY
+          - GEOMETRY
+          example: GEOGRAPHY
+        geometry_type:
+          type: string
+          enum:
+          - POINT
+          - POLYGON
+          - LINESTRING
+          - MULTIPOINT
+          - MULTIPOLYGON
+          - MULTILINESTRING
+          example: POINT
+        crs:
+          type: string
+          example: EPSG:4326
+        description:
+          type: string
+          example: Point geometry for grid cell center
+    SpatialOperation:
+      type: object
+      properties:
+        name:
+          type: string
+          example: ST_WITHIN
+        description:
+          type: string
+          example: Checks if one geometry is within another
+        syntax:
+          type: string
+          example: ST_WITHIN(geometry1, geometry2)
+        return_type:
+          type: string
+          example: BOOLEAN
+        supported_platforms:
+          type: array
+          items:
+            type: string
+          example:
+          - PostgreSQL (PostGIS)
+  examples:
+    ProfilesTable:
+      summary: Example profiles table
+      value:
+        name: profiles
+        description: Stores user profile information
+        columns:
+        - name: id
+          type: UUID
+          nullable: false
+          primary_key: true
+          description: Primary key - unique user identifier
+        - name: username
+          type: VARCHAR(255)
+          nullable: false
+          description: Unique username for login
+        indexes:
+        - name: idx_profiles_username
+          columns:
+          - username
+          unique: true
+    QueryExample:
+      summary: Example query
+      value:
+        number: 1
+        title: Production-Grade User Activity Analysis
+        description: Enterprise-level user activity analysis
+        sql: WITH user_registration_cohorts AS (...) SELECT ...
+        expected_output: Top 20 users ranked by message activity

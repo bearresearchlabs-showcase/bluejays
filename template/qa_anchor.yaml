@@ -1,0 +1,74 @@
+# QA Anchor — validation schema for /qa db-workbench
+# Tests reference this to ensure queries.md format matches @template bit-for-bit
+# Executed by: pytest tests/test_qa_queries_format.py
+
+version: "1.0"
+description: "Canonical format anchor for queries.md — must match template structure exactly"
+
+# Required section headers in order (exact match)
+required_sections:
+  - "# {name} — Query Documentation"
+  - "## Database Overview"
+  - "## Purpose"
+  - "## Use Case"
+  - "## Business Value"
+  - "## Schema"
+  - "## Domain Knowledge"
+  - "## Query Difficulty Distribution"
+  - "## Queries"
+
+# Optional section (template has it; source may omit)
+optional_sections:
+  - "## Training Data Field Definitions"
+
+# Query block format: ### Query N — {difficulty} / {query_category}
+# Uses em dash (—) not hyphen (-)
+query_block_pattern: "^### Query (\\d+) — (simple|moderate|challenging) / ([a-zA-Z0-9/_-]+)$"
+
+# Code block types after section headers
+section_block_types:
+  "## Database Overview": "yaml"
+  "## Purpose": "text"
+  "## Use Case": "text"
+  "## Business Value": "text"
+  "## Schema": "sql"
+  "## Domain Knowledge": "text"
+  "## Query Difficulty Distribution": "text"
+  "## Queries": "json"  # per-query blocks
+
+# Required fields in each query JSON block
+query_json_required_fields:
+  - db_id
+  - question_id
+  - question
+  - SQL
+  - evidence
+  - difficulty
+  - query_category
+  - tables_used
+  - schema_context
+  - expected_output
+
+# Valid difficulty values
+valid_difficulties:
+  - simple
+  - moderate
+  - challenging
+
+# Valid query categories (from template_config.yaml)
+valid_query_categories:
+  - aggregation
+  - aggregation/ranking
+  - join
+  - window/ranking
+  - window/self-join
+  - subquery/cte
+  - recursive_cte
+  - filtering/lookup
+  - date-arithmetic
+
+# Spacing: blank line between sections, between query header and ```json
+spacing_rules:
+  between_sections: 1  # one blank line
+  before_code_block: 1
+  after_code_block: 1

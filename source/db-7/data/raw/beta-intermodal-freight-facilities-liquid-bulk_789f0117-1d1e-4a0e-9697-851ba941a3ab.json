@@ -1,0 +1,196 @@
+<html lang="en">
+<head>
+  <title>Layer: Intermodal Freight Facilities Liquid Bulk (ID:0)</title>
+  <link href='/ESRI.ArcGIS.SDS.REST.css' rel='stylesheet' type='text/css'>
+  <link rel='SHORTCUT ICON' href='/favicon.ico'>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+</head>
+<body>
+<table width="100%" id="userTable" class="userTable">
+<tr>
+<td class="titlecell">ArcGIS REST Services Directory</td>
+</tr>
+</table>
+<table id="navTable" class="navTable" width="100%">
+<tbody>
+<tr valign="top">
+<td class="breadcrumbs">
+<span id="homeBreadcrumbs"><a href="/xOi1kZaI0eWDREZv/ArcGIS/rest/services">Home</a> > <a href="/xOi1kZaI0eWDREZv/ArcGIS/rest/services">services</a> </span>> <a href="/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer">NTAD_Intermodal_Freight_Facilities_Liquid_Bulk (FeatureServer)</a> > <a href="/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0">Intermodal Freight Facilities Liquid Bulk</a> </td>
+<td align="right">
+ | <a href="http://resources.arcgis.com/en/help/arcgis-rest-api/" target="_blank">API Reference</a></td>
+</tr>
+</tbody>
+</table>
+<div id="jsonLinkTable">
+<table>
+<tr>
+<td class="apiref">
+<a href="?f=pjson" target="_blank">JSON</a>
+</td>
+</tr>
+</table>
+</div>
+<div class='restHeader'>
+<h2>Layer: Intermodal Freight Facilities Liquid Bulk (ID:0)</h2>
+</div>
+<div class='restBody'>
+<div id="viewInSection">
+<b>View In: </b>
+&nbsp;&nbsp;<a href="http://www.arcgis.com/apps/mapviewer/index.html?url=https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0&source=sd" target="_blank">Map Viewer</a>
+<br/><br/>
+</div>
+<b>Name:</b> Intermodal Freight Facilities Liquid Bulk<br/>
+<br/>
+<b>Display Field:</b> Operator_Name<br/>
+<br/>
+<b>Type:</b> Feature Layer<br/>
+<br/>
+<b>Geometry Type:</b> esriGeometryPolygon<br/>
+<br/>
+<b>Is View:</b> true<br/>
+<br/>
+<b>Is Updatable View:</b> true<br/>
+<br/>
+<b>Source Schema Changes Allowed:</b> true<br/>
+<br/>
+<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0/sources">Sources</a><br/>
+<br/>
+<b>Description:</b> Intermodal Freight Facilities Liquid Bulk - metadata placeholder.<br/>
+<br/>
+<b>Copyright Text:</b> Intermodal Freight Facilities Liquid Bulk - metadata placeholder.<br/>
+<br/>
+<b>Min. Scale:</b> 0<br/>
+<br/>
+<b>Max. Scale:</b> 0<br/>
+<br/>
+<b>Default Visibility:</b> true<br/>
+<br/>
+<b>Max Record Count:</b> 2000<br/>
+<br/>
+<b>Supported query Formats:</b> JSON, geoJSON, PBF<br/>
+<br/>
+<b>Use Standardized Queries:</b> True<br/>
+<br/>
+<b>Extent:</b> <br/>
+<ul>
+XMin: -166.570294868978<br/>
+YMin: 20.0372912557103<br/>
+XMax: -68.897553447697<br/>
+YMax: 67.5792895878956<br/>
+Spatial Reference: 4326 (4326)<br/>
+</ul>
+<br/>
+<b>Drawing Info:</b> <br/>
+<ul>{"renderer":{"type":"simple","symbol":{"type":"esriSFS","style":"esriSFSSolid","color":[199,208,252,255],"outline":{"type":"esriSLS","style":"esriSLSSolid","color":[110,110,110,255],"width":0.7}}},"scaleSymbols":true,"transparency":0,"labelingInfo":null}</ul><br/>
+<b>HasZ:</b> false<br/>
+<br/>
+<b>HasM:</b> false<br/>
+<br/>
+<b>Has Attachments:</b> false<br/>
+<br/>
+<b>Has Geometry Properties:</b> true<br/>
+<br/>
+<b>HTML Popup Type:</b> esriServerHTMLPopupTypeAsHTMLText<br/>
+<br/>
+<b>Object ID Field:</b> OBJECTID<br/>
+<br/>
+<b>Unique ID Field:</b> <br/>
+<ul>
+Name : OBJECTID<br/>
+</ul>
+<ul>
+IsSystemMaintained : True<br/>
+</ul>
+<br/>
+<b>Global ID Field:</b> <br/>
+<br/>
+<b>Type ID Field:</b> <br/>
+<br/>
+<b>Fields:</b>
+<ul>
+  <li>OBJECTID <i>(type: esriFieldTypeOID, alias: OBJECTID, SQL Type: sqlTypeOther, length: 0, nullable: false, editable: false)</i></li>
+  <li>UID <i>(type: esriFieldTypeString, alias: UID, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>NAV_UNIT_I <i>(type: esriFieldTypeString, alias: NAV_UNIT_I, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Source_URL <i>(type: esriFieldTypeString, alias: Source_URL, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Operator_Name <i>(type: esriFieldTypeString, alias: Operator_Name, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Additional_Operator_ID_Info <i>(type: esriFieldTypeString, alias: Additional_Operator_ID_Info, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Facility_Name <i>(type: esriFieldTypeString, alias: Facility_Name, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Facility_Parent <i>(type: esriFieldTypeString, alias: Facility_Parent, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Physical_Facility_Address <i>(type: esriFieldTypeString, alias: Physical_Facility_Address, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>State <i>(type: esriFieldTypeString, alias: State, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Transport_Modes <i>(type: esriFieldTypeString, alias: Transport_Modes, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Rail <i>(type: esriFieldTypeString, alias: Rail, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Truck <i>(type: esriFieldTypeString, alias: Truck, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Barge <i>(type: esriFieldTypeString, alias: Barge, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Rail_Cars_Capacity <i>(type: esriFieldTypeString, alias: Rail_Cars_Capacity, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Truck_Capacity <i>(type: esriFieldTypeDouble, alias: Truck_Capacity, SQL Type: sqlTypeOther, nullable: true, editable: true)</i></li>
+  <li>Ships_Capacity <i>(type: esriFieldTypeDouble, alias: Ships_Capacity, SQL Type: sqlTypeOther, nullable: true, editable: true)</i></li>
+  <li>Piers_Capacity <i>(type: esriFieldTypeDouble, alias: Piers_Capacity, SQL Type: sqlTypeOther, nullable: true, editable: true)</i></li>
+  <li>Capacity_Gallons <i>(type: esriFieldTypeString, alias: Capacity_Gallons, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Capacity_Barrels <i>(type: esriFieldTypeDouble, alias: Capacity_Barrels, SQL Type: sqlTypeOther, nullable: true, editable: true)</i></li>
+  <li>Pump_Rate_GPM <i>(type: esriFieldTypeDouble, alias: Pump_Rate_GPM, SQL Type: sqlTypeOther, nullable: true, editable: true)</i></li>
+  <li>Crude_Oil <i>(type: esriFieldTypeString, alias: Crude_Oil, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Chemical_Products <i>(type: esriFieldTypeString, alias: Chemical_Products, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Liquified_Gasses_Products <i>(type: esriFieldTypeString, alias: Liquified_Gasses_Products, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>NGL <i>(type: esriFieldTypeString, alias: NGL, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Biofuel <i>(type: esriFieldTypeString, alias: Biofuel, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Vegetable_Oil <i>(type: esriFieldTypeString, alias: Vegetable_Oil, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Waste <i>(type: esriFieldTypeString, alias: Waste, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Petroleum_Products <i>(type: esriFieldTypeString, alias: Petroleum_Products, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Other <i>(type: esriFieldTypeString, alias: Other, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Liquid_Type_Detail <i>(type: esriFieldTypeString, alias: Liquid_Type_Detail, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>SCTG_CODE <i>(type: esriFieldTypeString, alias: SCTG_CODE, SQL Type: sqlTypeOther, length: 65536, nullable: true, editable: true)</i></li>
+  <li>Shape__Area <i>(type: esriFieldTypeDouble, alias: Shape__Area, SQL Type: sqlTypeDouble, nullable: true, editable: false)</i></li>
+  <li>Shape__Length <i>(type: esriFieldTypeDouble, alias: Shape__Length, SQL Type: sqlTypeDouble, nullable: true, editable: false)</i></li>
+</ul>
+<br/>
+<b>Templates:</b> <br/>
+<ul>Name: Intermodal Freight Facilities Liquid Bulk<br/>
+Description: <br/>
+Drawing Tool: esriFeatureEditToolPolygon<br/>
+Prototype: <br/>
+<ul>Attributes: <br/>
+<ul></ul></ul></ul><br/>
+<b>Is Data Versioned:</b> false<br/>
+<br/>
+<b>Has Contingent Values:</b> false<br/>
+<br/>
+<b>Supports Rollback On Failure Parameter:</b> true<br/>
+<br/>
+<b>Last Edit Date:</b> 2/3/2025 5:42:16 PM<br/>
+<br/>
+<b>Schema Last Edit Date:</b> 2/3/2025 5:42:16 PM<br/>
+<br/>
+<b>Data Last Edit Date:</b> 2/3/2025 5:38:47 PM<br/>
+<br/>
+<b>Supported Operations: </b>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0/query">Query</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0/queryPivot">Query Pivot</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0/queryTopFeatures">Query Top Features</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0/queryAnalytic">Query Analytic</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0/queryBins">Query Bins</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0/generateRenderer">Generate Renderer</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0/validateSQL">Validate SQL</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0/getEstimates">Get Estimates</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Intermodal_Freight_Facilities_Liquid_Bulk/FeatureServer/0/convertFormat">ConvertFormat</a>
+<br/><br/>
+<script>
+function removeElement(id) {
+element = document.getElementById(id);
+if (element != null) {
+element.parentNode.removeChild(element);
+}}
+if ( window.location !== window.parent.location ){
+removeElement('homeBreadcrumbs');
+removeElement('servicesBreadcrumb');
+removeElement('viewInSection');
+jsonLinkTable = document.getElementById('jsonLinkTable'); 
+if (jsonLinkTable != null) {
+jsonLinkTable.innerHTML = '<table><tr><td class="apiref"><a href="?f=pjson&token=" target="_self">JSON</a></td></tr></table>'; 
+}
+removeElement('userTable');
+}
+</script>
+</div>
+</body>
+</html>

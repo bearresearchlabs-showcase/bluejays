@@ -1,0 +1,20 @@
+{
+  "id": "db-14",
+  "name": "14 - db-14",
+  "version": "1.0",
+  "created_date": "2026-02-13",
+  "queries_count": 30,
+  "schema_hash": "b3c47dd4ea9a7779e4420ce7223888ca79de7b8c2fac288e9979f43e419cee41",
+  "queries_hash": "ed7b5a17941b97c162768409ed1889770a05d4a3b1dce3fa929ad14bf59120f3",
+  "deliverable_files": [
+    "schema.sql",
+    "data.sql",
+    "queries.json",
+    "queries.md",
+    "db-14_documentation.html",
+    "db-14_deliverable.json"
+  ],
+  "rl_ready": true,
+  "client_ready": true,
+  "generated_at": "20260214-0132"
+}

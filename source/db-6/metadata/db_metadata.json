@@ -1,0 +1,20 @@
+{
+  "id": "db-6",
+  "name": "- db-6",
+  "version": "1.0",
+  "created_date": "2026-02-13",
+  "queries_count": 30,
+  "schema_hash": "eb10e4b56a098ea377443f16d1b2e6ea7148fc681e3f438102cb14bf3cfc7e96",
+  "queries_hash": "93df09ab92797b7b4fb194a06720a3e6274f817bab385eba779701788eb63e5c",
+  "deliverable_files": [
+    "schema.sql",
+    "data.sql",
+    "queries.json",
+    "queries.md",
+    "db-6_documentation.html",
+    "db-6_deliverable.json"
+  ],
+  "rl_ready": true,
+  "client_ready": true,
+  "generated_at": "20260214-0132"
+}

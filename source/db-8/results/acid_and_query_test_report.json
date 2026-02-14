@@ -1,0 +1,239 @@
+{
+  "database": "db-8",
+  "test_date": "20260210-0302",
+  "postgresql_version": "PostgreSQL 16.11 on aarch64-unknown-linux-musl",
+  "acid_tests": {
+    "atomicity": {
+      "pass": true,
+      "test": "ROLLBACK rolled back both inserts"
+    },
+    "consistency": {
+      "pass": true,
+      "test": "FK constraint correctly rejected invalid reference"
+    },
+    "isolation": {
+      "pass": true,
+      "test": "Committed data visible after commit"
+    },
+    "durability": {
+      "pass": true,
+      "test": "Committed data persisted"
+    }
+  },
+  "acid_pass": 1,
+  "query_results": [
+    {
+      "number": 1,
+      "title": "Production-Grade AI Job Matching Engine with Multi-Dimensional Scoring and Skill",
+      "success": true,
+      "row_count": 33,
+      "execution_time_ms": 19.68
+    },
+    {
+      "number": 2,
+      "title": "Recursive Skill Gap Analysis with Hierarchical Skill Dependencies and Learning P",
+      "success": true,
+      "row_count": 100,
+      "execution_time_ms": 15.94
+    },
+    {
+      "number": 3,
+      "title": "Market Trend Analysis with Time-Series Forecasting and Skill Demand Projections",
+      "success": true,
+      "row_count": 5,
+      "execution_time_ms": 7.81
+    },
+    {
+      "number": 4,
+      "title": "Application Success Rate Analysis with Cohort Segmentation and Conversion Funnel",
+      "success": true,
+      "row_count": 2,
+      "execution_time_ms": 4.66
+    },
+    {
+      "number": 5,
+      "title": "Company Competitive Intelligence with Market Share Analysis and Employer Brandin",
+      "success": true,
+      "row_count": 10,
+      "execution_time_ms": 5.02
+    },
+    {
+      "number": 6,
+      "title": "Geographic Job Market Analysis with Location Intelligence and Remote Work Trends",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 8.68
+    },
+    {
+      "number": 7,
+      "title": "Salary Benchmarking Analysis with Percentile Rankings and Market Positioning",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 7.42
+    },
+    {
+      "number": 8,
+      "title": "User Cohort Analysis with Retention Metrics and Career Progression Tracking",
+      "success": true,
+      "row_count": 1,
+      "execution_time_ms": 10.85
+    },
+    {
+      "number": 9,
+      "title": "Skill Demand vs Supply Analysis with Market Imbalance Detection",
+      "success": true,
+      "row_count": 1,
+      "execution_time_ms": 14.99
+    },
+    {
+      "number": 10,
+      "title": "Federal Job Opportunities Analysis with USAJobs.gov Integration and Agency Intel",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 2.59
+    },
+    {
+      "number": 11,
+      "title": "Job Search Behavior Analysis with Search Pattern Recognition and Recommendation ",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 5.06
+    },
+    {
+      "number": 12,
+      "title": "Application Funnel Optimization with Conversion Rate Analysis and Drop-off Ident",
+      "success": true,
+      "row_count": 3,
+      "execution_time_ms": 5.79
+    },
+    {
+      "number": 13,
+      "title": "Skill Combination Analysis with Co-occurrence Patterns and Market Value Optimiza",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 8.03
+    },
+    {
+      "number": 14,
+      "title": "Time-to-Fill Analysis with Hiring Velocity Metrics and Market Efficiency Indicat",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 8.51
+    },
+    {
+      "number": 15,
+      "title": "Remote Work Trends Analysis with Geographic Distribution and Work Model Evolutio",
+      "success": true,
+      "row_count": 1,
+      "execution_time_ms": 5.65
+    },
+    {
+      "number": 16,
+      "title": "Data Source Quality Analysis with Extraction Metrics and Data Freshness Tracking",
+      "success": true,
+      "row_count": 5,
+      "execution_time_ms": 3.64
+    },
+    {
+      "number": 17,
+      "title": "Job Title Normalization and Clustering with Similarity Analysis",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 5.62
+    },
+    {
+      "number": 18,
+      "title": "Application Success Prediction with Machine Learning Features and Probability Sc",
+      "success": true,
+      "row_count": 5,
+      "execution_time_ms": 16.03
+    },
+    {
+      "number": 19,
+      "title": "Company Growth Analysis with Hiring Trends and Expansion Patterns",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 3.76
+    },
+    {
+      "number": 20,
+      "title": "Skill Evolution Tracking with Emerging Skills Detection and Trend Analysis",
+      "success": true,
+      "row_count": 2,
+      "execution_time_ms": 3.38
+    },
+    {
+      "number": 21,
+      "title": "Application Timing Optimization with Best Time-to-Apply Analysis",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 5.05
+    },
+    {
+      "number": 22,
+      "title": "Industry Transition Analysis with Career Path Mapping and Transition Success Rat",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 16.66
+    },
+    {
+      "number": 23,
+      "title": "Salary Negotiation Intelligence with Market Positioning and Negotiation Leverage",
+      "success": true,
+      "row_count": 2,
+      "execution_time_ms": 7.38
+    },
+    {
+      "number": 24,
+      "title": "Job Market Saturation Analysis with Competition Intensity and Opportunity Densit",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 4.47
+    },
+    {
+      "number": 25,
+      "title": "User Journey Analysis with Engagement Funnels and Conversion Optimization",
+      "success": true,
+      "row_count": 3,
+      "execution_time_ms": 2.26
+    },
+    {
+      "number": 26,
+      "title": "Recursive Career Path Analysis with Hierarchical Job Progression and Path Optimi",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 5.7
+    },
+    {
+      "number": 27,
+      "title": "Multi-Dimensional Market Segmentation with Cluster Analysis and Segment Profilin",
+      "success": true,
+      "row_count": 0,
+      "execution_time_ms": 5.6
+    },
+    {
+      "number": 28,
+      "title": "Predictive Market Forecasting with Time-Series Projections and Trend Extrapolati",
+      "success": true,
+      "row_count": 8,
+      "execution_time_ms": 5.53
+    },
+    {
+      "number": 29,
+      "title": "Cross-Database Job Matching with Redundancy Architecture and Multi-Source Integr",
+      "success": true,
+      "row_count": 10,
+      "execution_time_ms": 9.89
+    },
+    {
+      "number": 30,
+      "title": "Comprehensive Market Intelligence Dashboard with Multi-Dimensional Analytics and",
+      "success": true,
+      "row_count": 1,
+      "execution_time_ms": 8.04
+    }
+  ],
+  "queries_passed": 30,
+  "queries_failed": 0,
+  "Pass": 1
+}

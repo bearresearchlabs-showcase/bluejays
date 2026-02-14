@@ -1,0 +1,150 @@
+---
+description: End-to-end QA workflow, workbench installation, and Cursor techniques for db-workbench
+alwaysApply: true
+---
+
+# QA Workflow and Cursor Techniques
+
+## Overview
+
+This rule documents the complete QA workflow for db-workbench, workbench installation, test suites, and advanced Cursor techniques for efficient development.
+
+## End-to-End QA Workflow
+
+### 1. Workbench Installation (First)
+
+**CRITICAL**: Install workbenches before running QA or pytest.
+
+```bash
+./scripts/install_workbenches.sh
+```
+
+- Installs `tb3_workbench` from `../pluto/tb3_workbench` (or `../tb3_workbench`)
+- Uses `uv pip install` (regular install) for reliability; editable `-e` can fail with uv/PEP 660
+- Required for: bird-workbench, pytest `test_bird_workbench_no_execute_exit_zero_when_tb3_available`
+
+### 2. QA Suite (Populate App → Format → Resync → Audit → Compliance → Integrity)
+
+```bash
+/QA                    # All db-1..db-16
+/QA @db/db-1/          # Cursor @-reference (single DB)
+/QA db-1 db-5          # Range
+/QA -a                 # All
+```
+
+**Steps (in order)**:
+1. **Populate App** - Regenerate `source/db-N/app/` from data/, deliverable/, queries/; uses `@template/` as fallback when queries.json missing
+2. **Format** - Package deliverables (queries, schema, docs) for specified DBs
+3. **Resync** - Sync `source/` → `client/db`
+4. **Audit** - Validate client/db structure (DATABASE/, DOCUMENTATION/, QUERIES/)
+5. **Compliance** - Strict checklist: queries.json (30), queries.md, schema, client DOCUMENTATION/
+6. **Integrity** - CRC-32, CRC-64, SHA-256; updates `metadata/integrity.json`
+
+### 3. Hardened PostgreSQL + Docker Hub
+
+After QA suite, `/QA` runs `docker_postgres_qa.sh`:
+- Starts 16 hardened PostgreSQL containers (ports 5436–5451)
+- Loads schema+data per DB
+- Optional push: set `DOCKER_HUB_USER`; images `{DOCKER_HUB_USER}/db-postgres-db-{N}:latest`
+
+```bash
+./scripts/docker_postgres_qa.sh [--push] [db-1] [db-5] | -a
+```
+
+### 4. BIRD Workbench (ACID/BASE)
+
+```bash
+python scripts/db_check.py bird-workbench [db-1] [db-5] | -a
+python scripts/db_check.py bird-workbench db-1 --no-execute  # Gates only, no DB
+```
+
+- **ACID/BASE**: Tests Atomicity, Consistency, Isolation, Durability; BASE properties
+- **Industrial-grade**: Validates enterprise DB behavior
+- **Gates**: Compliance + Integrity before SQL execution
+
+## Test Suites
+
+### Pytest (Run Before/After Changes)
+
+```bash
+.venv/bin/python -m pytest tests/test_qa_suite.py tests/test_docker_postgres_qa.py tests/test_bird_workbench_acid.py -v
+```
+
+**Test files**:
+- `test_qa_suite.py` - Format, compliance, integrity, QA flow
+- `test_docker_postgres_qa.py` - Docker hardened files, compose, script structure
+- `test_bird_workbench_acid.py` - BIRD workbench gates, ACID docs, tb3_workbench
+
+### Full Test Run (Mirrors Jenkins)
+
+```bash
+./scripts/run_all_tests.sh [db-1] [db-5] | -a
+```
+
+Installs workbenches, runs pytest, db_check validate/format/qa-suite, bird_workbench, gdpval-langgraph, integrity, etc.
+
+## Cursor Techniques
+
+### @-References (Context Scoping)
+
+Use @-references to scope context and commands without switching workspaces:
+
+- `@db/db-1/` - Reference db-1 for /QA, /format, /validate
+- `@db/db-1/ @db/db-5/` - Range for commands
+- `@.cursor/rules/` - Include rules in context
+- `@scripts/` - Reference scripts when modifying workflow
+- `@template/queries.md` - Reference templates when creating new DBs
+
+### Rules (Long-Term Memory)
+
+- **Always-applied rules**: `.cursor/rules/*.mdc` with `alwaysApply: true`
+- **Domain context**: database-creation-workflow, query-validation-suite, deliverable-formatting, qa-workflow-cursor
+- **Generate rules**: Use `/Generate Cursor Rules` after long conversations to capture workflows
+- **Rules over docs**: Prefer rules for conventions; rules persist across sessions
+
+### MCP Integration
+
+- **Internal docs**: Notion, Confluence, Google Docs for requirements
+- **Project management**: Linear, Jira for task tracking
+- **Browser**: cursor-ide-browser MCP for frontend/testing
+- **Context7**: Resolve library IDs, query docs for libraries
+
+### Workflow Orchestration
+
+1. **Chat** - Bootstrap changes, multi-file edits, complex refactors
+2. **Inline Edit / Tab** - Surgical edits, maintain flow state after scaffolding
+3. **@-references** - Scope commands to specific DBs or paths; reduces context noise
+4. **Rules** - Keep conventions in memory; avoid repeating instructions
+
+### Tight Feedback Loops
+
+- Run `./scripts/run_all_tests.sh 1` after changes to validate
+- Use `pytest tests/test_qa_suite.py -v` for fast QA checks
+- Clear, scoped tasks lead to better results
+
+### Avoiding Chat Loss
+
+- **Workspace**: tb3_workbench removed from `db.code-workspace` to avoid chat reset when switching
+- **Reference**: Use path `../pluto/tb3_workbench` when needed; `@tb3_workbench` requires adding to workspace
+
+## Key Paths
+
+| Purpose | Path |
+|---------|------|
+| Source of truth | `source/db-{N}/` |
+| Client output | `client/db/db-{N}/` |
+| Template (canonical) | `template/` (@template/queries.md, queries.json) |
+| Queries (iron triangle) | `source/db-{N}/app/QUERIES/` or `queries/` |
+| Schema/data | `source/db-{N}/app/DATABASE/` or `data/` |
+| Compliance report | `results/compliance_report.json` |
+| Integrity metadata | `source/db-{N}/metadata/integrity.json` |
+| BIRD report | `bird_export/bird_workbench_report.json` |
+
+## Environment
+
+- **PG_***: PostgreSQL (required for validate, execution)
+- **DOCKER_HUB_USER**: For `--push` to Docker Hub
+- **.env** / **client/.env**: Loaded by run_all_tests.sh, qa.sh
+
+---
+**Last Updated**: 2026-02-14

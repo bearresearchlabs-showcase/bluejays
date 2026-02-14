@@ -75,61 +75,15 @@ def test_on_postgresql():
         print(f"❌ PostgreSQL connection failed: {e}")
         return False
 
-def test_on_databricks():
-    """Test queries on Databricks instance"""
-    print("\n" + "=" * 70)
-    print("Testing on Databricks")
-    print("=" * 70)
-    
-    # Check if Databricks is configured
-    if not all(os.getenv(v) for v in ['DATABRICKS_SERVER_HOSTNAME', 'DATABRICKS_HTTP_PATH', 'DATABRICKS_TOKEN']):
-        print("⚠️  Databricks environment variables not set")
-        print("   Set: DATABRICKS_SERVER_HOSTNAME, DATABRICKS_HTTP_PATH, DATABRICKS_TOKEN")
-        return False
-    
-    try:
-        from databricks import sql
-        
-        print("✅ Databricks configuration found")
-        print("   Note: Full Databricks testing requires schema setup")
-        print("   Running syntax validation only...")
-        
-        # Run comprehensive validator which includes Databricks syntax check
-        for db_num in [1, 2, 3, 4, 5]:
-            validator_script = BASE / f"db-{db_num}" / "scripts" / "comprehensive_validator.py"
-            if validator_script.exists():
-                print(f"\n  Validating db-{db_num} syntax on Databricks...")
-                import subprocess
-                result = subprocess.run(
-                    [sys.executable, str(validator_script)],
-                    cwd=str(BASE / f"db-{db_num}"),
-                    capture_output=True,
-                    text=True
-                )
-                if result.returncode == 0:
-                    print(f"    ✅ Syntax validation completed")
-        
-        return True
-        
-    except ImportError:
-        print("❌ databricks-sql-connector not installed")
-        print("   Install with: pip install databricks-sql-connector")
-        return False
-    except Exception as e:
-        print(f"❌ Databricks connection failed: {e}")
-        return False
-
 if __name__ == '__main__':
     print("=" * 70)
     print("SQL Query Testing on Different Database Instances")
     print("=" * 70)
     
     pg_result = test_on_postgresql()
-    db_result = test_on_databricks()
     
     print("\n" + "=" * 70)
     print("Testing Summary")
     print("=" * 70)
     print(f"PostgreSQL: {'✅ Available' if pg_result else '❌ Not available'}")
-    print(f"Databricks: {'✅ Available' if db_result else '❌ Not available'}")
     print("=" * 70)

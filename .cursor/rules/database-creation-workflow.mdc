@@ -799,6 +799,7 @@ Create `docs/SCHEMA.md` with:
 ## Integration with Existing Rules
 
 This workflow integrates with:
+- `.cursor/rules/qa-workflow-cursor.mdc` - End-to-end QA workflow, workbench install, Cursor techniques
 - `.cursor/rules/database-compatibility.mdc` - Query requirements and compatibility
 - `.cursor/rules/query-validation-suite.mdc` - Validation workflow
 - `.cursor/rules/deliverable-formatting.mdc` - Deliverable packaging

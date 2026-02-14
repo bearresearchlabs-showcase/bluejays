@@ -1,0 +1,2623 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-44FQGBN8G1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-44FQGBN8G1');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOAA Electronic Navigational Charts (ENC) | InPort</title>
+    <meta name="description" content="The Office of Coast Survey (OCS) has been involved in the development of a NOAA Electronic Navigational Chart (NOAA ENC) suite to support the marine transpor...">
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/inport/images/inport-icon-32.png" />
+  <link href="/inport/css/inport-rd.css?v=6.0.5"
+        rel="stylesheet">
+      <script async="" type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&amp;subagency=NOAA&pga4=G-44FQGBN8G1&yt=true&exts=aac,arc,arj,asf,asx,bin,flv,gif,gzip,hqx,jar,mp2,msp,phps,qt,qutm,mxd,ram,sea,sit,tar,torrent,tsv,wav,wpd,xml,z"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin="">
+        <script type="application/ld+json">
+    {
+            "@context" : "http://schema.org/",              "@type" : "Dataset",              "name" : "NOAA Electronic Navigational Charts (ENC)",              "description" : "The Office of Coast Survey (OCS) has been involved in the development of a NOAA Electronic Navigational Chart (NOAA ENC) suite to support the marine transportation infrastructure and coastal management for a number of years. The NOAA ENC will support all types of marine navigation by providing the official database for electronic charting systems (ECS), including the Electronic Chart Display an...",              "url" : "https://www.fisheries.noaa.gov/inport/item/39976",              "keywords" : [
+              "oceans",              "transportation",              "National Geospatial Data Asset",              "NGDA",              "Water Oceans and Coasts Theme",              "NGDAID165",              "Nautical Charting",              "Boundaries",              "Environment/Hazard",              "Hydrography",              "Landform",              "Marine Navigation",              "Oceans",              "Transportation",              "Wildlife/Fisheries"          ],              "alternateName" : "enc_metadata_2007",              "dateCreated" : "2001-07-11",              "dateModified" : "2023-09-14",              "datePublished" : "2001-01-01",                        "identifier" : [
+        {
+                "@type" : "PropertyValue",                  "value" : "39976",                  "propertyID" : "InPort Catalog ID"          }
+              ],
+            "temporalCoverage" : [
+              "2001-07-11/2126-02-05"          ],                "spatialCoverage" : [
+                                    {
+                      "@type" : "Place",                  "geo" : {
+                                            "@type" : "GeoShape",                            "box" : "19 -170 62 -64"                                    }
+              }
+                        ,                                    "U.S. Exclusive Economic Zone"
+                        ,                                    "U.S. territories"
+                        ,                                    "U.S. waters"
+                                          ],
+                    "distribution" : [
+                      {
+                    "@type" : "DataDownload",                                      "description" : "Individual NOAA ENCs may be downloaded from the Chart Downloader for NOAA ENC. \r\n\r\nThe NOAA ENCs distributed here are a geo-referenced database(s) of NOAA nautical chart features and their attributes, published by NOAA in the format of the International Hydrographic Organization S-57 Standard, \"IHO Transfer Standard for Digital Hydrographic Data.\" NOAA updates the ENCs for Notice to Mariners on a weekly basis (timing of their availability is not guaranteed). NOAA ENCs are an official product of NOAA.",                      "name" : "Chart Downloader for NOAA ENCs",                                "provider" : {
+                        "@type" : "Organization",                          "name" : "Office of Coast Survey (OCS)"                  },
+                                  "contentUrl" : "https://charts.noaa.gov/ENCs/ENCs.shtml"              },                      {
+                    "@type" : "DataDownload",                                      "description" : "Individual NOAA ENCs may be downloaded from the NOAA Chart Locator.",                      "name" : "NOAA Chart Locator ",                                "provider" : {
+                        "@type" : "Organization",                          "name" : "Office of Coast Survey (OCS)"                  },
+                                  "contentUrl" : "https://charts.noaa.gov/InteractiveCatalog/nrnc.shtml"              },                      {
+                    "@type" : "DataDownload",                      "encodingFormat" : "PDF - Adobe Portable Document Format",                      "description" : "The NOAA Custom Chart application enables users to create their own customized charts directly from the latest NOAA ENC data. These charts contain all the same information as ENCs, but it is presented using the same symbols and colors used on traditional paper nautical charts. NCC outputs geospatially referenced Portable Document Format (PDF) files\r\n\r\nAll recreational and professional mariners are encouraged to use NOAA's premier navigational product, the electronic navigational chart (ENC) for their primary means of navigation. NCC uses the latest up-to-date NOAA ENC data to create customized charts and these charts are especially useful for voyage planning and situational awareness.",                      "name" : "NOAA Custom Chart (NCC)",                                "provider" : {
+                        "@type" : "Organization",                          "name" : "Office of Coast Survey (OCS)"                  },
+                                  "contentUrl" : "https://devgis.charttools.noaa.gov/pod"              },                      {
+                    "@type" : "DataDownload",                      "encodingFormat" : "ESRI REST Service",                      "description" : "The ECDIS Display Service uses symbology developed by the International Hydrographic Organization (IHO) for the display of ENC data on Electronic Chart Display and Information Systems (ECDIS) that large ocean- going vessels and many smaller commercial ships use for navigation. This symbol set is commonly referred to by its IHO specification number, \"S-52,\" or as \"ECDIS symbology.\" This is the Esri REST service.",                      "name" : "ECDIS Display Service - REST Service",                                "provider" : {
+                        "@type" : "Organization",                          "name" : "Office of Coast Survey (OCS)"                  },
+                                  "contentUrl" : "https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer"              },                      {
+                    "@type" : "DataDownload",                      "encodingFormat" : "WMS - Web Map Service",                      "description" : "The ECDIS Display Service uses symbology developed by the International Hydrographic Organization (IHO) for the display of ENC data on Electronic Chart Display and Information Systems (ECDIS) that large ocean- going vessels and many smaller commercial ships use for navigation. This is the OGC Web Map Service (WMS).",                      "name" : "ECDIS Display Service ",                                "provider" : {
+                        "@type" : "Organization",                          "name" : "Office of Coast Survey (OCS)"                  },
+                                  "contentUrl" : "https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/WMSServer"              },                      {
+                    "@type" : "DataDownload",                      "encodingFormat" : "ESRI REST Service",                      "description" : "The NOAA Chart Display Service renders NOAA ENC data with \"traditional paper chart\" symbols, labels, and color schemes familiar to those who have used NOAA paper nautical charts or the NOAA Custom Chart application. This is the Esri REST Service.",                      "name" : "NOAA Chart Display Service (Esri REST Service)",                                "provider" : {
+                        "@type" : "Organization",                          "name" : "Office of Coast Survey (OCS)"                  },
+                                  "contentUrl" : "https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/NOAAChartDisplay/MapServer/exts/MaritimeChartService/MapServer"              },                      {
+                    "@type" : "DataDownload",                      "encodingFormat" : "TMS - Tile Map Service",                      "description" : "The NOAA Chart Display Service renders NOAA ENC data with \"traditional paper chart\" symbols, labels, and color schemes familiar to those who have used NOAA paper nautical charts or the NOAA Custom Chart application. This is the Web Map Tile Service. ",                      "name" : "NOAA Chart Display Service (Web Map Tile Service (WMTS))",                                "provider" : {
+                        "@type" : "Organization",                          "name" : "Office of Coast Survey (OCS)"                  },
+                                  "contentUrl" : "https://gis.charttools.noaa.gov/arcgis/rest/services/MarineChart_Services/NOAACharts/MapServer/WMTS"              },                      {
+                    "@type" : "DataDownload",                      "encodingFormat" : "XML (Structured Text)",                                      "name" : "Catalog XML",                                "provider" : {
+                        "@type" : "Organization",                          "name" : "Office of Coast Survey (OCS)"                  },
+                                  "contentUrl" : "https://www.charts.noaa.gov/ENCs/ENCProdCat_19115.xml"              }                  ],
+            "sourceOrganization" : {
+              "@type" : "Organization",                "name" : "Office of Coast Survey"        },
+            "includedInDataCatalog" : {
+              "@type" : "DataCatalog",                "name" : "InPort",                "url" : "https://www.fisheries.noaa.gov/inport"        }
+                }
+    </script>
+  </head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <div class="system-notices">
+    <div class="fixed-page-fit">
+                </div>
+  </div>
+
+  <div class="fixed-page-fit fixed-header-style cf">
+    <div class="logo-bar">
+      <div class="left">
+        <a href="/inport/"><img class="logo" src="/inport/images/inport-logo.png"
+                                       width="126" height="64"
+                                       title="InPort - NMFS Enterprise Data Management Program"
+                                       alt="InPort"></a>
+      </div>
+      <div class="right">
+
+        <div class="mobile-header-icons">
+                    <a href="/inport/search"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-search.png" width="60" height="60" alt="Search"></a>
+          <a href="/inport/help"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-help.png" width="60" height="60" alt="Help"></a>
+          <span id="mobileNavToggle"><img
+              class="mobile-header-icon"
+              src="/inport/images/icons/icon-nav-hamburger.png" width="60" height="60" alt="Show/Hide Menu"></span>
+        </div>
+
+                  <form class="header-search-form"
+                method="get" action="/inport/q">
+            <input type="text" class="field header-search-field"
+                   aria-label="Search the InPort Catalog"
+                   name="keywords" id="quickKeywords" placeholder="Enter Keywords / Cat ID...">
+            <input type="submit" class="button small-button" value="Search">
+          </form>
+              </div>
+    </div>
+  </div>
+
+  <nav class="fixed-page-fit fixed-header-style">
+    <div id="mobileNav" style="display: none;">
+      <ul>
+                  <li><a href="/inport/login">Login</a></li>
+                                      <li><a
+                href="/inport/organizations/nmfs">NMFS</a>
+            </li>
+                      <li><a
+                href="/inport/organizations/nos">NOS</a>
+            </li>
+                      <li><a
+                href="/inport/organizations/partners">Partners</a>
+            </li>
+                          <li><a href="/inport/stats">Stats</a></li>
+                                          <li><a href="/inport/about">About InPort</a></li>
+                <li><a href="/inport/contact">Contact</a></li>
+              </ul>
+    </div>
+
+    <div id="nav" class="header-bar cf">
+      <ul class="sf-menu left">
+                  <li>
+            <span>Login</span>
+            <ul class="submenu submenu-form">
+              <li>
+                <form action="/inport/login/process" method="post"
+                      onsubmit="return loginNotice();">
+                  <input type="hidden" name="_csrf" value="10c25668-e35e-42b5-bb6c-f2c5a1954cb8">
+<div class="form-field-block">
+  <label for="navUsername" class="label">NOAA / InPort Email:</label>
+  <input class="field" type="text" id="navUsername" name="username"
+         aria-label="NOAA / InPort Email" autofocus="autofocus">
+</div>
+<div class="form-field-block">
+  <label for="navPassword" class="label">Password:</label>
+  <input class="field" autocomplete="off" type="password" id="navPassword"
+         name="password" aria-label="Password">
+</div>
+                  <input type="submit" class="button small-button" value="Login">
+                  <div class="submenu-form-content"><a href="/inport/forgot-password">Forgot
+                    your password?</a></div>
+                </form>
+              </li>
+            </ul>
+          </li>
+                <li><span>Catalog</span>
+          <ul class="submenu">
+                                          <li><a
+                    href="/inport/organizations/nmfs">NMFS</a>
+                </li>
+                              <li><a
+                    href="/inport/organizations/nos">NOS</a>
+                </li>
+                              <li><a
+                    href="/inport/organizations/partners">Partners</a>
+                </li>
+                                      <li><a href="/inport/organizations">All Organizations</a></li>
+          </ul>
+        </li>
+                <li><a href="/inport/search">Search</a></li>
+        <li><a href="/inport/stats">Stats</a></li>
+
+        
+        <li><a href="/inport/help">Help</a>
+          <ul class="submenu">
+            <li><a href="/inport/about">About InPort</a></li>
+            <li><a href="/inport/contact">Contact / Support / Training</a></li>
+            <li><a href="/inport/help">Help Guides</a></li>
+            <li><a href="/inport/help/xml-loader">InPort XML Loader</a></li>
+            <li><a href="/inport/help/components">Components</a></li>
+          </ul>
+        </li>
+
+              </ul>
+
+      <div class="user-display right">
+              </div>
+    </div>
+
+  </nav>
+</header>
+<main>
+  <div class="fixed-page-fit fixed-page-main">
+    <header class="page-header">
+
+              <div class="stat right" style="margin-left: 0.625rem; clear: right;">
+                      <div class="stat-label">Completion Rubric</div>
+            <div class="stat-main">
+                              <a href="/inport/item/39976/rubric/data-set-completion"
+                   title="View the full Data Set Completion Rubric for this item">83%</a>
+                          </div>
+            <div class="stat-secondary">
+              28.88 / 35
+            </div>
+                        <div class="stat-secondary"><a href="/inport/item/39976/rubric/data-set-completion" class="icon icon-score">View Report</a></div>
+                  </div>
+            <div class="breadcrumbs">
+                              <a class="icon icon-mprj"
+               href="/inport/item/37113">
+              OCS Metadata Library</a> &gt;
+                      <a class="icon icon-prj"
+               href="/inport/item/37241">
+              ocs</a> &gt;
+                        </div>
+      <h1 class="force-break" style="margin-top: 2px;">NOAA Electronic Navigational Charts (ENC)</h1>
+      <strong><span class="icon icon-ds">
+        Data Set
+        (DS)</span></strong>&nbsp;
+      |&nbsp; <strong>Office of Coast Survey
+      (OCS)</strong><br>
+      <span title="The Globally Unique IDentifier (GUID) uniquely identifies InPort records in external systems. It is derived from the InPort namespace and the Catalog Item ID.">GUID: gov.noaa.nmfs.inport:39976</span>&nbsp;
+      |&nbsp; Updated: August 7, 2025&nbsp;
+            |&nbsp; Published / External&nbsp;
+          </header>
+    <div class="page-header-bar cf">
+      <ul class="page-header-options left">
+                <li>
+          <span id="viewAsButton"><span class="icon icon-menu-arrow">View As</span></span>
+          <ul class="options-menu" id="viewAsMenu" style="display: none;">
+            <li><a href="/inport/item/39976/full-list" title="View Catalog Item in Full List format"><span class="icon icon-full-list">Full List View</span></a></li>
+                        <li><span class="menu-item"><strong>EXPORTS</strong></span></li>
+            <li><a href="/inport/item/39976/inport-xml" title="View the InPort XML format"><span class="icon icon-xml">InPort XML</span></a></li>
+                          <li><a href="/inport/item/39976/iso19115" title="View in ISO 19115 format"><span class="icon icon-xml">ISO 19115</span></a></li>
+                                                                <li><a href="/inport/item/39976/waf" title="View the WAF files for this catalog item"><span class="icon icon-waf">WAF Files</span></a></li>
+                      </ul>
+        </li>
+                <li><a href="/inport/hierarchy?select=39976"><span class="icon icon-tree" title="View this Catalog Item within the Catalog Hierarchy">View in Hierarchy</span></a></li>
+              </ul>
+    </div>
+
+    <div class="col-1">
+
+         
+      
+      <div class="tabbed-header">
+        <div id="summaryTab" class="tabbed-header-tab">Summary</div>
+        <div id="itemIdentificationTab" class="tabbed-header-tab">Item Identification</div>
+                  <div id="keywordsSectionTab"
+               class="tabbed-header-tab ">Keywords</div>
+                          <div id="physicalLocationTab"
+              class="tabbed-header-tab ">Physical Location</div>
+                          <div id="dataSetTab"
+              class="tabbed-header-tab ">Data Set Info</div>
+                                                                          <div id="supportRolesTab"
+              class="tabbed-header-tab ">Support Roles</div>
+                          <div id="extentsTab"
+              class="tabbed-header-tab ">Extents</div>
+                          <div id="spatialInfoTab"
+              class="tabbed-header-tab ">Spatial Info</div>
+                          <div id="accessInfoTab"
+              class="tabbed-header-tab ">Access Info</div>
+                          <div id="distributionInfoTab"
+              class="tabbed-header-tab ">Distribution Info</div>
+                                  <div id="urlsTab"
+              class="tabbed-header-tab ">URLs</div>
+                          <div id="activityLogTab"
+              class="tabbed-header-tab ">Activity Log</div>
+                                          <div id="dataQualityTab"
+              class="tabbed-header-tab ">Data Quality</div>
+                          <div id="dataManagementTab"
+              class="tabbed-header-tab ">Data Management</div>
+                          <div id="lineageTab"
+              class="tabbed-header-tab ">Lineage</div>
+                          <div id="acquisitionInfoTab"
+              class="tabbed-header-tab ">Acquisition Info</div>
+                                                        <div id="catalogDetailsTab"
+            class="tabbed-header-tab">Catalog Details</div>
+      </div>
+
+      
+
+
+
+      <!-- Item Summary -->
+      <div id="summary" class="section metadataSection">
+
+        
+        <div class="section__header sh">
+          <h2 class="sh__main">Summary</h2>
+        </div>
+        <div class="section__content">
+          
+                      <p class="small">
+              <strong>Short Citation</strong><br>
+              Office of Coast Survey, 2026: NOAA Electronic Navigational Charts (ENC), https://www.fisheries.noaa.gov/inport/item/39976.<br>
+              <a href="/inport/item/39976/citation">Full Citation Examples</a>
+            </p>
+                    
+                                    <strong>Abstract</strong><br>
+                        <div class="small">
+                    <p>The Office of Coast Survey (OCS) has been involved in the development of a NOAA Electronic Navigational Chart (NOAA ENC) suite to support the marine transportation infrastructure and coastal management for a number of years. The NOAA ENC will support all types of marine navigation by providing the official database for electronic charting systems (ECS), including the Electronic Chart Display and Information System (ECDIS). NOAA ENCs support real-time navigation as well as collision and grounding avoidance needs of the mariner, and accommodate a real-time tide and current display capability that is essential for large vessel navigation.  NOAA ENCs will also provide fully integrated vector base maps for use in geographic information systems (GIS) that are used for coastal management or other purposes. The NOAA ENCs are in the International Hydrographic Office (IHO) S-57 international exchange format and comply with the ENC Product Specification.</p>
+              </div>
+          
+                      <strong>Purpose</strong><br>
+            <div class="small">
+                    <p>The electronic navigational charts (NOAA ENC) are primarily intended to support the navigation of vessels in the territorial waters of the United States.  The data contained in the NOAA ENCs may also be used for any other coastal mapping purposes that require up-to-date information similar to that portrayed on traditional navigational charts.</p>
+              </div>
+          
+          
+          <div class="cf"></div> <!-- needed to clear browse image float -->
+
+          <div class="inner-col-2">
+            <div class="inner-col-2__main">
+
+              
+              
+              
+              
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Distribution Information</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                                          <ul class="content-list">
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://charts.noaa.gov/ENCs/ENCs.shtml" rel="noopener"
+                                 target="_blank">Chart Downloader for NOAA ENCs</a>
+                                                      </div>
+                                                      <div class="small">
+                              2
+                            </div>
+                                                                                <div class="small">
+                                    <p>Individual NOAA ENCs may be downloaded from the Chart Downloader for NOAA ENC. </p>
+      <p>The NOAA ENCs distributed here are a geo-referenced database(s) of NOAA nautical chart features and their attributes, published by NOAA in the format of the International Hydrographic Organization S-57 Standard, &quot;IHO Transfer Standard for Digital Hydrographic Data.&quot; NOAA updates the ENCs for Notice to Mariners on a weekly basis (timing of their availability is not guaranteed). NOAA ENCs are an official product of NOAA.</p>
+                              </div>
+                                                  </li>
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://charts.noaa.gov/InteractiveCatalog/nrnc.shtml" rel="noopener"
+                                 target="_blank">NOAA Chart Locator </a>
+                                                      </div>
+                                                                                <div class="small">
+                                    <p>Individual NOAA ENCs may be downloaded from the NOAA Chart Locator.</p>
+                              </div>
+                                                  </li>
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://devgis.charttools.noaa.gov/pod" rel="noopener"
+                                 target="_blank">NOAA Custom Chart (NCC)</a>
+                                                      </div>
+                                                      <div class="small">
+                              PDF - Adobe Portable Document Format
+                            </div>
+                                                                                <div class="small">
+                                    <p>The NOAA Custom Chart application enables users to create their own customized charts directly from the latest NOAA ENC data. These charts contain all the same information as ENCs, but it is presented using the same symbols and colors used on traditional paper nautical charts. NCC outputs geospatially referenced Portable Document Format (PDF) files</p>
+      <p>All recreational and professional mariners are encouraged to use NOAA's premier navigational product, the electronic navigational chart (ENC) for their primary means of navigation. NCC uses the latest up-to-date NOAA ENC data to create customized charts and these charts are especially useful for voyage planning and situational awareness.</p>
+                              </div>
+                                                  </li>
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer" rel="noopener"
+                                 target="_blank">ECDIS Display Service - REST Service</a>
+                                                      </div>
+                                                      <div class="small">
+                              ESRI REST Service
+                            </div>
+                                                                                <div class="small">
+                                    <p>The ECDIS Display Service uses symbology developed by the International Hydrographic Organization (IHO) for the display of ENC data on Electronic Chart Display and Information Systems (ECDIS) that large ocean- going vessels and many smaller commercial ships use for navigation. This symbol set is commonly referred to by its IHO specification number, &quot;S-52,&quot; or as &quot;ECDIS symbology.&quot; This is the Esri REST service.</p>
+                              </div>
+                                                  </li>
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/WMSServer" rel="noopener"
+                                 target="_blank">ECDIS Display Service </a>
+                                                      </div>
+                                                      <div class="small">
+                              WMS - Web Map Service
+                            </div>
+                                                                                <div class="small">
+                                    <p>The ECDIS Display Service uses symbology developed by the International Hydrographic Organization (IHO) for the display of ENC data on Electronic Chart Display and Information Systems (ECDIS) that large ocean- going vessels and many smaller commercial ships use for navigation. This is the OGC Web Map Service (WMS).</p>
+                              </div>
+                                                  </li>
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/NOAAChartDisplay/MapServer/exts/MaritimeChartService/MapServer" rel="noopener"
+                                 target="_blank">NOAA Chart Display Service (Esri REST Service)</a>
+                                                      </div>
+                                                      <div class="small">
+                              ESRI REST Service
+                            </div>
+                                                                                <div class="small">
+                                    <p>The NOAA Chart Display Service renders NOAA ENC data with &quot;traditional paper chart&quot; symbols, labels, and color schemes familiar to those who have used NOAA paper nautical charts or the NOAA Custom Chart application. This is the Esri REST Service.</p>
+                              </div>
+                                                  </li>
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://gis.charttools.noaa.gov/arcgis/rest/services/MarineChart_Services/NOAACharts/MapServer/WMTS" rel="noopener"
+                                 target="_blank">NOAA Chart Display Service (Web Map Tile Service (WMTS))</a>
+                                                      </div>
+                                                      <div class="small">
+                              TMS - Tile Map Service
+                            </div>
+                                                                                <div class="small">
+                                    <p>The NOAA Chart Display Service renders NOAA ENC data with &quot;traditional paper chart&quot; symbols, labels, and color schemes familiar to those who have used NOAA paper nautical charts or the NOAA Custom Chart application. This is the Web Map Tile Service. </p>
+                              </div>
+                                                  </li>
+                                                <li>
+                          <div class="force-break">
+                                                          <a href="https://www.charts.noaa.gov/ENCs/ENCProdCat_19115.xml" rel="noopener"
+                                 target="_blank">Catalog XML</a>
+                                                      </div>
+                                                      <div class="small">
+                              XML (Structured Text)
+                            </div>
+                                                                            </li>
+                                              </ul>
+                    
+                                          <strong>Access Constraints:</strong>
+                      <div class="small">
+                              <p>The NOAA electronic navigational chart (NOAA ENC) files that may be downloaded from the National Oceanic and Atmospheric Administration (NOAA) are official products.  Official ENCs are suitable for navigation under the following regulations and policies, and in the following circumstances:On May 2, 2001, the United States Coast Guard amended the chart carriage regulations to permit government vessels to use electronic charting and navigation systems in lieu of paper charts.On August 15, 2002, the United States Coast Guard issued a statement of policy to bring its regulations into agreement with SOLAS Chapter V (as amended by the changes taking effect July 1, 2002). The policy statement said that, if a ship has an approved ECDIS installed according to SOLAS, Chapter V, the ECDIS will be considered as meeting the ship's nautical chart carriage regulations. The ships that are affected are:U.S.-flagged ships of 150 or more gross tons that engage on international voyages.U.S.-flagged ships certificated solely for service on the Great Lakes and the St. Lawrence River.Foreign-flag ships to which SOLAS, Chapter V, applies that are operating on the navigable waters of the United States.This policy is not applicable to U.S.-flag ships engaged only on domestic voyages. These ships must continue to comply with existing navigation equipment requirements until the chart carriage regulations are formally amended.The NOAA ENC files available from this site are updated for Notices to Mariners on at least a monthly basis. Users are encouraged to check the site frequently and download the latest versions of the files. Notice to mariner updates are either contained in a new edition ENC or an incremental update (also called ENC Revision or &quot;ER&quot; files).</p>
+                        </div>
+                    
+                                          <strong>Use Constraints:</strong>
+                      <div class="small">
+                              <p>The NOAA electronic navigational chart (NOAA ENC) files that may be downloaded from the National Oceanic and Atmospheric Administration (NOAA) are official products.  Official ENCs are suitable for navigation under the following regulations and policies, and in the following circumstances:On May 2, 2001, the United States Coast Guard amended the chart carriage regulations to permit government vessels to use electronic charting and navigation systems in lieu of paper charts.On August 15, 2002, the United States Coast Guard issued a statement of policy to bring its regulations into agreement with SOLAS Chapter V (as amended by the changes taking effect July 1, 2002). The policy statement said that, if a ship has an approved ECDIS installed according to SOLAS, Chapter V, the ECDIS will be considered as meeting the ship's nautical chart carriage regulations. The ships that are affected are:U.S.-flagged ships of 150 or more gross tons that engage on international voyages.U.S.-flagged ships certificated solely for service on the Great Lakes and the St. Lawrence River.Foreign-flag ships to which SOLAS, Chapter V, applies that are operating on the navigable waters of the United States.This policy is not applicable to U.S.-flag ships engaged only on domestic voyages. These ships must continue to comply with existing navigation equipment requirements until the chart carriage regulations are formally amended.The NOAA ENC files available from this site are updated for Notices to Mariners on at least a monthly basis. Users are encouraged to check the site frequently and download the latest versions of the files. Notice to mariner updates are either contained in a new edition ENC or an incremental update (also called ENC Revision or &quot;ER&quot; files).Copying, reproduction of the NOAA ENCs to any other server or location for further reproduction or redistribution is discouraged unless the following guidelines are followed: 1) the NOAA ENCs and supplementary files including the CATALOG.031 and README.TXT are included in their entirety, 2) this disclaimer is displayed to and accepted by anyone who accesses the NOAA ENCs, and 3) a reference to this Web site is included so that anyone accessing the NOAA ENCs is advised of where they originated.  If these NOAA ENCs are incorporated into any other product in a form other than as provided by NOAA, the producer of that product assumes full liability and must adhere to conditions 2 and 3 described in the paragraph above concerning copying or reproduction.  The National Oceanic and Atmospheric Administration (NOAA) have promulgated certification requirements with standards for applicants who want to redistribute NOAA Electronic Navigational Charts (NOAA ENCs) as official data.  Two types of certification are offered.  The first type, &quot;Certified NOAA ENC Distributor&quot; (CED), covers NOAA ENC downloading, exact copying, and redistribution of those copies.  The second type, &quot;Certified NOAA ENC Value Added Distributor&quot; (CEVAD), permits reformatting official NOAA ENCs into a System Electronic Navigational Chart (SENC) using type-approved software, and distribution of that SENC. NOAA intends by this action to assure that, though redistributed, quality official NOAA ENC data is offered to the public in support of safe navigation on U.S. waters.   This rule can be found in the 15 CFR Part 995. A list of approved certified distributors can be found at http://nauticalcharts.noaa.gov/MCD/enc/certdist.htm.</p>
+                        </div>
+                                      </div>
+                </div>
+                                            <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Controlled Theme Keywords</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                    <p>
+                                              National Geospatial Data Asset,                                               NGDA,                                               oceans,                                               transportation,                                               Water Oceans and Coasts Theme                                          </p>
+                  </div>
+                </div>
+              
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">URLs</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                    <ul class="content-list">
+                                                                        <li>
+                            <div class="force-break">
+                              <a href="https://charts.noaa.gov/ENCs/ENC_Agreement.shtml" rel="noopener"
+                                 target="_blank">ENC User Agreement</a>
+                            </div>
+                                                          <div class="small">
+                                      <p>URL for download agreement.</p>
+                                </div>
+                                                      </li>
+                                                                                                <li>
+                            <div class="force-break">
+                              <a href="https://charts.noaa.gov/InteractiveCatalog/nrnc.shtml" rel="noopener"
+                                 target="_blank">ENC Chart Locator</a>
+                            </div>
+                                                          <div class="small">
+                                      <p>URL for Chart Locator</p>
+                                </div>
+                                                      </li>
+                                                                  </ul>
+                  </div>
+                </div>
+              
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Child Items</h3>
+                  </div>
+                                      <p>
+                      No Child Items for this record.
+                    </p>
+                                  </div>
+              
+            </div>
+
+            <div class="inner-col-2__sidebar">
+
+              <div class="inner-col-section">
+                <div class="inner-col-section__header inner-col-sh">
+                  <h3 class="inner-col-sh__main">Contact Information</h3>
+                </div>
+                <div class="inner-col-section__content force-break">
+                                                                              <p>
+                        <strong>Point of Contact</strong><br>
+                                                Sean  Legeer<br>
+                                  sean.legeer@noaa.gov<br>
+                              </p>
+                                          <p>
+                        <strong>Metadata Contact</strong><br>
+                                                Sean  Legeer<br>
+                                  sean.legeer@noaa.gov<br>
+                              </p>
+                                                      </div>
+              </div>
+
+                              <div class="inner-col-section">
+                  <div class="inner-col-section__header inner-col-sh">
+                    <h3 class="inner-col-sh__main">Extents</h3>
+                  </div>
+                  <div class="inner-col-section__content">
+                                        
+                                                                    <div class="add-bottom-grid-margin">
+                          <strong>Geographic Area 1</strong><br>
+                                                      <div id="summaryGeoBoundsMap494359"
+                                 class="geo-bounds-display geo-bounds-small-display"></div>
+                                                        <p>
+                              -170&deg; W,
+                              -64&deg; E,
+                              62&deg; N,
+                              19&deg; S<br>
+                            </p>
+                                                                            </div>
+                                                                  
+                                                              <div class="add-bottom-pad">
+                        <strong>Time Frame 1</strong><br>
+                        2001-07-11 - Present<br>
+                        <div class="small">
+                                                    </div>
+                      </div>
+                                                            </div>
+                </div>
+                          </div>
+          </div>
+
+        </div>
+      </div> <!-- .section: Summary -->
+
+      <!-- Section: Item Identification -->
+      <div id="itemIdentification" class="section metadataSection">
+          <div class="section__header sh">
+    <h2 class="sh__main">Item Identification</h2>
+            </div>
+        <div class="section__content">
+                       <table class="name-value-table">
+                  <tr>
+    <th scope="col">
+              Title:
+          </th>
+    <td class="ellipsisize">
+              NOAA Electronic Navigational Charts (ENC)
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Short Name:
+          </th>
+    <td class="ellipsisize">
+              enc_metadata_2007
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Status:
+          </th>
+    <td class="ellipsisize">
+              In Work
+          </td>
+  </tr>
+                                  <tr>
+    <th scope="col">
+              Creation Date:
+          </th>
+    <td class="ellipsisize">
+              2001-07-11
+          </td>
+  </tr>
+                                              <tr>
+    <th scope="col">
+              Revision Date:
+          </th>
+    <td class="ellipsisize">
+              2023-09-14
+          </td>
+  </tr>
+                                              <tr>
+    <th scope="col">
+              Publication Date:
+          </th>
+    <td class="ellipsisize">
+              2001
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">Abstract:</th>
+    <td class="small">
+            <p>The Office of Coast Survey (OCS) has been involved in the development of a NOAA Electronic Navigational Chart (NOAA ENC) suite to support the marine transportation infrastructure and coastal management for a number of years. The NOAA ENC will support all types of marine navigation by providing the official database for electronic charting systems (ECS), including the Electronic Chart Display and Information System (ECDIS). NOAA ENCs support real-time navigation as well as collision and grounding avoidance needs of the mariner, and accommodate a real-time tide and current display capability that is essential for large vessel navigation.  NOAA ENCs will also provide fully integrated vector base maps for use in geographic information systems (GIS) that are used for coastal management or other purposes. The NOAA ENCs are in the International Hydrographic Office (IHO) S-57 international exchange format and comply with the ENC Product Specification.</p>
+      </td>
+  </tr>
+                  <tr>
+    <th scope="col">Purpose:</th>
+    <td class="small">
+            <p>The electronic navigational charts (NOAA ENC) are primarily intended to support the navigation of vessels in the territorial waters of the United States.  The data contained in the NOAA ENCs may also be used for any other coastal mapping purposes that require up-to-date information similar to that portrayed on traditional navigational charts.</p>
+      </td>
+  </tr>
+                  <tr>
+    <th scope="col">Notes:</th>
+    <td class="small">
+            <p>1530</p>
+      </td>
+  </tr>
+                                                                                        </table>
+        </div>
+      </div> <!-- .section Item Identification -->
+
+      <!-- Section: Keywords -->
+              <div id="keywordsSection" class="section metadataSection ">
+            <div class="section__header sh">
+    <h2 class="sh__main">Keywords</h2>
+            </div>
+          <div class="section__content">
+                                             <h3 class="record-block-section-header">Theme Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                  <tr>
+            <td>ISO 19115 Topic Category</td>
+            <td class="force-break">
+              <div>
+  oceans
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>ISO 19115 Topic Category</td>
+            <td class="force-break">
+              <div>
+  transportation
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>NGDA Portfolio Themes</td>
+            <td class="force-break">
+              <div>
+  National Geospatial Data Asset
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>NGDA Portfolio Themes</td>
+            <td class="force-break">
+              <div>
+  NGDA
+  </div>
+            </td>
+          </tr>
+                  <tr>
+            <td>NGDA Portfolio Themes</td>
+            <td class="force-break">
+              <div>
+  Water Oceans and Coasts Theme
+  </div>
+            </td>
+          </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td>NGDA Portfolio Themes</td>
+                            <td class="force-break">
+                NGDAID165
+              </td>
+            </tr>
+                      <tr>
+                              <td>NOS Data Explorer Topic Category</td>
+                            <td class="force-break">
+                Nautical Charting
+              </td>
+            </tr>
+                      <tr>
+                              <td>Tri - Service Spatial Data Standard</td>
+                            <td class="force-break">
+                Boundaries
+              </td>
+            </tr>
+                      <tr>
+                              <td>Tri - Service Spatial Data Standard</td>
+                            <td class="force-break">
+                Environment/Hazard
+              </td>
+            </tr>
+                      <tr>
+                              <td>Tri - Service Spatial Data Standard</td>
+                            <td class="force-break">
+                Hydrography
+              </td>
+            </tr>
+                      <tr>
+                              <td>Tri - Service Spatial Data Standard</td>
+                            <td class="force-break">
+                Landform
+              </td>
+            </tr>
+                      <tr>
+                              <td>Tri - Service Spatial Data Standard</td>
+                            <td class="force-break">
+                Marine Navigation
+              </td>
+            </tr>
+                      <tr>
+                              <td>Tri - Service Spatial Data Standard</td>
+                            <td class="force-break">
+                Oceans
+              </td>
+            </tr>
+                      <tr>
+                              <td>Tri - Service Spatial Data Standard</td>
+                            <td class="force-break">
+                Transportation
+              </td>
+            </tr>
+                      <tr>
+                              <td>Tri - Service Spatial Data Standard</td>
+                            <td class="force-break">
+                Wildlife/Fisheries
+              </td>
+            </tr>
+                        </table>
+    </div>
+                                  <h3 class="record-block-section-header">Spatial Keywords</h3>
+    <div class="record-block">
+      <table class="header-table">
+        <tr>
+          <th>Thesaurus</th>
+          <th>Keyword</th>
+        </tr>
+                          <tr class="secondary-header">
+            <th colspan="2" class="small"><strong>UNCONTROLLED</strong></th>
+          </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                U.S. Exclusive Economic Zone
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                U.S. territories
+              </td>
+            </tr>
+                      <tr>
+                              <td class="subdued">None</td>
+                            <td class="force-break">
+                U.S. waters
+              </td>
+            </tr>
+                        </table>
+    </div>
+                                                      </div>
+        </div> <!-- .section Keywords -->
+      
+      <!-- Section: Physical Location -->
+              <div id="physicalLocation" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Physical Location</h2>
+            </div>
+          <div class="section__content">
+                                       <table class="name-value-table">
+                    <tr>
+    <th scope="col">
+              Organization:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey
+          </td>
+  </tr>
+                                      <tr>
+    <th scope="col">
+              City:
+          </th>
+    <td class="ellipsisize">
+              Silver Spring
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">
+              State/Province:
+          </th>
+    <td class="ellipsisize">
+              MD
+          </td>
+  </tr>
+                                                                </table>
+          </div>
+        </div> <!-- .section Physical Location -->
+      
+      <!-- Section: Data Set -->
+              <div id="dataSet" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Set Information</h2>
+            </div>
+          <div class="section__content">
+                                                       <table class="name-value-table">
+                                      <tr>
+    <th scope="col">
+              Data Set Scope Code:
+          </th>
+    <td class="ellipsisize">
+              Data Set
+          </td>
+  </tr>
+                                            <tr>
+    <th scope="col">
+              Maintenance Frequency:
+          </th>
+    <td class="ellipsisize">
+              As Needed
+          </td>
+  </tr>
+                                          <tr>
+    <th scope="col">
+              Data Presentation Form:
+          </th>
+    <td class="ellipsisize">
+              map
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">Entity Attribute Overview:</th>
+    <td class="small">
+            <p>The electronic navigational chart conforms to the International Hydrographic Organization Transfer Standard for Digital Hydrographic Data, Special Publication S-57, ENC Product Specification Edition 2.0.  The entity and attribute descriptions are contained in the standard.  The standard is available from the IHO at http://www.iho.shom.fr.</p>
+      </td>
+  </tr>
+                      <tr>
+    <th scope="col">Entity Attribute Detail Citation:</th>
+    <td class="small">
+            <p>IHO S-57, Edition 3.1</p>
+      </td>
+  </tr>
+                                        <tr>
+    <th scope="col">Distribution Liability:</th>
+    <td class="small">
+            <p>None</p>
+      </td>
+  </tr>
+                                    </table>
+                      </div>
+        </div> <!-- .section Data Set -->
+      
+      
+      <!-- Section: Entity -->
+      
+      <!-- Section: Data Attributes -->
+      
+      <!-- Section: Procedure -->
+      
+      <!-- Section: Project -->
+      
+      <!-- Section: Publication Info -->
+      
+      <!-- Section: Support Roles -->
+              <div id="supportRoles" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Support Roles</h2>
+            </div>
+          <div class="section__content">
+                                                      <!-- Record ID: 808916, Created By: patrick.keown@noaa.gov (19903), 2018-12-14 10:15+0000, Last Mod By: ben.galdi@noaa.gov (24300), 2025-02-18 17:48+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Data Steward</h3>
+                  <div class="x-small right">CC ID: 808916</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2025
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Legeer, Sean 
+          </td>
+  </tr>
+                                                                                            <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              sean.legeer@noaa.gov
+          </td>
+  </tr>
+                                                                                                                                                                </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 808917, Created By: patrick.keown@noaa.gov (19903), 2018-12-14 10:15+0000, Last Mod By: tyler.christensen@noaa.gov (18149), 2018-12-14 12:30+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distributor</h3>
+                  <div class="x-small right">CC ID: 808917</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2018-12-14
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Organization):
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS)
+          </td>
+  </tr>
+                                            <tr>
+  <th scope="col">Address:</th>
+  <td>
+          1315 East West Highway<br>
+              Silver Spring, MD 20910<br>
+          </td>
+</tr>
+                                                                                                                                                                                        <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td>
+      <a href="https://www.nauticalcharts.noaa.gov/" rel="noopener" target="_blank">
+                  https://www.nauticalcharts.noaa.gov/
+              </a>
+    </td>
+  </tr>
+                                                                  </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 808918, Created By: patrick.keown@noaa.gov (19903), 2018-12-14 10:15+0000, Last Mod By: ben.galdi@noaa.gov (24300), 2025-02-07 16:10+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Metadata Contact</h3>
+                  <div class="x-small right">CC ID: 808918</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2025
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Legeer, Sean 
+          </td>
+  </tr>
+                                                                                            <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              sean.legeer@noaa.gov
+          </td>
+  </tr>
+                                                                                                                                                                </table>
+                </div> <!-- .record-block -->
+                              <!-- Record ID: 808919, Created By: patrick.keown@noaa.gov (19903), 2018-12-14 10:15+0000, Last Mod By: ben.galdi@noaa.gov (24300), 2025-02-18 17:48+0000 -->
+                <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Point of Contact</h3>
+                  <div class="x-small right">CC ID: 808919</div>
+                </div>
+                  <table class="name-value-table">
+                          <tr>
+    <th scope="col">
+              Date Effective From:
+          </th>
+    <td class="ellipsisize">
+              2025
+          </td>
+  </tr>
+                      <tr>
+                      <th scope="col">Date Effective To:</th>
+                      <td>
+                                                  
+                                              </td>
+                    </tr>
+                                              <tr>
+    <th scope="col">
+              Contact (Person):
+          </th>
+    <td class="ellipsisize">
+              Legeer, Sean 
+          </td>
+  </tr>
+                                                                                            <tr>
+    <th scope="col">
+              Email Address:
+          </th>
+    <td class="ellipsisize">
+              sean.legeer@noaa.gov
+          </td>
+  </tr>
+                                                                                                                                                                </table>
+                </div> <!-- .record-block -->
+                                                </div>
+        </div> <!-- .section Support Roles -->
+      
+        <!-- Section: Extents -->
+              <div id="extents" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Extents</h2>
+            </div>
+          <div class="section__content">
+                                       <table class="name-value-table">
+                    <tr>
+    <th scope="col">
+              Currentness Reference:
+          </th>
+    <td class="ellipsisize">
+              Publication Date
+          </td>
+  </tr>
+              </table>
+
+                                      <!-- Record ID: 494357, Created By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000, Last Mod By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000 -->
+
+              <h3 class="record-block-section-header">Extent Group 1</h3>
+
+                              
+                                                  <!-- Record ID: 494359, Created By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000, Last Mod By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000 -->
+                  <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Extent Group 1 / Geographic Area 1</h3>
+                      <div class="x-small right">CC ID: 494359</div>
+                    </div>
+                    <table class="name-value-table">
+                                              <tr class="extra-cols">
+                          <th scope="col"><strong>W&deg; Bound:</strong></th>
+                          <td>-170</td>
+                          <td class="geo-bounds-cell" rowspan="4">
+                            <div id="geoBoundsMap494359" class="geo-bounds-display geo-bounds-full-display"></div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>E&deg; Bound:</strong></th>
+                          <td>-64</td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>N&deg; Bound:</strong></th>
+                          <td>62</td>
+                        </tr>
+                        <tr>
+                          <th scope="col"><strong>S&deg; Bound:</strong></th>
+                          <td>19</td>
+                        </tr>
+                                                                </table>
+                  </div> <!-- .record-block -->
+                                  
+                                
+                                                  <div class="record-block">
+                    <div class="record-block-header cf">
+                      <h3 class="left">Extent Group 1 / Time Frame 1</h3>
+                      <div class="x-small right">CC ID: 494358</div>
+                    </div>
+                    <table class="name-value-table">
+                      <!-- Record ID: 494358, Created By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000, Last Mod By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000 -->
+                            <tr>
+    <th scope="col">
+              Time Frame Type:
+          </th>
+    <td class="ellipsisize">
+              Continuing
+          </td>
+  </tr>
+                              <tr>
+    <th scope="col">
+              Start:
+          </th>
+    <td class="ellipsisize">
+              2001-07-11
+          </td>
+  </tr>
+                                                                                                                            </table>
+                  </div> <!-- .record-block -->
+                                  
+              
+                                    </div>
+        </div> <!-- .section Extents -->
+      
+      <!-- Section: Spatial Info -->
+              <div id="spatialInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Spatial Information</h2>
+            </div>
+          <div class="section__content">
+                        <!-- Record ID: 1270223, Created By: leland.snyder@noaa.gov (22994), 2023-09-01 18:52+0000, Last Mod By: leland.snyder@noaa.gov (22994), 2023-09-01 18:52+0000 -->
+
+            <!-- Subsection: Spatial Resolution Info -->
+            
+            <!-- Subsection: Spatial Representation -->
+             
+
+            <!-- Subsection: Reference Systems -->
+                          <h3 class="record-block-section-header">Reference Systems</h3>
+
+                                            <div class="record-block">
+                  <div class="record-block-header cf">
+                    <h3 class="left">Reference System 1</h3>
+                    <div class="x-small right">CC ID: 1270224</div>
+                  </div>
+                                    <table class="name-value-table">
+                    <tr class="subtable-header">
+  <td colspan="2"><h4>Coordinate Reference System</h4></td>
+</tr>
+                    <tr>
+                      <td colspan="2">
+                        <table class="name-value-subtable">
+                          <tbody>
+                                  <tr>
+    <th scope="col">
+              CRS Type:
+          </th>
+    <td class="ellipsisize">
+              Geographic 2D
+          </td>
+  </tr>
+                                    <tr>
+    <th scope="col">
+              EPSG Code:
+          </th>
+    <td class="ellipsisize">
+              EPSG:4326
+          </td>
+  </tr>
+                                    <tr>
+    <th scope="col">
+              EPSG Name:
+          </th>
+    <td class="ellipsisize">
+              WGS 84
+          </td>
+  </tr>
+                              <tr id="rsCrs1MoreRow">
+                              <td colspan="2">
+                                &#x25BE; <a href="#" id="rsCrs1More">See Full Coordinate Reference System Information</a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tbody id="rsCrs1Content" style="display: none;">
+                                  <tr>
+    <th scope="col">
+              Datum Name:
+          </th>
+    <td class="ellipsisize">
+              World Geodetic System 1984
+          </td>
+  </tr>
+                                    <tr>
+    <th scope="col">
+              Ellipsoid:
+          </th>
+    <td class="ellipsisize">
+              WGS 84
+          </td>
+  </tr>
+                                    <tr>
+    <th scope="col">
+              Semimajor Axis:
+          </th>
+    <td class="ellipsisize">
+              6378137.0
+          </td>
+  </tr>
+                                    <tr>
+    <th scope="col">
+              Flattening Ratio:
+          </th>
+    <td class="ellipsisize">
+              298.257223563
+          </td>
+  </tr>
+                                                                                                                                                                                        <tr class="subtable-header">
+  <td colspan="2"><h4>Axis: Geodetic Lattitude</h4></td>
+</tr>
+                              <tr>
+                                <td colspan="2">
+                                  <table class="name-value-subtable">
+                                          <tr>
+    <th scope="col">
+              Order:
+          </th>
+    <td class="ellipsisize">
+              1
+          </td>
+  </tr>
+                                            <tr>
+    <th scope="col">
+              Abbreviation:
+          </th>
+    <td class="ellipsisize">
+              Lat
+          </td>
+  </tr>
+                                            <tr>
+    <th scope="col">
+              Units:
+          </th>
+    <td class="ellipsisize">
+              degree
+          </td>
+  </tr>
+                                            <tr>
+    <th scope="col">
+              Orientation:
+          </th>
+    <td class="ellipsisize">
+              north
+          </td>
+  </tr>
+                                    </table>
+                                </td>
+                              </tr>
+                                                          <tr class="subtable-header">
+  <td colspan="2"><h4>Axis: Geodetic Longitude</h4></td>
+</tr>
+                              <tr>
+                                <td colspan="2">
+                                  <table class="name-value-subtable">
+                                          <tr>
+    <th scope="col">
+              Order:
+          </th>
+    <td class="ellipsisize">
+              2
+          </td>
+  </tr>
+                                            <tr>
+    <th scope="col">
+              Abbreviation:
+          </th>
+    <td class="ellipsisize">
+              Lon
+          </td>
+  </tr>
+                                            <tr>
+    <th scope="col">
+              Units:
+          </th>
+    <td class="ellipsisize">
+              degree
+          </td>
+  </tr>
+                                            <tr>
+    <th scope="col">
+              Orientation:
+          </th>
+    <td class="ellipsisize">
+              east
+          </td>
+  </tr>
+                                    </table>
+                                </td>
+                              </tr>
+                                                      </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                                                          </table>
+                </div>
+                                                      </div>
+        </div> <!-- .section Spatial Info -->
+      
+      <!-- Section: Access Info -->
+              <div id="accessInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Access Information</h2>
+            </div>
+          <div class="section__content">
+                                                     <!-- ${esc.html($accessInfo.recordDetail.displayString)} -->
+              <table class="name-value-table">
+                                                                                                                                                              <tr>
+    <th scope="col">
+              Security Class:
+          </th>
+    <td class="ellipsisize">
+              Unclassified
+          </td>
+  </tr>
+                                                                                              <tr>
+    <th scope="col">Data Access Constraints:</th>
+    <td class="small">
+            <p>The NOAA electronic navigational chart (NOAA ENC) files that may be downloaded from the National Oceanic and Atmospheric Administration (NOAA) are official products.  Official ENCs are suitable for navigation under the following regulations and policies, and in the following circumstances:On May 2, 2001, the United States Coast Guard amended the chart carriage regulations to permit government vessels to use electronic charting and navigation systems in lieu of paper charts.On August 15, 2002, the United States Coast Guard issued a statement of policy to bring its regulations into agreement with SOLAS Chapter V (as amended by the changes taking effect July 1, 2002). The policy statement said that, if a ship has an approved ECDIS installed according to SOLAS, Chapter V, the ECDIS will be considered as meeting the ship's nautical chart carriage regulations. The ships that are affected are:U.S.-flagged ships of 150 or more gross tons that engage on international voyages.U.S.-flagged ships certificated solely for service on the Great Lakes and the St. Lawrence River.Foreign-flag ships to which SOLAS, Chapter V, applies that are operating on the navigable waters of the United States.This policy is not applicable to U.S.-flag ships engaged only on domestic voyages. These ships must continue to comply with existing navigation equipment requirements until the chart carriage regulations are formally amended.The NOAA ENC files available from this site are updated for Notices to Mariners on at least a monthly basis. Users are encouraged to check the site frequently and download the latest versions of the files. Notice to mariner updates are either contained in a new edition ENC or an incremental update (also called ENC Revision or &quot;ER&quot; files).</p>
+      </td>
+  </tr>
+                      <tr>
+    <th scope="col">Data Use Constraints:</th>
+    <td class="small">
+            <p>The NOAA electronic navigational chart (NOAA ENC) files that may be downloaded from the National Oceanic and Atmospheric Administration (NOAA) are official products.  Official ENCs are suitable for navigation under the following regulations and policies, and in the following circumstances:On May 2, 2001, the United States Coast Guard amended the chart carriage regulations to permit government vessels to use electronic charting and navigation systems in lieu of paper charts.On August 15, 2002, the United States Coast Guard issued a statement of policy to bring its regulations into agreement with SOLAS Chapter V (as amended by the changes taking effect July 1, 2002). The policy statement said that, if a ship has an approved ECDIS installed according to SOLAS, Chapter V, the ECDIS will be considered as meeting the ship's nautical chart carriage regulations. The ships that are affected are:U.S.-flagged ships of 150 or more gross tons that engage on international voyages.U.S.-flagged ships certificated solely for service on the Great Lakes and the St. Lawrence River.Foreign-flag ships to which SOLAS, Chapter V, applies that are operating on the navigable waters of the United States.This policy is not applicable to U.S.-flag ships engaged only on domestic voyages. These ships must continue to comply with existing navigation equipment requirements until the chart carriage regulations are formally amended.The NOAA ENC files available from this site are updated for Notices to Mariners on at least a monthly basis. Users are encouraged to check the site frequently and download the latest versions of the files. Notice to mariner updates are either contained in a new edition ENC or an incremental update (also called ENC Revision or &quot;ER&quot; files).Copying, reproduction of the NOAA ENCs to any other server or location for further reproduction or redistribution is discouraged unless the following guidelines are followed: 1) the NOAA ENCs and supplementary files including the CATALOG.031 and README.TXT are included in their entirety, 2) this disclaimer is displayed to and accepted by anyone who accesses the NOAA ENCs, and 3) a reference to this Web site is included so that anyone accessing the NOAA ENCs is advised of where they originated.  If these NOAA ENCs are incorporated into any other product in a form other than as provided by NOAA, the producer of that product assumes full liability and must adhere to conditions 2 and 3 described in the paragraph above concerning copying or reproduction.  The National Oceanic and Atmospheric Administration (NOAA) have promulgated certification requirements with standards for applicants who want to redistribute NOAA Electronic Navigational Charts (NOAA ENCs) as official data.  Two types of certification are offered.  The first type, &quot;Certified NOAA ENC Distributor&quot; (CED), covers NOAA ENC downloading, exact copying, and redistribution of those copies.  The second type, &quot;Certified NOAA ENC Value Added Distributor&quot; (CEVAD), permits reformatting official NOAA ENCs into a System Electronic Navigational Chart (SENC) using type-approved software, and distribution of that SENC. NOAA intends by this action to assure that, though redistributed, quality official NOAA ENC data is offered to the public in support of safe navigation on U.S. waters.   This rule can be found in the 15 CFR Part 995. A list of approved certified distributors can be found at http://nauticalcharts.noaa.gov/MCD/enc/certdist.htm.</p>
+      </td>
+  </tr>
+                                                    </table>
+                      </div>
+        </div> <!-- .section Access Info -->
+      
+      <!-- Section: Distribution Info -->
+              <div id="distributionInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Distribution Information</h2>
+            </div>
+          <div class="section__content">
+                                      <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 1</h3>
+                  <div class="x-small right">CC ID: 494360</div>
+                </div>
+                <table class="name-value-table">
+                                                              <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://charts.noaa.gov/ENCs/ENCs.shtml" rel="noopener" target="_blank">https://charts.noaa.gov/ENCs/ENCs.shtml</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS) (2018-12-14 - Present)
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Name:
+          </th>
+    <td class="ellipsisize">
+              Chart Downloader for NOAA ENCs
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Individual NOAA ENCs may be downloaded from the Chart Downloader for NOAA ENC. </p>
+      <p>The NOAA ENCs distributed here are a geo-referenced database(s) of NOAA nautical chart features and their attributes, published by NOAA in the format of the International Hydrographic Organization S-57 Standard, &quot;IHO Transfer Standard for Digital Hydrographic Data.&quot; NOAA updates the ENCs for Notice to Mariners on a weekly basis (timing of their availability is not guaranteed). NOAA ENCs are an official product of NOAA.</p>
+      </td>
+  </tr>
+                                                <tr>
+    <th scope="col">
+              File Type (Deprecated):
+          </th>
+    <td class="ellipsisize">
+              DX90
+          </td>
+  </tr>
+                                                <tr>
+    <th scope="col">
+              File Size:
+          </th>
+    <td class="ellipsisize">
+              2
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Application Version:
+          </th>
+    <td class="ellipsisize">
+              3.1
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Compression:
+          </th>
+    <td class="ellipsisize">
+              Zip
+          </td>
+  </tr>
+                                        </table>
+                              </div>
+                          <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 2</h3>
+                  <div class="x-small right">CC ID: 1406725</div>
+                </div>
+                <table class="name-value-table">
+                                                              <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://charts.noaa.gov/InteractiveCatalog/nrnc.shtml" rel="noopener" target="_blank">https://charts.noaa.gov/InteractiveCatalog/nrnc.shtml</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS) (2018-12-14 - Present)
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Name:
+          </th>
+    <td class="ellipsisize">
+              NOAA Chart Locator 
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Individual NOAA ENCs may be downloaded from the NOAA Chart Locator.</p>
+      </td>
+  </tr>
+                                                                                                                                                                            </table>
+                              </div>
+                          <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 3</h3>
+                  <div class="x-small right">CC ID: 1406726</div>
+                </div>
+                <table class="name-value-table">
+                                                              <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://devgis.charttools.noaa.gov/pod" rel="noopener" target="_blank">https://devgis.charttools.noaa.gov/pod</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS) (2018-12-14 - Present)
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Name:
+          </th>
+    <td class="ellipsisize">
+              NOAA Custom Chart (NCC)
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>The NOAA Custom Chart application enables users to create their own customized charts directly from the latest NOAA ENC data. These charts contain all the same information as ENCs, but it is presented using the same symbols and colors used on traditional paper nautical charts. NCC outputs geospatially referenced Portable Document Format (PDF) files</p>
+      <p>All recreational and professional mariners are encouraged to use NOAA's premier navigational product, the electronic navigational chart (ENC) for their primary means of navigation. NCC uses the latest up-to-date NOAA ENC data to create customized charts and these charts are especially useful for voyage planning and situational awareness.</p>
+      </td>
+  </tr>
+                                                                      <tr>
+    <th scope="col">
+              Distribution Format:
+          </th>
+    <td class="ellipsisize">
+              PDF - Adobe Portable Document Format
+          </td>
+  </tr>
+                                                                                                          </table>
+                              </div>
+                          <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 4</h3>
+                  <div class="x-small right">CC ID: 1406723</div>
+                </div>
+                <table class="name-value-table">
+                                                              <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer" rel="noopener" target="_blank">https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/MapServer</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS) (2018-12-14 - Present)
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Name:
+          </th>
+    <td class="ellipsisize">
+              ECDIS Display Service - REST Service
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>The ECDIS Display Service uses symbology developed by the International Hydrographic Organization (IHO) for the display of ENC data on Electronic Chart Display and Information Systems (ECDIS) that large ocean- going vessels and many smaller commercial ships use for navigation. This symbol set is commonly referred to by its IHO specification number, &quot;S-52,&quot; or as &quot;ECDIS symbology.&quot; This is the Esri REST service.</p>
+      </td>
+  </tr>
+                                                                      <tr>
+    <th scope="col">
+              Distribution Format:
+          </th>
+    <td class="ellipsisize">
+              ESRI REST Service
+          </td>
+  </tr>
+                                                                                                          </table>
+                              </div>
+                          <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 5</h3>
+                  <div class="x-small right">CC ID: 1406721</div>
+                </div>
+                <table class="name-value-table">
+                                                              <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/WMSServer" rel="noopener" target="_blank">https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/WMSServer</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS) (2018-12-14 - Present)
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Name:
+          </th>
+    <td class="ellipsisize">
+              ECDIS Display Service 
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>The ECDIS Display Service uses symbology developed by the International Hydrographic Organization (IHO) for the display of ENC data on Electronic Chart Display and Information Systems (ECDIS) that large ocean- going vessels and many smaller commercial ships use for navigation. This is the OGC Web Map Service (WMS).</p>
+      </td>
+  </tr>
+                                                                      <tr>
+    <th scope="col">
+              Distribution Format:
+          </th>
+    <td class="ellipsisize">
+              WMS - Web Map Service
+          </td>
+  </tr>
+                                                                                                          </table>
+                              </div>
+                          <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 6</h3>
+                  <div class="x-small right">CC ID: 1406724</div>
+                </div>
+                <table class="name-value-table">
+                                                              <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/NOAAChartDisplay/MapServer/exts/MaritimeChartService/MapServer" rel="noopener" target="_blank">https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/NOAAChartDisplay/MapServer/exts/MaritimeChartService/MapServer</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS) (2018-12-14 - Present)
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Name:
+          </th>
+    <td class="ellipsisize">
+              NOAA Chart Display Service (Esri REST Service)
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>The NOAA Chart Display Service renders NOAA ENC data with &quot;traditional paper chart&quot; symbols, labels, and color schemes familiar to those who have used NOAA paper nautical charts or the NOAA Custom Chart application. This is the Esri REST Service.</p>
+      </td>
+  </tr>
+                                                                      <tr>
+    <th scope="col">
+              Distribution Format:
+          </th>
+    <td class="ellipsisize">
+              ESRI REST Service
+          </td>
+  </tr>
+                                                                                                          </table>
+                              </div>
+                          <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 7</h3>
+                  <div class="x-small right">CC ID: 1406722</div>
+                </div>
+                <table class="name-value-table">
+                                                              <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://gis.charttools.noaa.gov/arcgis/rest/services/MarineChart_Services/NOAACharts/MapServer/WMTS" rel="noopener" target="_blank">https://gis.charttools.noaa.gov/arcgis/rest/services/MarineChart_Services/NOAACharts/MapServer/WMTS</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS) (2018-12-14 - Present)
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Name:
+          </th>
+    <td class="ellipsisize">
+              NOAA Chart Display Service (Web Map Tile Service (WMTS))
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>The NOAA Chart Display Service renders NOAA ENC data with &quot;traditional paper chart&quot; symbols, labels, and color schemes familiar to those who have used NOAA paper nautical charts or the NOAA Custom Chart application. This is the Web Map Tile Service. </p>
+      </td>
+  </tr>
+                                                                      <tr>
+    <th scope="col">
+              Distribution Format:
+          </th>
+    <td class="ellipsisize">
+              TMS - Tile Map Service
+          </td>
+  </tr>
+                                                                                                          </table>
+                              </div>
+                          <!-- ${esc.html($distribution.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Distribution 8</h3>
+                  <div class="x-small right">CC ID: 1272950</div>
+                </div>
+                <table class="name-value-table">
+                                                              <tr class="ellipsisize">
+    <th scope="col">Download URL:</th>
+    <td><a href="https://www.charts.noaa.gov/ENCs/ENCProdCat_19115.xml" rel="noopener" target="_blank">https://www.charts.noaa.gov/ENCs/ENCProdCat_19115.xml</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Distributor:
+          </th>
+    <td class="ellipsisize">
+              Office of Coast Survey (OCS) (2018-12-14 - Present)
+          </td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              File Name:
+          </th>
+    <td class="ellipsisize">
+              Catalog XML
+          </td>
+  </tr>
+                                                                                          <tr>
+    <th scope="col">
+              Distribution Format:
+          </th>
+    <td class="ellipsisize">
+              XML (Structured Text)
+          </td>
+  </tr>
+                                                                                                          </table>
+                              </div>
+                      </div>
+        </div> <!-- .section Distribution Info -->
+      
+      <!-- Section: Archive Info -->
+      
+      <!-- Section: URLs -->
+              <div id="urls" class="section metadataSection ">
+            <div class="section__header sh">
+    <h2 class="sh__main">URLs</h2>
+            </div>
+          <div class="section__content">
+                                                     <!-- Record ID: 494352, Created By: tyler.christensen@noaa.gov (18149), 2017-04-05 13:49+0000, Last Mod By: ben.galdi@noaa.gov (24300), 2025-02-18 17:57+0000 -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">URL 1</h3>
+                  <div class="x-small right">CC ID: 494352</div>
+                </div>
+                <table class="name-value-table">
+                      <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td><a href="https://charts.noaa.gov/ENCs/ENC_Agreement.shtml" rel="noopener" target="_blank">https://charts.noaa.gov/ENCs/ENC_Agreement.shtml</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Name:
+          </th>
+    <td class="ellipsisize">
+              ENC User Agreement
+          </td>
+  </tr>
+                                      <tr>
+                    <th scope="col">URL Type:</th>
+                    <td>
+                      <div>Online Resource</div>
+                                          </td>
+                  </tr>
+                                                              <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>URL for download agreement.</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                        <!-- Record ID: 1371144, Created By: ben.galdi@noaa.gov (24300), 2025-02-18 17:57+0000, Last Mod By: ben.galdi@noaa.gov (24300), 2025-02-18 17:57+0000 -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">URL 2</h3>
+                  <div class="x-small right">CC ID: 1371144</div>
+                </div>
+                <table class="name-value-table">
+                      <tr class="ellipsisize">
+    <th scope="col">URL:</th>
+    <td><a href="https://charts.noaa.gov/InteractiveCatalog/nrnc.shtml" rel="noopener" target="_blank">https://charts.noaa.gov/InteractiveCatalog/nrnc.shtml</a></td>
+  </tr>
+                          <tr>
+    <th scope="col">
+              Name:
+          </th>
+    <td class="ellipsisize">
+              ENC Chart Locator
+          </td>
+  </tr>
+                                      <tr>
+                    <th scope="col">URL Type:</th>
+                    <td>
+                      <div>Online Resource</div>
+                                          </td>
+                  </tr>
+                                                              <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>URL for Chart Locator</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                    </div>
+        </div> <!-- .section URLs -->
+      
+      <!-- Section: Activity Log -->
+              <div id="activityLog" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Activity Log</h2>
+            </div>
+          <div class="section__content">
+                                      <!-- ${esc.html($activityLog.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Activity Log 1</h3>
+                  <div class="x-small right">CC ID: 494380</div>
+                </div>
+                <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Activity Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2016-12-13
+          </td>
+  </tr>
+                                                                    <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Date that the source FGDC record was last modified.</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                        <!-- ${esc.html($activityLog.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Activity Log 2</h3>
+                  <div class="x-small right">CC ID: 494379</div>
+                </div>
+                <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Activity Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2017-04-05
+          </td>
+  </tr>
+                                                                    <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Converted from FGDC Content Standards for Digital Geospatial Metadata (version FGDC-STD-001-1998) using 'fgdc_to_inport_xml.pl' script. Contact Tyler Christensen (NOS) for details.</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                        <!-- ${esc.html($activityLog.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Activity Log 3</h3>
+                  <div class="x-small right">CC ID: 718989</div>
+                </div>
+                <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Activity Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2018-02-08
+          </td>
+  </tr>
+                                                                    <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Partial upload of Positional Accuracy fields only.</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                        <!-- ${esc.html($activityLog.recordDetail.displayString)} -->
+              <div class="record-block">
+                <div class="record-block-header cf">
+                  <h3 class="left">Activity Log 4</h3>
+                  <div class="x-small right">CC ID: 1371148</div>
+                </div>
+                <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Activity Date/Time:
+          </th>
+    <td class="ellipsisize">
+              2025-02-18
+          </td>
+  </tr>
+                                                <tr>
+    <th scope="col">
+              Responsible Party:
+          </th>
+    <td class="ellipsisize">
+              Ben  Galdi
+          </td>
+  </tr>
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>Metadata Updated</p>
+      </td>
+  </tr>
+                  </table>
+              </div>
+                                    </div>
+        </div> <!-- .section Activity Logs -->
+      
+      <!-- Section: Issues -->
+      
+      <!-- Section: Technical Environment -->
+      
+      <!-- Section: Data Quality -->
+              <div id="dataQuality" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Quality</h2>
+            </div>
+          <div class="section__content">
+                                       <!-- ${esc.html($dataQual.recordDetail.displayString)} -->
+            <table class="name-value-table">
+                                  <tr>
+    <th scope="col">Accuracy:</th>
+    <td class="small">
+            <p>The NOAA ENC conforms to the International Hydrographic Organization Transfer Standard for Digital Hydrographic Data, Special Publication S-57, ENC Product Specification Edition 2.0.  The entity and attribute descriptions are contained in the standard.  The standard is available from the IHO at http://www.iho.shom.fr.</p>
+      </td>
+  </tr>
+                                    <tr>
+    <th scope="col">Horizontal Positional Accuracy:</th>
+    <td class="small">
+            <p>The NOAA ENC conforms to the International Hydrographic Organization Transfer Standard for Digital Hydrographic Data, Special Publication S-57, ENC Product Specification Edition 2.0.</p>
+      </td>
+  </tr>
+                    <tr>
+    <th scope="col">Vertical Positional Accuracy:</th>
+    <td class="small">
+            <p>The NOAA ENC conforms to the International Hydrographic Organization Transfer Standard for Digital Hydrographic Data, Special Publication S-57, ENC Product Specification Edition 2.0.</p>
+      </td>
+  </tr>
+                                                                                                                                                                    <tr>
+    <th scope="col">Completeness Report:</th>
+    <td class="small">
+            <p>The NOAA ENC contains most of the features currently shown on the corresponding paper chart. The detailed road networks and depictions of buildings in urban areas have been replaced with an &quot;urban area&quot; that is displayed as a tinted area with the associated place name.NOAA ENCs are currently available for the United States 40 major commercial port areas and transit between those ports. As of October 2007 there are currently 608 NOAA ENC's available. This comprises 97% coverage of United States commercial waterways and transit routes.</p>
+      </td>
+  </tr>
+                    <tr>
+    <th scope="col">Conceptual Consistency:</th>
+    <td class="small">
+            <p>The NOAA ENC conforms to the International Hydrographic Organization Transfer Standard for Digital Hydrographic Data, Special Publication S-57, ENC Product Specification Edition 2.0.</p>
+      </td>
+  </tr>
+                              </table>
+          </div>
+        </div> <!-- .section Data Quality -->
+      
+      <!-- Section: Data Management -->
+              <div id="dataManagement" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Data Management</h2>
+            </div>
+          <div class="section__content">
+                                       <!-- ${esc.html($dataMgmt.recordDetail.displayString)} -->
+            <table class="name-value-table">
+                                      <tr>
+    <th scope="col">
+              Approximate Percentage of Budget for these Data Devoted to Data Management:
+          </th>
+    <td class="ellipsisize">
+              Unknown
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Do these Data Comply with the Data Access Directive?:
+          </th>
+    <td class="ellipsisize">
+              Yes
+          </td>
+  </tr>
+                      <tr>
+    <th scope="col">
+              Is Access to the Data Limited Based on an Approved Waiver?:
+          </th>
+    <td class="ellipsisize">
+              No
+          </td>
+  </tr>
+                                                                                                                                    </table>
+          </div>
+        </div> <!-- .section Data Management -->
+      
+      <!-- Section: Lineage -->
+              <div id="lineage" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Lineage</h2>
+            </div>
+          <div class="section__content">
+                        <table class="name-value-table">
+                                          </table>
+
+            
+                          <h3 class="record-block-section-header">Process Steps</h3>
+                              <!-- ${esc.html($processStep.recordDetail.displayString)} -->
+                <div class="record-block">
+                  <div class="record-block-header cf">
+                    <h3 class="left">Process Step 1</h3>
+                    <div class="x-small right">CC ID: 494350</div>
+                  </div>
+                  <table class="name-value-table">
+                        <tr>
+    <th scope="col">Description:</th>
+    <td class="small">
+            <p>The NOAA ENC database has been built from a combination of charted information as well as original &quot;source&quot; information.  NOAA has compiled critical features such as channel limits, aids to navigation, and obstructions from the original documents that were used to put the feature on the paper chart.  The objective is to use the most accurate information for features that are critical to the safety of navigation.  NOAA uses a number of sources in compiling NOAA ENCS including U.S. Army Corps of Engineers surveys, drawings, and permits, U.S. Coast Guard Local Notices to Mariner, National Geospatial-Intelligence Agency Notices to Mariners, and NOAA hydrographic surveys.  All NOAA ENCs that are considered &quot;completed&quot; are up to date for the current Notices to Mariners. They will also have any new chart information included within a few weeks of the information's arrival at NOAA.</p>
+      </td>
+  </tr>
+                                                                                                                                            </table>
+                </div>
+                                    </div>
+        </div> <!-- .section Lineage -->
+      
+      <!-- Section: Acquisition Info -->
+              <div id="acquisitionInfo" class="section metadataSection">
+            <div class="section__header sh">
+    <h2 class="sh__main">Acquisition Information</h2>
+            </div>
+          <div class="section__content">
+                        <!-- Subsection: Instruments -->
+                                      <h3 class="record-block-section-header">Instruments</h3>
+                              <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Instrument Unavailable Reason:
+          </th>
+    <td class="ellipsisize">
+              Not Applicable
+          </td>
+  </tr>
+                  </table>
+                          
+            <!-- Subsection: Platforms -->
+                          <h3 class="record-block-section-header">Platforms</h3>
+                              <table class="name-value-table">
+                        <tr>
+    <th scope="col">
+              Platform Unavailable Reason:
+          </th>
+    <td class="ellipsisize">
+              Not Applicable
+          </td>
+  </tr>
+                  </table>
+                                    </div>
+        </div> <!-- .section Acquisition Info -->
+      
+      <!-- Section: Acronyms -->
+      
+      <!-- Section: Glossary -->
+      
+      <!-- Section: FAQs -->
+      
+      <!-- Section: Child Items -->
+      
+      <!-- Section: Related Items -->
+      
+      <!-- Section: Catalog Details -->
+      <div id="catalogDetails" class="section metadataSection">
+          <div class="section__header sh">
+    <h2 class="sh__main">Catalog Details</h2>
+            </div>
+        <div class="section__content">
+                       <table class="name-value-table">
+                  <tr>
+    <th scope="col">
+              Catalog Item ID:
+          </th>
+    <td class="ellipsisize">
+              39976
+          </td>
+  </tr>
+                  <tr>
+    <th scope="col">
+              <span title="The Globally Unique IDentifier (GUID) uniquely identifies InPort records in external systems. It is derived from the InPort namespace and the Catalog Item ID.">GUID:</span>
+          </th>
+    <td class="ellipsisize">
+              gov.noaa.nmfs.inport:39976
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Created By:
+          </th>
+    <td class="ellipsisize">
+              Tyler Christensen
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Created:
+          </th>
+    <td class="ellipsisize">
+              2017-04-05 13:49+0000
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Last Modified By:
+          </th>
+    <td class="ellipsisize">
+              Courtney Thompson
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Last Modified:
+          </th>
+    <td class="ellipsisize">
+              2025-08-07 11:10+0000
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Record Published:
+          </th>
+    <td class="ellipsisize">
+              2025-02-28
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Owner Org:
+          </th>
+    <td class="ellipsisize">
+              OCS
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Publication Status:
+          </th>
+    <td class="ellipsisize">
+              Published Externally
+          </td>
+  </tr>
+                                <tr>
+    <th scope="col">
+              Do Not Publish?:
+          </th>
+    <td class="ellipsisize">
+              N
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Last Review Date:
+          </th>
+    <td class="ellipsisize">
+              2025-02-28
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Review Frequency:
+          </th>
+    <td class="ellipsisize">
+              1 Year
+          </td>
+  </tr>
+                    <tr>
+    <th scope="col">
+              Metadata Next Review Date:
+          </th>
+    <td class="ellipsisize">
+              2026-02-28
+          </td>
+  </tr>
+            </table>
+                  </div>
+      </div> <!-- .section Catalog Details -->
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="fixed-page-fit">
+    <nav>
+      <a href="/inport/about">About InPort</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/contact">Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/release-notes">Release Notes</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/system-availability">System Availability</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/privacy">Privacy</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/security">Security</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+        href="/inport/pra">Paperwork Reduction Act</a>
+    </nav>
+    <div class="cf">
+      <div class="org-seals">
+        <ul>
+          <li><a href="https://www.fisheries.noaa.gov/national/commercial-fishing/fisheries-information-system-program" title="Fisheries Information System"
+                 rel="noopener" target="_blank"><img src="/inport/images/fis-seal.png" width="52" height="53" alt="FIS"/></a></li>
+          <li><a href="https://www.fisheries.noaa.gov/" title="NOAA Fisheries"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/noaa-fisheries-seal.png" width="52" height="53" alt="NOAA Fisheries"/></a></li>
+          <li><a href="https://www.noaa.gov/" title="National Oceanic &amp; Atmospheric Administration"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/noaa-seal.png" width="52" height="53" alt="NOAA"/></a></li>
+          <li><a href="https://www.commerce.gov/" title="U.S. Department of Commerce"
+                 rel="noopener" target="_blank"><img class="footerSeal" src="/inport/images/doc-seal.png" width="52" height="53" alt="Department of Commerce"/></a></li>
+        </ul>
+      </div>
+      <div class="app-info">
+        <img src="/inport/images/inport-logo-footer.png" width="94" height="48" alt="InPort Logo">
+        <div class="release-info">
+          <strong class="x-small">Release 6.0.5</strong><br>
+          <span class="xx-small">Build FINAL (2025-12-02 18:25 UTC)</span>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .fixed-page-fit -->
+</footer>
+
+<!-- Script Includes -->
+<script src="//code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs"
+        crossorigin="anonymous"></script> <!-- hash generated by srihash.org -->
+<script src="/inport/js/inport.js?v=6.0.5"></script>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+  <script type="text/javascript" src="/inport/js/geobounds.js?v=6.0.5"></script>
+
+<script type="text/javascript">
+  var viewAsMenu = $("#viewAsMenu").hide();
+    
+  $(function() {
+    $("#viewAsButton").click(function() {
+            viewAsMenu.toggle();
+      
+      $(document).one("click", function() {
+        viewAsMenu.hide();
+      });
+
+      return false;
+    });
+
+    
+    
+    registerTab("summary");
+          registerTab("itemIdentification");
+              registerTab("keywordsSection");
+              registerTab("physicalLocation");
+              registerTab("dataSet");
+                                      registerTab("supportRoles");
+              registerTab("extents");
+              registerTab("spatialInfo");
+              registerTab("accessInfo");
+              registerTab("distributionInfo");
+                  registerTab("urls");
+              registerTab("activityLog");
+                      registerTab("dataQuality");
+              registerTab("dataManagement");
+              registerTab("lineage");
+              registerTab( "acquisitionInfo");
+                    registerTab("childItems");
+    registerTab("relatedItems");
+    registerTab("catalogDetails");
+
+    function registerTab(sectionId) {
+      $("#" + sectionId + "Tab").click(function () {
+        activateTab(sectionId);
+        return false;
+      });
+    }
+
+    function activateTab(sectionId) {
+      hideAllElementsWithClass("metadataSection");
+      removeClassFromAllElements("tabbed-header-tab", "selected");
+      document.getElementById(sectionId).style.display = "block";
+      document.getElementById(sectionId + "Tab").classList.add("selected");
+      // Leaflet maps need to be redrawn when their containing element's display is set to none.
+      if (sectionId === "extents") {
+        reinitializeMaps();
+      }
+    }
+
+    /*
+      invalidateSize must be called on any maps after display is set from none to block.
+      The map also needs to be refit to the bounds.
+     */
+    function reinitializeMaps() {
+                                          maps[0].invalidateSize(false);
+            fitBoundsToMap(maps[0],
+                  19,
+                  -170,
+                  62,
+                  -64,
+                  false);
+                                        }
+
+                            loadGeoBoundsMap("summaryGeoBoundsMap494359",
+            19,
+            -170,
+            62,
+            -64
+          );
+              
+      let maps = [];
+                                    maps.push(
+                loadGeoBoundsMap("geoBoundsMap494359",
+                      19,
+                      -170,
+                      62,
+                      -64));
+                            
+              var rsCrs1More = $("#rsCrs1More");
+      var rsCrs1MoreRow = $("#rsCrs1MoreRow");
+      var rsCrs1Content = $("#rsCrs1Content");
+      rsCrs1More.click(function() {
+        rsCrs1Content.show();
+        rsCrs1MoreRow.hide();
+        return false;
+      });
+          
+                  
+    let anchoredSection = window.location.hash.substring(1);
+    // verify that the hash corresponds to an actual section in the page
+    if (document.getElementById(anchoredSection) == null) {
+      // Have the Summary tab selected by default
+      activateTab("summary");
+    } else {
+      activateTab(anchoredSection);
+    }
+  });
+
+</script>
+<script src="/inport/js/species.js?v=6.0.5"></script>
+</body>
+</html>

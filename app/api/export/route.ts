@@ -44,12 +44,27 @@ export async function GET(request: NextRequest) {
       'task_status', 'audit_status', 'created_at', 'updated_at',
     ]
     const escape = (s: string) => `"${String(s).replace(/"/g, '""')}"`
+    const normalize = (q: Record<string, unknown>) => ({
+      question_id: q.question_id ?? q.number ?? '',
+      db_id: q.db_id ?? source ?? '',
+      question: q.question ?? q.title ?? '',
+      SQL: q.SQL ?? q.sql ?? '',
+      evidence: q.evidence ?? '',
+      difficulty: q.difficulty ?? '',
+      query_category: q.query_category ?? '',
+      tables_used: q.tables_used ?? [],
+      expected_output: q.expected_output ?? '',
+      task_status: q.task_status ?? '',
+      audit_status: q.audit_status ?? '',
+      created_at: q.created_at ?? '',
+      updated_at: q.updated_at ?? '',
+    })
     const rows = queries.map((q) => {
-      const tables = q.tables_used || []
-      const tablesStr = Array.isArray(tables) ? tables.join(', ') : String(tables)
+      const n = normalize(q as Record<string, unknown>)
+      const tablesStr = Array.isArray(n.tables_used) ? n.tables_used.join(', ') : String(n.tables_used)
       return cols.map((c) => {
-        const v = c === 'tables_used' ? tablesStr : (q[c] ?? '')
-        return escape(String(v))
+        const v = c === 'tables_used' ? tablesStr : (n as Record<string, unknown>)[c]
+        return escape(String(v ?? ''))
       }).join(',')
     })
     const csv = [cols.join(','), ...rows].join('\n')

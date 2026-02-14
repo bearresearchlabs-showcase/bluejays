@@ -93,8 +93,8 @@ export function CustomerPortal({ defaultSource }: { defaultSource?: string }) {
             <tbody>
               {tasks.map((t, i) => (
                 <tr key={i} style={{ borderTop: '1px solid var(--border)' }}>
-                  <td style={{ padding: '0.625rem 0.75rem' }}>Query {String((t as Record<string, unknown>).question_id ?? '?')}</td>
-                  <td style={{ padding: '0.625rem 0.75rem' }}>{String((t as Record<string, unknown>).question || '').slice(0, 60)}</td>
+                  <td style={{ padding: '0.625rem 0.75rem' }}>Query {String((t as Record<string, unknown>).question_id ?? (t as Record<string, unknown>).number ?? '?')}</td>
+                  <td style={{ padding: '0.625rem 0.75rem' }}>{String((t as Record<string, unknown>).question ?? (t as Record<string, unknown>).title ?? '').slice(0, 60)}</td>
                   <td style={{ padding: '0.625rem 0.75rem' }}>{String((t as Record<string, unknown>).task_status || 'Completed')}</td>
                   <td style={{ padding: '0.625rem 0.75rem' }}>{String((t as Record<string, unknown>).audit_status || 'Ready to Audit')}</td>
                 </tr>

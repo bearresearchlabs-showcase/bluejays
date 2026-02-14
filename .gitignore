@@ -96,6 +96,11 @@ source/db-*/LEGAL\ */
 
 # Source: large data files (same exclusions as db-*)
 source/db-*/data/data.sql
+source/db-*/data/internet_pulled/
+source/db-*/data/internet_transformed/
+source/db-*/data/raw_datasets/
+source/db-*/data/transformed_datasets/
+source/db-*/package/
 source/db-*/data/data_large.sql
 source/db-*/data/data_large_postgresql.sql
 source/db-*/app/DATABASE/data.sql

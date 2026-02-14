@@ -1,0 +1,19 @@
+{
+  "timestamp": "20260214-0148",
+  "schema.sql": {
+    "crc32": "0xf0df3a5c",
+    "crc64": "0x2132431c6e7e23bd",
+    "sha256": "ed8599194cc6accb3e97dda869f5e04ef205a0a5adb3f2da08789b8a6a13a1d8"
+  },
+  "queries.json": {
+    "crc32": "0x42fadffd",
+    "crc64": "0x1fa1e04b8812c7e4",
+    "sha256": "9795c168fb791ecae3e45d95f4f0995024f45c7edf3cb1dd4c0cbb3ab4b199dc"
+  },
+  "data.sql": {
+    "crc32": "0xe0e427c8",
+    "crc64": "0x77957836b93dc214",
+    "sha256": "0d9035ad869cacb1d0a51446617e9198d789204108cc44136c735d8674fb04ce"
+  },
+  "schema_primary": "schema.sql"
+}

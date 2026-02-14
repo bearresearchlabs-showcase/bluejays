@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 PostgreSQL-Compatible Schema Loader
-Converts Snowflake/Databricks syntax to PostgreSQL syntax
+Converts SQL syntax to PostgreSQL
 """
 
 import re
@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Tuple
 
 def convert_to_postgresql(sql: str) -> str:
-    """Convert Snowflake/Databricks SQL to PostgreSQL syntax"""
+    """Convert SQL to PostgreSQL syntax"""
     
     # Replace TIMESTAMP_NTZ with TIMESTAMP
     sql = re.sub(r'\bTIMESTAMP_NTZ\b', 'TIMESTAMP', sql, flags=re.IGNORECASE)

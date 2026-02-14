@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <title>Aeromagnetic Data | NCEI</title>
+  <link rel="stylesheet" type="text/css" href="/ngdcbasicstyle.css" title="default"/>
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+  <link rel="shortcut icon" href="/favicon.ico"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <meta name="author" content="National Centers for Environmental Information"/>
+  <meta name="operator" content="ncei.info"/>
+  <meta name="questions" content="geomag.models"/>
+  <meta name="return" content="geomag"/>
+  <meta name="keywords" content="aeromagnetic survey data, potential field vector, total field"/>
+  <meta name="description" content="Airborne magnetic data including high altitude vector data, regional magnetic anomaly grids and selected digital contours."/>
+  <meta name="DC.title" content="Aeromagnetic Data | NCEI"/>
+  <meta name="DC.date.created" scheme="ISO8601" content="2006-07-31"/>
+  <meta name="DC.language" scheme="DCTERMS.RFC1766" content="EN-US"/>
+  <meta name="DC.publisher" content="U.S. Department of Commerce"/>
+  <meta name="DC.publisher" content="National Oceanic and Atmospheric Administration (NOAA)"/>
+  <meta name="DC.publisher" content="National Environmental Satellite, Data, and Information Service (NESDIS)"/>
+  <meta name="DC.publisher" content="National Geophysical Data Center (NGDC)"/>
+  <meta name="DC.subject" scheme="ISO19115" content="geoscientificInformation"/>
+  <style type="text/css">
+    #aeromag-project {
+      padding-top: 18px;
+    }
+
+    table.dataTable tbody td {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+<div id="container">
+  <!-- skip navigation link for 508 compliance -->
+  <a href="#skip_navigation"><img src="/image/onepixel.gif" class="skipnav" alt="skip navigation link"/></a>
+  <!-- BEGIN NCEI HEADER -->
+<!-- CSS: /ngdcbasicstyle.css -->
+
+<div id="header">
+  <div id="ngdcheader"> <a href="//www.ngdc.noaa.gov/ngdc.html" target="_top" title="go to the National Centers for Environmental Information (formerly the National Geophysical Data Center) home"><img src="//www.ngdc.noaa.gov/image/nesdisngdcleft.gif" alt="NCEI (formerly NGDC)" height="50" width="440" border="0"/></a> </div>
+  <div id="imageright">
+    <form method="get" action="//search.usa.gov/search" class="sitesearch">
+      <input type="hidden" name="affiliate" value="ngdc.noaa.gov"/>
+      <input type="hidden" name="v:project" value="firstgov"/>
+      <label for="query-field"><span style="font-size:10px;font-weight: bold;">Search</span></label>
+      <input type="text" name="query" id="query-field"/>
+      <input type="image" src="/image/search-icon.png" alt="Go" title="Go"/>
+    </form>
+  </div>
+</div>
+<!-- END NCEI HEADER -->
+  <!-- BEGIN GEOMAG HEADER -->
+  <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" summary="layout table">
+    <tbody>
+    <tr>
+      <td align="left" class="topnav">
+        <div class="topnav">
+          &nbsp;<a href="http://www.noaa.gov" title="go to National Oceanic &amp; Atmospheric Administration" class="topnav">NOAA</a> &gt;
+          <a href="http://www.nesdis.noaa.gov" title="go to NOAA Satellite &amp; Information Service" class="topnav">NESDIS</a> &gt;
+          <a href="/" title="go to the National Centers for Environmental Information (formerly the National Geophysical Data Center) home" class="topnav">NCEI (formerly NGDC)</a> &gt;
+          <a href="/geomag/geomag.shtml" title="go to Geomagnetism at NCEI" class="topnav">Geomagnetism</a>
+        </div>
+      </td>
+      <td align="right" class="topnav">
+        <div class="topnav">
+          <a href="/ngdcinfo/privacy.html" class="topnav" title="go to  important notices, disclaimers, and privacy policy">privacy policy</a>&nbsp;
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!-- END GEOMAG HEADER -->
+  <div id="content">
+    <!-- skip navigation link for 508 compliance -->
+    <a name="skip_navigation"></a>
+    <table align="center" width="100%" cellpadding="2" cellspacing="0" summary="layout table">
+      <tbody>
+      <tr>
+        <td class="navlink" width="20%">
+          &nbsp;
+        </td>
+        <td class="navlink" align="center" width="60%">
+          <table width="100%" align="center" cellpadding="0" cellspacing="0" summary="layout table">
+            <tbody>
+            <tr>
+              <td align="center" class="navlink" width="10%">
+                &nbsp;<a href="/geomag/geomag.shtml" title="Geomagnetism data and models" class="navlink"><strong>All Geomagnetism</strong></a>&nbsp;
+              </td>
+              <td align="center" class="navlink" width="10%">
+                &nbsp;<a href="/geomag/data.shtml" title="Geomagnetic data" class="navlink"><strong>Data</strong></a>&nbsp;
+              </td>
+              <td align="center" class="navlink" width="10%">
+                &nbsp;<a href="/geomag/declination.shtml" title="Geomagnetic declination" class="navlink"><strong>Declination</strong></a>&nbsp;
+              </td>
+              <td align="center" class="navlink" width="10%">
+                &nbsp;<a href="/geomag/faqgeom.shtml" title="Frequently asked questions" class="navlink"><strong>Geomag FAQ</strong></a>&nbsp;
+              </td>
+              <td align="center" class="navlink" width="10%">
+                &nbsp;<a href="/geomag/indices/indices.html" title="Geomagnetic indices" class="navlink"><strong>Indices</strong></a>&nbsp;
+              </td>
+              <td align="center" class="navlink" width="10%">
+                &nbsp;<a href="/geomag/models.shtml" title="Geomagnetic models and software" class="navlink"><strong>Models</strong></a>&nbsp;
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="navlink" width="20%">
+          &nbsp;
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <!-- start of main content body -->
+    <div id="content">
+      <!-- skip navigation link for 508 compliance -->
+      <a name="skip_navigation"></a>
+      <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0" summary="layout table">
+        <tbody>
+        <tr align="left">
+          <td valign="top" width="20%" style="margin-right: 30px;padding: 20px;background-color: #eee;">
+            <p style="text-align: center;">
+              <a href="https://maps.ngdc.noaa.gov/viewers/geophysics/"><img src="/geomag/image/aeromag-viewer.png" height="150" alt="Airborne surveys in the Trackline Map Viewer"></a>
+              <br>
+              <a href="https://maps.ngdc.noaa.gov/viewers/geophysics/">NCEI's Trackline Geophysics Viewer</a><br>Search marine and airborne surveys<br>
+            </p>
+            <p style="text-align: center;margin:25px;">
+              <a href="/mgg/dat/geodas/docs/mag88t.pdf">Magnetic Survey Exchange Format - MAG88T</a> (PDF)</p>
+            <hr>
+            <h4 style="text-align: center;">Special Collections</h4>
+            <p style="text-align: center;">
+              <a href="/geomag/data/cdroms/Mag_Anom_USSR/">Magnetic Anomaly Data in the Former Soviet Union</a>
+            <p>
+            <p><br></p>
+            <h4 style="text-align: center;">U.S. Magnetic/Gravity Data Sources</h4>
+            <ul>
+              <li>
+                <a href="https://doi.org/10.5066/P9K8YTW1">Airborne Geophysical Survey Inventory of the Conterminous United States, Alaska, Hawaii, and Puerto Rico</a>
+              </li>
+              <li><a href="http://mrdata.usgs.gov/">Gridded compilations and flight-line data</a></li>
+              <li><a href="http://pubs.usgs.gov/of/2002/ofr-02-361/">Digital flight-line magnetics</a></li>
+              <li>
+                <a href="http://pubs.usgs.gov/of/1999/ofr-99-0557/html/mag_home.htm">Digitized analog map magnetics</a>
+              </li>
+              <li><a href="http://pubs.usgs.gov/of/2002/ofr-02-414/">Gridded magnetics</a></li>
+            </ul>
+          </td>
+          <td width="80%" style="padding: 35px;">
+            <h1 style="text-align: center;">Airborne Magnetic Data</h1>
+            <p style="text-align: center;">NCEI's aeromagnetic program focuses on global data to support modeling of Earth's magnetic field. The U.S. aeromagnetic data are updated and available from the
+              <a href="http://crustal.usgs.gov/geophysics/"> USGS Geophysical Products</a>. NCEI continues to archive and serve data for main field modeling.
+            </p>
+            <p style="text-align: center;"><strong>All marine and airborne trackline surveys can be accessed via our
+              <a href="https://maps.ngdc.noaa.gov/viewers/geophysics/">Map Viewer</a></strong>.<br><br><br></p>
+            <h3 style="text-align: center;">Aeromagnetic Trackline Data</h3>
+            <div style="margin: auto 25px; padding: 10px;border: thin solid #ccc;clear: both;">
+              <table id="aeromag-project" class="stripe compact hover order-column dt-head-left">
+                <thead>
+                <tr style="text-align: left;">
+                  <th>Project</th>
+                  <th>Survey ID</th>
+                  <th>Start<br>Year</th>
+                  <th>End<br>Year</th>
+                  <th>Altitude</th>
+                  <th>Image<br>Preview</th>
+                  <th>Project<br>Data</th>
+                  <th>Survey<br>Data</th>
+                </tr>
+                </thead>
+              </table>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- BEGIN CALL TO STANDARD FOOTER, EDIT NOSCRIPT IF NECESSARY -->
+  <div align="center" class="footltbg">
+    <script type="text/javascript" src="/bin/ngdcmetafooter.js"></script>
+    <noscript>
+      <div align="center">
+        <a href="/ngdc.html">Home</a> | <a href="/ngdcinfo/privacy.html">Disclaimers</a> |
+        <a href="mailto:ncei.info@noaa.gov">Questions</a>
+        <hr/>
+        Website of the US Dept of Commerce/NOAA/NESDIS/NCEI <br/>
+      </div>
+    </noscript>
+  </div>
+</div>
+<!-- END CALL TO STANDARD FOOTER -->
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#aeromag-project').DataTable();
+    });
+</script>
+<script type="text/javascript">
+    $("#aeromag-project").DataTable({
+        "ajax": "aeromag-project.txt",
+        "columns": [
+            {"data": "PROJECT"},
+            {"data": "SURVEY_ID"},
+            {"data": "START_YR"},
+            {"data": "END_YR"},
+            {"data": "NOM_ALT"},
+            {"data": "Image_Preview"},
+            {"data": "Project_Data"},
+            {"data": "Survey_Data"}
+        ],
+        "columnDefs": [{
+            "targets": 5,
+            "data": "Image_Preview",
+            "render": function (data, type, full, meta) {
+                if (data == '') {
+                    return '';
+                } else {
+                    return '<a href="' + data + '">View</a>';
+                }
+            }
+        },
+            {
+                "targets": 7,
+                "data": "Survey_Data",
+                "render": function (data, type, full, meta) {
+                    if (data == '') {
+                        return '';
+                    } else {
+                        return '<a href="' + data + '">ZIP File</a>';
+                    }
+                }
+            },
+            {
+                "targets": 6,
+                "data": "Project_Data",
+                "render": function (data, type, full, meta) {
+                    if (data == '') {
+                        return '';
+                    } else {
+                        return '<a href="' + data + '">ZIP File</a>';
+                    }
+                }
+            }],
+        stateSave: true,
+        "autoWidth": false,
+        "iDisplayLength": 25,
+        "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        "oLanguage": {
+            "sSearch": "Search: "
+        }
+    });
+</script>
+<script id="_fed_an_ua_tag" type="text/javascript" src="/scripts/federated-analytics.js?agency=DOC&subagency=NOAA&pua=UA-44375312-1"></script></body>
+</html>

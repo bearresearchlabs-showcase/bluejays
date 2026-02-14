@@ -1,0 +1,744 @@
+openapi: 3.0.3
+info:
+  title: Database db-12 - Database API Specification
+  description: "This database contains comprehensive credit card data for rewards\
+    \ optimization, card management, and portfolio analysis. The database mirrors\
+    \ the functionality of CardPointers for Credit Cards app, providing data-driven\
+    \ insights for maximizing credit card rewards and optimizing card portfolios.\n\
+    \n- Multi-Dimensional Rewards Optimization: Analyzes card portfolios across multiple\
+    \ dimensions (categories, merchants, offers, time periods)\n- Location-Based Recommendations:\
+    \ Uses geospatial data to recommend optimal cards at specific merchant locations\n\
+    - Bank Offers Management: Tracks and optimizes bank offers (Amex Offers, Chase\
+    \ Offers, etc.)\n- Chase 5/24 Rule Tracking: Monitors application history for\
+    \ Chase application strategy\n- Annual Fee ROI Analysis: Calculates return on\
+    \ investment for card retention decisions\n- Signup Bonus Tracking: Monitors progress\
+    \ toward signup bonus completion\n- Merchant-Specific Recommendations: Recommends\
+    \ optimal cards for specific merchants based on spending history\n- Category Bonus\
+    \ Period Optimization: Optimizes spending during rotating category bonus periods\n\
+    - CFPB Consumer Complaint Analysis: Assesses issuer reputation based on complaint\
+    \ data\n- Federal Reserve Credit Trend Analysis: Monitors market trends and credit\
+    \ statistics\n\n- PostgreSQL: Full support with standard SQL\n- , : Compatible\
+    \ with Delta Lake and distributed execution\n- , : Cloud data warehouse compatible\n\
+    \n- CFPB Consumer Complaints: Consumer Financial Protection Bureau complaint database\n\
+    - Federal Reserve G.19 Data: Federal Reserve consumer credit statistics\n- Credit\
+    \ Card Data: Card issuer websites, terms, and promotional materials\n- Merchant\
+    \ Data: Merchant location databases and category mappings\n\n---\n\n---\n\nThis\
+    \ section provides a comprehensive data dictionary for all tables in the database,\
+    \ including column names, data types, constraints, and descriptions. Tables are\
+    \ organized by functional category for easier navigation.\n\nThe database consists\
+    \ of 15 main tables organized into logical groups:\n\n1. Core Card Data: `credit_card_issuers`,\
+    \ `credit_cards`, `rewards_categories`, `card_rewards_structure`\n2. Bank Offers:\
+    \ `bank_offers`, `card_offer_eligibility`\n3. Merchants and Locations: `merchants`,\
+    \ `merchant_locations`\n4. User Data: `user_profiles`, `user_cards`, `spending_transactions`,\
+    \ `card_recommendations`\n5. Regulatory Data: `cfpb_consumer_complaints`, `federal_reserve_credit_data`\n\
+    6. Analytics: `rewards_optimization_analytics`\n\n---\n\n---\n\n---\n\nThis database\
+    \ includes 30 production SQL queries, each designed to solve specific business\
+    \ problems for companies with $1M+ ARR. Each query includes:\n\n- Business Use\
+    \ Case: The specific business problem this query solves\n- Description: Technical\
+    \ explanation of what the query does\n- Client Deliverable: What output or report\
+    \ this query generates\n- Business Value: The business impact and value delivered\n\
+    - Complexity: Technical complexity indicators\n- SQL Code: Complete, production-ready\
+    \ SQL query\n\n---\n\nUse Case: CardPointers Best Card Wizard - Identify which\
+    \ card to use for maximum rewards on every purchase category, merchant, and time\
+    \ period with opportunity cost analysis.\n\nDescription: Analyzes user spending\
+    \ patterns across multiple dimensions (categories, merchants, time periods) to\
+    \ identify optimal card usage, calculate potential rewards lost from suboptimal\
+    \ card selection, and compare portfolio performance against optimal strategy.\
+    \ Uses recursive CTEs for hierarchical category analysis, window functions for\
+    \ temporal trends, and complex aggregations for multi-card portfolio optimization.\n\
+    \nUse Case: CardPointers Best Card Wizard - Identify which card to use for maximum\
+    \ rewards on every purchase category, merchant, and time period with opportunity\
+    \ cost analysis.\n\nBusiness Value: Provides users with personalized card recommendations\
+    \ showing potential annual savings of $750+ by optimizing card usage across all\
+    \ spending categories and merchants.\n\nPurpose: Maximize credit card rewards\
+    \ by identifying optimal card selection for each transaction type, calculating\
+    \ opportunity costs of suboptimal choices, and providing actionable recommendations.\n\
+    \nComplexity: Deep nested CTEs (8+ levels), recursive CTEs for category hierarchies,\
+    \ complex window functions with multiple frame clauses, correlated subqueries,\
+    \ percentile calculations, multi-dimensional aggregations, opportunity cost calculations\n\
+    \nExpected Output: Comprehensive report showing optimal card for each category/merchant\
+    \ combination, potential rewards lost from current usage, portfolio performance\
+    \ metrics, and ranked recommendations by savings potential.\n\n---\n\nUse Case:\
+    \ CardPointers Location-Based Recommendations - Show which card to use at nearby\
+    \ stores using AR camera or location services with real-time merchant matching.\n\
+    \nDescription: Analyzes user location and nearby merchants to provide real-time\
+    \ card recommendations using geospatial calculations, merchant category matching,\
+    \ and distance-based optimization. Uses spatial joins, proximity calculations,\
+    \ and multi-dimensional scoring to identify optimal cards for nearby merchants.\n\
+    \nUse Case: CardPointers Location-Based Recommendations - Show which card to use\
+    \ at nearby stores using AR camera or location services with real-time merchant\
+    \ matching.\n\nBusiness Value: Provides location-aware card recommendations showing\
+    \ optimal card for each nearby merchant, enabling users to maximize rewards at\
+    \ physical locations they visit.\n\nPurpose: Maximize rewards by providing real-time,\
+    \ location-specific card recommendations based on user's current location and\
+    \ nearby merchant data.\n\nComplexity: Geospatial operations (ST_DISTANCE, ST_WITHIN),\
+    \ multiple CTEs (7+ levels), window functions, proximity scoring, merchant category\
+    \ matching, distance-weighted recommendations\n\nExpected Output: Ranked list\
+    \ of nearby merchants with optimal card recommendations, expected rewards, distance,\
+    \ and activation status of applicable offers.\n\n---\n\nUse Case: CardPointers\
+    \ Offer Management - Auto-add and track Amex, Chase, BoA, Citi, Wells Fargo, and\
+    \ US Bank offers with activation recommendations and savings tracking.\n\nDescription:\
+    \ Analyzes bank offers across multiple issuers (Amex, Chase, BoA, Citi, Wells\
+    \ Fargo, US Bank) to identify optimal offers for user's card portfolio, tracks\
+    \ activation status, calculates potential savings, and provides activation recommendations.\
+    \ Uses complex joins across offer tables, aggregations, window functions, and\
+    \ multi-dimensional scoring to optimize offer utilization.\n\nUse Case: CardPointers\
+    \ Offer Management - Auto-add and track Amex, Chase, BoA, Citi, Wells Fargo, and\
+    \ US Bank offers with activation recommendations and savings tracking.\n\nBusiness\
+    \ Value: Identifies unactivated offers worth $500+ annually, provides activation\
+    \ recommendations, tracks offer redemption performance across all user cards,\
+    \ and maximizes savings from bank offers.\n\nPurpose: Maximize savings from bank\
+    \ offers by identifying eligible offers, tracking activation status, calculating\
+    \ potential savings, and providing actionable activation recommendations.\n\n\
+    Complexity: Multiple CTEs (8+ levels), complex joins across offer tables, window\
+    \ functions with multiple frame clauses, activation status tracking, savings calculations,\
+    \ offer ranking, multi-card eligibility analysis\n\nExpected Output: Comprehensive\
+    \ list of available offers with eligibility status, activation recommendations,\
+    \ potential savings, redemption tracking, and prioritized activation list.\n\n\
+    ---\n\nUse Case: Credit Card Analysis - Assess issuer reputation and risk based\
+    \ on CFPB complaint data for card selection decisions and portfolio risk management.\n\
+    \nDescription: Analyzes CFPB consumer complaints to assess issuer risk, identify\
+    \ complaint trends, forecast future complaint volumes, and correlate complaints\
+    \ with card features. Uses time-series analysis, correlation calculations, window\
+    \ functions with multiple frame clauses, trend forecasting, and risk scoring algorithms\
+    \ to evaluate issuer quality and customer service performance.\n\nUse Case: Credit\
+    \ Card Analysis - Assess issuer reputation and risk based on CFPB complaint data\
+    \ for card selection decisions and portfolio risk management.\n\nBusiness Value:\
+    \ Provides issuer risk scores based on complaint data, enabling users to avoid\
+    \ issuers with poor customer service records and high complaint rates. Helps identify\
+    \ issuers with improving or deteriorating service quality.\n\nPurpose: Evaluate\
+    \ issuer quality and customer service performance using government complaint data\
+    \ to inform card selection decisions and portfolio risk assessment.\n\nComplexity:\
+    \ Time-series analysis, correlation calculations, window functions with multiple\
+    \ frame clauses (ROWS BETWEEN, RANGE BETWEEN), trend forecasting, risk scoring\
+    \ algorithms, recursive CTEs for trend analysis, percentile calculations, moving\
+    \ averages\n\nExpected Output: Comprehensive issuer risk assessment with complaint\
+    \ trends, forecasted complaint volumes, risk scores, and recommendations for card\
+    \ selection based on issuer reputation.\n\n---\n\nUse Case: Market Analysis -\
+    \ Understand consumer credit trends and market conditions for strategic card portfolio\
+    \ decisions\n\nDescription: Analyzes Federal Reserve G.19 consumer credit data\
+    \ to identify trends, segment markets, forecast credit growth, and correlate with\
+    \ card features. Uses advanced time-series analysis, segmentation algorithms,\
+    \ and predictive modeling.\n\nUse Case: Market Analysis - Understand consumer\
+    \ credit trends and market conditions for strategic card portfolio decisions\n\
+    \nBusiness Value: Provides market insights showing credit growth trends, interest\
+    \ rate movements, and market conditions affecting card availability and terms\n\
+    \nPurpose: Understand macro-economic credit trends to inform strategic card portfolio\
+    \ decisions and timing of applications\n\nComplexity: Time-series analysis, market\
+    \ segmentation, trend forecasting, correlation analysis, window functions, predictive\
+    \ indicators, multiple CTEs (8+ levels)\n\nExpected Output: [Description of expected\
+    \ output]\n\n---\n\nUse Case: Chase Application Strategy - Track 5/24 status and\
+    \ optimize application timing for maximum Chase card approvals\n\nDescription:\
+    \ Tracks Chase 5/24 status across user profiles, calculates optimal application\
+    \ timing, identifies eligible cards, and provides application strategy recommendations.\
+    \ Uses recursive CTEs for application history tracking and complex timing calculations.\n\
+    \nUse Case: Chase Application Strategy - Track 5/24 status and optimize application\
+    \ timing for maximum Chase card approvals\n\nBusiness Value: Prevents wasted applications\
+    \ by tracking 5/24 status, identifies optimal timing for Chase applications, and\
+    \ maximizes approval chances\n\nPurpose: Optimize Chase card application strategy\
+    \ by tracking 5/24 rule compliance and identifying optimal application windows\n\
+    \nComplexity: Recursive CTEs for application history, date calculations, timing\
+    \ optimization, window functions, strategy recommendations, multiple CTEs (8+\
+    \ levels)\n\nExpected Output: [Description of expected output]\n\n---\n\nUse Case:\
+    \ Card Portfolio Management - Determine which cards to keep or cancel based on\
+    \ annual fee value analysis\n\nDescription: Analyzes annual fees across card portfolio,\
+    \ calculates renewal value based on rewards earned, identifies cards to cancel\
+    \ or keep, and optimizes portfolio cost structure. Uses complex cost-benefit analysis,\
+    \ ROI calculations, and portfolio optimization.\n\nUse Case: Card Portfolio Management\
+    \ - Determine which cards to keep or cancel based on annual fee value analysis\n\
+    \nBusiness Value: Saves $200-500 annually by identifying cards with negative ROI,\
+    \ optimizing portfolio costs, and maximizing value from annual fees\n\nPurpose:\
+    \ Optimize card portfolio by analyzing annual fee value and making data-driven\
+    \ decisions about card retention\n\nComplexity: Cost-benefit analysis, ROI calculations,\
+    \ portfolio optimization, window functions, value scoring algorithms, multiple\
+    \ CTEs (8+ levels)\n\nExpected Output: [Description of expected output]\n\n---\n\
+    \nUse Case: Signup Bonus Optimization - Track progress toward signup bonuses and\
+    \ optimize spending to maximize bonus earnings\n\nDescription: Tracks signup bonus\
+    \ progress across all cards, calculates minimum spend requirements, identifies\
+    \ optimal spending allocation, and provides timing recommendations for bonus completion.\
+    \ Uses complex spend tracking, allocation optimization, and timing calculations.\n\
+    \nUse Case: Signup Bonus Optimization - Track progress toward signup bonuses and\
+    \ optimize spending to maximize bonus earnings\n\nBusiness Value: Maximizes signup\
+    \ bonus earnings by tracking progress, optimizing spend allocation, and ensuring\
+    \ timely completion of minimum spend requirements\n\nPurpose: Optimize signup\
+    \ bonus earnings by tracking progress and providing actionable recommendations\
+    \ for meeting minimum spend requirements\n\nComplexity: Spend tracking, allocation\
+    \ optimization, timing calculations, window functions, bonus progress analysis,\
+    \ multiple CTEs (8+ levels)\n\nExpected Output: [Description of expected output]\n\
+    \n---\n\nUse Case: Merchant-Specific Optimization - Get optimal card recommendations\
+    \ for specific merchants based on historical spending patterns\n\nDescription:\
+    \ Analyzes historical spending patterns at specific merchants, identifies optimal\
+    \ cards for each merchant, calculates expected rewards, and provides predictive\
+    \ recommendations. Uses pattern recognition, predictive scoring, and merchant-specific\
+    \ optimization.\n\nUse Case: Merchant-Specific Optimization - Get optimal card\
+    \ recommendations for specific merchants based on historical spending patterns\n\
+    \nBusiness Value: Maximizes rewards at frequently visited merchants by providing\
+    \ merchant-specific card recommendations based on historical spending data\n\n\
+    Purpose: Optimize card selection for specific merchants by analyzing historical\
+    \ spending patterns and predicting optimal card usage\n\nComplexity: Pattern recognition,\
+    \ predictive scoring, historical analysis, merchant-specific optimization, window\
+    \ functions, multiple CTEs (8+ levels)\n\nExpected Output: [Description of expected\
+    \ output]\n\n---\n\nUse Case: Rotating Category Optimization - Maximize rewards\
+    \ from cards with quarterly rotating bonus categories\n\nDescription: Analyzes\
+    \ rotating category bonus periods, tracks quarterly rotations, optimizes spending\
+    \ allocation across categories, and provides strategic recommendations. Uses temporal\
+    \ analysis, rotation tracking, and allocation optimization.\n\nUse Case: Rotating\
+    \ Category Optimization - Maximize rewards from cards with quarterly rotating\
+    \ bonus categories\n\nBusiness Value: Maximizes rewards from rotating category\
+    \ bonuses by tracking quarterly rotations and optimizing spending allocation across\
+    \ bonus periods\n\nPurpose: Optimize rewards from rotating category bonuses by\
+    \ tracking periods and providing strategic spending allocation recommendations\n\
+    \nComplexity: Temporal analysis, rotation tracking, allocation optimization, window\
+    \ functions, quarterly period analysis, multiple CTEs (8+ levels)\n\nExpected\
+    \ Output: [Description of expected output]\n\n---\n\nUse Case: [Use case description]\n\
+    \nDescription: Analyzes spending across categories to identify optimization opportunities\
+    \ - [Full description with 8+ CTEs, window functions, aggregations]\n\nUse Case:\
+    \ [Use case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
+    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Analyzes\
+    \ card portfolio diversity across issuers, card types, and rewards structures\
+    \ - [Full description with 8+ CTEs, window functions, aggregations]\n\nUse Case:\
+    \ [Use case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
+    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Identifies\
+    \ cards with no foreign transaction fees and optimizes international spending\
+    \ - [Full description with 8+ CTEs, window functions, aggregations]\n\nUse Case:\
+    \ [Use case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
+    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Analyzes\
+    \ authorized user fees and calculates value of adding authorized users - [Full\
+    \ description with 8+ CTEs, window functions, aggregations]\n\nUse Case: [Use\
+    \ case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
+    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Tracks\
+    \ credit limit utilization and provides recommendations for optimal utilization\
+    \ - [Full description with 8+ CTEs, window functions, aggregations]\n\nUse Case:\
+    \ [Use case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
+    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Analyzes\
+    \ rewards redemption options and calculates optimal redemption strategies - [Full\
+    \ description with 8+ CTEs, window functions, aggregations]\n\nUse Case: [Use\
+    \ case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
+    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Analyzes\
+    \ transfer partner options for points and miles optimization - [Full description\
+    \ with 8+ CTEs, window functions, aggregations]\n\nUse Case: [Use case description]\n\
+    \nBusiness Value: [Business value description]\n\nPurpose: [Purpose description]\n\
+    \nComplexity: Multiple CTEs (8+ levels), window functions, aggregations, joins,\
+    \ [additional complexity]\n\nExpected Output: [Expected output description]\n\n\
+    ---\n\nUse Case: [Use case description]\n\nDescription: Identifies opportunities\
+    \ to upgrade or downgrade cards for better value - [Full description with 8+ CTEs,\
+    \ window functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness\
+    \ Value: [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
+    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
+    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
+    \ Case: [Use case description]\n\nDescription: Tracks annual, quarterly, and monthly\
+    \ spending limits for bonus categories - [Full description with 8+ CTEs, window\
+    \ functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value:\
+    \ [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
+    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
+    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
+    \ Case: [Use case description]\n\nDescription: Manages cards across multiple profiles\
+    \ (family, partner) with consolidated recommendations - [Full description with\
+    \ 8+ CTEs, window functions, aggregations]\n\nUse Case: [Use case description]\n\
+    \nBusiness Value: [Business value description]\n\nPurpose: [Purpose description]\n\
+    \nComplexity: Multiple CTEs (8+ levels), window functions, aggregations, joins,\
+    \ [additional complexity]\n\nExpected Output: [Expected output description]\n\n\
+    ---\n\nUse Case: [Use case description]\n\nDescription: Tracks offer expiration\
+    \ dates and provides activation reminders - [Full description with 8+ CTEs, window\
+    \ functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value:\
+    \ [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
+    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
+    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
+    \ Case: [Use case description]\n\nDescription: Analyzes statement credit options\
+    \ and calculates optimal redemption timing - [Full description with 8+ CTEs, window\
+    \ functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value:\
+    \ [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
+    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
+    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
+    \ Case: [Use case description]\n\nDescription: Optimizes card usage across Visa,\
+    \ Mastercard, Amex, and Discover networks - [Full description with 8+ CTEs, window\
+    \ functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value:\
+    \ [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
+    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
+    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
+    \ Case: [Use case description]\n\nDescription: Analyzes value proposition of metal\
+    \ cards vs standard cards - [Full description with 8+ CTEs, window functions,\
+    \ aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value: [Business\
+    \ value description]\n\nPurpose: [Purpose description]\n\nComplexity: Multiple\
+    \ CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]\n\
+    \nExpected Output: [Expected output description]\n\n---\n\nUse Case: [Use case\
+    \ description]\n\nDescription: Optimizes business card usage and tracks business\
+    \ spending separately - [Full description with 8+ CTEs, window functions, aggregations]\n\
+    \nUse Case: [Use case description]\n\nBusiness Value: [Business value description]\n\
+    \nPurpose: [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity]\n\nExpected Output:\
+    \ [Expected output description]\n\n---\n\nUse Case: [Use case description]\n\n\
+    Description: Tracks secured card usage and identifies graduation opportunities\
+    \ - [Full description with 8+ CTEs, window functions, aggregations]\n\nUse Case:\
+    \ [Use case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
+    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Analyzes\
+    \ credit score impact of card applications and account management - [Full description\
+    \ with 8+ CTEs, window functions, aggregations]\n\nUse Case: [Use case description]\n\
+    \nBusiness Value: [Business value description]\n\nPurpose: [Purpose description]\n\
+    \nComplexity: Multiple CTEs (8+ levels), window functions, aggregations, joins,\
+    \ [additional complexity]\n\nExpected Output: [Expected output description]\n\n\
+    ---\n\nUse Case: [Use case description]\n\nDescription: Tracks rewards expiration\
+    \ dates and provides redemption recommendations - [Full description with 8+ CTEs,\
+    \ window functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness\
+    \ Value: [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
+    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
+    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
+    \ Case: [Use case description]\n\nDescription: Compares card agreements and terms\
+    \ across issuers for best value - [Full description with 8+ CTEs, window functions,\
+    \ aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value: [Business\
+    \ value description]\n\nPurpose: [Purpose description]\n\nComplexity: Multiple\
+    \ CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]\n\
+    \nExpected Output: [Expected output description]\n\n---\n\nUse Case: [Use case\
+    \ description]\n\nDescription: Calculates overall portfolio health score with\
+    \ optimization recommendations - [Full description with 8+ CTEs, window functions,\
+    \ aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value: [Business\
+    \ value description]\n\nPurpose: [Purpose description]\n\nComplexity: Multiple\
+    \ CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]\n\
+    \nExpected Output: [Expected output description]\n\n---\n\n1. Database Access:\
+    \ Ensure you have access to the database instance (PostgreSQL)\n2. Credentials:\
+    \ Obtain database connection credentials\n3. Schema: Ensure all tables are created\
+    \ and populated with data\n\n1. Open Query File: Navigate to `queries/queries.md`\n\
+    2. Select Query: Choose the query number you want to execute\n3. Review Business\
+    \ Case: Understand the use case and expected output\n4. Copy SQL: Copy the SQL\
+    \ code from the code block\n5. Execute: Run the query in your database client:\n\
+    \   - PostgreSQL: Use `psql` or pgAdmin\n   - , : Use, SQL editor or notebook\n\
+    \   - , : Use, web interface or SnowSQL\n\n- Each query includes a \"Use Case\"\
+    \ section explaining the real-world application\n- Review the \"Business Value\"\
+    \ section to understand what the query produces\n- Check the \"Expected Output\"\
+    \ section for result set descriptions\n- Spatial queries return geographic data\
+    \ that can be visualized on maps\n\n1. Create Tables: Execute the schema creation\
+    \ scripts from `data/schema.sql`\n2. Load Data: Populate tables with credit card\
+    \ data:\n   - Credit card issuer and card data\n   - Rewards categories and structures\n\
+    \   - Bank offers and eligibility\n   - Merchant and location data\n   - User\
+    \ profiles and transactions\n   - CFPB complaint data\n   - Federal Reserve credit\
+    \ data\n3. Verify: Run validation queries to ensure data integrity\n\n- Indexes:\
+    \ Ensure all indexes are created for optimal query performance\n- Partitioning:\
+    \ Consider partitioning large tables (`spending_transactions`) by date\n- Monitoring:\
+    \ Monitor query execution times\n- Optimization: Review join strategies and consider\
+    \ query optimization\n\n- Spatial Types: For location-based queries, use GEOGRAPHY\
+    \ type (PostgreSQL PostGIS) or GEOMETRY type (, )\n- Standard SQL: All queries\
+    \ use standard SQL syntax for maximum compatibility\n- Test queries on your target\
+    \ database before production use\n\n1. Credit Card Data: Load from issuer websites\
+    \ and promotional materials\n2. CFPB Data: Use ETL pipelines to load complaint\
+    \ data from CFPB database\n3. Federal Reserve Data: Load G.19 credit statistics\
+    \ from Federal Reserve\n4. Merchant Data: Load merchant location databases and\
+    \ category mappings\n\n---\n\n---\n\nAll queries in this database are designed\
+    \ to work across multiple database platforms:\n\n- PostgreSQL: Full support with\
+    \ standard SQL features\n\nQueries use standard SQL syntax and avoid platform-specific\
+    \ features to ensure compatibility.\n\n---\n\nDocument Information:\n\n- Generated:\
+    \ 20260214-0148\n- Database: db-12\n- Type: Credit Card and Rewards Optimization\
+    \ System\n- Queries: 30 production queries\n- Status: ✅ Complete Comprehensive\
+    \ Deliverable"
+  version: 1.0.0
+  contact:
+    name: Database Team
+  license:
+    name: MIT
+servers:
+- url: postgresql://localhost:5432/db_12
+  description: PostgreSQL Server with PostGIS
+tags:
+- name: schema
+  description: Database schema information
+- name: tables
+  description: Table definitions and structures
+- name: spatial
+  description: Spatial data types and operations
+- name: queries
+  description: SQL query definitions and metadata
+- name: relationships
+  description: Table relationships and foreign keys
+paths:
+  /schema:
+    get:
+      tags:
+      - schema
+      summary: Get database schema overview
+      description: Returns overview information about the database schema
+      responses:
+        '200':
+          description: Schema overview
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaOverview'
+  /tables:
+    get:
+      tags:
+      - tables
+      summary: List all tables
+      description: Returns a list of all tables in the database
+      responses:
+        '200':
+          description: List of tables
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Table'
+  /tables/{tableName}:
+    get:
+      tags:
+      - tables
+      summary: Get table details
+      description: Returns detailed information about a specific table
+      parameters:
+      - name: tableName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Name of the table
+      responses:
+        '200':
+          description: Table details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+  /queries:
+    get:
+      tags:
+      - queries
+      summary: List all SQL queries
+      description: Returns metadata for all SQL queries
+      responses:
+        '200':
+          description: List of queries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Query'
+  /queries/{queryNumber}:
+    get:
+      tags:
+      - queries
+      summary: Get query details
+      description: Returns detailed information and SQL code for a specific query
+      parameters:
+      - name: queryNumber
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Query number (1-30)
+      responses:
+        '200':
+          description: Query details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+  /spatial/operations:
+    get:
+      tags:
+      - spatial
+      summary: List spatial operations
+      description: Returns available spatial operations and functions
+      responses:
+        '200':
+          description: List of spatial operations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SpatialOperation'
+components:
+  schemas:
+    SchemaOverview:
+      type: object
+      properties:
+        database_name:
+          type: string
+          example: db-1
+        database_type:
+          type: string
+          example: Chat/Messaging System
+        created_date:
+          type: string
+          format: date
+          example: '2026-02-03'
+        total_tables:
+          type: integer
+          example: 11
+        supported_platforms:
+          type: array
+          items:
+            type: string
+          example:
+          - PostgreSQL
+        table_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableGroup'
+    TableGroup:
+      type: object
+      properties:
+        name:
+          type: string
+          example: User Management
+        tables:
+          type: array
+          items:
+            type: string
+          example:
+          - profiles
+    Table:
+      type: object
+      required:
+      - name
+      - columns
+      properties:
+        name:
+          type: string
+          example: profiles
+        description:
+          type: string
+          example: Stores user profile information
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+        indexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Index'
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Constraint'
+        foreign_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForeignKey'
+    Column:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          example: id
+        type:
+          type: string
+          example: UUID
+        nullable:
+          type: boolean
+          example: false
+        default:
+          type: string
+          nullable: true
+          example: gen_random_uuid()
+        description:
+          type: string
+          example: Primary key - unique user identifier
+        primary_key:
+          type: boolean
+          example: true
+    Index:
+      type: object
+      properties:
+        name:
+          type: string
+          example: idx_profiles_username
+        columns:
+          type: array
+          items:
+            type: string
+          example:
+          - username
+        unique:
+          type: boolean
+          example: true
+        type:
+          type: string
+          example: btree
+    Constraint:
+      type: object
+      properties:
+        name:
+          type: string
+          example: pk_profiles
+        type:
+          type: string
+          enum:
+          - PRIMARY KEY
+          - UNIQUE
+          - CHECK
+          - NOT NULL
+          example: PRIMARY KEY
+        columns:
+          type: array
+          items:
+            type: string
+          example:
+          - id
+    ForeignKey:
+      type: object
+      properties:
+        name:
+          type: string
+          example: fk_chats_created_by
+        from_table:
+          type: string
+          example: chats
+        from_column:
+          type: string
+          example: created_by
+        to_table:
+          type: string
+          example: profiles
+        to_column:
+          type: string
+          example: id
+    Query:
+      type: object
+      required:
+      - number
+      - title
+      - sql
+      properties:
+        number:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: Production-Grade User Activity Analysis
+        description:
+          type: string
+          example: Enterprise-level user activity analysis
+        complexity:
+          type: string
+          example: Deep nested CTEs (5+ levels)
+        sql:
+          type: string
+          example: WITH user_registration_cohorts AS (...)
+        expected_output:
+          type: string
+          example: Top 20 users ranked by message activity
+        categories:
+          type: array
+          items:
+            type: string
+          example:
+          - User Activity Analysis
+          - Cohort Analytics
+        database_compatibility:
+          type: object
+          properties:
+            postgresql:
+              type: boolean
+              example: true
+        businessUseCase:
+          type: string
+          example: Custom Weather Impact Modeling
+        clientDeliverable:
+          type: string
+          example: Forecast accuracy report
+        businessValue:
+          type: string
+          example: Quantifies forecast reliability
+        spatial_operations:
+          type: array
+          items:
+            type: string
+          example:
+          - ST_WITHIN
+          - ST_DISTANCE
+    SpatialColumn:
+      type: object
+      properties:
+        name:
+          type: string
+          example: grid_cell_geom
+        type:
+          type: string
+          enum:
+          - GEOGRAPHY
+          - GEOMETRY
+          example: GEOGRAPHY
+        geometry_type:
+          type: string
+          enum:
+          - POINT
+          - POLYGON
+          - LINESTRING
+          - MULTIPOINT
+          - MULTIPOLYGON
+          - MULTILINESTRING
+          example: POINT
+        crs:
+          type: string
+          example: EPSG:4326
+        description:
+          type: string
+          example: Point geometry for grid cell center
+    SpatialOperation:
+      type: object
+      properties:
+        name:
+          type: string
+          example: ST_WITHIN
+        description:
+          type: string
+          example: Checks if one geometry is within another
+        syntax:
+          type: string
+          example: ST_WITHIN(geometry1, geometry2)
+        return_type:
+          type: string
+          example: BOOLEAN
+        supported_platforms:
+          type: array
+          items:
+            type: string
+          example:
+          - PostgreSQL (PostGIS)
+  examples:
+    ProfilesTable:
+      summary: Example profiles table
+      value:
+        name: profiles
+        description: Stores user profile information
+        columns:
+        - name: id
+          type: UUID
+          nullable: false
+          primary_key: true
+          description: Primary key - unique user identifier
+        - name: username
+          type: VARCHAR(255)
+          nullable: false
+          description: Unique username for login
+        indexes:
+        - name: idx_profiles_username
+          columns:
+          - username
+          unique: true
+    QueryExample:
+      summary: Example query
+      value:
+        number: 1
+        title: Production-Grade User Activity Analysis
+        description: Enterprise-level user activity analysis
+        sql: WITH user_registration_cohorts AS (...) SELECT ...
+        expected_output: Top 20 users ranked by message activity

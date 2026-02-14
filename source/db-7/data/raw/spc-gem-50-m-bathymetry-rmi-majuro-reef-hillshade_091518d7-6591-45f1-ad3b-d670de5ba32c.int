@@ -1,0 +1,3105 @@
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'html' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ html--front.html.twig
+   ▪️ html--node--8.html.twig
+   ▪️ html--node--%.html.twig
+   ▪️ html--node.html.twig
+   ✅ html.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/html.html.twig' -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">
+  <head>
+    <meta charset="utf-8" />
+<script src="/sites/default/files/hotjar/hotjar.script.js?sxkbuf"></script>
+<link rel="canonical" href="https://gem.spc.int/" />
+<link rel="shortlink" href="https://gem.spc.int/" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="alternate" hreflang="en" href="https://gem.spc.int/" />
+
+    <title>Home | SPC Geoscience, Energy and Maritime Division</title>
+    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_9X5pC8Ic_W4PZV55mH1tUXTPl3SOlAl4LwvNpQr9oHk.css?delta=0&amp;language=en&amp;theme=bootstrap_gem&amp;include=eJxdjUEOwjAMBD-UNk-qnMYNRo4d2Q60vweBxIHLHEaj3aIaHgZjK2BGmkUrpvKzDXturAV48biYpKVdDfOufaighK_lb2JZOsrcduXZxb95tTmAV7jDmQ7G05kqWiYJbAZBKsnnQDvIb29LkfzyeH8XcEwPwqfnD9eudTK-AA1NSCs" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_oUA2m36BXigRRu4fAYwvx5MDhYplFJhV8iydksi9AEc.css?delta=1&amp;language=en&amp;theme=bootstrap_gem&amp;include=eJxdjUEOwjAMBD-UNk-qnMYNRo4d2Q60vweBxIHLHEaj3aIaHgZjK2BGmkUrpvKzDXturAV48biYpKVdDfOufaighK_lb2JZOsrcduXZxb95tTmAV7jDmQ7G05kqWiYJbAZBKsnnQDvIb29LkfzyeH8XcEwPwqfnD9eudTK-AA1NSCs" />
+
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/8","currentPathIsAdmin":false,"isFront":true,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"gtag":{"tagId":"G-NRQZ0ZQ1LQ","consentMode":false,"otherIds":[],"events":[],"additionalConfigInfo":[]},"ajaxPageState":{"libraries":"eJx9kFGOwzAIRC_k2EeKsEMctxgig9P29k0rdVVls_szGuZJIyCKmFqDdYzQWpGQSSLQoPagwtnFI9_Tq_6OWSb8SjPWY1OShiFJXYWRTf2xYhgqch-TUK-sbia8K5UJWyhsmBtYEXazsMENVSqGL-91y_8xr0upLotkwtEgh7zLcfZwgbvTvmKbiy7hx51l4yIbttdqbKdcKxBpaoh8zl9Oe9S_6Cpa3jefcZOelk_7Q23_dwRFtxW8aXirrzJ1widWz8Df","theme":"bootstrap_gem","theme_token":null},"ajaxTrustedUrl":{"\/search\/node":true},"flexslider":{"optionsets":{"homepage_full_width":{"animation":"fade","animationSpeed":600,"direction":"horizontal","slideshow":true,"easing":"swing","smoothHeight":true,"reverse":false,"slideshowSpeed":7000,"animationLoop":true,"randomize":false,"startAt":0,"itemWidth":0,"itemMargin":0,"minItems":0,"maxItems":0,"move":0,"directionNav":true,"controlNav":true,"thumbCaptions":false,"thumbCaptionsBoth":false,"keyboard":false,"multipleKeyboard":false,"mousewheel":false,"touch":true,"prevText":"Previous","nextText":"Next","namespace":"flex-","selector":".slides \u003E li","sync":"","asNavFor":"","initDelay":0,"useCSS":true,"video":false,"pausePlay":false,"pauseText":"Pause","playText":"Play","pauseOnAction":true,"pauseOnHover":false,"controlsContainer":"","manualControls":""}},"instances":{"flexslider-1":"homepage_full_width"}},"superfish":{"superfish-main":{"id":"superfish-main","sf":{"animation":{"opacity":"show","height":"show"},"autoArrows":false,"dropShadows":false},"plugins":{"touchscreen":{"behaviour":1,"disableHover":0,"cloneParent":0,"mode":"window_width"},"smallscreen":{"cloneParent":0,"mode":"window_width","accordionButton":0,"title":"\u0026#x2261"},"supposition":true,"supersubs":true}}},"user":{"uid":0,"permissionsHash":"95137df6b2b17775529284fe450e12136d4afc24807c0ed31b4e0da7eb7c21a8"}}</script>
+<script src="/sites/default/files/js/js_U1JBAuQU7zM-Pk2AiX3TqiUKpJgMMpeXPKAW3I-BbAQ.js?scope=header&amp;delta=0&amp;language=en&amp;theme=bootstrap_gem&amp;include=eJx9j9EOwjAIRX-orp-0sMkohpamsDn_XqeJMab6Qg6c5OYyqbp5gzoS5kiiE8jJ_CZcKCyCuwmfsUUujtTAWUtYtDhc0TRj_ODBNvrnBkucA6mS4OhAkR7jex_gAnuwtWJb2FJ8U-82Jt2wHdWKd71lELG5IZa-P8jWyX7ZqsbPn3vedZ3TK_0OhluDgg"></script>
+<script src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" defer crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.7.2/js/v4-shims.js" defer crossorigin="anonymous"></script>
+<script src="/modules/contrib/google_tag/js/gtag.js?sxkbuf"></script>
+
+  </head>
+  <body class="layout-no-sidebars page-node-8 path-frontpage node--type-page">
+    <a href="#main-content" class="visually-hidden-focusable">
+      Skip to main content
+    </a>
+    
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'off_canvas_page_wrapper' -->
+<!-- BEGIN OUTPUT from 'core/modules/system/templates/off-canvas-page-wrapper.html.twig' -->
+  <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'page' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ page--node--page.html.twig
+   ▪️ page--front.html.twig
+   ▪️ page--node--8.html.twig
+   ▪️ page--node--%.html.twig
+   ▪️ page--node--page.html.twig
+   ▪️ page--node.html.twig
+   ✅ page.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/layout/page.html.twig' -->
+<div id="page-wrapper">
+  <div id="page">
+    <header id="header" class="header" role="banner" aria-label="Site header">
+              <div class="container-fluid">
+          <div class="row main-header">
+            <div class="col-lg-6 column-branding">
+              
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ region--nowrap.html.twig
+   ▪️ region--header.html.twig
+   ▪️ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--bootstrap-gem-branding.html.twig
+   ✅ block--system-branding-block.html.twig
+   ▪️ block--system.html.twig
+   ▪️ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block--system-branding-block.html.twig' -->
+      <a href="https://spc.int/" title="SPC Home" class="navbar-brand">
+              <img src="/sites/default/files/SPC-CPS-logo_27_stars-01.jpg" alt="SPC Home" class="img-fluid d-inline-block align-middle" />
+          </a>
+    <a href="https://gem.spc.int/" title="GEM Home" rel="home" class="navbar-brand gem">
+        <img src="/themes/custom/bootstrap_gem/images/gem.png" alt="GEM Home" class="img-fluid d-inline-block align-middle" />
+    </a>
+    
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block--system-branding-block.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+
+
+            </div>
+            <div class="col-lg-6 column-divisions">
+              
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ region--header-divisions.html.twig
+   ✅ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region.html.twig' -->
+  <section class="row region region-header-divisions">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--divisions.html.twig
+   ▪️ block--block-content--40e05cbb-e5ed-4d29-a950-4f0bdf7d9f7c.html.twig
+   ▪️ block--block-content--id-view--divisions--full.html.twig
+   ▪️ block--block-content--id--divisions.html.twig
+   ▪️ block--block-content--view-type--basic--full.html.twig
+   ▪️ block--block-content--type--basic.html.twig
+   ▪️ block--block-basic.html.twig
+   ▪️ block--block-content--view--full.html.twig
+   ▪️ block--bundle--basic.html.twig
+   ▪️ block--block-content.html.twig
+   ✅ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+<div id="block-divisions" class="block-content-basic block block-block-content block-block-content40e05cbb-e5ed-4d29-a950-4f0bdf7d9f7c">
+  
+    
+      <div class="content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'field' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ field--block-content--body--basic.html.twig
+   ▪️ field--block-content--body.html.twig
+   ▪️ field--block-content--basic.html.twig
+   ▪️ field--body.html.twig
+   ✅ field--text-with-summary.html.twig
+   ▪️ field.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/field/field--text-with-summary.html.twig' -->
+
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul class="nav-divisions">
+	<li class="division cces"><a href="#"><span class="sr-only">Climate Change and Environmental Sustainability (CCES)</span></a></li>
+	<li class="division eqap"><a href="#"><span class="sr-only">Educational Quality and Assessment (EQAP)</span></a></li>
+	<li class="division fame"><a href="#"><span class="sr-only">Fisheries, Aquaculture &amp; Marine Ecosystems (FAME)</span></a></li>
+	<li class="division gem active"><a href="#"><span class="sr-only">Geoscience, Energy and Maritime (GEM)</span></a></li>
+	<li class="division lrd"><a href="#"><span class="sr-only">Land Resources Division (LRD)</span></a></li>
+	<li class="division phd"><a href="/"><span class="sr-only">Public Health Division (PHD)</span></a></li>
+	<li class="division rrrt"><a href="#"><span class="sr-only">Regional Rights Resource Team (RRRT)</span></a></li>
+	<li class="division sdp"><a href="#"><span class="sr-only">Social Development Program (SDP)</span></a></li>
+	<li class="division sdd"><a href="#"><span class="sr-only">Statistics for Development Division (SDD)</span></a></li>
+	<li class="division special"><a href="#"><span class="sr-only">Special Projects</span></a></li>
+</ul>
+</div>
+      
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/field/field--text-with-summary.html.twig' -->
+
+
+    </div>
+  </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+
+
+  </section>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region.html.twig' -->
+
+
+            </div>
+          </div>
+        </div>
+
+                <nav class="navbar navbar-dark bg-primary navbar-expand-lg" id="navbar-main">
+                    <div class="container">
+                                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+              <div class="collapse navbar-collapse" id="CollapsingNavbar">
+                
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ region--nowrap.html.twig
+   ▪️ region--primary-menu.html.twig
+   ▪️ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--mainnavigation.html.twig
+   ▪️ block--superfish--main.html.twig
+   ▪️ block--superfish.html.twig
+   ▪️ block--superfish.html.twig
+   ✅ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+<div id="block-mainnavigation" class="block block-superfish block-superfishmain">
+  
+    
+      <div class="content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'superfish' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/superfish/templates/superfish.html.twig' -->
+
+<ul id="superfish-main" class="menu sf-menu sf-main sf-horizontal sf-style-none" role="menu" aria-label="Menu">
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'superfish_menu_items' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+  
+  <li id="main-standardfront-page" class="active-trail sf-depth-1 sf-no-children sf-first" role="none">
+    
+          <a href="/" class="is-active sf-depth-1" role="menuitem">Home</a>
+    
+    
+    
+    
+      </li>
+
+
+            
+  <li id="main-menu-link-content450d30a2-33d0-42f0-9f61-955af05ddbbb" class="sf-depth-1 menuparent" role="none">
+    
+          <a href="/about" class="sf-depth-1 menuparent" role="menuitem" aria-haspopup="true" aria-expanded="false">About</a>
+    
+    
+    
+              <ul role="menu">
+      
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'superfish_menu_items' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+  
+  <li id="main-menu-link-contentb6ef7ee5-b9d8-4a0c-955e-c62ce4dd66bf" class="sf-depth-2 sf-no-children sf-first" role="none">
+    
+          <a href="/about" class="sf-depth-2" role="menuitem">About Us</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-menu-link-content63c9d891-aa7b-41ab-b5c0-3b38bb37daf8" class="sf-depth-2 sf-no-children" role="none">
+    
+          <a href="/about/executive-management" class="sf-depth-2" role="menuitem">Executive Management</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-menu-link-contentc2e75c1c-b63c-4a59-82cb-7af18e47937b" class="sf-depth-2 sf-no-children" role="none">
+    
+          <a href="/about/gem-history" class="sf-depth-2" role="menuitem">GEM History</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-menu-link-content44c70a3b-7548-452b-b333-02f2c727350f" class="sf-depth-2 sf-no-children sf-last" role="none">
+    
+          <a href="/about/business-plan" class="sf-depth-2" role="menuitem">Business Plan</a>
+    
+    
+    
+    
+      </li>
+
+
+<!-- END OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+
+              </ul>
+      
+    
+    
+      </li>
+
+
+            
+  <li id="main-menu-link-content6f78795d-03b4-44ae-9fdc-64f9bccf0a53" class="sf-depth-1 menuparent" role="none">
+    
+          <a href="/key-work" class="sf-depth-1 menuparent" role="menuitem" aria-haspopup="true" aria-expanded="false">Key Work</a>
+    
+    
+    
+              <ul role="menu">
+      
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'superfish_menu_items' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+  
+  <li id="main-menu-link-content4acf7c2a-6197-47a2-b3a4-454934488ed7" class="sf-depth-2 sf-no-children sf-first" role="none">
+    
+          <a href="/key-work/DCRP" class="sf-depth-2" role="menuitem">Disaster &amp; Community Resilience Programme</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-menu-link-content5ee3f3f2-7d59-4825-b1ed-2d03adc252a3" class="sf-depth-2 sf-no-children" role="none">
+    
+          <a href="/key-work/georesources-energy-programme" class="sf-depth-2" role="menuitem">Georesources &amp; Energy</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-menu-link-content569bd8cf-45b4-4279-b6a2-479ff71de39d" class="sf-depth-2 sf-no-children" role="none">
+    
+          <a href="/key-work/oceans-maritime-programme" class="sf-depth-2" role="menuitem">Oceans &amp; Maritime</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-menu-link-content459a777c-81ac-4602-8013-e45c3801040a" class="sf-depth-2 sf-no-children" role="none">
+    
+          <a href="/key-work/earth-and-ocean-observation-eoo" class="sf-depth-2" role="menuitem">Earth and Ocean Observation</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-views-viewviewsprojectsprojects-grid-page" class="sf-depth-2 sf-no-children sf-last" role="none">
+    
+          <a href="/key-work/projects" class="sf-depth-2" role="menuitem">GEM Projects</a>
+    
+    
+    
+    
+      </li>
+
+
+<!-- END OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+
+              </ul>
+      
+    
+    
+      </li>
+
+
+            
+  <li id="main-menu-link-content245b82dd-c6a5-4bdf-ac8d-a93c0d004d64" class="sf-depth-1 menuparent sf-last" role="none">
+    
+          <a href="/resources" class="sf-depth-1 menuparent" role="menuitem" aria-haspopup="true" aria-expanded="false">Resources</a>
+    
+    
+    
+              <ul role="menu">
+      
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'superfish_menu_items' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+  
+  <li id="main-menu-link-contentf49cd82a-48fc-4ec2-9341-491250b646ad" class="sf-depth-2 sf-no-children sf-first" role="none">
+    
+          <a href="/resources" class="sf-depth-2" role="menuitem">Library</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-views-viewviewsresourcesresources" class="sf-depth-2 sf-no-children" role="none">
+    
+          <a href="/data-and-tools" class="sf-depth-2" role="menuitem">Data &amp; Tools</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-views-viewviewsnewsnews-grid-page" class="sf-depth-2 sf-no-children" role="none">
+    
+          <a href="/news" class="sf-depth-2" role="menuitem">News</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-views-viewviewsvideosvideos-grid-page" class="sf-depth-2 sf-no-children" role="none">
+    
+          <a href="/videos" class="sf-depth-2" role="menuitem">Videos</a>
+    
+    
+    
+    
+      </li>
+
+
+            
+  <li id="main-menu-link-content346dfab6-f361-463b-bd0e-6eb65750776a" class="sf-depth-2 menuparent" role="none">
+    
+          <a href="/resources/campaigns" class="sf-depth-2 menuparent" role="menuitem" aria-haspopup="true" aria-expanded="false">Campaigns</a>
+    
+    
+    
+              <ul role="menu">
+      
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'superfish_menu_items' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+  
+  <li id="main-menu-link-content14f8d509-bc68-4714-96f4-d60963938436" class="sf-depth-3 sf-no-children sf-first sf-last" role="none">
+    
+          <a href="/resources/campaigns/groundwater-and-pacific-resilience" class="sf-depth-3" role="menuitem">Groundwater and Pacific Resilience</a>
+    
+    
+    
+    
+      </li>
+
+
+<!-- END OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+
+              </ul>
+      
+    
+    
+      </li>
+
+
+  
+  <li id="main-views-viewviewsmeetingsmeetings-listing-page" class="sf-depth-2 sf-no-children" role="none">
+    
+          <a href="/meetings" class="sf-depth-2" role="menuitem">Meetings</a>
+    
+    
+    
+    
+      </li>
+
+
+            
+  <li id="main-menu-link-contenta29a1d08-e4bf-4e0c-a84e-7898603681de" class="sf-depth-2 menuparent sf-last" role="none">
+    
+          <a href="/resources/publications" class="sf-depth-2 menuparent" role="menuitem" aria-haspopup="true" aria-expanded="false">Publications</a>
+    
+    
+    
+              <ul role="menu">
+      
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'superfish_menu_items' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+  
+  <li id="main-menu-link-content0307e7be-b876-42f9-aba9-d8974f7d97fa" class="sf-depth-3 sf-no-children sf-first" role="none">
+    
+          <a href="/resources/publications/building-disaster-and-climate-resilience-through-development-minerals" class="sf-depth-3" role="menuitem">Building disaster and climate resilience through Development Minerals</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-menu-link-content2bf56a50-f9b2-4473-9ab0-4fb9a5328a6a" class="sf-depth-3 sf-no-children" role="none">
+    
+          <a href="/resources/publications/climate-change-in-the-pacific-2022-historical-and-recent-variability" class="sf-depth-3" role="menuitem">Climate Change in the Pacific 2022: Historical and Recent Variability, Extremes and Change</a>
+    
+    
+    
+    
+      </li>
+
+
+  
+  <li id="main-menu-link-content16b465db-58b5-4a41-8cd9-fc886b0048f7" class="sf-depth-3 sf-no-children sf-last" role="none">
+    
+          <a href="/resources/publications/dreka-im-bok-ekatak-consolidated-report-for-the-aggregates-study-on-majuro" class="sf-depth-3" role="menuitem">Dreka im Bok Ekatak, Consolidated report for the aggregates study on Majuro and Ebeye</a>
+    
+    
+    
+    
+      </li>
+
+
+<!-- END OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+
+              </ul>
+      
+    
+    
+      </li>
+
+
+<!-- END OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+
+              </ul>
+      
+    
+    
+      </li>
+
+
+<!-- END OUTPUT from 'modules/contrib/superfish/templates/superfish-menu-items.html.twig' -->
+
+
+</ul>
+
+<!-- END OUTPUT from 'modules/contrib/superfish/templates/superfish.html.twig' -->
+
+
+    </div>
+  </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+
+
+                                  <div class="navbar-form float-right">
+                    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ region--nowrap.html.twig
+   ▪️ region--header-form.html.twig
+   ▪️ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--languageswitcherinterfacetext.html.twig
+   ▪️ block--language-block--language-interface.html.twig
+   ▪️ block--language-block.html.twig
+   ▪️ block--language.html.twig
+   ✅ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+<div class="language-switcher-language-url block block-language block-language-blocklanguage-interface" id="block-languageswitcherinterfacetext" role="navigation">
+  
+    
+      <div class="content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'links__language_block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ links--language-block.html.twig
+   ✅ links--language-block.html.twig
+   ▪️ links.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/navigation/links--language-block.html.twig' -->
+
+
+  <nav class="links nav links-inline"><span hreflang="en" data-drupal-link-system-path="&lt;front&gt;" class="en nav-link is-active" aria-current="page"><a href="/" class="language-link is-active" hreflang="en" data-drupal-link-system-path="&lt;front&gt;" aria-current="page">EN</a></span><span hreflang="fr" data-drupal-link-system-path="&lt;front&gt;" class="fr nav-link"><a href="/fr" class="language-link" hreflang="fr" data-drupal-link-system-path="&lt;front&gt;">FR</a></span></nav>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/navigation/links--language-block.html.twig' -->
+
+
+    </div>
+  </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--searchform.html.twig
+   ✅ block--search-form-block.html.twig
+   ▪️ block--search.html.twig
+   ▪️ block.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/block/block--search-form-block.html.twig' -->
+<div class="search-block-form block block-search block-search-form-block" data-drupal-selector="search-block-form" id="block-searchform" role="search">
+  
+    
+    <div class="content container-inline">
+        <div class="content container-inline">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'form' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ form--search-block-form.html.twig
+   ▪️ form.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/block/form--search-block-form.html.twig' -->
+<form action="/search/node" method="get" id="search-block-form" accept-charset="UTF-8" class="search-form search-block-form form-row">
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'form_element' -->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/form-element.html.twig' -->
+
+
+
+
+
+        
+  <div class="js-form-item js-form-type-search form-type-search js-form-item-keys form-item-keys form-no-label mb-3">
+          
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'form_element_label' -->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/form-element-label.html.twig' -->
+<label for="edit-keys" class="visually-hidden">Search</label>
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/form-element-label.html.twig' -->
+
+
+                    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'input__search' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ input--search.html.twig
+   ✅ input.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/input.html.twig' -->
+<input title="Enter the terms you wish to search for." placeholder="search" data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" value="" size="15" maxlength="128" class="form-search form-control" />
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/input.html.twig' -->
+
+
+                      </div>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/form-element.html.twig' -->
+
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'container' -->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper mb-3" id="edit-actions">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'input__submit' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ input--submit.html.twig
+   ✅ input--submit-button.html.twig
+   ▪️ input.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/input--submit-button.html.twig' -->
+<button data-drupal-selector="edit-submit" type="submit" id="edit-submit" value="Search" class="button js-form-submit form-submit btn btn-primary">Search</button>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/input--submit-button.html.twig' -->
+
+</div>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+
+
+</form>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/block/form--search-block-form.html.twig' -->
+
+
+    </div>
+  
+  </div>
+</div>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/block/block--search-form-block.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+
+
+                  </div>
+                	          </div>
+                                            </div>
+                  </nav>
+          </header>
+        <div class="full-slider-top-container container-fluid">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ region--full-slider-top.html.twig
+   ✅ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region.html.twig' -->
+  <section class="row region region-full-slider-top">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--views-block--homepage-slider-block-1.html.twig
+   ▪️ block--views-block--homepage-slider-block-1.html.twig
+   ▪️ block--views-block.html.twig
+   ▪️ block--views.html.twig
+   ✅ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+<div class="views-element-container block block-views block-views-blockhomepage-slider-block-1" id="block-views-block-homepage-slider-block-1">
+  
+    
+      <div class="content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'container' -->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view' -->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-view.html.twig' -->
+<div class="view view-homepage-slider view-id-homepage_slider view-display-id-block_1 js-view-dom-id-9d15b7412c56ca1c2624ffc706fdf85b207afdec2b16649ec1f66d6218978c7b">
+  
+    
+      
+      <div class="view-content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'flexslider_views_style' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/flexslider/flexslider_views/templates/flexslider-views-style.html.twig' -->
+
+<div>
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'flexslider' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/flexslider/templates/flexslider.html.twig' -->
+
+<div id="flexslider-1" class="flexslider optionset-homepage-full-width">
+ 
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'flexslider_list' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/flexslider/templates/flexslider-list.html.twig' -->
+
+<ul class="slides">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'flexslider_list_item' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/flexslider/templates/flexslider-list-item.html.twig' -->
+
+<li>
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'node' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ node--view--homepage-slider--block-1.html.twig
+   ▪️ node--view--homepage-slider.html.twig
+   ▪️ node--108--full.html.twig
+   ▪️ node--108.html.twig
+   ✅ node--slide--full.html.twig
+   ▪️ node--slide.html.twig
+   ▪️ node--full.html.twig
+   ▪️ node.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/content/node--slide--full.html.twig' -->
+
+
+
+  <div class="slide-content-container">
+  <div class="slide-content ">
+            <h2 class="slide-title"><a href="/about">The GEM Division</a></h2>
+      
+  
+  </div>
+
+</div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/content/node--slide--full.html.twig' -->
+
+
+    </li>
+<!-- END OUTPUT from 'modules/contrib/flexslider/templates/flexslider-list-item.html.twig' -->
+
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'flexslider_list_item' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/flexslider/templates/flexslider-list-item.html.twig' -->
+
+<li>
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'node' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ node--view--homepage-slider--block-1.html.twig
+   ▪️ node--view--homepage-slider.html.twig
+   ▪️ node--109--full.html.twig
+   ▪️ node--109.html.twig
+   ✅ node--slide--full.html.twig
+   ▪️ node--slide.html.twig
+   ▪️ node--full.html.twig
+   ▪️ node.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/content/node--slide--full.html.twig' -->
+
+
+
+  <div class="slide-content-container">
+  <div class="slide-content ">
+            <h2 class="slide-title"><a href="/about/gem-history">Our Journey: from SOPAC to GEM</a></h2>
+      
+  
+  </div>
+
+</div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/content/node--slide--full.html.twig' -->
+
+
+    </li>
+<!-- END OUTPUT from 'modules/contrib/flexslider/templates/flexslider-list-item.html.twig' -->
+
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'flexslider_list_item' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/flexslider/templates/flexslider-list-item.html.twig' -->
+
+<li>
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'node' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ node--view--homepage-slider--block-1.html.twig
+   ▪️ node--view--homepage-slider.html.twig
+   ▪️ node--110--full.html.twig
+   ▪️ node--110.html.twig
+   ✅ node--slide--full.html.twig
+   ▪️ node--slide.html.twig
+   ▪️ node--full.html.twig
+   ▪️ node.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/content/node--slide--full.html.twig' -->
+
+
+
+  <div class="slide-content-container">
+  <div class="slide-content ">
+            <h2 class="slide-title"><a href="/about/executive-management">Meet our senior management team</a></h2>
+      
+  
+  </div>
+
+</div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/content/node--slide--full.html.twig' -->
+
+
+    </li>
+<!-- END OUTPUT from 'modules/contrib/flexslider/templates/flexslider-list-item.html.twig' -->
+
+
+</ul>
+<!-- END OUTPUT from 'modules/contrib/flexslider/templates/flexslider-list.html.twig' -->
+
+
+</div>
+
+<!-- END OUTPUT from 'modules/contrib/flexslider/templates/flexslider.html.twig' -->
+
+
+</div>
+
+<!-- END OUTPUT from 'modules/contrib/flexslider/flexslider_views/templates/flexslider-views-style.html.twig' -->
+
+
+    </div>
+  
+          </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-view.html.twig' -->
+
+</div>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+
+
+    </div>
+  </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+
+
+  </section>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region.html.twig' -->
+
+
+    </div>
+        <div class="top-wrapper">
+            <div class="top-wrapper-inner">
+                              </div>
+    </div>
+          <div class="before-content-wrapper clearfix">
+        <aside class="container clearfix" role="complementary">
+          
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ region--nowrap.html.twig
+   ▪️ region--before-content.html.twig
+   ▪️ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ block--views-block--programmes-programmes.html.twig
+   ✅ block--views-block--programmes-programmes.html.twig
+   ▪️ block--views-block.html.twig
+   ▪️ block--views.html.twig
+   ▪️ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block--views-block--programmes-programmes.html.twig' -->
+<div class="row justify-content-center">
+  <div class="col-md-9">
+    <div class="views-element-container block block-views block-views-blockprogrammes-programmes" id="block-views-block-programmes-programmes">
+      
+              <h2 class="block-title">Key Work</h2>
+            
+              <div class="content">
+          
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'container' -->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view' -->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-view.html.twig' -->
+<div class="view view-programmes view-id-programmes view-display-id-programmes js-view-dom-id-56fbf278c4ef6b336a21fbb2b330b7eef7639b4f01ae8ae1d8f4a0c1f9c9c657">
+  
+    
+      
+      <div class="view-content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_bootstrap_grid' -->
+<!-- BEGIN OUTPUT from 'modules/contrib/views_bootstrap/templates/views-bootstrap-grid.html.twig' -->
+<div id="views-bootstrap-programmes-programmes"  class="grid views-view-grid">
+  <div class="row">
+          <div  class="col-xs-3 col-sm-6 col-md-6 col-lg-3">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/key-work/DCRP">
+<h3 class="item-title disaster-amp-community-resilience-programme-dcrp programme-25">Disaster &amp; Community Resilience</h3>
+<div class="item-image">
+
+
+
+
+  
+
+
+
+
+<img loading="lazy" src="/sites/default/files/programme-icons/resilience-square.png" width="140" height="140" alt="Disaster &amp; Community Resilience Programme" typeof="Image" />
+
+
+
+
+
+
+
+</div>
+</a>
+
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-xs-3 col-sm-6 col-md-6 col-lg-3">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/key-work/georesources-energy-programme">
+<h3 class="item-title georesources-amp-energy-programme programme-26">Georesources &amp; Energy</h3>
+<div class="item-image">
+
+
+
+
+  
+
+
+
+
+<img loading="lazy" src="/sites/default/files/programme-icons/georesources-square.png" width="140" height="140" alt="Georesources &amp; Energy Programme" typeof="Image" />
+
+
+
+
+
+
+
+</div>
+</a>
+
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-xs-3 col-sm-6 col-md-6 col-lg-3">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/key-work/oceans-maritime-programme">
+<h3 class="item-title oceans-amp-maritime-programme programme-27">Oceans &amp; Maritime</h3>
+<div class="item-image">
+
+
+
+
+  
+
+
+
+
+<img loading="lazy" src="/sites/default/files/programme-icons/oceans-square.png" width="140" height="140" alt="Oceans &amp; Maritime Programme" typeof="Image" />
+
+
+
+
+
+
+
+</div>
+</a>
+
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-xs-3 col-sm-6 col-md-6 col-lg-3">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/key-work/earth-and-ocean-observation-eoo">
+<h3 class="item-title earth-and-ocean-observation-eoo programme-28">Earth and Ocean Observation</h3>
+<div class="item-image">
+
+
+
+
+  
+
+
+
+
+<img loading="lazy" src="/sites/default/files/programme-icons/programming-square.png" width="140" height="140" alt="Earth &amp; Marine Observation" typeof="Image" />
+
+
+
+
+
+
+
+</div>
+</a>
+
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+      </div>
+</div>
+
+<!-- END OUTPUT from 'modules/contrib/views_bootstrap/templates/views-bootstrap-grid.html.twig' -->
+
+
+    </div>
+  
+          </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-view.html.twig' -->
+
+</div>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+
+
+        </div>
+          </div>
+  </div>
+</div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block--views-block--programmes-programmes.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+
+
+        </aside>
+      </div>
+            <div id="main-wrapper" class="layout-main-wrapper clearfix">
+              <div id="main" class="container">
+          <div class="row row-offcanvas row-offcanvas-left clearfix">
+              <main class="main-content col order-first" id="content" role="main">
+                <section class="section">
+                  <a id="main-content" tabindex="-1"></a>
+                  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ region--nowrap.html.twig
+   ▪️ region--content.html.twig
+   ▪️ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--bootstrap-gem-messages.html.twig
+   ✅ block--system-messages-block.html.twig
+   ▪️ block--system.html.twig
+   ▪️ block.html.twig
+-->
+<!-- BEGIN OUTPUT from 'core/modules/system/templates/block--system-messages-block.html.twig' -->
+<div data-drupal-messages-fallback class="hidden"></div>
+
+<!-- END OUTPUT from 'core/modules/system/templates/block--system-messages-block.html.twig' -->
+
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--bootstrap-gem-content.html.twig
+   ▪️ block--system-main-block.html.twig
+   ▪️ block--system.html.twig
+   ✅ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+<div id="block-bootstrap-gem-content" class="block block-system block-system-main-block">
+  
+    
+      <div class="content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'node' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ node--8--full.html.twig
+   ▪️ node--8.html.twig
+   ▪️ node--page--full.html.twig
+   ▪️ node--page.html.twig
+   ▪️ node--full.html.twig
+   ✅ node.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/content/node.html.twig' -->
+
+
+<article about="/home" typeof="schema:WebPage" class="node node--type-page node--view-mode-full clearfix">
+  <header>
+    
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'rdf_metadata' -->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/misc/rdf-metadata.html.twig' -->
+  <span property="schema:name" content="Home" class="rdf-meta hidden"></span>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/misc/rdf-metadata.html.twig' -->
+
+
+      </header>
+  <div class="node__content clearfix">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'field' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ field--node--body--page.html.twig
+   ▪️ field--node--body.html.twig
+   ▪️ field--node--page.html.twig
+   ▪️ field--body.html.twig
+   ✅ field--text-with-summary.html.twig
+   ▪️ field.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/field/field--text-with-summary.html.twig' -->
+
+            <div property="schema:text" class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p class="text-align-center"><strong>The Geoscience, Energy&nbsp;and Maritime (GEM) Division supports Pacific Countries and Territories by developing critical data, applied science&nbsp;and technical solutions to overcome some of the greatest challenges faced by our members.</strong></p>
+
+<p class="text-align-center"><strong>We work in partnership with countries to better understand their challenges whilst supporting and developing innovative solutions.&nbsp;</strong></p>
+
+<p class="text-align-center"><strong>The Pacific is the frontline of climate change and the applied science work and results our Division achieves,&nbsp;improves the lives and livelihoods of Pacific people.&nbsp;</strong></p>
+
+<p class="text-align-center"><strong><a class="btn btn-primary" href="/about">Find out more</a></strong></p>
+</div>
+      
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/field/field--text-with-summary.html.twig' -->
+
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'links__node' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ links--node.html.twig
+   ✅ links--inline.html.twig
+   ▪️ links--node.html.twig
+   ▪️ links.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/navigation/links--inline.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/navigation/links--inline.html.twig' -->
+
+
+    <!-- TODO: particularize this only for the relevant node type -->
+  </div>
+</article>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/content/node.html.twig' -->
+
+
+    </div>
+  </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+
+
+                </section>
+              </main>
+                                  </div>
+        </div>
+          </div>
+                  <div class="featured-bottom-second">
+        <aside class="container clearfix" role="complementary">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ region--nowrap.html.twig
+   ▪️ region--featured-bottom-second.html.twig
+   ▪️ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--views-block--news-news-grid-half.html.twig
+   ▪️ block--views-block--news-news-grid-half.html.twig
+   ▪️ block--views-block.html.twig
+   ▪️ block--views.html.twig
+   ✅ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+<div class="views-element-container block block-views block-views-blocknews-news-grid-half" id="block-views-block-news-news-grid-half">
+  
+      <h2 class="block-title">News</h2>
+    
+      <div class="content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'container' -->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view' -->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-view.html.twig' -->
+<div class="grid news-grid view view-news view-id-news view-display-id-news_grid_half js-view-dom-id-77b16407299bcdd640ba04f25ea03ec7edeeb7c220200b5c9a5f23bb327356ba">
+  
+    
+      
+      <div class="view-content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_bootstrap_grid__news_grid_half' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ views-bootstrap-grid--news-grid-half.html.twig
+   ✅ views-bootstrap-grid--news-grid-half.html.twig
+   ▪️ views-bootstrap-grid.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-bootstrap-grid--news-grid-half.html.twig' -->
+<div id="views-bootstrap-news-news-grid-half"  class="grid views-view-grid">
+  <div class="row">
+          <div  class="col-6 col-sm-6 col-md-4 col-lg-4">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/news/2026/01/significant-rise-in-sea-surface-temperatures-and-marine-heatwave-conditions-in-parts">
+    <div class="item-inner-container">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-image">
+                    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/landscape_606x404/public/featured-images/news/2026-01/DSC_2516.JPG?itok=_H7fmbmE" width="606" height="404" alt="Boat" typeof="Image" class="image-style-landscape-606x404" />
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-details">
+                    <h4 class="item-title">Significant rise in sea Surface temperatures and marine heatwave conditions in parts of the Pacific</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-6 col-sm-6 col-md-4 col-lg-4">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/updates/blog/dynamic-story/2026/01/strengthening-people-led-ocean-services-in-american-samoa">
+    <div class="item-inner-container">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-image">
+                    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/landscape_606x404/public/featuredimages/blog/2026-01/RS35534_DSC00270.JPG?itok=tXKIfNbh" width="606" height="404" alt="&quot;" typeof="Image" class="image-style-landscape-606x404" />
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-details">
+                    <h4 class="item-title">Strengthening people-led ocean services in American Samoa</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-6 col-sm-6 col-md-4 col-lg-4">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/updates/blog/blog-post/2026/01/innovation-for-resilience-vanuatu-pioneers-data-driven-disaster">
+    <div class="item-inner-container">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-image">
+                    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/landscape_606x404/public/featuredimages/blog/2026-01/RS13723_Vierus-Vanuatu-2023-202301301019.jpg?itok=KLX-Fnfw" width="606" height="404" alt="spc" typeof="Image" class="image-style-landscape-606x404" />
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-details">
+                    <h4 class="item-title">Innovation for resilience: Vanuatu pioneers data-driven disaster response</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-6 col-sm-6 col-md-4 col-lg-4">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/updates/blog/dynamic-story/2026/01/securing-water-sources-in-the-pacific-a-week-of-connection-0">
+    <div class="item-inner-container">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-image">
+                    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/landscape_606x404/public/featuredimages/blog/2026-01/mvi_5191-trim-frame-0ms-1920x1080.jpg?itok=fomwlCYO" width="606" height="404" alt="spc" typeof="Image" class="image-style-landscape-606x404" />
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-details">
+                    <h4 class="item-title">Securing water sources in the Pacific: A week of connection, learning and shared purpose</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-6 col-sm-6 col-md-4 col-lg-4">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/updates/blog/blog-post/2026/01/water-security-in-the-cook-islands-through-community-and-partnership">
+    <div class="item-inner-container">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-image">
+                    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/landscape_606x404/public/featuredimages/blog/2026-01/1000003751%20%281%29.jpg?itok=OS9aW-Sy" width="606" height="404" alt="spc" typeof="Image" class="image-style-landscape-606x404" />
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-details">
+                    <h4 class="item-title">Water Security in the Cook Islands through Community and Partnership</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-6 col-sm-6 col-md-4 col-lg-4">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/updates/blog/dynamic-story/2026/01/joining-land-to-sea-2026-tide-prediction-calendars-now-available">
+    <div class="item-inner-container">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-image">
+                    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/landscape_606x404/public/featuredimages/blog/2026-01/Tide%20Calendar%20Pacific_2026%20article_SPC.jpg?itok=Q9HKWeqq" width="606" height="404" alt="Tide calendar illustration picture" typeof="Image" class="image-style-landscape-606x404" />
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-details">
+                    <h4 class="item-title">Joining land to sea: 2026 tide prediction calendars now available</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-6 col-sm-6 col-md-4 col-lg-4">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/updates/blog/video/2026/01/what-they-left-behind-protecting-the-reef-through-kastom-in-vanuatu">
+    <div class="item-inner-container">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-image">
+                    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/landscape_606x404/public/featuredimages/blog/2026-01/what%20they%20left%20behind_protecting%20the%20reef%20through%20katsom%20in%20Vanuatu_SPC_Pacific%20Way.jpg?itok=ek-Ph3B4" width="606" height="404" alt="What they left behind: Protecting the reef through &quot;Kastom&quot; in Vanuatu" typeof="Image" class="image-style-landscape-606x404" />
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-details">
+                    <h4 class="item-title">What they left behind: Protecting the reef through &quot;Kastom&quot; in Vanuatu</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-6 col-sm-6 col-md-4 col-lg-4">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/updates/blog/did-you-know/2026/01/ocean-science-fact-earth-is-known-as-the-blue-planet-but-was-it">
+    <div class="item-inner-container">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-image">
+                    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/landscape_606x404/public/featuredimages/blog/2026-01/earth_the_blue_planet.jpg?itok=POeDmMdP" width="606" height="404" alt="&quot;" typeof="Image" class="image-style-landscape-606x404" />
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-details">
+                    <h4 class="item-title">Ocean Science Fact: Earth is known as the Blue Planet. But was it always blue?</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+          <div  class="col-6 col-sm-6 col-md-4 col-lg-4">
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div><div class="item-container">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a href="/updates/blog/dynamic-story/2025/12/witnessing-change-at-sea-wendy-kafos-call-for-sustainable">
+    <div class="item-inner-container">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-image">
+                    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/landscape_606x404/public/featuredimages/blog/2025-12/img_20251002_135818-3120x4160.jpg?itok=Bd4btmNv" width="606" height="404" alt="Wendy" typeof="Image" class="image-style-landscape-606x404" />
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="item-details">
+                    <h4 class="item-title">Witnessing change at sea: Wendy Kafo’s call for sustainable fisheries in the Pacific</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div></div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+      </div>
+      </div>
+</div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-bootstrap-grid--news-grid-half.html.twig' -->
+
+
+    </div>
+  
+          </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-view.html.twig' -->
+
+</div>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+
+
+    </div>
+  </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+
+
+            </div>
+          </div>
+        </aside>
+        <aside class="container clearfix" role="complementary">
+          <div class="row">
+            <div class="col-md-8">
+              
+            </div>
+            <div class="col-md-4">
+              
+            </div>
+          </div>
+        </aside>
+      </div>
+              <div class="featured-bottom-third">
+        <aside class="container clearfix" role="complementary">
+          
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ region--nowrap.html.twig
+   ▪️ region--featured-bottom-third.html.twig
+   ▪️ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--eventstitle.html.twig
+   ▪️ block--block-content--e4cb7926-869e-489b-a557-b7a687806dc1.html.twig
+   ▪️ block--block-content--id-view--eventstitle--full.html.twig
+   ▪️ block--block-content--id--eventstitle.html.twig
+   ▪️ block--block-content--view-type--basic--full.html.twig
+   ▪️ block--block-content--type--basic.html.twig
+   ▪️ block--block-basic.html.twig
+   ▪️ block--block-content--view--full.html.twig
+   ▪️ block--bundle--basic.html.twig
+   ▪️ block--block-content.html.twig
+   ✅ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+<div id="block-eventstitle" class="events-title block-content-basic block block-block-content block-block-contente4cb7926-869e-489b-a557-b7a687806dc1">
+  
+    
+      <div class="content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'field' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ field--block-content--body--basic.html.twig
+   ▪️ field--block-content--body.html.twig
+   ▪️ field--block-content--basic.html.twig
+   ▪️ field--body.html.twig
+   ✅ field--text-with-summary.html.twig
+   ▪️ field.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/field/field--text-with-summary.html.twig' -->
+
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h2>Events</h2>
+</div>
+      
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/field/field--text-with-summary.html.twig' -->
+
+
+    </div>
+  </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--views-block--events-upcoming-events.html.twig
+   ▪️ block--views-block--events-upcoming-events.html.twig
+   ▪️ block--views-block.html.twig
+   ▪️ block--views.html.twig
+   ✅ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+<div class="views-element-container block block-views block-views-blockevents-upcoming-events" id="block-views-block-events-upcoming-events">
+  
+    
+      <div class="content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'container' -->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view' -->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-view.html.twig' -->
+<div class="events-wide view view-events view-id-events view-display-id-upcoming_events js-view-dom-id-ae9b93b2a7da9ea4f21f43340e1d8222ad8a024809ca35029a5b6962d543a454">
+  
+    
+      
+  
+          </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-view.html.twig' -->
+
+</div>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+
+
+    </div>
+  </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--views-block--events-past-events.html.twig
+   ▪️ block--views-block--events-past-events.html.twig
+   ▪️ block--views-block.html.twig
+   ▪️ block--views.html.twig
+   ✅ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+<div class="views-element-container block block-views block-views-blockevents-past-events" id="block-views-block-events-past-events">
+  
+      <h2 class="block-title">Past Events</h2>
+    
+      <div class="content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'container' -->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view' -->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-view.html.twig' -->
+<div class="events-wide view view-events view-id-events view-display-id-past_events js-view-dom-id-52362bde2b291d3e026f6b72bd9af68fded3f541c85a191ddaa526c9c0668839">
+  
+    
+      
+      <div class="view-content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_unformatted' -->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/views/views-view-unformatted.html.twig' -->
+    <div class="views-row">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a class="item-container" href="/events/early-career-ocean-professional-ecop-talanoa-session">
+    <div class="row no-gutters">
+        <div class="col-md-2 col-sm-12 col-12 event-dates">
+            2 - 3 Dec
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+            <h4 class="event-title">Early Career Ocean Professional (ECOP) - Talanoa Session</h4>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 col-event-image">
+            
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/360x180/public/featuredimages/events/2025-11/ECOP%2520-%2520Talanoa%25202025.jpg?itok=9iF6yI2X" width="360" height="180" alt="event card" typeof="Image" class="image-style-_60x180" />
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+  </div>
+    <div class="views-row">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a class="item-container" href="/events/pacific-islands-ocean-conference">
+    <div class="row no-gutters">
+        <div class="col-md-2 col-sm-12 col-12 event-dates">
+            29 Sep - 3 Oct
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+            <h4 class="event-title">Pacific Islands Ocean Conference </h4>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 col-event-image">
+            
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/360x180/public/featuredimages/events/2025-10/PIOC%25202025.jpg?itok=Z6r2jaUe" width="360" height="180" alt="meeting card" typeof="Image" class="image-style-_60x180" />
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+  </div>
+    <div class="views-row">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a class="item-container" href="/events/unoc-4-years-of-the-un-ocean-decade-programme-for-early-career-ocean-professionals">
+    <div class="row no-gutters">
+        <div class="col-md-2 col-sm-12 col-12 event-dates">
+            11 Jun
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+            <h4 class="event-title">UNOC - 4 years of the UN Ocean Decade Programme for Early Career Ocean Professionals </h4>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 col-event-image">
+            
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/360x180/public/default_images/event-placeholder.jpg?itok=q1Z0oMsF" width="360" height="180" alt="" typeof="Image" class="image-style-_60x180" />
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+  </div>
+    <div class="views-row">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a class="item-container" href="/events/un-ocean-conference-2025">
+    <div class="row no-gutters">
+        <div class="col-md-2 col-sm-12 col-12 event-dates">
+            9 - 13 Jun
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+            <h4 class="event-title">UN Ocean Conference 2025</h4>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 col-event-image">
+            
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/360x180/public/featuredimages/events/2025-05/UN%2520Ocean%2520Conference%25202025.jpg?itok=DtJvu9ds" width="360" height="180" alt="UNOC 5" typeof="Image" class="image-style-_60x180" />
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+  </div>
+    <div class="views-row">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a class="item-container" href="/events/world-oceans-day-2025">
+    <div class="row no-gutters">
+        <div class="col-md-2 col-sm-12 col-12 event-dates">
+            8 Jun
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+            <h4 class="event-title">World Ocean&#039;s Day 2025</h4>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 col-event-image">
+            
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/360x180/public/featuredimages/events/2024-11/SPC_Headquarters.jpg?itok=z4eXA93j" width="360" height="180" alt="World Ocean&#039;s Day 2025" typeof="Image" class="image-style-_60x180" />
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+  </div>
+    <div class="views-row">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a class="item-container" href="/events/unoc-indigenous-peoples-and-local-community-dialogu">
+    <div class="row no-gutters">
+        <div class="col-md-2 col-sm-12 col-12 event-dates">
+            4 Jun
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+            <h4 class="event-title">UNOC - Indigenous Peoples and Local Community Dialogu</h4>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 col-event-image">
+            
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/360x180/public/featuredimages/events/2025-06/SPC_Headquarters_0.jpg?itok=qENH3JdI" width="360" height="180" alt="UNOC - Indigenous Peoples and Local Community Dialogu" typeof="Image" class="image-style-_60x180" />
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+  </div>
+    <div class="views-row">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a class="item-container" href="/events/unoc-unlocking-blue-pacific-prosperity">
+    <div class="row no-gutters">
+        <div class="col-md-2 col-sm-12 col-12 event-dates">
+            3 Jun
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+            <h4 class="event-title">UNOC - Unlocking Blue Pacific Prosperity</h4>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 col-event-image">
+            
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/360x180/public/featuredimages/events/2025-06/SPC_Headquarters.jpg?itok=eYszm7Ns" width="360" height="180" alt="UNOC - Unlocking Blue Pacific Prosperity" typeof="Image" class="image-style-_60x180" />
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+  </div>
+    <div class="views-row">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_fields' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+<div>
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'views_view_field' -->
+<!-- BEGIN OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+<a class="item-container" href="/events/cosppac-steering-committee-meeting-0">
+    <div class="row no-gutters">
+        <div class="col-md-2 col-sm-12 col-12 event-dates">
+            12 - 16 May
+        </div>
+        <div class="col-md-6 col-sm-12 col-12">
+            <h4 class="event-title">COSPPac Steering Committee Meeting</h4>
+        </div>
+        <div class="col-md-4 col-sm-12 col-12 col-event-image">
+            
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<img loading="lazy" src="/sites/default/files/styles/360x180/public/default_images/event-placeholder.jpg?itok=q1Z0oMsF" width="360" height="180" alt="" typeof="Image" class="image-style-_60x180" />
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</a>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-field.html.twig' -->
+
+</div>
+<!-- END OUTPUT from 'core/modules/views/templates/views-view-fields.html.twig' -->
+
+
+  </div>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/views/views-view-unformatted.html.twig' -->
+
+
+    </div>
+  
+          </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/views/views-view.html.twig' -->
+
+</div>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/form/container.html.twig' -->
+
+
+    </div>
+  </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+
+
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <div class="row">
+                <div class="col-md-8">
+                
+                </div>
+                <div class="col-md-4">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+            <footer class="site-footer">
+              <div class="container">
+                      <div class="site-footer__top clearfix">
+              
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ region--nowrap.html.twig
+   ▪️ region--footer-first.html.twig
+   ▪️ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--footer.html.twig
+   ✅ block--system-menu-block--footer.html.twig
+   ▪️ block--system-menu-block.html.twig
+   ▪️ block--system.html.twig
+   ▪️ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block--system-menu-block--footer.html.twig' -->
+<nav role="navigation" aria-labelledby="block-footer-menu" id="block-footer" class="block block-menu navigation menu--footer">
+            
+  <h2 class="sr-only" id="block-footer-menu">Footer</h2>
+  
+
+        
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'menu__footer' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ menu--footer.html.twig
+   ✅ menu--footer.html.twig
+   ▪️ menu.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/navigation/menu--footer.html.twig' -->
+<!-- 🥲 Component start: bootstrap_barrio:menu_columns -->
+              <ul class="clearfix nav flex-row" data-component-id="bootstrap_barrio:menu_columns">
+                    <li class="nav-item">
+                <a href="https://www.spc.int/about-us/contact-us" class="nav-link nav-link-https--wwwspcint-about-us-contact-us">Contact Us</a>
+              </li>
+                <li class="nav-item">
+                <a href="http://careers.spc.int" class="nav-link nav-link-http--careersspcint">Careers @ SPC</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.spc.int/procurement" class="nav-link nav-link-https--wwwspcint-procurement">Procurement</a>
+              </li>
+                <li class="nav-item">
+                <a href="http://outlook.spc.int" class="nav-link nav-link-http--outlookspcint">Staff Email</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://spccloud.sharepoint.com/sites/intranet" class="nav-link nav-link-https--spccloudsharepointcom-sites-intranet">Intranet OneSPC</a>
+              </li>
+        </ul>
+  
+
+<!-- 🥲 Component end: bootstrap_barrio:menu_columns -->
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/navigation/menu--footer.html.twig' -->
+
+
+  </nav>
+<!-- Modal Campaign Monitor -->
+<div class="modal fade" id="modal-cm" tabindex="-1" role="dialog" aria-labelledby="modal-cm-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-cm-title">Subscribe for GEM Updates</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-center">Welcome to the Geoscience, Energy & Maritime (GEM) Division</h5>
+        <p class="text-center">We've been working hard to get more information to you about the GEM Division. To get a monthly snapshot of key work, opportunities and outcomes achieved by the team please sign up for our updates.</p>
+        <form id="subForm" class="js-cm-form" action="https://www.createsend.com/t/subscribeerror?description=" method="post" data-id="A61C50BEC994754B1D79C5819EC1255CA5D47BECD5E4B6E6A5985A6CF9B6B5E9AA3CB9C062AB5313A26D835DB3270D73DA1A94C750E0E88E753D8D14E9E4AE9F">
+        <p>
+            <input id="fieldName" name="cm-name" type="text" class="form-control" placeholder="Name" />
+        </p>
+        <p>
+            <input id="fieldEmail" name="cm-yhdydru-yhdydru" type="email" class="js-cm-email-input form-control" placeholder="Email"
+            required />
+        </p>
+        <p>
+          <select id="fieldjkutct" name="cm-fo-jkutct" placeholder="Country" class="form-control">
+            <option value="3695833">Afghanistan</option>
+            <option value="3695834">Albania</option>
+            <option value="3695835">Algeria</option>
+            <option value="3695836">American Samoa</option>
+            <option value="3695837">Andorra</option>
+            <option value="3695838">Angola</option>
+            <option value="3695839">Anguilla</option>
+            <option value="3695840">Antigua &amp; Barbuda</option>
+            <option value="3695841">Argentina</option>
+            <option value="3695842">Armenia</option>
+            <option value="3695843">Aruba</option>
+            <option value="3695844">Australia</option>
+            <option value="3695845">Austria</option>
+            <option value="3695846">Azerbaijan</option>
+            <option value="3695847">Azores</option>
+            <option value="3695848">Bahamas</option>
+            <option value="3695849">Bahrain</option>
+            <option value="3695850">Bangladesh</option>
+            <option value="3695851">Barbados</option>
+            <option value="3695852">Belarus</option>
+            <option value="3695853">Belgium</option>
+            <option value="3695854">Belize</option>
+            <option value="3695855">Benin</option>
+            <option value="3695856">Bermuda</option>
+            <option value="3695857">Bhutan</option>
+            <option value="3695858">Bolivia</option>
+            <option value="3695859">Bonaire</option>
+            <option value="3695860">Bosnia &amp; Herzegovina</option>
+            <option value="3695861">Botswana</option>
+            <option value="3695862">Brazil</option>
+            <option value="3695863">British Indian Ocean Ter</option>
+            <option value="3695864">Brunei</option>
+            <option value="3695865">Bulgaria</option>
+            <option value="3695866">Burkina Faso</option>
+            <option value="3695867">Burundi</option>
+            <option value="3695868">Cambodia</option>
+            <option value="3695869">Cameroon</option>
+            <option value="3695870">Canada</option>
+            <option value="3695871">Canary Islands</option>
+            <option value="3695872">Cape Verde</option>
+            <option value="3695873">Cayman Islands</option>
+            <option value="3695874">Central African Republic</option>
+            <option value="3695875">Chad</option>
+            <option value="3695876">Channel Islands</option>
+            <option value="3695877">Chile</option>
+            <option value="3695878">China</option>
+            <option value="3695879">Christmas Island</option>
+            <option value="3695880">Cocos Island</option>
+            <option value="3695881">Colombia</option>
+            <option value="3695882">Comoros</option>
+            <option value="3695883">Congo</option>
+            <option value="3695884">Congo Democratic Rep</option>
+            <option value="3695885">Cook Islands</option>
+            <option value="3695886">Costa Rica</option>
+            <option value="3695887">Cote D'Ivoire</option>
+            <option value="3695888">Croatia</option>
+            <option value="3695889">Cuba</option>
+            <option value="3695890">Curacao</option>
+            <option value="3695891">Cyprus</option>
+            <option value="3695892">Czech Republic</option>
+            <option value="3695893">Denmark</option>
+            <option value="3695894">Djibouti</option>
+            <option value="3695895">Dominica</option>
+            <option value="3695896">Dominican Republic</option>
+            <option value="3695897">East Timor</option>
+            <option value="3695898">Ecuador</option>
+            <option value="3695899">Egypt</option>
+            <option value="3695900">El Salvador</option>
+            <option value="3695901">Equatorial Guinea</option>
+            <option value="3695902">Eritrea</option>
+            <option value="3695903">Estonia</option>
+            <option value="3695904">Ethiopia</option>
+            <option value="3695905">Falkland Islands</option>
+            <option value="3695906">Faroe Islands</option>
+            <option value="3695907">Fiji</option>
+            <option value="3695908">Finland</option>
+            <option value="3695909">France</option>
+            <option value="3695910">French Guiana</option>
+            <option value="3695911">French Polynesia</option>
+            <option value="3695912">French Southern Ter</option>
+            <option value="3695913">Gabon</option>
+            <option value="3695914">Gambia</option>
+            <option value="3695915">Georgia</option>
+            <option value="3695916">Germany</option>
+            <option value="3695917">Ghana</option>
+            <option value="3695918">Gibraltar</option>
+            <option value="3695919">Great Britain</option>
+            <option value="3695920">Greece</option>
+            <option value="3695921">Greenland</option>
+            <option value="3695922">Grenada</option>
+            <option value="3695923">Guadeloupe</option>
+            <option value="3695924">Guam</option>
+            <option value="3695925">Guatemala</option>
+            <option value="3695926">Guernsey</option>
+            <option value="3695927">Guinea</option>
+            <option value="3695928">Guinea-Bissau</option>
+            <option value="3695929">Guyana</option>
+            <option value="3695930">Haiti</option>
+            <option value="3695931">Honduras</option>
+            <option value="3695932">Hong Kong</option>
+            <option value="3695933">Hungary</option>
+            <option value="3695934">Iceland</option>
+            <option value="3695935">India</option>
+            <option value="3695936">Indonesia</option>
+            <option value="3695937">Iran</option>
+            <option value="3695938">Iraq</option>
+            <option value="3695939">Ireland</option>
+            <option value="3695940">Isle of Man</option>
+            <option value="3695941">Israel</option>
+            <option value="3695942">Italy</option>
+            <option value="3695943">Jamaica</option>
+            <option value="3695944">Japan</option>
+            <option value="3695945">Jersey</option>
+            <option value="3695946">Jordan</option>
+            <option value="3695947">Kazakhstan</option>
+            <option value="3695948">Kenya</option>
+            <option value="3695949">Kiribati</option>
+            <option value="3695950">Korea North</option>
+            <option value="3695951">Korea South</option>
+            <option value="3695952">Kuwait</option>
+            <option value="3695953">Kyrgyzstan</option>
+            <option value="3695954">Laos</option>
+            <option value="3695955">Latvia</option>
+            <option value="3695956">Lebanon</option>
+            <option value="3695957">Lesotho</option>
+            <option value="3695958">Liberia</option>
+            <option value="3695959">Libya</option>
+            <option value="3695960">Liechtenstein</option>
+            <option value="3695961">Lithuania</option>
+            <option value="3695962">Luxembourg</option>
+            <option value="3695963">Macau</option>
+            <option value="3695964">Macedonia</option>
+            <option value="3695965">Madagascar</option>
+            <option value="3695966">Malawi</option>
+            <option value="3695967">Malaysia</option>
+            <option value="3695968">Maldives</option>
+            <option value="3695969">Mali</option>
+            <option value="3695970">Malta</option>
+            <option value="3695971">Marshall Islands</option>
+            <option value="3695972">Martinique</option>
+            <option value="3695973">Mauritania</option>
+            <option value="3695974">Mauritius</option>
+            <option value="3695975">Mayotte</option>
+            <option value="3695976">Mexico</option>
+            <option value="3695977">Midway Islands</option>
+            <option value="3695978">Moldova</option>
+            <option value="3695979">Monaco</option>
+            <option value="3695980">Mongolia</option>
+            <option value="3695981">Montenegro</option>
+            <option value="3695982">Montserrat</option>
+            <option value="3695983">Morocco</option>
+            <option value="3695984">Mozambique</option>
+            <option value="3695985">Myanmar</option>
+            <option value="3695986">Namibia</option>
+            <option value="3695987">Nauru</option>
+            <option value="3695988">Nepal</option>
+            <option value="3695989">Netherland Antilles</option>
+            <option value="3695990">Netherlands</option>
+            <option value="3695991">Nevis</option>
+            <option value="3695992">New Caledonia</option>
+            <option value="3695993">New Zealand</option>
+            <option value="3695994">Nicaragua</option>
+            <option value="3695995">Niger</option>
+            <option value="3695996">Nigeria</option>
+            <option value="3695997">Niue</option>
+            <option value="3695998">Norfolk Island</option>
+            <option value="3695999">Norway</option>
+            <option value="3696000">Oman</option>
+            <option value="3696001">Pakistan</option>
+            <option value="3696002">Palau Island</option>
+            <option value="3696003">Palestine</option>
+            <option value="3696004">Panama</option>
+            <option value="3696005">Papua New Guinea</option>
+            <option value="3696006">Paraguay</option>
+            <option value="3696007">Peru</option>
+            <option value="3696008">Philippines</option>
+            <option value="3696009">Pitcairn Island</option>
+            <option value="3696010">Poland</option>
+            <option value="3696011">Portugal</option>
+            <option value="3696012">Puerto Rico</option>
+            <option value="3696013">Qatar</option>
+            <option value="3696014">Reunion</option>
+            <option value="3696015">Romania</option>
+            <option value="3696016">Russia</option>
+            <option value="3696017">Rwanda</option>
+            <option value="3696018">Saipan</option>
+            <option value="3696019">Samoa</option>
+            <option value="3696020">Samoa American</option>
+            <option value="3696021">San Marino</option>
+            <option value="3696022">Sao Tome &amp; Principe</option>
+            <option value="3696023">Saudi Arabia</option>
+            <option value="3696024">Senegal</option>
+            <option value="3696025">Serbia</option>
+            <option value="3696026">Serbia &amp; Montenegro</option>
+            <option value="3696027">Seychelles</option>
+            <option value="3696028">Sierra Leone</option>
+            <option value="3696029">Singapore</option>
+            <option value="3696030">Slovakia</option>
+            <option value="3696031">Slovenia</option>
+            <option value="3696032">Solomon Islands</option>
+            <option value="3696033">Somalia</option>
+            <option value="3696034">South Africa</option>
+            <option value="3696035">South Sudan</option>
+            <option value="3696036">Spain</option>
+            <option value="3696037">Sri Lanka</option>
+            <option value="3696038">St Barthelemy</option>
+            <option value="3696039">St Eustatius</option>
+            <option value="3696040">St Helena</option>
+            <option value="3696041">St Kitts-Nevis</option>
+            <option value="3696042">St Lucia</option>
+            <option value="3696043">St Maarten</option>
+            <option value="3696044">St Pierre &amp; Miquelon</option>
+            <option value="3696045">St Vincent &amp; Grenadines</option>
+            <option value="3696046">Sudan</option>
+            <option value="3696047">Suriname</option>
+            <option value="3696048">Swaziland</option>
+            <option value="3696049">Sweden</option>
+            <option value="3696050">Switzerland</option>
+            <option value="3696051">Syria</option>
+            <option value="3696052">Tahiti</option>
+            <option value="3696053">Taiwan</option>
+            <option value="3696054">Tajikistan</option>
+            <option value="3696055">Tanzania</option>
+            <option value="3696056">Thailand</option>
+            <option value="3696057">Togo</option>
+            <option value="3696058">Tokelau</option>
+            <option value="3696059">Tonga</option>
+            <option value="3696060">Trinidad &amp; Tobago</option>
+            <option value="3696061">Tunisia</option>
+            <option value="3696062">Turkey</option>
+            <option value="3696063">Turkmenistan</option>
+            <option value="3696064">Turks &amp; Caicos Is</option>
+            <option value="3696065">Tuvalu</option>
+            <option value="3696066">Uganda</option>
+            <option value="3696067">Ukraine</option>
+            <option value="3696068">United Arab Emirates</option>
+            <option value="3696069">United Kingdom</option>
+            <option value="3696070">United States of America</option>
+            <option value="3696071">Uruguay</option>
+            <option value="3696072">Uzbekistan</option>
+            <option value="3696073">Vanuatu</option>
+            <option value="3696074">Vatican City State</option>
+            <option value="3696075">Venezuela</option>
+            <option value="3696076">Vietnam</option>
+            <option value="3696077">Virgin Islands (Brit)</option>
+            <option value="3696078">Virgin Islands (USA)</option>
+            <option value="3696079">Wake Island</option>
+            <option value="3696080">Wallis &amp; Futana Is</option>
+            <option value="3696081">Yemen</option>
+            <option value="3696082">Zambia</option>
+            <option value="3696083">Zimbabwe</option>
+        </select>
+        </p>
+        <p>
+            <button class="js-cm-submit-button btn btn-primary" type="submit">Subscribe</button>
+        </p>
+        </form>
+        <script type="text/javascript" src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block--system-menu-block--footer.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+
+
+              
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'region' -->
+<!-- FILE NAME SUGGESTIONS:
+   ✅ region--nowrap.html.twig
+   ▪️ region--footer-second.html.twig
+   ▪️ region.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+  
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'block' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ block--socialmedia.html.twig
+   ▪️ block--block-content--8864d2f7-ffeb-42e6-8234-095b368439cf.html.twig
+   ▪️ block--block-content--id-view--socialmedia--full.html.twig
+   ▪️ block--block-content--id--socialmedia.html.twig
+   ▪️ block--block-content--view-type--basic--full.html.twig
+   ▪️ block--block-content--type--basic.html.twig
+   ▪️ block--block-basic.html.twig
+   ▪️ block--block-content--view--full.html.twig
+   ▪️ block--bundle--basic.html.twig
+   ▪️ block--block-content.html.twig
+   ✅ block.html.twig
+-->
+<!-- 💡 BEGIN CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+<div id="block-socialmedia" class="block-content-basic block block-block-content block-block-content8864d2f7-ffeb-42e6-8234-095b368439cf">
+  
+    
+      <div class="content">
+      
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'field' -->
+<!-- FILE NAME SUGGESTIONS:
+   ▪️ field--block-content--body--basic.html.twig
+   ▪️ field--block-content--body.html.twig
+   ▪️ field--block-content--basic.html.twig
+   ▪️ field--body.html.twig
+   ✅ field--text-with-summary.html.twig
+   ▪️ field.html.twig
+-->
+<!-- BEGIN OUTPUT from 'themes/contrib/bootstrap_barrio/templates/field/field--text-with-summary.html.twig' -->
+
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul>
+	<li><a href="https://www.facebook.com/spc.int" target="_blank"><img alt="Visit SPC on Facebook" data-entity-type data-entity-uuid src="/themes/custom/bootstrap_gem/images/social/facebook.png"></a></li>
+	<li><a href="https://twitter.com/spc_cps" target="_blank"><img alt="Visit SPC on Twitter" data-entity-type data-entity-uuid src="/themes/custom/bootstrap_gem/images/social/twitter.png"></a></li>
+	<li><a href="https://www.linkedin.com/company/secretariat-of-the-pacific-community" target="_blank"><img alt="Visit SPC on Linked In" data-entity-type data-entity-uuid src="/themes/custom/bootstrap_gem/images/social/linkedin.png"></a></li>
+	<li><a href="https://www.youtube.com/user/spcnc1" target="_blank"><img alt="Visit SPC on YouTube" data-entity-type data-entity-uuid src="/themes/custom/bootstrap_gem/images/social/youtube.png"></a></li>
+</ul>
+</div>
+      
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/field/field--text-with-summary.html.twig' -->
+
+
+    </div>
+  </div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/block/block.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/region--nowrap.html.twig' -->
+
+
+              
+              
+            </div>
+                            </div>
+          </footer>
+  </div>
+</div>
+
+<!-- END CUSTOM TEMPLATE OUTPUT from 'themes/custom/bootstrap_gem/templates/layout/page.html.twig' -->
+
+
+  </div>
+
+<!-- END OUTPUT from 'core/modules/system/templates/off-canvas-page-wrapper.html.twig' -->
+
+
+    
+    <script src="/sites/default/files/js/js_q07_-zj9fca0ySaNfAEvxbJvwzRp2IueEHKF5J1TGH8.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=bootstrap_gem&amp;include=eJx9j9EOwjAIRX-orp-0sMkohpamsDn_XqeJMab6Qg6c5OYyqbp5gzoS5kiiE8jJ_CZcKCyCuwmfsUUujtTAWUtYtDhc0TRj_ODBNvrnBkucA6mS4OhAkR7jex_gAnuwtWJb2FJ8U-82Jt2wHdWKd71lELG5IZa-P8jWyX7ZqsbPn3vedZ3TK_0OhluDgg"></script>
+
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c8e50e6fbb660cb',t:'MTc3MDI1MTYwMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+
+<!-- END OUTPUT from 'themes/contrib/bootstrap_barrio/templates/layout/html.html.twig' -->
+

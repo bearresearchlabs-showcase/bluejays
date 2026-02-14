@@ -1,0 +1,20 @@
+# db_metadata schema - YAML anchors for reuse
+# Used by db_check compliance and metadata generator
+
+db_metadata: &db_meta
+  id: string          # e.g. "db-1"
+  name: string        # e.g. "Chat Messaging Platform"
+  version: string      # e.g. "1.0"
+  created_date: string # YYYY-MM-DD
+  queries_count: 30
+  schema_hash: string   # SHA-256 of schema.sql
+  queries_hash: string  # SHA-256 of queries.json
+  deliverable_files:
+    - schema.sql
+    - data.sql
+    - queries.json
+    - queries.md
+    - db-N_documentation.html
+    - db-N_deliverable.json
+  rl_ready: boolean     # For agent/model training
+  client_ready: boolean # For client sale

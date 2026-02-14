@@ -1,0 +1,443 @@
+<html lang="en">
+<!--filter applied-->
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>prd OAS accession Detail for 0176626</title>
+<meta name="DC.title" content="prd OAS accession Detail for 0176626">
+<meta name="author" content="">
+<meta name="DC.language" content="en">
+<meta name="keywords" content=", oceanography,ocean,data,archive,marine,coast,temperature,salinity,buoy,ocean climate,world ocean atlas,nitrate,phosphate,silicate,CTD,XBT,ADCP,SST,circulation,currents,sea level,altimetry,chlorophyll,plankton,ocean chemistry,ocean physics,ocean biology,ocean profiles,ocean time series,GTSPP,WOCE,JGOFS,World Data Center,alkalinity,pH,nitrite,dissolved oxygen,satellite,remote sensing,wave height,GODAR,NODC,oceanography,ocean,data,archive,marine,coast,temperature,salinity,buoy,ocean climate,world ocean atlas,nitrate,phosphate,silicate,CTD,XBT,ADCP,SST,circulation,currents,sea level,altimetry,chlorophyll,plankton,ocean chemistry,ocean physics,ocean biology,ocean profiles,ocean time series,GTSPP,WOCE,JGOFS,World Data Center,alkalinity,pH,nitrite,dissolved oxygen,satellite,remote sensing,wave height,GODAR,NODC">
+  <link rel="canonical" href="http://www.ncei.noaa.gov/">
+  <meta name="robots" content="index, follow">
+  <link rel="shortlink" href="http://www.ncei.noaa.gov/">
+  <meta name="generator" content="NCEI">
+  <link rel="shortcut icon" href="https://www.ncei.noaa.gov/themes/custom/ncei/favicon.ico">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://www.ncei.noaa.gov/node">
+  <link name="pullquote_css" rel="stylesheet" type="text/css" href="https://www.ncei.noaa.gov/modules/custom/pullquote/css/pullquote_style_1.css">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/ajax-progress.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/align.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/autocomplete-loading.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/fieldgroup.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/container-inline.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/clearfix.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/details.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/hidden.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/item-list.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/js.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/nowrap.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/position-container.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/progress.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/reset-appearance.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/resize.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/sticky-header.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/system-status-counter.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/system-status-report-counters.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/system-status-report-general-info.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/tabledrag.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/tablesort.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/system/components/tree-child.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/core/themes/stable/css/views/views.module.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/modules/contrib/addtoany/css/addtoany.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/modules/contrib/extlink/extlink.css?qyeoxa">
+  <link rel="stylesheet" media="all" href="https://www.ncei.noaa.gov/themes/custom/ncei/dist/style.css?qyeoxa">
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/archive/archive-management-system/OAS/bin/..//styles/OAS_prd.css" title="Default">  
+
+</head>
+
+<body>
+  <header role="banner">
+  <nav class="navbar navbar-expand-sm navbar-dark header-dark container-fluid flex-row">
+    <div class="container">
+      <div class="system-branding">
+        <a href="/" class="branding" rel="home">
+          <img src="https://www.ncei.noaa.gov/themes/custom/ncei/logo.svg" class="logo" id="ncei-logo" title="National Centers for Environmental Information logo" alt="National Centers for Environmental Information logo">
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        
+        <span class="mobilemenubutton">MENU</span>
+      </button>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-sm navbar-dark header-dark container-fluid">
+    <div class="container">
+          <nav role="navigation" aria-labelledby="block-ncei-main-menu-menu" id="block-ncei-main-menu" class="block block-menu navigation menu--main navbar navbar-expand-lg">
+
+          
+    
+        
+<div class="collapse navbar-collapse order-1 order-md-0" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+        <a href="/" class="nav-link is-active" data-drupal-link-system-path="&lt;front&gt;">Home</a>
+              </li>
+          <li class="nav-item">
+        <a href="/products" class="nav-link" data-drupal-link-system-path="products">Products</a>
+              </li>
+          <li class="nav-item">
+        <a href="/services" class="nav-link" data-drupal-link-system-path="node/618">Services</a>
+                                <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+        <a href="/access" class="nav-link" data-drupal-link-system-path="node/723">Access</a>
+              </li>
+          <li class="nav-item">
+        <a href="/archive" class="nav-link" data-drupal-link-system-path="node/724">Archive</a>
+              </li>
+          <li class="nav-item">
+        <a href="/certification" class="nav-link" data-drupal-link-system-path="node/194">Certification</a>
+              </li>
+          <li class="nav-item">
+        <a href="/maps-and-geospatial-products" class="nav-link" data-drupal-link-system-path="node/469">Maps</a>
+              </li>
+          <li class="nav-item">
+        <a href="/monitoring" class="nav-link" data-drupal-link-system-path="node/1510">Monitoring</a>
+              </li>
+          <li class="nav-item">
+        <a href="/services/world-data-system" class="nav-link" data-drupal-link-system-path="node/1597">World Data System</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="nav-item">
+        <a href="/resources" class="nav-link" data-drupal-link-system-path="node/627">Resources</a>
+                                <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+        <a href="/alerts" class="nav-link" data-drupal-link-system-path="alerts">Alerts</a>
+              </li>
+          <li class="nav-item">
+        <a href="/resources/education" class="nav-link" data-drupal-link-system-path="node/629">Education</a>
+              </li>
+          <li class="nav-item">
+        <a href="/resources/metadata" class="nav-link" data-drupal-link-system-path="node/630">Metadata</a>
+              </li>
+          <li class="nav-item">
+        <a href="/resources/newis" class="nav-link" data-drupal-link-system-path="node/1364">NEWIS</a>
+              </li>
+          <li class="nav-item">
+        <a href="/resources/publications-and-posters" class="nav-link" data-drupal-link-system-path="node/631">Publications</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="nav-item">
+        <a href="/news" class="nav-link" data-drupal-link-system-path="node/53">News</a>
+              </li>
+          <li class="nav-item">
+        <a href="/about" class="nav-link" data-drupal-link-system-path="node/635">About</a>
+              </li>
+          <li class="nav-item">
+        <a href="/contact" class="nav-link" data-drupal-link-system-path="node/32">Contact</a>
+              </li>
+        </ul>
+  
+</div>
+
+
+  </nav>
+
+
+
+      <div class="collapse navbar-collapse order-1">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <form id="search_form" class="form-inline ncei-search" title="Search NCEI" action="https://search.usa.gov/search" accept-charset="UTF-8" method="get">
+              <input type="hidden" name="utf8" value="✓" class="d-none">
+              <input type="hidden" name="affiliate" id="affiliate" class="d-none" value="nceinoaa">
+              <label class="d-none" for="query">Enter Search Term(s):</label>
+              <input type="text" name="query" id="query" autocomplete="off" class="usagov-search-autocomplete" placeholder="Search NCEI" tabindex="0" aria-label="Search">
+              <button class="btn btn-sm btn-search" name="commit" type="submit">
+                <img src="https://www.ncei.noaa.gov/themes/custom/ncei/images/icons/src/search.svg" class="icon-search" alt="Click to run NCEI search">
+                Search
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+        </div>
+  </nav>
+</header>
+<div class="container">
+      <div id="content">
+<div id="fringe">
+<div class="oas_info"><p>The Ocean Archive System searches our original datasets as they were submitted to us, not individual points or profiles. If you want to search and retrieve ocean profiles in a common format, or objectively analyzed fields, your better option may be to use one of our project applications. See: <a href="http://www.ncei.noaa.gov/access">Access Data</a></p></div>
+<div class="title">
+<h5>OAS accession Detail for 0176626</h5>
+</div>
+<div id="controlbar">
+<ul>
+<li><a href="/archive/archive-management-system/OAS/bin/prd/jquery/accession_status/details/176626">Status</a></li>
+<li><a href="/archive/archive-management-system/OAS/bin/prd/jquery/accession/versions/176626">Versions</a></li>
+<li><a href="/archive/archive-management-system/OAS/bin/prd/jquery/accession/history/176626">History</a></li>
+<li id="hilite"><a href="/archive/archive-management-system/OAS/bin/prd/jquery/accession/download/176626">Download</a></li>
+</ul>
+</div>
+<div class="oas_container">
+<table><tr>
+<td><a href="/archive/archive-management-system/OAS/bin/prd/jquery/accession/details/176626/5">&lt;&lt; previous</a></td>
+<td><strong>|revision: 6</strong></td>
+</tr></table>
+<div id="reports">
+  <ul>
+  </ul>
+</div>
+<div class="record_details">
+<table class="record_details">
+      <tr>
+<th class="default">accessions_id:</th>
+<td class="default_dark">
+<a href="/archive/archive-management-system/OAS/bin/prd/jquery/accession/details/176626">0176626</a> | <a href="/data/oceans/archive/arc0125/0176626/">archive</a>
+</td>
+</tr>
+      <tr>
+<th class="default">Title:</th>
+<td class="default">A comprehensive global oceanic dataset of discrete measurements of helium isotope and tritium during the hydrographic cruises on various ships from 1952-10-21 to 2016-01-22 (NCEI Accession 0176626)</td>
+</tr>
+      <tr>
+<th class="default">Abstract:</th>
+<td class="default_dark">This dataset consists of global oceanic database of tritium and helium isotope measurements made by numerous researchers and laboratories over a period exceeding 60 years: from 1952-10-21 to 2016-01-22 in the Pacific Ocean, Atlantic Ocean, Indian Ocean, Southern Ocean, Arctic Ocean, Mediterranean Sea, Baltic Sea, Black Sea. Tritium and helium isotope data provide key information on ocean circulation, ventilation, and mixing, as well as the rates of biogeochemical processes, and deep-ocean hydrothermal processes. The dataset includes approximately 60,000 valid tritium measurements, 63,000 valid helium isotope determinations, 57,000 dissolved helium concentrations, and 34,000 dissolved neon concentrations. Some quality control has been applied in that questionable data have been flagged and clearly compromised data excluded entirely. Appropriate metadata has been included: geographic location, date, and sample depth. When available, water temperature, salinity, and dissolved oxygen were included. Data quality flags and data originator information (including methodology) are also included.</td>
+</tr>
+      <tr>
+<th class="default">Date received:</th>
+<td class="default">20181005</td>
+</tr>
+      <tr>
+<th class="default">Start date:</th>
+<td class="default_dark">19521021</td>
+</tr>
+      <tr>
+<th class="default">End date:</th>
+<td class="default">20160122</td>
+</tr>
+      <tr>
+<th class="default">Seanames:</th>
+<td class="default_dark"></td>
+</tr>
+      <tr>
+<th class="default">West boundary:</th>
+<td class="default">-179.98</td>
+</tr>
+      <tr>
+<th class="default">East boundary:</th>
+<td class="default_dark">180</td>
+</tr>
+      <tr>
+<th class="default">North boundary:</th>
+<td class="default">90</td>
+</tr>
+      <tr>
+<th class="default">South boundary:</th>
+<td class="default_dark">-82.38</td>
+</tr>
+      <tr>
+<th class="default">Observation types:</th>
+<td class="default"></td>
+</tr>
+      <tr>
+<th class="default">Instrument types:</th>
+<td class="default_dark"></td>
+</tr>
+      <tr>
+<th class="default">Datatypes:</th>
+<td class="default"></td>
+</tr>
+      <tr>
+<th class="default">Submitter:</th>
+<td class="default_dark"><a href="/archive/archive-management-system/OAS/bin/prd/jquery/person/details/487">Jenkins, Dr.  William J.</a></td>
+</tr>
+      <tr>
+<th class="default">Submitting institution:</th>
+<td class="default"><a href="/archive/archive-management-system/OAS/bin/prd/jquery/institution/details/742" title="Woods Hole Oceanographic Institution">Woods Hole Oceanographic Institution</a></td>
+</tr>
+      <tr>
+<th class="default">Collecting institutions:</th>
+<td class="default_dark"></td>
+</tr>
+      <tr>
+<th class="default">Contributing projects:</th>
+<td class="default"></td>
+</tr>
+      <tr>
+<th class="default">Platforms:</th>
+<td class="default_dark"></td>
+</tr>
+      <tr>
+<th class="default">Number of observations:</th>
+<td class="default"></td>
+</tr>
+      <tr>
+<th class="default">Supplementary information:</th>
+<td class="default_dark">In this accession, NCEI has archived multiple versions of these data. The latest (and best) version of these data has the largest version number.</td>
+</tr>
+      <tr>
+<th class="default">Availability date:</th>
+<td class="default"></td>
+</tr>
+      <tr>
+<th class="default">Metadata version:</th>
+<td class="default_dark">6</td>
+</tr>
+      <tr>
+<th class="default">Keydate:</th>
+<td class="default">2018-10-05 14:58:41+00</td>
+</tr>
+      <tr>
+<th class="default">Editdate:</th>
+<td class="default_dark">2022-01-17 19:21:11+00</td>
+</tr>
+    </table>
+    </div>
+</div>
+</div>
+</div>
+</div>
+  <footer class="container-fluid footer">
+  <div class="row">
+
+        <div class="container-fluid block--return-to-top return-to-top">
+      <div class="container">
+        <a href="#">Return to top</a>
+      </div>
+    </div>
+
+    <div class="container block" id="footerlinks-container">
+
+            <div class="row">
+        <div class="col-lg-12">
+          <div class="block" id="block-hot-fix-launch"><div class="text-long"><style type="text/css">#block-ncei-page-title{ margin:32px 0px; }
+img{ max-width:100%; }
+</style></div></div>
+<div class="block" id="block-hackcsstohidelinkfarmatbottomofhomepage"><div class="text-long"><style type="text/css">.block-frontpage--link-farm{
+display:none !important;
+}
+</style></div></div>
+
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+                    <a href="/" alt="Home" title="Home" rel="home" class="navbar-brand"><img src="https://www.ncei.noaa.gov/themes/custom/ncei/components/images/logo/logo.svg" alt="National Centers for Environmental Information" title="National Centers for Environmental Information logo" class="logo logo-footer"></a>
+        </div>
+
+                <div class="col-lg-3 col-sm-12">
+                <nav role="navigation" aria-labelledby="block-followus-menu" id="block-followus" class="block block-menu menu--footer-menu-1">
+  
+  <h2 id="block-followus-menu">Follow Us</h2>
+  
+          <ul class="nav list-unstyled flex-column menu--footer-menu-1 menu--footer-menu">
+
+          <li class="menu-item nav-item">
+      <a href="https://www.facebook.com/NOAANCEI/" class="facebook" title="Link to @NOAANCEI Facebook">@NOAANCEI</a>
+    </li>
+          <li class="menu-item nav-item">
+      <a href="https://www.instagram.com/noaadata/" class="instagram" title="Link to @NOAAData Instagram">@NOAAData</a>
+    </li>
+          <li class="menu-item nav-item">
+      <a href="https://twitter.com/NOAANCEIocngeo" class="twitter" title="Link to Oceans &amp; Geophysics Twitter">Oceans &amp; Geophysics</a>
+    </li>
+          <li class="menu-item nav-item">
+      <a href="https://twitter.com/NOAANCEIclimate" class="twitter" title="Link to Weather &amp; Climate Twitter">Weather &amp; Climate</a>
+    </li>
+          <li class="menu-item nav-item">
+      <a href="/news.xml" class="rss" title="Link to subscribe to NCEI News Feed" data-drupal-link-system-path="news.xml">News Feed</a>
+    </li>
+  
+  </ul>
+
+
+  </nav>
+
+  
+        </div>
+        
+                <div class="col-lg-3 col-sm-12">
+                <nav role="navigation" aria-labelledby="block-contactus-menu" id="block-contactus" class="block block-menu menu--footer-menu-2">
+  
+  <h2 id="block-contactus-menu">Contact Us</h2>
+  
+          <ul class="nav list-unstyled flex-column menu--footer-menu-2 menu--footer-menu menu--contact-us">
+                <li class="menu-item nav-item">
+        <a href="mailto:ncei.info@noaa.gov" class="nav-link" title="Contact NCEI NOAA via email">Email: ncei.info@noaa.gov</a>
+      </li>
+                <li class="menu-item nav-item">
+        <a href="tel:18282714800" class="nav-link" title="Call NCEI NOAA 828-271-4800">Phone: (828) 271-4800</a>
+      </li>
+      </ul>
+
+  </nav>
+
+  
+        </div>
+        
+      </div>    </div>  </div>
+    <div class="block block-footer-nesdis-links" id="footer-nesdis-links-container">
+    <nav role="navigation" aria-labelledby="" id="block-footernesdislinks" class="block block-menu menu--footer-nesdis-links">
+      <div class="container">
+  <div class="col-lg-12">
+    <ul class="nav list-inline menu--footer-nesdis-links">
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="/sitemap" class="nav-link" data-drupal-link-system-path="node/400">Sitemap</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="/privacy" class="nav-link" data-drupal-link-system-path="node/106">Privacy Policy</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.noaa.gov/foia-freedom-of-information-act" class="nav-link">Freedom of Information Act</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.noaa.gov/organization/information-technology/policy-oversight/information-quality" class="nav-link">Information Quality</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.noaa.gov/disclaimer.html" class="nav-link">Disclaimer</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeYcbKOaK50do35QbgTprXAVSnBDC00eY22HPPA2aRdkbhujg/viewform" class="nav-link">Take Our Survey</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.commerce.gov/" class="nav-link">Department of Commerce</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.noaa.gov/" class="nav-link">NOAA</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.nesdis.noaa.gov/" class="nav-link">NESDIS</a>
+        </li>
+          </ul>
+  </div>
+</div>
+
+  </nav>
+
+
+  </div>
+
+
+</footer>
+  <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"node","currentPathIsAdmin":false,"isFront":true,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"google_analytics":{"trackOutbound":true,"trackMailto":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip","trackDomainMode":1},"data":{"extlink":{"extTarget":true,"extTargetNoOverride":false,"extNofollow":false,"extNoreferrer":false,"extFollowNoOverride":false,"extClass":"ext","extLabel":"(link is external)","extImgClass":false,"extSubdomains":true,"extExclude":"^(https?:\\\/\\\/)?[\\w\\.]+\\.gov","extInclude":"","extCssExclude":"","extCssExplicit":"","extAlert":true,"extAlertText":"You are exiting the NCEI website\r\n\r\nThank you for visiting our site. We have provided a link because it has information that may interest you. NCEI does not endorse the views expressed, the information presented, or any commercial products that may be advertised or available on that site.","mailtoClass":"mailto","mailtoLabel":"(link sends email)","extUseFontAwesome":false,"extIconPlacement":"append","extFaLinkClasses":"fa fa-external-link","extFaMailtoClasses":"fa fa-envelope-o","whitelistedDomains":null}},"user":{"uid":0,"permissionsHash":"58689157aeca8cc61ae96b2ce4a201358fd27f24905a8ee13a3e78f069604fe8"}}</script>
+  <script src="https://www.ncei.noaa.gov/core/assets/vendor/jquery/jquery.min.js?v=3.5.1"></script>
+  <script src="https://www.ncei.noaa.gov/core/assets/vendor/jquery-once/jquery.once.min.js?v=2.2.3"></script>
+  <script src="https://www.ncei.noaa.gov/core/misc/drupalSettingsLoader.js?v=8.9.18"></script>
+  <script src="https://www.ncei.noaa.gov/core/misc/drupal.js?v=8.9.18"></script>
+  <script src="https://www.ncei.noaa.gov/core/misc/drupal.init.js?v=8.9.18"></script>
+  <script src="https://static.addtoany.com/menu/page.js" async=""></script>
+  <script src="https://www.ncei.noaa.gov/modules/contrib/addtoany/js/addtoany.js?v=8.9.18"></script>
+  <script src="https://www.ncei.noaa.gov/modules/contrib/google_analytics/js/google_analytics.js?v=8.9.18"></script>
+  <script src="https://www.ncei.noaa.gov/modules/custom/pullquote/js/pullquote.admin.js?v=1.x"></script>
+  <script src="https://www.ncei.noaa.gov/modules/custom/pullquote/js/pullquote.styles.js?v=1.x"></script>
+  <script src="https://www.ncei.noaa.gov/themes/custom/ncei/node_modules/bootstrap/dist/js/bootstrap.min.js?qyeoxa"></script>
+  <script src="https://www.ncei.noaa.gov/themes/custom/ncei/public/js/ncei.js?qyeoxa"></script>
+  <script src="https://www.ncei.noaa.gov/modules/contrib/extlink/extlink.js?v=8.9.18"></script>
+  <script id="_fed_an_ua_tag" type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC%26subagency=NOAA"></script>
+<script id="_fed_an_ua_tag" type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&subagency=NOAA"></script></body>
+</html>

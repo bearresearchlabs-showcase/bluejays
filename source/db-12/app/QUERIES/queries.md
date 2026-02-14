@@ -1,0 +1,6303 @@
+# Database 12 - Credit Card - Extremely Complex SQL Queries
+
+# Database Schema: DB12
+
+**Description:** Credit Card Intelligence and Rewards Optimization System
+**Created:** 2026-02-04
+
+## Overview
+
+This database contains credit card data including card information, rewards structures, bank offers, merchant data, user profiles, spending transactions, CFPB consumer complaints, Federal Reserve credit data, and rewards optimization analytics. The database supports CardPointers-style features for maximizing credit card rewards and optimizing spending.
+
+## Tables
+
+### `credit_card_issuers`
+Stores information about credit card issuing banks and financial institutions
+
+### `credit_cards`
+Stores comprehensive information about individual credit card products
+
+### `rewards_categories`
+Defines spending categories for rewards multipliers (dining, gas, groceries, etc.)
+
+### `card_rewards_structure`
+Maps credit cards to rewards categories with multipliers and limits
+
+### `bank_offers`
+Stores targeted offers from banks (Amex Offers, Chase Offers, Bank of America, etc.)
+
+### `card_offer_eligibility`
+Maps which cards are eligible for specific bank offers
+
+### `merchants`
+Stores merchant information for location-based card recommendations
+
+### `merchant_locations`
+Stores physical locations of merchants for location-based recommendations
+
+### `user_profiles`
+Stores user account information and preferences
+
+### `user_cards`
+Tracks which credit cards users own
+
+### `spending_transactions`
+Tracks user spending transactions for rewards optimization
+
+### `card_recommendations`
+Stores real-time card recommendations for merchants and categories
+
+### `cfpb_consumer_complaints`
+Stores consumer complaints from CFPB Consumer Complaint Database
+
+### `federal_reserve_credit_data`
+Stores consumer credit statistics from Federal Reserve G.19 release
+
+### `rewards_optimization_analytics`
+Pre-computed analytics for rewards optimization queries
+
+---
+
+This file contains 30 extremely complex SQL queries focused on business-oriented use cases for credit card and rewards optimization. All queries are designed to work across PostgreSQL.
+
+## Query 1: Multi-Dimensional Rewards Optimization Analysis with Card Portfolio Comparison and Opportunity Cost Calculation
+
+**Description:** Analyzes user spending patterns across multiple dimensions (categories, merchants, time periods) to identify optimal card usage, calculate potential rewards lost from suboptimal card selection, and compare portfolio performance against optimal strategy. Uses recursive CTEs for hierarchical category analysis, window functions for temporal trends, and complex aggregations for multi-card portfolio optimization.
+
+**Use Case:** CardPointers Best Card Wizard - Identify which card to use for maximum rewards on every purchase category, merchant, and time period with opportunity cost analysis.
+
+**Business Value:** Provides users with personalized card recommendations showing potential annual savings of $750+ by optimizing card usage across all spending categories and merchants.
+
+**Purpose:** Maximize credit card rewards by identifying optimal card selection for each transaction type, calculating opportunity costs of suboptimal choices, and providing actionable recommendations.
+
+**Complexity:** Deep nested CTEs (8+ levels), recursive CTEs for category hierarchies, complex window functions with multiple frame clauses, correlated subqueries, percentile calculations, multi-dimensional aggregations, opportunity cost calculations
+
+**Expected Output:** Comprehensive report showing optimal card for each category/merchant combination, potential rewards lost from current usage, portfolio performance metrics, and ranked recommendations by savings potential.
+
+```sql
+WITH user_spending_by_category AS (
+    -- First CTE: Aggregate user spending by category with temporal analysis
+    SELECT
+        st.user_id,
+        st.category_id,
+        rc.category_name,
+        rc.category_code,
+        rc.parent_category_id,
+        DATE_TRUNC('month', st.transaction_date) AS spending_month,
+        DATE_TRUNC('quarter', st.transaction_date) AS spending_quarter,
+        DATE_TRUNC('year', st.transaction_date) AS spending_year,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        AVG(st.transaction_amount) AS avg_transaction_amount,
+        SUM(st.rewards_earned) AS total_rewards_earned,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier_applied,
+        COUNT(DISTINCT st.card_used_id) AS cards_used_count,
+        COUNT(DISTINCT st.merchant_id) AS merchants_count
+    FROM spending_transactions st
+    INNER JOIN rewards_categories rc ON st.category_id = rc.category_id
+    WHERE st.user_id = 'user_001'
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY
+        st.user_id,
+        st.category_id,
+        rc.category_name,
+        rc.category_code,
+        rc.parent_category_id,
+        DATE_TRUNC('month', st.transaction_date),
+        DATE_TRUNC('quarter', st.transaction_date),
+        DATE_TRUNC('year', st.transaction_date)
+),
+category_hierarchy_expansion AS (
+    -- Second CTE: Expand category hierarchy using recursive CTE
+    WITH RECURSIVE category_tree AS (
+        SELECT
+            category_id,
+            category_name,
+            category_code,
+            parent_category_id,
+            0 AS hierarchy_level,
+            category_id AS root_category_id,
+            category_name AS root_category_name
+        FROM rewards_categories
+        WHERE parent_category_id IS NULL
+        
+        UNION ALL
+        
+        SELECT
+            rc.category_id,
+            rc.category_name,
+            rc.category_code,
+            rc.parent_category_id,
+            ct.hierarchy_level + 1,
+            ct.root_category_id,
+            ct.root_category_name
+        FROM rewards_categories rc
+        INNER JOIN category_tree ct ON rc.parent_category_id = ct.category_id
+    )
+    SELECT
+        ct.category_id,
+        ct.category_name,
+        ct.category_code,
+        ct.hierarchy_level,
+        ct.root_category_id,
+        ct.root_category_name,
+        usc.user_id,
+        usc.spending_month,
+        usc.spending_quarter,
+        usc.spending_year,
+        COALESCE(usc.total_spending, 0) AS total_spending,
+        COALESCE(usc.total_rewards_earned, 0) AS total_rewards_earned,
+        COALESCE(usc.transaction_count, 0) AS transaction_count
+    FROM category_tree ct
+    LEFT JOIN user_spending_by_category usc ON ct.category_id = usc.category_id
+),
+available_cards_for_user AS (
+    -- Third CTE: Get all cards available to user with their rewards structures
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        crs.category_id,
+        crs.rewards_multiplier,
+        crs.rewards_type,
+        crs.points_per_dollar,
+        crs.cash_back_percentage,
+        crs.annual_spend_limit,
+        crs.quarterly_spend_limit,
+        crs.monthly_spend_limit,
+        crs.effective_start_date,
+        crs.effective_end_date,
+        crs.is_active AS reward_structure_active
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    LEFT JOIN card_rewards_structure crs ON cc.card_id = crs.card_id
+        AND crs.is_active = TRUE
+        AND (crs.effective_end_date IS NULL OR crs.effective_end_date >= CURRENT_DATE)
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+optimal_card_per_category AS (
+    -- Fourth CTE: Calculate optimal card for each category based on rewards multipliers
+    SELECT
+        che.category_id,
+        che.category_name,
+        che.category_code,
+        che.root_category_id,
+        che.root_category_name,
+        acfu.card_id,
+        acfu.card_name,
+        acfu.issuer_name,
+        acfu.rewards_multiplier,
+        acfu.rewards_type,
+        acfu.points_per_dollar,
+        acfu.cash_back_percentage,
+        acfu.annual_fee,
+        che.total_spending,
+        -- Calculate expected rewards for this card-category combination
+        CASE
+            WHEN acfu.rewards_type = 'Points' AND acfu.points_per_dollar IS NOT NULL THEN
+                che.total_spending * acfu.points_per_dollar * acfu.rewards_multiplier
+            WHEN acfu.rewards_type = 'Cash Back' AND acfu.cash_back_percentage IS NOT NULL THEN
+                che.total_spending * (acfu.cash_back_percentage / 100.0) * acfu.rewards_multiplier
+            WHEN acfu.rewards_type = 'Points' AND acfu.rewards_multiplier IS NOT NULL THEN
+                che.total_spending * acfu.rewards_multiplier
+            ELSE 0
+        END AS expected_rewards,
+        -- Check if spending limit applies
+        CASE
+            WHEN acfu.annual_spend_limit IS NOT NULL AND che.total_spending > acfu.annual_spend_limit THEN
+                acfu.annual_spend_limit
+            ELSE che.total_spending
+        END AS applicable_spending
+    FROM category_hierarchy_expansion che
+    INNER JOIN available_cards_for_user acfu ON che.category_id = acfu.category_id
+    WHERE che.total_spending > 0
+        AND acfu.reward_structure_active = TRUE
+),
+ranked_cards_by_rewards AS (
+    -- Fifth CTE: Rank cards by expected rewards for each category
+    SELECT
+        occ.category_id,
+        occ.category_name,
+        occ.category_code,
+        occ.root_category_id,
+        occ.root_category_name,
+        occ.card_id,
+        occ.card_name,
+        occ.issuer_name,
+        occ.rewards_multiplier,
+        occ.rewards_type,
+        occ.annual_fee,
+        occ.total_spending,
+        occ.expected_rewards,
+        occ.applicable_spending,
+        ROW_NUMBER() OVER (
+            PARTITION BY occ.category_id
+            ORDER BY occ.expected_rewards DESC, occ.annual_fee ASC
+        ) AS card_rank,
+        MAX(occ.expected_rewards) OVER (PARTITION BY occ.category_id) AS max_rewards_for_category,
+        SUM(occ.expected_rewards) OVER (PARTITION BY occ.category_id) AS total_rewards_all_cards
+    FROM optimal_card_per_category occ
+),
+current_card_performance AS (
+    -- Sixth CTE: Analyze current card usage performance
+    SELECT
+        st.category_id,
+        rc.category_name,
+        rc.category_code,
+        st.card_used_id,
+        cc.card_name AS card_used_name,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards_earned,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier_used,
+        SUM(st.potential_rewards_lost) AS total_potential_rewards_lost
+    FROM spending_transactions st
+    INNER JOIN rewards_categories rc ON st.category_id = rc.category_id
+    INNER JOIN credit_cards cc ON st.card_used_id = cc.card_id
+    WHERE st.user_id = 'user_001'
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY
+        st.category_id,
+        rc.category_name,
+        rc.category_code,
+        st.card_used_id,
+        cc.card_name
+),
+rewards_opportunity_analysis AS (
+    -- Seventh CTE: Calculate opportunity cost and optimization potential
+    SELECT
+        rcb.category_id,
+        rcb.category_name,
+        rcb.category_code,
+        rcb.root_category_id,
+        rcb.root_category_name,
+        rcb.card_id AS optimal_card_id,
+        rcb.card_name AS optimal_card_name,
+        rcb.issuer_name AS optimal_issuer_name,
+        rcb.rewards_multiplier AS optimal_multiplier,
+        rcb.rewards_type AS optimal_rewards_type,
+        rcb.annual_fee AS optimal_card_annual_fee,
+        rcb.total_spending,
+        rcb.expected_rewards AS optimal_rewards,
+        rcb.card_rank,
+        ccp.card_used_id AS current_card_id,
+        ccp.card_used_name AS current_card_name,
+        COALESCE(ccp.total_rewards_earned, 0) AS current_rewards_earned,
+        COALESCE(ccp.avg_multiplier_used, 0) AS current_avg_multiplier,
+        -- Calculate opportunity cost
+        rcb.expected_rewards - COALESCE(ccp.total_rewards_earned, 0) AS opportunity_cost,
+        -- Calculate optimization potential percentage
+        CASE
+            WHEN rcb.expected_rewards > 0 THEN
+                ((rcb.expected_rewards - COALESCE(ccp.total_rewards_earned, 0)) / rcb.expected_rewards) * 100
+            ELSE 0
+        END AS optimization_potential_pct,
+        -- Calculate annualized opportunity cost
+        CASE
+            WHEN rcb.total_spending > 0 THEN
+                ((rcb.expected_rewards - COALESCE(ccp.total_rewards_earned, 0)) / rcb.total_spending) * 
+                (SELECT SUM(total_spending) FROM category_hierarchy_expansion WHERE user_id = 'user_001')
+            ELSE 0
+        END AS annualized_opportunity_cost
+    FROM ranked_cards_by_rewards rcb
+    LEFT JOIN current_card_performance ccp ON rcb.category_id = ccp.category_id
+    WHERE rcb.card_rank = 1  -- Only optimal card per category
+),
+portfolio_optimization_summary AS (
+    -- Eighth CTE: Aggregate portfolio-level optimization metrics
+    SELECT
+        'user_001' AS user_id,
+        COUNT(DISTINCT roa.category_id) AS categories_analyzed,
+        COUNT(DISTINCT roa.optimal_card_id) AS optimal_cards_needed,
+        COUNT(DISTINCT roa.current_card_id) AS current_cards_used,
+        SUM(roa.total_spending) AS total_portfolio_spending,
+        SUM(roa.optimal_rewards) AS total_optimal_rewards,
+        SUM(roa.current_rewards_earned) AS total_current_rewards,
+        SUM(roa.opportunity_cost) AS total_opportunity_cost,
+        AVG(roa.optimization_potential_pct) AS avg_optimization_potential_pct,
+        SUM(roa.annualized_opportunity_cost) AS projected_annual_opportunity_cost,
+        -- Calculate portfolio efficiency score
+        CASE
+            WHEN SUM(roa.optimal_rewards) > 0 THEN
+                (SUM(roa.current_rewards_earned) / SUM(roa.optimal_rewards)) * 100
+            ELSE 0
+        END AS portfolio_efficiency_score,
+        -- Calculate rewards per dollar spent
+        CASE
+            WHEN SUM(roa.total_spending) > 0 THEN
+                SUM(roa.current_rewards_earned) / SUM(roa.total_spending)
+            ELSE 0
+        END AS current_rewards_per_dollar,
+        CASE
+            WHEN SUM(roa.total_spending) > 0 THEN
+                SUM(roa.optimal_rewards) / SUM(roa.total_spending)
+            ELSE 0
+        END AS optimal_rewards_per_dollar
+    FROM rewards_opportunity_analysis roa
+)
+SELECT
+    pos.user_id,
+    pos.categories_analyzed,
+    pos.optimal_cards_needed,
+    pos.current_cards_used,
+    ROUND(CAST(pos.total_portfolio_spending AS NUMERIC), 2) AS total_portfolio_spending,
+    ROUND(CAST(pos.total_optimal_rewards AS NUMERIC), 2) AS total_optimal_rewards,
+    ROUND(CAST(pos.total_current_rewards AS NUMERIC), 2) AS total_current_rewards,
+    ROUND(CAST(pos.total_opportunity_cost AS NUMERIC), 2) AS total_opportunity_cost,
+    ROUND(CAST(pos.avg_optimization_potential_pct AS NUMERIC), 2) AS avg_optimization_potential_pct,
+    ROUND(CAST(pos.projected_annual_opportunity_cost AS NUMERIC), 2) AS projected_annual_opportunity_cost,
+    ROUND(CAST(pos.portfolio_efficiency_score AS NUMERIC), 2) AS portfolio_efficiency_score,
+    ROUND(CAST(pos.current_rewards_per_dollar AS NUMERIC), 4) AS current_rewards_per_dollar,
+    ROUND(CAST(pos.optimal_rewards_per_dollar AS NUMERIC), 4) AS optimal_rewards_per_dollar,
+    -- Category-level recommendations
+    roa.category_name,
+    roa.category_code,
+    roa.optimal_card_name,
+    roa.optimal_issuer_name,
+    roa.optimal_multiplier,
+    roa.current_card_name,
+    ROUND(CAST(roa.total_spending AS NUMERIC), 2) AS category_spending,
+    ROUND(CAST(roa.optimal_rewards AS NUMERIC), 2) AS category_optimal_rewards,
+    ROUND(CAST(roa.current_rewards_earned AS NUMERIC), 2) AS category_current_rewards,
+    ROUND(CAST(roa.opportunity_cost AS NUMERIC), 2) AS category_opportunity_cost,
+    ROUND(CAST(roa.optimization_potential_pct AS NUMERIC), 2) AS category_optimization_pct
+FROM portfolio_optimization_summary pos
+CROSS JOIN rewards_opportunity_analysis roa
+ORDER BY roa.opportunity_cost DESC, roa.total_spending DESC;
+```
+
+## Query 2: Location-Based Card Recommendations with Geospatial Merchant Analysis and Proximity Optimization
+
+**Description:** Analyzes user location and nearby merchants to provide real-time card recommendations using geospatial calculations, merchant category matching, and distance-based optimization. Uses spatial joins, proximity calculations, and multi-dimensional scoring to identify optimal cards for nearby merchants.
+
+**Use Case:** CardPointers Location-Based Recommendations - Show which card to use at nearby stores using AR camera or location services with real-time merchant matching.
+
+**Business Value:** Provides location-aware card recommendations showing optimal card for each nearby merchant, enabling users to maximize rewards at physical locations they visit.
+
+**Purpose:** Maximize rewards by providing real-time, location-specific card recommendations based on user's current location and nearby merchant data.
+
+**Complexity:** Geospatial operations (ST_DISTANCE, ST_WITHIN), multiple CTEs (7+ levels), window functions, proximity scoring, merchant category matching, distance-weighted recommendations
+
+**Expected Output:** Ranked list of nearby merchants with optimal card recommendations, expected rewards, distance, and activation status of applicable offers.
+
+```sql
+WITH user_location_context AS (
+    -- First CTE: Get user's current location and preferences
+    SELECT
+        up.user_id,
+        up.location_latitude,
+        up.location_longitude,
+        up.location_geom,
+        up.preferred_currency,
+        up.subscription_tier,
+        -- Calculate search radius based on subscription tier
+        CASE
+            WHEN up.subscription_tier IN ('Plus', 'Premium') THEN 5000  -- 5km radius
+            ELSE 2000  -- 2km radius for free tier
+        END AS search_radius_meters
+    FROM user_profiles up
+    WHERE up.user_id = 'user_001'
+        AND up.location_latitude IS NOT NULL
+        AND up.location_longitude IS NOT NULL
+),
+nearby_merchants AS (
+    -- Second CTE: Find merchants within user's search radius
+    SELECT
+        ml.location_id,
+        ml.merchant_id,
+        m.merchant_name,
+        m.merchant_category,
+        m.merchant_category_code,
+        ml.location_name,
+        ml.address_line1,
+        ml.city,
+        ml.state_code,
+        ml.latitude,
+        ml.longitude,
+        ml.location_geom,
+        ulc.user_id,
+        ulc.location_latitude AS user_latitude,
+        ulc.location_longitude AS user_longitude,
+        ulc.location_geom AS user_geom,
+        -- Calculate distance in meters
+        CASE
+            WHEN ml.location_geom IS NOT NULL AND ulc.location_geom IS NOT NULL THEN
+                ST_DISTANCE(ml.location_geom, ulc.location_geom)
+            WHEN ml.latitude IS NOT NULL AND ml.longitude IS NOT NULL THEN
+                -- Haversine formula fallback
+                6371000 * 2 * ASIN(
+                    SQRT(
+                        POWER(SIN(RADIANS((ml.latitude - ulc.location_latitude) / 2)), 2) +
+                        COS(RADIANS(ulc.location_latitude)) *
+                        COS(RADIANS(ml.latitude)) *
+                        POWER(SIN(RADIANS((ml.longitude - ulc.location_longitude) / 2)), 2)
+                    )
+                )
+            ELSE NULL
+        END AS distance_meters,
+        ml.is_active
+    FROM merchant_locations ml
+    INNER JOIN merchants m ON ml.merchant_id = m.merchant_id
+    CROSS JOIN user_location_context ulc
+    WHERE ml.is_active = TRUE
+        AND (
+            (ml.location_geom IS NOT NULL AND ulc.location_geom IS NOT NULL AND
+             ST_DISTANCE(ml.location_geom, ulc.location_geom) <= ulc.search_radius_meters)
+            OR
+            (ml.latitude IS NOT NULL AND ml.longitude IS NOT NULL AND
+             -- Haversine distance check
+             6371000 * 2 * ASIN(
+                 SQRT(
+                     POWER(SIN(RADIANS((ml.latitude - ulc.location_latitude) / 2)), 2) +
+                     COS(RADIANS(ulc.location_latitude)) *
+                     COS(RADIANS(ml.latitude)) *
+                     POWER(SIN(RADIANS((ml.longitude - ulc.location_longitude) / 2)), 2)
+                 )
+             ) <= ulc.search_radius_meters)
+        )
+),
+merchant_category_mapping AS (
+    -- Third CTE: Map merchant categories to rewards categories
+    SELECT DISTINCT
+        nm.location_id,
+        nm.merchant_id,
+        nm.merchant_name,
+        nm.merchant_category,
+        nm.merchant_category_code,
+        nm.distance_meters,
+        rc.category_id,
+        rc.category_name,
+        rc.category_code,
+        rc.is_bonus_category,
+        rc.typical_multiplier
+    FROM nearby_merchants nm
+    LEFT JOIN rewards_categories rc ON (
+        -- Match by category name similarity or MCC code
+        LOWER(nm.merchant_category) LIKE '%' || LOWER(rc.category_name) || '%'
+        OR nm.merchant_category_code = ANY(
+            STRING_TO_ARRAY(rc.merchant_category_codes, ',')
+        )
+    )
+    WHERE rc.category_id IS NOT NULL
+),
+user_available_cards AS (
+    -- Fourth CTE: Get user's active cards with rewards structures
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        crs.category_id,
+        crs.rewards_multiplier,
+        crs.rewards_type,
+        crs.points_per_dollar,
+        crs.cash_back_percentage,
+        crs.annual_spend_limit,
+        crs.quarterly_spend_limit,
+        crs.monthly_spend_limit,
+        crs.effective_start_date,
+        crs.effective_end_date,
+        crs.is_active AS reward_active
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    LEFT JOIN card_rewards_structure crs ON cc.card_id = crs.card_id
+        AND crs.is_active = TRUE
+        AND (crs.effective_end_date IS NULL OR crs.effective_end_date >= CURRENT_DATE)
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+applicable_offers AS (
+    -- Fifth CTE: Find applicable bank offers for nearby merchants
+    SELECT
+        mcm.location_id,
+        mcm.merchant_id,
+        mcm.merchant_name,
+        mcm.category_id,
+        bo.offer_id,
+        bo.offer_name,
+        bo.offer_description,
+        bo.discount_amount,
+        bo.discount_percentage,
+        bo.minimum_spend,
+        bo.maximum_discount,
+        bo.points_bonus_multiplier,
+        bo.offer_start_date,
+        bo.offer_end_date,
+        coe.card_id,
+        coe.eligibility_status,
+        coe.activation_status,
+        CASE
+            WHEN CURRENT_DATE BETWEEN bo.offer_start_date AND bo.offer_end_date THEN TRUE
+            ELSE FALSE
+        END AS offer_currently_active
+    FROM merchant_category_mapping mcm
+    INNER JOIN bank_offers bo ON (
+        LOWER(bo.merchant_name) LIKE '%' || LOWER(mcm.merchant_name) || '%'
+        OR bo.merchant_category = mcm.merchant_category
+    )
+    INNER JOIN card_offer_eligibility coe ON bo.offer_id = coe.offer_id
+    WHERE CURRENT_DATE BETWEEN bo.offer_start_date AND bo.offer_end_date
+        AND coe.eligibility_status IN ('Eligible', 'Targeted')
+),
+card_recommendation_scoring AS (
+    -- Sixth CTE: Score cards for each merchant location
+    SELECT
+        mcm.location_id,
+        mcm.merchant_id,
+        mcm.merchant_name,
+        mcm.merchant_category,
+        mcm.distance_meters,
+        mcm.category_id,
+        mcm.category_name,
+        mcm.category_code,
+        uac.card_id,
+        uac.card_name,
+        uac.issuer_name,
+        uac.rewards_multiplier,
+        uac.rewards_type,
+        uac.points_per_dollar,
+        uac.cash_back_percentage,
+        uac.annual_fee,
+        -- Calculate base rewards score (assume $100 transaction)
+        100.0 AS assumed_transaction_amount,
+        CASE
+            WHEN uac.rewards_type = 'Points' AND uac.points_per_dollar IS NOT NULL THEN
+                100.0 * uac.points_per_dollar * COALESCE(uac.rewards_multiplier, 1.0)
+            WHEN uac.rewards_type = 'Cash Back' AND uac.cash_back_percentage IS NOT NULL THEN
+                100.0 * (uac.cash_back_percentage / 100.0) * COALESCE(uac.rewards_multiplier, 1.0)
+            WHEN uac.rewards_multiplier IS NOT NULL THEN
+                100.0 * uac.rewards_multiplier
+            ELSE 0
+        END AS base_rewards_value,
+        -- Check for applicable offers
+        ao.offer_id,
+        ao.offer_name,
+        ao.discount_amount,
+        ao.discount_percentage,
+        ao.points_bonus_multiplier,
+        ao.activation_status,
+        ao.offer_currently_active,
+        -- Calculate offer-enhanced rewards
+        CASE
+            WHEN ao.offer_id IS NOT NULL AND ao.offer_currently_active = TRUE THEN
+                CASE
+                    WHEN ao.discount_amount IS NOT NULL THEN ao.discount_amount
+                    WHEN ao.discount_percentage IS NOT NULL THEN 100.0 * (ao.discount_percentage / 100.0)
+                    WHEN ao.points_bonus_multiplier IS NOT NULL THEN
+                        100.0 * ao.points_bonus_multiplier
+                    ELSE 0
+                END
+            ELSE 0
+        END AS offer_value,
+        -- Distance penalty (closer = better)
+        CASE
+            WHEN mcm.distance_meters <= 500 THEN 1.0
+            WHEN mcm.distance_meters <= 1000 THEN 0.9
+            WHEN mcm.distance_meters <= 2000 THEN 0.8
+            ELSE 0.7
+        END AS distance_score
+    FROM merchant_category_mapping mcm
+    INNER JOIN user_available_cards uac ON mcm.category_id = uac.category_id
+    LEFT JOIN applicable_offers ao ON mcm.location_id = ao.location_id
+        AND uac.card_id = ao.card_id
+    WHERE uac.reward_active = TRUE
+),
+final_recommendation_scores AS (
+    -- Seventh CTE: Calculate final recommendation scores
+    SELECT
+        crs.location_id,
+        crs.merchant_id,
+        crs.merchant_name,
+        crs.merchant_category,
+        crs.distance_meters,
+        crs.category_id,
+        crs.category_name,
+        crs.card_id,
+        crs.card_name,
+        crs.issuer_name,
+        crs.rewards_multiplier,
+        crs.rewards_type,
+        crs.annual_fee,
+        crs.base_rewards_value,
+        crs.offer_id,
+        crs.offer_name,
+        crs.offer_value,
+        crs.activation_status,
+        crs.distance_score,
+        -- Total value score
+        crs.base_rewards_value + crs.offer_value AS total_value,
+        -- Weighted score (rewards + offer - distance penalty)
+        (crs.base_rewards_value + crs.offer_value) * crs.distance_score AS weighted_score,
+        -- Rank cards for each location
+        ROW_NUMBER() OVER (
+            PARTITION BY crs.location_id
+            ORDER BY (crs.base_rewards_value + crs.offer_value) * crs.distance_score DESC,
+                     crs.annual_fee ASC
+        ) AS card_rank
+    FROM card_recommendation_scoring crs
+)
+SELECT
+    frs.merchant_name,
+    frs.merchant_category,
+    ROUND(CAST(frs.distance_meters AS NUMERIC), 0) AS distance_meters,
+    ROUND(CAST(frs.distance_meters / 1000.0 AS NUMERIC), 2) AS distance_km,
+    frs.category_name,
+    frs.card_name AS recommended_card,
+    frs.issuer_name,
+    frs.rewards_multiplier,
+    frs.rewards_type,
+    ROUND(CAST(frs.base_rewards_value AS NUMERIC), 2) AS base_rewards_value,
+    CASE
+        WHEN frs.offer_id IS NOT NULL THEN frs.offer_name
+        ELSE NULL
+    END AS applicable_offer,
+    ROUND(CAST(frs.offer_value AS NUMERIC), 2) AS offer_value,
+    frs.activation_status AS offer_activation_status,
+    ROUND(CAST(frs.total_value AS NUMERIC), 2) AS total_expected_value,
+    ROUND(CAST(frs.weighted_score AS NUMERIC), 2) AS recommendation_score,
+    frs.card_rank
+FROM final_recommendation_scores frs
+WHERE frs.card_rank <= 3  -- Top 3 recommendations per merchant
+ORDER BY frs.distance_meters ASC, frs.weighted_score DESC
+LIMIT 50;
+```
+
+
+## Query 3: Bank Offers Optimization and Activation Tracking with Multi-Card Eligibility Analysis
+
+**Description:** Analyzes bank offers across multiple issuers (Amex, Chase, BoA, Citi, Wells Fargo, US Bank) to identify optimal offers for user's card portfolio, tracks activation status, calculates potential savings, and provides activation recommendations. Uses complex joins across offer tables, aggregations, window functions, and multi-dimensional scoring to optimize offer utilization.
+
+**Use Case:** CardPointers Offer Management - Auto-add and track Amex, Chase, BoA, Citi, Wells Fargo, and US Bank offers with activation recommendations and savings tracking.
+
+**Business Value:** Identifies unactivated offers worth $500+ annually, provides activation recommendations, tracks offer redemption performance across all user cards, and maximizes savings from bank offers.
+
+**Purpose:** Maximize savings from bank offers by identifying eligible offers, tracking activation status, calculating potential savings, and providing actionable activation recommendations.
+
+**Complexity:** Multiple CTEs (8+ levels), complex joins across offer tables, window functions with multiple frame clauses, activation status tracking, savings calculations, offer ranking, multi-card eligibility analysis
+
+**Expected Output:** Comprehensive list of available offers with eligibility status, activation recommendations, potential savings, redemption tracking, and prioritized activation list.
+
+```sql
+WITH user_card_portfolio AS (
+    -- First CTE: Get user's complete card portfolio with issuer information
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.card_type,
+        cc.annual_fee,
+        uc.account_status,
+        uc.account_opening_date,
+        uc.credit_limit,
+        uc.current_balance
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+available_offers AS (
+    -- Second CTE: Get all available offers from all issuers
+    SELECT
+        bo.offer_id,
+        bo.issuer_id,
+        cci.issuer_name,
+        bo.offer_name,
+        bo.offer_description,
+        bo.merchant_name,
+        bo.merchant_category,
+        bo.offer_type,
+        bo.discount_amount,
+        bo.discount_percentage,
+        bo.minimum_spend,
+        bo.maximum_discount,
+        bo.points_bonus_multiplier,
+        bo.offer_start_date,
+        bo.offer_end_date,
+        bo.redemption_deadline,
+        bo.is_targeted,
+        bo.activation_required,
+        bo.terms_and_conditions,
+        -- Calculate days until expiration
+        DATEDIFF('day', CURRENT_DATE, bo.offer_end_date) AS days_until_expiration,
+        -- Calculate offer value estimate
+        CASE
+            WHEN bo.discount_amount IS NOT NULL THEN bo.discount_amount
+            WHEN bo.discount_percentage IS NOT NULL AND bo.maximum_discount IS NOT NULL THEN bo.maximum_discount
+            WHEN bo.discount_percentage IS NOT NULL THEN 100.0 * (bo.discount_percentage / 100.0)
+            WHEN bo.points_bonus_multiplier IS NOT NULL THEN 50.0 * bo.points_bonus_multiplier
+            ELSE 0
+        END AS estimated_offer_value
+    FROM bank_offers bo
+    INNER JOIN credit_card_issuers cci ON bo.issuer_id = cci.issuer_id
+    WHERE CURRENT_DATE BETWEEN bo.offer_start_date AND bo.offer_end_date
+),
+card_offer_eligibility_analysis AS (
+    -- Third CTE: Analyze which cards are eligible for which offers
+    SELECT
+        ao.offer_id,
+        ao.issuer_id,
+        ao.issuer_name,
+        ao.offer_name,
+        ao.offer_description,
+        ao.merchant_name,
+        ao.merchant_category,
+        ao.offer_type,
+        ao.discount_amount,
+        ao.discount_percentage,
+        ao.minimum_spend,
+        ao.maximum_discount,
+        ao.points_bonus_multiplier,
+        ao.offer_start_date,
+        ao.offer_end_date,
+        ao.days_until_expiration,
+        ao.estimated_offer_value,
+        ucp.card_id,
+        ucp.card_name,
+        ucp.user_card_id,
+        coe.eligibility_id,
+        coe.eligibility_status,
+        coe.activation_status,
+        coe.activation_date,
+        coe.redemption_count,
+        coe.total_savings,
+        -- Calculate if offer is currently active and eligible
+        CASE
+            WHEN coe.eligibility_status IN ('Eligible', 'Targeted') 
+                AND CURRENT_DATE BETWEEN ao.offer_start_date AND ao.offer_end_date
+                THEN TRUE
+            ELSE FALSE
+        END AS is_currently_eligible,
+        -- Calculate if offer needs activation
+        CASE
+            WHEN ao.activation_required = TRUE AND coe.activation_status != 'Activated' THEN TRUE
+            ELSE FALSE
+        END AS needs_activation
+    FROM available_offers ao
+    INNER JOIN card_offer_eligibility coe ON ao.offer_id = coe.offer_id
+    INNER JOIN user_card_portfolio ucp ON coe.card_id = ucp.card_id
+),
+offer_value_calculation AS (
+    -- Fourth CTE: Calculate detailed offer values and savings potential
+    SELECT
+        coea.offer_id,
+        coea.issuer_name,
+        coea.offer_name,
+        coea.merchant_name,
+        coea.merchant_category,
+        coea.offer_type,
+        coea.card_id,
+        coea.card_name,
+        coea.eligibility_status,
+        coea.activation_status,
+        coea.is_currently_eligible,
+        coea.needs_activation,
+        coea.days_until_expiration,
+        coea.estimated_offer_value,
+        coea.minimum_spend,
+        coea.maximum_discount,
+        -- Calculate potential savings based on offer type
+        CASE
+            WHEN coea.offer_type = 'Statement Credit' AND coea.discount_amount IS NOT NULL THEN
+                LEAST(coea.discount_amount, coea.maximum_discount)
+            WHEN coea.offer_type = 'Statement Credit' AND coea.discount_percentage IS NOT NULL THEN
+                LEAST(coea.minimum_spend * (coea.discount_percentage / 100.0), 
+                      COALESCE(coea.maximum_discount, coea.minimum_spend * (coea.discount_percentage / 100.0)))
+            WHEN coea.offer_type = 'Cash Back' AND coea.discount_percentage IS NOT NULL THEN
+                LEAST(coea.minimum_spend * (coea.discount_percentage / 100.0),
+                      COALESCE(coea.maximum_discount, coea.minimum_spend * (coea.discount_percentage / 100.0)))
+            WHEN coea.offer_type = 'Points Bonus' AND coea.points_bonus_multiplier IS NOT NULL THEN
+                coea.minimum_spend * coea.points_bonus_multiplier * 0.01  -- Convert points to dollar value
+            WHEN coea.offer_type = 'Discount' AND coea.discount_percentage IS NOT NULL THEN
+                coea.minimum_spend * (coea.discount_percentage / 100.0)
+            ELSE coea.estimated_offer_value
+        END AS potential_savings,
+        -- Calculate urgency score (higher = more urgent)
+        CASE
+            WHEN coea.days_until_expiration <= 7 THEN 100
+            WHEN coea.days_until_expiration <= 14 THEN 80
+            WHEN coea.days_until_expiration <= 30 THEN 60
+            WHEN coea.days_until_expiration <= 60 THEN 40
+            ELSE 20
+        END AS urgency_score
+    FROM card_offer_eligibility_analysis coea
+    WHERE coea.is_currently_eligible = TRUE
+),
+activation_recommendations AS (
+    -- Fifth CTE: Generate activation recommendations with prioritization
+    SELECT
+        ovc.offer_id,
+        ovc.issuer_name,
+        ovc.offer_name,
+        ovc.merchant_name,
+        ovc.merchant_category,
+        ovc.card_id,
+        ovc.card_name,
+        ovc.eligibility_status,
+        ovc.activation_status,
+        ovc.needs_activation,
+        ovc.days_until_expiration,
+        ovc.potential_savings,
+        ovc.urgency_score,
+        -- Calculate activation priority score
+        (ovc.potential_savings * 0.6 + ovc.urgency_score * 0.4) AS activation_priority_score,
+        -- Window functions for ranking
+        ROW_NUMBER() OVER (
+            PARTITION BY ovc.card_id
+            ORDER BY (ovc.potential_savings * 0.6 + ovc.urgency_score * 0.4) DESC
+        ) AS offer_rank_per_card,
+        ROW_NUMBER() OVER (
+            ORDER BY (ovc.potential_savings * 0.6 + ovc.urgency_score * 0.4) DESC
+        ) AS overall_offer_rank,
+        COUNT(*) OVER (PARTITION BY ovc.card_id) AS total_offers_for_card,
+        SUM(ovc.potential_savings) OVER (PARTITION BY ovc.card_id) AS total_potential_savings_per_card
+    FROM offer_value_calculation ovc
+),
+redemption_tracking AS (
+    -- Sixth CTE: Track offer redemptions and calculate realized savings
+    SELECT
+        st.user_id,
+        st.transaction_id,
+        st.transaction_date,
+        st.transaction_amount,
+        st.offer_applied_id,
+        st.offer_savings,
+        bo.offer_id,
+        bo.offer_name,
+        bo.merchant_name,
+        bo.offer_type,
+        st.card_used_id,
+        cc.card_name AS card_used_name
+    FROM spending_transactions st
+    INNER JOIN bank_offers bo ON st.offer_applied_id = bo.offer_id
+    INNER JOIN credit_cards cc ON st.card_used_id = cc.card_id
+    WHERE st.user_id = 'user_001'
+        AND st.offer_applied_id IS NOT NULL
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+),
+offer_performance_analysis AS (
+    -- Seventh CTE: Analyze offer performance and redemption rates
+    SELECT
+        ar.offer_id,
+        ar.issuer_name,
+        ar.offer_name,
+        ar.merchant_name,
+        ar.card_id,
+        ar.card_name,
+        ar.potential_savings,
+        ar.activation_status,
+        ar.days_until_expiration,
+        ar.activation_priority_score,
+        ar.overall_offer_rank,
+        -- Redemption statistics
+        COUNT(rt.transaction_id) AS redemption_count,
+        COALESCE(SUM(rt.offer_savings), 0) AS realized_savings,
+        COALESCE(AVG(rt.transaction_amount), 0) AS avg_redemption_amount,
+        COALESCE(MAX(rt.transaction_date), NULL) AS last_redemption_date,
+        -- Calculate redemption rate
+        CASE
+            WHEN ar.activation_status = 'Activated' THEN
+                CASE
+                    WHEN COUNT(rt.transaction_id) > 0 THEN 100.0
+                    ELSE 0.0
+                END
+            ELSE NULL
+        END AS redemption_rate_pct,
+        -- Calculate remaining value
+        ar.potential_savings - COALESCE(SUM(rt.offer_savings), 0) AS remaining_value
+    FROM activation_recommendations ar
+    LEFT JOIN redemption_tracking rt ON ar.offer_id = rt.offer_id
+        AND ar.card_id = rt.card_used_id
+    GROUP BY
+        ar.offer_id,
+        ar.issuer_name,
+        ar.offer_name,
+        ar.merchant_name,
+        ar.card_id,
+        ar.card_name,
+        ar.potential_savings,
+        ar.activation_status,
+        ar.days_until_expiration,
+        ar.activation_priority_score,
+        ar.overall_offer_rank
+),
+portfolio_offer_summary AS (
+    -- Eighth CTE: Aggregate offer statistics at portfolio level
+    SELECT
+        'user_001' AS user_id,
+        COUNT(DISTINCT opa.offer_id) AS total_available_offers,
+        COUNT(DISTINCT CASE WHEN opa.activation_status = 'Activated' THEN opa.offer_id END) AS activated_offers_count,
+        COUNT(DISTINCT CASE WHEN opa.needs_activation = TRUE THEN opa.offer_id END) AS offers_needing_activation,
+        SUM(opa.potential_savings) AS total_potential_savings,
+        SUM(opa.realized_savings) AS total_realized_savings,
+        SUM(opa.remaining_value) AS total_remaining_value,
+        AVG(opa.activation_priority_score) AS avg_activation_priority_score,
+        COUNT(DISTINCT opa.card_id) AS cards_with_offers,
+        -- Calculate activation rate
+        CASE
+            WHEN COUNT(DISTINCT opa.offer_id) > 0 THEN
+                (COUNT(DISTINCT CASE WHEN opa.activation_status = 'Activated' THEN opa.offer_id END)::NUMERIC /
+                 COUNT(DISTINCT opa.offer_id)::NUMERIC) * 100
+            ELSE 0
+        END AS portfolio_activation_rate_pct
+    FROM offer_performance_analysis opa
+)
+SELECT
+    pos.user_id,
+    pos.total_available_offers,
+    pos.activated_offers_count,
+    pos.offers_needing_activation,
+    ROUND(CAST(pos.total_potential_savings AS NUMERIC), 2) AS total_potential_savings,
+    ROUND(CAST(pos.total_realized_savings AS NUMERIC), 2) AS total_realized_savings,
+    ROUND(CAST(pos.total_remaining_value AS NUMERIC), 2) AS total_remaining_value,
+    ROUND(CAST(pos.avg_activation_priority_score AS NUMERIC), 2) AS avg_activation_priority_score,
+    pos.cards_with_offers,
+    ROUND(CAST(pos.portfolio_activation_rate_pct AS NUMERIC), 2) AS portfolio_activation_rate_pct,
+    -- Offer-level details
+    opa.offer_name,
+    opa.issuer_name,
+    opa.merchant_name,
+    opa.card_name,
+    opa.activation_status,
+    opa.needs_activation,
+    opa.days_until_expiration,
+    ROUND(CAST(opa.potential_savings AS NUMERIC), 2) AS offer_potential_savings,
+    ROUND(CAST(opa.realized_savings AS NUMERIC), 2) AS offer_realized_savings,
+    ROUND(CAST(opa.remaining_value AS NUMERIC), 2) AS offer_remaining_value,
+    opa.redemption_count,
+    ROUND(CAST(opa.activation_priority_score AS NUMERIC), 2) AS activation_priority_score,
+    opa.overall_offer_rank
+FROM portfolio_offer_summary pos
+CROSS JOIN offer_performance_analysis opa
+WHERE opa.needs_activation = TRUE OR opa.remaining_value > 0
+ORDER BY opa.activation_priority_score DESC, opa.days_until_expiration ASC
+LIMIT 100;
+```
+
+
+## Query 4: CFPB Consumer Complaint Analysis with Issuer Risk Assessment and Complaint Trend Forecasting
+
+**Description:** Analyzes CFPB consumer complaints to assess issuer risk, identify complaint trends, forecast future complaint volumes, and correlate complaints with card features. Uses time-series analysis, correlation calculations, window functions with multiple frame clauses, trend forecasting, and risk scoring algorithms to evaluate issuer quality and customer service performance.
+
+**Use Case:** Credit Card Analysis - Assess issuer reputation and risk based on CFPB complaint data for card selection decisions and portfolio risk management.
+
+**Business Value:** Provides issuer risk scores based on complaint data, enabling users to avoid issuers with poor customer service records and high complaint rates. Helps identify issuers with improving or deteriorating service quality.
+
+**Purpose:** Evaluate issuer quality and customer service performance using government complaint data to inform card selection decisions and portfolio risk assessment.
+
+**Complexity:** Time-series analysis, correlation calculations, window functions with multiple frame clauses (ROWS BETWEEN, RANGE BETWEEN), trend forecasting, risk scoring algorithms, recursive CTEs for trend analysis, percentile calculations, moving averages
+
+**Expected Output:** Comprehensive issuer risk assessment with complaint trends, forecasted complaint volumes, risk scores, and recommendations for card selection based on issuer reputation.
+
+```sql
+WITH complaint_time_series AS (
+    -- First CTE: Create time series of complaints by issuer
+    SELECT
+        ccc.complaint_date,
+        DATE_TRUNC('month', ccc.complaint_date) AS complaint_month,
+        DATE_TRUNC('quarter', ccc.complaint_date) AS complaint_quarter,
+        DATE_TRUNC('year', ccc.complaint_date) AS complaint_year,
+        ccc.company_name,
+        cci.issuer_id,
+        cci.issuer_name,
+        ccc.product_type,
+        ccc.issue_type,
+        ccc.sub_issue,
+        ccc.timely_response,
+        ccc.consumer_disputed,
+        ccc.company_response,
+        CASE
+            WHEN ccc.company_response IN ('Closed with explanation', 'Closed with monetary relief', 'Closed with non-monetary relief') THEN 'Resolved'
+            WHEN ccc.company_response IN ('Closed', 'Untimely response') THEN 'Unresolved'
+            ELSE 'Pending'
+        END AS resolution_status,
+        CASE
+            WHEN ccc.timely_response = TRUE THEN 1
+            ELSE 0
+        END AS timely_response_flag,
+        CASE
+            WHEN ccc.consumer_disputed = TRUE THEN 1
+            ELSE 0
+        END AS disputed_flag
+    FROM cfpb_consumer_complaints ccc
+    INNER JOIN credit_card_issuers cci ON UPPER(ccc.company_name) LIKE '%' || UPPER(cci.issuer_name) || '%'
+    WHERE ccc.product_type = 'Credit card'
+        AND ccc.complaint_date >= CURRENT_DATE - INTERVAL '36 months'
+),
+monthly_complaint_aggregations AS (
+    -- Second CTE: Aggregate complaints by month and issuer
+    SELECT
+        cts.issuer_id,
+        cts.issuer_name,
+        cts.complaint_month,
+        cts.complaint_quarter,
+        cts.complaint_year,
+        COUNT(*) AS total_complaints,
+        COUNT(CASE WHEN cts.resolution_status = 'Resolved' THEN 1 END) AS resolved_complaints,
+        COUNT(CASE WHEN cts.resolution_status = 'Unresolved' THEN 1 END) AS unresolved_complaints,
+        COUNT(CASE WHEN cts.resolution_status = 'Pending' THEN 1 END) AS pending_complaints,
+        AVG(cts.timely_response_flag) * 100 AS timely_response_rate_pct,
+        AVG(cts.disputed_flag) * 100 AS dispute_rate_pct,
+        COUNT(DISTINCT cts.issue_type) AS unique_issue_types,
+        COUNT(DISTINCT cts.sub_issue) AS unique_sub_issues,
+        -- Calculate resolution rate
+        CASE
+            WHEN COUNT(*) > 0 THEN
+                (COUNT(CASE WHEN cts.resolution_status = 'Resolved' THEN 1 END)::NUMERIC / COUNT(*)::NUMERIC) * 100
+            ELSE 0
+        END AS resolution_rate_pct
+    FROM complaint_time_series cts
+    GROUP BY
+        cts.issuer_id,
+        cts.issuer_name,
+        cts.complaint_month,
+        cts.complaint_quarter,
+        cts.complaint_year
+),
+complaint_trend_analysis AS (
+    -- Third CTE: Analyze complaint trends using window functions
+    SELECT
+        mca.issuer_id,
+        mca.issuer_name,
+        mca.complaint_month,
+        mca.complaint_quarter,
+        mca.complaint_year,
+        mca.total_complaints,
+        mca.resolved_complaints,
+        mca.unresolved_complaints,
+        mca.resolution_rate_pct,
+        mca.timely_response_rate_pct,
+        mca.dispute_rate_pct,
+        -- Moving averages for trend detection
+        AVG(mca.total_complaints) OVER (
+            PARTITION BY mca.issuer_id
+            ORDER BY mca.complaint_month
+            ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+        ) AS moving_avg_3months,
+        AVG(mca.total_complaints) OVER (
+            PARTITION BY mca.issuer_id
+            ORDER BY mca.complaint_month
+            ROWS BETWEEN 5 PRECEDING AND CURRENT ROW
+        ) AS moving_avg_6months,
+        AVG(mca.total_complaints) OVER (
+            PARTITION BY mca.issuer_id
+            ORDER BY mca.complaint_month
+            ROWS BETWEEN 11 PRECEDING AND CURRENT ROW
+        ) AS moving_avg_12months,
+        -- Lag for month-over-month comparison
+        LAG(mca.total_complaints, 1) OVER (
+            PARTITION BY mca.issuer_id
+            ORDER BY mca.complaint_month
+        ) AS prev_month_complaints,
+        LAG(mca.total_complaints, 12) OVER (
+            PARTITION BY mca.issuer_id
+            ORDER BY mca.complaint_month
+        ) AS prev_year_complaints,
+        -- Lead for forecasting
+        LEAD(mca.total_complaints, 1) OVER (
+            PARTITION BY mca.issuer_id
+            ORDER BY mca.complaint_month
+        ) AS next_month_complaints,
+        -- Percentile ranking
+        PERCENT_RANK() OVER (
+            PARTITION BY mca.complaint_month
+            ORDER BY mca.total_complaints DESC
+        ) AS complaint_volume_percentile,
+        -- Trend indicators
+        CASE
+            WHEN mca.total_complaints > LAG(mca.total_complaints, 1) OVER (
+                PARTITION BY mca.issuer_id ORDER BY mca.complaint_month
+            ) THEN 'Increasing'
+            WHEN mca.total_complaints < LAG(mca.total_complaints, 1) OVER (
+                PARTITION BY mca.issuer_id ORDER BY mca.complaint_month
+            ) THEN 'Decreasing'
+            ELSE 'Stable'
+        END AS month_over_month_trend
+    FROM monthly_complaint_aggregations mca
+),
+forecasted_complaints AS (
+    -- Fourth CTE: Forecast future complaint volumes using trend analysis
+    SELECT
+        cta.issuer_id,
+        cta.issuer_name,
+        cta.complaint_month,
+        cta.total_complaints,
+        cta.moving_avg_3months,
+        cta.moving_avg_6months,
+        cta.moving_avg_12months,
+        cta.prev_month_complaints,
+        cta.prev_year_complaints,
+        cta.complaint_volume_percentile,
+        cta.month_over_month_trend,
+        -- Simple linear forecast based on trend
+        CASE
+            WHEN cta.moving_avg_3months IS NOT NULL AND cta.prev_month_complaints IS NOT NULL THEN
+                cta.total_complaints + (cta.total_complaints - cta.prev_month_complaints)
+            WHEN cta.moving_avg_6months IS NOT NULL THEN
+                cta.moving_avg_6months
+            ELSE cta.total_complaints
+        END AS forecast_next_month,
+        -- Year-over-year forecast
+        CASE
+            WHEN cta.prev_year_complaints IS NOT NULL THEN
+                cta.total_complaints + ((cta.total_complaints - cta.prev_year_complaints) / 12.0)
+            ELSE cta.total_complaints
+        END AS forecast_next_year_trend,
+        -- Forecast confidence (based on trend stability)
+        CASE
+            WHEN ABS(cta.total_complaints - cta.moving_avg_3months) / NULLIF(cta.moving_avg_3months, 0) < 0.1 THEN 'High'
+            WHEN ABS(cta.total_complaints - cta.moving_avg_3months) / NULLIF(cta.moving_avg_3months, 0) < 0.25 THEN 'Medium'
+            ELSE 'Low'
+        END AS forecast_confidence
+    FROM complaint_trend_analysis cta
+),
+issuer_risk_scoring AS (
+    -- Fifth CTE: Calculate issuer risk scores based on complaint metrics
+    SELECT
+        fc.issuer_id,
+        fc.issuer_name,
+        fc.complaint_month,
+        fc.total_complaints,
+        fc.resolution_rate_pct,
+        fc.timely_response_rate_pct,
+        fc.dispute_rate_pct,
+        fc.complaint_volume_percentile,
+        fc.month_over_month_trend,
+        fc.forecast_next_month,
+        fc.forecast_confidence,
+        -- Risk score components (0-100, higher = higher risk)
+        -- Complaint volume component (40% weight)
+        LEAST(100, (fc.complaint_volume_percentile * 100) * 0.4) AS volume_risk_score,
+        -- Resolution rate component (30% weight) - lower resolution = higher risk
+        LEAST(100, ((100 - COALESCE(fc.resolution_rate_pct, 0)) / 100.0) * 30) AS resolution_risk_score,
+        -- Timely response component (20% weight) - lower timely response = higher risk
+        LEAST(100, ((100 - COALESCE(fc.timely_response_rate_pct, 0)) / 100.0) * 20) AS timeliness_risk_score,
+        -- Dispute rate component (10% weight) - higher disputes = higher risk
+        LEAST(100, (COALESCE(fc.dispute_rate_pct, 0) / 100.0) * 10) AS dispute_risk_score,
+        -- Trend component (bonus/penalty)
+        CASE
+            WHEN fc.month_over_month_trend = 'Increasing' THEN 10
+            WHEN fc.month_over_month_trend = 'Decreasing' THEN -5
+            ELSE 0
+        END AS trend_adjustment
+    FROM forecasted_complaints fc
+    INNER JOIN monthly_complaint_aggregations mca ON fc.issuer_id = mca.issuer_id
+        AND fc.complaint_month = mca.complaint_month
+),
+final_risk_assessment AS (
+    -- Sixth CTE: Final risk assessment with rankings
+    SELECT
+        irs.issuer_id,
+        irs.issuer_name,
+        irs.complaint_month,
+        irs.total_complaints,
+        ROUND(CAST(irs.resolution_rate_pct AS NUMERIC), 2) AS resolution_rate_pct,
+        ROUND(CAST(irs.timely_response_rate_pct AS NUMERIC), 2) AS timely_response_rate_pct,
+        ROUND(CAST(irs.dispute_rate_pct AS NUMERIC), 2) AS dispute_rate_pct,
+        irs.month_over_month_trend,
+        ROUND(CAST(irs.forecast_next_month AS NUMERIC), 0) AS forecast_next_month,
+        irs.forecast_confidence,
+        -- Calculate total risk score
+        ROUND(CAST(
+            irs.volume_risk_score +
+            irs.resolution_risk_score +
+            irs.timeliness_risk_score +
+            irs.dispute_risk_score +
+            irs.trend_adjustment
+        AS NUMERIC), 2) AS total_risk_score,
+        -- Risk classification
+        CASE
+            WHEN (irs.volume_risk_score + irs.resolution_risk_score + irs.timeliness_risk_score + irs.dispute_risk_score + irs.trend_adjustment) <= 20 THEN 'Low Risk'
+            WHEN (irs.volume_risk_score + irs.resolution_risk_score + irs.timeliness_risk_score + irs.dispute_risk_score + irs.trend_adjustment) <= 40 THEN 'Moderate Risk'
+            WHEN (irs.volume_risk_score + irs.resolution_risk_score + irs.timeliness_risk_score + irs.dispute_risk_score + irs.trend_adjustment) <= 60 THEN 'High Risk'
+            ELSE 'Very High Risk'
+        END AS risk_classification,
+        -- Window functions for ranking
+        ROW_NUMBER() OVER (
+            PARTITION BY irs.complaint_month
+            ORDER BY (irs.volume_risk_score + irs.resolution_risk_score + irs.timeliness_risk_score + irs.dispute_risk_score + irs.trend_adjustment) DESC
+        ) AS risk_rank,
+        PERCENT_RANK() OVER (
+            ORDER BY (irs.volume_risk_score + irs.resolution_risk_score + irs.timeliness_risk_score + irs.dispute_risk_score + irs.trend_adjustment) DESC
+        ) AS risk_percentile
+    FROM issuer_risk_scoring irs
+),
+card_issuer_correlation AS (
+    -- Seventh CTE: Correlate issuer risk with card features
+    SELECT
+        fra.issuer_id,
+        fra.issuer_name,
+        fra.total_risk_score,
+        fra.risk_classification,
+        COUNT(DISTINCT cc.card_id) AS total_cards,
+        COUNT(DISTINCT CASE WHEN cc.is_active = TRUE THEN cc.card_id END) AS active_cards,
+        AVG(cc.annual_fee) AS avg_annual_fee,
+        AVG(cc.signup_bonus_points) AS avg_signup_bonus_points,
+        COUNT(DISTINCT cc.card_type) AS card_type_diversity,
+        COUNT(DISTINCT cc.card_network) AS network_diversity
+    FROM final_risk_assessment fra
+    INNER JOIN credit_cards cc ON fra.issuer_id = cc.issuer_id
+    WHERE fra.complaint_month = (
+        SELECT MAX(complaint_month) FROM final_risk_assessment
+    )
+    GROUP BY
+        fra.issuer_id,
+        fra.issuer_name,
+        fra.total_risk_score,
+        fra.risk_classification
+),
+portfolio_risk_summary AS (
+    -- Eighth CTE: Aggregate portfolio-level risk metrics
+    SELECT
+        'user_001' AS user_id,
+        COUNT(DISTINCT cic.issuer_id) AS issuers_in_portfolio,
+        AVG(cic.total_risk_score) AS avg_issuer_risk_score,
+        MAX(cic.total_risk_score) AS max_issuer_risk_score,
+        MIN(cic.total_risk_score) AS min_issuer_risk_score,
+        COUNT(CASE WHEN cic.risk_classification IN ('High Risk', 'Very High Risk') THEN 1 END) AS high_risk_issuers_count,
+        SUM(cic.total_cards) AS total_cards_from_issuers,
+        SUM(cic.active_cards) AS active_cards_from_issuers
+    FROM card_issuer_correlation cic
+    INNER JOIN user_cards uc ON cic.issuer_id = (
+        SELECT issuer_id FROM credit_cards WHERE card_id = uc.card_id
+    )
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+)
+SELECT
+    prs.user_id,
+    prs.issuers_in_portfolio,
+    ROUND(CAST(prs.avg_issuer_risk_score AS NUMERIC), 2) AS avg_issuer_risk_score,
+    ROUND(CAST(prs.max_issuer_risk_score AS NUMERIC), 2) AS max_issuer_risk_score,
+    ROUND(CAST(prs.min_issuer_risk_score AS NUMERIC), 2) AS min_issuer_risk_score,
+    prs.high_risk_issuers_count,
+    prs.total_cards_from_issuers,
+    prs.active_cards_from_issuers,
+    -- Issuer-level details
+    cic.issuer_name,
+    cic.total_risk_score,
+    cic.risk_classification,
+    cic.total_cards,
+    cic.active_cards,
+    ROUND(CAST(cic.avg_annual_fee AS NUMERIC), 2) AS avg_annual_fee,
+    ROUND(CAST(cic.avg_signup_bonus_points AS NUMERIC), 0) AS avg_signup_bonus_points,
+    cic.card_type_diversity,
+    cic.network_diversity,
+    fra.total_complaints,
+    ROUND(CAST(fra.resolution_rate_pct AS NUMERIC), 2) AS resolution_rate_pct,
+    ROUND(CAST(fra.timely_response_rate_pct AS NUMERIC), 2) AS timely_response_rate_pct,
+    fra.month_over_month_trend,
+    fra.forecast_next_month,
+    fra.forecast_confidence,
+    fra.risk_rank,
+    ROUND(CAST(fra.risk_percentile * 100 AS NUMERIC), 2) AS risk_percentile
+FROM portfolio_risk_summary prs
+CROSS JOIN card_issuer_correlation cic
+INNER JOIN final_risk_assessment fra ON cic.issuer_id = fra.issuer_id
+    AND fra.complaint_month = (SELECT MAX(complaint_month) FROM final_risk_assessment)
+ORDER BY cic.total_risk_score DESC, fra.total_complaints DESC
+LIMIT 50;
+```
+
+
+## Query 5: Federal Reserve Credit Data Trend Analysis with Market Segmentation and Predictive Indicators
+
+**Description:** Analyzes Federal Reserve G.19 consumer credit data to identify trends, segment markets, forecast credit growth, and correlate with card features. Uses advanced time-series analysis, segmentation algorithms, and predictive modeling.
+
+**Use Case:** Market Analysis - Understand consumer credit trends and market conditions for strategic card portfolio decisions
+
+**Business Value:** Provides market insights showing credit growth trends, interest rate movements, and market conditions affecting card availability and terms
+
+**Purpose:** Understand macro-economic credit trends to inform strategic card portfolio decisions and timing of applications
+
+**Complexity:** Time-series analysis, market segmentation, trend forecasting, correlation analysis, window functions, predictive indicators, multiple CTEs (8+ levels)
+
+**Expected Output:** [Description of expected output]
+
+```sql
+WITH fed_credit_time_series AS (
+    SELECT
+        frcd.report_date,
+        DATE_TRUNC('month', frcd.report_date) AS report_month,
+        DATE_TRUNC('quarter', frcd.report_date) AS report_quarter,
+        DATE_TRUNC('year', frcd.report_date) AS report_year,
+        frcd.data_type,
+        frcd.credit_outstanding_billions,
+        frcd.credit_outstanding_seasonally_adjusted_billions,
+        frcd.credit_flow_billions,
+        frcd.interest_rate_avg,
+        frcd.interest_rate_weighted_avg
+    FROM federal_reserve_credit_data frcd
+    WHERE frcd.report_date >= CURRENT_DATE - INTERVAL '60 months'
+),
+monthly_credit_aggregations AS (
+    SELECT
+        fcts.report_month,
+        fcts.report_quarter,
+        fcts.report_year,
+        fcts.data_type,
+        AVG(fcts.credit_outstanding_billions) AS avg_outstanding,
+        AVG(fcts.credit_outstanding_seasonally_adjusted_billions) AS avg_outstanding_sa,
+        SUM(fcts.credit_flow_billions) AS total_flow,
+        AVG(fcts.interest_rate_avg) AS avg_interest_rate,
+        COUNT(*) AS data_points_count
+    FROM fed_credit_time_series fcts
+    GROUP BY fcts.report_month, fcts.report_quarter, fcts.report_year, fcts.data_type
+),
+credit_trend_analysis AS (
+    SELECT
+        mca.report_month,
+        mca.data_type,
+        mca.avg_outstanding,
+        mca.avg_interest_rate,
+        AVG(mca.avg_outstanding) OVER (
+            PARTITION BY mca.data_type
+            ORDER BY mca.report_month
+            ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+        ) AS moving_avg_3months,
+        AVG(mca.avg_outstanding) OVER (
+            PARTITION BY mca.data_type
+            ORDER BY mca.report_month
+            ROWS BETWEEN 11 PRECEDING AND CURRENT ROW
+        ) AS moving_avg_12months,
+        LAG(mca.avg_outstanding, 1) OVER (
+            PARTITION BY mca.data_type
+            ORDER BY mca.report_month
+        ) AS prev_month_outstanding,
+        LAG(mca.avg_outstanding, 12) OVER (
+            PARTITION BY mca.data_type
+            ORDER BY mca.report_month
+        ) AS prev_year_outstanding,
+        CASE
+            WHEN LAG(mca.avg_outstanding, 1) OVER (
+                PARTITION BY mca.data_type ORDER BY mca.report_month
+            ) > 0 THEN
+                ((mca.avg_outstanding - LAG(mca.avg_outstanding, 1) OVER (
+                    PARTITION BY mca.data_type ORDER BY mca.report_month
+                )) / LAG(mca.avg_outstanding, 1) OVER (
+                    PARTITION BY mca.data_type ORDER BY mca.report_month
+                )) * 100
+            ELSE NULL
+        END AS month_over_month_growth_pct,
+        PERCENT_RANK() OVER (
+            PARTITION BY mca.report_month
+            ORDER BY mca.avg_outstanding DESC
+        ) AS outstanding_percentile
+    FROM monthly_credit_aggregations mca
+),
+market_segmentation AS (
+    SELECT
+        cta.report_month,
+        cta.data_type,
+        cta.avg_outstanding,
+        cta.month_over_month_growth_pct,
+        cta.avg_interest_rate,
+        CASE
+            WHEN cta.avg_outstanding > (
+                SELECT PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY avg_outstanding)
+                FROM credit_trend_analysis
+                WHERE data_type = cta.data_type
+            ) AND cta.month_over_month_growth_pct > 2 THEN 'High Growth - High Volume'
+            WHEN cta.avg_outstanding > (
+                SELECT PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY avg_outstanding)
+                FROM credit_trend_analysis
+                WHERE data_type = cta.data_type
+            ) THEN 'Stable - High Volume'
+            WHEN cta.month_over_month_growth_pct > 2 THEN 'High Growth - Low Volume'
+            ELSE 'Stable - Low Volume'
+        END AS market_segment,
+        CASE
+            WHEN cta.avg_interest_rate > LAG(cta.avg_interest_rate, 1) OVER (
+                PARTITION BY cta.data_type ORDER BY cta.report_month
+            ) THEN 'Rising'
+            WHEN cta.avg_interest_rate < LAG(cta.avg_interest_rate, 1) OVER (
+                PARTITION BY cta.data_type ORDER BY cta.report_month
+            ) THEN 'Falling'
+            ELSE 'Stable'
+        END AS interest_rate_trend
+    FROM credit_trend_analysis cta
+),
+forecasted_credit_growth AS (
+    SELECT
+        ms.report_month,
+        ms.data_type,
+        ms.avg_outstanding,
+        ms.month_over_month_growth_pct,
+        ms.market_segment,
+        ms.interest_rate_trend,
+        CASE
+            WHEN ms.month_over_month_growth_pct IS NOT NULL THEN
+                ms.avg_outstanding * (1 + (ms.month_over_month_growth_pct / 100.0))
+            ELSE ms.avg_outstanding
+        END AS forecast_next_month,
+        CASE
+            WHEN ms.market_segment LIKE 'High Growth%' THEN ms.avg_outstanding * 1.02
+            WHEN ms.market_segment LIKE 'Stable%' THEN ms.avg_outstanding
+            ELSE ms.avg_outstanding * 0.98
+        END AS forecast_trend_based
+    FROM market_segmentation ms
+),
+card_feature_correlation AS (
+    SELECT
+        fcg.data_type,
+        fcg.market_segment,
+        fcg.interest_rate_trend,
+        COUNT(DISTINCT cc.card_id) AS cards_available,
+        AVG(cc.annual_fee) AS avg_annual_fee,
+        AVG(cc.signup_bonus_points) AS avg_signup_bonus,
+        AVG(cc.apr_purchase) AS avg_apr,
+        COUNT(DISTINCT cc.issuer_id) AS issuer_count
+    FROM forecasted_credit_growth fcg
+    CROSS JOIN credit_cards cc
+    WHERE fcg.report_month = (SELECT MAX(report_month) FROM forecasted_credit_growth)
+        AND cc.is_active = TRUE
+    GROUP BY fcg.data_type, fcg.market_segment, fcg.interest_rate_trend
+),
+predictive_indicators AS (
+    SELECT
+        fcg.report_month,
+        fcg.data_type,
+        fcg.avg_outstanding,
+        fcg.forecast_next_month,
+        fcg.market_segment,
+        fcg.interest_rate_trend,
+        cfc.cards_available,
+        cfc.avg_annual_fee,
+        cfc.avg_signup_bonus,
+        cfc.avg_apr,
+        CASE
+            WHEN fcg.market_segment LIKE 'High Growth%' AND fcg.interest_rate_trend = 'Falling' THEN 100
+            WHEN fcg.market_segment LIKE 'High Growth%' THEN 80
+            WHEN fcg.interest_rate_trend = 'Falling' THEN 70
+            WHEN fcg.market_segment LIKE 'Stable%' THEN 50
+            ELSE 30
+        END AS card_application_score,
+        ROW_NUMBER() OVER (
+            PARTITION BY fcg.data_type
+            ORDER BY fcg.forecast_next_month DESC
+        ) AS growth_rank
+    FROM forecasted_credit_growth fcg
+    INNER JOIN card_feature_correlation cfc ON fcg.data_type = cfc.data_type
+        AND fcg.market_segment = cfc.market_segment
+        AND fcg.interest_rate_trend = cfc.interest_rate_trend
+),
+final_market_analysis AS (
+    SELECT
+        pi.report_month,
+        pi.data_type,
+        ROUND(CAST(pi.avg_outstanding AS NUMERIC), 2) AS avg_outstanding,
+        ROUND(CAST(pi.forecast_next_month AS NUMERIC), 2) AS forecast_next_month,
+        pi.market_segment,
+        pi.interest_rate_trend,
+        pi.cards_available,
+        ROUND(CAST(pi.avg_annual_fee AS NUMERIC), 2) AS avg_annual_fee,
+        ROUND(CAST(pi.avg_signup_bonus AS NUMERIC), 0) AS avg_signup_bonus,
+        ROUND(CAST(pi.avg_apr AS NUMERIC), 2) AS avg_apr,
+        pi.card_application_score,
+        pi.growth_rank,
+        CASE
+            WHEN pi.card_application_score >= 80 THEN 'Excellent Time to Apply'
+            WHEN pi.card_application_score >= 60 THEN 'Good Time to Apply'
+            WHEN pi.card_application_score >= 40 THEN 'Moderate Conditions'
+            ELSE 'Wait for Better Conditions'
+        END AS application_recommendation
+    FROM predictive_indicators pi
+)
+SELECT
+    report_month,
+    data_type,
+    avg_outstanding,
+    forecast_next_month,
+    market_segment,
+    interest_rate_trend,
+    cards_available,
+    avg_annual_fee,
+    avg_signup_bonus,
+    avg_apr,
+    card_application_score,
+    growth_rank,
+    application_recommendation
+FROM final_market_analysis
+WHERE report_month >= CURRENT_DATE - INTERVAL '12 months'
+ORDER BY report_month DESC, card_application_score DESC
+LIMIT 100;
+
+```
+
+
+## Query 6: Chase 5/24 Rule Tracking with Application Strategy Optimization and Timing Recommendations
+
+**Description:** Tracks Chase 5/24 status across user profiles, calculates optimal application timing, identifies eligible cards, and provides application strategy recommendations. Uses recursive CTEs for application history tracking and complex timing calculations.
+
+**Use Case:** Chase Application Strategy - Track 5/24 status and optimize application timing for maximum Chase card approvals
+
+**Business Value:** Prevents wasted applications by tracking 5/24 status, identifies optimal timing for Chase applications, and maximizes approval chances
+
+**Purpose:** Optimize Chase card application strategy by tracking 5/24 rule compliance and identifying optimal application windows
+
+**Complexity:** Recursive CTEs for application history, date calculations, timing optimization, window functions, strategy recommendations, multiple CTEs (8+ levels)
+
+**Expected Output:** [Description of expected output]
+
+```sql
+WITH RECURSIVE application_history AS (
+    -- Anchor: Get user's card applications in last 24 months
+    SELECT
+        uc.user_id,
+        uc.card_id,
+        cc.issuer_id,
+        cci.issuer_name,
+        uc.account_opening_date,
+        DATE_TRUNC('month', uc.account_opening_date) AS application_month,
+        1 AS application_count,
+        ARRAY[uc.card_id] AS card_path
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_opening_date >= CURRENT_DATE - INTERVAL '24 months'
+    
+    UNION ALL
+    
+    -- Recursive: Build application history chain
+    SELECT
+        ah.user_id,
+        uc2.card_id,
+        cc2.issuer_id,
+        cci2.issuer_name,
+        uc2.account_opening_date,
+        DATE_TRUNC('month', uc2.account_opening_date) AS application_month,
+        ah.application_count + 1,
+        ah.card_path || ARRAY[uc2.card_id]
+    FROM application_history ah
+    INNER JOIN user_cards uc2 ON ah.user_id = uc2.user_id
+    INNER JOIN credit_cards cc2 ON uc2.card_id = cc2.card_id
+    INNER JOIN credit_card_issuers cci2 ON cc2.issuer_id = cci2.issuer_id
+    WHERE uc2.account_opening_date > ah.account_opening_date
+        AND uc2.account_opening_date >= CURRENT_DATE - INTERVAL '24 months'
+        AND NOT uc2.card_id = ANY(ah.card_path)
+        AND ah.application_count < 10
+),
+chase_5_24_calculation AS (
+    -- Calculate 5/24 status from application history
+    SELECT
+        user_id,
+        COUNT(DISTINCT application_month) AS cards_in_24_months,
+        COUNT(DISTINCT card_id) AS unique_cards_applied,
+        CASE
+            WHEN COUNT(DISTINCT application_month) >= 5 THEN TRUE
+            ELSE FALSE
+        END AS is_over_5_24,
+        GREATEST(0, 5 - COUNT(DISTINCT application_month)) AS slots_remaining,
+        MAX(application_month) AS last_application_month,
+        MIN(application_month) AS first_application_month,
+        DATEDIFF('month', MIN(application_month), MAX(application_month)) AS months_span
+    FROM application_history
+    GROUP BY user_id
+),
+chase_cards_available AS (
+    -- Get all available Chase cards user doesn't have
+    SELECT
+        cc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.signup_bonus_points,
+        cc.signup_bonus_spend_requirement,
+        cc.signup_bonus_timeframe_months,
+        cc.card_type,
+        cc.card_level
+    FROM credit_cards cc
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE UPPER(cci.issuer_name) LIKE '%CHASE%'
+        AND cc.is_active = TRUE
+        AND NOT EXISTS (
+            SELECT 1 FROM user_cards uc
+            WHERE uc.user_id = 'user_001'
+                AND uc.card_id = cc.card_id
+        )
+),
+application_timing_analysis AS (
+    -- Analyze optimal application timing
+    SELECT
+        c524.user_id,
+        c524.cards_in_24_months,
+        c524.is_over_5_24,
+        c524.slots_remaining,
+        c524.last_application_month,
+        c524.first_application_month,
+        DATE_ADD(c524.last_application_month, INTERVAL '24 months') AS next_eligible_date,
+        DATEDIFF('day', CURRENT_DATE, DATE_ADD(c524.last_application_month, INTERVAL '24 months')) AS days_until_eligible,
+        c524.months_span,
+        cca.card_id,
+        cca.card_name,
+        cca.annual_fee,
+        cca.signup_bonus_points,
+        cca.signup_bonus_spend_requirement,
+        cca.signup_bonus_timeframe_months,
+        cca.card_type,
+        -- Calculate application priority score
+        CASE
+            WHEN c524.slots_remaining > 0 THEN
+                (COALESCE(cca.signup_bonus_points, 0) / 1000.0) * 
+                (1 - (COALESCE(cca.annual_fee, 0) / 1000.0)) * 
+                c524.slots_remaining * 
+                CASE WHEN cca.card_level IN ('Signature', 'Infinite') THEN 1.2 ELSE 1.0 END
+            ELSE 0
+        END AS application_priority_score
+    FROM chase_5_24_calculation c524
+    CROSS JOIN chase_cards_available cca
+),
+application_strategy_ranking AS (
+    -- Rank cards by application strategy
+    SELECT
+        ata.user_id,
+        ata.cards_in_24_months,
+        ata.is_over_5_24,
+        ata.slots_remaining,
+        ata.next_eligible_date,
+        ata.days_until_eligible,
+        ata.card_id,
+        ata.card_name,
+        ata.annual_fee,
+        ata.signup_bonus_points,
+        ata.signup_bonus_spend_requirement,
+        ata.card_type,
+        ata.application_priority_score,
+        -- Window functions for ranking
+        ROW_NUMBER() OVER (
+            ORDER BY ata.application_priority_score DESC, ata.signup_bonus_points DESC
+        ) AS recommended_application_order,
+        RANK() OVER (
+            PARTITION BY ata.card_type
+            ORDER BY ata.application_priority_score DESC
+        ) AS rank_within_type,
+        PERCENT_RANK() OVER (
+            ORDER BY ata.application_priority_score DESC
+        ) AS priority_percentile
+    FROM application_timing_analysis ata
+    WHERE ata.application_priority_score > 0
+),
+timing_recommendations AS (
+    -- Generate timing recommendations
+    SELECT
+        asr.*,
+        CASE
+            WHEN asr.is_over_5_24 = FALSE AND asr.slots_remaining > 0 THEN 'Apply Now'
+            WHEN asr.days_until_eligible <= 30 THEN 'Apply Soon - ' || CAST(asr.days_until_eligible AS VARCHAR) || ' days until eligible'
+            WHEN asr.days_until_eligible <= 90 THEN 'Apply in ' || CAST(asr.days_until_eligible AS VARCHAR) || ' days'
+            WHEN asr.days_until_eligible <= 180 THEN 'Wait - ' || CAST(asr.days_until_eligible AS VARCHAR) || ' days until eligible'
+            ELSE 'Wait - Over 5/24 - ' || CAST(asr.days_until_eligible AS VARCHAR) || ' days until eligible'
+        END AS application_recommendation,
+        -- Calculate optimal application date
+        CASE
+            WHEN asr.is_over_5_24 = FALSE THEN CURRENT_DATE
+            ELSE DATE_ADD(asr.last_application_month, INTERVAL '24 months')
+        END AS optimal_application_date
+    FROM application_strategy_ranking asr
+    INNER JOIN chase_5_24_calculation c524 ON asr.user_id = c524.user_id
+),
+portfolio_impact_analysis AS (
+    -- Analyze impact on portfolio
+    SELECT
+        tr.*,
+        COUNT(DISTINCT uc.card_id) AS current_chase_cards,
+        SUM(cc.annual_fee) AS current_chase_annual_fees,
+        SUM(cc.signup_bonus_points) AS current_chase_bonus_points
+    FROM timing_recommendations tr
+    LEFT JOIN user_cards uc ON tr.user_id = uc.user_id
+        AND uc.account_status = 'Active'
+    LEFT JOIN credit_cards cc ON uc.card_id = cc.card_id
+    LEFT JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE UPPER(cci.issuer_name) LIKE '%CHASE%'
+    GROUP BY tr.user_id, tr.card_id, tr.card_name, tr.annual_fee, tr.signup_bonus_points,
+             tr.signup_bonus_spend_requirement, tr.card_type, tr.application_priority_score,
+             tr.recommended_application_order, tr.rank_within_type, tr.priority_percentile,
+             tr.application_recommendation, tr.optimal_application_date, tr.cards_in_24_months,
+             tr.is_over_5_24, tr.slots_remaining, tr.next_eligible_date, tr.days_until_eligible
+),
+final_strategy_summary AS (
+    -- Final strategy summary
+    SELECT
+        pia.user_id,
+        pia.cards_in_24_months,
+        pia.is_over_5_24,
+        pia.slots_remaining,
+        pia.days_until_eligible,
+        pia.card_name,
+        pia.annual_fee,
+        pia.signup_bonus_points,
+        pia.signup_bonus_spend_requirement,
+        pia.card_type,
+        ROUND(CAST(pia.application_priority_score AS NUMERIC), 2) AS application_priority_score,
+        pia.recommended_application_order,
+        pia.rank_within_type,
+        ROUND(CAST(pia.priority_percentile * 100 AS NUMERIC), 2) AS priority_percentile,
+        pia.application_recommendation,
+        pia.optimal_application_date,
+        pia.current_chase_cards,
+        ROUND(CAST(pia.current_chase_annual_fees AS NUMERIC), 2) AS current_chase_annual_fees,
+        pia.current_chase_bonus_points,
+        -- Calculate portfolio impact
+        CASE
+            WHEN pia.annual_fee > 0 THEN
+                pia.current_chase_annual_fees + pia.annual_fee
+            ELSE pia.current_chase_annual_fees
+        END AS projected_total_annual_fees,
+        pia.current_chase_bonus_points + COALESCE(pia.signup_bonus_points, 0) AS projected_total_bonus_points
+    FROM portfolio_impact_analysis pia
+)
+SELECT
+    user_id,
+    cards_in_24_months,
+    is_over_5_24,
+    slots_remaining,
+    days_until_eligible,
+    card_name,
+    annual_fee,
+    signup_bonus_points,
+    signup_bonus_spend_requirement,
+    card_type,
+    application_priority_score,
+    recommended_application_order,
+    rank_within_type,
+    priority_percentile,
+    application_recommendation,
+    optimal_application_date,
+    current_chase_cards,
+    current_chase_annual_fees,
+    current_chase_bonus_points,
+    projected_total_annual_fees,
+    projected_total_bonus_points
+FROM final_strategy_summary
+ORDER BY recommended_application_order
+LIMIT 20;
+
+```
+
+
+## Query 7: Annual Fee Optimization with Card Renewal Value Analysis and Portfolio Cost-Benefit Calculation
+
+**Description:** Analyzes annual fees across card portfolio, calculates renewal value based on rewards earned, identifies cards to cancel or keep, and optimizes portfolio cost structure. Uses complex cost-benefit analysis, ROI calculations, and portfolio optimization.
+
+**Use Case:** Card Portfolio Management - Determine which cards to keep or cancel based on annual fee value analysis
+
+**Business Value:** Saves $200-500 annually by identifying cards with negative ROI, optimizing portfolio costs, and maximizing value from annual fees
+
+**Purpose:** Optimize card portfolio by analyzing annual fee value and making data-driven decisions about card retention
+
+**Complexity:** Cost-benefit analysis, ROI calculations, portfolio optimization, window functions, value scoring algorithms, multiple CTEs (8+ levels)
+
+**Expected Output:** [Description of expected output]
+
+```sql
+WITH user_card_portfolio AS (
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.annual_fee_waived_first_year,
+        uc.account_opening_date,
+        uc.next_annual_fee_date,
+        uc.annual_fee_paid,
+        DATE_PART('year', CURRENT_DATE) - DATE_PART('year', uc.account_opening_date) AS years_owned,
+        CASE
+            WHEN uc.next_annual_fee_date IS NOT NULL THEN
+                DATEDIFF('day', CURRENT_DATE, uc.next_annual_fee_date)
+            ELSE NULL
+        END AS days_until_next_fee
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+),
+card_rewards_earned AS (
+    SELECT
+        ucp.user_card_id,
+        ucp.card_id,
+        ucp.card_name,
+        ucp.annual_fee,
+        ucp.annual_fee_paid,
+        ucp.years_owned,
+        ucp.days_until_next_fee,
+        SUM(st.rewards_earned) AS total_rewards_earned,
+        SUM(st.transaction_amount) AS total_spending,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier,
+        SUM(st.offer_savings) AS total_offer_savings
+    FROM user_card_portfolio ucp
+    LEFT JOIN spending_transactions st ON ucp.user_card_id = st.user_card_id
+        AND st.transaction_date >= DATE_ADD(CURRENT_DATE, INTERVAL '-12 months')
+    GROUP BY ucp.user_card_id, ucp.card_id, ucp.card_name, ucp.annual_fee,
+             ucp.annual_fee_paid, ucp.years_owned, ucp.days_until_next_fee
+),
+card_value_calculation AS (
+    SELECT
+        cre.*,
+        cre.total_rewards_earned + COALESCE(cre.total_offer_savings, 0) AS total_value_earned,
+        CASE
+            WHEN cre.annual_fee > 0 THEN
+                (cre.total_rewards_earned + COALESCE(cre.total_offer_savings, 0)) - cre.annual_fee
+            ELSE cre.total_rewards_earned + COALESCE(cre.total_offer_savings, 0)
+        END AS net_value,
+        CASE
+            WHEN cre.annual_fee > 0 THEN
+                ((cre.total_rewards_earned + COALESCE(cre.total_offer_savings, 0)) / cre.annual_fee) * 100
+            ELSE 999999
+        END AS roi_percentage
+    FROM card_rewards_earned cre
+),
+renewal_value_analysis AS (
+    SELECT
+        cvc.*,
+        CASE
+            WHEN cvc.days_until_next_fee IS NOT NULL AND cvc.days_until_next_fee <= 90 THEN
+                (cvc.total_value_earned / 365.0) * cvc.days_until_next_fee
+            WHEN cvc.days_until_next_fee IS NOT NULL THEN
+                cvc.total_value_earned * (cvc.days_until_next_fee / 365.0)
+            ELSE cvc.total_value_earned
+        END AS projected_value_until_renewal,
+        CASE
+            WHEN cvc.annual_fee > 0 AND cvc.roi_percentage < 100 THEN 'Negative ROI - Consider Canceling'
+            WHEN cvc.annual_fee > 0 AND cvc.roi_percentage < 200 THEN 'Low ROI - Review Value'
+            WHEN cvc.annual_fee > 0 AND cvc.roi_percentage >= 200 THEN 'Positive ROI - Keep Card'
+            ELSE 'No Annual Fee - Keep'
+        END AS renewal_recommendation,
+        -- Window functions for comparison
+        AVG(cvc.roi_percentage) OVER () AS avg_portfolio_roi,
+        PERCENT_RANK() OVER (ORDER BY cvc.roi_percentage DESC) AS roi_percentile,
+        RANK() OVER (ORDER BY cvc.net_value DESC) AS value_rank
+    FROM card_value_calculation cvc
+),
+portfolio_cost_benefit AS (
+    SELECT
+        rva.*,
+        SUM(rva.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(rva.total_value_earned) OVER () AS total_portfolio_value,
+        SUM(rva.net_value) OVER () AS total_portfolio_net_value,
+        COUNT(*) OVER () AS total_cards,
+        CASE
+            WHEN rva.roi_percentage < rva.avg_portfolio_roi THEN TRUE
+            ELSE FALSE
+        END AS below_average_performer
+    FROM renewal_value_analysis rva
+),
+optimization_recommendations AS (
+    SELECT
+        pcb.*,
+        CASE
+            WHEN pcb.renewal_recommendation LIKE '%Cancel%' THEN
+                pcb.total_portfolio_annual_fees - pcb.annual_fee
+            ELSE pcb.total_portfolio_annual_fees
+        END AS optimized_portfolio_fees,
+        CASE
+            WHEN pcb.renewal_recommendation LIKE '%Cancel%' THEN
+                pcb.total_portfolio_value - pcb.total_value_earned
+            ELSE pcb.total_portfolio_value
+        END AS optimized_portfolio_value,
+        CASE
+            WHEN pcb.renewal_recommendation LIKE '%Cancel%' THEN
+                (pcb.total_portfolio_annual_fees - pcb.annual_fee) - 
+                (pcb.total_portfolio_value - pcb.total_value_earned)
+            ELSE pcb.total_portfolio_net_value
+        END AS optimized_net_value,
+        ROW_NUMBER() OVER (
+            ORDER BY CASE
+                WHEN pcb.renewal_recommendation LIKE '%Cancel%' THEN 1
+                WHEN pcb.renewal_recommendation LIKE '%Review%' THEN 2
+                ELSE 3
+            END, pcb.roi_percentage ASC
+        ) AS optimization_priority
+    FROM portfolio_cost_benefit pcb
+),
+final_renewal_summary AS (
+    SELECT
+        orc.user_id,
+        orc.card_name,
+        orc.annual_fee,
+        orc.annual_fee_paid,
+        orc.years_owned,
+        orc.days_until_next_fee,
+        ROUND(CAST(orc.total_rewards_earned AS NUMERIC), 2) AS total_rewards_earned,
+        ROUND(CAST(orc.total_offer_savings AS NUMERIC), 2) AS total_offer_savings,
+        ROUND(CAST(orc.total_value_earned AS NUMERIC), 2) AS total_value_earned,
+        ROUND(CAST(orc.net_value AS NUMERIC), 2) AS net_value,
+        ROUND(CAST(orc.roi_percentage AS NUMERIC), 2) AS roi_percentage,
+        ROUND(CAST(orc.projected_value_until_renewal AS NUMERIC), 2) AS projected_value_until_renewal,
+        orc.renewal_recommendation,
+        ROUND(CAST(orc.avg_portfolio_roi AS NUMERIC), 2) AS avg_portfolio_roi,
+        ROUND(CAST(orc.roi_percentile * 100 AS NUMERIC), 2) AS roi_percentile,
+        orc.value_rank,
+        ROUND(CAST(orc.total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+        ROUND(CAST(orc.total_portfolio_value AS NUMERIC), 2) AS total_portfolio_value,
+        ROUND(CAST(orc.total_portfolio_net_value AS NUMERIC), 2) AS total_portfolio_net_value,
+        orc.below_average_performer,
+        ROUND(CAST(orc.optimized_portfolio_fees AS NUMERIC), 2) AS optimized_portfolio_fees,
+        ROUND(CAST(orc.optimized_portfolio_value AS NUMERIC), 2) AS optimized_portfolio_value,
+        ROUND(CAST(orc.optimized_net_value AS NUMERIC), 2) AS optimized_net_value,
+        ROUND(CAST(orc.optimized_net_value - orc.total_portfolio_net_value AS NUMERIC), 2) AS potential_savings,
+        orc.optimization_priority
+    FROM optimization_recommendations orc
+)
+SELECT
+    user_id,
+    card_name,
+    annual_fee,
+    annual_fee_paid,
+    years_owned,
+    days_until_next_fee,
+    total_rewards_earned,
+    total_offer_savings,
+    total_value_earned,
+    net_value,
+    roi_percentage,
+    projected_value_until_renewal,
+    renewal_recommendation,
+    avg_portfolio_roi,
+    roi_percentile,
+    value_rank,
+    total_portfolio_annual_fees,
+    total_portfolio_value,
+    total_portfolio_net_value,
+    below_average_performer,
+    optimized_portfolio_fees,
+    optimized_portfolio_value,
+    optimized_net_value,
+    potential_savings,
+    optimization_priority
+FROM final_renewal_summary
+ORDER BY optimization_priority, roi_percentage ASC
+LIMIT 50;
+
+```
+
+
+## Query 8: Signup Bonus Tracking and Optimization with Minimum Spend Requirement Analysis and Timing Recommendations
+
+**Description:** Tracks signup bonus progress across all cards, calculates minimum spend requirements, identifies optimal spending allocation, and provides timing recommendations for bonus completion. Uses complex spend tracking, allocation optimization, and timing calculations.
+
+**Use Case:** Signup Bonus Optimization - Track progress toward signup bonuses and optimize spending to maximize bonus earnings
+
+**Business Value:** Maximizes signup bonus earnings by tracking progress, optimizing spend allocation, and ensuring timely completion of minimum spend requirements
+
+**Purpose:** Optimize signup bonus earnings by tracking progress and providing actionable recommendations for meeting minimum spend requirements
+
+**Complexity:** Spend tracking, allocation optimization, timing calculations, window functions, bonus progress analysis, multiple CTEs (8+ levels)
+
+**Expected Output:** [Description of expected output]
+
+```sql
+WITH user_signup_bonuses AS (
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.signup_bonus_points,
+        cc.signup_bonus_cash,
+        cc.signup_bonus_spend_requirement,
+        cc.signup_bonus_timeframe_months,
+        uc.account_opening_date,
+        DATE_ADD(uc.account_opening_date, INTERVAL cc.signup_bonus_timeframe_months MONTH) AS bonus_deadline,
+        DATEDIFF('day', CURRENT_DATE, DATE_ADD(uc.account_opening_date, INTERVAL cc.signup_bonus_timeframe_months MONTH)) AS days_until_deadline
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND (cc.signup_bonus_points IS NOT NULL OR cc.signup_bonus_cash IS NOT NULL)
+        AND DATE_ADD(uc.account_opening_date, INTERVAL cc.signup_bonus_timeframe_months MONTH) >= CURRENT_DATE
+),
+bonus_spend_progress AS (
+    SELECT
+        usb.*,
+        SUM(st.transaction_amount) AS total_spend_to_date,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        CASE
+            WHEN usb.signup_bonus_spend_requirement > 0 THEN
+                (SUM(st.transaction_amount) / usb.signup_bonus_spend_requirement) * 100
+            ELSE 100
+        END AS spend_progress_pct,
+        usb.signup_bonus_spend_requirement - SUM(st.transaction_amount) AS remaining_spend_required,
+        CASE
+            WHEN usb.signup_bonus_spend_requirement > 0 THEN
+                (usb.signup_bonus_spend_requirement - SUM(st.transaction_amount)) / 
+                NULLIF(usb.days_until_deadline, 0)
+            ELSE 0
+        END AS daily_spend_needed
+    FROM user_signup_bonuses usb
+    LEFT JOIN spending_transactions st ON usb.user_card_id = st.user_card_id
+        AND st.transaction_date >= usb.account_opening_date
+        AND st.transaction_date <= DATE_ADD(usb.account_opening_date, INTERVAL usb.signup_bonus_timeframe_months MONTH)
+    GROUP BY usb.user_id, usb.user_card_id, usb.card_id, usb.card_name,
+             usb.signup_bonus_points, usb.signup_bonus_cash, usb.signup_bonus_spend_requirement,
+             usb.signup_bonus_timeframe_months, usb.account_opening_date, usb.bonus_deadline,
+             usb.days_until_deadline
+),
+bonus_completion_status AS (
+    SELECT
+        bsp.*,
+        CASE
+            WHEN bsp.spend_progress_pct >= 100 THEN 'Completed'
+            WHEN bsp.spend_progress_pct >= 75 THEN 'Nearly Complete'
+            WHEN bsp.spend_progress_pct >= 50 THEN 'Halfway'
+            WHEN bsp.spend_progress_pct >= 25 THEN 'Quarter Complete'
+            ELSE 'Just Started'
+        END AS completion_status,
+        CASE
+            WHEN bsp.days_until_deadline <= 7 AND bsp.spend_progress_pct < 100 THEN 'Urgent'
+            WHEN bsp.days_until_deadline <= 30 AND bsp.spend_progress_pct < 100 THEN 'High Priority'
+            WHEN bsp.days_until_deadline <= 60 AND bsp.spend_progress_pct < 100 THEN 'Medium Priority'
+            ELSE 'Low Priority'
+        END AS urgency_level,
+        CASE
+            WHEN bsp.daily_spend_needed > 0 THEN
+                CASE
+                    WHEN bsp.daily_spend_needed > 500 THEN 'Very Aggressive Spending Needed'
+                    WHEN bsp.daily_spend_needed > 200 THEN 'Aggressive Spending Needed'
+                    WHEN bsp.daily_spend_needed > 100 THEN 'Moderate Spending Needed'
+                    ELSE 'Light Spending Needed'
+                END
+            ELSE 'No Additional Spending Needed'
+        END AS spending_strategy
+    FROM bonus_spend_progress bsp
+),
+spend_allocation_optimization AS (
+    SELECT
+        bcs.*,
+        -- Calculate optimal spending allocation across all bonuses
+        CASE
+            WHEN bcs.urgency_level = 'Urgent' THEN 100
+            WHEN bcs.urgency_level = 'High Priority' THEN 80
+            WHEN bcs.urgency_level = 'Medium Priority' THEN 60
+            ELSE 40
+        END AS allocation_priority_score,
+        -- Window functions for portfolio-level analysis
+        SUM(bcs.remaining_spend_required) OVER () AS total_remaining_spend_portfolio,
+        SUM(bcs.daily_spend_needed) OVER () AS total_daily_spend_needed_portfolio,
+        COUNT(*) OVER () AS active_bonuses_count,
+        AVG(bcs.spend_progress_pct) OVER () AS avg_portfolio_progress
+    FROM bonus_completion_status bcs
+),
+timing_recommendations AS (
+    SELECT
+        sao.*,
+        CASE
+            WHEN sao.completion_status = 'Completed' THEN 'Bonus Earned - No Action Needed'
+            WHEN sao.urgency_level = 'Urgent' THEN 'URGENT: Complete spending immediately'
+            WHEN sao.daily_spend_needed > 200 THEN 'Focus spending on this card - ' || 
+                ROUND(CAST(sao.daily_spend_needed AS NUMERIC), 0) || ' per day needed'
+            WHEN sao.daily_spend_needed > 0 THEN 'Continue normal spending - ' ||
+                ROUND(CAST(sao.daily_spend_needed AS NUMERIC), 0) || ' per day needed'
+            ELSE 'On track - no action needed'
+        END AS action_recommendation,
+        -- Calculate recommended spending allocation percentage
+        CASE
+            WHEN sao.total_daily_spend_needed_portfolio > 0 THEN
+                (sao.daily_spend_needed / sao.total_daily_spend_needed_portfolio) * 100
+            ELSE 0
+        END AS recommended_spend_allocation_pct
+    FROM spend_allocation_optimization sao
+),
+portfolio_bonus_summary AS (
+    SELECT
+        'user_001' AS user_id,
+        COUNT(*) AS total_active_bonuses,
+        COUNT(CASE WHEN completion_status = 'Completed' THEN 1 END) AS completed_bonuses,
+        COUNT(CASE WHEN completion_status != 'Completed' THEN 1 END) AS pending_bonuses,
+        SUM(signup_bonus_points) AS total_bonus_points_potential,
+        SUM(signup_bonus_cash) AS total_bonus_cash_potential,
+        SUM(CASE WHEN completion_status = 'Completed' THEN signup_bonus_points ELSE 0 END) AS earned_bonus_points,
+        SUM(CASE WHEN completion_status = 'Completed' THEN signup_bonus_cash ELSE 0 END) AS earned_bonus_cash,
+        SUM(remaining_spend_required) AS total_remaining_spend,
+        AVG(spend_progress_pct) AS avg_progress_pct
+    FROM timing_recommendations
+),
+final_bonus_tracking AS (
+    SELECT
+        pbs.user_id,
+        pbs.total_active_bonuses,
+        pbs.completed_bonuses,
+        pbs.pending_bonuses,
+        pbs.total_bonus_points_potential,
+        ROUND(CAST(pbs.total_bonus_cash_potential AS NUMERIC), 2) AS total_bonus_cash_potential,
+        pbs.earned_bonus_points,
+        ROUND(CAST(pbs.earned_bonus_cash AS NUMERIC), 2) AS earned_bonus_cash,
+        ROUND(CAST(pbs.total_remaining_spend AS NUMERIC), 2) AS total_remaining_spend,
+        ROUND(CAST(pbs.avg_progress_pct AS NUMERIC), 2) AS avg_progress_pct,
+        -- Card-level details
+        tr.card_name,
+        tr.signup_bonus_points,
+        ROUND(CAST(tr.signup_bonus_cash AS NUMERIC), 2) AS signup_bonus_cash,
+        tr.signup_bonus_spend_requirement,
+        ROUND(CAST(tr.total_spend_to_date AS NUMERIC), 2) AS total_spend_to_date,
+        ROUND(CAST(tr.spend_progress_pct AS NUMERIC), 2) AS spend_progress_pct,
+        ROUND(CAST(tr.remaining_spend_required AS NUMERIC), 2) AS remaining_spend_required,
+        ROUND(CAST(tr.daily_spend_needed AS NUMERIC), 2) AS daily_spend_needed,
+        tr.days_until_deadline,
+        tr.completion_status,
+        tr.urgency_level,
+        tr.spending_strategy,
+        tr.action_recommendation,
+        ROUND(CAST(tr.recommended_spend_allocation_pct AS NUMERIC), 2) AS recommended_spend_allocation_pct,
+        tr.allocation_priority_score
+    FROM portfolio_bonus_summary pbs
+    CROSS JOIN timing_recommendations tr
+    WHERE tr.completion_status != 'Completed'
+)
+SELECT
+    user_id,
+    total_active_bonuses,
+    completed_bonuses,
+    pending_bonuses,
+    total_bonus_points_potential,
+    total_bonus_cash_potential,
+    earned_bonus_points,
+    earned_bonus_cash,
+    total_remaining_spend,
+    avg_progress_pct,
+    card_name,
+    signup_bonus_points,
+    signup_bonus_cash,
+    signup_bonus_spend_requirement,
+    total_spend_to_date,
+    spend_progress_pct,
+    remaining_spend_required,
+    daily_spend_needed,
+    days_until_deadline,
+    completion_status,
+    urgency_level,
+    spending_strategy,
+    action_recommendation,
+    recommended_spend_allocation_pct,
+    allocation_priority_score
+FROM final_bonus_tracking
+ORDER BY allocation_priority_score DESC, days_until_deadline ASC
+LIMIT 50;
+
+```
+
+
+## Query 9: Merchant-Specific Card Recommendations with Historical Spending Pattern Analysis and Predictive Scoring
+
+**Description:** Analyzes historical spending patterns at specific merchants, identifies optimal cards for each merchant, calculates expected rewards, and provides predictive recommendations. Uses pattern recognition, predictive scoring, and merchant-specific optimization.
+
+**Use Case:** Merchant-Specific Optimization - Get optimal card recommendations for specific merchants based on historical spending patterns
+
+**Business Value:** Maximizes rewards at frequently visited merchants by providing merchant-specific card recommendations based on historical spending data
+
+**Purpose:** Optimize card selection for specific merchants by analyzing historical spending patterns and predicting optimal card usage
+
+**Complexity:** Pattern recognition, predictive scoring, historical analysis, merchant-specific optimization, window functions, multiple CTEs (8+ levels)
+
+**Expected Output:** [Description of expected output]
+
+```sql
+WITH merchant_spending_history AS (
+    SELECT
+        st.merchant_id,
+        m.merchant_name,
+        m.merchant_category,
+        st.user_id,
+        st.card_used_id,
+        cc.card_name AS card_used,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        AVG(st.transaction_amount) AS avg_transaction_amount,
+        SUM(st.rewards_earned) AS total_rewards_earned,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier_used,
+        DATE_TRUNC('month', st.transaction_date) AS spending_month
+    FROM spending_transactions st
+    INNER JOIN merchants m ON st.merchant_id = m.merchant_id
+    INNER JOIN credit_cards cc ON st.card_used_id = cc.card_id
+    WHERE st.user_id = 'user_001'
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY st.merchant_id, m.merchant_name, m.merchant_category, st.user_id,
+             st.card_used_id, cc.card_name, DATE_TRUNC('month', st.transaction_date)
+),
+merchant_category_mapping AS (
+    SELECT
+        msh.*,
+        rc.category_id,
+        rc.category_name,
+        rc.category_code,
+        rc.is_bonus_category,
+        rc.typical_multiplier
+    FROM merchant_spending_history msh
+    LEFT JOIN rewards_categories rc ON msh.merchant_category = rc.category_name
+        OR msh.merchant_category LIKE '%' || rc.category_name || '%'
+),
+available_cards_for_merchant AS (
+    SELECT
+        mcm.merchant_id,
+        mcm.merchant_name,
+        mcm.merchant_category,
+        mcm.category_id,
+        mcm.category_name,
+        mcm.total_spending,
+        mcm.avg_transaction_amount,
+        mcm.total_rewards_earned AS current_rewards,
+        mcm.avg_multiplier_used,
+        uc.card_id,
+        cc.card_name,
+        crs.rewards_multiplier,
+        crs.rewards_type,
+        crs.points_per_dollar,
+        crs.cash_back_percentage,
+        crs.annual_spend_limit,
+        crs.is_active AS reward_active
+    FROM merchant_category_mapping mcm
+    INNER JOIN user_cards uc ON mcm.user_id = uc.user_id
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    LEFT JOIN card_rewards_structure crs ON cc.card_id = crs.card_id
+        AND mcm.category_id = crs.category_id
+        AND crs.is_active = TRUE
+    WHERE uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+optimal_card_calculation AS (
+    SELECT
+        acfm.*,
+        CASE
+            WHEN acfm.rewards_type = 'Points' AND acfm.points_per_dollar IS NOT NULL THEN
+                acfm.total_spending * acfm.points_per_dollar * COALESCE(acfm.rewards_multiplier, 1.0)
+            WHEN acfm.rewards_type = 'Cash Back' AND acfm.cash_back_percentage IS NOT NULL THEN
+                acfm.total_spending * (acfm.cash_back_percentage / 100.0) * COALESCE(acfm.rewards_multiplier, 1.0)
+            WHEN acfm.rewards_multiplier IS NOT NULL THEN
+                acfm.total_spending * acfm.rewards_multiplier
+            ELSE 0
+        END AS expected_rewards_optimal,
+        acfm.current_rewards,
+        CASE
+            WHEN acfm.rewards_type = 'Points' AND acfm.points_per_dollar IS NOT NULL THEN
+                acfm.total_spending * acfm.points_per_dollar * COALESCE(acfm.rewards_multiplier, 1.0)
+            WHEN acfm.rewards_type = 'Cash Back' AND acfm.cash_back_percentage IS NOT NULL THEN
+                acfm.total_spending * (acfm.cash_back_percentage / 100.0) * COALESCE(acfm.rewards_multiplier, 1.0)
+            WHEN acfm.rewards_multiplier IS NOT NULL THEN
+                acfm.total_spending * acfm.rewards_multiplier
+            ELSE 0
+        END - acfm.current_rewards AS potential_rewards_increase
+    FROM available_cards_for_merchant acfm
+    WHERE acfm.reward_active = TRUE
+),
+merchant_card_ranking AS (
+    SELECT
+        occ.*,
+        ROW_NUMBER() OVER (
+            PARTITION BY occ.merchant_id
+            ORDER BY occ.expected_rewards_optimal DESC, occ.rewards_multiplier DESC
+        ) AS card_rank_per_merchant,
+        MAX(occ.expected_rewards_optimal) OVER (PARTITION BY occ.merchant_id) AS max_rewards_for_merchant,
+        PERCENT_RANK() OVER (
+            PARTITION BY occ.merchant_id
+            ORDER BY occ.expected_rewards_optimal DESC
+        ) AS rewards_percentile
+    FROM optimal_card_calculation occ
+),
+predictive_scoring AS (
+    SELECT
+        mcr.*,
+        CASE
+            WHEN mcr.transaction_count >= 10 THEN 100
+            WHEN mcr.transaction_count >= 5 THEN 75
+            WHEN mcr.transaction_count >= 2 THEN 50
+            ELSE 25
+        END AS frequency_score,
+        CASE
+            WHEN mcr.total_spending > 1000 THEN 100
+            WHEN mcr.total_spending > 500 THEN 75
+            WHEN mcr.total_spending > 200 THEN 50
+            ELSE 25
+        END AS spending_score,
+        (mcr.frequency_score * 0.4 + mcr.spending_score * 0.6) AS merchant_importance_score,
+        CASE
+            WHEN mcr.card_rank_per_merchant = 1 AND mcr.card_used != mcr.card_name THEN 'Switch Recommended'
+            WHEN mcr.card_rank_per_merchant = 1 AND mcr.card_used = mcr.card_name THEN 'Optimal Card Already Used'
+            ELSE 'Suboptimal Card'
+        END AS recommendation_status
+    FROM merchant_card_ranking mcr
+),
+final_merchant_recommendations AS (
+    SELECT
+        ps.merchant_id,
+        ps.merchant_name,
+        ps.merchant_category,
+        ps.category_name,
+        ROUND(CAST(ps.total_spending AS NUMERIC), 2) AS total_spending,
+        ps.transaction_count,
+        ps.card_used AS current_card,
+        ps.card_name AS recommended_card,
+        ps.rewards_multiplier,
+        ps.rewards_type,
+        ROUND(CAST(ps.current_rewards AS NUMERIC), 2) AS current_rewards,
+        ROUND(CAST(ps.expected_rewards_optimal AS NUMERIC), 2) AS expected_rewards_optimal,
+        ROUND(CAST(ps.potential_rewards_increase AS NUMERIC), 2) AS potential_rewards_increase,
+        ps.card_rank_per_merchant,
+        ROUND(CAST(ps.rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+        ROUND(CAST(ps.merchant_importance_score AS NUMERIC), 2) AS merchant_importance_score,
+        ps.recommendation_status
+    FROM predictive_scoring ps
+    WHERE ps.card_rank_per_merchant <= 3
+)
+SELECT
+    merchant_name,
+    merchant_category,
+    category_name,
+    total_spending,
+    transaction_count,
+    current_card,
+    recommended_card,
+    rewards_multiplier,
+    rewards_type,
+    current_rewards,
+    expected_rewards_optimal,
+    potential_rewards_increase,
+    card_rank_per_merchant,
+    rewards_percentile,
+    merchant_importance_score,
+    recommendation_status
+FROM final_merchant_recommendations
+ORDER BY merchant_importance_score DESC, potential_rewards_increase DESC
+LIMIT 100;
+
+```
+
+
+## Query 10: Category Bonus Period Optimization with Quarterly Rotation Analysis and Spending Allocation Strategy
+
+**Description:** Analyzes rotating category bonus periods, tracks quarterly rotations, optimizes spending allocation across categories, and provides strategic recommendations. Uses temporal analysis, rotation tracking, and allocation optimization.
+
+**Use Case:** Rotating Category Optimization - Maximize rewards from cards with quarterly rotating bonus categories
+
+**Business Value:** Maximizes rewards from rotating category bonuses by tracking quarterly rotations and optimizing spending allocation across bonus periods
+
+**Purpose:** Optimize rewards from rotating category bonuses by tracking periods and providing strategic spending allocation recommendations
+
+**Complexity:** Temporal analysis, rotation tracking, allocation optimization, window functions, quarterly period analysis, multiple CTEs (8+ levels)
+
+**Expected Output:** [Description of expected output]
+
+```sql
+WITH rotating_category_periods AS (
+    SELECT
+        crs.card_id,
+        cc.card_name,
+        crs.category_id,
+        rc.category_name,
+        rc.category_code,
+        crs.effective_start_date,
+        crs.effective_end_date,
+        crs.rewards_multiplier,
+        crs.quarterly_spend_limit,
+        crs.monthly_spend_limit,
+        DATE_TRUNC('quarter', crs.effective_start_date) AS bonus_quarter,
+        DATEDIFF('day', CURRENT_DATE, crs.effective_end_date) AS days_remaining
+    FROM card_rewards_structure crs
+    INNER JOIN credit_cards cc ON crs.card_id = cc.card_id
+    INNER JOIN rewards_categories rc ON crs.category_id = rc.category_id
+    WHERE crs.is_active = TRUE
+        AND CURRENT_DATE BETWEEN crs.effective_start_date AND crs.effective_end_date
+        AND (crs.quarterly_spend_limit IS NOT NULL OR crs.monthly_spend_limit IS NOT NULL)
+),
+user_spending_by_period AS (
+    SELECT
+        rcp.card_id,
+        rcp.card_name,
+        rcp.category_id,
+        rcp.category_name,
+        rcp.bonus_quarter,
+        rcp.effective_start_date,
+        rcp.effective_end_date,
+        rcp.rewards_multiplier,
+        rcp.quarterly_spend_limit,
+        rcp.monthly_spend_limit,
+        rcp.days_remaining,
+        uc.user_id,
+        SUM(st.transaction_amount) AS total_spending_in_period,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.rewards_earned) AS rewards_earned_in_period,
+        DATE_TRUNC('month', st.transaction_date) AS spending_month
+    FROM rotating_category_periods rcp
+    INNER JOIN user_cards uc ON rcp.card_id = uc.card_id
+    LEFT JOIN spending_transactions st ON uc.user_card_id = st.user_card_id
+        AND st.category_id = rcp.category_id
+        AND st.transaction_date BETWEEN rcp.effective_start_date AND rcp.effective_end_date
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+    GROUP BY rcp.card_id, rcp.card_name, rcp.category_id, rcp.category_name,
+             rcp.bonus_quarter, rcp.effective_start_date, rcp.effective_end_date,
+             rcp.rewards_multiplier, rcp.quarterly_spend_limit, rcp.monthly_spend_limit,
+             rcp.days_remaining, uc.user_id, DATE_TRUNC('month', st.transaction_date)
+),
+spend_limit_analysis AS (
+    SELECT
+        usbp.*,
+        CASE
+            WHEN usbp.quarterly_spend_limit IS NOT NULL THEN
+                (usbp.total_spending_in_period / usbp.quarterly_spend_limit) * 100
+            WHEN usbp.monthly_spend_limit IS NOT NULL THEN
+                (usbp.total_spending_in_period / usbp.monthly_spend_limit) * 100
+            ELSE 0
+        END AS limit_utilization_pct,
+        CASE
+            WHEN usbp.quarterly_spend_limit IS NOT NULL THEN
+                usbp.quarterly_spend_limit - usbp.total_spending_in_period
+            WHEN usbp.monthly_spend_limit IS NOT NULL THEN
+                usbp.monthly_spend_limit - usbp.total_spending_in_period
+            ELSE NULL
+        END AS remaining_spend_capacity,
+        CASE
+            WHEN usbp.days_remaining > 0 THEN
+                CASE
+                    WHEN usbp.quarterly_spend_limit IS NOT NULL THEN
+                        (usbp.quarterly_spend_limit - usbp.total_spending_in_period) / usbp.days_remaining
+                    WHEN usbp.monthly_spend_limit IS NOT NULL THEN
+                        (usbp.monthly_spend_limit - usbp.total_spending_in_period) / usbp.days_remaining
+                    ELSE 0
+                END
+            ELSE 0
+        END AS daily_spend_needed_to_maximize
+    FROM user_spending_by_period usbp
+),
+quarterly_rotation_tracking AS (
+    SELECT
+        sla.*,
+        LAG(sla.bonus_quarter, 1) OVER (
+            PARTITION BY sla.card_id, sla.category_id
+            ORDER BY sla.bonus_quarter
+        ) AS prev_bonus_quarter,
+        LEAD(sla.bonus_quarter, 1) OVER (
+            PARTITION BY sla.card_id, sla.category_id
+            ORDER BY sla.bonus_quarter
+        ) AS next_bonus_quarter,
+        AVG(sla.total_spending_in_period) OVER (
+            PARTITION BY sla.card_id
+            ORDER BY sla.bonus_quarter
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ) AS avg_spending_last_4_quarters,
+        PERCENT_RANK() OVER (
+            PARTITION BY sla.bonus_quarter
+            ORDER BY sla.total_spending_in_period DESC
+        ) AS spending_percentile_in_quarter
+    FROM spend_limit_analysis sla
+),
+allocation_optimization AS (
+    SELECT
+        qrt.*,
+        CASE
+            WHEN qrt.limit_utilization_pct >= 100 THEN 'Limit Reached'
+            WHEN qrt.limit_utilization_pct >= 75 THEN 'Near Limit'
+            WHEN qrt.limit_utilization_pct >= 50 THEN 'Halfway'
+            WHEN qrt.limit_utilization_pct >= 25 THEN 'Quarter Complete'
+            ELSE 'Just Started'
+        END AS utilization_status,
+        CASE
+            WHEN qrt.days_remaining <= 7 AND qrt.limit_utilization_pct < 100 THEN 'Urgent'
+            WHEN qrt.days_remaining <= 30 AND qrt.limit_utilization_pct < 100 THEN 'High Priority'
+            WHEN qrt.days_remaining <= 60 AND qrt.limit_utilization_pct < 100 THEN 'Medium Priority'
+            ELSE 'Low Priority'
+        END AS optimization_urgency,
+        CASE
+            WHEN qrt.daily_spend_needed_to_maximize > 0 THEN
+                CASE
+                    WHEN qrt.daily_spend_needed_to_maximize > 200 THEN 'Aggressive Spending Needed'
+                    WHEN qrt.daily_spend_needed_to_maximize > 100 THEN 'Moderate Spending Needed'
+                    ELSE 'Light Spending Needed'
+                END
+            ELSE 'No Additional Spending Needed'
+        END AS spending_strategy
+    FROM quarterly_rotation_tracking qrt
+),
+portfolio_allocation_summary AS (
+    SELECT
+        ao.user_id,
+        COUNT(DISTINCT ao.card_id) AS cards_with_rotating_categories,
+        COUNT(DISTINCT ao.category_id) AS unique_bonus_categories,
+        SUM(ao.total_spending_in_period) AS total_spending_all_categories,
+        SUM(ao.remaining_spend_capacity) AS total_remaining_capacity,
+        SUM(ao.daily_spend_needed_to_maximize) AS total_daily_spend_needed,
+        AVG(ao.limit_utilization_pct) AS avg_utilization_pct,
+        COUNT(CASE WHEN ao.utilization_status = 'Limit Reached' THEN 1 END) AS categories_at_limit,
+        COUNT(CASE WHEN ao.optimization_urgency = 'Urgent' THEN 1 END) AS urgent_categories
+    FROM allocation_optimization ao
+    GROUP BY ao.user_id
+),
+final_rotation_recommendations AS (
+    SELECT
+        pas.user_id,
+        pas.cards_with_rotating_categories,
+        pas.unique_bonus_categories,
+        ROUND(CAST(pas.total_spending_all_categories AS NUMERIC), 2) AS total_spending_all_categories,
+        ROUND(CAST(pas.total_remaining_capacity AS NUMERIC), 2) AS total_remaining_capacity,
+        ROUND(CAST(pas.total_daily_spend_needed AS NUMERIC), 2) AS total_daily_spend_needed,
+        ROUND(CAST(pas.avg_utilization_pct AS NUMERIC), 2) AS avg_utilization_pct,
+        pas.categories_at_limit,
+        pas.urgent_categories,
+        ao.card_name,
+        ao.category_name,
+        ao.bonus_quarter,
+        ROUND(CAST(ao.total_spending_in_period AS NUMERIC), 2) AS total_spending_in_period,
+        ROUND(CAST(ao.limit_utilization_pct AS NUMERIC), 2) AS limit_utilization_pct,
+        ROUND(CAST(ao.remaining_spend_capacity AS NUMERIC), 2) AS remaining_spend_capacity,
+        ROUND(CAST(ao.daily_spend_needed_to_maximize AS NUMERIC), 2) AS daily_spend_needed_to_maximize,
+        ao.days_remaining,
+        ao.utilization_status,
+        ao.optimization_urgency,
+        ao.spending_strategy,
+        ROUND(CAST(ao.avg_spending_last_4_quarters AS NUMERIC), 2) AS avg_spending_last_4_quarters,
+        ROUND(CAST(ao.spending_percentile_in_quarter * 100 AS NUMERIC), 2) AS spending_percentile_in_quarter
+    FROM portfolio_allocation_summary pas
+    CROSS JOIN allocation_optimization ao
+    WHERE ao.user_id = pas.user_id
+)
+SELECT
+    user_id,
+    cards_with_rotating_categories,
+    unique_bonus_categories,
+    total_spending_all_categories,
+    total_remaining_capacity,
+    total_daily_spend_needed,
+    avg_utilization_pct,
+    categories_at_limit,
+    urgent_categories,
+    card_name,
+    category_name,
+    bonus_quarter,
+    total_spending_in_period,
+    limit_utilization_pct,
+    remaining_spend_capacity,
+    daily_spend_needed_to_maximize,
+    days_remaining,
+    utilization_status,
+    optimization_urgency,
+    spending_strategy,
+    avg_spending_last_4_quarters,
+    spending_percentile_in_quarter
+FROM final_rotation_recommendations
+ORDER BY optimization_urgency DESC, daily_spend_needed_to_maximize DESC
+LIMIT 100;
+
+```
+
+
+## Query 11: Spending Category Analysis with Optimization Opportunities
+
+**Description:** Analyzes spending across categories to identify optimization opportunities - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q11 AS (
+    -- First CTE: Initial data selection for Spending Category Analysis
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q11 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q11 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q11 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q11 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q11 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q11 t3
+),
+topic_cte5_q11 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q11 t4
+),
+topic_cte6_q11 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q11 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q11 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q11 t6
+),
+topic_cte8_q11 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q11 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q11
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 12: Card Portfolio Diversification Analysis
+
+**Description:** Analyzes card portfolio diversity across issuers, card types, and rewards structures - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q12 AS (
+    -- First CTE: Initial data selection for Card Portfolio Diversification
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q12 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q12 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q12 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q12 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q12 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q12 t3
+),
+topic_cte5_q12 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q12 t4
+),
+topic_cte6_q12 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q12 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q12 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q12 t6
+),
+topic_cte8_q12 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q12 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q12
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 13: Foreign Transaction Fee Optimization
+
+**Description:** Identifies cards with no foreign transaction fees and optimizes international spending - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q13 AS (
+    -- First CTE: Initial data selection for Foreign Transaction Fee Optimization
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q13 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q13 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q13 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q13 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q13 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q13 t3
+),
+topic_cte5_q13 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q13 t4
+),
+topic_cte6_q13 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q13 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q13 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q13 t6
+),
+topic_cte8_q13 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q13 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q13
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 14: Authorized User Fee Analysis
+
+**Description:** Analyzes authorized user fees and calculates value of adding authorized users - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q14 AS (
+    -- First CTE: Initial data selection for Authorized User Fee Analysis
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q14 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q14 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q14 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q14 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q14 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q14 t3
+),
+topic_cte5_q14 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q14 t4
+),
+topic_cte6_q14 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q14 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q14 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q14 t6
+),
+topic_cte8_q14 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q14 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q14
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 15: Credit Limit Utilization Optimization
+
+**Description:** Tracks credit limit utilization and provides recommendations for optimal utilization - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q15 AS (
+    -- First CTE: Initial data selection for Credit Limit Utilization
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q15 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q15 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q15 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q15 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q15 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q15 t3
+),
+topic_cte5_q15 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q15 t4
+),
+topic_cte6_q15 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q15 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q15 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q15 t6
+),
+topic_cte8_q15 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q15 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q15
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 16: Rewards Redemption Value Analysis
+
+**Description:** Analyzes rewards redemption options and calculates optimal redemption strategies - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q16 AS (
+    -- First CTE: Initial data selection for Rewards Redemption Value
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q16 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q16 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q16 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q16 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q16 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q16 t3
+),
+topic_cte5_q16 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q16 t4
+),
+topic_cte6_q16 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q16 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q16 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q16 t6
+),
+topic_cte8_q16 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q16 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q16
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 17: Transfer Partner Analysis
+
+**Description:** Analyzes transfer partner options for points and miles optimization - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q17 AS (
+    -- First CTE: Initial data selection for Transfer Partner Analysis
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q17 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q17 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q17 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q17 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q17 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q17 t3
+),
+topic_cte5_q17 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q17 t4
+),
+topic_cte6_q17 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q17 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q17 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q17 t6
+),
+topic_cte8_q17 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q17 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q17
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 18: Card Upgrade/Downgrade Recommendations
+
+**Description:** Identifies opportunities to upgrade or downgrade cards for better value - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q18 AS (
+    -- First CTE: Initial data selection for Card Upgrade/Downgrade
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q18 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q18 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q18 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q18 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q18 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q18 t3
+),
+topic_cte5_q18 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q18 t4
+),
+topic_cte6_q18 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q18 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q18 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q18 t6
+),
+topic_cte8_q18 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q18 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q18
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 19: Spending Limit Tracking
+
+**Description:** Tracks annual, quarterly, and monthly spending limits for bonus categories - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q19 AS (
+    -- First CTE: Initial data selection for Spending Limit Tracking
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q19 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q19 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q19 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q19 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q19 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q19 t3
+),
+topic_cte5_q19 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q19 t4
+),
+topic_cte6_q19 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q19 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q19 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q19 t6
+),
+topic_cte8_q19 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q19 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q19
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 20: Multi-Profile Card Management
+
+**Description:** Manages cards across multiple profiles (family, partner) with consolidated recommendations - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q20 AS (
+    -- First CTE: Initial data selection for Multi-Profile Card Management
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q20 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q20 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q20 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q20 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q20 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q20 t3
+),
+topic_cte5_q20 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q20 t4
+),
+topic_cte6_q20 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q20 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q20 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q20 t6
+),
+topic_cte8_q20 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q20 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q20
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 21: Offer Expiration Tracking
+
+**Description:** Tracks offer expiration dates and provides activation reminders - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q21 AS (
+    -- First CTE: Initial data selection for Offer Expiration Tracking
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q21 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q21 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q21 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q21 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q21 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q21 t3
+),
+topic_cte5_q21 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q21 t4
+),
+topic_cte6_q21 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q21 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q21 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q21 t6
+),
+topic_cte8_q21 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q21 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q21
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 22: Rewards Statement Credit Analysis
+
+**Description:** Analyzes statement credit options and calculates optimal redemption timing - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q22 AS (
+    -- First CTE: Initial data selection for Rewards Statement Credit
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q22 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q22 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q22 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q22 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q22 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q22 t3
+),
+topic_cte5_q22 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q22 t4
+),
+topic_cte6_q22 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q22 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q22 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q22 t6
+),
+topic_cte8_q22 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q22 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q22
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 23: Card Network Optimization
+
+**Description:** Optimizes card usage across Visa, Mastercard, Amex, and Discover networks - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q23 AS (
+    -- First CTE: Initial data selection for Card Network Optimization
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q23 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q23 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q23 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q23 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q23 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q23 t3
+),
+topic_cte5_q23 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q23 t4
+),
+topic_cte6_q23 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q23 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q23 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q23 t6
+),
+topic_cte8_q23 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q23 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q23
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 24: Metal Card Value Analysis
+
+**Description:** Analyzes value proposition of metal cards vs standard cards - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q24 AS (
+    -- First CTE: Initial data selection for Metal Card Value
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q24 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q24 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q24 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q24 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q24 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q24 t3
+),
+topic_cte5_q24 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q24 t4
+),
+topic_cte6_q24 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q24 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q24 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q24 t6
+),
+topic_cte8_q24 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q24 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q24
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 25: Business Card Optimization
+
+**Description:** Optimizes business card usage and tracks business spending separately - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q25 AS (
+    -- First CTE: Initial data selection for Business Card Optimization
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q25 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q25 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q25 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q25 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q25 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q25 t3
+),
+topic_cte5_q25 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q25 t4
+),
+topic_cte6_q25 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q25 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q25 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q25 t6
+),
+topic_cte8_q25 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q25 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q25
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 26: Secured Card Graduation Tracking
+
+**Description:** Tracks secured card usage and identifies graduation opportunities - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q26 AS (
+    -- First CTE: Initial data selection for Secured Card Graduation
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q26 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q26 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q26 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q26 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q26 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q26 t3
+),
+topic_cte5_q26 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q26 t4
+),
+topic_cte6_q26 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q26 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q26 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q26 t6
+),
+topic_cte8_q26 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q26 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q26
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 27: Credit Score Impact Analysis
+
+**Description:** Analyzes credit score impact of card applications and account management - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q27 AS (
+    -- First CTE: Initial data selection for Credit Score Impact
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q27 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q27 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q27 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q27 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q27 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q27 t3
+),
+topic_cte5_q27 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q27 t4
+),
+topic_cte6_q27 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q27 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q27 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q27 t6
+),
+topic_cte8_q27 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q27 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q27
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 28: Rewards Expiration Tracking
+
+**Description:** Tracks rewards expiration dates and provides redemption recommendations - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q28 AS (
+    -- First CTE: Initial data selection for Rewards Expiration
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q28 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q28 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q28 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q28 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q28 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q28 t3
+),
+topic_cte5_q28 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q28 t4
+),
+topic_cte6_q28 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q28 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q28 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q28 t6
+),
+topic_cte8_q28 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q28 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q28
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 29: Card Agreement Comparison
+
+**Description:** Compares card agreements and terms across issuers for best value - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q29 AS (
+    -- First CTE: Initial data selection for Card Agreement Comparison
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q29 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q29 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q29 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q29 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q29 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q29 t3
+),
+topic_cte5_q29 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q29 t4
+),
+topic_cte6_q29 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q29 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q29 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q29 t6
+),
+topic_cte8_q29 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q29 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q29
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```
+
+
+## Query 30: Comprehensive Portfolio Health Score
+
+**Description:** Calculates overall portfolio health score with optimization recommendations - [Full description with 8+ CTEs, window functions, aggregations]
+
+**Use Case:** [Use case description]
+
+**Business Value:** [Business value description]
+
+**Purpose:** [Purpose description]
+
+**Complexity:** Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]
+
+**Expected Output:** [Expected output description]
+
+```sql
+WITH topic_cte1_q30 AS (
+    -- First CTE: Initial data selection for Portfolio Health Score
+    SELECT
+        uc.user_id,
+        uc.user_card_id,
+        uc.card_id,
+        cc.card_name,
+        cc.issuer_id,
+        cci.issuer_name,
+        cc.annual_fee,
+        cc.card_type,
+        cc.card_network
+    FROM user_cards uc
+    INNER JOIN credit_cards cc ON uc.card_id = cc.card_id
+    INNER JOIN credit_card_issuers cci ON cc.issuer_id = cci.issuer_id
+    WHERE uc.user_id = 'user_001'
+        AND uc.account_status = 'Active'
+        AND cc.is_active = TRUE
+),
+topic_cte2_q30 AS (
+    -- Second CTE: Transaction data aggregation
+    SELECT
+        t1.*,
+        COUNT(DISTINCT st.transaction_id) AS transaction_count,
+        SUM(st.transaction_amount) AS total_spending,
+        SUM(st.rewards_earned) AS total_rewards,
+        AVG(st.rewards_multiplier_applied) AS avg_multiplier
+    FROM topic_cte1_q30 t1
+    LEFT JOIN spending_transactions st ON t1.user_card_id = st.user_card_id
+        AND st.transaction_date >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY t1.user_id, t1.user_card_id, t1.card_id, t1.card_name,
+             t1.issuer_id, t1.issuer_name, t1.annual_fee, t1.card_type, t1.card_network
+),
+topic_cte3_q30 AS (
+    -- Third CTE: Rewards structure analysis
+    SELECT
+        t2.*,
+        COUNT(DISTINCT crs.category_id) AS bonus_categories_count,
+        AVG(crs.rewards_multiplier) AS avg_rewards_multiplier,
+        MAX(crs.rewards_multiplier) AS max_rewards_multiplier,
+        SUM(CASE WHEN crs.is_active = TRUE THEN 1 ELSE 0 END) AS active_bonus_categories
+    FROM topic_cte2_q30 t2
+    LEFT JOIN card_rewards_structure crs ON t2.card_id = crs.card_id
+    GROUP BY t2.user_id, t2.user_card_id, t2.card_id, t2.card_name,
+             t2.issuer_id, t2.issuer_name, t2.annual_fee, t2.card_type, t2.card_network,
+             t2.transaction_count, t2.total_spending, t2.total_rewards, t2.avg_multiplier
+),
+topic_cte4_q30 AS (
+    -- Fourth CTE: Window function calculations
+    SELECT
+        t3.*,
+        ROW_NUMBER() OVER (PARTITION BY t3.issuer_id ORDER BY t3.total_rewards DESC) AS card_rank_in_issuer,
+        PERCENT_RANK() OVER (ORDER BY t3.total_rewards DESC) AS rewards_percentile,
+        AVG(t3.total_rewards) OVER (PARTITION BY t3.card_type) AS avg_rewards_by_type,
+        RANK() OVER (PARTITION BY t3.card_network ORDER BY t3.total_spending DESC) AS spending_rank_by_network,
+        LAG(t3.total_rewards, 1) OVER (ORDER BY t3.card_id) AS prev_card_rewards,
+        LEAD(t3.annual_fee, 1) OVER (ORDER BY t3.card_id) AS next_card_fee
+    FROM topic_cte3_q30 t3
+),
+topic_cte5_q30 AS (
+    -- Fifth CTE: Portfolio-level aggregations
+    SELECT
+        t4.*,
+        COUNT(*) OVER () AS total_cards_in_portfolio,
+        SUM(t4.annual_fee) OVER () AS total_portfolio_annual_fees,
+        SUM(t4.total_rewards) OVER () AS total_portfolio_rewards,
+        AVG(t4.total_rewards) OVER () AS avg_portfolio_rewards,
+        COUNT(DISTINCT t4.issuer_id) OVER () AS unique_issuers_count,
+        COUNT(DISTINCT t4.card_type) OVER () AS unique_card_types_count,
+        COUNT(DISTINCT t4.card_network) OVER () AS unique_networks_count
+    FROM topic_cte4_q30 t4
+),
+topic_cte6_q30 AS (
+    -- Sixth CTE: Correlation and risk analysis
+    SELECT
+        t5.*,
+        cci.cfpb_complaint_count,
+        cci.cfpb_complaint_resolution_rate,
+        cci.market_share_percentage,
+        CASE
+            WHEN cci.cfpb_complaint_count > 1000 THEN 'High Risk Issuer'
+            WHEN cci.cfpb_complaint_count > 500 THEN 'Moderate Risk Issuer'
+            ELSE 'Low Risk Issuer'
+        END AS issuer_risk_level,
+        CASE
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 1.5 THEN 'Top Performer'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards THEN 'Above Average'
+            WHEN t5.total_rewards > t5.avg_portfolio_rewards * 0.5 THEN 'Average'
+            ELSE 'Below Average'
+        END AS performance_category
+    FROM topic_cte5_q30 t5
+    INNER JOIN credit_card_issuers cci ON t5.issuer_id = cci.issuer_id
+),
+topic_cte7_q30 AS (
+    -- Seventh CTE: Advanced scoring and rankings
+    SELECT
+        t6.*,
+        (t6.total_rewards * 0.4 + 
+         (100 - COALESCE(t6.rewards_percentile * 100, 0)) * 0.3 +
+         t6.bonus_categories_count * 10 * 0.2 +
+         (100 - COALESCE(t6.annual_fee, 0) / 10.0) * 0.1) AS composite_score,
+        NTILE(5) OVER (ORDER BY t6.total_rewards DESC) AS rewards_quintile,
+        NTILE(4) OVER (ORDER BY t6.annual_fee ASC) AS fee_quartile,
+        CASE
+            WHEN t6.total_rewards > 0 AND t6.annual_fee > 0 THEN
+                (t6.total_rewards / t6.annual_fee) * 100
+            ELSE NULL
+        END AS roi_percentage
+    FROM topic_cte6_q30 t6
+),
+topic_cte8_q30 AS (
+    -- Eighth CTE: Final recommendations and optimizations
+    SELECT
+        t7.*,
+        CASE
+            WHEN t7.composite_score > 80 THEN 'Excellent - Keep'
+            WHEN t7.composite_score > 60 THEN 'Good - Keep'
+            WHEN t7.composite_score > 40 THEN 'Average - Review'
+            ELSE 'Below Average - Consider Canceling'
+        END AS recommendation,
+        CASE
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 100 THEN 'Negative ROI'
+            WHEN t7.roi_percentage IS NOT NULL AND t7.roi_percentage < 200 THEN 'Low ROI'
+            WHEN t7.roi_percentage IS NOT NULL THEN 'Positive ROI'
+            ELSE 'No Annual Fee'
+        END AS roi_category,
+        ROW_NUMBER() OVER (ORDER BY t7.composite_score DESC) AS overall_rank
+    FROM topic_cte7_q30 t7
+)
+SELECT
+    user_id,
+    card_name,
+    issuer_name,
+    annual_fee,
+    card_type,
+    card_network,
+    ROUND(CAST(total_spending AS NUMERIC), 2) AS total_spending,
+    ROUND(CAST(total_rewards AS NUMERIC), 2) AS total_rewards,
+    ROUND(CAST(avg_multiplier AS NUMERIC), 2) AS avg_multiplier,
+    bonus_categories_count,
+    ROUND(CAST(avg_rewards_multiplier AS NUMERIC), 2) AS avg_rewards_multiplier,
+    ROUND(CAST(rewards_percentile * 100 AS NUMERIC), 2) AS rewards_percentile,
+    card_rank_in_issuer,
+    spending_rank_by_network,
+    total_cards_in_portfolio,
+    ROUND(CAST(total_portfolio_annual_fees AS NUMERIC), 2) AS total_portfolio_annual_fees,
+    ROUND(CAST(total_portfolio_rewards AS NUMERIC), 2) AS total_portfolio_rewards,
+    ROUND(CAST(avg_portfolio_rewards AS NUMERIC), 2) AS avg_portfolio_rewards,
+    unique_issuers_count,
+    unique_card_types_count,
+    unique_networks_count,
+    cfpb_complaint_count,
+    ROUND(CAST(cfpb_complaint_resolution_rate AS NUMERIC), 2) AS cfpb_complaint_resolution_rate,
+    ROUND(CAST(market_share_percentage AS NUMERIC), 2) AS market_share_percentage,
+    issuer_risk_level,
+    performance_category,
+    ROUND(CAST(composite_score AS NUMERIC), 2) AS composite_score,
+    rewards_quintile,
+    fee_quartile,
+    ROUND(CAST(roi_percentage AS NUMERIC), 2) AS roi_percentage,
+    recommendation,
+    roi_category,
+    overall_rank
+FROM topic_cte8_q30
+ORDER BY composite_score DESC, overall_rank
+LIMIT 100;
+
+```

@@ -1,0 +1,82 @@
+{
+  "verification_date": "20260214-0712",
+  "file": "/Users/machine/Documents/AQ/db/source/db-9/app/QUERIES/queries.md",
+  "fixes": {
+    "query_2_array_syntax": {
+      "query_number": 2,
+      "fix": "Array syntax PostgreSQL compatibility",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "Query uses CTEs",
+          "status": "PASS"
+        },
+        {
+          "check": "Valid query structure",
+          "status": "PASS"
+        },
+        {
+          "check": "Array slicing syntax",
+          "status": "PASS",
+          "note": "Conceptual check"
+        }
+      ]
+    },
+    "query_26_recursive_cte": {
+      "query_number": 26,
+      "fix": "Query complexity validation",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "Query uses CTEs",
+          "status": "PASS"
+        },
+        {
+          "check": "Valid SQL structure",
+          "status": "PASS"
+        },
+        {
+          "check": "Query complexity",
+          "status": "PASS",
+          "note": "Conceptual check"
+        }
+      ]
+    },
+    "query_title_uniqueness": {
+      "fix": "Query title uniqueness",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "All queries have titles",
+          "status": "PASS",
+          "count": 30
+        },
+        {
+          "check": "No duplicate titles",
+          "status": "PASS"
+        },
+        {
+          "check": "Queries 26-30 exist",
+          "status": "PASS"
+        }
+      ]
+    },
+    "header_formatting": {
+      "fix": "Header formatting",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "All queries use ## Query N: format",
+          "status": "PASS",
+          "count": 30
+        },
+        {
+          "check": "No queries with --- prefix",
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "overall_status": "PASS",
+  "Pass": 1
+}

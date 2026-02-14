@@ -1,0 +1,648 @@
+openapi: 3.0.3
+info:
+  title: Database db-14 - Database API Specification
+  description: "This database provides comprehensive cloud instance cost analysis\
+    \ and optimization across AWS, GCP, and Azure. The database enables cost optimization,\
+    \ cross-cloud comparisons, and intelligent recommendations for cloud infrastructure\
+    \ decisions. It includes instance specifications, pricing data, performance metrics,\
+    \ historical pricing trends, and cost optimization recommendations.\n\n- Multi-Cloud\
+    \ Support: Comprehensive data for AWS, GCP, and Azure instances\n- Pricing Models:\
+    \ On-demand, reserved instances, spot instances, and savings plans\n- Performance\
+    \ Metrics: CoreMark scores, FFmpeg FPS, and other benchmark data\n- Historical\
+    \ Pricing: Track pricing changes over time for trend analysis\n- Cost Optimization:\
+    \ AI-generated recommendations for cost savings\n- Cross-Provider Comparisons:\
+    \ Instance matching and comparison matrices\n- Regional Analysis: Pricing variations\
+    \ across regions and availability zones\n\n- PostgreSQL: Full support with standard\
+    \ SQL features\n- , : Compatible with Delta Lake and standard SQL\n- , : Full\
+    \ support with standard SQL features\n\n- Vantage.sh: Comprehensive cloud instance\
+    \ comparison with performance benchmarks\n- Infracost Cloud Pricing API: GraphQL\
+    \ API with 3M+ prices\n- CloudPrice Developer Portal: Unified pricing APIs\n-\
+    \ AWS APIs: Price List API, EC2 Describe Instances API\n- Azure APIs: Retail Prices\
+    \ API, VM Sizes API\n- GCP APIs: Billing Catalog API, Compute Machine Types API\n\
+    - Data.gov: Federal cloud spending datasets\n\n---\n\n---\n\nThis section provides\
+    \ a comprehensive data dictionary for all tables in the database, including column\
+    \ names, data types, constraints, and descriptions. Tables are organized by functional\
+    \ category for easier navigation.\n\nThe database consists of 11 tables organized\
+    \ into logical groups:\n\n1. Provider Metadata: `cloud_providers`, `cloud_regions`,\
+    \ `instance_families`\n2. Instance Data: `cloud_instances`, `instance_performance_metrics`\n\
+    3. Pricing Data: `instance_pricing`, `historical_pricing`\n4. Optimization: `cost_optimization_recommendations`,\
+    \ `instance_comparison_matrix`\n5. Analytics: `cost__analytics`\n6. Operations:\
+    \ `data_extraction_log`\n\n---\n\n---\n\n---\n\nThis database includes 30 production\
+    \ SQL queries, each designed to solve specific business problems for companies\
+    \ with $1M+ ARR. Each query includes:\n\n- Business Use Case: The specific business\
+    \ problem this query solves\n- Description: Technical explanation of what the\
+    \ query does\n- Client Deliverable: What output or report this query generates\n\
+    - Business Value: The business impact and value delivered\n- Complexity: Technical\
+    \ complexity indicators\n- SQL Code: Complete, production-ready SQL query\n\n\
+    ---\n\nUse Case: Cloud Cost Optimization - Cross-Cloud Instance Right-Sizing Analysis\
+    \ for Enterprise Migration Planning\n\nDescription: Enterprise-level multi-provider\
+    \ cost-performance analysis using recursive CTE for instance matching across AWS,\
+    \ Azure, and GCP, with complex aggregations, window functions, percentile calculations,\
+    \ and cross-cloud optimization recommendations. Demonstrates production patterns\
+    \ used by cloud cost optimization platforms.\n\nBusiness Value: Comprehensive\
+    \ cost-performance comparison report showing optimal instance selections across\
+    \ all three major cloud providers with cost savings projections, performance benchmarks,\
+    \ and migration recommendations. Helps enterprises identify cost savings opportunities\
+    \ during cloud migrations.\n\nPurpose: Identifies the most cost-effective instance\
+    \ configurations across AWS, Azure, and GCP by matching instances with similar\
+    \ specifications and comparing their cost-performance ratios, enabling data-driven\
+    \ cloud provider selection.\n\nComplexity: Recursive CTE for instance matching,\
+    \ 8+ nested CTEs, complex aggregations, window functions with multiple frame clauses,\
+    \ percentile calculations, cross-provider comparisons, cost optimization algorithms\n\
+    \nExpected Output: Report showing matched instances across providers with cost\
+    \ savings, performance metrics, and optimization recommendations\n\n---\n\nUse\
+    \ Case: Cloud Cost Forecasting - Historical Pricing Trend Analysis with Recursive\
+    \ CTE and Multi-Period Forecasting\n\nDescription: Enterprise-level historical\
+    \ pricing trend analysis with recursive cte and multi-period forecasting with\
+    \ Recursive CTE for time-series analysis, 8+ nested CTEs. Demonstrates production\
+    \ patterns for cloud cost .\n\nBusiness Value: Historical Pricing Trend Analysis\
+    \ with Recursive CTE and Multi-Period Forecasting report showing cost  metrics\
+    \ and recommendations.\n\nPurpose: Provides historical pricing trend analysis\
+    \ with recursive cte and multi-period forecasting to enable data-driven cloud\
+    \ cost decisions.\n\nComplexity: Recursive CTE for time-series analysis, 8+ nested\
+    \ CTEs, window functions with multiple frame clauses, complex aggregations, percentile\
+    \ calculations\nExpected Output: Query results with detailed cost  metrics\n\n\
+    ---\n\nUse Case: Cloud Cost Optimization - Reserved Instance ROI Analysis with\
+    \ Multi-Year Projections\n\nDescription: Enterprise-level reserved instance roi\
+    \ analysis with multi-year projections with 8+ nested CTEs, financial calculations.\
+    \ Demonstrates production patterns for cloud cost .\n\nBusiness Value: Reserved\
+    \ Instance ROI Analysis with Multi-Year Projections report showing cost  metrics\
+    \ and recommendations.\n\nPurpose: Provides reserved instance roi analysis with\
+    \ multi-year projections to enable data-driven cloud cost decisions.\n\nComplexity:\
+    \ 8+ nested CTEs, financial calculations, window functions with multiple frame\
+    \ clauses, complex aggregations, percentile calculations\nExpected Output: Query\
+    \ results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Cost Optimization\
+    \ - Spot Instance Cost-Benefit Analysis with Risk Modeling\n\nDescription: Enterprise-level\
+    \ spot instance cost-benefit analysis with risk modeling with 8+ nested CTEs,\
+    \ probability calculations. Demonstrates production patterns for cloud cost .\n\
+    \nBusiness Value: Spot Instance Cost-Benefit Analysis with Risk Modeling report\
+    \ showing cost  metrics and recommendations.\n\nPurpose: Provides spot instance\
+    \ cost-benefit analysis with risk modeling to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, probability calculations, window functions with\
+    \ multiple frame clauses, complex aggregations, percentile calculations\nExpected\
+    \ Output: Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud\
+    \ Cost Optimization - Regional Pricing Optimization with Cross-Region Comparisons\n\
+    \nDescription: Enterprise-level regional pricing optimization with cross-region\
+    \ comparisons with 8+ nested CTEs, cross-region analysis. Demonstrates production\
+    \ patterns for cloud cost .\n\nBusiness Value: Regional Pricing Optimization with\
+    \ Cross-Region Comparisons report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides regional pricing optimization with cross-region comparisons\
+    \ to enable data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, cross-region\
+    \ analysis, window functions with multiple frame clauses, complex aggregations,\
+    \ percentile calculations\nExpected Output: Query results with detailed cost \
+    \ metrics\n\n---\n\nUse Case: Cloud Cost  - Performance-Cost Correlation Analysis\
+    \ with Statistical Modeling\n\nDescription: Enterprise-level performance-cost\
+    \ correlation analysis with statistical modeling with 8+ nested CTEs, correlation\
+    \ calculations. Demonstrates production patterns for cloud cost .\n\nBusiness\
+    \ Value: Performance-Cost Correlation Analysis with Statistical Modeling report\
+    \ showing cost  metrics and recommendations.\n\nPurpose: Provides performance-cost\
+    \ correlation analysis with statistical modeling to enable data-driven cloud cost\
+    \ decisions.\n\nComplexity: 8+ nested CTEs, correlation calculations, window functions\
+    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
+    Expected Output: Query results with detailed cost  metrics\n\n---\n\nUse Case:\
+    \ Cloud Cost Optimization - Instance Family Cost Efficiency Ranking\n\nDescription:\
+    \ Enterprise-level instance family cost efficiency ranking with 8+ nested CTEs,\
+    \ percentile analysis. Demonstrates production patterns for cloud cost .\n\nBusiness\
+    \ Value: Instance Family Cost Efficiency Ranking report showing cost  metrics\
+    \ and recommendations.\n\nPurpose: Provides instance family cost efficiency ranking\
+    \ to enable data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, percentile\
+    \ analysis, window functions with multiple frame clauses, complex aggregations,\
+    \ percentile calculations\nExpected Output: Query results with detailed cost \
+    \ metrics\n\n---\n\nUse Case: Cloud Cost Planning - Cost Forecasting with Time-Series\
+    \ Analysis\n\nDescription: Enterprise-level cost forecasting with time-series\
+    \ analysis with 8+ nested CTEs, time-series. Demonstrates production patterns\
+    \ for cloud cost .\n\nBusiness Value: Cost Forecasting with Time-Series Analysis\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides cost\
+    \ forecasting with time-series analysis to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, time-series, window functions with multiple frame\
+    \ clauses, complex aggregations, percentile calculations\nExpected Output: Query\
+    \ results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Migration Planning\
+    \ - Multi-Cloud Migration Cost Analysis\n\nDescription: Enterprise-level multi-cloud\
+    \ migration cost analysis with 8+ nested CTEs, migration analysis. Demonstrates\
+    \ production patterns for cloud cost .\n\nBusiness Value: Multi-Cloud Migration\
+    \ Cost Analysis report showing cost  metrics and recommendations.\n\nPurpose:\
+    \ Provides multi-cloud migration cost analysis to enable data-driven cloud cost\
+    \ decisions.\n\nComplexity: 8+ nested CTEs, migration analysis, window functions\
+    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
+    Expected Output: Query results with detailed cost  metrics\n\n---\n\nUse Case:\
+    \ Cloud Financial Planning - Long-Term Cost Projections with DCF Analysis\n\n\
+    Description: Enterprise-level long-term cost projections with dcf analysis with\
+    \ 8+ nested CTEs, financial modeling. Demonstrates production patterns for cloud\
+    \ cost .\n\nBusiness Value: Long-Term Cost Projections with DCF Analysis report\
+    \ showing cost  metrics and recommendations.\n\nPurpose: Provides long-term cost\
+    \ projections with dcf analysis to enable data-driven cloud cost decisions.\n\n\
+    Complexity: 8+ nested CTEs, financial modeling, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
+    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Cost Optimization\
+    \ - Instance Right-Sizing Recommendations\n\nDescription: Enterprise-level instance\
+    \ right-sizing recommendations with 8+ nested CTEs, workload matching. Demonstrates\
+    \ production patterns for cloud cost .\n\nBusiness Value: Instance Right-Sizing\
+    \ Recommendations report showing cost  metrics and recommendations.\n\nPurpose:\
+    \ Provides instance right-sizing recommendations to enable data-driven cloud cost\
+    \ decisions.\n\nComplexity: 8+ nested CTEs, workload matching, window functions\
+    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
+    Expected Output: Query results with detailed cost  metrics\n\n---\n\nUse Case:\
+    \ Cloud Cost Monitoring - Cost Anomaly Detection with Statistical Analysis\n\n\
+    Description: Enterprise-level cost anomaly detection with statistical analysis\
+    \ with 8+ nested CTEs, outlier detection. Demonstrates production patterns for\
+    \ cloud cost .\n\nBusiness Value: Cost Anomaly Detection with Statistical Analysis\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides cost\
+    \ anomaly detection with statistical analysis to enable data-driven cloud cost\
+    \ decisions.\n\nComplexity: 8+ nested CTEs, outlier detection, window functions\
+    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
+    Expected Output: Query results with detailed cost  metrics\n\n---\n\nUse Case:\
+    \ Cloud Procurement - Reserved Instance Purchase Optimization\n\nDescription:\
+    \ Enterprise-level reserved instance purchase optimization with 8+ nested CTEs,\
+    \ usage analysis. Demonstrates production patterns for cloud cost .\n\nBusiness\
+    \ Value: Reserved Instance Purchase Optimization report showing cost  metrics\
+    \ and recommendations.\n\nPurpose: Provides reserved instance purchase optimization\
+    \ to enable data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, usage\
+    \ analysis, window functions with multiple frame clauses, complex aggregations,\
+    \ percentile calculations\nExpected Output: Query results with detailed cost \
+    \ metrics\n\n---\n\nUse Case: Cloud Risk Management - Spot Instance Interruption\
+    \ Risk Analysis\n\nDescription: Enterprise-level spot instance interruption risk\
+    \ analysis with 8+ nested CTEs, risk modeling. Demonstrates production patterns\
+    \ for cloud cost .\n\nBusiness Value: Spot Instance Interruption Risk Analysis\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides spot\
+    \ instance interruption risk analysis to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, risk modeling, window functions with multiple frame\
+    \ clauses, complex aggregations, percentile calculations\nExpected Output: Query\
+    \ results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Migration Planning\
+    \ - Cross-Provider Instance Matching\n\nDescription: Enterprise-level cross-provider\
+    \ instance matching with 8+ nested CTEs, similarity scoring. Demonstrates production\
+    \ patterns for cloud cost .\n\nBusiness Value: Cross-Provider Instance Matching\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides cross-provider\
+    \ instance matching to enable data-driven cloud cost decisions.\n\nComplexity:\
+    \ 8+ nested CTEs, similarity scoring, window functions with multiple frame clauses,\
+    \ complex aggregations, percentile calculations\nExpected Output: Query results\
+    \ with detailed cost  metrics\n\n---\n\nUse Case: Cloud Optimization - Cost-Performance\
+    \ Pareto Frontier Analysis\n\nDescription: Enterprise-level cost-performance pareto\
+    \ frontier analysis with 8+ nested CTEs, Pareto analysis. Demonstrates production\
+    \ patterns for cloud cost .\n\nBusiness Value: Cost-Performance Pareto Frontier\
+    \ Analysis report showing cost  metrics and recommendations.\n\nPurpose: Provides\
+    \ cost-performance pareto frontier analysis to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, Pareto analysis, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
+    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Planning\
+    \ - Instance Deprecation Impact Analysis\n\nDescription: Enterprise-level instance\
+    \ deprecation impact analysis with 8+ nested CTEs, deprecation analysis. Demonstrates\
+    \ production patterns for cloud cost .\n\nBusiness Value: Instance Deprecation\
+    \ Impact Analysis report showing cost  metrics and recommendations.\n\nPurpose:\
+    \ Provides instance deprecation impact analysis to enable data-driven cloud cost\
+    \ decisions.\n\nComplexity: 8+ nested CTEs, deprecation analysis, window functions\
+    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
+    Expected Output: Query results with detailed cost  metrics\n\n---\n\nUse Case:\
+    \ Cloud Cost Optimization - Burstable Instance Cost Analysis\n\nDescription: Enterprise-level\
+    \ burstable instance cost analysis with 8+ nested CTEs, baseline modeling. Demonstrates\
+    \ production patterns for cloud cost .\n\nBusiness Value: Burstable Instance Cost\
+    \ Analysis report showing cost  metrics and recommendations.\n\nPurpose: Provides\
+    \ burstable instance cost analysis to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, baseline modeling, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
+    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud ML/AI Cost\
+    \ Optimization - GPU Instance Cost Analysis\n\nDescription: Enterprise-level gpu\
+    \ instance cost analysis with 8+ nested CTEs, GPU analysis. Demonstrates production\
+    \ patterns for cloud cost .\n\nBusiness Value: GPU Instance Cost Analysis report\
+    \ showing cost  metrics and recommendations.\n\nPurpose: Provides gpu instance\
+    \ cost analysis to enable data-driven cloud cost decisions.\n\nComplexity: 8+\
+    \ nested CTEs, GPU analysis, window functions with multiple frame clauses, complex\
+    \ aggregations, percentile calculations\nExpected Output: Query results with detailed\
+    \ cost  metrics\n\n---\n\nUse Case: Cloud Storage Optimization - Storage Cost\
+    \ Optimization\n\nDescription: Enterprise-level storage cost optimization with\
+    \ 8+ nested CTEs, storage analysis. Demonstrates production patterns for cloud\
+    \ cost .\n\nBusiness Value: Storage Cost Optimization report showing cost  metrics\
+    \ and recommendations.\n\nPurpose: Provides storage cost optimization to enable\
+    \ data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, storage analysis,\
+    \ window functions with multiple frame clauses, complex aggregations, percentile\
+    \ calculations\nExpected Output: Query results with detailed cost  metrics\n\n\
+    ---\n\nUse Case: Cloud Network Optimization - Network Cost Analysis\n\nDescription:\
+    \ Enterprise-level network cost analysis with 8+ nested CTEs, network analysis.\
+    \ Demonstrates production patterns for cloud cost .\n\nBusiness Value: Network\
+    \ Cost Analysis report showing cost  metrics and recommendations.\n\nPurpose:\
+    \ Provides network cost analysis to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, network analysis, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
+    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Financial\
+    \ Management - Cost Allocation Analysis\n\nDescription: Enterprise-level cost\
+    \ allocation analysis with 8+ nested CTEs, allocation calculations. Demonstrates\
+    \ production patterns for cloud cost .\n\nBusiness Value: Cost Allocation Analysis\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides cost\
+    \ allocation analysis to enable data-driven cloud cost decisions.\n\nComplexity:\
+    \ 8+ nested CTEs, allocation calculations, window functions with multiple frame\
+    \ clauses, complex aggregations, percentile calculations\nExpected Output: Query\
+    \ results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Lifecycle Management\
+    \ - Instance Lifecycle Cost Analysis\n\nDescription: Enterprise-level instance\
+    \ lifecycle cost analysis with 8+ nested CTEs, lifecycle tracking. Demonstrates\
+    \ production patterns for cloud cost .\n\nBusiness Value: Instance Lifecycle Cost\
+    \ Analysis report showing cost  metrics and recommendations.\n\nPurpose: Provides\
+    \ instance lifecycle cost analysis to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, lifecycle tracking, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
+    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Cost  -\
+    \ Cost Optimization Score Calculation\n\nDescription: Enterprise-level cost optimization\
+    \ score calculation with 8+ nested CTEs, scoring algorithms. Demonstrates production\
+    \ patterns for cloud cost .\n\nBusiness Value: Cost Optimization Score Calculation\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides cost\
+    \ optimization score calculation to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, scoring algorithms, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
+    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud  - Instance\
+    \ Comparison Matrix Generation\n\nDescription: Enterprise-level instance comparison\
+    \ matrix generation with 8+ nested CTEs, matrix generation. Demonstrates production\
+    \ patterns for cloud cost .\n\nBusiness Value: Instance Comparison Matrix Generation\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides instance\
+    \ comparison matrix generation to enable data-driven cloud cost decisions.\n\n\
+    Complexity: 8+ nested CTEs, matrix generation, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
+    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Cost  -\
+    \ Recursive Instance Dependency Graph Analysis\n\nDescription: Enterprise-level\
+    \ recursive instance dependency graph analysis with Recursive CTE, 8+ nested CTEs,\
+    \ graph traversal. Demonstrates production patterns for cloud cost .\n\nBusiness\
+    \ Value: Recursive Instance Dependency Graph Analysis report showing cost  metrics\
+    \ and recommendations.\n\nPurpose: Provides recursive instance dependency graph\
+    \ analysis to enable data-driven cloud cost decisions.\n\nComplexity: Recursive\
+    \ CTE, 8+ nested CTEs, graph traversal, window functions with multiple frame clauses,\
+    \ complex aggregations, percentile calculations\nExpected Output: Query results\
+    \ with detailed cost  metrics\n\n---\n\nUse Case: Cloud Cost Optimization - Reserved\
+    \ Instance Utilization Analysis\n\nDescription: Enterprise-level reserved instance\
+    \ utilization analysis with 8+ nested CTEs, utilization tracking. Demonstrates\
+    \ production patterns for cloud cost .\n\nBusiness Value: Reserved Instance Utilization\
+    \ Analysis report showing cost  metrics and recommendations.\n\nPurpose: Provides\
+    \ reserved instance utilization analysis to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, utilization tracking, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
+    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Risk Management\
+    \ - Spot Instance Price Volatility Analysis\n\nDescription: Enterprise-level spot\
+    \ instance price volatility analysis with 8+ nested CTEs, volatility calculations.\
+    \ Demonstrates production patterns for cloud cost .\n\nBusiness Value: Spot Instance\
+    \ Price Volatility Analysis report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides spot instance price volatility analysis to enable data-driven\
+    \ cloud cost decisions.\n\nComplexity: 8+ nested CTEs, volatility calculations,\
+    \ window functions with multiple frame clauses, complex aggregations, percentile\
+    \ calculations\nExpected Output: Query results with detailed cost  metrics\n\n\
+    ---\n\nUse Case: Cloud Global Optimization - Cross-Region Cost Comparison\n\n\
+    Description: Enterprise-level cross-region cost comparison with 8+ nested CTEs,\
+    \ cross-region analysis. Demonstrates production patterns for cloud cost .\n\n\
+    Business Value: Cross-Region Cost Comparison report showing cost  metrics and\
+    \ recommendations.\n\nPurpose: Provides cross-region cost comparison to enable\
+    \ data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, cross-region\
+    \ analysis, window functions with multiple frame clauses, complex aggregations,\
+    \ percentile calculations\nExpected Output: Query results with detailed cost \
+    \ metrics\n\n---\n\nUse Case: Cloud Cost  - Comprehensive Cost  Dashboard\n\n\
+    Description: Enterprise-level comprehensive cost  dashboard with 9+ nested CTEs,\
+    \ multi-metric aggregation. Demonstrates production patterns for cloud cost .\n\
+    \nBusiness Value: Comprehensive Cost  Dashboard report showing cost  metrics and\
+    \ recommendations.\n\nPurpose: Provides comprehensive cost  dashboard to enable\
+    \ data-driven cloud cost decisions.\n\nComplexity: 9+ nested CTEs, multi-metric\
+    \ aggregation, window functions with multiple frame clauses, complex aggregations,\
+    \ percentile calculations\nExpected Output: Query results with detailed cost \
+    \ metrics\n\n---\n\n1. Database Access: Ensure you have access to the database\
+    \ instance (PostgreSQL)\n2. Credentials: Obtain database connection credentials\n\
+    3. Schema: Ensure all tables are created and populated with data\n\n1. Open Query\
+    \ File: Navigate to `queries/queries.md`\n2. Select Query: Choose the query number\
+    \ you want to execute\n3. Review Business Case: Understand the use case and expected\
+    \ output\n4. Copy SQL: Copy the SQL code from the code block\n5. Execute: Run\
+    \ the query in your database client:\n   - PostgreSQL: Use `psql` or pgAdmin\n\
+    \   - , : Use, SQL editor or notebook\n   - , : Use, web interface or SnowSQL\n\
+    \n- Each query includes a \"Use Case\" section explaining the real-world application\n\
+    - Review the \"Business Value\" section to understand what the query produces\n\
+    - Check the \"Expected Output\" section for result set descriptions\n- Cost queries\
+    \ return pricing and optimization recommendations\n\n1. Create Tables: Execute\
+    \ the schema creation scripts from `data/schema.sql`\n2. Create Indexes: Ensure\
+    \ all indexes are created for optimal performance\n3. Load Data: Populate tables\
+    \ with cloud instance data:\n   - Provider and region metadata\n   - Instance\
+    \ specifications\n   - Pricing data\n   - Performance metrics\n4. Verify: Run\
+    \ validation queries to ensure data integrity\n\n- Indexes: Critical for query\
+    \ performance (indexes on provider_id, region_id, instance_id)\n- Partitioning:\
+    \ Consider partitioning large tables (`instance_pricing`, `historical_pricing`)\
+    \ by date\n- Analytics: Use `cost__analytics` table for pre-computed aggregations\n\
+    - Monitoring: Monitor query execution times, especially for complex joins\n\n\
+    - Data Types: Uses standard SQL types compatible across all platforms\n- Functions:\
+    \ Standard SQL functions work across all platforms\n- Test queries on your target\
+    \ database before production use\n\n1. Provider Data: Load cloud provider metadata\n\
+    2. Instance Data: Load instance specifications from APIs or exports\n3. Pricing\
+    \ Data: Load pricing data from APIs or exports\n4. Performance Metrics: Load benchmark\
+    \ data from sources like Vantage.sh\n5. Monitoring: Track data extraction using\
+    \ `data_extraction_log` table\n\n---\n\n---\n\nAll queries in this database are\
+    \ designed to work across multiple database platforms:\n\n- PostgreSQL: Full support\
+    \ with standard SQL features\n\nQueries use standard SQL syntax and avoid platform-specific\
+    \ features to ensure compatibility.\n\n---\n\nDocument Information:\n\n- Generated:\
+    \ 20260214-0148\n- Database: db-14\n- Type: Cloud Instance Cost Database\n- Queries:\
+    \ 30 production queries\n- Status: ✅ Complete Comprehensive Deliverable"
+  version: 1.0.0
+  contact:
+    name: Database Team
+  license:
+    name: MIT
+servers:
+- url: postgresql://localhost:5432/db_14
+  description: PostgreSQL Server
+tags:
+- name: schema
+  description: Database schema information
+- name: tables
+  description: Table definitions and structures
+- name: queries
+  description: SQL query definitions and metadata
+- name: relationships
+  description: Table relationships and foreign keys
+paths:
+  /schema:
+    get:
+      tags:
+      - schema
+      summary: Get database schema overview
+      description: Returns overview information about the database schema
+      responses:
+        '200':
+          description: Schema overview
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaOverview'
+  /tables:
+    get:
+      tags:
+      - tables
+      summary: List all tables
+      description: Returns a list of all tables in the database
+      responses:
+        '200':
+          description: List of tables
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Table'
+  /tables/{tableName}:
+    get:
+      tags:
+      - tables
+      summary: Get table details
+      description: Returns detailed information about a specific table
+      parameters:
+      - name: tableName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Name of the table
+      responses:
+        '200':
+          description: Table details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+  /queries:
+    get:
+      tags:
+      - queries
+      summary: List all SQL queries
+      description: Returns metadata for all SQL queries
+      responses:
+        '200':
+          description: List of queries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Query'
+  /queries/{queryNumber}:
+    get:
+      tags:
+      - queries
+      summary: Get query details
+      description: Returns detailed information and SQL code for a specific query
+      parameters:
+      - name: queryNumber
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Query number (1-30)
+      responses:
+        '200':
+          description: Query details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+components:
+  schemas:
+    SchemaOverview:
+      type: object
+      properties:
+        database_name:
+          type: string
+          example: db-1
+        database_type:
+          type: string
+          example: Chat/Messaging System
+        created_date:
+          type: string
+          format: date
+          example: '2026-02-03'
+        total_tables:
+          type: integer
+          example: 11
+        supported_platforms:
+          type: array
+          items:
+            type: string
+          example:
+          - PostgreSQL
+        table_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableGroup'
+    TableGroup:
+      type: object
+      properties:
+        name:
+          type: string
+          example: User Management
+        tables:
+          type: array
+          items:
+            type: string
+          example:
+          - profiles
+    Table:
+      type: object
+      required:
+      - name
+      - columns
+      properties:
+        name:
+          type: string
+          example: profiles
+        description:
+          type: string
+          example: Stores user profile information
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+        indexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Index'
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Constraint'
+        foreign_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForeignKey'
+    Column:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          example: id
+        type:
+          type: string
+          example: UUID
+        nullable:
+          type: boolean
+          example: false
+        default:
+          type: string
+          nullable: true
+          example: gen_random_uuid()
+        description:
+          type: string
+          example: Primary key - unique user identifier
+        primary_key:
+          type: boolean
+          example: true
+    Index:
+      type: object
+      properties:
+        name:
+          type: string
+          example: idx_profiles_username
+        columns:
+          type: array
+          items:
+            type: string
+          example:
+          - username
+        unique:
+          type: boolean
+          example: true
+        type:
+          type: string
+          example: btree
+    Constraint:
+      type: object
+      properties:
+        name:
+          type: string
+          example: pk_profiles
+        type:
+          type: string
+          enum:
+          - PRIMARY KEY
+          - UNIQUE
+          - CHECK
+          - NOT NULL
+          example: PRIMARY KEY
+        columns:
+          type: array
+          items:
+            type: string
+          example:
+          - id
+    ForeignKey:
+      type: object
+      properties:
+        name:
+          type: string
+          example: fk_chats_created_by
+        from_table:
+          type: string
+          example: chats
+        from_column:
+          type: string
+          example: created_by
+        to_table:
+          type: string
+          example: profiles
+        to_column:
+          type: string
+          example: id
+    Query:
+      type: object
+      required:
+      - number
+      - title
+      - sql
+      properties:
+        number:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: Production-Grade User Activity Analysis
+        description:
+          type: string
+          example: Enterprise-level user activity analysis
+        complexity:
+          type: string
+          example: Deep nested CTEs (5+ levels)
+        sql:
+          type: string
+          example: WITH user_registration_cohorts AS (...)
+        expected_output:
+          type: string
+          example: Top 20 users ranked by message activity
+        categories:
+          type: array
+          items:
+            type: string
+          example:
+          - User Activity Analysis
+          - Cohort Analytics
+        database_compatibility:
+          type: object
+          properties:
+            postgresql:
+              type: boolean
+              example: true
+  examples:
+    ProfilesTable:
+      summary: Example profiles table
+      value:
+        name: profiles
+        description: Stores user profile information
+        columns:
+        - name: id
+          type: UUID
+          nullable: false
+          primary_key: true
+          description: Primary key - unique user identifier
+        - name: username
+          type: VARCHAR(255)
+          nullable: false
+          description: Unique username for login
+        indexes:
+        - name: idx_profiles_username
+          columns:
+          - username
+          unique: true
+    QueryExample:
+      summary: Example query
+      value:
+        number: 1
+        title: Production-Grade User Activity Analysis
+        description: Enterprise-level user activity analysis
+        sql: WITH user_registration_cohorts AS (...) SELECT ...
+        expected_output: Top 20 users ranked by message activity

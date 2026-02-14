@@ -1,0 +1,170 @@
+<html lang="en">
+<head>
+  <title>Layer: Marine Highways (ID:0)</title>
+  <link href='/ESRI.ArcGIS.SDS.REST.css' rel='stylesheet' type='text/css'>
+  <link rel='SHORTCUT ICON' href='/favicon.ico'>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+</head>
+<body>
+<table width="100%" id="userTable" class="userTable">
+<tr>
+<td class="titlecell">ArcGIS REST Services Directory</td>
+</tr>
+</table>
+<table id="navTable" class="navTable" width="100%">
+<tbody>
+<tr valign="top">
+<td class="breadcrumbs">
+<span id="homeBreadcrumbs"><a href="/xOi1kZaI0eWDREZv/ArcGIS/rest/services">Home</a> > <a href="/xOi1kZaI0eWDREZv/ArcGIS/rest/services">services</a> </span>> <a href="/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Marine_Highways/FeatureServer">NTAD_Marine_Highways (FeatureServer)</a> > <a href="/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Marine_Highways/FeatureServer/0">Marine Highways</a> </td>
+<td align="right">
+ | <a href="http://resources.arcgis.com/en/help/arcgis-rest-api/" target="_blank">API Reference</a></td>
+</tr>
+</tbody>
+</table>
+<div id="jsonLinkTable">
+<table>
+<tr>
+<td class="apiref">
+<a href="?f=pjson" target="_blank">JSON</a>
+</td>
+</tr>
+</table>
+</div>
+<div class='restHeader'>
+<h2>Layer: Marine Highways (ID:0)</h2>
+</div>
+<div class='restBody'>
+<div id="viewInSection">
+<b>View In: </b>
+&nbsp;&nbsp;<a href="http://www.arcgis.com/apps/mapviewer/index.html?url=https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Marine_Highways/FeatureServer/0&source=sd" target="_blank">Map Viewer</a>
+<br/><br/>
+</div>
+<b>Name:</b> Marine Highways<br/>
+<br/>
+<b>Display Field:</b> mh_id<br/>
+<br/>
+<b>Type:</b> Feature Layer<br/>
+<br/>
+<b>Geometry Type:</b> esriGeometryPolyline<br/>
+<br/>
+<b>Is View:</b> true<br/>
+<br/>
+<b>Is Updatable View:</b> true<br/>
+<br/>
+<b>Source Schema Changes Allowed:</b> true<br/>
+<br/>
+<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Marine_Highways/FeatureServer/0/sources">Sources</a><br/>
+<br/>
+<b>Description:</b> The Marine Highways dataset was created on June 15, 2016 and was updated on September 10, 2025 by the U.S. Maritime Administration (MARAD) and is part of the U.S. Department of Transportation (USDOT)/Bureau of Transportation Statistics (BTS) National Transportation Atlas Database (NTAD). The United States Marine Highway Program is a Maritime Administration-led program to expand the use of our Nation's navigable waterways to relieve landside congestion, reduce air emissions, and generate other public benefits by increasing the efficiency of the surface transportation system (https://www.maritime.dot.gov/grants/marine-highways/marine-highway). This dataset contains the locations of all 35 maritime routes that have been designated as Marine Highways by the Secretary of the U.S. Department of Transportation. Routes included in this dataset are diagrammatic and may not depict all waterways and port connectors that are considered to be part of the U.S. Marine Highway System. A data dictionary, or other source of attribute information, is accessible at https://doi.org/10.21949/1529036<br/>
+<br/>
+<b>Copyright Text:</b> This NTAD dataset is a work of the United States government as defined in 17 U.S.C. § 101 and as such are not protected by any U.S. copyrights. This work is available for unrestricted public use.<br/>
+<br/>
+<b>Min. Scale:</b> 0<br/>
+<br/>
+<b>Max. Scale:</b> 0<br/>
+<br/>
+<b>Default Visibility:</b> true<br/>
+<br/>
+<b>Max Record Count:</b> 2000<br/>
+<br/>
+<b>Supported query Formats:</b> JSON, geoJSON, PBF<br/>
+<br/>
+<b>Use Standardized Queries:</b> True<br/>
+<br/>
+<b>Extent:</b> <br/>
+<ul>
+XMin: -173.746484326074<br/>
+YMin: -17.5550053917764<br/>
+XMax: 145.980794182558<br/>
+YMax: 72.1997196017454<br/>
+Spatial Reference: 4326 (4326)<br/>
+</ul>
+<br/>
+<b>Drawing Info:</b> <br/>
+<ul>{"renderer":{"type":"simple","symbol":{"type":"esriSLS","style":"esriSLSSolid","color":[81,45,158,255],"width":1}},"scaleSymbols":true,"transparency":0,"labelingInfo":null}</ul><br/>
+<b>HasZ:</b> true<br/>
+<br/>
+<b>HasM:</b> true<br/>
+<br/>
+<b>Has Attachments:</b> false<br/>
+<br/>
+<b>Has Geometry Properties:</b> true<br/>
+<br/>
+<b>HTML Popup Type:</b> esriServerHTMLPopupTypeAsHTMLText<br/>
+<br/>
+<b>Object ID Field:</b> OBJECTID<br/>
+<br/>
+<b>Unique ID Field:</b> <br/>
+<ul>
+Name : OBJECTID<br/>
+</ul>
+<ul>
+IsSystemMaintained : True<br/>
+</ul>
+<br/>
+<b>Global ID Field:</b> <br/>
+<br/>
+<b>Type ID Field:</b> <br/>
+<br/>
+<b>Fields:</b>
+<ul>
+  <li>OBJECTID <i>(type: esriFieldTypeOID, alias: OBJECTID, SQL Type: sqlTypeOther, length: 0, nullable: false, editable: false)</i></li>
+  <li>mh_id <i>(type: esriFieldTypeString, alias: mh_id, SQL Type: sqlTypeOther, length: 8000, nullable: true, editable: true)</i></li>
+  <li>route_sponsor <i>(type: esriFieldTypeString, alias: Route_Sponsor, SQL Type: sqlTypeOther, length: 8000, nullable: true, editable: true)</i></li>
+  <li>route_designated <i>(type: esriFieldTypeDateOnly, alias: Route_Designated, SQL Type: sqlTypeOther, nullable: true, editable: true)</i></li>
+  <li>landside_route <i>(type: esriFieldTypeString, alias: Landside_Route, SQL Type: sqlTypeOther, length: 8000, nullable: true, editable: true)</i></li>
+  <li>route_description <i>(type: esriFieldTypeString, alias: Route_Description, SQL Type: sqlTypeOther, length: 8000, nullable: true, editable: true)</i></li>
+  <li>route_length <i>(type: esriFieldTypeInteger, alias: Route_Length, SQL Type: sqlTypeOther, nullable: true, editable: true)</i></li>
+  <li>Shape__Length <i>(type: esriFieldTypeDouble, alias: Shape__Length, SQL Type: sqlTypeDouble, nullable: true, editable: true)</i></li>
+</ul>
+<br/>
+<b>Templates:</b> <br/>
+<ul>Name: Marine Highways<br/>
+Description: <br/>
+Drawing Tool: esriFeatureEditToolLine<br/>
+Prototype: <br/>
+<ul>Attributes: <br/>
+<ul></ul></ul></ul><br/>
+<b>Is Data Versioned:</b> false<br/>
+<br/>
+<b>Has Contingent Values:</b> false<br/>
+<br/>
+<b>Supports Rollback On Failure Parameter:</b> true<br/>
+<br/>
+<b>Last Edit Date:</b> 9/16/2025 6:15:43 PM<br/>
+<br/>
+<b>Schema Last Edit Date:</b> 9/16/2025 6:15:43 PM<br/>
+<br/>
+<b>Data Last Edit Date:</b> 9/16/2025 6:15:43 PM<br/>
+<br/>
+<b>Supported Operations: </b>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Marine_Highways/FeatureServer/0/query">Query</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Marine_Highways/FeatureServer/0/queryPivot">Query Pivot</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Marine_Highways/FeatureServer/0/queryTopFeatures">Query Top Features</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Marine_Highways/FeatureServer/0/queryAnalytic">Query Analytic</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Marine_Highways/FeatureServer/0/queryBins">Query Bins</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Marine_Highways/FeatureServer/0/generateRenderer">Generate Renderer</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Marine_Highways/FeatureServer/0/validateSQL">Validate SQL</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Marine_Highways/FeatureServer/0/getEstimates">Get Estimates</a>
+&nbsp;&nbsp;<a href="/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_Marine_Highways/FeatureServer/0/convertFormat">ConvertFormat</a>
+<br/><br/>
+<script>
+function removeElement(id) {
+element = document.getElementById(id);
+if (element != null) {
+element.parentNode.removeChild(element);
+}}
+if ( window.location !== window.parent.location ){
+removeElement('homeBreadcrumbs');
+removeElement('servicesBreadcrumb');
+removeElement('viewInSection');
+jsonLinkTable = document.getElementById('jsonLinkTable'); 
+if (jsonLinkTable != null) {
+jsonLinkTable.innerHTML = '<table><tr><td class="apiref"><a href="?f=pjson&token=" target="_self">JSON</a></td></tr></table>'; 
+}
+removeElement('userTable');
+}
+</script>
+</div>
+</body>
+</html>

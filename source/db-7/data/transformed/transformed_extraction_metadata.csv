@@ -1,0 +1,5 @@
+source,dataset,resource,url,file_path,size_bytes,extracted_at
+Data.gov,AIS Vessel Tracks 2024,https://marinecadastre.gov/data,https://marinecadastre.gov/data,/Users/machine/Documents/AQ/db/db-7/data/raw/ais-vessel-tracks-2024_a6ab3780-ffe4-451c-a0fd-539398faf37c.json,67772,2026-02-04T19:47:53.551040
+Data.gov,AIS Vessel Tracks 2024,Full Metadata Record,https://www.fisheries.noaa.gov/inport/item/75937,/Users/machine/Documents/AQ/db/db-7/data/raw/ais-vessel-tracks-2024_74e54200-f86c-43ef-b197-a3715f3c2f5a.json,69385,2026-02-04T19:47:53.821624
+Data.gov,AIS Vessel Tracks 2024,NOAA Office for Coastal Management Website,https://coast.noaa.gov,/Users/machine/Documents/AQ/db/db-7/data/raw/ais-vessel-tracks-2024_d5af535d-9132-4fd9-ae1e-4e6acc339e29.gov,34508,2026-02-04T19:47:53.934631
+Data.gov,AIS Vessel Tracks 2024,GCMD Keyword Forum Page,https://forum.earthdata.nasa.gov/app.php/tag/GCMD%2BKeywords,/Users/machine/Documents/AQ/db/db-7/data/raw/ais-vessel-tracks-2024_fa2aab80-22f4-44fb-bb9f-e00e5520502a.json,155571,2026-02-04T19:47:54.679944

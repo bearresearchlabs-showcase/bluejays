@@ -1,0 +1,20 @@
+{
+  "id": "db-2",
+  "name": "2 Validation",
+  "version": "1.0",
+  "created_date": "2026-02-13",
+  "queries_count": 30,
+  "schema_hash": "e2f087b4f5ec8adc099dbb7335fa4454923e66a2cd91b5572b14a558f62da887",
+  "queries_hash": "75c4130aec0002705407d2f9c2485e201c4435cd3923983aec79a1795cf6b294",
+  "deliverable_files": [
+    "schema.sql",
+    "data.sql",
+    "queries.json",
+    "queries.md",
+    "db-2_documentation.html",
+    "db-2_deliverable.json"
+  ],
+  "rl_ready": true,
+  "client_ready": true,
+  "generated_at": "20260214-0132"
+}

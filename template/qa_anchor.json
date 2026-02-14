@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "description": "Canonical format anchor for queries.md — must match template structure exactly",
+  "optional_sections": ["## Training Data Field Definitions"],
+  "required_sections": [
+    "# {name} — Query Documentation",
+    "## Database Overview",
+    "## Purpose",
+    "## Use Case",
+    "## Business Value",
+    "## Schema",
+    "## Domain Knowledge",
+    "## Query Difficulty Distribution",
+    "## Queries"
+  ],
+  "query_block_pattern": "^### Query (\\d+) — (simple|moderate|challenging) / ([a-zA-Z0-9/_-]+)$",
+  "section_block_types": {
+    "## Database Overview": "yaml",
+    "## Purpose": "text",
+    "## Use Case": "text",
+    "## Business Value": "text",
+    "## Schema": "sql",
+    "## Domain Knowledge": "text",
+    "## Query Difficulty Distribution": "text",
+    "## Queries": "json"
+  },
+  "query_json_required_fields": [
+    "db_id",
+    "question_id",
+    "question",
+    "SQL",
+    "evidence",
+    "difficulty",
+    "query_category",
+    "tables_used",
+    "schema_context",
+    "expected_output"
+  ],
+  "valid_difficulties": ["simple", "moderate", "challenging"],
+  "valid_query_categories": [
+    "aggregation",
+    "aggregation/ranking",
+    "join",
+    "window/ranking",
+    "window/self-join",
+    "subquery/cte",
+    "recursive_cte",
+    "filtering/lookup",
+    "date-arithmetic"
+  ],
+  "spacing_rules": {
+    "between_sections": 1,
+    "before_code_block": 1,
+    "after_code_block": 1
+  }
+}

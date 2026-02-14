@@ -1,0 +1,36 @@
+{
+  "toc_dict_count": 2,
+  "toc_structure": [
+    "### Database Documentation",
+    "1. [Database Overview](#database-overview)",
+    "2. [Database Schema Documentation](#database-schema-documentation)",
+    "3. [Data Dictionary](#data-dictionary)",
+    "### Data Dictionary",
+    "### Composite Products",
+    "#### Table: `us_wide_composite_products`",
+    "### Core Weather Data",
+    "#### Table: `grib2_forecasts`",
+    "#### Table: `weather_forecast_aggregations`",
+    "#### Table: `weather_observations`",
+    "#### Table: `weather_stations`",
+    "### Data Processing & Logging",
+    "#### Table: `aws_data_source_log`",
+    "#### Table: `crs_transformation_parameters`"
+  ],
+  "dict_header_count": 0,
+  "section_order": {
+    "schema": -1,
+    "dict": 1021,
+    "queries": 45741,
+    "correct": true
+  },
+  "query_section_order": [
+    "Use Case",
+    "Description",
+    "Business Value",
+    "Purpose",
+    "Complexity"
+  ],
+  "duplicate_bv": 0,
+  "filename": "db-6.md"
+}

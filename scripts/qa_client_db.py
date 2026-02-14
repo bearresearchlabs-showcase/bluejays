@@ -2,6 +2,9 @@
 """
 QA Audit for client/db - Quality assurance checks on client deliverable structure.
 Checks: DATABASE/, DOCUMENTATION/, QUERIES/ structure, file completeness, query counts.
+
+DEPRECATED: Use `python3 scripts/db_check.py qa` instead. This module is kept for
+backward compatibility and is invoked by db_check.py qa subcommand.
 """
 
 import json

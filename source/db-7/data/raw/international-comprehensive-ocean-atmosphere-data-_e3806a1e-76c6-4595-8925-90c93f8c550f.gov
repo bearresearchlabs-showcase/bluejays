@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">
+  <head>
+            <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E1Q1BML6E5"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);ga("set", "hostname", "ncei.noaa.gov");gtag("config", "G-E1Q1BML6E5", {"groups":"default","page_placeholder":"PLACEHOLDER_page_location","link_attribution":true,"allow_ad_personalization_signals":false});</script>
+<meta name="description" content="" />
+<meta name="keywords" content="climate,data,observations,weather,coasts,oceans,geophysics,satellites" />
+<link rel="canonical" href="https://www.ncei.noaa.gov/products/international-comprehensive-ocean-atmosphere-data-set" />
+<link rel="shortlink" href="https://www.ncei.noaa.gov/node/1779" />
+<meta name="generator" content="Drupal 8 (http://drupal.org)" />
+<link rel="icon" href="https://www.ncei.noaa.gov/themes/custom/ncei/favicon.ico" />
+<meta property="og:site_name" content="National Centers for Environmental Information (NCEI)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.ncei.noaa.gov/products/international-comprehensive-ocean-atmosphere-data-set" />
+<meta property="og:title" content="International Comprehensive Ocean-Atmosphere Data Set (ICOADS)" />
+<meta property="og:description" content="" />
+<meta property="og:updated_time" content="2026-02-03T14:17:54-0500" />
+<meta property="article:published_time" content="2021-08-10T19:29:29-0400" />
+<meta property="article:modified_time" content="2026-02-03T14:17:54-0500" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="International Comprehensive Ocean-Atmosphere Data Set (ICOADS)" />
+<meta name="twitter:description" content="" />
+<link name="pullquote_css" rel="stylesheet" type="text/css" href="/modules/custom/pullquote/css/pullquote_style_1.css" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>window.a2a_config=window.a2a_config||{};a2a_config.callbacks=[];a2a_config.overlays=[];a2a_config.templates={};
+</script>
+
+    <title>International Comprehensive Ocean-Atmosphere Data Set (ICOADS) | National Centers for Environmental Information (NCEI)</title>
+    <link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/align.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/fieldgroup.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/container-inline.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/clearfix.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/details.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/hidden.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/item-list.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/js.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/nowrap.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/position-container.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/reset-appearance.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/resize.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/system-status-counter.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/system-status-report-counters.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/system-status-report-general-info.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/system/components/tablesort.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/contrib/stable/css/views/views.module.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/modules/contrib/addtoany/css/addtoany.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/modules/contrib/back_to_top/css/back_to_top.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/modules/contrib/extlink/css/extlink.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/modules/contrib/paragraphs/css/paragraphs.unpublished.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/custom/ncei/public/css/breadcrumbs.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/libraries/uswds/css/uswds.min.css?t8yrmq" />
+<link rel="stylesheet" media="all" href="/themes/custom/ncei/dist/style.css?t8yrmq" />
+
+    
+          </head>
+  <body class="path-products-international-comprehensive-ocean-atmosphere-data-set path-node page-node-type-generic-product-dataset">
+    <a id="main-content-skip-link" href="#main-content" class="visually-hidden focusable">Skip to main content</a>
+    
+          <div class="container-fluid main" >
+
+    <section class="usa-banner">
+    
+ <div class="usa-banner">
+  <div class="usa-accordion">
+    <header role="banner" class="usa-banner__header">
+      <div class="usa-banner__inner">
+        <div class="grid-col-auto">
+          <img class="usa-banner__header-flag" src="/libraries/uswds/img/us_flag_small.png" width="16px" height="10px" alt="U.S. flag">
+        </div>
+        <div class="grid-col-fill tablet:grid-col-auto">
+          <p class="usa-banner__header-text">An official website of the United States government</p>
+          <p class="usa-banner__header-action" aria-hidden="true">Here's how you know</p>
+        </div>
+        <button class="usa-accordion__button usa-banner__button" aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner__button-text">Here's how you know</span>
+        </button>
+      </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner" hidden="">
+      <div class="grid-row grid-gap-lg">
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/libraries/uswds/img/icon-dot-gov.svg" alt="Dot gov">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>The .gov means it’s official.</strong>
+              <br>
+              Federal government websites often end in .gov or .mil. Before sharing sensitive information, make sure you’re on a federal government site.
+            </p>
+          </div>
+        </div>
+        <div class="usa-banner__guidance tablet:grid-col-6">
+          <img class="usa-banner__icon usa-media-block__img" src="/libraries/uswds/img/icon-https.svg" alt="Https">
+          <div class="usa-media-block__body">
+            <p>
+              <strong>The site is secure.</strong>
+              <br>
+              The <strong>https://</strong> ensures that you are connecting to the official website and that any information you provide is encrypted and transmitted securely.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </section>
+  
+      <header role="banner">
+	<a name="pagetop"></a>
+
+  <nav class="navbar navbar-expand-sm navbar-dark header-dark container-fluid flex-row">
+    <div class="container">
+      <div class="system-branding">
+        <a href="/" class="branding" rel="home">
+          <img src="/themes/custom/ncei/logo.svg" class="logo" id="ncei-logo" title="National Centers for Environmental Information logo" alt="National Centers for Environmental Information logo"/>
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <!--<span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>-->
+        <span class="mobilemenubutton">MENU</span>
+      </button>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-sm navbar-dark header-dark container-fluid">
+    <div class="container">
+          <nav role="navigation" aria-labelledby="block-ncei-main-menu-menu" id="block-ncei-main-menu" class="block block-menu navigation menu--main navbar navbar-expand-lg">
+
+          
+    
+        
+<div class="collapse navbar-collapse order-1 order-md-0" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+        <a href="/" class="nav-link" data-drupal-link-system-path="&lt;front&gt;">Home</a>
+              </li>
+          <li class="nav-item">
+        <a href="/products" class="nav-link" data-drupal-link-system-path="products">Products</a>
+                                <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+        <a href="/search/content" title="Search and filter content on the site" class="nav-link" data-drupal-link-system-path="search/content">Search/Filter</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="nav-item">
+        <a href="/services" class="nav-link" data-drupal-link-system-path="node/618">Services</a>
+                                <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+        <a href="/access" class="nav-link" data-drupal-link-system-path="node/723">Access</a>
+              </li>
+          <li class="nav-item">
+        <a href="/archive" class="nav-link" data-drupal-link-system-path="node/724">Archive</a>
+              </li>
+          <li class="nav-item">
+        <a href="/services/certification" class="nav-link" data-drupal-link-system-path="node/5761">Data Certification</a>
+              </li>
+          <li class="nav-item">
+        <a href="/maps-and-geospatial-products" class="nav-link" data-drupal-link-system-path="node/469">Maps</a>
+              </li>
+          <li class="nav-item">
+        <a href="https://www.ncei.noaa.gov/access/monitoring/products/" class="nav-link">Monitoring</a>
+              </li>
+          <li class="nav-item">
+        <a href="/online-store" class="nav-link" data-drupal-link-system-path="node/1833">Online Store</a>
+              </li>
+          <li class="nav-item">
+        <a href="/regional" class="nav-link" data-drupal-link-system-path="node/3611">Regional</a>
+              </li>
+          <li class="nav-item">
+        <a href="/services/state-of-the-services" class="nav-link" data-drupal-link-system-path="node/4871">State of the Services</a>
+              </li>
+          <li class="nav-item">
+        <a href="/services/world-data-system" class="nav-link" data-drupal-link-system-path="node/1597">World Data System</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="nav-item">
+        <a href="/resources" class="nav-link" data-drupal-link-system-path="node/627">Resources</a>
+                                <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+        <a href="/alerts" class="nav-link" data-drupal-link-system-path="alerts">Alerts</a>
+              </li>
+          <li class="nav-item">
+        <a href="https://www.nesdis.noaa.gov/about/documents-reports/notice-of-changes" class="nav-link">Change Notices</a>
+              </li>
+          <li class="nav-item">
+        <a href="/resources/education" class="nav-link" data-drupal-link-system-path="node/629">Education</a>
+              </li>
+          <li class="nav-item">
+        <a href="/resources/metadata" class="nav-link" data-drupal-link-system-path="node/5586">Metadata</a>
+              </li>
+          <li class="nav-item">
+        <a href="/resources/weather-climate-links" class="nav-link" data-drupal-link-system-path="node/1783">Quick Links</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="nav-item">
+        <a href="/news" class="nav-link" data-drupal-link-system-path="node/53">News</a>
+                                <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+        <a href="/bams-state-of-climate" class="nav-link" data-drupal-link-system-path="node/1776">BAMS</a>
+              </li>
+          <li class="nav-item">
+        <a href="https://repository.library.noaa.gov/gsearch?terms=national%20centers%20for%20environmental%20information" target="_blank" class="nav-link">Publications</a>
+              </li>
+        </ul>
+  
+              </li>
+          <li class="nav-item">
+        <a href="/contact" class="nav-link" data-drupal-link-system-path="node/32">Contact</a>
+              </li>
+          <li class="nav-item">
+        <a href="/about-us" class="nav-link" data-drupal-link-system-path="node/3001">About</a>
+                                <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+        <a href="/about/locations" class="nav-link" data-drupal-link-system-path="node/1572">Locations</a>
+              </li>
+          <li class="nav-item">
+        <a href="https://www.ncei.noaa.gov/about/our-impact" class="nav-link">Our Impact</a>
+              </li>
+        </ul>
+  
+              </li>
+        </ul>
+  
+</div>
+
+
+  </nav>
+
+
+
+      <div class="collapse navbar-collapse order-1">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <form id="search_form" class="form-inline ncei-search" title="Search NCEI" action="https://search.usa.gov/search" accept-charset="UTF-8" method="get">
+              <input type="hidden" name="utf8" value="&#x2713;" class="d-none" />
+              <input type="hidden" name="affiliate" id="affiliate" class="d-none" value="nceinoaa" />
+              <label class="d-none" for="query">Enter Search Term(s):</label>
+              <input type="text" name="query" id="query" autocomplete="off" class="usagov-search-autocomplete" placeholder="Search NCEI" tabindex="0" aria-label="Search" />
+              <button class="btn btn-sm btn-search" name="commit" type="submit">
+                <img src="/themes/custom/ncei/images/icons/src/search.svg" class="icon-search" alt="Click to run NCEI search">
+                Search
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+        </div>
+  </nav>
+</header>
+
+  
+  
+  
+  
+  
+
+
+  
+      <div class="layout-content col-md-12">
+  
+                <div class="alerts">
+                  <div class="block"  class="views-element-container" id="block-views-block-ncei-alert-block-1">
+  
+    
+      <div><div class="js-view-dom-id-97b9db1c201c49625c930d5d875237788f5065c6f9d7296d4a3a72de2e6ec81b">
+  
+  
+  
+
+  
+  
+  
+
+  
+<div class="site-alert">
+        
+        <div class="alert-container">
+    <div class="alert-rect severity-high"></div>
+    <div class="alert-wrapper severity-high" role="alert">
+      <div class="alert-body">
+        <div class="alert-text"> <p>Please note: Due to scheduled maintenance, many NCEI systems may be unavailable February 3, 11:00 AM ET - February 11, 8:00 PM ET. We apologize for any inconvenience. &nbsp;</p>
+ </div>
+      </div>
+    </div>
+  </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+  </div>
+    
+
+  
+  
+
+  
+  
+</div>
+</div>
+
+  </div>
+
+              </div>
+      <div class="row bg-blue blue-section">
+        <div class="container">
+          <div class="text-white">
+                            <div class="block"  id="block-breadcrumbs">
+  
+    
+      
+  <nav role="navigation" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+                  <a class="breadcrumb-link" href="/">Home</a>
+              </li>
+          <li class="breadcrumb-item">
+                  <a class="breadcrumb-link" href="/products">Products</a>
+              </li>
+          <li class="breadcrumb-item">
+                  International Comprehensive Ocean-Atmosphere Data Set (ICOADS)
+              </li>
+        </ol>
+  </nav>
+
+  </div>
+
+  
+                    </div>
+                                <h1 class="">International Comprehensive Ocean-Atmosphere Data Set (ICOADS)</h1>
+          
+                    
+                            </div>
+      </div>
+          
+              <div id="main-content" class="container main-body">
+                      <div data-drupal-messages-fallback class="hidden"></div>
+<div class="block"  id="block-ncei-content">
+  
+    
+      
+<article data-history-node-id="1779" about="/products/international-comprehensive-ocean-atmosphere-data-set">
+  <div class="product-dataset">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+                                
+
+
+            <div class="clearfix text-formatted"><div class="bs_grid ck-widget" contenteditable="false">
+<div class="row ck-widget" data-row-none="none" data-row-sm="none" data-row-md="equal_equal" data-row-lg="8_4" data-row-xl="none" data-row-xxl="none" contenteditable="false">
+<div class="col-md col-lg-8">
+<p><meta charset="utf-8"></p>
+<p style="background-color:#ffffff;line-height:1.38;margin-bottom:12pt;margin-top:12pt;" dir="ltr">The International Comprehensive Ocean-Atmosphere Data Set (ICOADS) is the most complete collection of surface marine data in existence. ICOADS offers&nbsp;surface marine data spanning from 1662 to present day. It also provides&nbsp; gridded monthly summary products on 2°x2° (back to 1800) and 1°x1° boxes (since 1960).&nbsp;These products are freely distributed worldwide.&nbsp;</p>
+<p><a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/icoads_brochure_20160308_8.5x11%20%281%29.pdf">More information about ICOADS</a></p>
+</div>
+<div class="col-md col-lg-4"><img src="/sites/default/files/inline-images/ICOADS%20index_fig1sm.png" data-entity-uuid="7a5e2e80-b32b-4ea9-b8e9-05fffd431b15" data-entity-type="file" alt width="694" height="493" loading="lazy"></div>
+</div>
+</div>
+</div>
+      
+
+          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                                  
+                                                                                                      
+                    
+                    
+                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li class="nav-item">
+              <a class="nav-link active show" data-toggle="tab" href="#tab-8921" role="tab" aria-selected="true">Data and Documentation</a>
+            </li>
+                                                                  <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-8901" role="tab" aria-selected="false">About</a>
+              </li>
+                                                      <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-8926" role="tab" aria-selected="false">Publications</a>
+              </li>
+                      </ul>
+
+                    <div class="tab-paragraphs" id="paragraph-wrapper">
+            <div class="tab-content card">
+                            <div class="tab-pane active show" id="tab-8921">
+                                <div class="container">
+                  <div class="row">
+                    <h2>Data Access</h2><h3 dir="ltr">Observations</h3><p>Surface marine observational records from ships, buoys, and other platform types.</p><h4>Access from NOAA | NCEI</h4><ul><li><a href="https://www.ncei.noaa.gov/data/international-comprehensive-ocean-atmosphere/v3/archive/nrt/daily/" rel="nofollow">Near real-time (NRT) daily in IMMA1 and NetCDF formats</a></li><li>Monthly in IMMA1 (<a href="https://www.ncei.noaa.gov/data/international-comprehensive-ocean-atmosphere/v3/archive/final-untrim/" rel="nofollow">1662–2014</a> and <a href="https://www.ncei.noaa.gov/data/international-comprehensive-ocean-atmosphere/v3/archive/nrt/monthly/" rel="nofollow">2015-present</a>) and NetCDF (<a href="https://www.ncei.noaa.gov/data/international-comprehensive-ocean-atmosphere/v3/archive/nrt/monthly/" rel="nofollow">1662-present</a>) formats</li><li><a href="https://www.ncei.noaa.gov/data/international-comprehensive-ocean-atmosphere/v3/archive/enhanced-trim/" rel="nofollow">Enhanced-Trimmed Monthly Files in IMMA1 format</a></li></ul><p><a href="https://www.ncei.noaa.gov/data/international-comprehensive-ocean-atmosphere/" rel="nofollow">NOAA | NCEI Access Page</a></p><h4>Access from National Center for Atmospheric Research (NCAR)</h4><ul><li>Global archive (year-month) files in IMMA format and data output CSV ASCII format</li><li>User interface for spatial, temporal, and parameter subsetting, and quality flag application. Additionally provides access to the ICOADS value-added database, community provided value-added adjustments, and reanalysis quality control feedback.</li></ul><p><a href="https://gdex.ucar.edu/datasets/d548000/" target="_blank" rel="nofollow">NCAR Access Page</a></p><h3>Monthly Summary Statistics</h3><p>Ten statistics (such as the mean and median) are calculated for each of 22 observed and derived variables, using 2° latitude x 2° longitude boxes back to 1800. (and 1°x1° boxes since 1960)</p><h4>Access from NCEI</h4><p>Monthly Summary Group (MSG) binary and NetCDF formats</p><p><a href="https://www.ncei.noaa.gov/data/international-comprehensive-ocean-atmosphere/v3/archive/msg/" rel="nofollow">Bulk file download</a></p><h4>Access from NCAR</h4><ul><li>Global archive (year-month) files in Monthly Summary Group (MSG) binary format</li><li>User interface for spatial, temporal, and parameter subsetting</li></ul><p><a href="https://gdex.ucar.edu/datasets/d548001/" target="_blank" rel="nofollow">Monthly Summary Statistics on NCAR</a></p><h4>Access and Visualization from the NOAA Physical Sciences Laboratory</h4><ul><li>Time-series of variables and statistics in netCDF format</li><li>User interface for spatial and temporal subsets, and visualization</li></ul><p><a href="https://psl.noaa.gov/data/gridded/data.coads.1deg.html" rel="nofollow">NOAA Physical Science Lab Access Page</a></p><h3>Input Data Sources</h3><p>Auxiliary, preliminary, and other datasets that are in preparation to be included in a future ICOADS release</p><h4>Access from NCAR</h4><p>Data provided in IMMA1 or native (non-IMMA1) format. It also contains datasets in IMMA1 and non-IMMA1 formats that have transitioned into ICOADS. This dataset was created in 2018 in conjunction with the completion of Release 3.0 and efforts going forward - it is not a complete collection of inputs for ICOADS beginning with Release 1.</p><p>The purpose of this dataset is to provide a common archive point for data exchange with ICOADS researchers and track the provenance as input data sources are added to official releases. These sources are not recommended for general public use and users should be aware that these are considered preliminary until incorporated into an official ICOADS release.&nbsp;</p><p><a href="https://gdex.ucar.edu/datasets/d539005/" rel="nofollow">Drifting Buoys from BUFR in IMMA1</a></p><h2>Documentation</h2><ul><li><a href="https://www.ncei.noaa.gov/data/international-comprehensive-ocean-atmosphere/v3/doc/R3.0-imma1_short.pdf" rel="nofollow">IMMA format user guide</a></li><li><a href="https://gdex.ucar.edu/datasets/d548000/documentation/" rel="nofollow">Additional documents from NCAR&nbsp;</a></li></ul>
+                  </div>
+                </div>
+                                              </div>
+                                                                            
+                                
+                                                                                                                                            
+                
+                                <div class="tab-pane" id="tab-8901">
+                                    <div class="container">
+                    <div class="row">
+                      <h2>Product Details</h2><p>ICOADS is the world’s most extensive surface marine meteorological data collection. Building on extensive national and international partnerships, ICOADS provides easy access to many different data sources in a consistent format. ICOADS provides individual observations and monthly gridded summary data. The dataset is updated daily.</p><p>Data sources range from early non-instrumental ship observations to more recent measurements from automatic measurement systems such as moored buoys and surface drifters. Each new release of ICOADS has more detailed spatial and temporal coverage, as well as higher quality data and metadata.</p><p>ICOADS supports a wide range of climate products, including the global surface temperature record, winds, pressure, humidity, clouds and estimates of air-sea exchange. ICOADS is used as input data for many well-used sources of marine climate information, including reanalyses and gridded analyses of sea surface temperature.</p><p></p><h2 dir="ltr">Program History</h2><p dir="ltr">ICOADS was created in 1981 from a U.S. project to create a comprehensive, quality controlled, publicly accessible global surface marine dataset. The project was originally called the Comprehensive Ocean Atmosphere Dataset (COADS), but became ICOADS in 2002 to recognize the multinational input of the blended observational database and other benefits gained from extensive international collaboration.</p><p dir="ltr">The original COADS project, and the continuing US contribution toward the new&nbsp;<a href="https://icoads.noaa.gov/partners.html" rel="nofollow">international partnership</a> on ICOADS, is the result of cooperation since 1981 between the <a href="https://www.noaa.gov/" rel="nofollow">National Oceanic and Atmospheric Administration (NOAA)</a> and the <a href="https://gdex.ucar.edu/" rel="nofollow">National Science Foundation's National Center for Atmospheric Research (NCAR)</a>. The NOAA portion of ICOADS is partially funded by the <a href="https://www.climate.noaa.gov/" rel="nofollow">NOAA Climate Program Office (CPO)</a>.</p>
+                    </div>
+                  </div>
+                                                                                                                        <div class="acknowledgements">
+       
+        
+      <div class='container' id='acknowledgements'>
+                    <div class='row gr'>	
+                    <div class='col'>
+            <h4 class='tblue'> International ICOADS Partners </h4>
+            <p dir="ltr"><span>ICOADS is now formally managed via an international partnership, under a&nbsp;</span><a href="https://icoads.noaa.gov/ICOADS-LOI-v6-SIGNED-3April2014.pdf"><span>Letter of Intent</span></a><span> to Enhance Support for the International Comprehensive Ocean-Atmosphere Data Set (ICOADS) Program through International Partnership, with eight signatories from the US, UK, and Germany. Principal and contributing (indented) partner organizations are listed below:</span></p><ol><li dir="ltr" aria-level="1"><a href="https://www.ncei.noaa.gov/"><span>National Oceanic and Atmospheric Administration (NOAA) National Centers for Environmental Information (NCEI)</span></a><span>: Lead, USA</span></li><li dir="ltr" aria-level="1"><a href="http://cires.colorado.edu/"><span>Cooperative Institute for Research in Environmental Sciences (CIRES)</span></a><span>, University of Colorado, USA (involved primarily through NCEI)</span></li><li dir="ltr" aria-level="1"><a href="https://www2.ucar.edu/"><span>University Corporation for Atmospheric Research (UCAR)</span></a><span> acting on behalf of the National Center for Atmospheric Research (NCAR), USA</span></li><li dir="ltr" aria-level="1"><a href="http://www.dwd.de/"><span>Deutscher Wetterdienst (DWD</span></a><span>) </span><a href="https://www.cen.uni-hamburg.de/en.html"><span>Center for Earth System Research and Sustainability (CEN)</span></a><span>, University of Hamburg, Germany (involved primarily through DWD)</span></li><li dir="ltr" aria-level="1"><a href="http://www.metoffice.gov.uk/"><span>UK Met Office</span>, UK</a></li><li dir="ltr" aria-level="1"><a href="https://www.uea.ac.uk/groups-and-centres/climatic-research-unit"><span>Climatic Research Unit (CRU)</span></a><span>, University of East Anglia (UEA) UK (involved primarily through the Met Office)</span></li><li dir="ltr" aria-level="1"><a href="http://noc.ac.uk/"><span>UK National Oceanography Centre (NOC)</span>, UK</a></li></ol><p dir="ltr"><span>Under the LOI, the ICOADS Steering Committee (ISC) exists to promote ICOADS and to provide scientific oversight and technical input for the Program, with Terms of Reference (ToR) and current Membership as defined in this&nbsp;</span><a href="https://icoads.noaa.gov/ICOADS-SteeringCommittee-ToR.pdf"><span>document</span></a><span>.</span></p>
+                                                  <a href='https://icoads.noaa.gov/partners.html' target='_blank'>International ICOADS Partners</a>
+                                        </div>
+        </div>
+          </div>
+  </div>
+                                              
+
+<div class="text-block-paragraph">
+  
+
+            <div class="text-long"><h3>Contact</h3>
+<p>For general ICOADS comments or questions email: <a href="mailto:ncei.surface.marine@noaa.gov">ncei.surface.marine@noaa.gov</a></p>
+</div>
+      
+</div>
+
+                                              <div class="accordion">
+      
+  
+                              
+
+
+  <div class="accordion" id="accordion-8931">
+    <div class="card">
+      <div class="card-header" id="heading-8931">
+        <button aria-controls="collapseOne" aria-expanded="false" class="btn btn-link collapsed" data-target="#collapse-8931" data-toggle="collapse">Updates | Release History </button>
+      </div>
+      <div aria-labelledby="heading-8931" class="collapse" data-parent="#paragraph-wrapper" id="collapse-8931">
+        <div class="card-body">
+        <p><h3>Release History</h3><ul><li>Release 3.0.3 (202509-present). UIDs are reset to zero.</li><li>Release 3.0.2 (201501-202508) February 2022: Following format changes to BUFR on the WMO Global Telecommunication System (GTS) in recent years, ICOADS is now decoding near-real-time (NRT) BUFR observations and merging them with Traditional Alphanumeric Code (TAC) formats for a new NRT product, updated within the first 10 days of the most current month. The NRT observations are based on blended marine observations in the TAC and BUFR formats from NOAA's National Centers for Environmental Information (NCEI) GTS collections. See NOAA's<a href="https://www.ncei.noaa.gov/news/new-daily-international-comprehensive-ocean-atmosphere-data-set" rel="nofollow"> National Centers for Environmental Information's news story</a> regarding the release.<br>&nbsp;</li><li>Release 3.1 (1662-2014): &nbsp;Official ICOADS.DM 1662-2014<br>October 2017: The complete file set for Release 3.1.0 (1662-2014) was produced at NCAR and made public. This version marks the first time multi-line linked reports (Main plus Subsidiary) in IMMA1 data format have been used. The Subsidiary records are linked to the Main records through replication of the unique identification number and expand the IMMA1 capability to hold ICOADS value-added data (Ivad) and reanalysis feedback quality control (Rean-qc) information.</li><li>Release 3.0.1 (2015-present):&nbsp;<br>June 2017: Following the official end date of R3.0.0 (December 2014), preliminary (note: subject to change and not officially part of R3.0; release numbered as R3.0.1) near-real-time (NRT) monthly updates (available 2-5 days after the end of each data month) augment this collection and extend the dates from 2014 to the most recent month available. The NRT observations are based on blended marine Global Telecommunication System (GTS) observations from NOAA's National Centers for Environmental Prediction (NCEP) and NOAA's National Centers for Environmental Information (NCEI). Data characteristics of the blend are available at the following webpage.</li><li>Release 3.0 (1662-2014):<br>June 2017: NCEI releases a NetCDF version of the ICOADS Release 3.0 (R3.0), which is converted from the original IMMA1 format. Useful metadata have been added in the global and variable attributes of each file to make the NetCDF self-contained. The variable names in the NetCDF files are the same as the field name abbreviations (i.e. "Abbr." column) in the IMMA1 documentation. Therefore, the same IMMA1 documentation can be used as reference for the NetCDF version. Access options for this data can be found on the ICOADS Products page. June 2016: ICOADS.DM observational data extensively updated and extended to cover 1662-2014, with revised monthly summaries for 1800-2014. Figure 3 illustrates the platform type (PT) makeup of Release 3.0 for 1936-2014 (extensive DM ship and other data have been included through 2014), and this webpage reviews a variety of Release 3.0 data characteristics. Coincident with Release 3.0 we are extending ICOADS observations (IMMA1 format), together with monthly summary statistics, to near-real-time based on improved preliminary near-real-time (NRT) blend data (as described on this webpage), updated monthly, and lagging real-time by 2-6 weeks (note: data and products following the December 2014 official end date of Release 3.0 are subject to change). See NOAA's National Centers for Environmental Information's web story regarding the release.</li><li>Release 2.5 (1662-2007):<br>July 2009: ICOADS.DM observational data extensively updated and extended to cover 1662-2007, with revised monthly summaries for 1800-2007. Figure 2 illustrates the platform type (PT) makeup of Release 2.5 for 1936-2007 (extensive DM ship data have been included through 2007), and this webpage reviews a variety of Release 2.5 data characteristics. Coincident with Release 2.5 we are extending ICOADS observations (IMMA format), together with monthly summary statistics, to near-real-time based on preliminary ICOADS.RT data, updated monthly, and lagging real-time by 2-6 weeks (note: data and products following the December 2007 official end date of Release 2.5 are subject to change). Preliminary ICOADS.RT (IMMA format) observations (note: these data following the May 2007 official end date of Release 2.4 are subject to change):<br>February 2009: January-December 2008. December 2008: August-December 2007. June 2008: June-July 2007.</li><li>Release 2.4 (1784-2007):<br>July 2007: ICOADS.RT observational data and monthly summaries made available for 2006-May 2007, and ICOADS.DM observational data and monthly summaries replaced for 1784-2005 to correct minor problems and attach supplemental data through 1997.</li><li>Release 2.3 (1784-2005):<br>March-May 2006: ICOADS.RT observational data and monthly summaries made available for 2005 as an extension to the ICOADS.DM archive. Also, some updates and minor corrections were made to IMMA data for 1999-2004, limited to the ship metadata attachment. Figure 1 illustrates the platform type (PT) makeup of Release 2.3 for 1936-2005, and indicates the degree to which DM ship and other data have been included, versus real-time GTS data.</li><li>Release 2.2 (1784-2004):<br>October-November 2005: ICOADS.DM observational data and monthly summaries made available for 1998-2004 to replace the 1998-2002 ICOADS.RT products. Thus for this release, products for 1784-2004 were entirely ICOADS.DM based. Specifically, this included replacement of some Ocean Data Acquisition System (ODAS) data received via the Global Telecommunication System (GTS) with these DM sources: Worldwide drifting buoy data from Canada's Marine Environmental Data Service (MEDS).<br>Tropical Pacific and Atlantic moored buoy data, for the TAO/TRITON and PIRATA arrays, from NOAA's Pacific Marine Environmental Laboratory (PMEL) and the Japan Agency for Marine-Earth Science and Technology (JAMSTEC).<br>US moored buoy and Coastal-Marine Automated Network (C-MAN) data from NOAA's National Data Buoy Center (NDBC).</li><li>Release 2.1 (1784-2002):<br>November 2003: Real-time (ICOADS.RT) observational data and monthly summaries made available for 1998-2002 as an extension to the ICOADS.DM archive, plus the ICOADS.RT observations were offered in a new ascii IMMA format.</li><li>Release 2.0 (1784-1997):<br>September 2002: Began website transition from the earlier Release terminology and, by international agreement, to the name ICOADS. The delayed-mode (ICOADS.DM) archive encompasses the data and monthly summary products referred to below as from three separate COADS updates: Releases 1a (1980-97), 1b (1950-79), and 1c (1784-1949).</li><li>Release 1c status (1784-1949):<br>Individual observations, plus 2°x2° monthly summaries. Together with Releases 1b and 1a, this update completed replacement of the original Release 1 products, plus it extended coverage prior to 1854.<br>August 2001: Report rejection (ZQ) problem corrected (description), including revised 2°x2° summaries back to 1800. March 2001: Initial 2°x2° summaries completed (available back to 1800). February 2001: Final LMRF completed. November 2000: Preliminary ("beta") individual observations (LMRF) completed.</li><li>Release 1b status (1950-79):<br>Individual observations, plus 2°x2° monthly summaries (and 1°x1° summaries starting in 1960).<br>January 1999: For October-November 1970, 505 mislocated reports (LMRF) were deleted from deck 555 (Monterey Telecom.); 2°x2° and 1°x1° summaries in MSG format were updated in June 1999. November 1996: 2°x2° summaries for 1950-79 completed. October 1996: 1950-1959 individual observations completed (also, individual observations for the additional period 1946-49 were completed in October 1997 for the NCEP/NCAR Reanalysis Project). July 1996: 1960-1969 LMRF completed. January 1996: 1970-1979 individual observations (LMRF) completed.</li><li>Release 1a status (1980-97):<br>Individual observations, plus 2°x2° and 1°x1° monthly summaries.<br>June 1999: 1980-97 update and extension completed, including an update of the previously available 1980-95 data (a preliminary version of the data for this period was completed in March 1999). March 1997: 1990-95 extension completed, including an update of the previously available 1990-93 data. June 1995: 1992-93 extension completed, including an update of the previously available 1988 and 1992 data to correct dew point and wet bulb temperature errors in US-keyed data. For more information see Moisture Variable Corrections for 1988 and 1992-1993. July 1993: Data completed for 1980-92 (original version of Release 1a), introducing the LMRF format to replace the CMR observational format. Modernized 1°x1° and 2°x2° summary products (MSG format), initially developed for the Pan-American Climate Studies (PACS) Program: March 2001: 2°x2° summaries in the MSG format were made available for 1800-1949 based on Release 1c data. June 1999: The 1°x1° summaries were revised to include updated Release 1a data for 1980-97. In addition, 2°x2° summaries in the MSG format were made available for 1950-97 based on the latest Release 1b and 1a data. November 1997: The 1°x1° summaries were revised and extended to include the latest Release 1a data available for 1990-95. November 1996: A new set of 1° latitude x 1° longitude monthly summary statistics for an expanded set of 22 variables became available for 1960-93 (see PACS examples).</li><li>Interim products (1980-91):<br>Following completion of Release 1, Interim updates were constructed using simplified procedures and preliminary input data. Note: Release 1a superseded the interim products.</li><li>COADS Release 1 (1854-1979):<br>April 1985: 70M reports output for 1854-1979 (abbreviated CMR format), plus 2° latitude x 2° longitude monthly summary statistics for 19 observed and derived variables.</li></ul></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                                                        </div>
+                                                              
+                                
+                                                                                                                                            
+                
+                                <div class="tab-pane" id="tab-8926">
+                                    <div class="container">
+                    <div class="row">
+                      <h2>Project Related Publications</h2><ul><li>Liu, C., and Coauthors, 2022: Blending TAC and BUFR Marine In Situ Data for ICOADS Near-Real-Time Release 3.0.2.&nbsp;J. Atmos. Oceanic Technol., 39, 1943–1959, (<a href="https://doi.org/10.1175/JTECH-D-21-0182.1" rel="nofollow">doi.org/10.1175/JTECH-D-21-0182.1</a>).</li><li>Freeman, E., S.D. Woodruff, S.J. Worley, S.J. Lubker, E.C. Kent, W.E. Angel, D.I . Berry, P. Brohan, R. Eastman, L. Gates, W. Gloeden, Z. Ji, J. Lawrimore, N.A. Rayner, G. Rosenhagen, and S.R. Smith, 2017: ICOADS Release 3.0: A major update to the historical marine climate record. (<a href="https://dx.doi.org/doi:10.1002/joc.4775" rel="nofollow">doi:10.1002/joc.4775</a>).</li><li>Smith, S.R., 2011: Ten-year vision for marine climate research,&nbsp;Eos Trans. AGU,&nbsp;92, 376 (<a href="https://dx.doi.org/doi:10.1029/2011EO430005" rel="nofollow">doi:10.1029/2011EO430005</a>).</li><li>Woodruff, S.D., S.J. Worley, S.J. Lubker, Z. Ji, J.E. Freeman, D.I. Berry, P. Brohan, E.C. Kent, R.W. Reynolds, S.R. Smith, and C. Wilkinson, 2011: ICOADS Release 2.5: Extensions and enhancements to the surface marine meteorological archive.&nbsp;Int. J. Climatol. (<a href="https://dx.doi.org/doi:10.1002/joc.v31.7" rel="nofollow">CLIMAR-III Special Issue</a>),&nbsp;31, 951-967 (<a href="https://dx.doi.org/doi:10.1002/joc.2103" rel="nofollow">doi:10.1002/joc.2103</a>).</li><li>Wilkinson, C., S.D. Woodruff, P. Brohan, S. Claesson, E. Freeman, F. Koek, S.J. Lubker, C. Marzin, and D. Wheeler, 2011: Recovery of Logbooks And International Marine Data: The RECLAIM Project.&nbsp;Int. J. Climatol. (<a href="https://dx.doi.org/doi:10.1002/joc.v31.7" rel="nofollow">CLIMAR-III Special Issue</a>),&nbsp;31, 968-979 (<a href="https://dx.doi.org/doi:10.1002/joc.2102" rel="nofollow">doi:10.1002/joc.2102</a>).</li><li>Woodruff, S.D., H.F. Diaz, E.C. Kent, R.W. Reynolds, and S.J. Worley, 2008: The evolving SST record from ICOADS. In&nbsp;Climate Variability and Extremes during the Past 100 Years (S. Brönnimann, J. Luterbacher, T. Ewen, H.F. Diaz, R.S. Stolarski, and U. Neu, Eds.), Advances in Global Change Research, Vol. 33, Springer, 65-83 (<a href="https://dx.doi.org/doi:10.1007/978-1-4020-6766-2_4" rel="nofollow">doi:10.1007/978-1-4020-6766-2_4</a>).</li><li>Kent, E., S. Woodruff, N. Rayner, T. Arbetter, C. Folland, F. Koek, D. Parker, R. Reynolds, R. Saunders, V. Smolyanitsky, S. Worley, and T. Yoshida, 2007: Advances in the use of historical marine climate data (Second International Workshop on Advances in the Use of Historical Marine Climate Data).&nbsp;Bull. Amer. Meteor. Soc.,&nbsp;88, 559-564 (<a href="https://dx.doi.org/doi:10.1175/BAMS-88-4-559" rel="nofollow">doi:10.1175/BAMS-88-4-559</a>).</li><li>Woodruff, S.D., H.F. Diaz, S.J. Worley, R.W. Reynolds, and S.J. Lubker, 2005: Early ship observational data and ICOADS.&nbsp;Climatic Change,&nbsp;73, 169-194 (<a href="https://dx.doi.org/doi:10.1007/s10584-005-3456-3" rel="nofollow">doi:10.1007/s10584-005-3456-3</a>).</li><li>Worley, S.J., S.D. Woodruff, R.W. Reynolds, S.J. Lubker, and N. Lott, 2005: ICOADS Release 2.1 data and products. Int. J. Climatol., 25, 823-842. (<a href="https://dx.doi.org/doi:10.1002/joc.1166" rel="nofollow">doi:10.1002/joc.1166</a>).</li><li>Parker, D., E. Kent, S. Woodruff, D. Dehenauw, D.E. Harrison, T. Manabe, M. Mietus, V. Swail, and S. Worley, 2004: Second JCOMM Workshop on Advances in Marine Climatology (<a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/CLIMAR-II.pdf" rel="nofollow">CLIMAR-II pdf</a>). WMO Bulletin,&nbsp;53(2), 157-159.</li><li>WMO (World Meteorological Organization), 2003:&nbsp;<a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/Advances%20in%20the%20Application%20of%20Marine%20Climatology%20-%20ICOADS.pdf" rel="nofollow">Advances in the Applications of Marine Climatology--The Dynamic Part of the WMO Guide to the Applications of Marine Meteorology. WMO/TD-No. 1081 (JCOMM Technical Report No. 13), World Meteorological Organization, Geneva, 246 pp. </a>; <a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/correction%202Kaplan_etal2003%20ICOADS.pdf" rel="nofollow">Correction to Kaplan et al. 2003 p. 213</a>.</li><li>Diaz, H., C. Folland, T. Manabe, D. Parker, R. Reynolds, and S. Woodruff, 2002: <a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/Workshop%20on%20Advances%20in%20the%20Use%20of%20Historical%20Marine%20Climate%20Data.pdf" rel="nofollow">Workshop on Advances in the Use of Historical Marine Climate Data.&nbsp;WMO Bulletin,&nbsp;51(4), 377-380. </a>, <a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/Offprint.maps%20ICOADS.pdf" rel="nofollow">Improved Offprint resolution maps</a>.</li><li>Woodruff, S.D., 2001: <a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/COADS%20Updates.pdf" rel="nofollow">COADS updates including newly digitized data and the blend with the UK Meteorological Office Marine Data Bank (pdf; 2.6MB)</a> and <a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/Quality%20Control%20COADS.pdf" rel="nofollow">Quality control in recent COADS updates</a>.&nbsp;Proceedings of Workshop on Preparation, Processing and Use of Historical Marine Meteorological Data, Tokyo, Japan, 28-29 November 2000, Japan Meteorological Agency and the Ship &amp; Ocean Foundation, 9-13 and 49-53.</li><li>Diaz, H.F., and S.D. Woodruff (Eds.),1999:&nbsp;<a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/Preparation%20on%20Historical%20Marine%20Data%20and%20Metadata.pdf" rel="nofollow">Proceedings of the International Workshop on Digitization and Preparation of Historical Surface Marine Data and Metadata (Toledo, Spain, 15-17 September 1997</a>. WMO/TD-No.957, MMROA Report No. 43, World Meteorological Organization, Geneva, 114 pp.</li><li>Woodruff, S.D., H.F. Diaz, J.D. Elms, and S.J. Worley, 1998:&nbsp;COADS Release 2 data and metadata enhancements for improvements of marine surface flux fields.&nbsp;Phys. Chem. Earth,&nbsp;23, 517-526 (<a href="https://dx.doi.org/doi:10.1016/S0079-1946(98)00064-0" rel="nofollow">doi:10.1016/S0079-1946(98)00064-0</a>).</li><li>Diaz, H.F. and H.-J. Isemer (Eds.), 1995:&nbsp;Proceedings of the International COADS Winds Workshop, Kiel, Germany, 31 May-2 June 1994. NOAA Environmental Research Laboratories, Boulder, CO, and Institut für Meereskunde, Kiel, 301 pp.</li><li>Elms, J.D., S.D. Woodruff, S.J. Worley, and C. Hanson, 1993:&nbsp;Digitizing Historical Records for the Comprehensive Ocean-Atmosphere Data Set (COADS).&nbsp;<a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/Earth%20System%20Monitor_SEP1993vol4no1.pdf" rel="nofollow">Earth System Monitor,&nbsp;4(2), 4-10.</a></li><li>Woodruff, S.D.,S.J. Lubker, K. Wolter, S.J. Worley, and J.D. Elms, 1993:&nbsp;Comprehensive Ocean-Atmosphere Data Set (COADS) Release 1a: 1980-92.&nbsp;<a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/Earth%20System%20Monitor_SEP1993vol4no1.pdf" rel="nofollow">Earth System Monitor,&nbsp;4(1), 1-8.</a></li><li>Diaz, H.F., K. Wolter, and S.D. Woodruff (Eds.), 1992:&nbsp;Proceedings of the International COADS Workshop, Boulder, Colorado, 13-15 January 1992. NOAA Environmental Research Laboratories, Climate Research Division, Boulder, CO, 390 pp.</li><li>Woodruff, S.D., R.J. Slutz, R.L. Jenne, and P.M. Steurer, 1987:&nbsp;<a href="https://journals.ametsoc.org/doi/abs/10.1175/1520-0477%281987%29068%3C1239%3AACOADS%3E2.0.CO%3B2" rel="nofollow">A comprehensive ocean-atmosphere data set</a>.&nbsp;Bull. Amer. Meteor. Soc.,&nbsp;68, 1239-1250. (<a href="https://doi.org/10.1175/1520-0477(1987)068%3C1239:ACOADS%3E2.0.CO;2" rel="nofollow">doi.org/10.1175/1520-0477(1987)</a>)</li><li>Woodruff, S.D. (Ed.), <a href="https://www.ncei.noaa.gov/sites/default/files/2025-08/COADSWorkshop1986.pdf" rel="nofollow">1986:&nbsp;Proceedings of a COADS Workshop, Boulder, Colorado, January 22-24, 1986. NOAA Environmental Research Laboratories, Climate Research Program, Boulder, CO, 218 pp.</a></li><li>Slutz, R.J., S.J. Lubker, J.D. Hiscox, S.D. Woodruff, R.L. Jenne, D.H. Joseph, P.M. Steurer, and J.D. Elms, 1985:&nbsp;<a href="https://www.ncei.noaa.gov/sites/default/files/2025-09/Slutz_etal_1985.pdf" rel="nofollow">Comprehensive Ocean-Atmosphere Data Set; Release 1. NOAA Environmental Research Laboratories, Climate Research Program, Boulder, CO, 268 pp. (NTIS PB86-105723).</a></li></ul>
+                    </div>
+                  </div>
+                                                                                                                        <div class="accordion">
+      
+  
+                              
+
+
+  <div class="accordion" id="accordion-8936">
+    <div class="card">
+      <div class="card-header" id="heading-8936">
+        <button aria-controls="collapseOne" aria-expanded="false" class="btn btn-link collapsed" data-target="#collapse-8936" data-toggle="collapse">Selected Research Bibliography</button>
+      </div>
+      <div aria-labelledby="heading-8936" class="collapse" data-parent="#paragraph-wrapper" id="collapse-8936">
+        <div class="card-body">
+        <p><h2>Selected Research Bibliography</h2>
+<p>Examples are presented under the following headings of research publications relevant to the use of ICOADS (in some cases pre-dating ICOADS). Several of the headings focus on individual marine variables. We welcome comments and suggestions for additions to this page.</p>
+<h3>Atlases</h3>
+<ul>
+<li>Bottomley, M. C.K. Folland, J. Hsiung, R.E. Newell, and D.E. Parker, 1990: Global Ocean Surface Temperature Atlas 'GOSTA.' Met Office/MIT (Boston), 20+iv pp., 313 plates.</li>
+<li>Environmental Working Group, 1997: Joint U.S.-Russian Atlas of the Arctic Ocean. National Snow and Ice Data Center, Boulder, CO--on CD-ROM.</li>
+<li>Hahn, C.J., S.G. Warren, J. London, R.M. Chervin, and R. Jenne, 1982: Atlas of Simultaneous Occurrence of Different Cloud Types over the Ocean. NCAR Technical Note TN-201+STR, National Center for Atmospheric Research, Boulder, CO, 212 pp.</li>
+<li>Isemer, H.-J., and L. Hasse, 1985: Bunker Climate Atlas of the North Atlantic Ocean, Vol. 1: Observations. Springer-Verlag, New York, 218 pp.</li>
+<li>Isemer, H.-J., and L. Hasse, 1987: Bunker Climate Atlas of the North Atlantic Ocean, Vol. 2: Air-sea Interactions. Springer-Verlag, New York, 252 pp.</li>
+<li>Josey, S.A., E.C. Kent, D. Oakley, and P.K. Taylor, 1996: A new global air-sea heat and momentum flux climatology. International WOCE Newsletter, 24, 3-5.</li>
+<li>Josey, S.A., E.C. Kent, and P.K. Taylor, 1998: The Southampton Oceanography Centre (SOC) Ocean-Atmosphere Heat, Momentum and Freshwater Flux Atlas. SOC Report No. 6, University of Southampton, UK, 30 pp. + figures.</li>
+<li>McDonald, W.F., 1938: Atlas of Climatic Charts of the Oceans. US Department of Agriculture, Weather Bureau, W.B. No. 1247, Washington, DC.</li>
+<li>Oberhuber, J. M., 1988: An Atlas Based on the 'COADS' Data Set: The Budgets of Heat, Buoyancy and Turbulent Kinetic Energy at the Surface of the Global Ocean. Max-Planck-Institut für Meteorologie (MPI), Report No. 15, MPI, Hamburg, Germany.</li>
+<li>da Silva, A. M., C.C. Young, and S. Levitus, 1994: Atlas of Surface Marine Data, Vol. 1: Algorithms and Procedures. NOAA/NESDIS, 83 pp.</li>
+<li>da Silva, A. M., C.C. Young, and S. Levitus, 1994: Atlas of Surface Marine Data, Vol. 2: Anomalies of Directly Observed Quantities. NOAA/NESDIS, 416 pp.</li>
+<li>da Silva, A. M., C.C. Young, and S. Levitus, 1994: Atlas of Surface Marine Data, Vol. 3: Anomalies of Heat and Momentum Fluxes. NOAA/NESDIS, 413 pp.</li>
+<li>da Silva, A. M., C.C. Young, and S. Levitus, 1994: Atlas of Surface Marine Data, Vol. 4: Anomalies of Fresh Water Fluxes. NOAA/NESDIS, 308 pp.</li>
+<li>US Navy, 1981: Marine Climatic Atlas of the World. Vol. IX: World-wide Means and Standard Deviations. NAVAIR 50-1C-65, U.S. Government Printing Office, Washington, D.C., 169 pp.</li>
+<li>Wright, P.B., 1988: An Atlas Based on the 'COADS' Data Set: Fields of Mean Wind, Cloudiness and Humidity at the Surface of the Global Ocean. Max-Planck-Institut für Meteorologie (MPI), Report No. 14, MPI, Hamburg, Germany.</li>
+</ul>
+<h3>Cloudiness</h3>
+<ul>
+<li>Aleksandrova, M., S.K. Gulev, and K. Belyaev, 2018: Probability Distribution for the Visually Observed Fractional Cloud Cover over the Ocean. J. Climate, 31, 3207-3232 (<a href="https://doi.org/10.1175/JCLI-D-17-0317.1">doi: 10.1175/JCLI-D-17-0317.1)</a>.</li>
+<li>Bedacht, E., S.K. Gulev, and A. Macke, 2007: Intercomparison of global cloud cover fields over oceans from the VOS observations and NCEP/NCAR reanalysis. Int. J. Climatol., 27, 1707-1719 (<a href="http://dx.doi.org/doi:10.1002/joc.1490">doi:10.1002/joc.1490</a>).</li>
+<li>Dorman C.E., J. Mejia, D. KoraÄin and D. McEvoy, 2017: Worldwide Marine Fog Occurrence and Climatology. Chapter 2. In Marine Fog: Challenges and Advancements in Observations, Modeling, and Forecasting. D. Koracin and C. Dorman (Eds). Springer Atmospheric Sciences, Springer International Publishing Switzerland. 7-152. (<a href="http://dx.doi.org/doi:10.1007/978-3-319-45229-6_2">doi:10.1007/978-3-319-45229-6_2</a>).</li>
+<li>Hahn, C. J., and S. G. Warren, 1999: Extended edited synoptic cloud reports from ships and land stations over the globe, 1952-1996. Carbon Dioxide Information Analysis Center Rep. NDP026C, 81 pp.</li>
+<li>Hahn, C.J., S.G. Warren, and J. London, 1995: The effect of moonlight on observation of cloud cover at night, and application to cloud climatology. J. Climate, 8, 1429-1445.</li>
+<li>Norris, J.R., 1998: Low cloud type over the ocean from surface observations. Part II: geographical and seasonal variations. J. Climate, 11, 383-403.</li>
+<li>Norris, J.R., 1999: On trends and possible artifacts in global ocean cloud cover between 1952 and 1995. J. Climate, 12, 1864-1870.</li>
+</ul>
+<h3>Fluxes</h3>
+<ul>
+<li>Berry, D.I., and E.C. Kent, 2009: A new air-sea interaction gridded dataset from ICOADS with uncertainty estimates. Bull. Amer. Meteor. Soc., 90, 645-656 (<a href="http://dx.doi.org/doi:10.1175/2008BAMS2639.1">doi:10.1175/2008BAMS2639.1</a>).</li>
+<li>Berry, D.I. and E.C. Kent, 2011, Air-sea fluxes from ICOADS: the construction of a new gridded dataset with uncertainty estimates. Int. J. Climatol. (<a href="http://dx.doi.org/doi:10.1002/joc.v31.7">CLIMAR-III Special Issue</a>), 31, 987-1001 (<a href="http://dx.doi.org/doi:10.1002/joc.2059">doi:10.1002/joc.2059</a>).</li>
+<li>Gleckler, P. J., and B. C. Weare, 1997: Uncertainties in global ocean surface heat flux climatologies derived from ship observations. J. Climate, 10, 2764-2781.</li>
+<li>Grist, J.P., and S.A. Josey, 2003: Inverse analysis adjustment of the SOC air-sea flux climatology using ocean heat transport constraints. J. Climate, 20, 3274-3295.</li>
+<li>Gulev S., T. Jung, and E. Ruprecht, 2007: Estimation of the impact of sampling errors in the VOS observations on air–sea fluxes. Part I: Uncertainties in climate means. J. Climate, 20, 279–301 (<a href="http://dx.doi.org/doi:10.1175/JCLI4010.1">doi:10.1175/JCLI4010.1</a>).</li>
+<li>Gulev S., T. Jung, and E. Ruprecht, 2007: Estimation of the impact of sampling errors in the VOS observations on air–sea fluxes. Part II: Impact on trends and interannual variability. J. Climate, 20, 302–315 (<a href="http://dx.doi.org/doi:10.1175/JCLI4008.1">doi:10.1175/JCLI4008.1</a>).</li>
+<li>Isemer, H.-J., and A. Rozwadowska, 1998: Solar radiation fluxes at the surface of the Baltic Proper, part 2: Uncertainties and comparison with simple bulk parametrisations. Oceanologia, 41, 147-185.</li>
+<li>Josey, S.A., E.C. Kent and P.K. Taylor, 1999: New insights into the ocean heat budget closure problem from analysis of the SOC air-sea flux climatology. J. Climate, 12, 2856-2880.</li>
+<li>Josey, S.A., E.C. Kent and P.K. Taylor, 2002: Wind stress forcing of the ocean in the SOC Climatology: Comparisons with the NCEP/NCAR, ECMWF, UWM/COADS and Hellerman and Rosenstein datasets. J. Phys. Oceanog., 32, 1993-2019.</li>
+<li>Kent, E.C., and P.K. Taylor, 1995: A comparison of sensible and latent heat flux estimates in the North Atlantic Ocean. J. Phys. Oceanogr., 25, 1530-1549.</li>
+<li>Kubota, M., A. Kano, H. Muramatsu, and H. Tomita, 2003: Intercomparison of various surface latent heat flux fields. J. Climate, 16, 670- 678.</li>
+<li>Küttel, M., E. Xoplaki, D. Gallego, J. Luterbacher, R. Garcia-Herrera, R. Allan, M. Barriendos, P.D. Jones, D. Wheeler, and H. Wanner, 2009: The importance of ship log data: reconstructing North Atlantic, European and Mediterranean sea level pressure fields back to 1750. Climate Dynamics (<a href="http://dx.doi.org/doi:10.1007/s00382-009-0577-9">doi:10.1007/s00382-009-0577-9</a>).</li>
+<li>Lindau, R., 2003: Errors of Atlantic air-sea fluxes derived from ship observations. J. Climate, 16, 783-788.</li>
+<li>Ramage, C.S., 1984: Can shipboard measurements reveal secular changes in air-sea heat flux? J. Climate Appl. Meteor., 23, 187-193.</li>
+<li>Rozwadowska, A., and H.-J. Isemer, 1998: Solar radiation fluxes at the surface of the Baltic Proper, part 1: mean annual cycle and influencing factors. Oceanologia, 40, 307-330.</li>
+<li>Smith, S.R., P.J. Hughes, and M.A. Bourassa, 2011: A comparison of nine monthly air-sea flux products. Int. J. Climatol. (<a href="http://dx.doi.org/doi:10.1002/joc.v31.7">CLIMAR-III Special Issue</a>), 31, 1002-1027 (<a href="http://dx.doi.org/doi:10.1002/joc.2225">doi:10.1002/joc.2225</a>).</li>
+<li>Woodruff, S. and S. Worley, 2006: Ocean fluxes and ICOADS: A status report. FLUX News, No. 1 (January 2006), 10-11.</li>
+<li>Yu, L., and R.A. Weller, 2007: Objectively analyzed air-sea heat fluxes for the global ice-free oceans (1981-2005). Bull. Amer. Meteor. Soc., 88, 527-539 (<a href="http://dx.doi.org/doi:10.1175/BAMS-88-4-527">doi:10.1175/BAMS-88-4-527</a>).</li>
+</ul>
+<h3>Marine Temperatures</h3>
+<ul>
+<li>Atkinson, C. P., N.A. Rayner, J. Roberts-Jones, and R.O. Smith, 2013: Assessing the quality of sea surface temperature observations from drifting buoys and ships on a platform-by-platform basis. J. Geophys. Res. Oceans, 118, 3507-3529 (<a href="http://dx.doi.org/doi:10.1002/jgrc.20257">doi:10.1002/jgrc.20257</a>).</li>
+<li>Barnett, T.P., 1984: Long-term trends in surface temperature over the oceans. Mon. Wea. Rev., 112, 303-312.</li>
+<li>Berry, D.I, and E.C. Kent, 2005: The effect of instrument exposure on marine air temperatures: an assessment using VOSClim data. Int. J. Climatol. (CLIMAR-II Special Issue), 25, 1007-1022 (<a href="http://dx.doi.org/doi:10.1002/joc.1178">doi:10.1002/joc.1178</a>).</li>
+<li>Berry, D.I, E.C. Kent, and P.K. Taylor, 2004: An analytical model of heating errors in marine air temperatures from ships. J. Atmos. Oceanic Technol., 21, 1198-1215.</li>
+<li>Casey, K.S., and P. Cornillon, 1999: A comparison of satellite and in situ-based sea surface temperature climatologies. J. Climate, 12, 1848-1863.</li>
+<li>Casey, K.S. and P. Cornillon, 2001: Global and Regional Sea Surface Temperature Trends. J. Climate, 14, 3801-3818 (<a href="http://dx.doi.org/10.1175/1520-0442(2001)014%3C3801:GARSST%3E2.0.CO;2">doi:10.1175/1520-0442(2001)014&lt;3801:GARSST&gt;2.0.CO;2</a>).</li>
+<li>Folland, C., 2005: Assessing bias corrections in historical sea surface temperature using a climate model. Int. J. Climatol. (CLIMAR-II Special Issue), 25, 895-911 (<a href="http://dx.doi.org/doi:10.1002/joc.1171">doi:10.1002/joc.1171</a>).</li>
+<li>Folland, C.K., and D.E. Parker, 1995: Correction of instrumental biases in historical sea surface temperature data. Q.J.R. Meteorol. Soc., 121, 319-367.</li>
+<li>Folland, C.K., R.W. Reynolds, M. Gordon, and D.E. Parker, 1993: A study of six operational sea surface temperature analyses. J. Climate, 6, 96-113.</li>
+<li>Forest C.E., and R.W. Reynolds, 2008: Climate change: Hot questions of temperature bias. Nature, 453, 601-602 (29 May 2008) (<a href="http://dx.doi.org/doi:10.1038/453601a">doi:10.1038/453601a</a>).</li>
+<li>Huang, B., V.F. Banzon, E. Freeman, J. Lawrimore, W. Liu, T.C. Peterson, T.M. Smith, P.W. Thorne, S.D. Woodruff, and H.-M. Zhang, 2015: Extended Reconstructed Sea Surface Temperature Version 4 (ERSST.v4). Part I: Upgrades and Intercomparisons. J. Climate, 28, 911-930 (<a href="http://dx.doi.org/doi:10.1175/JCLI-D-14-00006.1">doi:10.1175/JCLI-D-14-00006.1</a>).</li>
+<li>Huang, B., P.W. Thorne, T.M. Smith, W. Liu, J. Lawrimore, V.F. Banzon, H.-M. Zhang, T.C. Peterson, and M. Menne, 2016: Further Exploring and Quantifying Uncertainties for Extended Reconstructed Sea Surface Temperature (ERSST) Version 4 (v4). J. Climate, 29, 3119-3142 <a href="http://dx.doi.org/doi:10.1175/JCLI-D-15-0430.1">(doi:10.1175/JCLI-D-15-0430.1</a>).</li>
+<li>Hurrell, J.W., and K.E. Trenberth, 1999: Global sea surface temperature analyses: multiple problems and their implications for climate analysis, modeling, and reanalysis. Bull. Amer. Meteor. Soc., 80, 2661-2678.</li>
+<li>Ishii, M., A. Shouji, S. Sugimoto, and T. Matsumoto, 2005: Objective analyses of sea-surface temperature and marine meteorological variables for the 20th century using ICOADS and the Kobe Collection. Int. J. Climatol. (CLIMAR-II Special Issue), 25, 865-879 (<a href="http://dx.doi.org/doi:10.1002/joc.1169">doi:10.1002/joc.1169</a>).</li>
+<li>Kaplan, A., Y. Kushnir, M.A. Cane, and M.B. Blumenthal, 1997: Reduced space optimal analysis for historical data sets: 136 years of Atlantic sea surface temperatures. J. Geophys. Res., 102(C13), 27835-27860.</li>
+<li>Kaplan, A., M.A. Cane, Y. Kushnir, A.C. Clement, M.B. Blumenthal, and B. Rajagopalan, 1998: Analysis of global sea surface temperature 1856-1991. J. Geophys. Res., 103(C9), 18567-18589.</li>
+<li>Kennedy, J.J., N.A. Rayner, R.O. Smith, D.E. Parker, and M. Saunby 2011, Reassessing biases and other uncertainties in sea surface temperature observations measured in situ since 1850: 1. Measurement and sampling uncertainties, J. Geophys. Res., 116, D14103 (<a href="http://dx.doi.org/doi:10.1029/2010JD015218">doi:10.1029/2010JD015218</a>).</li>
+<li>Kennedy, J.J., N.A. Rayner, R.O. Smith, D.E. Parker, and M. Saunby 2011, Reassessing biases and other uncertainties in sea surface temperature observations measured in situ since 1850: 2. Biases and homogenization, J. Geophys. Res., 116, D14104 (<a href="http://dx.doi.org/doi:10.1029/2010JD015220">doi:10.1029/2010JD015220</a>).</li>
+<li>Kennedy, J.J., 2014: A review of uncertainty in in situ measurements and data sets of sea surface temperature. Rev. Geophys., 52, 1-32 <a href="http://dx.doi.org/doi:10.1002/2013RG000434">(doi:10.1002/2013RG000434</a>).</li>
+<li>Kent, E. C., and P. G. Challenor, 2006: Toward estimating climatic trends in SST. Part II: Random errors. J. Atmos. Oceanic Technol., 23, 476-486 (<a href="http://dx.doi.org/doi:10.1175/JTECH1843.1">doi:10.1175/JTECH1843.1</a>).</li>
+<li>Kent, E. C., and A. Kaplan, 2006: Toward estimating climatic trends in SST. Part III: Systematic biases. J. Atmos. Oceanic Technol., 23, 487-500 (<a href="http://dx.doi.org/doi:10.1175/JTECH1844.1">doi:10.1175/JTECH1844.1</a>).</li>
+<li>Kent, E. C., and P. K. Taylor, 2006: Toward estimating climatic trends in SST. Part I: Methods of measurement. J. Atmos. Oceanic Technol., 23, 464-475 (<a href="http://dx.doi.org/doi:10.1175/JTECH1845.1">doi:10.1175/JTECH1845.1</a>).</li>
+<li>Kent, E.C., J.J. Kennedy, D.I. Berry, and R.O. Smith, 2010: Effects of instrumentation changes on sea surface temperature measured in situ. Wiley Interdisciplinary Reviews: Climate Change, 1, 718-728 (<a href="http://dx.doi.org/doi:10.1002/wcc.55">doi:10.1002/wcc.55</a>).</li>
+<li>Kent, E.C., R.J. Tiddy, and P.K. Taylor, 1993: Correction of marine air temperature observations for solar radiation effects. J. Atmos. Oceanic Technol., 10, 900-906.</li>
+<li>Liu, W., and B. Huang, P.W. Thorne, V.F. Banzon, H.-M. Zhang, E. Freeman, J. Lawrimore, T.C. Peterson, T.M. Smith, and S.D. Woodruff, 2015: Extended Reconstructed Sea Surface Temperature Version 4 (ERSST.v4): Part II. Parametric and Structural Uncertainty Estimations. J. Climate, 28, 931-951 (<a href="http://dx.doi.org/doi:10.1175/JCLI-D-14-00007.1">doi:10.1175/JCLI-D-14-00007.1</a>).</li>
+<li>Minobe, S., and A. Maeda, 2005: A 1° monthly gridded sea-surface temperature dataset compiled from ICOADS from 1850 to 2002 and Northern Hemisphere frontal variability. Int. J. Climatol. (CLIMAR-II Special Issue), 25, 881-894 (<a href="http://dx.doi.org/doi:10.1002/joc.1170">doi:10.1002/joc.1170</a>).</li>
+<li>Morak-Bozzo, S., C.J. Merchant, E.C. Kent, D.I. Berry, and G. Carella, 2016: Climatological diurnal variability in sea surface temperature characterized from drifting buoy data. Geosci. Data J., 3, 20-28 (<a href="http://dx.doi.org/doi:10.1002/gdj3.35">doi:10.1002/gdj3.35</a>).</li>
+<li>Parker, D.E., C.K. Folland, and M. Jackson, 1995: Marine surface temperature: observed variations and data requirements. Climatic Change, 31, 559-600.</li>
+<li>Rayner, N.A., P. Brohan, D.E. Parker, C.K. Folland, J.J. Kennedy, M. Vanicek, T.J. Ansell, and S.F.B. Tett, 2006: Improved analyses of changes and uncertainties in sea surface temperature measured in situ since the mid-nineteenth century: The HadSST2 dataset. J. Climate, 19, 446-469 (<a href="http://dx.doi.org/doi:10.1175/JCLI3637.1">doi:10.1175/JCLI3637.1</a>).</li>
+<li>Rayner, N.A., D.E. Parker, E.B. Horton, C.K. Folland, L.V. Alexander, D.P. Rowell, E.C. Kent, and A. Kaplan, 2003: Global analyses of sea surface temperature, sea ice, and night marine air temperature since the late nineteenth century. J. Geophys. Res., 108(D14), 4407 (<a href="http://dx.doi.org/doi:10.1029/2002JD002670">doi:10.1029/2002JD002670</a>).</li>
+<li>Reynolds, R.W., and T.M. Smith, 1994: Improved global sea surface temperature analyses using optimum interpolation. J. Climate, 7, 929-948.</li>
+<li>Reynolds, R.W., N.A. Rayner, T.M. Smith, D.C. Stokes, and W. Wang, 2002: An improved in situ and satellite SST analysis for climate. J. Climate, 15, 1609-1625.</li>
+<li>Reynolds, R.W., H.-M. Zhang, T.M. Smith, C.L. Gentemann, and F. Wentz, 2005: Impacts of in situ and additional satellite data on the accuracy of a sea-surface temperature analysis for climate. Int. J. Climatol. (CLIMAR-II Special Issue), 25, 857-864 (<a href="http://dx.doi.org/doi:10.1002/joc.1168">doi:10.1002/joc.1168</a>).</li>
+<li>Reynolds, R.W., T.M. Smith, C. Liu, D.B. Chelton, K.S. Casey, and M.G. Schlax, 2007: Daily high-resolution-blended analyses for sea surface temperature. J. Climate, 20, 5473-5496.</li>
+<li>Smith, T.M., and R.W. Reynolds, 2002: Bias corrections for historical sea surface temperatures based on marine air temperatures. J. Climate, 15, 73-87.</li>
+<li>Smith, T.M., and R.W. Reynolds, 2003: Extended reconstruction of global sea surface temperatures based on COADS data (1854-1997). J. Climate, 16, 1495-1510.</li>
+<li>Smith, T.M., and R.W. Reynolds, 2004: Improved extended reconstruction of SST (1854-1997). J. Climate, 17, 2466-2477.</li>
+<li>Smith, T.M., and R.W. Reynolds, 2005: A global merged land-air-sea surface temperature reconstruction based on historical observations (1880-1997). J. Climate, 18, 2021-2036.</li>
+<li>Smith, T.M., R.W. Reynolds, and C.F. Ropelewski, 1994: Optimal averaging of seasonal sea surface temperatures and associated confidence intervals (1860-1989). J. Climate, 7, 949-964.</li>
+<li>Smith, T.M., R.W. Reynolds, R.E. Livezey, and D.C. Stokes, 1996: Reconstruction of historical sea surface temperatures using empirical orthogonal functions. J. Climate, 9, 1403-1420.</li>
+<li>Smith, T.M., R.W. Reynolds, T.C. Peterson, and J. Lawrimore, 2008: Improvements to NOAA's historical merged land-ocean surface temperature analysis (1880-2006). J. Climate, 21, 2283-2296.</li>
+<li>Thompson, D.W.J., J.J. Kennedy, J.M. Wallace, and P.D. Jones, 2008: A large discontinuity in the mid-twentieth century in observed global-mean surface temperature. Nature, 453, 646-649 (29 May 2008) (<a href="http://dx.doi.org/doi:10.1038/nature06982">doi:10.1038/nature06982</a>).</li>
+<li>Thompson, D.W.J., J.M. Wallace, J.J. Kennedy, and P.D. Jones, 2010: An abrupt drop in Northern Hemisphere sea surface temperature around 1970. Nature, 467, 444-447 (<a href="http://dx.doi.org/doi:10.1038/nature09394">doi:10.1038/nature09394</a>).</li>
+<li>Titchner, H.A., and N.A. Rayner, 2014: The Met Office Hadley Centre sea ice and sea surface temperature data set, version 2: 1. Sea ice concentrations. J. Geophys. Res. Atmos., 119, 2864-2889 (<a href="http://dx.doi.org/doi:10.1002/2013JD020316">doi:10.1002/2013JD020316</a>).</li>
+<li>Trenberth, K.R., J.R. Christy, and J.W. Hurrell, 1992: Monitoring global monthly mean surface temperatures. J. Climate, 5, 1405-1423.</li>
+<li>Yasunaka, S. and K. Hanawa, 2011: Intercomparison of historical sea surface temperature datasets. Int. J. Climatol. (<a href="http://dx.doi.org/doi:10.1002/joc.v31.7">CLIMAR-III Special Issue</a>), 31, 1056-1073 (<a href="http://dx.doi.org/doi:10.1002/joc.2104">doi:10.1002/joc.2104</a>).</li>
+</ul>
+<h3>Humidity</h3>
+<ul>
+<li>Kent, E.C., D.I. Berry, J. Prytherch, and J.B. Roberts, 2014: A comparison of global marine surface-specific humidity datasets from in situ observations and atmospheric reanalysis. Int. J. Climatol., 34, 355-376 (<a href="http://dx.doi.org/doi:10.1002/joc.3691">doi:10.1002/joc.3691</a>).</li>
+<li>Willett, K.M., P.D. Jones, N.P. Gillett, and P.W. Thorne, 2008: Recent changes in surface humidity: Development of the HadCRUH dataset. J. Climate, 21, 5364-5383 (<a href="http://dx.doi.org/doi:10.1175/2008JCLI2274.1">doi:10.1175/2008JCLI2274.1</a>).</li>
+</ul>
+<h3>Waves</h3>
+<ul>
+<li>Gulev, S.K., and L. Hasse, 1999: Changes of wind waves in the North Atlantic over the last 30 years. Int. J. Climatol., 19, 1091-1117.</li>
+<li>Gulev, S.K., and V. Grigorieva, 2004: Last century changes in ocean wind wave height from global visual wave data. Geophys. Res. Lett., 31, L24302 (<a href="http://dx.doi.org/doi:10.1029/2004GL021040">doi:10.1029/2004GL021040</a>).</li>
+<li>Gulev, S.K., and V. Grigorieva, 2006: Variability of the winter wind waves and swell in the North Atlantic and North Pacific as revealed by the voluntary observing ship data. J. Climate, 19, 5667-5685.</li>
+<li>Gulev, S.K., V. Grigorieva, A. Sterl, and D. Woolf, 2003: Assessment of the reliability of wave observations from voluntary observing ships: Insights from the validation of a global wind wave climatology based on voluntary observing ship data. J. Geophys. Res., 108(C7), 3236 (<a href="http://dx.doi.org/doi:10.1029/2002JC001437">doi:10.1029/2002JC001437</a>).</li>
+</ul>
+<h3>Weather and Precipitation</h3>
+<ul>
+<li>Jenkins, M.A., W.C. Wong, K. Higuchi, and J.L. Knox, 1994: Precipitation at Ocean Weather Station "P". J. Climate, 7, 792-806.</li>
+<li>Petty, G.W., 1995: Frequencies and characteristics of global oceanic precipitation from ship-board present weather reports. Bull. Amer. Meteor. Soc., 76, 1593-1616.</li>
+</ul>
+<h3>Winds and Pressure</h3>
+<ul>
+<li>Allan, R., and T. Ansell, 2006: A new globally complete monthly historical gridded mean sea level pressure dataset (HadSLP2): 1850-2004. J. Climate, 19, 5816-5842.</li>
+<li>Ansell, T.J., P.D. Jones, R.J. Allan, D. Lister, D.E. Parker, M. Brunet, A. Moberg, J. Jacobeit, P. Brohan, N.A. Rayner, E. Aguilar, H. Alexandersson, M. Barriendos, T. Brandsma, N.J. Cox, P.M. Della-Marta, A. Drebs, D. Founda, F. Gerstengarbe, K. Hickey, T. Jónsson, J. Luterbacher, Ø. Nordli, H. Oesterle, M. Petrakis, A. Philipp, M.J. Rodwell, O. Saladie, J. Sigro, V. Slonosky, L. Srnec, V. Swail, A.M. García-Suárez, H. Tuomenvirta, X. Wang, H. Wanner, P. Werner, D. Wheeler, and E. Xoplaki, 2006: Daily mean sea level pressure reconstructions for the European–North Atlantic region for the period 1850–2003.&nbsp; J. Climate, 19, 2717–2742.</li>
+<li>Bedacht, E., S.K. Gulev, and A. Mackea, 2007: Intercomparison of global cloud cover fields over oceans from the VOS observations and NCEP/NCAR reanalysis. Int. J. Climatol., 27, 1707-1719 (<a href="http://dx.doi.org/doi:10.1002/joc.1490">doi:10.1002/joc.1490</a>).</li>
+<li>Bourassa, M.A., R. Romero, S.R. Smith, and J.J. O'Brien, 2005: A new FSU winds climatology. J. Climate, 18, 3686-3698 (<a href="http://dx.doi.org/doi:10.1175/JCLI3487.1">doi:10.1175/JCLI3487.1</a>).</li>
+<li>Cardone, V.J., J.G. Greenwood, and M.A. Cane, 1990: On trends in historical marine wind data. J. Climate, 3, 113-127.</li>
+<li>Chang, E.K.M, 2005: Effects of secular changes in frequency of observations and observational errors on monthly mean MSLP summary statistics derived from ICOADS. J. Climate, 18, 3623-3633.</li>
+<li>Cherniawsky, J.Y., W.R. Crawford, 1997: Comparison between weather buoy and Comprehensive Ocean-Atmosphere Data Set wind data for the west coast of Canada. J. Geophys. Res., 101(C8), 18377-18389.</li>
+<li>Gallego, D., R. García-Herrera, P. Ribera, and P.D. Jones, 2005: Seasonal mean pressure reconstruction of the North Atlantic (1750-1850) based on early marine data. Climate of the Past, 1, 19-33.</li>
+<li>Gilhousen, D. B., 1987: A field evaluation of NDBC moored buoy winds. J. Atmos. Oceanic Technol., 4, 94-104.</li>
+<li>Graham, A.E., 1982: Winds estimated by the Voluntary Observing Fleet compared with instrumental measurements at fixed positions. Meteor. Mag., 111, 312-327.</li>
+<li>Gulev, S.K., 1999: Comparison of COADS Release 1a winds with instrumental measurements in the northwest Atlantic. J. Atmos. Oceanic Technol., 16, 133-145.</li>
+<li>Hanawa, K., and T. Yasuda, 2000: Reconstruction of sea surface wind fields over the North Pacific using sea level pressure fields during the period of 1899-1995. J. Meteor. Soc. Japan, 78, 731-751.</li>
+<li>Isemer, H.-J., and L. Hasse, 1991: The scientific Beaufort equivalent scale: effects on wind statistics and climatological air-sea flux estimates in the North Atlantic Ocean. J. Climate, 4, 819-836.</li>
+<li>Kaplan, A., Y. Kushnir and M. A. Cane, 2000: Reduced space optimal interpolation of historical marine sea level pressure: 1854-1992. J. Climate, 13, 2987-3002.</li>
+<li>Kent, E.C., and P.K. Taylor, 1997: Choice of a Beaufort equivalent scale. J. Atmos. Oceanic Technol., 14, 228-242.</li>
+<li>Kent, E.C., P.K. Taylor, and P.G. Challenor, 1998: A comparison of ship- and scatterometer-derived wind speed data in open ocean and coastal areas. Int. J. Remote Sensing, 19, 3361-3381.</li>
+<li>Kent, E.C., S. Fangohr, and D.I. Berry, 2013: A comparative assessment of monthly mean wind speed products over the global ocean. Int. J. Climatol., 33, 2520-2541 (<a href="http://dx.doi.org/doi:10.1002/joc.3606">doi:10.1002/joc.3606</a>).</li>
+<li>Lindau, R., 2006: The elimination of spurious trends in marine wind data using pressure observations. Int. J. Climatol., 26, 797-817 (<a href="http://dx.doi.org/doi:10.1002/joc.1284">doi:10.1002/joc.1284</a>).</li>
+<li>Moat, B.I, M.J. Yelland, R.W. Pascal, and A.F. Molland, 2005: An overview of the airflow distortion at anemometer sites on ships. Int. J. Climatol. (CLIMAR-II Special Issue), 25, 997-1006 (<a href="http://dx.doi.org/doi:10.1002/joc.1177">doi:10.1002/joc.1177</a>).</li>
+<li>Peterson, E.W., and L. Hasse, 1987: Did the Beaufort Scale or the wind climate change? J. Phys. Oceanog., 17, 1071-1074.</li>
+<li>Quayle, R.G., 1980: Climatic comparisons of estimated and measured winds from ships. J. Appl. Meteor., 19, 142-156.</li>
+<li>Ramage, C.S., 1987: Secular changes in reported surface wind speeds over the ocean. J. Climate Appl. Meteor., 26, 525-528.</li>
+<li>Selvam, A.M., J.S. Pethkar, M.K. Kulkarni, and R. Vijayakumar, 1996: Signatures of a universal spectrum for atmospheric interannual variability in COADS surface pressure time series. Int. J. Climatol., 16, 393-403.</li>
+<li>Smith, T.M., and R.W. Reynolds, 2004: Reconstruction of monthly mean oceanic sea level pressure based on COADS and station data (1854-1997). J. Atmos. Oceanic Technol., 21, 1272-1282.</li>
+<li>Thomas, B.R. and V.R. Swail, 2011: Buoy wind inhomogeneities related to averaging method and anemometer type: application to long time series. Int. J. Climatol. (<a href="http://dx.doi.org/doi:10.1002/joc.v31.7">CLIMAR-III Special Issue</a>), 31, 1040-1055 (<a href="http://dx.doi.org/doi:10.1002/joc.2339">doi:10.1002/joc.2339</a>).</li>
+<li>Thomas B.R., E.C. Kent, and V.R. Swail, 2005: Methods to homogenize wind speeds from ships and buoys. Int. J. Climatol. (CLIMAR-II Special Issue), 25, 979-995 (<a href="http://dx.doi.org/doi:10.1002/joc.1176">doi:10.1002/joc.1176</a>).</li>
+<li>Thomas B.R., E.C. Kent, V.R. Swail, and D.I. Berry, 2008: Trends in ship wind speeds adjusted for observation method and height. Int. J. Climatol., 28, 747-763 (<a href="http://dx.doi.org/doi:10.1002/joc.1570">doi:10.1002/joc.1570</a>).</li>
+<li>Tokinaga, H., S.-P. Xie, 2011: Wave- and Anemometer-Based Sea Surface Wind (WASWind) for Climate Change Analysis. J. Climate, 24, 267-285 (<a href="http://dx.doi.org/doi:10.1175/2010JCLI3789.1">doi:10.1175/2010JCLI3789.1</a>).</li>
+<li>Wallbrink, H., F. Koek, G.P. Können, and T. Brandsma, 2003: Sea-level pressure observations from Dutch ships 1854-1938 incorporated in COADS Release 1c climatology. Int. J. Climatol., 23, 471-475.</li>
+<li>Ward, M.N., and B.J. Hoskins, 1996: Near-surface wind over the global ocean 1949-88. J. Climate, 9, 1877-1895.</li>
+<li>Wheeler, D., and C. Wilkinson, 2004: From calm to storm: the origins of the Beaufort wind scale. Mariner's Mirror, 90, 187-201.</li>
+<li>Winterfeldt, J., B. Geyer, and R. Weisse, 2011: Using QuikSCAT in the added value assessment of dynamically downscaled wind speed. Int. J. Climatol. (<a href="http://dx.doi.org/doi:10.1002/joc.v31.7">CLIMAR-III Special Issue</a>), 31, 1028-1039 (<a href="http://dx.doi.org/doi:10.1002/joc.2105">doi:10.1002/joc.2105</a>).</li>
+<li>WMO (World Meteorological Organization), 1970: The Beaufort scale of wind force--technical and operational aspects. Reports on Marine Science Affairs No. 3, WMO, Geneva, 22 pp.</li>
+<li>Wright, P.B., 1988: On the reality of climatic changes in wind over the Pacific. J. Climatol., 8, 521-527.</li>
+</ul>
+<h3>Oceanographic</h3>
+<ul>
+<li>Atkinson, C.P., N.A. Rayner, J.J. Kennedy, and S.A. Good, 2014: An integrated database of ocean temperature and salinity observations. J. Geophys. Res. Oceans, 119, 7139-7163 (<a href="http://dx.doi.org/doi:10.1002/2014JC010053">doi:10.1002/2014JC010053</a>).</li>
+<li>Levitus, S., 2012: The UNESCO-IOC-IODE Global Oceanographic Data Archeology and Rescue (GODAR) Project and World Ocean Database Project. Data Science Journal. 11, 46-71 (<a href="http://dx.doi.org/doi:10.2481/dsj.13-030">doi:10.2481/dsj.13-030</a>).</li>
+<li>Levitus, S., G. Matishov, I. Smolyar, O. K Baranova, M.M. Zweng, T. Tielking, N. Mikhailov, S. Kizu, F. Nast, G. Reed, R. Keeley, L. Rickards, A. Korablev, 2013: World War II (1939-1945) Oceanographic Observations. Data Science Journal, 12, 102-157 (<a href="http://dx.doi.org/doi:10.2481/dsj.13-030">doi:10.2481/dsj.13-030</a>).</li>
+<li>Palmer, M.D. and P. Brohan, 2011: Estimating sampling uncertainty in fixed-depth and fixed-isotherm estimates of ocean warming. Int. J. Climatol. (<a href="http://dx.doi.org/doi:10.1002/joc.v31.7">CLIMAR-III Special Issue</a>), 31, 980-986 (<a href="http://dx.doi.org/doi:10.1002/joc.2224">doi:10.1002/joc.2224</a>).</li>
+</ul>
+<h3>Data Quality</h3>
+<ul>
+<li>Cadet, D.L., and Y. Pafadnam, 1988: Marine data sets and the shift of shipping routes. J. Geophys. Res., 93, 15639-15641.</li>
+<li>Carella, G., E.C. Kent, D.I. and Berry, 2015: A probabilistic approach to ship voyage reconstruction in ICOADS. Int. J. Climatol. (<a href="http://dx.doi.org/doi:10.1002/joc.2017.37.issue-5">CLIMAR-IV Special Issue</a>), 37: 2233-2247(<a href="http://dx.doi.org/doi:10.1002/joc.4492">doi:10.1002/joc.4492</a>).</li>
+<li>Kent, E.C., and D.I. Berry, 2005: Quantifying random measurement errors in Voluntary Observing Ships' meteorological observations. Int. J. Climatol. (CLIMAR-II Special Issue), 25, 843-856 (<a href="http://dx.doi.org/doi:10.1002/joc.1167">doi:10.1002/joc.1167</a>).</li>
+<li>Kent, E.C., and P.K. Taylor, 1996: Accuracy of humidity measurements on ships: consideration of solar radiation effects. J. Atmos. Oceanic Tech., 13, 1317-1321.</li>
+<li>Kent, E.C., P.K. Taylor, B.S. Truscott, and J.S. Hopkins, 1993: The accuracy of voluntary observing ships' meteorological observations-results of the VSOP-NA. J. Atmos. Oceanic Technol., 10, 591-608.</li>
+<li>Kent, E.C., P.G. Challenor, and P.K. Taylor, 1999: A statistical determination of the random observational errors present in voluntary observing ships meteorological reports. J. Atmos. Oceanic Technol., 16, 905-914.</li>
+<li>Kent, E.C., D.I. Berry, S.D. Woodruff, and P.K. Taylor, 2006: Voluntary Observing Ships: A vital observing system in decline. CLIVAR Exchanges, No. 38 (Vol. 11, No. 3, July 2006), 15 &amp; 20-21.</li>
+<li>Kent, E.C., S.D. Woodruff and D.I. Berry, 2007: WMO Publication No. 47 metadata and an assessment of observation heights in ICOADS. J. Atmos. Oceanic Technol., 24, 214-234 (<a href="http://dx.doi.org/doi:10.1175/JTECH1949.1">doi:10.1175/JTECH1949.1</a>).</li>
+<li>Morrissey, M.L., 1990: An evaluation of ship data in the equatorial western Pacific. J. Climate, 3, 99-112.</li>
+<li>Quayle, R.G., 1984: Comparisons between ship and buoy climatologies. Mar. Wea. Log, 28, 137-140.</li>
+<li>Roll, H.U., 1965: Physics of the Marine Atmosphere. Academic Press, New York, NY, 426 pp.</li>
+<li>Wilkerson, J.C., and M.D. Earle, 1990: A study of differences between environmental reports by ships in the Voluntary Observing Program and measurements from NOAA buoys. J. Geophys. Res., 95, 3373-3385.</li>
+<li>Wolter, K., 1997: Trimming problems and remedies in COADS. J. Climate, 10, 1980-1997.</li>
+<li>Wright, P.B., 1986: Problems in the use of ship observations for the study of interdecadal climate changes. Mon. Wea. Rev., 114, 1028-1034.</li>
+<li>Xu, F., and A. Ignatov, 2014: In situ SST Quality Monitor (iQuam). J. Atmos. Oceanic Technol., 31, 164-180 (<a href="http://dx.doi.org/doi:10.1175/JTECH-D-13-00121.1">doi: 10.1175/JTECH-D-13-00121.1</a><a>).</a></li>
+</ul>
+<h3>Reanalyses</h3>
+<ul>
+<li>Compo, G.P., J.S. Whitaker, and P.D. Sardeshmukh, 2006: Feasibility of a 100-year reanalysis using only surface pressure data. Bull. Amer. Met. Soc., 87, 175-190.</li>
+<li>Compo, G.P., J.S. Whitaker, P.D. Sardeshmukh, N. Matsui, R.J. Allan, X. Yin, B.E. Gleason, R.S. Vose, G. Rutledge, P. Bessemoulin, S. Brönnimann, M. Brunet, R.I. Crouthamel, A.N. Grant, P.Y. Groisman, P.D. Jones, M.C. Kruk, A.C. Kruger, G.J. Marshall, M. Maugeri, H.Y. Mok, Ø. Nordli, T.F. Ross, R.M. Trigo, X.L. Wang, S.D. Woodruff, S.J. Worley, 2011: The Twentieth Century Reanalysis Project. Quart. J. Roy. Meteor. Soc., 137, 1-28 (<a href="http://dx.doi.org/doi:10.1002/qj.776">doi:10.1002/qj.776</a>).</li>
+<li>Kalnay, E., et al., 1996: The NCEP/NCAR 40-year reanalysis project.&nbsp;Bull. Amer. Meteor. Soc.,&nbsp;77, 437-470 (<a href="http://dx.doi.org/doi:10.1175/1520-0477(1996)077%3C0437:TNYRP%3E2.0.CO;2">doi:10.1175/1520-0477(1996)077&lt;0437:TNYRP&gt;2.0.CO;2</a>).</li>
+<li>Poli, P., and Coauthors, 2016: ERA-20C: An Atmospheric Reanalysis of the Twentieth Century. J. Climate, 29, 4083–4097, <a href="https://doi.org/10.1175/JCLI-D-15-0556.1">https://doi.org/10.1175/JCLI-D-15-0556.1</a>.</li>
+<li>Uppala, S.M., et al., 2005: The ERA-40 re-analysis. Q. J. R. Meteorol. Soc., 131, 2961-3012 (<a href="http://dx.doi.org/doi:10.1256/qj.04.176">doi:10.1256/qj.04.176</a>).General</li>
+<li>Diaz, H.F., C.S. Ramage, S.D. Woodruff, and T.S. Parker, 1987: Climatic Summaries of Ocean Weather Stations. NOAA Environmental Research Laboratories, Climate Research Division, Boulder, CO, 363 pp. (<a href="https://icoads.noaa.gov/Diaz-et.al_1987OWS.pdf">pdf</a>; 13.2MB)</li>
+<li>Molinari, R.L., 1999: Lessons learned from operating global ocean observing networks. Bull. Amer. Meteor. Soc., 80, 1413-1419.</li>
+<li>Rossby, T., G. Siedler, and W. Zenk, 1995: The voluntary observing ship and future ocean monitoring. Bull. Amer. Meteor. Soc., 76, 5-11.</li>
+<li>WMO (World Meteorological Organization), 1994: Guide to the Applications of Marine Climatology. WMO-No.781, Geneva.</li>
+</ul>
+<h3>Historical</h3>
+<ul>
+<li>Agnew, D.C., 2004: Robert Fitzroy and the myth of the 'Marsden Square': Transatlantic rivalries in early marine meteorology. Notes Rec. R. Soc. Lond., 58(1), 21-46.</li>
+<li>Allan, R., P. Brohan, G.P. Compo, R. Stone, J. Luterbacher, and S. Brönnimann, 2011: The International Atmospheric Circulation Reconstructions over the Earth (ACRE) Initiative. Bull. Amer. Meteor. Soc., 92, 1421-1425 (<a href="http://dx.doi.org/10.1175/2011BAMS3218.1">doi:10.1175/2011BAMS3218.1</a>).</li>
+<li>AWS (Air Weather Service), 1960: History of the International Code. Reference Manual TDF 13. HQ, Air Weather Service (1 September 1960), pp. 0.6-0.10. (<a href="https://icoads.noaa.gov/reclaim/pdf/aws_tdf13_0.6-0.10.pdf">pdf</a>; 2.7MB)</li>
+<li>Braun, D.S., 2000: Scientific vision, a passion for observation, and the impetus for change: Germany loans Maury logs to the National Climatic Data Center. Earth System Monitor, 11(1), 4-7. (<a href="https://icoads.noaa.gov/ESM_SEP2000vol11no1_ed.pdf">pdf</a>; 14.3MB)</li>
+<li>Brázdil, R., P. Dobrovolný, J. Luterbacher, A. Moberg, C. Pfister, D. Wheeler, and E. Zorita, 2010: European climate of the past 500 years: new challenges for historical climatology. Climatic Change, 101, 7-40 (<a href="http://dx.doi.org/doi:10.1007/s10584-009-9783-z">doi:10.1007/s10584-009-9783-z</a>).</li>
+<li>Brohan, P., R. Allan, J.E. Freeman, A.M. Waple, D. Wheeler, C. Wilkinson, and S. Woodruff, 2009: Marine observations of old weather. Bull. Amer. Meteor. Soc., 90, 219-230</li>
+<li>Brohan, P., C. Ward, G. Willetts, C. Wilkinson, R. Allan, and D. Wheeler, 2010: Arctic marine climate of the early nineteenth century. Clim. Past, 6, 315-324 (<a href="http://dx.doi.org/doi:10.5194/cp-6-315-2010">doi:10.5194/cp-6-315-2010</a>).</li>
+<li>Brohan, P., R. Allan, E. Freeman, D. Wheeler, C. Wilkinson, and F. Williamson, 2012: Constraining the temperature history of the past millennium using early instrumental observations, Clim. Past Discuss., 8, 1653-1685 (<a href="http://dx.doi.org/10.5194/cpd-8-1653-2012">doi:10.5194/cpd-8-1653-2012</a>).</li>
+<li>Cerveny, R.S., 2005: Charles Darwin's meteorological observations above the HMS Beagle. Bull. Amer. Meteor. Soc., 86, 1295-1301.</li>
+<li>Chappell, P.R. and A.M. Lorrey, 2014: Identifying New Zealand, Southeast Australia, and Southwest Pacific historical weather data sources using Ian Nicholson's Log of Logs. Geosci. Data J., 1, 49-60 (<a href="http://dx.doi.org/doi:10.1002/gdj3.1">doi:10.1002/gdj3.1</a>).</li>
+<li>Chenoweth, M., 1996: Ships' logbooks and "The Year Without a Summer". Bull. Amer. Meteor. Soc., 77, 2077-2094.</li>
+<li>CLIWOC-team, 2003: Multilingual Meteorological Dictionary an English-Spanish-Dutch-French dictionary of wind force terms used by mariners from 1750 to 1850. HISKLIM 5 (KNMI publ. 205) KNMI, De Bilt, The Netherlands, 49 pp.</li>
+<li>Elms, J.D., R.G. Quayle, and S.D. Woodruff, 1992: Where have all the data gone? Mar. Wea. Log, 36, No. 2, 9-13.</li>
+<li>García-Herrera, R., F.R. Durán, D. Wheeler, E.H. Martín, M.R. Prieto, and L. Gimeno, 2005: The use of Spanish and British documentary sources in the investigation of Atlantic hurricane incidence, in R.J. Murnane and K.-B. Liu (Eds.) Hurricanes and Typhoons: Past, Present and Future. Columbia University Press, New York, 149-176.</li>
+<li>García-Herrera, R., P. Jones, D. Wheeler, G. Können, and M.R. Prieto (Guest Eds.), 2005: CLIWOC: Climatology of the World's Oceans, 1750-1850 (Special Issue). Clim. Change, 73, 1-194. [Individual papers are listed in the following separate section.]</li>
+<li>Gergis, J., P. Brohan, and R. Allan, 2010: The weather of the First Fleet voyage to Botany Bay, 1787-1788. Weather, 65, 315-319.</li>
+<li>Greenough, M.L.,1998: Report on Conversion of NCDC Microfilms to Electronic Files with FOSDIC. Greenough Data Associates, Rockville, MD. (<a href="https://icoads.noaa.gov/reclaim/pdf/greenough.pdf">pdf</a>; 8MB)</li>
+<li>Kaspar, F., Tinz, B., Mächel, H., and Gates, L.: Data rescue of national and international meteorological observations at Deutscher Wetterdienst, Adv. Sci. Res., 12, 57–61, <a href="https://doi.org/10.5194/asr-12-57-2015">https://doi.org/10.5194/asr-12-57-2015</a>.</li>
+<li>Levitus S., 2012: The UNESCO-IOC-IODE "Global Oceanographic Data Archeology and Rescue" (GODAR) Project and "World Ocean Database" Project. Data Science Journal, 11, 46-71 (<a href="http://dx.doi.org/doi:10.2481/dsj.012-014">doi:10.2481/dsj.012-014</a>).</li>
+<li>Lewis, J.M., 1996: Winds over the World Sea: Maury and Köppen. Bull. Amer. Meteor. Soc., 77, 935-952.</li>
+<li>Manabe, T., 1999: The digitized Kobe Collection, phase I: historical surface marine meteorological observations in the archive of the Japan Meteorological Agency. Bull. Amer. Meteor. Soc., 80, 2703-2715.</li>
+<li>Maritime Conference, 1875: Report of the Proceedings of the Conference on Maritime Meteorology held in London, 1874, Protocols and Appendices. Published by Authority of the Meteorological Committee, Official No. 23, HM Stationery Office, London, 61 pp. (<a href="https://icoads.noaa.gov/cdmp/Maritime1874.pdf">pdf</a>; 9.3MB)</li>
+<li>Maury, M.F., 1851: Explanations and Sailing Directions to Accompany the Wind and Current Charts, 3rd Ed., C. Alexander, Printer, Washington, 315 pp. + plates. [Note: Abstract log form on pp. 314-315.] (<a href="https://icoads.noaa.gov/reclaim/pdf/maury1851.pdf">pdf</a>; 25MB)</li>
+<li>Maury, M.F., 1854: Explanations and Sailing Directions to Accompany the Wind and Current Charts, 6th Ed., E.C. and J. Biddle, Philadelphia, 772 pp. + plates. [Note: A report from the 1853 Brussels Conference on pp. 54-60; "Minutes of the Sittings" on pp. 60-88; and "Explanatory notes for keeping the abstract log," and example log forms for men-of-war and merchantmen, on pp. 88-96.] (<a href="https://icoads.noaa.gov/reclaim/pdf/maury1854.pdf">pdf</a>; 101MB)</li>
+<li>Maury, M.F., 1855: Explanations and Sailing Directions to Accompany the Wind and Current Charts, 7th Ed., E.C. and J. Biddle, Philadelphia, 869 pp. + plates. [Note: Material related to the 1853 Brussels Conference on pp. 181-212.] (<a href="https://icoads.noaa.gov/reclaim/pdf/maury1855.pdf">pdf</a>; 99MB)</li>
+<li>Maury, M.F., 1858: Explanations and Sailing Directions to Accompany the Wind and Current Charts, 8th Ed., Vol. 1, W.A. Harris, printer, Washington, 383 pp. + plates. [Note: Material related to the 1853 Brussels Conference on pp. 330-383.] (<a href="https://icoads.noaa.gov/reclaim/pdf/maury1858.pdf">pdf</a>; 60MB)</li>
+<li>Maury, M.F., 1859: Explanations and Sailing Directions to Accompany the Wind and Current Charts, 8th Ed., Vol. 2, W.A. Harris, printer, Washington, 874 pp. + plates. [Note: Conditions upon which the Wind and Current Charts are furnished to navigators on pp. 870-874.] (<a href="https://icoads.noaa.gov/reclaim/pdf/maury1859.pdf">pdf</a>; 67MB)</li>
+<li>Mierzejewska, A.W., Z. Wu, R.E. Newell, and T. Miyashita, 1997: Japanese whaling ships' sea surface temperature 1946-84. Bull. Amer. Meteor. Soc., 78, 443-447.</li>
+<li>Muller, C.L., L. Chapman, S. Johnston, C. Kidd, S. Illingworth, G. Foody, A. Overeem, and R.R. Leigh, 2015: Crowdsourcing for climate and atmospheric sciences: current status and future potential. Int. J. Climatol., 35, 3185-3203 (<a href="http://dx.doi.org/doi:10.1002/joc.4210">doi:10.1002/joc.4210</a>).</li>
+<li>NARA (National Archives and Records Administration), 1986: The Maury Abstract Logs, 1796-1861. Pamphlet describing microfilm publication M1160, NARA, Washington, 8 pp. (<a href="https://icoads.noaa.gov/maury.pdf">pdf</a>; 1MB)</li>
+<li>NCDC (National Climatic Data Center), 1968: TDF-11 Reference Manual. NCDC, Asheville, NC, 138 pp. (<a href="https://icoads.noaa.gov/cdmp/TDF-11.pdf">pdf</a>; 2.5MB)</li>
+<li>Neumayer, G., 1879: Conduct of marine meteorology in Germany (and the agreements reached between the Royal Netherlands Meteorological Institute in Utrecht and the German Marine Observatory regarding the publication of the results of maritime meteorology). Delivered to the Second International Meteorological Congress in Rome. Hamburg, 26 pp + images [UK Met Office Translation No.1631]. (<a href="https://icoads.noaa.gov/reclaim/pdf/neumayer1879.pdf">pdf</a>; 2MB)</li>
+<li>Prieto, M.R., R. García-Herrera, E. Hernández Martin, 2004: Early records of icebergs in the South Atlantic Ocean from Spanish documentary sources. Climatic Change, 66, 29-48 (<a href="http://dx.doi.org/doi:10.1023/B:CLIM.0000043142.94461.d1">doi:10.1023/B:CLIM.0000043142.94461.d1</a>).</li>
+<li>Sherman, S.C., J.M. Downey, V.M. Adams, and H. Pasternack, 1986: Whaling Logbooks and Journals, 1613-1927: An Inventory of Manuscript Records in Public Collections. Garland Publishing, New York, 469 pp.</li>
+<li>UK Meteorological Office, 1948: International Meteorological Code Adopted by the International Meteorological Organization, Washington, 1947. M.O. 509, H.M. Stationary Office, London, 39 pp, (<a href="https://icoads.noaa.gov/reclaim/pdf/Met_O_509.pdf">pdf</a>; 6.1MB)</li>
+<li>US Air Weather Service, 1948: Machine Methods of Weather Statistics (June 1948). Prepared by the US Air Force Data Control Unit, an Activity of the Air Weather Service, New Orleans, LA, 59 pp. + illustrations. [Note: Limited information about marine data.] (<a href="https://icoads.noaa.gov/reclaim/pdf/mmws1948.pdf">pdf</a>; 5MB)</li>
+<li>US Air Weather Service et al., 1949: Machine Methods of Weather Statistics, 4th Ed. (December 1949). Prepared cooperatively by the Machine Tabulating Units of the US Air Force/Air Weather Service, US Dept. of Commerce/Weather Bureau, and US Navy/Aerology Section, New Orleans, LA, 28 pp. [Note: Limited information about marine data, e.g., early card decks.] (<a href="https://icoads.noaa.gov/reclaim/pdf/mmws1949.pdf">pdf</a>; 3MB)</li>
+<li>US Office of Naval Operations, 1953: Climatology by Machine Methods for Naval Operations, Plans, and Research (March 1953). Prepared for the Office of Chief of Naval Operations, Aerology Branch, Washington, DC, 37 pp. [Note: Limited information about marine data.] (<a href="https://icoads.noaa.gov/reclaim/pdf/cmmnopr1953.pdf">pdf</a>; 5MB)</li>
+<li>US Weather Bureau, 1960: Climatology at Work: Measurements, Methods and Machines (October 1960). G.L. Barger, Ed.; inside cover note dated 31 January 1974 by H.L. Crutcher. Produced at National Weather Records Center, US Weather Bureau, Asheville, NC (with support of US Navy and US Air Force/Air Weather Service), 109 pp. [Note: Limited information about marine data; photographs of FOSDIC machines on p. 74.] (<a href="https://icoads.noaa.gov/reclaim/pdf/climo1960-74.pdf">pdf</a>; 47MB)</li>
+<li>US Weather Bureau-Japan Meteorological Agency, 1960: Guide Book of the Japanese Marine Surface Data, US Weather Bureau and Japan Meteorological Agency, 527 pp. (<a href="https://icoads.noaa.gov/reclaim/pdf/uswb-jma1960.pdf">pdf</a>; 15MB)</li>
+<li>US Weather Bureau-Japan Meteorological Agency, 1961: Guide Book of the Japanese Marine Surface Data, US Weather Bureau and Japan Meteorological Agency, 81 pp. (<a href="https://icoads.noaa.gov/reclaim/pdf/uswb-jma1961.pdf">pdf</a>; 2MB)</li>
+<li>van der Schrier, G. and Weber, S.L., 2010: The Gulf Stream and Atlantic sea-surface temperatures in AD1790-1825. Int. J. Climatol., 30, 1747-1763 (<a href="http://dx.doi.org/doi:10.1002/joc.2027">doi:10.1002/joc.2027</a>).</li>
+<li>Verploegh, G., 1966: Report of the Consultant on the Historical Sea-Surface Temperature Data Project, 49 pp. plus Annexes. [Note: The Consultant was to, but the report appears not to have been archived by, WMO. Copies were obtained courtesy of the UK Met Office and KNMI.] (<a href="https://icoads.noaa.gov/reclaim/pdf/verploegh1966.pdf">pdf</a>; 5MB)</li>
+<li>Wheeler, D.A., 1988: Sailing ships logs' weather records: a test case. J. Meteorology (UK), 13,122-125.</li>
+<li>Wheeler, D., 1995: The weather vocabulary of an eighteenth century mariner: the log books of Nicholas Pocock. Weather, 50, 298-304 [reprinted in 1997 in The Marine Observer, 67, 22-28].</li>
+<li>Wheeler, D., 2001: The weather of the European Atlantic Seaboard during October 1805: an exercise in historical climatology: Climatic Change, 48, 361-385.</li>
+<li>Wheeler, D., 2004: Understanding seventeenth century ships' logbooks: an exercise in historical climatology. Journal for Maritime Research, March 2004 (<a href="http://dx.doi.org/doi:10.1080/21533369.2004.9668335">doi:10.1080/21533369.2004.9668335</a>).</li>
+<li>Wheeler, D., and C. Wilkinson, 2004: From calm to storm: the origins of the Beaufort wind scale. Mariner's Mirror, 90, 187-201.</li>
+<li>Wheeler, D., and J. Suarez-Dominguez, 2006: Climatic reconstructions for the northeast Atlantic region AD 1685-1700: a new source of evidence from naval logbooks. The Holocene, 16, 39-49.</li>
+<li>Wheeler, D., and R. García-Herrera, 2008: Ships' Logbooks in Climatological Research: Reflections and Prospects. Trends and Directions in Climate Research: Ann. N.Y. Acad. Sci., 1146, 1-15 (2008) (<a href="http://dx.doi.org/doi:10.1196/annals.1446.006">doi:10.1196/annals.1446.006</a>).</li>
+<li>Wheeler, D., R. García-Herrera, C. W. Wilkinson, and C. Ward, 2010: Atmospheric circulation and storminess derived from Royal Navy logbooks: 1685 to 1750. Climatic Change, 101, 257-280 (<a href="http://dx.doi.org/doi:10.1007/s10584-009-9732-x">doi:10.1007/s10584-009-9732-x</a>).</li>
+<li>Wilkinson C., C. Ward, and F. Williamson, 2008: Report on the Royal Navy Remark Books Held at the Hydrographic Office: Taunton UK. (Unpublished report) (<a href="https://icoads.noaa.gov/reclaim/pdf/Report_on_the_Royal_Navy_Remarks_Books.pdf">pdf</a>; 337KB)</li>
+<li>WMO (World Meteorological Organization), 2004: An International Seminar to Celebrate the Brussels Maritime Conference of 1853--An Historical Perspective of Operational Marine Meteorology and Oceanography. WMO/TD-No. 1226 (JCOMM Technical Report No. 27)--on CD-ROM.</li>
+<li>WMO, 1985: User's Guide to the Data and Summaries of the Historical Sea Surface Temperature Data Project. Marine Meteorology and Related Oceanographic Activities Report No. 13, WMO/TD-No. 36, Geneva. (<a href="https://icoads.noaa.gov/reclaim/pdf/mmroa_13_hist_sst_guide.pdf">pdf</a>; 1.7MB)</li>
+<li>Woodruff, S., J. Elms, R. Reynolds, R. Garcia, F. Guo, S. Worley, and T. Yoshida, 2004: Rescuing marine data. World Climate News, No. 25 (June 2004), WMO, Geneva, 10.</li>
+</ul>
+<h3>CLIWOC Climatic Change Special Issue</h3>
+<ul>
+<li>García-Herrera, R., G.P. Können, D.A. Wheeler, M.R. Prieto, P.D. Jones, and F.B. Koek, 2005: CLIWOC: A Climatological Database for the World's Oceans 1750-1854. Climatic Change, 73, 1-12 (<a href="http://dx.doi.org/doi:10.1007/s10584-005-6952-6">doi:10.1007/s10584-005-6952-6</a>).</li>
+<li>García-Herrera, R., C. Wilkinson, F.B. Koek, M.R. Prieto, N. Calvo, and E. Hernández, 2005: Description and general background to ships' logbooks as a source of climatic data. Climatic Change, 73, 13-36 (<a href="http://dx.doi.org/doi:10.1007/s10584-005-6954-4">doi:10.1007/s10584-005-6954-4</a>).</li>
+<li>Jones, P.D., and M. Salmon, 2005: Preliminary reconstructions of the North Atlantic Oscillation and the Southern Oscillation Index from measures of wind strength and direction taken during the CLIWOC period. Climatic Change, 73, 131-154 (<a href="http://dx.doi.org/doi:10.1007/s10584-005-6948-2">doi:10.1007/s10584-005-6948-2</a>).</li>
+<li>Koek, F.B., and G.P. Können, 2005: Determination of wind force and present weather terms: The Dutch case. Climatic Change, 73, 79-95 (<a href="http://dx.doi.org/doi:10.1007/s10584-005-6945-5">doi:10.1007/s10584-005-6945-5</a>).</li>
+<li>Können, G.P., and F.B. Koek, 2005: Description of the CLIWOC database. Climatic Change, 73, 117-130 (<a href="http://dx.doi.org/doi:10.1007/s10584-005-6946-4">doi:10.1007/s10584-005-6946-4</a>).</li>
+<li>Prieto, M. R., D. Gallego, R. García-Herrera, N. Calvo, 2005: Deriving wind force terms from nautical reports through content analysis. The Spanish and French cases. Climatic Change, 73, 37-55 (<a href="http://dx.doi.org/doi:10.1007/s10584-005-6956-2">doi:10.1007/s10584-005-6956-2</a>).</li>
+<li>Wheeler, D., 2005: An examination of the accuracy and consistency of ships' logbook weather observations and records. Climatic Change, 73, 97-116 (<a href="http://dx.doi.org/doi:10.1007/s10584-005-6950-8">doi:10.1007/s10584-005-6950-8</a>).</li>
+<li>Wheeler, D., and C. Wilkinson, 2005: The determination of logbook wind force and weather terms: The English case. Climatic Change, 73, 57-77 (<a href="http://dx.doi.org/doi:10.1007/s10584-005-6949-1">doi:10.1007/s10584-005-6949-1</a>).</li>
+<li>Wilkinson, C., 2005: The non-climatic research potential of ships' logbooks and journals. Climatic Change, 73, 155-167 (<a href="http://dx.doi.org/doi:10.1007/s10584-005-6947-3">doi:10.1007/s10584-005-6947-3</a>).</li>
+<li>Woodruff, S.D., H.F. Diaz, S.J. Worley, R.W. Reynolds, and S.J. Lubker, 2005: Early ship observational data and ICOADS. Climatic Change, 73, 169-194 (<a href="http://dx.doi.org/doi:10.1007/s10584-005-3456-3">doi:10.1007/s10584-005-3456-3</a>).</li>
+</ul>
+<h3>HISKLIM (HIStorical CLIMate) Marine Publications</h3>
+<ul>
+<li>García-Herrera, R., D. Wheeler, G.P. Können, F.B. Koek and M.R. Prieto, 2003: CLIWOC multilingual meteorological dictionary, An English-Spanish-Dutch-French dictionary of wind force terms used by mariners from 1750-1850. HISKLIM 5 (KNMI-publication 205) 49pp., ISBN 90-369-2243-7, KNMI, De Bilt. (<a href="https://icoads.noaa.gov/reclaim/pdf/hisklim5.pdf">pdf</a>; 0.7MB)</li>
+<li>Wallbrink H. and F.B. Koek, 2005: HISKLIM-COADS, final report. HISKLIM 8 (KNMI-publication 210), ISBN 90-369-2269-0. KNMI, De Bilt. (<a href="https://icoads.noaa.gov/reclaim/pdf/HISKLIM-8_HISKLIM-COADS.pdf">pdf</a>; 0.5MB)</li>
+<li>Wallbrink H., F.B. Koek and T. Brandsma, 2009: The US Maury Collection Metadata 1796-1861. HISKLIM 11 (KNMI-publication 225), KNMI, De Bilt. (<a href="https://icoads.noaa.gov/reclaim/pdf/Hisklim11.pdf">pdf</a>; 1.12 MB)</li>
+<li>Wallbrink H. and F.B. Koek, 2009: Historical Maritime Wind Scales until 1947. HISKLIM 12, 20pp., KNMI, De Bilt. (<a href="https://icoads.noaa.gov/reclaim/pdf/Hisklim12.pdf">pdf</a>; 0.6MB)</li>
+<li>Wallbrink H. and F.B. Koek, 2009: Historical Wind Speed Equivalents Of The Beaufort Scale, 1850-1950. HISKLIM 13, 29pp., KNMI, De Bilt. (<a href="https://icoads.noaa.gov/reclaim/pdf/Hisklim13.pdf">pdf</a>; 0.5MB)</li>
+<li>Wallbrink H. and F.B. Koek, 2010: Data Acquisition And Keypunching Codes For Marine Meteorological Observations At The Royal Netherlands Meteorological Institute, 1854-1968. HISKLIM 14, KNMI Publication No. 226, 59pp, KNMI, De Bilt. (<a href="https://icoads.noaa.gov/reclaim/pdf/Hisklim14.pdf">pdf</a>; 2.9MB)</li>
+</ul>
+<h3>Miscellaneous</h3>
+<ul>
+<li>Corbett, J.J., and H.W. Koehler, 2003: Updated emissions from ocean shipping. J. Geophys. Res., 108(D20), 4650 (<a href="http://dx.doi.org/doi:10.1029/2003JD003751">doi:10.1029/2003JD003751</a>).</li>
+<li>Corbett, J.J., P.S. Fischbeck, and S.N. Pandis, 1999: Global nitrogen and sulfur inventories for oceangoing ships. J. Geophys. Res., 104(D3), 3457-3470.</li>
+<li>Dunbar, R.B., G.M. Wellington, M.W. Colgan, and P.W. Glynn, 1994: Eastern Pacific sea surface temperature since 1600 A.D.: The [delta]18O record of climate variability in Galápagos corals. Paleoceanography, 9(2), 291-315.</li>
+<li>Endresen, Ø., E. Sørgård, J.K. Sundet, S.B. Dalsøren, I.S.A. Isaksen, T.F. Berglen, and G. Gravir, 2003: Emission from international sea transportation and environmental impact. J. Geophys. Res., 108(D17), 4560 (<a href="http://dx.doi.org/doi:10.1029/2002JD002898">doi:10.1029/2002JD002898</a>).</li>
+<li>Restrepo, J.D., B. Kjerfve, I.D. Correa, and J. González, 2002: Morphodynamics of a high discharge tropical delta, San Juan River, Pacific coast of Columbia. Marine Geology, 192, 355-381.</li>
+<li>Schmelzer, N. and J. Holfort, 2011: Ice winter severity in the western Baltic Sea in the period of 1301-1500: comparison with other relevant data. Int. J. Climatol. (<a href="http://dx.doi.org/doi:10.1002/joc.v31.7">CLIMAR-III Special Issue</a>), 31, 1094-1098 (<a href="http://dx.doi.org/doi:10.1002/joc.2337">doi:10.1002/joc.2337</a>).</li>
+<li>Walczowski, W. and J. Piechura, 2011: Influence of the West Spitsbergen Current on the local climate. Int. J. Climatol. (<a href="http://dx.doi.org/doi:10.1002/joc.v31.7">CLIMAR-III Special Issue</a>), 31, 1088-1093 (<a href="http://dx.doi.org/doi:10.1002/joc.2338">doi:10.1002/joc.2338</a>).</li>
+<li>Wolter, K. and M.S. Timlin, 2011: El Niño/Southern Oscillation behaviour since 1871 as diagnosed in an extended multivariate ENSO index (MEI.ext). Int. J. Climatol. (<a href="http://dx.doi.org/doi:10.1002/joc.v31.7">CLIMAR-III Special Issue</a>), 31, 1074-1087 (<a href="http://dx.doi.org/doi:10.1002/joc.2336">doi:10.1002/joc.2336</a>).</li>
+</ul>
+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                                                        </div>
+                          </div>
+          </div>
+          
+                              
+                              
+                              
+                              
+                                          
+                  </div>
+      </div>
+    </div>   </div> </article>
+
+  </div>
+
+  
+      </div>
+    
+  </div>
+  
+</div>
+<footer class="container-fluid footer">
+  <div class="row">
+
+
+
+
+        <div class="container-fluid block--return-to-top return-to-top">
+      <div class="container">
+        <a href="#pagetop">Return to top</a>
+      </div>
+    </div>
+
+    <div class="container block" id="footerlinks-container">
+
+            <div class="row">
+        <div class="col-lg-12">
+          <div class="block"  id="block-hot-fix-launch">
+  
+    
+      
+
+            <div class="text-long"><style type="text/css">#block-ncei-page-title{ margin:32px 0px; }
+img{ max-width:100%; }
+</style></div>
+      
+  </div>
+<div class="block"  id="block-hackcsstohidelinkfarmatbottomofhomepage">
+  
+    
+      
+
+            <div class="text-long"><style type="text/css">.block-frontpage--link-farm{
+display:none !important;
+}
+</style></div>
+      
+  </div>
+
+
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+                    <a href="/" alt="Home" title="Home" rel="home" class="navbar-brand"><img src="/themes/custom/ncei/components/images/logo/logo.svg" alt="National Centers for Environmental Information" title="National Centers for Environmental Information logo" class="logo logo-footer" /></a>
+        </div>
+
+                <div class="col-lg-3 col-sm-12">
+                <nav role="navigation" aria-labelledby="block-followus-menu" id="block-followus" class="block block-menu menu--footer-menu-1">
+  
+  <h2 id="block-followus-menu">Follow Us</h2>
+  
+          <ul class="nav list-unstyled flex-column menu--footer-menu-1 menu--footer-menu">
+
+          <li class="menu-item nav-item">
+      <a href="https://www.facebook.com/NOAANCEI/" class="facebook" title="Link to @NOAANCEI Facebook">@NOAANCEI</a>
+    </li>
+          <li class="menu-item nav-item">
+      <a href="https://www.instagram.com/noaadata/" class="instagram" title="Link to @NOAAData Instagram">@NOAAData</a>
+    </li>
+          <li class="menu-item nav-item">
+      <a href="https://twitter.com/NOAANCEI" class="x" title="Link to @NOAANCEI Twitter">@NOAANCEI</a>
+    </li>
+          <li class="menu-item nav-item">
+      <a href="/news.xml" class="rss" title="Link to subscribe to NCEI News Feed" data-drupal-link-system-path="news.xml">News Feed</a>
+    </li>
+  
+  </ul>
+
+
+  </nav>
+
+  
+        </div>
+        
+                <div class="col-lg-3 col-sm-12">
+                <nav role="navigation" aria-labelledby="block-contactus-menu" id="block-contactus" class="block block-menu menu--footer-menu-2">
+  
+  <h2 id="block-contactus-menu">Contact Us</h2>
+  
+          <ul class="nav list-unstyled flex-column menu--footer-menu-2 menu--footer-menu menu--contact-us">
+                <li class="menu-item nav-item">
+        <a href="/contact" class="nav-link" title="Contact NCEI NOAA via email" data-drupal-link-system-path="node/32">Email by topic</a>
+      </li>
+                <li class="menu-item nav-item">
+        <a href="tel:18282714800" class="nav-link" title="Call NCEI NOAA 828-271-4800">Phone: (828) 271-4800</a>
+      </li>
+      </ul>
+
+  </nav>
+
+  
+        </div>
+        
+      </div>    </div>  </div>
+    <div class="block block-footer-nesdis-links" id="footer-nesdis-links-container">
+    <nav role="navigation" aria-labelledby="" id="block-footernesdislinks" class="block block-menu menu--footer-nesdis-links">
+      <div class="container">
+  <div class="col-lg-12">
+    <ul class="nav list-inline menu--footer-nesdis-links">
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="/sitemap" class="nav-link" data-drupal-link-system-path="node/400">Sitemap</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="/privacy" class="nav-link" data-drupal-link-system-path="node/106">Privacy Policy</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.noaa.gov/information-technology/foia" class="nav-link">Freedom of Information Act</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.noaa.gov/organization/information-technology/policy-oversight/information-quality" class="nav-link">Information Quality</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.ncei.noaa.gov/accessibility" class="nav-link">Accessibility</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.noaa.gov/disclaimer" class="nav-link">Disclaimer</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.commerce.gov/" class="nav-link">Department of Commerce</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="https://www.noaa.gov/" class="nav-link">NOAA</a>
+        </li>
+                      <li class="menu-item nav-item list-inline-item">
+          <a href="http://www.nesdis.noaa.gov/" class="nav-link">NESDIS</a>
+        </li>
+          </ul>
+  </div>
+</div>
+
+  </nav>
+
+
+  </div>
+
+
+</footer>
+
+  
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/1779","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"back_to_top":{"back_to_top_button_trigger":100,"back_to_top_speed":1200,"back_to_top_prevent_on_mobile":true,"back_to_top_prevent_in_admin":false,"back_to_top_button_type":"image","back_to_top_button_text":"Back to top"},"google_analytics":{"account":"G-E1Q1BML6E5","trackOutbound":true,"trackMailto":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip","trackDomainMode":1},"data":{"extlink":{"extTarget":true,"extTargetAppendNewWindowLabel":"(opens in a new window)","extTargetNoOverride":false,"extNofollow":false,"extTitleNoOverride":false,"extNoreferrer":false,"extFollowNoOverride":false,"extClass":"ext","extLabel":"(link is external)","extImgClass":false,"extSubdomains":true,"extExclude":"(arcgis\\.com)","extInclude":"","extCssExclude":"","extCssInclude":"","extCssExplicit":"","extAlert":true,"extAlertText":"You are exiting the NCEI website\r\n\r\nThank you for visiting our site. We have provided a link because it has information that may interest you. NCEI does not endorse the views expressed, the information presented, or any commercial products that may be advertised or available on that site.","extHideIcons":false,"mailtoClass":"mailto","telClass":"","mailtoLabel":"(link sends email)","telLabel":"(link is a phone number)","extUseFontAwesome":false,"extIconPlacement":"append","extPreventOrphan":false,"extFaLinkClasses":"fa fa-external-link","extFaMailtoClasses":"fa fa-envelope-o","extAdditionalLinkClasses":"","extAdditionalMailtoClasses":"","extAdditionalTelClasses":"","extFaTelClasses":"fa fa-phone","whitelistedDomains":[],"extExcludeNoreferrer":""}},"statistics":{"data":{"nid":"1779"},"url":"\/core\/modules\/statistics\/statistics.php"},"user":{"uid":0,"permissionsHash":"29ba758064a4c73434a20cf2fc95013476651002ac4b3aafc86833676a76e09e"}}</script>
+<script src="/core/assets/vendor/jquery/jquery.min.js?v=3.7.1"></script>
+<script src="/core/assets/vendor/once/once.min.js?v=1.0.1"></script>
+<script src="/core/misc/drupalSettingsLoader.js?v=10.5.2"></script>
+<script src="/core/misc/drupal.js?v=10.5.2"></script>
+<script src="/core/misc/drupal.init.js?v=10.5.2"></script>
+<script src="https://static.addtoany.com/menu/page.js" defer></script>
+<script src="/modules/contrib/addtoany/js/addtoany.js?v=10.5.2"></script>
+<script src="/modules/contrib/back_to_top/js/back_to_top.js?v=10.5.2"></script>
+<script src="/modules/contrib/extlink/js/extlink.js?v=10.5.2"></script>
+<script src="/modules/contrib/google_analytics/js/google_analytics.js?v=10.5.2"></script>
+<script src="/themes/custom/ncei/node_modules/bootstrap/dist/js/bootstrap.min.js?t8yrmq"></script>
+<script src="/themes/custom/ncei/public/js/ncei.js?t8yrmq"></script>
+<script src="/libraries/uswds/js/uswds-init.min.js?t8yrmq"></script>
+<script src="/libraries/uswds/js/uswds.min.js?t8yrmq"></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=G-E1Q1BML6E5"></script>
+<script src="https://www.google-analytics.com/analytics.js"></script>
+<script src="//search.usa.gov/javascripts/remote.loader.js"></script>
+<script src="https://siteimproveanalytics.com/js/siteanalyze_6294131.js"></script>
+<script src="/themes/custom/ncei/public/js/skip-link-reorder.js?t8yrmq"></script>
+<script src="https://touchpoints.app.cloud.gov/touchpoints/89426825.js"></script>
+<script src="/modules/custom/pullquote/js/pullquote.admin.js?v=1.x"></script>
+<script src="/modules/custom/pullquote/js/pullquote.styles.js?v=1.x"></script>
+<script src="/core/modules/statistics/statistics.js?v=10.5.2"></script>
+
+          <script id="_fed_an_ua_tag" type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&subagency=NOAA"></script></body>
+</html>

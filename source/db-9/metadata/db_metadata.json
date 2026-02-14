@@ -1,0 +1,20 @@
+{
+  "id": "db-9",
+  "name": "- db-9",
+  "version": "1.0",
+  "created_date": "2026-02-13",
+  "queries_count": 30,
+  "schema_hash": "6f032ddc7dd33c5685337e5481b94e743f66573271cc693feb8fe0191584d425",
+  "queries_hash": "03f198b8901ef7e62e552f26ffdbb90c2c0bf47de49cae6a15102fc4cc872b17",
+  "deliverable_files": [
+    "schema.sql",
+    "data.sql",
+    "queries.json",
+    "queries.md",
+    "db-9_documentation.html",
+    "db-9_deliverable.json"
+  ],
+  "rl_ready": true,
+  "client_ready": true,
+  "generated_at": "20260214-0132"
+}

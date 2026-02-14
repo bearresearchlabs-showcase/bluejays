@@ -1,0 +1,381 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <title>ASDC | Citing ASDC Data</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico" sizes="32x32" />
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,400|Raleway:200,400|Source+Sans+Pro:400,400i&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/application.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/header_footer.css">
+    <script type="text/javascript" src="/static/js/update_external_links.js"></script>
+
+    <script async type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NASA&subagency=LARC" id="_fed_an_ua_tag"></script>
+    <script async src="//script.crazyegg.com/pages/scripts/0013/2090.js"></script>
+    
+    <!-- Client IP push to Data Layer  -->
+    
+        <script>
+            var dataLayer = window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                'event': 'ipAddress',
+                'ipAddress': '10.131.0.1' //i.e.: 'ipAddress': '50.226.226.146'
+            });
+        </script>
+    
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WNP7MLF');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script src="/static/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    
+    
+    
+
+</head>
+
+<body class="eui-layout d-flex flex-column min-vh-100 font-source-sans">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WNP7MLF" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="earthdata-tophat2" style="height: 32px;"></div>
+    <!-- Start Earthdata Status Bar -->
+    <h5>
+        <div class="alert alert-warning text-center rounded-0 mb-20px" role="alert" id="earthdata-notification-banner"></div>
+    </h5>
+    <script type="text/javascript" src="https://status.earthdata.nasa.gov/assets/banner_widget.js"></script>
+    <!-- End Earthdata Status Bar -->
+
+    
+
+<nav class="navbar navbar-dark navbar-expand-lg pr-0 pl-2 pb-2 pt-2 col-md-11 mx-auto">
+    <div class="eui-masthead-logo eui-application-logo row container d-flex">
+        <div class="masthead-inner pr-2 col">
+            <h1 class="font-raleway text-light">
+                <a class="navbar-brand mr-0" href="/"></a>
+            </h1>
+            <h3 class="font-raleway text-light pt-1 ml-5">
+                ASDC | Atmospheric Science Data Center
+            </h3>
+        </div>
+        <div class="masthead-inner-search pl-2 col">
+            <form class="search-bar form-inline rounded w-100" action="/search" method="GET">
+                <div class="justify-content-between align-items-baseline w-100 d-flex shadow rounded">
+                    <input class="pl-3 mr-1 search-bar-inner w-75 border-0 text-white"
+                        aria-label="search-this-site"
+                        placeholder="Search the ASDC site..."
+                        name="query">
+                    <i class="fas fa-search mr-3" aria-hidden="true"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-dark navbar-expand-lg p-2 col-md-11 mx-auto">
+    <button class="navbar-toggler ml-auto border-0 pr-0 mb-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-white">
+            <li class="nav-item dropdown pl-2 pr-2">
+                <a class="nav-link text-white" href="/about" id="navbarDropdownAbout" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ABOUT
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownAbout">
+                    <a class="dropdown-item" href="/about">About ASDC</a>
+                    <a class="dropdown-item" href="/contact-us">Contact Us</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown pl-2 pr-2">
+                <a class="nav-link text-white" href="/data/" id="navbarDropdownData" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    DATA
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownData">
+                    <a class="dropdown-item" href="/data/">Direct Data Download</a>
+                    <a class="dropdown-item ext_link"
+                        href="https://search.earthdata.nasa.gov/search?fdc=Atmospheric%20Science%20Data%20Center%20(ASDC)"
+                        target="_blank">Find Data</a>
+                    <a class="dropdown-item" href="/browse-projects">Browse Projects</a>
+                    <a class="dropdown-item" href="/projects">Explore Collections</a>
+                    <a class="dropdown-item" href="/tools-and-services">Tools and Services</a>
+                    <a class="dropdown-item " href="/soot/">Sub-Orbital Order Tool</a>
+                    <a class="dropdown-item ext_link" href="https://opendap.larc.nasa.gov/opendap">OPeNDAP</a>
+                    <a class="dropdown-item ext_link" href="https://gis.earthdata.nasa.gov/portal/home/">ArcGIS Portal</a>
+                    <a class="dropdown-item ext_link" href="https://earthdata.nasa.gov/">Earthdata Search</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown pl-2 pr-2">
+                <a class="nav-link text-white" href="#" id="navbarDropdownCommunity" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    COMMUNITY
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownCommunity">
+                    <a class="dropdown-item" href="/forum">Earthdata Forum</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown pl-2 pr-2">
+                <a class="nav-link text-white" href="#" id="navbarDropdownResources" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    OUTREACH
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownResources">
+                    <a class="dropdown-item" href="/data-in-action">Data In Action</a>
+                    <a class="dropdown-item" href="/data-e-learning">Data-E-Learning</a>
+                    <a class="dropdown-item" href="/outreach-materials">Outreach Materials</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown pl-2 pr-2">
+                <a class="nav-link text-white" href="#" id="navbarDropdownResources" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    RESOURCES
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownResources">
+                    <a class="dropdown-item" href="/glossary">Glossary</a>
+                    <a class="dropdown-item" href="/citing-data">Citing Data</a>
+                    <a class="dropdown-item" href="/publications">Publications</a>
+                    <a class="dropdown-item" href="/relevant-links">Relevant Links</a>
+                    <a class="dropdown-item" href="/copyright-information">Copyright Information</a>
+                    <a class="dropdown-item" href="/discrepancies-and-known-issues">Discrepancies and Known Issues</a>
+                    <a class="dropdown-item" href="https://asdc.larc.nasa.gov/documents/HOW_TO_PUBLISH_DATA_AT_THE_ASDC.docx">How to Publish Data at the ASDC</a>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</nav>
+    
+
+    <main class="mb-5">
+        <div>
+            <section class="col-md-11 mx-auto">
+                
+                <nav class="mb-3" aria-label="breadcrumb">
+                    <ol class="bg-dark breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        
+                            
+                                <li class="breadcrumb-item active text-break" aria-current="page">Citing Data</li>
+                            
+                        
+                    </ol>
+                </nav>
+                
+                
+<h3 class="text-white text-uppercase font-raleway mt-4">Citing ASDC Data</h3>
+
+                
+<div class="card">
+    <div class="card-body">
+        <h5 class="text-uppercase">Data Citations and Acknowledgements</h5>
+        <hr class="my-2">
+        <p><strong>Citations</strong>: Datasets and related data products and services are provided by the NASA Langley
+            Research Center's (LaRC) ASDC DAAC and are managed by the NASA Earth Science Data and Information System
+            (ESDIS)
+            project. The LARC ASDC DAAC is one of the Earth Observing System Data and Information System (EOSDIS)
+            Distributed Active Archive Centers (DAACs), part of the ESDIS project. NASA data are freely accessible;
+            however,
+            when you publish these data or works based on the data, we request that you cite the datasets within the
+            text of
+            the publication and include a reference to them in your reference list. References to datasets, like the
+            examples, below, should have enough detail to provide readers of your publication with the ability to obtain
+            the
+            datasets and conduct their own studies based on your work. (For complete provenance and understanding of
+            parts
+            of data were used and how, it also may be necessary to describe in detail, within the body of the
+            publication,
+            exactly how the data were used.)</p>
+
+        <p><strong>Citation Generator</strong>: Landing pages for collections that have a Digital Object Identifier (DOI)
+            box also have a link to a page that will generate citations in a variety of formats, including downloadable formats
+            for use in citation management applications.
+
+        <p><strong>Acknowledgements:</strong>The data obtained from the ASDC are free of charge for use in research,
+            publications and commercial applications. When data from the ASDC are used in a publication, we request this
+            acknowledgment be included: "These data were obtained from the NASA Langley Research Center Atmospheric
+            Science
+            Data Center." Please include such statements, either where the use of the data or other resource is
+            described,
+            or within the Acknowledgements section of the publication.</p>
+
+
+        <h5 class="text-uppercase mt-5">View Publications Related to Data Center Holdings</h5>
+        <hr class="my-2">
+        <p>The publications related to the ASDC data are initially sorted by title in descending order. Sorting is available
+            by
+            year, author, and keyword (project cited) by selecting the appropriate link at the top of the page. To
+            reverse
+            the sort order, select the link a second time.</p>
+        <p>Visit the <a href="/publications">Publication listing</a>.</p>
+
+        <h5 class="text-uppercase mt-5">Reprints Please</h5>
+        <hr class="my-2">
+        <p>The ASDC requests a reprint of any published papers or reports or a brief description of other uses (e.g.,
+            posters, oral presentations, etc.) of data that we have distributed. This will help us determine the use of
+            data
+            that we distribute, which is helpful in optimizing product development. It also helps us to keep our
+            product-related references current.</p>
+        <p>Please <a href="javascript:window.feedback.showForm()" aria-label="Open the feedback form">contact us</a> 
+            for instructions on mailing reprints.</p>
+
+
+        <h5 class="text-uppercase mt-5">Copyright &amp; Reproduction Guidelines</h5>
+        <hr class="my-2">
+        <p>Unless otherwise noted, all images and animations are generally not copyrighted. For more information on
+            permissions and limitations, or for questions regarding copyright information, please visit <a
+                href="/copyright-information">Copyright &amp; Reproduction Guidelines</a>.</p>
+
+    </div>
+</div>
+
+            </section>
+        </div>
+    </main>
+
+    
+
+<footer class="footer pt-5 mt-auto">
+    <section class="col-md-11 mx-auto">
+        <div class="row d-flex justify-content-between mb-4">
+            <div class="col-xs-12 col-sm-6 col-lg-2 pt-3">
+                <h5 class="text-uppercase font-raleway">About</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="/about">About ASDC</a></li>
+                    <li><a href="/citing-data">Citing Our Data</a></li>
+                    <li><a href="https://www.nasa.gov/about/highlights/HP_Privacy.html" rel="nofollow" class="ext_link">NASA Web
+                            Privacy Policy</a></li>
+                    <li><a href="https://www.nasa.gov/accessibility/">Accessibility</a></li>
+                    <li><a href="/copyright-information">Copyright Information</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-xl-2 pt-3">
+                <h5 class="text-uppercase font-raleway">Learn</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="https://mynasadata.larc.nasa.gov" target="_blank" alt="Opens to My NASA Data website" class="ext_link">My NASA Data</a>
+                    </li>
+                    <li><a href="/rss">RSS Feeds</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-xl-2 pt-3">
+                <h5 class="text-uppercase font-raleway">Use</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="https://gis.earthdata.nasa.gov/portal/home/" rel="nofollow" class="ext_link">ArcGIS</a></li>
+                    <li><a href="/soot/" rel="nofollow">Sub-Orbital Order Tool (SOOT)</a></li>
+                    <li><a href="https://subset.larc.nasa.gov/calipso" rel="nofollow" class="ext_link">CALIPSO Search and Subset
+                            Tool</a>
+                    </li>
+                    <li><a href="https://subset.larc.nasa.gov/ceres/login.php" rel="nofollow" class="ext_link">CERES Search and
+                            Subset
+                            Tool</a></li>
+                    <li><a href="https://ceres.larc.nasa.gov/order_data.php" rel="nofollow" class="ext_link">CERES
+                            Subset/Visualization
+                            Tool</a></li>
+                    <li><a href="/data/">Direct Data Download</a></li>
+                    <li><a href="https://l0dup05.larc.nasa.gov/cgi-bin/MISR/main.cgi" rel="nofollow" class="ext_link">MISR Order
+                            and
+                            Customization Tool</a></li>
+                    <li><a href="https://opendap.larc.nasa.gov/opendap/" rel="nofollow" class="ext_link"> OPeNDAP</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-xl-2 pt-3">
+                <h5 class="text-uppercase font-raleway">Explore</h5>
+                <ul class="m-0 p-0">
+                    <li>
+                        <a
+                            href="https://search.earthdata.nasa.gov/search?fdc=Atmospheric%20Science%20Data%20Center%20(ASDC)" class="ext_link">Earthdata
+                            Search</a></li>
+                    <li><a href="https://worldview.earthdata.nasa.gov/" class="ext_link">EOSDIS Worldview</a></li>
+                    <li><a href="https://power.larc.nasa.gov" target="_blank" alt="Opens POWER website" class="ext_link">POWER</a></li>
+                    <li><a href="/tools-and-services">Tools And Services</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-xl-2 pt-3">
+                <h5 class="text-uppercase font-raleway">Support</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="/forum">Earthdata Forum</a></li>
+                    <li><a href="/glossary">Glossary</a></li>
+                </ul>
+                <div class="social-media">
+                    <div class="btn-group">
+                        <a class="btn pl-0 pr-2 mr-1" href="https://www.facebook.com/NASAEarthData" aria-label="Go to NASA Earthdata's Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a class="btn pl-1 mr-4" href="https://twitter.com/NASAEarthData" aria-label="Go to NASA Earthdata's Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="col-md-11 mx-auto">
+        <div class="row d-flex justify-content-end border-top border-white mb-4 text-right pt-3">
+            <ul class="m-0 p-0">
+                <li>
+                    <div class="icsulogo">
+                        <a href="https://worlddatasystem.org/" target="_blank" alt="opens to International Council for Science World Data Centres">
+                            <img class="py-1" src="https://asdc.larc.nasa.gov/static/images/wds_reverse-79.png"
+                                alt="ICSU-WDS - International Council for Science World Data Centres"
+                                title="ICSU-WDS - International Council for Science World Data Centres" />
+                        </a>
+                    </div>
+                </li>
+                <li>NASA Official: Jeff Walter</li>
+                <li>Site Curator:
+                    <a href="javascript:window.feedback.showForm()" aria-label="Open the feedback form">
+                        NASA Langley ASDC User Services
+                    </a>
+                </li>
+                <li>
+                    <div id="Updated" class="list"></div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</footer>
+
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/eui.js"></script>
+    <!-- NASA ED Tophat Script -->
+    <script src="https://cdn.earthdata.nasa.gov/tophat2/tophat2.js" id="earthdata-tophat-script" data-current-daac="ASDC"
+        data-show-fbm="true" data-show-status="true"></script>
+    <!-- NASA ED Feedback Module -->
+    <script type="text/javascript" src="https://fbm.earthdata.nasa.gov/for/ASDC/feedback.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Add external link icons.
+            updateExternalLinks();
+            // Init Feedback Module; hide left-side "feedback" bar.
+            window.feedback.init({showIcon: false});
+        });
+    </script>
+</body>
+
+</html>

@@ -52,9 +52,13 @@ def main():
         "verdict": "",
     }
 
+    from db_paths import get_data_dir, get_queries_dir
+
     # 1. data_large.sql sizes (1GB minimum)
     for n in range(1, 17):
-        src = BASE / f"db-{n}" / "data" / "data_large.sql"
+        db_dir = BASE / "source" / f"db-{n}"
+        data_dir = get_data_dir(db_dir)
+        src = data_dir / "data_large.sql"
         cli = BASE / "client" / "db" / f"db-{n}" / "DATABASE" / "data_large.sql"
         zpp = ZIP_EXTRACT / f"db-{n}" / "DATABASE" / "data_large.sql"
         results["data_large_sizes_gb"][f"db-{n}"] = {
@@ -64,7 +68,11 @@ def main():
         }
 
     # 2. Total SQL size
-    for d in BASE.glob("db-*/data"):
+    for n in range(1, 17):
+        db_dir = BASE / "source" / f"db-{n}"
+        d = get_data_dir(db_dir)
+        if not d.exists():
+            d = db_dir / "app" / "DATABASE" if (db_dir / "app" / "DATABASE").exists() else db_dir / "data"
         for f in d.glob("*.sql"):
             if f.is_file():
                 results["total_sql_gb"]["source"] += f.stat().st_size
@@ -82,7 +90,7 @@ def main():
 
     # 3. queries.json comparison (db-1, 11, 16)
     for n in [1, 11, 16]:
-        src = BASE / f"db-{n}" / "queries" / "queries.json"
+        src = get_queries_dir(BASE / "source" / f"db-{n}") / "queries.json"
         cli = BASE / "client" / "db" / f"db-{n}" / "QUERIES" / "queries.json"
         zpp = ZIP_EXTRACT / f"db-{n}" / "QUERIES" / "queries.json"
         results["queries_json"][f"db-{n}"] = {
@@ -93,8 +101,9 @@ def main():
 
     # 4. Byte identity for schema, data, data_large (db-1, 11, 16)
     for n in [1, 11, 16]:
+        data_dir = get_data_dir(BASE / "source" / f"db-{n}")
         for fname in ["schema.sql", "data.sql", "data_large.sql"]:
-            src = BASE / f"db-{n}" / "data" / fname
+            src = data_dir / fname
             cli = BASE / "client" / "db" / f"db-{n}" / "DATABASE" / fname
             zpp = ZIP_EXTRACT / f"db-{n}" / "DATABASE" / fname
             sh, ch, zh = file_hash(src), file_hash(cli), file_hash(zpp)
@@ -119,7 +128,7 @@ def main():
 
     if src_gb >= cli_gb and src_gb >= zip_gb and src_has_question and all_identical:
         results["verdict"] = (
-            "SOURCE (db-1..db-17) is the most accurate and complete: "
+            "SOURCE (db-1..db-16) is the most accurate and complete: "
             "largest total SQL (%.1f GB), queries.json has extra 'question' field, "
             "core schema/data/data_large identical across all three. "
             "Client and zip match each other but are subsets of source."

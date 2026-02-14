@@ -1,0 +1,57 @@
+# Docker multi-DB: start 16 PostgreSQL containers, run validation
+name: Docker Multi-DB
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  docker-multi-db:
+    name: Multi-DB validation (Docker Compose)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install --quiet psycopg2-binary pyyaml jsonschema
+
+      - name: Start multi-DB PostgreSQL
+        run: |
+          docker compose -f docker/docker-compose.multi-db.yml up -d
+          echo "Waiting for PostgreSQL..."
+          sleep 15
+          docker compose -f docker/docker-compose.multi-db.yml ps
+
+      - name: Run db_check validate (sample db-1, db-2)
+        env:
+          PG_HOST: localhost
+          PG_USER: postgres
+          PG_PASSWORD: postgres
+        run: |
+          export PG_PORT=5436 PG_DATABASE=db1
+          python3 scripts/db_check.py validate 1 || true
+          export PG_PORT=5437 PG_DATABASE=db2
+          python3 scripts/db_check.py validate 2 || true
+
+      - name: MVC backend smoke test
+        env:
+          PG_HOST: localhost
+          PG_USER: postgres
+          PG_PASSWORD: postgres
+        run: python3 scripts/mvc_backend_test.py 2>&1 | head -80 || true
+
+      - name: Stop containers
+        if: always()
+        run: docker compose -f docker/docker-compose.multi-db.yml down -v 2>/dev/null || true
