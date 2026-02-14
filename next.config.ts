@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
   outputFileTracingIncludes: {
     '/api/**': ['source/**', 'template/**'],
+    '/*': ['source/**', 'template/**'],
   },
 }
 

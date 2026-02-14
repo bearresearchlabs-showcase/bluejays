@@ -7,10 +7,6 @@ function getRoot(): string {
 }
 const ROOT = getRoot()
 
-export function getDataRoot(): string {
-  return ROOT
-}
-
 function sourceDir() {
   return join(ROOT, 'source')
 }
