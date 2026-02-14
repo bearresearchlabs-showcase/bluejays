@@ -1,0 +1,7 @@
+{
+  "name": "db-root",
+  "private": true,
+  "scripts": {
+    "build": "cd apps/annotator && npm install && npm run build"
+  }
+}

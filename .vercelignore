@@ -1,6 +1,7 @@
 # Exclude large dirs to keep deploy under 2GB
 client
 client.zip
+db.zip
 archive
 website-nextjs
 venv_selenium
@@ -15,7 +16,6 @@ logs
 *.sql.gz
 *.zip
 *.ipynb
-apps/annotator/.next
 
 # Exclude heavy source subdirs (keep deliverable HTML/JSON)
 source/db-*/app
@@ -27,4 +27,5 @@ source/db-*/metadata
 source/db-*/docs
 source/db-*/queries
 source/db-*/archive
+source/db-*/deliverable/data
 source/db-*/deliverable/*/data

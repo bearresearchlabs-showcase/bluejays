@@ -4,11 +4,18 @@
 
 This project deploys the **SQL Annotator** (data annotation app) from `apps/annotator`.
 
-### Required: Set Root Directory
+### Required: Set Root Directory (primary fix for 404)
+
+**If https://db-red-three.vercel.app/ returns 404**, the Root Directory is not set:
 
 1. **Vercel Dashboard** → Project **db** → **Settings** → **General**
-2. Set **Root Directory** to `apps/annotator` (click Edit, enter `apps/annotator`, Save)
-3. **Redeploy** (Deployments → ⋮ on latest → Redeploy)
+2. Find **Root Directory** → click **Edit**
+3. Enter `apps/annotator` and **Save**
+4. **Redeploy** (Deployments → ⋮ on latest → Redeploy)
+
+**Why**: Without Root Directory, Vercel builds from the repo root. The Next.js app lives in `apps/annotator`, so the build does not find it and deploys nothing → 404.
+
+**Alternative** (may work): A root `vercel.json` and `package.json` attempt to build from `apps/annotator`. If 404 persists, use the dashboard fix above.
 
 ### Routes
 

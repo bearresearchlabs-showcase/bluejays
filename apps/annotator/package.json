@@ -1,0 +1,25 @@
+{
+  "name": "annotator-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "postbuild": "node -e \"var p=require('path'); var f=require('fs'); var l=p.join(process.cwd(),'..','..','.cursor','debug.log'); f.appendFileSync(l, JSON.stringify({location:'annotator/postbuild',message:'Build completed',data:{cwd:process.cwd(),hypothesisId:'H3'},timestamp:Date.now()})+'\\n')\"",
+    "start": "next start -p 3001",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.1.0",
+    "jose": "^5.2.0",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.0.0"
+  }
+}
