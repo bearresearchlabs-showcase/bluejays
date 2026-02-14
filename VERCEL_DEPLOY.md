@@ -10,14 +10,14 @@ This repo deploys as a **static site** from the **repo root** by default.
 
 2. **`framework: null`** – Explicitly sets the project as "Other" (static HTML) so Vercel does not auto-detect a framework.
 
-3. **Rewrite paths** – Rewrites now point to `/source/db-N/...` to match the actual file layout.
+3. **Build step** – `scripts/prepare_vercel_public.sh` copies db deliverable HTML/JSON from `db-N/deliverable/` into `public/db-N/` before deploy. Vercel prioritizes `public/` for static sites.
 
 ### Vercel project settings
 
 - **Root Directory**: Leave empty (deploy from repo root)
 - **Framework Preset**: Other (or let `vercel.json` override)
-- **Build Command**: Leave empty (static, no build)
-- **Output Directory**: Leave empty
+- **Build Command**: `bash scripts/prepare_vercel_public.sh` (copies db docs to public/)
+- **Output Directory**: `public`
 
 ### After pushing
 
