@@ -1,30 +1,35 @@
 # Vercel Deployment Guide
 
-## db-red-three.vercel.app (Static Site)
+## db-red-three.vercel.app — Data Annotation App (Primary)
 
-This repo deploys as a **static site** from the **repo root** by default.
+**To deploy the SQL Annotator (data annotation app):**
 
-### What was fixed (404 resolution)
+1. **Vercel Dashboard** → Project **db** → **Settings** → **General**
+2. Set **Root Directory** to `apps/annotator` (click Edit, enter `apps/annotator`, Save)
+3. **Redeploy** (Deployments → ⋮ on latest → Redeploy)
 
-1. **`public/index.html`** – Vercel serves static files from `public/` for "Other" framework projects. The main page is now in `public/index.html`.
+The annotator app will then serve at `https://db-red-three.vercel.app/` with:
+- `/login` — Login (staff/123123, annotator/123123, customer/123123)
+- `/` — Annotator
+- `/dashboard` — Dashboard
+- `/admin/tasks` — Task Board
+- `/suite` — Full Suite
+- `/customer` — Customer Portal
 
-2. **`framework: null`** – Explicitly sets the project as "Other" (static HTML) so Vercel does not auto-detect a framework.
+Add **Neon** or **Supabase** integration for PostgreSQL + pgvector.
 
-3. **Build step** – `scripts/prepare_vercel_public.sh` copies db deliverable HTML/JSON from `db-N/deliverable/` into `public/db-N/` before deploy. Vercel prioritizes `public/` for static sites.
+---
 
-### Vercel project settings
+## Static Database Docs (Alternative)
 
-- **Root Directory**: Leave empty (deploy from repo root)
-- **Framework Preset**: Other (or let `vercel.json` override)
-- **Build Command**: `bash scripts/prepare_vercel_public.sh` (copies db docs to public/)
-- **Output Directory**: `public`
+To deploy the **static database documentation** instead of the annotator:
 
-### After pushing
+1. Set **Root Directory** to empty (repo root)
+2. **Build Command**: `bash scripts/prepare_vercel_public.sh`
+3. **Output Directory**: `public`
+4. **Framework Preset**: Other
 
-1. Push these changes to your connected branch.
-2. Vercel will redeploy.
-3. `https://db-red-three.vercel.app/` should serve the Database Documentation page.
-4. `/db-6`, `/db-7`, etc. should serve the database docs.
+This serves the index at `/` and db-N docs at `/db-6`, `/db-7`, etc.
 
 ---
 
@@ -99,15 +104,3 @@ export async function query<T>(sql: string, params?: unknown[]): Promise<T[]> {
 }
 ```
 
----
-
-## Next.js Annotator App (optional)
-
-To deploy the **Next.js annotator app** instead:
-
-1. In Vercel: **Project Settings → General → Root Directory**
-2. Set to: `apps/annotator`
-3. Add **Neon** or **Supabase** integration for PostgreSQL + pgvector
-4. Redeploy.
-
-The annotator app has its own `vercel.json` and will build as a Next.js project.
