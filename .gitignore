@@ -32,6 +32,7 @@ test_outputs/
 
 # Next.js / Node
 .next/
+node_modules/
 
 # Temporary files
 *.tmp
@@ -59,5 +60,24 @@ scripts/bin/checksum/target/
 
 # Kubernetes secrets (use secret.yaml.example)
 k8s/secret.yaml
+
+# Credentials and secrets
+results/snowflake_credentials.json
+
+# Large archives and client mirror
+*.zip
+client/
+archive/
+
+# Virtual envs (all variants)
+venv_selenium/
+
+# Large data files (per database-creation-workflow)
+source/db-*/data/data.sql
+source/db-*/data/data_large*.sql
+source/db-*/app/DATABASE/data.sql
+source/db-*/app/DATABASE/data_large*.sql
+source/db-*/deliverable/*/data/data.sql
+source/db-*/deliverable/*/data/data_large*.sql
 
 # lib/sources-manifest.json — COMMITTED for Vercel (regenerate with: node scripts/generate-sources-manifest.js)

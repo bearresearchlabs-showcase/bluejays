@@ -21,7 +21,7 @@ Open http://localhost:3001
 5. **PostgreSQL + pgvector**: Integrations → Neon or Supabase (injects `POSTGRES_URL`)
 6. Deploy
 
-See `VERCEL_DEPLOY.md` or `../../VERCEL_DEPLOY.md` for PostgreSQL and vector setup.
+See `../../docs/VERCEL_DEPLOY.md` for PostgreSQL and vector setup.
 
 ## Credentials
 
