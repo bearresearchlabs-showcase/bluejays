@@ -68,7 +68,7 @@ query_block_style:
 
 # API response structure (submission of queries.md form)
 api_response:
-  status: "success" | "error"
+  status: ["success", "error"]  # One of
   submission:
     source: "queries.md"
     content_sha256: "hex"

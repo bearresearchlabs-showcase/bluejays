@@ -3024,7 +3024,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260214-0148
+- **Generated**: 20260214-1518
 - **Database**: db-3
 - **Type**: Hierarchical Orders (LinkWay)
 - **Queries**: 30 production queries

@@ -35,282 +35,437 @@ info:
     - Business Value: The business impact and value delivered\n- Complexity: Technical\
     \ complexity indicators\n- SQL Code: Complete, production-ready SQL query\n\n\
     ---\n\nUse Case: Cloud Cost Optimization - Cross-Cloud Instance Right-Sizing Analysis\
-    \ for Enterprise Migration Planning\n\nDescription: Enterprise-level multi-provider\
+    \ for Enterprise Migration Planning Description: Enterprise-level multi-provider\
     \ cost-performance analysis using recursive CTE for instance matching across AWS,\
     \ Azure, and GCP, with complex aggregations, window functions, percentile calculations,\
     \ and cross-cloud optimization recommendations. Demonstrates production patterns\
-    \ used by cloud cost optimization platforms.\n\nBusiness Value: Comprehensive\
-    \ cost-performance comparison report showing optimal instance selections across\
-    \ all three major cloud providers with cost savings projections, performance benchmarks,\
-    \ and migration recommendations. Helps enterprises identify cost savings opportunities\
-    \ during cloud migrations.\n\nPurpose: Identifies the most cost-effective instance\
-    \ configurations across AWS, Azure, and GCP by matching instances with similar\
-    \ specifications and comparing their cost-performance ratios, enabling data-driven\
-    \ cloud provider selection.\n\nComplexity: Recursive CTE for instance matching,\
-    \ 8+ nested CTEs, complex aggregations, window functions with multiple frame clauses,\
-    \ percentile calculations, cross-provider comparisons, cost optimization algorithms\n\
-    \nExpected Output: Report showing matched instances across providers with cost\
-    \ savings, performance metrics, and optimization recommendations\n\n---\n\nUse\
-    \ Case: Cloud Cost Forecasting - Historical Pricing Trend Analysis with Recursive\
-    \ CTE and Multi-Period Forecasting\n\nDescription: Enterprise-level historical\
-    \ pricing trend analysis with recursive cte and multi-period forecasting with\
-    \ Recursive CTE for time-series analysis, 8+ nested CTEs. Demonstrates production\
-    \ patterns for cloud cost .\n\nBusiness Value: Historical Pricing Trend Analysis\
-    \ with Recursive CTE and Multi-Period Forecasting report showing cost  metrics\
-    \ and recommendations.\n\nPurpose: Provides historical pricing trend analysis\
-    \ with recursive cte and multi-period forecasting to enable data-driven cloud\
-    \ cost decisions.\n\nComplexity: Recursive CTE for time-series analysis, 8+ nested\
-    \ CTEs, window functions with multiple frame clauses, complex aggregations, percentile\
-    \ calculations\nExpected Output: Query results with detailed cost  metrics\n\n\
-    ---\n\nUse Case: Cloud Cost Optimization - Reserved Instance ROI Analysis with\
-    \ Multi-Year Projections\n\nDescription: Enterprise-level reserved instance roi\
-    \ analysis with multi-year projections with 8+ nested CTEs, financial calculations.\
-    \ Demonstrates production patterns for cloud cost .\n\nBusiness Value: Reserved\
+    \ used by cloud cost optimization platforms.\n\nDescription: Use Case: Cloud Cost\
+    \ Optimization - Cross-Cloud Instance Right-Sizing Analysis for Enterprise Migration\
+    \ Planning Description: Enterprise-level multi-provider cost-performance analysis\
+    \ using recursive CTE for instance matching across AWS, Azure, and GCP, with complex\
+    \ aggregations, window functions, percentile calculations, and cross-cloud optimization\
+    \ recommendations. Demonstrates production patterns used by cloud cost optimization\
+    \ platforms. Business Value: Comprehensive cost-performance compari\n\nBusiness\
+    \ Value: Comprehensive cost-performance compari\n\nComplexity: Recursive CTE for\
+    \ instance matching, 8+ nested CTEs, complex aggregations, window functions with\
+    \ multiple frame clauses, percentile calculations, cross-provider comparisons,\
+    \ cost optimization algorithms\n\n---\n\nUse Case: Cloud Cost Forecasting - Historical\
+    \ Pricing Trend Analysis with Recursive CTE and Multi-Period Forecasting Description:\
+    \ Enterprise-level historical pricing trend analysis with recursive cte and multi-period\
+    \ forecasting with Recursive CTE for time-series analysis, 8+ nested CTEs. Demonstrates\
+    \ production patterns for cloud cost .\n\nDescription: Use Case: Cloud Cost Forecasting\
+    \ - Historical Pricing Trend Analysis with Recursive CTE and Multi-Period Forecasting\
+    \ Description: Enterprise-level historical pricing trend analysis with recursive\
+    \ cte and multi-period forecasting with Recursive CTE for time-series analysis,\
+    \ 8+ nested CTEs. Demonstrates production patterns for cloud cost . Business Value:\
+    \ Historical Pricing Trend Analysis with Recursive CTE and Multi-Period Forecasting\
+    \ report showing cost  metrics and recommendations. Purpose: Pro\n\nBusiness Value:\
+    \ Historical Pricing Trend Analysis with Recursive CTE and Multi-Period Forecasting\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Pro\n\nComplexity:\
+    \ Recursive CTE for time-series analysis, 8+ nested CTEs, window functions with\
+    \ multiple frame clauses, complex aggregations, percentile calculations\n\n---\n\
+    \nUse Case: Cloud Cost Optimization - Reserved Instance ROI Analysis with Multi-Year\
+    \ Projections Description: Enterprise-level reserved instance roi analysis with\
+    \ multi-year projections with 8+ nested CTEs, financial calculations. Demonstrates\
+    \ production patterns for cloud cost .\n\nDescription: Use Case: Cloud Cost Optimization\
+    \ - Reserved Instance ROI Analysis with Multi-Year Projections Description: Enterprise-level\
+    \ reserved instance roi analysis with multi-year projections with 8+ nested CTEs,\
+    \ financial calculations. Demonstrates production patterns for cloud cost . Business\
+    \ Value: Reserved Instance ROI Analysis with Multi-Year Projections report showing\
+    \ cost  metrics and recommendations. Purpose: Provides reserved instance roi analysis\
+    \ with multi-year projections to enable data-driv\n\nBusiness Value: Reserved\
     \ Instance ROI Analysis with Multi-Year Projections report showing cost  metrics\
     \ and recommendations.\n\nPurpose: Provides reserved instance roi analysis with\
-    \ multi-year projections to enable data-driven cloud cost decisions.\n\nComplexity:\
-    \ 8+ nested CTEs, financial calculations, window functions with multiple frame\
-    \ clauses, complex aggregations, percentile calculations\nExpected Output: Query\
-    \ results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Cost Optimization\
-    \ - Spot Instance Cost-Benefit Analysis with Risk Modeling\n\nDescription: Enterprise-level\
-    \ spot instance cost-benefit analysis with risk modeling with 8+ nested CTEs,\
-    \ probability calculations. Demonstrates production patterns for cloud cost .\n\
-    \nBusiness Value: Spot Instance Cost-Benefit Analysis with Risk Modeling report\
-    \ showing cost  metrics and recommendations.\n\nPurpose: Provides spot instance\
-    \ cost-benefit analysis with risk modeling to enable data-driven cloud cost decisions.\n\
-    \nComplexity: 8+ nested CTEs, probability calculations, window functions with\
-    \ multiple frame clauses, complex aggregations, percentile calculations\nExpected\
-    \ Output: Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud\
-    \ Cost Optimization - Regional Pricing Optimization with Cross-Region Comparisons\n\
-    \nDescription: Enterprise-level regional pricing optimization with cross-region\
-    \ comparisons with 8+ nested CTEs, cross-region analysis. Demonstrates production\
-    \ patterns for cloud cost .\n\nBusiness Value: Regional Pricing Optimization with\
-    \ Cross-Region Comparisons report showing cost  metrics and recommendations.\n\
-    \nPurpose: Provides regional pricing optimization with cross-region comparisons\
-    \ to enable data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, cross-region\
-    \ analysis, window functions with multiple frame clauses, complex aggregations,\
-    \ percentile calculations\nExpected Output: Query results with detailed cost \
-    \ metrics\n\n---\n\nUse Case: Cloud Cost  - Performance-Cost Correlation Analysis\
-    \ with Statistical Modeling\n\nDescription: Enterprise-level performance-cost\
-    \ correlation analysis with statistical modeling with 8+ nested CTEs, correlation\
-    \ calculations. Demonstrates production patterns for cloud cost .\n\nBusiness\
-    \ Value: Performance-Cost Correlation Analysis with Statistical Modeling report\
-    \ showing cost  metrics and recommendations.\n\nPurpose: Provides performance-cost\
-    \ correlation analysis with statistical modeling to enable data-driven cloud cost\
-    \ decisions.\n\nComplexity: 8+ nested CTEs, correlation calculations, window functions\
-    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
-    Expected Output: Query results with detailed cost  metrics\n\n---\n\nUse Case:\
-    \ Cloud Cost Optimization - Instance Family Cost Efficiency Ranking\n\nDescription:\
-    \ Enterprise-level instance family cost efficiency ranking with 8+ nested CTEs,\
-    \ percentile analysis. Demonstrates production patterns for cloud cost .\n\nBusiness\
-    \ Value: Instance Family Cost Efficiency Ranking report showing cost  metrics\
-    \ and recommendations.\n\nPurpose: Provides instance family cost efficiency ranking\
-    \ to enable data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, percentile\
-    \ analysis, window functions with multiple frame clauses, complex aggregations,\
-    \ percentile calculations\nExpected Output: Query results with detailed cost \
-    \ metrics\n\n---\n\nUse Case: Cloud Cost Planning - Cost Forecasting with Time-Series\
-    \ Analysis\n\nDescription: Enterprise-level cost forecasting with time-series\
-    \ analysis with 8+ nested CTEs, time-series. Demonstrates production patterns\
-    \ for cloud cost .\n\nBusiness Value: Cost Forecasting with Time-Series Analysis\
-    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides cost\
-    \ forecasting with time-series analysis to enable data-driven cloud cost decisions.\n\
-    \nComplexity: 8+ nested CTEs, time-series, window functions with multiple frame\
-    \ clauses, complex aggregations, percentile calculations\nExpected Output: Query\
-    \ results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Migration Planning\
-    \ - Multi-Cloud Migration Cost Analysis\n\nDescription: Enterprise-level multi-cloud\
-    \ migration cost analysis with 8+ nested CTEs, migration analysis. Demonstrates\
-    \ production patterns for cloud cost .\n\nBusiness Value: Multi-Cloud Migration\
-    \ Cost Analysis report showing cost  metrics and recommendations.\n\nPurpose:\
-    \ Provides multi-cloud migration cost analysis to enable data-driven cloud cost\
-    \ decisions.\n\nComplexity: 8+ nested CTEs, migration analysis, window functions\
-    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
-    Expected Output: Query results with detailed cost  metrics\n\n---\n\nUse Case:\
-    \ Cloud Financial Planning - Long-Term Cost Projections with DCF Analysis\n\n\
-    Description: Enterprise-level long-term cost projections with dcf analysis with\
-    \ 8+ nested CTEs, financial modeling. Demonstrates production patterns for cloud\
-    \ cost .\n\nBusiness Value: Long-Term Cost Projections with DCF Analysis report\
-    \ showing cost  metrics and recommendations.\n\nPurpose: Provides long-term cost\
-    \ projections with dcf analysis to enable data-driven cloud cost decisions.\n\n\
-    Complexity: 8+ nested CTEs, financial modeling, window functions with multiple\
-    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
-    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Cost Optimization\
-    \ - Instance Right-Sizing Recommendations\n\nDescription: Enterprise-level instance\
-    \ right-sizing recommendations with 8+ nested CTEs, workload matching. Demonstrates\
-    \ production patterns for cloud cost .\n\nBusiness Value: Instance Right-Sizing\
-    \ Recommendations report showing cost  metrics and recommendations.\n\nPurpose:\
-    \ Provides instance right-sizing recommendations to enable data-driven cloud cost\
-    \ decisions.\n\nComplexity: 8+ nested CTEs, workload matching, window functions\
-    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
-    Expected Output: Query results with detailed cost  metrics\n\n---\n\nUse Case:\
-    \ Cloud Cost Monitoring - Cost Anomaly Detection with Statistical Analysis\n\n\
-    Description: Enterprise-level cost anomaly detection with statistical analysis\
-    \ with 8+ nested CTEs, outlier detection. Demonstrates production patterns for\
-    \ cloud cost .\n\nBusiness Value: Cost Anomaly Detection with Statistical Analysis\
-    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides cost\
-    \ anomaly detection with statistical analysis to enable data-driven cloud cost\
-    \ decisions.\n\nComplexity: 8+ nested CTEs, outlier detection, window functions\
-    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
-    Expected Output: Query results with detailed cost  metrics\n\n---\n\nUse Case:\
-    \ Cloud Procurement - Reserved Instance Purchase Optimization\n\nDescription:\
-    \ Enterprise-level reserved instance purchase optimization with 8+ nested CTEs,\
-    \ usage analysis. Demonstrates production patterns for cloud cost .\n\nBusiness\
-    \ Value: Reserved Instance Purchase Optimization report showing cost  metrics\
-    \ and recommendations.\n\nPurpose: Provides reserved instance purchase optimization\
-    \ to enable data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, usage\
-    \ analysis, window functions with multiple frame clauses, complex aggregations,\
-    \ percentile calculations\nExpected Output: Query results with detailed cost \
-    \ metrics\n\n---\n\nUse Case: Cloud Risk Management - Spot Instance Interruption\
-    \ Risk Analysis\n\nDescription: Enterprise-level spot instance interruption risk\
-    \ analysis with 8+ nested CTEs, risk modeling. Demonstrates production patterns\
-    \ for cloud cost .\n\nBusiness Value: Spot Instance Interruption Risk Analysis\
-    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides spot\
-    \ instance interruption risk analysis to enable data-driven cloud cost decisions.\n\
-    \nComplexity: 8+ nested CTEs, risk modeling, window functions with multiple frame\
-    \ clauses, complex aggregations, percentile calculations\nExpected Output: Query\
-    \ results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Migration Planning\
-    \ - Cross-Provider Instance Matching\n\nDescription: Enterprise-level cross-provider\
-    \ instance matching with 8+ nested CTEs, similarity scoring. Demonstrates production\
-    \ patterns for cloud cost .\n\nBusiness Value: Cross-Provider Instance Matching\
-    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides cross-provider\
-    \ instance matching to enable data-driven cloud cost decisions.\n\nComplexity:\
-    \ 8+ nested CTEs, similarity scoring, window functions with multiple frame clauses,\
-    \ complex aggregations, percentile calculations\nExpected Output: Query results\
-    \ with detailed cost  metrics\n\n---\n\nUse Case: Cloud Optimization - Cost-Performance\
-    \ Pareto Frontier Analysis\n\nDescription: Enterprise-level cost-performance pareto\
-    \ frontier analysis with 8+ nested CTEs, Pareto analysis. Demonstrates production\
-    \ patterns for cloud cost .\n\nBusiness Value: Cost-Performance Pareto Frontier\
-    \ Analysis report showing cost  metrics and recommendations.\n\nPurpose: Provides\
-    \ cost-performance pareto frontier analysis to enable data-driven cloud cost decisions.\n\
-    \nComplexity: 8+ nested CTEs, Pareto analysis, window functions with multiple\
-    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
-    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Planning\
-    \ - Instance Deprecation Impact Analysis\n\nDescription: Enterprise-level instance\
-    \ deprecation impact analysis with 8+ nested CTEs, deprecation analysis. Demonstrates\
-    \ production patterns for cloud cost .\n\nBusiness Value: Instance Deprecation\
-    \ Impact Analysis report showing cost  metrics and recommendations.\n\nPurpose:\
-    \ Provides instance deprecation impact analysis to enable data-driven cloud cost\
-    \ decisions.\n\nComplexity: 8+ nested CTEs, deprecation analysis, window functions\
-    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
-    Expected Output: Query results with detailed cost  metrics\n\n---\n\nUse Case:\
-    \ Cloud Cost Optimization - Burstable Instance Cost Analysis\n\nDescription: Enterprise-level\
-    \ burstable instance cost analysis with 8+ nested CTEs, baseline modeling. Demonstrates\
-    \ production patterns for cloud cost .\n\nBusiness Value: Burstable Instance Cost\
-    \ Analysis report showing cost  metrics and recommendations.\n\nPurpose: Provides\
-    \ burstable instance cost analysis to enable data-driven cloud cost decisions.\n\
-    \nComplexity: 8+ nested CTEs, baseline modeling, window functions with multiple\
-    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
-    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud ML/AI Cost\
-    \ Optimization - GPU Instance Cost Analysis\n\nDescription: Enterprise-level gpu\
-    \ instance cost analysis with 8+ nested CTEs, GPU analysis. Demonstrates production\
-    \ patterns for cloud cost .\n\nBusiness Value: GPU Instance Cost Analysis report\
-    \ showing cost  metrics and recommendations.\n\nPurpose: Provides gpu instance\
-    \ cost analysis to enable data-driven cloud cost decisions.\n\nComplexity: 8+\
-    \ nested CTEs, GPU analysis, window functions with multiple frame clauses, complex\
-    \ aggregations, percentile calculations\nExpected Output: Query results with detailed\
-    \ cost  metrics\n\n---\n\nUse Case: Cloud Storage Optimization - Storage Cost\
-    \ Optimization\n\nDescription: Enterprise-level storage cost optimization with\
-    \ 8+ nested CTEs, storage analysis. Demonstrates production patterns for cloud\
-    \ cost .\n\nBusiness Value: Storage Cost Optimization report showing cost  metrics\
-    \ and recommendations.\n\nPurpose: Provides storage cost optimization to enable\
-    \ data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, storage analysis,\
+    \ multi-year projections to enable data-driv\n\nComplexity: 8+ nested CTEs, financial\
+    \ calculations, window functions with multiple frame clauses, complex aggregations,\
+    \ percentile calculations\n\n---\n\nUse Case: Cloud Cost Optimization - Spot Instance\
+    \ Cost-Benefit Analysis with Risk Modeling Description: Enterprise-level spot\
+    \ instance cost-benefit analysis with risk modeling with 8+ nested CTEs, probability\
+    \ calculations. Demonstrates production patterns for cloud cost .\n\nDescription:\
+    \ Use Case: Cloud Cost Optimization - Spot Instance Cost-Benefit Analysis with\
+    \ Risk Modeling Description: Enterprise-level spot instance cost-benefit analysis\
+    \ with risk modeling with 8+ nested CTEs, probability calculations. Demonstrates\
+    \ production patterns for cloud cost . Business Value: Spot Instance Cost-Benefit\
+    \ Analysis with Risk Modeling report showing cost  metrics and recommendations.\
+    \ Purpose: Provides spot instance cost-benefit analysis with risk modeling to\
+    \ enable data-driven cloud cost\n\nBusiness Value: Spot Instance Cost-Benefit\
+    \ Analysis with Risk Modeling report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides spot instance cost-benefit analysis with risk modeling to\
+    \ enable data-driven cloud cost\n\nComplexity: 8+ nested CTEs, probability calculations,\
     \ window functions with multiple frame clauses, complex aggregations, percentile\
-    \ calculations\nExpected Output: Query results with detailed cost  metrics\n\n\
-    ---\n\nUse Case: Cloud Network Optimization - Network Cost Analysis\n\nDescription:\
-    \ Enterprise-level network cost analysis with 8+ nested CTEs, network analysis.\
-    \ Demonstrates production patterns for cloud cost .\n\nBusiness Value: Network\
+    \ calculations\n\n---\n\nUse Case: Cloud Cost Optimization - Regional Pricing\
+    \ Optimization with Cross-Region Comparisons Description: Enterprise-level regional\
+    \ pricing optimization with cross-region comparisons with 8+ nested CTEs, cross-region\
+    \ analysis. Demonstrates production patterns for cloud cost .\n\nDescription:\
+    \ Use Case: Cloud Cost Optimization - Regional Pricing Optimization with Cross-Region\
+    \ Comparisons Description: Enterprise-level regional pricing optimization with\
+    \ cross-region comparisons with 8+ nested CTEs, cross-region analysis. Demonstrates\
+    \ production patterns for cloud cost . Business Value: Regional Pricing Optimization\
+    \ with Cross-Region Comparisons report showing cost  metrics and recommendations.\
+    \ Purpose: Provides regional pricing optimization with cross-region comparisons\
+    \ to enable data-d\n\nBusiness Value: Regional Pricing Optimization with Cross-Region\
+    \ Comparisons report showing cost  metrics and recommendations.\n\nPurpose: Provides\
+    \ regional pricing optimization with cross-region comparisons to enable data-d\n\
+    \nComplexity: 8+ nested CTEs, cross-region analysis, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\n\n---\n\nUse Case:\
+    \ Cloud Cost  - Performance-Cost Correlation Analysis with Statistical Modeling\
+    \ Description: Enterprise-level performance-cost correlation analysis with statistical\
+    \ modeling with 8+ nested CTEs, correlation calculations. Demonstrates production\
+    \ patterns for cloud cost .\n\nDescription: Use Case: Cloud Cost  - Performance-Cost\
+    \ Correlation Analysis with Statistical Modeling Description: Enterprise-level\
+    \ performance-cost correlation analysis with statistical modeling with 8+ nested\
+    \ CTEs, correlation calculations. Demonstrates production patterns for cloud cost\
+    \ . Business Value: Performance-Cost Correlation Analysis with Statistical Modeling\
+    \ report showing cost  metrics and recommendations. Purpose: Provides performance-cost\
+    \ correlation analysis with statistical modeling to enable\n\nBusiness Value:\
+    \ Performance-Cost Correlation Analysis with Statistical Modeling report showing\
+    \ cost  metrics and recommendations.\n\nPurpose: Provides performance-cost correlation\
+    \ analysis with statistical modeling to enable\n\nComplexity: 8+ nested CTEs,\
+    \ correlation calculations, window functions with multiple frame clauses, complex\
+    \ aggregations, percentile calculations\n\n---\n\nUse Case: Cloud Cost Optimization\
+    \ - Instance Family Cost Efficiency Ranking Description: Enterprise-level instance\
+    \ family cost efficiency ranking with 8+ nested CTEs, percentile analysis. Demonstrates\
+    \ production patterns for cloud cost .\n\nDescription: Use Case: Cloud Cost Optimization\
+    \ - Instance Family Cost Efficiency Ranking Description: Enterprise-level instance\
+    \ family cost efficiency ranking with 8+ nested CTEs, percentile analysis. Demonstrates\
+    \ production patterns for cloud cost . Business Value: Instance Family Cost Efficiency\
+    \ Ranking report showing cost  metrics and recommendations. Purpose: Provides\
+    \ instance family cost efficiency ranking to enable data-driven cloud cost decisions.\
+    \ Complexity: 8+ nested CTEs, percentile analysis, windo\n\nBusiness Value: Instance\
+    \ Family Cost Efficiency Ranking report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides instance family cost efficiency ranking to enable data-driven\
+    \ cloud cost decisions.\n\nComplexity: 8+ nested CTEs, percentile analysis, window\
+    \ functions with multiple frame clauses, complex aggregations, percentile calculations\n\
+    \n---\n\nUse Case: Cloud Cost Planning - Cost Forecasting with Time-Series Analysis\
+    \ Description: Enterprise-level cost forecasting with time-series analysis with\
+    \ 8+ nested CTEs, time-series. Demonstrates production patterns for cloud cost\
+    \ .\n\nDescription: Use Case: Cloud Cost Planning - Cost Forecasting with Time-Series\
+    \ Analysis Description: Enterprise-level cost forecasting with time-series analysis\
+    \ with 8+ nested CTEs, time-series. Demonstrates production patterns for cloud\
+    \ cost . Business Value: Cost Forecasting with Time-Series Analysis report showing\
+    \ cost  metrics and recommendations. Purpose: Provides cost forecasting with time-series\
+    \ analysis to enable data-driven cloud cost decisions. Complexity: 8+ nested CTEs,\
+    \ time-series, window functi\n\nBusiness Value: Cost Forecasting with Time-Series\
+    \ Analysis report showing cost  metrics and recommendations.\n\nPurpose: Provides\
+    \ cost forecasting with time-series analysis to enable data-driven cloud cost\
+    \ decisions.\n\nComplexity: 8+ nested CTEs, time-series, window functions with\
+    \ multiple frame clauses, complex aggregations, percentile calculations\n\n---\n\
+    \nUse Case: Cloud Migration Planning - Multi-Cloud Migration Cost Analysis Description:\
+    \ Enterprise-level multi-cloud migration cost analysis with 8+ nested CTEs, migration\
+    \ analysis. Demonstrates production patterns for cloud cost .\n\nDescription:\
+    \ Use Case: Cloud Migration Planning - Multi-Cloud Migration Cost Analysis Description:\
+    \ Enterprise-level multi-cloud migration cost analysis with 8+ nested CTEs, migration\
+    \ analysis. Demonstrates production patterns for cloud cost . Business Value:\
+    \ Multi-Cloud Migration Cost Analysis report showing cost  metrics and recommendations.\
+    \ Purpose: Provides multi-cloud migration cost analysis to enable data-driven\
+    \ cloud cost decisions. Complexity: 8+ nested CTEs, migration analysis, window\
+    \ functions with\n\nBusiness Value: Multi-Cloud Migration Cost Analysis report\
+    \ showing cost  metrics and recommendations.\n\nPurpose: Provides multi-cloud\
+    \ migration cost analysis to enable data-driven cloud cost decisions.\n\nComplexity:\
+    \ 8+ nested CTEs, migration analysis, window functions with multiple frame clauses,\
+    \ complex aggregations, percentile calculations\n\n---\n\nUse Case: Cloud Financial\
+    \ Planning - Long-Term Cost Projections with DCF Analysis Description: Enterprise-level\
+    \ long-term cost projections with dcf analysis with 8+ nested CTEs, financial\
+    \ modeling. Demonstrates production patterns for cloud cost .\n\nDescription:\
+    \ Use Case: Cloud Financial Planning - Long-Term Cost Projections with DCF Analysis\
+    \ Description: Enterprise-level long-term cost projections with dcf analysis with\
+    \ 8+ nested CTEs, financial modeling. Demonstrates production patterns for cloud\
+    \ cost . Business Value: Long-Term Cost Projections with DCF Analysis report showing\
+    \ cost  metrics and recommendations. Purpose: Provides long-term cost projections\
+    \ with dcf analysis to enable data-driven cloud cost decisions. Complexity: 8+\
+    \ nested CTEs, financ\n\nBusiness Value: Long-Term Cost Projections with DCF Analysis\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides long-term\
+    \ cost projections with dcf analysis to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, financial modeling, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\n\n---\n\nUse Case:\
+    \ Cloud Cost Optimization - Instance Right-Sizing Recommendations Description:\
+    \ Enterprise-level instance right-sizing recommendations with 8+ nested CTEs,\
+    \ workload matching. Demonstrates production patterns for cloud cost .\n\nDescription:\
+    \ Use Case: Cloud Cost Optimization - Instance Right-Sizing Recommendations Description:\
+    \ Enterprise-level instance right-sizing recommendations with 8+ nested CTEs,\
+    \ workload matching. Demonstrates production patterns for cloud cost . Business\
+    \ Value: Instance Right-Sizing Recommendations report showing cost  metrics and\
+    \ recommendations. Purpose: Provides instance right-sizing recommendations to\
+    \ enable data-driven cloud cost decisions. Complexity: 8+ nested CTEs, workload\
+    \ matching, window functions\n\nBusiness Value: Instance Right-Sizing Recommendations\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides instance\
+    \ right-sizing recommendations to enable data-driven cloud cost decisions.\n\n\
+    Complexity: 8+ nested CTEs, workload matching, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile calculations\n\n---\n\nUse Case:\
+    \ Cloud Cost Monitoring - Cost Anomaly Detection with Statistical Analysis Description:\
+    \ Enterprise-level cost anomaly detection with statistical analysis with 8+ nested\
+    \ CTEs, outlier detection. Demonstrates production patterns for cloud cost .\n\
+    \nDescription: Use Case: Cloud Cost Monitoring - Cost Anomaly Detection with Statistical\
+    \ Analysis Description: Enterprise-level cost anomaly detection with statistical\
+    \ analysis with 8+ nested CTEs, outlier detection. Demonstrates production patterns\
+    \ for cloud cost . Business Value: Cost Anomaly Detection with Statistical Analysis\
+    \ report showing cost  metrics and recommendations. Purpose: Provides cost anomaly\
+    \ detection with statistical analysis to enable data-driven cloud cost decisions.\
+    \ Complexity: 8+ nested\n\nBusiness Value: Cost Anomaly Detection with Statistical\
+    \ Analysis report showing cost  metrics and recommendations.\n\nPurpose: Provides\
+    \ cost anomaly detection with statistical analysis to enable data-driven cloud\
+    \ cost decisions.\n\nComplexity: 8+ nested CTEs, outlier detection, window functions\
+    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
+    \n---\n\nUse Case: Cloud Procurement - Reserved Instance Purchase Optimization\
+    \ Description: Enterprise-level reserved instance purchase optimization with 8+\
+    \ nested CTEs, usage analysis. Demonstrates production patterns for cloud cost\
+    \ .\n\nDescription: Use Case: Cloud Procurement - Reserved Instance Purchase Optimization\
+    \ Description: Enterprise-level reserved instance purchase optimization with 8+\
+    \ nested CTEs, usage analysis. Demonstrates production patterns for cloud cost\
+    \ . Business Value: Reserved Instance Purchase Optimization report showing cost\
+    \  metrics and recommendations. Purpose: Provides reserved instance purchase optimization\
+    \ to enable data-driven cloud cost decisions. Complexity: 8+ nested CTEs, usage\
+    \ analysis, window functions with\n\nBusiness Value: Reserved Instance Purchase\
+    \ Optimization report showing cost  metrics and recommendations.\n\nPurpose: Provides\
+    \ reserved instance purchase optimization to enable data-driven cloud cost decisions.\n\
+    \nComplexity: 8+ nested CTEs, usage analysis, window functions with multiple frame\
+    \ clauses, complex aggregations, percentile calculations\n\n---\n\nUse Case: Cloud\
+    \ Risk Management - Spot Instance Interruption Risk Analysis Description: Enterprise-level\
+    \ spot instance interruption risk analysis with 8+ nested CTEs, risk modeling.\
+    \ Demonstrates production patterns for cloud cost .\n\nDescription: Use Case:\
+    \ Cloud Risk Management - Spot Instance Interruption Risk Analysis Description:\
+    \ Enterprise-level spot instance interruption risk analysis with 8+ nested CTEs,\
+    \ risk modeling. Demonstrates production patterns for cloud cost . Business Value:\
+    \ Spot Instance Interruption Risk Analysis report showing cost  metrics and recommendations.\
+    \ Purpose: Provides spot instance interruption risk analysis to enable data-driven\
+    \ cloud cost decisions. Complexity: 8+ nested CTEs, risk modeling, window function\n\
+    \nBusiness Value: Spot Instance Interruption Risk Analysis report showing cost\
+    \  metrics and recommendations.\n\nPurpose: Provides spot instance interruption\
+    \ risk analysis to enable data-driven cloud cost decisions.\n\nComplexity: 8+\
+    \ nested CTEs, risk modeling, window functions with multiple frame clauses, complex\
+    \ aggregations, percentile calculations\n\n---\n\nUse Case: Cloud Migration Planning\
+    \ - Cross-Provider Instance Matching Description: Enterprise-level cross-provider\
+    \ instance matching with 8+ nested CTEs, similarity scoring. Demonstrates production\
+    \ patterns for cloud cost .\n\nDescription: Use Case: Cloud Migration Planning\
+    \ - Cross-Provider Instance Matching Description: Enterprise-level cross-provider\
+    \ instance matching with 8+ nested CTEs, similarity scoring. Demonstrates production\
+    \ patterns for cloud cost . Business Value: Cross-Provider Instance Matching report\
+    \ showing cost  metrics and recommendations. Purpose: Provides cross-provider\
+    \ instance matching to enable data-driven cloud cost decisions. Complexity: 8+\
+    \ nested CTEs, similarity scoring, window functions with multiple fra\n\nBusiness\
+    \ Value: Cross-Provider Instance Matching report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides cross-provider instance matching to enable data-driven cloud\
+    \ cost decisions.\n\nComplexity: 8+ nested CTEs, similarity scoring, window functions\
+    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
+    \n---\n\nUse Case: Cloud Optimization - Cost-Performance Pareto Frontier Analysis\
+    \ Description: Enterprise-level cost-performance pareto frontier analysis with\
+    \ 8+ nested CTEs, Pareto analysis. Demonstrates production patterns for cloud\
+    \ cost .\n\nDescription: Use Case: Cloud Optimization - Cost-Performance Pareto\
+    \ Frontier Analysis Description: Enterprise-level cost-performance pareto frontier\
+    \ analysis with 8+ nested CTEs, Pareto analysis. Demonstrates production patterns\
+    \ for cloud cost . Business Value: Cost-Performance Pareto Frontier Analysis report\
+    \ showing cost  metrics and recommendations. Purpose: Provides cost-performance\
+    \ pareto frontier analysis to enable data-driven cloud cost decisions. Complexity:\
+    \ 8+ nested CTEs, Pareto analysis, window fun\n\nBusiness Value: Cost-Performance\
+    \ Pareto Frontier Analysis report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides cost-performance pareto frontier analysis to enable data-driven\
+    \ cloud cost decisions.\n\nComplexity: 8+ nested CTEs, Pareto analysis, window\
+    \ functions with multiple frame clauses, complex aggregations, percentile calculations\n\
+    \n---\n\nUse Case: Cloud Planning - Instance Deprecation Impact Analysis Description:\
+    \ Enterprise-level instance deprecation impact analysis with 8+ nested CTEs, deprecation\
+    \ analysis. Demonstrates production patterns for cloud cost .\n\nDescription:\
+    \ Use Case: Cloud Planning - Instance Deprecation Impact Analysis Description:\
+    \ Enterprise-level instance deprecation impact analysis with 8+ nested CTEs, deprecation\
+    \ analysis. Demonstrates production patterns for cloud cost . Business Value:\
+    \ Instance Deprecation Impact Analysis report showing cost  metrics and recommendations.\
+    \ Purpose: Provides instance deprecation impact analysis to enable data-driven\
+    \ cloud cost decisions. Complexity: 8+ nested CTEs, deprecation analysis, window\
+    \ functions with mu\n\nBusiness Value: Instance Deprecation Impact Analysis report\
+    \ showing cost  metrics and recommendations.\n\nPurpose: Provides instance deprecation\
+    \ impact analysis to enable data-driven cloud cost decisions.\n\nComplexity: 8+\
+    \ nested CTEs, deprecation analysis, window functions with multiple frame clauses,\
+    \ complex aggregations, percentile calculations\n\n---\n\nUse Case: Cloud Cost\
+    \ Optimization - Burstable Instance Cost Analysis Description: Enterprise-level\
+    \ burstable instance cost analysis with 8+ nested CTEs, baseline modeling. Demonstrates\
+    \ production patterns for cloud cost .\n\nDescription: Use Case: Cloud Cost Optimization\
+    \ - Burstable Instance Cost Analysis Description: Enterprise-level burstable instance\
+    \ cost analysis with 8+ nested CTEs, baseline modeling. Demonstrates production\
+    \ patterns for cloud cost . Business Value: Burstable Instance Cost Analysis report\
+    \ showing cost  metrics and recommendations. Purpose: Provides burstable instance\
+    \ cost analysis to enable data-driven cloud cost decisions. Complexity: 8+ nested\
+    \ CTEs, baseline modeling, window functions with multiple frame\n\nBusiness Value:\
+    \ Burstable Instance Cost Analysis report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides burstable instance cost analysis to enable data-driven cloud\
+    \ cost decisions.\n\nComplexity: 8+ nested CTEs, baseline modeling, window functions\
+    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
+    \n---\n\nUse Case: Cloud ML/AI Cost Optimization - GPU Instance Cost Analysis\
+    \ Description: Enterprise-level gpu instance cost analysis with 8+ nested CTEs,\
+    \ GPU analysis. Demonstrates production patterns for cloud cost .\n\nDescription:\
+    \ Use Case: Cloud ML/AI Cost Optimization - GPU Instance Cost Analysis Description:\
+    \ Enterprise-level gpu instance cost analysis with 8+ nested CTEs, GPU analysis.\
+    \ Demonstrates production patterns for cloud cost . Business Value: GPU Instance\
+    \ Cost Analysis report showing cost  metrics and recommendations. Purpose: Provides\
+    \ gpu instance cost analysis to enable data-driven cloud cost decisions. Complexity:\
+    \ 8+ nested CTEs, GPU analysis, window functions with multiple frame clauses,\
+    \ complex aggregation\n\nBusiness Value: GPU Instance Cost Analysis report showing\
+    \ cost  metrics and recommendations.\n\nPurpose: Provides gpu instance cost analysis\
+    \ to enable data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, GPU\
+    \ analysis, window functions with multiple frame clauses, complex aggregations,\
+    \ percentile calculations\n\n---\n\nUse Case: Cloud Storage Optimization - Storage\
+    \ Cost Optimization Description: Enterprise-level storage cost optimization with\
+    \ 8+ nested CTEs, storage analysis. Demonstrates production patterns for cloud\
+    \ cost .\n\nDescription: Use Case: Cloud Storage Optimization - Storage Cost Optimization\
+    \ Description: Enterprise-level storage cost optimization with 8+ nested CTEs,\
+    \ storage analysis. Demonstrates production patterns for cloud cost . Business\
+    \ Value: Storage Cost Optimization report showing cost  metrics and recommendations.\
+    \ Purpose: Provides storage cost optimization to enable data-driven cloud cost\
+    \ decisions. Complexity: 8+ nested CTEs, storage analysis, window functions with\
+    \ multiple frame clauses, complex aggregatio\n\nBusiness Value: Storage Cost Optimization\
+    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides storage\
+    \ cost optimization to enable data-driven cloud cost decisions.\n\nComplexity:\
+    \ 8+ nested CTEs, storage analysis, window functions with multiple frame clauses,\
+    \ complex aggregations, percentile calculations\n\n---\n\nUse Case: Cloud Network\
+    \ Optimization - Network Cost Analysis Description: Enterprise-level network cost\
+    \ analysis with 8+ nested CTEs, network analysis. Demonstrates production patterns\
+    \ for cloud cost .\n\nDescription: Use Case: Cloud Network Optimization - Network\
+    \ Cost Analysis Description: Enterprise-level network cost analysis with 8+ nested\
+    \ CTEs, network analysis. Demonstrates production patterns for cloud cost . Business\
+    \ Value: Network Cost Analysis report showing cost  metrics and recommendations.\
+    \ Purpose: Provides network cost analysis to enable data-driven cloud cost decisions.\
+    \ Complexity: 8+ nested CTEs, network analysis, window functions with multiple\
+    \ frame clauses, complex aggregations, percentile c\n\nBusiness Value: Network\
     \ Cost Analysis report showing cost  metrics and recommendations.\n\nPurpose:\
     \ Provides network cost analysis to enable data-driven cloud cost decisions.\n\
     \nComplexity: 8+ nested CTEs, network analysis, window functions with multiple\
-    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
-    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Financial\
-    \ Management - Cost Allocation Analysis\n\nDescription: Enterprise-level cost\
-    \ allocation analysis with 8+ nested CTEs, allocation calculations. Demonstrates\
-    \ production patterns for cloud cost .\n\nBusiness Value: Cost Allocation Analysis\
-    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides cost\
-    \ allocation analysis to enable data-driven cloud cost decisions.\n\nComplexity:\
-    \ 8+ nested CTEs, allocation calculations, window functions with multiple frame\
-    \ clauses, complex aggregations, percentile calculations\nExpected Output: Query\
-    \ results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Lifecycle Management\
-    \ - Instance Lifecycle Cost Analysis\n\nDescription: Enterprise-level instance\
-    \ lifecycle cost analysis with 8+ nested CTEs, lifecycle tracking. Demonstrates\
-    \ production patterns for cloud cost .\n\nBusiness Value: Instance Lifecycle Cost\
-    \ Analysis report showing cost  metrics and recommendations.\n\nPurpose: Provides\
-    \ instance lifecycle cost analysis to enable data-driven cloud cost decisions.\n\
+    \ frame clauses, complex aggregations, percentile calculations\n\n---\n\nUse Case:\
+    \ Cloud Financial Management - Cost Allocation Analysis Description: Enterprise-level\
+    \ cost allocation analysis with 8+ nested CTEs, allocation calculations. Demonstrates\
+    \ production patterns for cloud cost .\n\nDescription: Use Case: Cloud Financial\
+    \ Management - Cost Allocation Analysis Description: Enterprise-level cost allocation\
+    \ analysis with 8+ nested CTEs, allocation calculations. Demonstrates production\
+    \ patterns for cloud cost . Business Value: Cost Allocation Analysis report showing\
+    \ cost  metrics and recommendations. Purpose: Provides cost allocation analysis\
+    \ to enable data-driven cloud cost decisions. Complexity: 8+ nested CTEs, allocation\
+    \ calculations, window functions with multiple frame clauses, complex\n\nBusiness\
+    \ Value: Cost Allocation Analysis report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides cost allocation analysis to enable data-driven cloud cost\
+    \ decisions.\n\nComplexity: 8+ nested CTEs, allocation calculations, window functions\
+    \ with multiple frame clauses, complex aggregations, percentile calculations\n\
+    \n---\n\nUse Case: Cloud Lifecycle Management - Instance Lifecycle Cost Analysis\
+    \ Description: Enterprise-level instance lifecycle cost analysis with 8+ nested\
+    \ CTEs, lifecycle tracking. Demonstrates production patterns for cloud cost .\n\
+    \nDescription: Use Case: Cloud Lifecycle Management - Instance Lifecycle Cost\
+    \ Analysis Description: Enterprise-level instance lifecycle cost analysis with\
+    \ 8+ nested CTEs, lifecycle tracking. Demonstrates production patterns for cloud\
+    \ cost . Business Value: Instance Lifecycle Cost Analysis report showing cost\
+    \  metrics and recommendations. Purpose: Provides instance lifecycle cost analysis\
+    \ to enable data-driven cloud cost decisions. Complexity: 8+ nested CTEs, lifecycle\
+    \ tracking, window functions with multiple f\n\nBusiness Value: Instance Lifecycle\
+    \ Cost Analysis report showing cost  metrics and recommendations.\n\nPurpose:\
+    \ Provides instance lifecycle cost analysis to enable data-driven cloud cost decisions.\n\
     \nComplexity: 8+ nested CTEs, lifecycle tracking, window functions with multiple\
-    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
-    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Cost  -\
-    \ Cost Optimization Score Calculation\n\nDescription: Enterprise-level cost optimization\
-    \ score calculation with 8+ nested CTEs, scoring algorithms. Demonstrates production\
-    \ patterns for cloud cost .\n\nBusiness Value: Cost Optimization Score Calculation\
-    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides cost\
-    \ optimization score calculation to enable data-driven cloud cost decisions.\n\
-    \nComplexity: 8+ nested CTEs, scoring algorithms, window functions with multiple\
-    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
-    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud  - Instance\
-    \ Comparison Matrix Generation\n\nDescription: Enterprise-level instance comparison\
+    \ frame clauses, complex aggregations, percentile calculations\n\n---\n\nUse Case:\
+    \ Cloud Cost  - Cost Optimization Score Calculation Description: Enterprise-level\
+    \ cost optimization score calculation with 8+ nested CTEs, scoring algorithms.\
+    \ Demonstrates production patterns for cloud cost .\n\nDescription: Use Case:\
+    \ Cloud Cost  - Cost Optimization Score Calculation Description: Enterprise-level\
+    \ cost optimization score calculation with 8+ nested CTEs, scoring algorithms.\
+    \ Demonstrates production patterns for cloud cost . Business Value: Cost Optimization\
+    \ Score Calculation report showing cost  metrics and recommendations. Purpose:\
+    \ Provides cost optimization score calculation to enable data-driven cloud cost\
+    \ decisions. Complexity: 8+ nested CTEs, scoring algorithms, window functions\
+    \ with multiple fram\n\nBusiness Value: Cost Optimization Score Calculation report\
+    \ showing cost  metrics and recommendations.\n\nPurpose: Provides cost optimization\
+    \ score calculation to enable data-driven cloud cost decisions.\n\nComplexity:\
+    \ 8+ nested CTEs, scoring algorithms, window functions with multiple frame clauses,\
+    \ complex aggregations, percentile calculations\n\n---\n\nUse Case: Cloud  - Instance\
+    \ Comparison Matrix Generation Description: Enterprise-level instance comparison\
     \ matrix generation with 8+ nested CTEs, matrix generation. Demonstrates production\
-    \ patterns for cloud cost .\n\nBusiness Value: Instance Comparison Matrix Generation\
-    \ report showing cost  metrics and recommendations.\n\nPurpose: Provides instance\
-    \ comparison matrix generation to enable data-driven cloud cost decisions.\n\n\
-    Complexity: 8+ nested CTEs, matrix generation, window functions with multiple\
-    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
-    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Cost  -\
-    \ Recursive Instance Dependency Graph Analysis\n\nDescription: Enterprise-level\
-    \ recursive instance dependency graph analysis with Recursive CTE, 8+ nested CTEs,\
-    \ graph traversal. Demonstrates production patterns for cloud cost .\n\nBusiness\
-    \ Value: Recursive Instance Dependency Graph Analysis report showing cost  metrics\
-    \ and recommendations.\n\nPurpose: Provides recursive instance dependency graph\
-    \ analysis to enable data-driven cloud cost decisions.\n\nComplexity: Recursive\
-    \ CTE, 8+ nested CTEs, graph traversal, window functions with multiple frame clauses,\
-    \ complex aggregations, percentile calculations\nExpected Output: Query results\
-    \ with detailed cost  metrics\n\n---\n\nUse Case: Cloud Cost Optimization - Reserved\
-    \ Instance Utilization Analysis\n\nDescription: Enterprise-level reserved instance\
-    \ utilization analysis with 8+ nested CTEs, utilization tracking. Demonstrates\
-    \ production patterns for cloud cost .\n\nBusiness Value: Reserved Instance Utilization\
-    \ Analysis report showing cost  metrics and recommendations.\n\nPurpose: Provides\
-    \ reserved instance utilization analysis to enable data-driven cloud cost decisions.\n\
-    \nComplexity: 8+ nested CTEs, utilization tracking, window functions with multiple\
-    \ frame clauses, complex aggregations, percentile calculations\nExpected Output:\
-    \ Query results with detailed cost  metrics\n\n---\n\nUse Case: Cloud Risk Management\
-    \ - Spot Instance Price Volatility Analysis\n\nDescription: Enterprise-level spot\
-    \ instance price volatility analysis with 8+ nested CTEs, volatility calculations.\
-    \ Demonstrates production patterns for cloud cost .\n\nBusiness Value: Spot Instance\
-    \ Price Volatility Analysis report showing cost  metrics and recommendations.\n\
-    \nPurpose: Provides spot instance price volatility analysis to enable data-driven\
-    \ cloud cost decisions.\n\nComplexity: 8+ nested CTEs, volatility calculations,\
+    \ patterns for cloud cost .\n\nDescription: Use Case: Cloud  - Instance Comparison\
+    \ Matrix Generation Description: Enterprise-level instance comparison matrix generation\
+    \ with 8+ nested CTEs, matrix generation. Demonstrates production patterns for\
+    \ cloud cost . Business Value: Instance Comparison Matrix Generation report showing\
+    \ cost  metrics and recommendations. Purpose: Provides instance comparison matrix\
+    \ generation to enable data-driven cloud cost decisions. Complexity: 8+ nested\
+    \ CTEs, matrix generation, window functions with multiple fra\n\nBusiness Value:\
+    \ Instance Comparison Matrix Generation report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides instance comparison matrix generation to enable data-driven\
+    \ cloud cost decisions.\n\nComplexity: 8+ nested CTEs, matrix generation, window\
+    \ functions with multiple frame clauses, complex aggregations, percentile calculations\n\
+    \n---\n\nUse Case: Cloud Cost  - Recursive Instance Dependency Graph Analysis\
+    \ Description: Enterprise-level recursive instance dependency graph analysis with\
+    \ Recursive CTE, 8+ nested CTEs, graph traversal. Demonstrates production patterns\
+    \ for cloud cost .\n\nDescription: Use Case: Cloud Cost  - Recursive Instance\
+    \ Dependency Graph Analysis Description: Enterprise-level recursive instance dependency\
+    \ graph analysis with Recursive CTE, 8+ nested CTEs, graph traversal. Demonstrates\
+    \ production patterns for cloud cost . Business Value: Recursive Instance Dependency\
+    \ Graph Analysis report showing cost  metrics and recommendations. Purpose: Provides\
+    \ recursive instance dependency graph analysis to enable data-driven cloud cost\
+    \ decisions. Complexity: Recursive CTE, 8+ neste\n\nBusiness Value: Recursive\
+    \ Instance Dependency Graph Analysis report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides recursive instance dependency graph analysis to enable data-driven\
+    \ cloud cost decisions.\n\nComplexity: Recursive CTE, 8+ nested CTEs, graph traversal,\
     \ window functions with multiple frame clauses, complex aggregations, percentile\
-    \ calculations\nExpected Output: Query results with detailed cost  metrics\n\n\
-    ---\n\nUse Case: Cloud Global Optimization - Cross-Region Cost Comparison\n\n\
-    Description: Enterprise-level cross-region cost comparison with 8+ nested CTEs,\
-    \ cross-region analysis. Demonstrates production patterns for cloud cost .\n\n\
-    Business Value: Cross-Region Cost Comparison report showing cost  metrics and\
-    \ recommendations.\n\nPurpose: Provides cross-region cost comparison to enable\
-    \ data-driven cloud cost decisions.\n\nComplexity: 8+ nested CTEs, cross-region\
-    \ analysis, window functions with multiple frame clauses, complex aggregations,\
-    \ percentile calculations\nExpected Output: Query results with detailed cost \
-    \ metrics\n\n---\n\nUse Case: Cloud Cost  - Comprehensive Cost  Dashboard\n\n\
-    Description: Enterprise-level comprehensive cost  dashboard with 9+ nested CTEs,\
-    \ multi-metric aggregation. Demonstrates production patterns for cloud cost .\n\
-    \nBusiness Value: Comprehensive Cost  Dashboard report showing cost  metrics and\
-    \ recommendations.\n\nPurpose: Provides comprehensive cost  dashboard to enable\
+    \ calculations\n\n---\n\nUse Case: Cloud Cost Optimization - Reserved Instance\
+    \ Utilization Analysis Description: Enterprise-level reserved instance utilization\
+    \ analysis with 8+ nested CTEs, utilization tracking. Demonstrates production\
+    \ patterns for cloud cost .\n\nDescription: Use Case: Cloud Cost Optimization\
+    \ - Reserved Instance Utilization Analysis Description: Enterprise-level reserved\
+    \ instance utilization analysis with 8+ nested CTEs, utilization tracking. Demonstrates\
+    \ production patterns for cloud cost . Business Value: Reserved Instance Utilization\
+    \ Analysis report showing cost  metrics and recommendations. Purpose: Provides\
+    \ reserved instance utilization analysis to enable data-driven cloud cost decisions.\
+    \ Complexity: 8+ nested CTEs, utilization tracking, window\n\nBusiness Value:\
+    \ Reserved Instance Utilization Analysis report showing cost  metrics and recommendations.\n\
+    \nPurpose: Provides reserved instance utilization analysis to enable data-driven\
+    \ cloud cost decisions.\n\nComplexity: 8+ nested CTEs, utilization tracking, window\
+    \ functions with multiple frame clauses, complex aggregations, percentile calculations\n\
+    \n---\n\nUse Case: Cloud Risk Management - Spot Instance Price Volatility Analysis\
+    \ Description: Enterprise-level spot instance price volatility analysis with 8+\
+    \ nested CTEs, volatility calculations. Demonstrates production patterns for cloud\
+    \ cost .\n\nDescription: Use Case: Cloud Risk Management - Spot Instance Price\
+    \ Volatility Analysis Description: Enterprise-level spot instance price volatility\
+    \ analysis with 8+ nested CTEs, volatility calculations. Demonstrates production\
+    \ patterns for cloud cost . Business Value: Spot Instance Price Volatility Analysis\
+    \ report showing cost  metrics and recommendations. Purpose: Provides spot instance\
+    \ price volatility analysis to enable data-driven cloud cost decisions. Complexity:\
+    \ 8+ nested CTEs, volatility calculations,\n\nBusiness Value: Spot Instance Price\
+    \ Volatility Analysis report showing cost  metrics and recommendations.\n\nPurpose:\
+    \ Provides spot instance price volatility analysis to enable data-driven cloud\
+    \ cost decisions.\n\nComplexity: 8+ nested CTEs, volatility calculations, window\
+    \ functions with multiple frame clauses, complex aggregations, percentile calculations\n\
+    \n---\n\nUse Case: Cloud Global Optimization - Cross-Region Cost Comparison Description:\
+    \ Enterprise-level cross-region cost comparison with 8+ nested CTEs, cross-region\
+    \ analysis. Demonstrates production patterns for cloud cost .\n\nDescription:\
+    \ Use Case: Cloud Global Optimization - Cross-Region Cost Comparison Description:\
+    \ Enterprise-level cross-region cost comparison with 8+ nested CTEs, cross-region\
+    \ analysis. Demonstrates production patterns for cloud cost . Business Value:\
+    \ Cross-Region Cost Comparison report showing cost  metrics and recommendations.\
+    \ Purpose: Provides cross-region cost comparison to enable data-driven cloud cost\
+    \ decisions. Complexity: 8+ nested CTEs, cross-region analysis, window functions\
+    \ with multiple frame clause\n\nBusiness Value: Cross-Region Cost Comparison report\
+    \ showing cost  metrics and recommendations.\n\nPurpose: Provides cross-region\
+    \ cost comparison to enable data-driven cloud cost decisions.\n\nComplexity: 8+\
+    \ nested CTEs, cross-region analysis, window functions with multiple frame clauses,\
+    \ complex aggregations, percentile calculations\n\n---\n\nUse Case: Cloud Cost\
+    \  - Comprehensive Cost  Dashboard Description: Enterprise-level comprehensive\
+    \ cost  dashboard with 9+ nested CTEs, multi-metric aggregation. Demonstrates\
+    \ production patterns for cloud cost .\n\nDescription: Use Case: Cloud Cost  -\
+    \ Comprehensive Cost  Dashboard Description: Enterprise-level comprehensive cost\
+    \  dashboard with 9+ nested CTEs, multi-metric aggregation. Demonstrates production\
+    \ patterns for cloud cost . Business Value: Comprehensive Cost  Dashboard report\
+    \ showing cost  metrics and recommendations. Purpose: Provides comprehensive cost\
+    \  dashboard to enable data-driven cloud cost decisions. Complexity: 9+ nested\
+    \ CTEs, multi-metric aggregation, window functions with multiple frame clauses,\
+    \ c\n\nBusiness Value: Comprehensive Cost  Dashboard report showing cost  metrics\
+    \ and recommendations.\n\nPurpose: Provides comprehensive cost  dashboard to enable\
     \ data-driven cloud cost decisions.\n\nComplexity: 9+ nested CTEs, multi-metric\
     \ aggregation, window functions with multiple frame clauses, complex aggregations,\
-    \ percentile calculations\nExpected Output: Query results with detailed cost \
-    \ metrics\n\n---\n\n1. Database Access: Ensure you have access to the database\
-    \ instance (PostgreSQL)\n2. Credentials: Obtain database connection credentials\n\
-    3. Schema: Ensure all tables are created and populated with data\n\n1. Open Query\
-    \ File: Navigate to `queries/queries.md`\n2. Select Query: Choose the query number\
-    \ you want to execute\n3. Review Business Case: Understand the use case and expected\
-    \ output\n4. Copy SQL: Copy the SQL code from the code block\n5. Execute: Run\
-    \ the query in your database client:\n   - PostgreSQL: Use `psql` or pgAdmin\n\
-    \   - , : Use, SQL editor or notebook\n   - , : Use, web interface or SnowSQL\n\
-    \n- Each query includes a \"Use Case\" section explaining the real-world application\n\
-    - Review the \"Business Value\" section to understand what the query produces\n\
-    - Check the \"Expected Output\" section for result set descriptions\n- Cost queries\
-    \ return pricing and optimization recommendations\n\n1. Create Tables: Execute\
-    \ the schema creation scripts from `data/schema.sql`\n2. Create Indexes: Ensure\
-    \ all indexes are created for optimal performance\n3. Load Data: Populate tables\
-    \ with cloud instance data:\n   - Provider and region metadata\n   - Instance\
+    \ percentile calculations\n\n---\n\n1. Database Access: Ensure you have access\
+    \ to the database instance (PostgreSQL)\n2. Credentials: Obtain database connection\
+    \ credentials\n3. Schema: Ensure all tables are created and populated with data\n\
+    \n1. Open Query File: Navigate to `queries/queries.md`\n2. Select Query: Choose\
+    \ the query number you want to execute\n3. Review Business Case: Understand the\
+    \ use case and expected output\n4. Copy SQL: Copy the SQL code from the code block\n\
+    5. Execute: Run the query in your database client:\n   - PostgreSQL: Use `psql`\
+    \ or pgAdmin\n   - , : Use, SQL editor or notebook\n   - , : Use, web interface\
+    \ or SnowSQL\n\n- Each query includes a \"Use Case\" section explaining the real-world\
+    \ application\n- Review the \"Business Value\" section to understand what the\
+    \ query produces\n- Check the \"Expected Output\" section for result set descriptions\n\
+    - Cost queries return pricing and optimization recommendations\n\n1. Create Tables:\
+    \ Execute the schema creation scripts from `data/schema.sql`\n2. Create Indexes:\
+    \ Ensure all indexes are created for optimal performance\n3. Load Data: Populate\
+    \ tables with cloud instance data:\n   - Provider and region metadata\n   - Instance\
     \ specifications\n   - Pricing data\n   - Performance metrics\n4. Verify: Run\
     \ validation queries to ensure data integrity\n\n- Indexes: Critical for query\
     \ performance (indexes on provider_id, region_id, instance_id)\n- Partitioning:\
@@ -327,7 +482,7 @@ info:
     \ designed to work across multiple database platforms:\n\n- PostgreSQL: Full support\
     \ with standard SQL features\n\nQueries use standard SQL syntax and avoid platform-specific\
     \ features to ensure compatibility.\n\n---\n\nDocument Information:\n\n- Generated:\
-    \ 20260214-0148\n- Database: db-14\n- Type: Cloud Instance Cost Database\n- Queries:\
+    \ 20260214-1523\n- Database: db-14\n- Type: Cloud Instance Cost Database\n- Queries:\
     \ 30 production queries\n- Status: ✅ Complete Comprehensive Deliverable"
   version: 1.0.0
   contact:

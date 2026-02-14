@@ -216,11 +216,14 @@ class ValidationRunner:
         # Phase 2 & 4: Syntax Validation and Comprehensive Evaluation
         print(f"\n[Phase 2 & 4] Syntax validation and comprehensive evaluation...")
         try:
-            validator_script = scripts_dir / 'comprehensive_validator.py'
+            # Prefer root shared validator (uses queries.json, db_paths)
+            root_validator = self.root_dir / 'scripts' / 'comprehensive_validator.py'
+            validator_script = root_validator if root_validator.exists() else (scripts_dir / 'comprehensive_validator.py')
             if validator_script.exists():
+                args = [sys.executable, str(validator_script), str(db_num)] if validator_script == root_validator else [sys.executable, str(validator_script)]
                 proc = subprocess.run(
-                    [sys.executable, str(validator_script)],
-                    cwd=str(db_dir),
+                    args,
+                    cwd=str(self.root_dir if validator_script == root_validator else db_dir),
                     env=_db_script_env(),
                     capture_output=True,
                     text=True

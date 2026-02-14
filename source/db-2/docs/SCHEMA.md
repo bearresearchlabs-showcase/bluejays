@@ -1,5 +1,7 @@
 # LUCASA Database Schema Documentation
 
+> **db-2 deliverable note:** The db-2 deliverable uses a minimal 8-table subset of this schema: `phppos_people`, `phppos_employees`, `phppos_employees_locations`, `phppos_items`, `phppos_locations`, `phppos_location_items`, `phppos_sales`. See `data/schema.sql` for the ACID-compliant PostgreSQL schema.
+
 ## Database Overview
 
 **Database Name:** LUCASA Mini-Supermarket POS System

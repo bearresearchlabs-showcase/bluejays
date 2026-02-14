@@ -1362,24 +1362,17 @@ info:
     for Energy Consultants
 
 
-    Description: Enterprise-level electricity rate analysis with multi-level CTE nesting,
-    geographic aggregations, rate code classifications, utility comparisons, and advanced
-    window functions. Demonstrates production patterns used by energy consulting firms
-    and utility rate intelligence platforms.
-
-
-    Use Case: Utility Rate Analysis Platform - Comprehensive Rate Analysis Dashboard
-    for Energy Consultants
+    Description: Description: Enterprise-level electricity rate analysis with multi-level
+    CTE nesting, geographic aggregations, rate code classifications, utility comparisons,
+    and advanced window functions. Demonstrates production patterns used by energy
+    consulting firms and utility rate intelligence platforms. Use Case: Utility Rate
+    Analysis Platform - Comprehensive Rate Analysis Dashboard for Energy Consultants
+    Business Value: Comprehensive rate analysis report showing rates by state, utility,
+    rate code, and g
 
 
     Business Value: Comprehensive rate analysis report showing rates by state, utility,
-    rate code, and geographic region with cost comparisons, rate trends, and market
-    intelligence. Enables energy consultants to provide data-driven rate recommendations
-    to clients.
-
-
-    Purpose: Quantifies electricity rate variations across geographic regions and
-    rate codes, enabling comprehensive cost intelligence for energy decision-making.
+    rate code, and g
 
 
     Complexity: Deep nested CTEs (7+ levels), geographic aggregations, complex joins
@@ -1387,10 +1380,6 @@ info:
     calculations, rate trend analysis, correlated subqueries
 
 
-    Expected Output: Comprehensive rate analysis with geographic aggregations, rate
-    code classifications, utility comparisons, and cost intelligence metrics.
-
-
     ---
 
 
@@ -1398,25 +1387,16 @@ info:
     Commercial Energy Management
 
 
-    Description: Enterprise-level recursive rate structure analysis using recursive
-    CTE for tiered rate calculations, time-of-use period analysis, rate optimization
-    scenarios, and multi-level rate structure traversal. Implements production patterns
-    for analyzing complex rate structures with multiple tiers and TOU periods.
-
-
+    Description: Description: Enterprise-level recursive rate structure analysis using
+    recursive CTE for tiered rate calculations, time-of-use period analysis, rate
+    optimization scenarios, and multi-level rate structure traversal. Implements production
+    patterns for analyzing complex rate structures with multiple tiers and TOU periods.
     Use Case: Energy Cost Optimization Platform - Tiered Rate and TOU Analysis for
-    Commercial Energy Management
+    Commercial Energy Management Business Value: Comprehensive tiered rate and TOU
+    analysis showing optim
 
 
-    Business Value: Comprehensive tiered rate and TOU analysis showing optimal rate
-    selection based on usage patterns, tier thresholds, and time-of-use periods. Enables
-    commercial energy managers to optimize electricity costs through strategic rate
-    selection and usage pattern adjustments.
-
-
-    Purpose: Provides detailed analysis of tiered and TOU rate structures enabling
-    clients to optimize electricity costs through usage pattern optimization and rate
-    selection.
+    Business Value: Comprehensive tiered rate and TOU analysis showing optim
 
 
     Complexity: Advanced recursive CTE with tier calculations, TOU period analysis,
@@ -1424,10 +1404,6 @@ info:
     calculations, multiple CTE nesting levels (6+)
 
 
-    Expected Output: Comprehensive tiered rate and TOU analysis with usage scenarios,
-    cost calculations, and optimization recommendations.
-
-
     ---
 
 
@@ -1435,25 +1411,16 @@ info:
     for Solar Sales Teams
 
 
-    Description: Enterprise-level solar rebate analysis with multi-source incentive
-    aggregation (federal, state, utility), rebate optimization calculations, geographic
-    rebate intelligence, and comprehensive incentive stacking analysis. Demonstrates
-    production patterns used by solar installation companies and energy consulting
-    firms.
+    Description: Description: Enterprise-level solar rebate analysis with multi-source
+    incentive aggregation (federal, state, utility), rebate optimization calculations,
+    geographic rebate intelligence, and comprehensive incentive stacking analysis.
+    Demonstrates production patterns used by solar installation companies and energy
+    consulting firms. Use Case: Solar Installation Platform - Comprehensive Rebate
+    Analysis and Optimization for Solar Sales Teams Business Value: Comprehensive
+    solar rebate analysis showing
 
 
-    Use Case: Solar Installation Platform - Comprehensive Rebate Analysis and Optimization
-    for Solar Sales Teams
-
-
-    Business Value: Comprehensive solar rebate analysis showing all available incentives
-    (federal, state, utility) by location, rebate stacking optimization, total savings
-    calculations, and ROI analysis. Enables solar sales teams to provide accurate
-    rebate information and maximize customer savings.
-
-
-    Purpose: Aggregates and optimizes solar rebates from multiple sources enabling
-    clients to maximize solar installation savings through strategic rebate stacking.
+    Business Value: Comprehensive solar rebate analysis showing
 
 
     Complexity: Deep nested CTEs (8+ levels), multi-source data aggregation, rebate
@@ -1461,10 +1428,6 @@ info:
     calculations, window functions with complex aggregations
 
 
-    Expected Output: Comprehensive solar rebate aggregation with federal, state, and
-    utility incentives, rebate stacking optimization, and total savings calculations.
-
-
     ---
 
 
@@ -1472,24 +1435,17 @@ info:
     Forecasting for Energy Traders
 
 
-    Description: Enterprise-level historical rate trend analysis with time-series
-    analysis, rate volatility calculations, forecasting metrics, and comprehensive
+    Description: Description: Enterprise-level historical rate trend analysis with
+    time-series analysis, rate volatility calculations, forecasting metrics, and comprehensive
     trend identification. Demonstrates production patterns used by energy market analysts
-    and rate forecasting platforms.
-
-
-    Use Case: Energy Market Analysis Platform - Historical Rate Trend Analysis and
-    Forecasting for Energy Traders
+    and rate forecasting platforms. Use Case: Energy Market Analysis Platform - Historical
+    Rate Trend Analysis and Forecasting for Energy Traders Business Value: Comprehensive
+    historical rate trend analysis showing rate changes over time, volatility metrics,
+    tr
 
 
     Business Value: Comprehensive historical rate trend analysis showing rate changes
-    over time, volatility metrics, trend identification, and forecasting indicators.
-    Enables energy traders and market analysts to understand rate trends and make
-    informed decisions.
-
-
-    Purpose: Analyzes historical rate trends enabling clients to understand rate volatility,
-    identify patterns, and forecast future rate movements.
+    over time, volatility metrics, tr
 
 
     Complexity: Deep nested CTEs (7+ levels), time-series analysis, window functions
@@ -1497,10 +1453,6 @@ info:
     metrics, correlated subqueries
 
 
-    Expected Output: Historical rate trend analysis with time-series metrics, volatility
-    calculations, and trend identification.
-
-
     ---
 
 
@@ -1508,24 +1460,16 @@ info:
     Analysis for Market Analysts
 
 
-    Description: Enterprise-level geographic rate comparison with cross-state benchmarking,
-    market intelligence metrics, competitive positioning analysis, and comprehensive
-    rate comparison matrices. Demonstrates production patterns used by energy market
-    research firms and competitive intelligence platforms.
-
-
-    Use Case: Energy Market Research Platform - Cross-State Rate Comparison and Competitive
-    Analysis for Market Analysts
+    Description: Description: Enterprise-level geographic rate comparison with cross-state
+    benchmarking, market intelligence metrics, competitive positioning analysis, and
+    comprehensive rate comparison matrices. Demonstrates production patterns used
+    by energy market research firms and competitive intelligence platforms. Use Case:
+    Energy Market Research Platform - Cross-State Rate Comparison and Competitive
+    Analysis for Market Analysts Business Value: Comprehensive geographic rate comparison
+    showing rates across
 
 
     Business Value: Comprehensive geographic rate comparison showing rates across
-    states, regions, and utilities with competitive positioning, market share analysis,
-    and benchmarking metrics. Enables market analysts to understand competitive landscape
-    and market dynamics.
-
-
-    Purpose: Provides cross-state rate comparisons enabling clients to understand
-    competitive positioning and market dynamics across geographic regions.
 
 
     Complexity: Deep nested CTEs (8+ levels), cross-state comparisons, competitive
@@ -1533,10 +1477,6 @@ info:
     joins, window functions with multiple partitions
 
 
-    Expected Output: Geographic rate comparison matrix with cross-state benchmarking,
-    competitive positioning, and market intelligence metrics.
-
-
     ---
 
 
@@ -1544,25 +1484,16 @@ info:
     Utility Executives
 
 
-    Description: Enterprise-level utility performance benchmarking with rate competitiveness
-    analysis, market positioning metrics, comprehensive performance indicators, and
-    peer comparison analysis. Demonstrates production patterns used by utility performance
-    analysis platforms and competitive intelligence systems.
-
-
+    Description: Description: Enterprise-level utility performance benchmarking with
+    rate competitiveness analysis, market positioning metrics, comprehensive performance
+    indicators, and peer comparison analysis. Demonstrates production patterns used
+    by utility performance analysis platforms and competitive intelligence systems.
     Use Case: Utility Performance Analysis Platform - Competitive Benchmarking for
-    Utility Executives
+    Utility Executives Business Value: Comprehensive utility performance benchmarking
+    showing rate competitivene
 
 
-    Business Value: Comprehensive utility performance benchmarking showing rate competitiveness,
-    market positioning, performance metrics compared to peers, and competitive advantage
-    identification. Enables utility executives to understand competitive positioning
-    and identify strategic improvement opportunities.
-
-
-    Purpose: Benchmarks utility performance enabling executives to understand competitive
-    positioning, identify improvement opportunities, and make data-driven strategic
-    decisions.
+    Business Value: Comprehensive utility performance benchmarking showing rate competitivene
 
 
     Complexity: Deep nested CTEs (7+ levels), utility benchmarking, competitive positioning
@@ -1570,10 +1501,6 @@ info:
     comparison calculations, market share analysis
 
 
-    Expected Output: Utility performance benchmarking report with rate competitiveness
-    metrics, market positioning, and peer comparisons.
-
-
     ---
 
 
@@ -1581,34 +1508,23 @@ info:
     Market Analysts
 
 
-    Description: Enterprise-level rate code market share analysis with utility distribution
-    intelligence, adoption rates, market penetration metrics, and comprehensive market
-    dynamics. Demonstrates production patterns used by market research platforms and
-    energy market analysis systems.
-
-
-    Use Case: Market Research Platform - Rate Code Market Share Analysis for Energy
-    Market Analysts
+    Description: Description: Enterprise-level rate code market share analysis with
+    utility distribution intelligence, adoption rates, market penetration metrics,
+    and comprehensive market dynamics. Demonstrates production patterns used by market
+    research platforms and energy market analysis systems. Use Case: Market Research
+    Platform - Rate Code Market Share Analysis for Energy Market Analysts Business
+    Value: Comprehensive rate code market share analysis showing adoption rates, utility
+    distribution, market penet
 
 
     Business Value: Comprehensive rate code market share analysis showing adoption
-    rates, utility distribution, market penetration across states and regions, and
-    market dynamics. Enables market analysts to understand adoption patterns and market
-    evolution.
-
-
-    Purpose: Analyzes rate code market share enabling market analysts to understand
-    adoption patterns, market dynamics, and competitive landscape.
+    rates, utility distribution, market penet
 
 
     Complexity: Deep nested CTEs (6+ levels), market share calculations, adoption
     rate analysis, distribution metrics, window functions, market penetration calculations
 
 
-    Expected Output: Rate code market share analysis with adoption rates, utility
-    distribution, and market penetration metrics.
-
-
     ---
 
 
@@ -1616,24 +1532,17 @@ info:
     Investment Advisors
 
 
-    Description: Enterprise-level solar rebate ROI analysis with payback period calculations,
-    net present value analysis, comprehensive financial metrics, and investment optimization.
-    Demonstrates production patterns used by solar financial analysis platforms and
-    investment advisory systems.
-
-
-    Use Case: Solar Financial Analysis Platform - ROI and Payback Analysis for Solar
-    Investment Advisors
+    Description: Description: Enterprise-level solar rebate ROI analysis with payback
+    period calculations, net present value analysis, comprehensive financial metrics,
+    and investment optimization. Demonstrates production patterns used by solar financial
+    analysis platforms and investment advisory systems. Use Case: Solar Financial
+    Analysis Platform - ROI and Payback Analysis for Solar Investment Advisors Business
+    Value: Comprehensive solar rebate ROI analysis showing payback periods, net present
+    value, financial
 
 
     Business Value: Comprehensive solar rebate ROI analysis showing payback periods,
-    net present value, financial returns, and investment optimization for solar installations.
-    Enables solar investment advisors to provide accurate financial analysis and investment
-    recommendations.
-
-
-    Purpose: Calculates solar investment ROI enabling advisors to provide accurate
-    financial analysis, investment recommendations, and payback period calculations.
+    net present value, financial
 
 
     Complexity: Deep nested CTEs (8+ levels), ROI calculations, NPV analysis, payback
@@ -1641,10 +1550,6 @@ info:
     optimization
 
 
-    Expected Output: Solar rebate ROI analysis with payback periods, NPV calculations,
-    and financial return metrics.
-
-
     ---
 
 
@@ -1652,68 +1557,45 @@ info:
     Researchers
 
 
-    Description: Enterprise-level cross-state rate comparison with regional market
-    dynamics, competitive analysis, market trend identification, and comprehensive
+    Description: Description: Enterprise-level cross-state rate comparison with regional
+    market dynamics, competitive analysis, market trend identification, and comprehensive
     regional benchmarking. Demonstrates production patterns used by energy market
-    intelligence platforms and regional analysis systems.
-
-
-    Use Case: Energy Market Analysis Platform - Cross-State Rate Comparison for Market
-    Researchers
+    intelligence platforms and regional analysis systems. Use Case: Energy Market
+    Analysis Platform - Cross-State Rate Comparison for Market Researchers Business
+    Value: Comprehensive cross-state rate comparison showing regional market dynamics,
+    competitive positioning
 
 
     Business Value: Comprehensive cross-state rate comparison showing regional market
-    dynamics, competitive positioning, market trends, and regional benchmarking. Enables
-    market researchers to understand regional market dynamics and competitive landscape.
-
-
-    Purpose: Compares rates across states enabling researchers to understand regional
-    market dynamics, competitive positioning, and market trends.
+    dynamics, competitive positioning
 
 
     Complexity: Deep nested CTEs (7+ levels), cross-state comparisons, regional analysis,
     market dynamics, complex aggregations, trend identification
 
 
-    Expected Output: Cross-state rate comparison with regional market dynamics, competitive
-    analysis, and market trends.
-
-
     ---
 
 
-    Use Case: Rate Structure Analysis Platform - Complexity Analysis for Rate Design
-    Engineers
+    Use Case: Rate Structure Analysis Platform -
 
 
-    Description: Enterprise-level rate structure complexity analysis with multi-tier
-    optimization, structure comparison, complexity metrics, and optimization opportunities
-    identification. Demonstrates production patterns used by rate design engineering
-    platforms and structure analysis systems.
+    Description: Description: Enterprise-level rate structure complexity analysis
+    with multi-tier optimization, structure comparison, complexity metrics, and optimization
+    opportunities identification. Demonstrates production patterns used by rate design
+    engineering platforms and structure analysis systems. Use Case: Rate Structure
+    Analysis Platform - Complexity Analysis for Rate Design Engineers Business Value:
+    Comprehensive rate structure complexity analysis showing structure comparisons,
+    complexity metrics, op
 
 
-    Use Case: Rate Structure Analysis Platform - Complexity Analysis for Rate Design
-    Engineers
-
-
-    Business Value: Comprehensive rate structure complexity analysis showing structure
-    comparisons, complexity metrics, optimization opportunities, and multi-tier analysis.
-    Enables rate design engineers to understand structure variations and identify
-    optimization opportunities.
-
-
-    Purpose: Analyzes rate structure complexity enabling engineers to understand structure
-    variations, identify optimization opportunities, and design efficient rate structures.
+    Business Value: Comprehensive rate structure
 
 
     Complexity: Deep nested CTEs (8+ levels), complexity metrics, multi-tier analysis,
     structure comparison, optimization calculations, tier optimization algorithms
 
 
-    Expected Output: Rate structure complexity analysis with complexity metrics, multi-tier
-    optimization, and structure comparisons.
-
-
     ---
 
 
@@ -1721,33 +1603,23 @@ info:
     Analysis for Solar Companies
 
 
-    Description: Enterprise-level historical rebate trend analysis with incentive
-    expiration intelligence, rebate lifecycle tracking, expiration forecasting, and
-    comprehensive trend identification. Demonstrates production patterns used by solar
-    incentive tracking platforms and rebate management systems.
-
-
-    Use Case: Solar Incentive Tracking Platform - Historical Rebate Trends and Expiration
-    Analysis for Solar Companies
+    Description: Description: Enterprise-level historical rebate trend analysis with
+    incentive expiration intelligence, rebate lifecycle tracking, expiration forecasting,
+    and comprehensive trend identification. Demonstrates production patterns used
+    by solar incentive tracking platforms and rebate management systems. Use Case:
+    Solar Incentive Tracking Platform - Historical Rebate Trends and Expiration Analysis
+    for Solar Companies Business Value: Comprehensive historical rebate trend analysis
+    showing rebate change
 
 
     Business Value: Comprehensive historical rebate trend analysis showing rebate
-    changes over time, expiration forecasts, lifecycle tracking, and trend identification.
-    Enables solar companies to plan for expiring incentives and optimize rebate timing.
-
-
-    Purpose: Analyzes historical rebate trends enabling companies to understand rebate
-    evolution, forecast expirations, and optimize rebate utilization timing.
+    change
 
 
     Complexity: Deep nested CTEs (7+ levels), time-series analysis, expiration forecasting,
     lifecycle tracking, trend identification, window functions with temporal analysis
 
 
-    Expected Output: Historical rebate trend analysis with expiration forecasts, lifecycle
-    tracking, and trend identification.
-
-
     ---
 
 
@@ -1755,33 +1627,23 @@ info:
     for Energy Consultants
 
 
-    Description: Enterprise-level geographic rate optimization with zip code level
-    intelligence, location-based rate recommendations, and comprehensive geographic
-    cost analysis. Demonstrates production patterns used by location-based rate optimization
-    platforms and geographic intelligence systems.
-
-
-    Use Case: Location-Based Rate Optimization Platform - Zip Code Level Rate Analysis
-    for Energy Consultants
+    Description: Description: Enterprise-level geographic rate optimization with zip
+    code level intelligence, location-based rate recommendations, and comprehensive
+    geographic cost analysis. Demonstrates production patterns used by location-based
+    rate optimization platforms and geographic intelligence systems. Use Case: Location-Based
+    Rate Optimization Platform - Zip Code Level Rate Analysis for Energy Consultants
+    Business Value: Comprehensive geographic rate optimization showing optimal rates
+    by zip code, locat
 
 
     Business Value: Comprehensive geographic rate optimization showing optimal rates
-    by zip code, location-based recommendations, and geographic cost analysis. Enables
-    energy consultants to provide location-specific rate recommendations.
-
-
-    Purpose: Optimizes rates by geographic location enabling consultants to provide
-    location-specific recommendations and cost analysis.
+    by zip code, locat
 
 
     Complexity: Deep nested CTEs (7+ levels), geographic aggregations, zip code analysis,
     location-based optimization, spatial matching, complex joins
 
 
-    Expected Output: Geographic rate optimization with zip code level intelligence
-    and location-based recommendations.
-
-
     ---
 
 
@@ -1789,34 +1651,23 @@ info:
     for Utility Strategists
 
 
-    Description: Enterprise-level utility rate portfolio analysis with rate code diversity
-    metrics, portfolio optimization, and comprehensive rate offering analysis. Demonstrates
-    production patterns used by utility portfolio management platforms and rate strategy
-    systems.
-
-
-    Use Case: Utility Portfolio Management Platform - Rate Code Diversity Analysis
-    for Utility Strategists
+    Description: Description: Enterprise-level utility rate portfolio analysis with
+    rate code diversity metrics, portfolio optimization, and comprehensive rate offering
+    analysis. Demonstrates production patterns used by utility portfolio management
+    platforms and rate strategy systems. Use Case: Utility Portfolio Management Platform
+    - Rate Code Diversity Analysis for Utility Strategists Business Value: Comprehensive
+    utility rate portfolio analysis showing rate code diversity, portfolio optimization
+    opportunities,
 
 
     Business Value: Comprehensive utility rate portfolio analysis showing rate code
-    diversity, portfolio optimization opportunities, and comprehensive rate offering
-    metrics. Enables utility strategists to optimize rate portfolios and identify
-    gaps.
-
-
-    Purpose: Analyzes utility rate portfolios enabling strategists to understand portfolio
-    diversity, identify optimization opportunities, and optimize rate offerings.
+    diversity, portfolio optimization opportunities,
 
 
     Complexity: Deep nested CTEs (7+ levels), portfolio analysis, diversity metrics,
     optimization calculations, rate offering analysis, window functions
 
 
-    Expected Output: Utility rate portfolio analysis with diversity metrics and optimization
-    recommendations.
-
-
     ---
 
 
@@ -1824,33 +1675,23 @@ info:
     for Solar Installers
 
 
-    Description: Enterprise-level solar installation economics analysis with net metering
-    analysis, feed-in tariff evaluation, and comprehensive financial modeling. Demonstrates
-    production patterns used by solar economics platforms and installation financial
-    analysis systems.
-
-
-    Use Case: Solar Economics Platform - Installation Economics and Net Metering Analysis
-    for Solar Installers
+    Description: Description: Enterprise-level solar installation economics analysis
+    with net metering analysis, feed-in tariff evaluation, and comprehensive financial
+    modeling. Demonstrates production patterns used by solar economics platforms and
+    installation financial analysis systems. Use Case: Solar Economics Platform -
+    Installation Economics and Net Metering Analysis for Solar Installers Business
+    Value: Comprehensive solar installation economics showing net metering benefits,
+    feed-in tariff analysis, and f
 
 
     Business Value: Comprehensive solar installation economics showing net metering
-    benefits, feed-in tariff analysis, and financial modeling. Enables solar installers
-    to provide accurate economic analysis and installation recommendations.
-
-
-    Purpose: Analyzes solar installation economics enabling installers to provide
-    accurate financial analysis and optimize installation economics.
+    benefits, feed-in tariff analysis, and f
 
 
     Complexity: Deep nested CTEs (8+ levels), net metering calculations, feed-in tariff
     analysis, financial modeling, ROI calculations, time-series analysis
 
 
-    Expected Output: Solar installation economics with net metering analysis and financial
-    modeling.
-
-
     ---
 
 
@@ -1858,32 +1699,23 @@ info:
     Risk Managers
 
 
-    Description: Enterprise-level rate volatility analysis with risk assessment metrics,
-    volatility calculations, and comprehensive risk classification. Demonstrates production
-    patterns used by rate risk analysis platforms and volatility assessment systems.
-
-
-    Use Case: Rate Risk Analysis Platform - Volatility and Risk Assessment for Energy
-    Risk Managers
+    Description: Description: Enterprise-level rate volatility analysis with risk
+    assessment metrics, volatility calculations, and comprehensive risk classification.
+    Demonstrates production patterns used by rate risk analysis platforms and volatility
+    assessment systems. Use Case: Rate Risk Analysis Platform - Volatility and Risk
+    Assessment for Energy Risk Managers Business Value: Comprehensive rate volatility
+    analysis showing volatility metrics, risk assessments, and risk classifications.
+    Enables energy risk man
 
 
     Business Value: Comprehensive rate volatility analysis showing volatility metrics,
-    risk assessments, and risk classifications. Enables energy risk managers to understand
-    rate volatility and manage risk exposure.
-
-
-    Purpose: Analyzes rate volatility enabling risk managers to understand volatility
-    patterns, assess risk levels, and manage risk exposure.
+    risk assessments, and risk classifications. Enables energy risk man
 
 
     Complexity: Deep nested CTEs (7+ levels), volatility calculations, risk metrics,
     time-series analysis, statistical analysis, window functions
 
 
-    Expected Output: Rate volatility analysis with risk assessment metrics and risk
-    classifications.
-
-
     ---
 
 
@@ -1891,33 +1723,23 @@ info:
     Analysts
 
 
-    Description: Enterprise-level market segmentation analysis with rate type distribution,
-    customer segment analysis, and comprehensive market intelligence. Demonstrates
-    production patterns used by market segmentation platforms and customer analytics
-    systems.
-
-
-    Use Case: Market Segmentation Platform - Rate Type Distribution Analysis for Market
-    Analysts
+    Description: Description: Enterprise-level market segmentation analysis with rate
+    type distribution, customer segment analysis, and comprehensive market intelligence.
+    Demonstrates production patterns used by market segmentation platforms and customer
+    analytics systems. Use Case: Market Segmentation Platform - Rate Type Distribution
+    Analysis for Market Analysts Business Value: Comprehensive market segmentation
+    analysis showing rate type distributions, customer segment analysis, and market
+    intelligence. Enable
 
 
     Business Value: Comprehensive market segmentation analysis showing rate type distributions,
-    customer segment analysis, and market intelligence. Enables market analysts to
-    understand market segments and distribution patterns.
-
-
-    Purpose: Analyzes market segmentation enabling analysts to understand rate type
-    distributions and customer segment patterns.
+    customer segment analysis, and market intelligence. Enable
 
 
     Complexity: Deep nested CTEs (6+ levels), market segmentation, distribution analysis,
     customer segment analysis, aggregations
 
 
-    Expected Output: Market segmentation analysis with rate type distributions and
-    customer segment metrics.
-
-
     ---
 
 
@@ -1925,32 +1747,23 @@ info:
     Consultants
 
 
-    Description: Enterprise-level cross-utility rate comparison with competitive positioning,
-    utility benchmarking, and comprehensive competitive analysis. Demonstrates production
-    patterns used by competitive intelligence platforms and utility comparison systems.
-
-
-    Use Case: Competitive Analysis Platform - Cross-Utility Rate Comparison for Energy
-    Consultants
+    Description: Description: Enterprise-level cross-utility rate comparison with
+    competitive positioning, utility benchmarking, and comprehensive competitive analysis.
+    Demonstrates production patterns used by competitive intelligence platforms and
+    utility comparison systems. Use Case: Competitive Analysis Platform - Cross-Utility
+    Rate Comparison for Energy Consultants Business Value: Comprehensive cross-utility
+    rate comparison showing competitive positioning, utility benchmarking, and competitive
+    analysis. Enab
 
 
     Business Value: Comprehensive cross-utility rate comparison showing competitive
-    positioning, utility benchmarking, and competitive analysis. Enables energy consultants
-    to compare utilities and provide competitive recommendations.
-
-
-    Purpose: Compares utilities enabling consultants to understand competitive positioning
-    and provide competitive recommendations.
+    positioning, utility benchmarking, and competitive analysis. Enab
 
 
     Complexity: Deep nested CTEs (7+ levels), cross-utility comparisons, competitive
     positioning, benchmarking, complex joins
 
 
-    Expected Output: Cross-utility rate comparison with competitive positioning and
-    benchmarking.
-
-
     ---
 
 
@@ -1958,32 +1771,23 @@ info:
     Sales Teams
 
 
-    Description: Enterprise-level rebate stacking optimization with maximum savings
-    calculations, rebate combination analysis, and comprehensive optimization algorithms.
-    Demonstrates production patterns used by rebate optimization platforms and savings
-    maximization systems.
-
-
-    Use Case: Rebate Optimization Platform - Maximum Savings Calculations for Solar
-    Sales Teams
+    Description: Description: Enterprise-level rebate stacking optimization with maximum
+    savings calculations, rebate combination analysis, and comprehensive optimization
+    algorithms. Demonstrates production patterns used by rebate optimization platforms
+    and savings maximization systems. Use Case: Rebate Optimization Platform - Maximum
+    Savings Calculations for Solar Sales Teams Business Value: Comprehensive rebate
+    stacking optimization showing maximum savings, rebate combinations, and optimization
+    recommendations
 
 
     Business Value: Comprehensive rebate stacking optimization showing maximum savings,
-    rebate combinations, and optimization recommendations. Enables solar sales teams
-    to maximize customer savings through optimal rebate stacking.
-
-
-    Purpose: Optimizes rebate stacking enabling sales teams to maximize customer savings
-    through optimal rebate combinations.
+    rebate combinations, and optimization recommendations
 
 
     Complexity: Deep nested CTEs (8+ levels), rebate stacking, optimization algorithms,
     combination analysis, maximum savings calculations
 
 
-    Expected Output: Rebate stacking optimization with maximum savings calculations.
-
-
     ---
 
 
@@ -1991,32 +1795,23 @@ info:
     Researchers
 
 
-    Description: Enterprise-level rate code adoption analysis with utility market
-    penetration, adoption rates, and comprehensive market penetration metrics. Demonstrates
-    production patterns used by market penetration analysis platforms and adoption
-    tracking systems.
-
-
-    Use Case: Market Penetration Platform - Rate Code Adoption Analysis for Market
-    Researchers
+    Description: Description: Enterprise-level rate code adoption analysis with utility
+    market penetration, adoption rates, and comprehensive market penetration metrics.
+    Demonstrates production patterns used by market penetration analysis platforms
+    and adoption tracking systems. Use Case: Market Penetration Platform - Rate Code
+    Adoption Analysis for Market Researchers Business Value: Comprehensive rate code
+    adoption analysis showing market penetration, adoption rates, and market penetration
+    metrics. Enables mark
 
 
     Business Value: Comprehensive rate code adoption analysis showing market penetration,
-    adoption rates, and market penetration metrics. Enables market researchers to
-    understand rate code adoption patterns and market penetration.
-
-
-    Purpose: Analyzes rate code adoption enabling researchers to understand adoption
-    patterns and market penetration.
+    adoption rates, and market penetration metrics. Enables mark
 
 
     Complexity: Deep nested CTEs (6+ levels), adoption analysis, market penetration
     calculations, adoption rate metrics, aggregations
 
 
-    Expected Output: Rate code adoption analysis with market penetration metrics.
-
-
     ---
 
 
@@ -2024,93 +1819,70 @@ info:
     Market Analysts
 
 
-    Description: Enterprise-level geographic rebate intelligence with state-level
-    aggregations, rebate distribution analysis, and comprehensive geographic intelligence.
-    Demonstrates production patterns used by geographic intelligence platforms and
-    rebate distribution systems.
-
-
-    Use Case: Geographic Analysis Platform - State-Level Rebate Aggregations for Solar
-    Market Analysts
+    Description: Description: Enterprise-level geographic rebate intelligence with
+    state-level aggregations, rebate distribution analysis, and comprehensive geographic
+    intelligence. Demonstrates production patterns used by geographic intelligence
+    platforms and rebate distribution systems. Use Case: Geographic Analysis Platform
+    - State-Level Rebate Aggregations for Solar Market Analysts Business Value: Comprehensive
+    geographic rebate intelligence showing state-level aggregations, rebate distributions,
+    and geograp
 
 
     Business Value: Comprehensive geographic rebate intelligence showing state-level
-    aggregations, rebate distributions, and geographic intelligence. Enables solar
-    market analysts to understand rebate distributions across states.
-
-
-    Purpose: Aggregates rebates by geography enabling analysts to understand rebate
-    distributions and geographic patterns.
+    aggregations, rebate distributions, and geograp
 
 
     Complexity: Deep nested CTEs (6+ levels), geographic aggregations, state-level
     analysis, rebate distribution, aggregations
 
 
-    Expected Output: Geographic rebate intelligence with state-level aggregations.
-
-
     ---
 
 
     Use Case: Forecasting Platform - Rate Trend Prediction for Energy Market Forecasters
 
 
-    Description: Enterprise-level rate trend forecasting with predictive analytics,
-    trend prediction, and comprehensive forecasting models. Demonstrates production
-    patterns used by forecasting platforms and predictive analytics systems.
-
-
+    Description: Description: Enterprise-level rate trend forecasting with predictive
+    analytics, trend prediction, and comprehensive forecasting models. Demonstrates
+    production patterns used by forecasting platforms and predictive analytics systems.
     Use Case: Forecasting Platform - Rate Trend Prediction for Energy Market Forecasters
+    Business Value: Comprehensive rate trend forecasting showing trend predictions,
+    forecasting models, and predictive analytics. Enables energy market forecasters
+    to predict rate trends
 
 
     Business Value: Comprehensive rate trend forecasting showing trend predictions,
     forecasting models, and predictive analytics. Enables energy market forecasters
-    to predict rate trends and make informed forecasts.
-
-
-    Purpose: Forecasts rate trends enabling forecasters to predict future rate movements
-    and make informed forecasts.
+    to predict rate trends
 
 
     Complexity: Deep nested CTEs (7+ levels), time-series forecasting, predictive
     analytics, trend prediction, statistical modeling
 
 
-    Expected Output: Rate trend forecasting with predictive analytics and trend predictions.
-
-
     ---
 
 
     Use Case: Rate Strategy Platform - Portfolio Optimization for Utility Strategists
 
 
-    Description: Enterprise-level utility rate strategy analysis with rate code portfolio
-    optimization, strategy evaluation, and comprehensive optimization recommendations.
-    Demonstrates production patterns used by rate strategy platforms and portfolio
-    optimization systems.
-
-
-    Use Case: Rate Strategy Platform - Portfolio Optimization for Utility Strategists
+    Description: Description: Enterprise-level utility rate strategy analysis with
+    rate code portfolio optimization, strategy evaluation, and comprehensive optimization
+    recommendations. Demonstrates production patterns used by rate strategy platforms
+    and portfolio optimization systems. Use Case: Rate Strategy Platform - Portfolio
+    Optimization for Utility Strategists Business Value: Comprehensive utility rate
+    strategy analysis showing portfolio optimization, strategy evaluation, and optimization
+    recommendations.
 
 
     Business Value: Comprehensive utility rate strategy analysis showing portfolio
-    optimization, strategy evaluation, and optimization recommendations. Enables utility
-    strategists to optimize rate portfolios and strategies.
-
-
-    Purpose: Analyzes utility rate strategies enabling strategists to optimize portfolios
-    and evaluate strategies.
+    optimization, strategy evaluation, and optimization recommendations.
 
 
     Complexity: Deep nested CTEs (7+ levels), strategy analysis, portfolio optimization,
     optimization algorithms, strategy evaluation
 
 
-    Expected Output: Utility rate strategy analysis with portfolio optimization recommendations.
-
-
     ---
 
 
@@ -2118,33 +1890,23 @@ info:
     Market Analysts
 
 
-    Description: Enterprise-level solar rebate market intelligence with incentive
-    availability analysis, market coverage, and comprehensive market intelligence.
+    Description: Description: Enterprise-level solar rebate market intelligence with
+    incentive availability analysis, market coverage, and comprehensive market intelligence.
     Demonstrates production patterns used by market intelligence platforms and incentive
-    tracking systems.
-
-
-    Use Case: Market Analysis Platform - Incentive Availability Analysis for Solar
-    Market Analysts
+    tracking systems. Use Case: Market Analysis Platform - Incentive Availability
+    Analysis for Solar Market Analysts Business Value: Comprehensive solar rebate
+    market intelligence showing incentive availability, market coverage, and market
+    intelligence. Enables
 
 
     Business Value: Comprehensive solar rebate market intelligence showing incentive
-    availability, market coverage, and market intelligence. Enables solar market analysts
-    to understand incentive availability and market coverage.
-
-
-    Purpose: Analyzes rebate market intelligence enabling analysts to understand incentive
-    availability and market coverage.
+    availability, market coverage, and market intelligence. Enables
 
 
     Complexity: Deep nested CTEs (7+ levels), market intelligence, availability analysis,
     market coverage, aggregations
 
 
-    Expected Output: Solar rebate market intelligence with incentive availability
-    analysis.
-
-
     ---
 
 
@@ -2152,31 +1914,23 @@ info:
     Analysts
 
 
-    Description: Enterprise-level cross-regional rate comparison with market share
-    analysis, regional benchmarking, and comprehensive regional comparison. Demonstrates
-    production patterns used by regional analysis platforms and market share systems.
-
-
-    Use Case: Regional Analysis Platform - Cross-Regional Rate Comparison for Regional
-    Analysts
+    Description: Description: Enterprise-level cross-regional rate comparison with
+    market share analysis, regional benchmarking, and comprehensive regional comparison.
+    Demonstrates production patterns used by regional analysis platforms and market
+    share systems. Use Case: Regional Analysis Platform - Cross-Regional Rate Comparison
+    for Regional Analysts Business Value: Comprehensive cross-regional rate comparison
+    showing market share, regional benchmarking, and regional comparison. Enables
+    regional analysts to un
 
 
     Business Value: Comprehensive cross-regional rate comparison showing market share,
-    regional benchmarking, and regional comparison. Enables regional analysts to understand
-    regional differences and market shares.
-
-
-    Purpose: Compares rates across regions enabling analysts to understand regional
-    differences and market shares.
+    regional benchmarking, and regional comparison. Enables regional analysts to un
 
 
     Complexity: Deep nested CTEs (7+ levels), cross-regional comparisons, market share
     analysis, regional benchmarking, aggregations
 
 
-    Expected Output: Cross-regional rate comparison with market share analysis.
-
-
     ---
 
 
@@ -2184,32 +1938,23 @@ info:
     Engineers
 
 
-    Description: Enterprise-level rate structure performance analysis with cost efficiency
-    metrics, performance evaluation, and comprehensive performance indicators. Demonstrates
-    production patterns used by performance analysis platforms and efficiency evaluation
-    systems.
-
-
-    Use Case: Performance Analysis Platform - Cost Efficiency Analysis for Rate Design
-    Engineers
+    Description: Description: Enterprise-level rate structure performance analysis
+    with cost efficiency metrics, performance evaluation, and comprehensive performance
+    indicators. Demonstrates production patterns used by performance analysis platforms
+    and efficiency evaluation systems. Use Case: Performance Analysis Platform - Cost
+    Efficiency Analysis for Rate Design Engineers Business Value: Comprehensive rate
+    structure performance analysis showing cost efficiency metrics, performance evaluation,
+    and performance
 
 
     Business Value: Comprehensive rate structure performance analysis showing cost
-    efficiency metrics, performance evaluation, and performance indicators. Enables
-    rate design engineers to evaluate structure performance and efficiency.
-
-
-    Purpose: Analyzes rate structure performance enabling engineers to evaluate performance
-    and efficiency.
+    efficiency metrics, performance evaluation, and performance
 
 
     Complexity: Deep nested CTEs (7+ levels), performance analysis, efficiency metrics,
     performance evaluation, aggregations
 
 
-    Expected Output: Rate structure performance analysis with cost efficiency metrics.
-
-
     ---
 
 
@@ -2217,64 +1962,46 @@ info:
     Rate Design Engineers
 
 
-    Description: Enterprise-level recursive rate code hierarchy analysis using recursive
-    CTE for multi-level rate structure traversal, hierarchy relationships, and comprehensive
-    hierarchy analysis. Demonstrates production patterns used by hierarchy analysis
-    platforms and recursive traversal systems.
-
-
-    Use Case: Hierarchy Analysis Platform - Multi-Level Rate Structure Traversal for
-    Rate Design Engineers
+    Description: Description: Enterprise-level recursive rate code hierarchy analysis
+    using recursive CTE for multi-level rate structure traversal, hierarchy relationships,
+    and comprehensive hierarchy analysis. Demonstrates production patterns used by
+    hierarchy analysis platforms and recursive traversal systems. Use Case: Hierarchy
+    Analysis Platform - Multi-Level Rate Structure Traversal for Rate Design Engineers
+    Business Value: Comprehensive recursive rate code hierarchy analysis showing multi-level
+    structures,
 
 
     Business Value: Comprehensive recursive rate code hierarchy analysis showing multi-level
-    structures, hierarchy relationships, and hierarchy traversal. Enables rate design
-    engineers to understand rate code hierarchies and relationships.
-
-
-    Purpose: Analyzes rate code hierarchies enabling engineers to understand multi-level
-    structures and relationships.
+    structures,
 
 
     Complexity: Advanced recursive CTE (6+ levels), hierarchy traversal, multi-level
     analysis, recursive relationships, cycle detection
 
 
-    Expected Output: Recursive rate code hierarchy analysis with multi-level traversal.
-
-
     ---
 
 
     Use Case: Analysis Dashboard Platform - Multi-Dimensional Rate Analysis for Executives
 
 
-    Description: Enterprise-level comprehensive rate intelligence dashboard with multi-dimensional
-    analysis, dashboard metrics, and comprehensive intelligence aggregation. Demonstrates
-    production patterns used by intelligence dashboard platforms and multi-dimensional
-    analysis systems.
-
-
-    Use Case: Analysis Dashboard Platform - Multi-Dimensional Rate Analysis for Executives
+    Description: Description: Enterprise-level comprehensive rate intelligence dashboard
+    with multi-dimensional analysis, dashboard metrics, and comprehensive intelligence
+    aggregation. Demonstrates production patterns used by intelligence dashboard platforms
+    and multi-dimensional analysis systems. Use Case: Analysis Dashboard Platform
+    - Multi-Dimensional Rate Analysis for Executives Business Value: Comprehensive
+    rate intelligence dashboard showing multi-dimensional analysis, dashboard metrics,
+    and intelligence a
 
 
     Business Value: Comprehensive rate intelligence dashboard showing multi-dimensional
-    analysis, dashboard metrics, and intelligence aggregation. Enables executives
-    to understand rate intelligence across multiple dimensions.
-
-
-    Purpose: Aggregates rate intelligence enabling executives to understand comprehensive
-    rate intelligence across dimensions.
+    analysis, dashboard metrics, and intelligence a
 
 
     Complexity: Deep nested CTEs (8+ levels), multi-dimensional analysis, dashboard
     aggregation, comprehensive metrics, complex joins
 
 
-    Expected Output: Comprehensive rate intelligence dashboard with multi-dimensional
-    analysis.
-
-
     ---
 
 
@@ -2282,32 +2009,23 @@ info:
     Companies
 
 
-    Description: Enterprise-level solar rebate competitive analysis with market positioning
-    intelligence, competitive benchmarking, and comprehensive competitive metrics.
-    Demonstrates production patterns used by competitive analysis platforms and market
-    positioning systems.
-
-
-    Use Case: Competitive Analysis Platform - Market Positioning Analysis for Solar
-    Companies
+    Description: Description: Enterprise-level solar rebate competitive analysis with
+    market positioning intelligence, competitive benchmarking, and comprehensive competitive
+    metrics. Demonstrates production patterns used by competitive analysis platforms
+    and market positioning systems. Use Case: Competitive Analysis Platform - Market
+    Positioning Analysis for Solar Companies Business Value: Comprehensive solar rebate
+    competitive analysis showing market positioning, competitive benchmarking, and
+    competitive metri
 
 
     Business Value: Comprehensive solar rebate competitive analysis showing market
-    positioning, competitive benchmarking, and competitive metrics. Enables solar
-    companies to understand competitive positioning and market dynamics.
-
-
-    Purpose: Analyzes rebate competitiveness enabling companies to understand market
-    positioning and competitive dynamics.
+    positioning, competitive benchmarking, and competitive metri
 
 
     Complexity: Deep nested CTEs (7+ levels), competitive analysis, market positioning,
     benchmarking, competitive metrics
 
 
-    Expected Output: Solar rebate competitive analysis with market positioning intelligence.
-
-
     ---
 
 
@@ -2315,32 +2033,23 @@ info:
     Researchers
 
 
-    Description: Enterprise-level geographic rate clustering analysis with regional
-    pattern identification, cluster analysis, and comprehensive pattern recognition.
-    Demonstrates production patterns used by clustering analysis platforms and pattern
-    recognition systems.
-
-
-    Use Case: Clustering Analysis Platform - Regional Pattern Identification for Market
-    Researchers
+    Description: Description: Enterprise-level geographic rate clustering analysis
+    with regional pattern identification, cluster analysis, and comprehensive pattern
+    recognition. Demonstrates production patterns used by clustering analysis platforms
+    and pattern recognition systems. Use Case: Clustering Analysis Platform - Regional
+    Pattern Identification for Market Researchers Business Value: Comprehensive geographic
+    rate clustering analysis showing regional patterns, cluster identification, and
+    pattern recognitio
 
 
     Business Value: Comprehensive geographic rate clustering analysis showing regional
-    patterns, cluster identification, and pattern recognition. Enables market researchers
-    to identify regional patterns and clusters.
-
-
-    Purpose: Analyzes geographic rate clusters enabling researchers to identify regional
-    patterns and clusters.
+    patterns, cluster identification, and pattern recognitio
 
 
     Complexity: Deep nested CTEs (7+ levels), clustering analysis, pattern identification,
     regional analysis, aggregations
 
 
-    Expected Output: Geographic rate clustering analysis with regional pattern identification.
-
-
     ---
 
 
@@ -2348,31 +2057,21 @@ info:
     Managers
 
 
-    Description: Enterprise-level rate optimization platform with comprehensive cost
-    intelligence, optimization algorithms, and comprehensive cost analysis. Demonstrates
+    Description: Description: Enterprise-level rate optimization platform with comprehensive
+    cost intelligence, optimization algorithms, and comprehensive cost analysis. Demonstrates
     production patterns used by enterprise optimization platforms and cost intelligence
-    systems.
-
-
-    Use Case: Enterprise Optimization Platform - Comprehensive Cost Analysis for Energy
-    Managers
+    systems. Use Case: Enterprise Optimization Platform - Comprehensive Cost Analysis
+    for Energy Managers Business Value: Comprehensive rate optimization platform showing
+    cost intelligence, optimization recommendations, and comprehensive cost analysis.
+    E
 
 
     Business Value: Comprehensive rate optimization platform showing cost intelligence,
-    optimization recommendations, and comprehensive cost analysis. Enables energy
-    managers to optimize costs and make informed decisions.
-
-
-    Purpose: Optimizes rates enabling managers to minimize costs and maximize efficiency
-    through comprehensive cost intelligence.
+    optimization recommendations, and comprehensive cost analysis. E
 
 
     Complexity: Deep nested CTEs (9+ levels), optimization algorithms, cost intelligence,
     comprehensive analysis, multi-dimensional optimization
-
-
-    Expected Output: Enterprise rate optimization platform with comprehensive cost
-    intelligence.
 
 
     ---
@@ -2394,7 +2093,7 @@ info:
     Document Information:
 
 
-    - Generated: 20260214-0148
+    - Generated: 20260214-1523
 
     - Database: db-15
 

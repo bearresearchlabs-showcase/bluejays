@@ -1,6 +1,7 @@
 -- Simplified Schema for db-3
 -- Reduced from 65 tables to only 3 tables needed for queries
 -- All queries use generic table names (table1, table2, table3)
+-- ACID: Referential integrity via FKs; cross-platform types (TEXT vs VARCHAR(16777216))
 
 -- Main hierarchy table (used by all queries)
 CREATE TABLE IF NOT EXISTS table1 (
@@ -11,30 +12,31 @@ CREATE TABLE IF NOT EXISTS table1 (
     category VARCHAR(100),
     date_col DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_table1_parent FOREIGN KEY (parent_id) REFERENCES table1(id) ON DELETE SET NULL
 );
 
 -- Related table (used by some queries)
 CREATE TABLE IF NOT EXISTS table2 (
     id BIGINT PRIMARY KEY,
-    table1_id BIGINT,
+    table1_id BIGINT NOT NULL,
     related_value NUMERIC(15,2),
-    description VARCHAR(16777216),
+    description TEXT,
     date_col DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (table1_id) REFERENCES table1(id)
+    CONSTRAINT fk_table2_table1 FOREIGN KEY (table1_id) REFERENCES table1(id) ON DELETE CASCADE
 );
 
 -- Additional related table (used by some queries)
 CREATE TABLE IF NOT EXISTS table3 (
     id BIGINT PRIMARY KEY,
-    table1_id BIGINT,
-    table2_id BIGINT,
+    table1_id BIGINT NOT NULL,
+    table2_id BIGINT NOT NULL,
     metric_value NUMERIC(15,2),
     status VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (table1_id) REFERENCES table1(id),
-    FOREIGN KEY (table2_id) REFERENCES table2(id)
+    CONSTRAINT fk_table3_table1 FOREIGN KEY (table1_id) REFERENCES table1(id) ON DELETE CASCADE,
+    CONSTRAINT fk_table3_table2 FOREIGN KEY (table2_id) REFERENCES table2(id) ON DELETE CASCADE
 );
 
 -- Indexes for performance

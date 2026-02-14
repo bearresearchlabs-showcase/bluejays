@@ -45,7 +45,7 @@ if ! python3 -c "import tb3_workbench" 2>/dev/null; then
 fi
 
 run "env_validator" "$PYTHON scripts/env_validator.py --op db"
-run "single_source_of_truth" "$PYTHON -m pytest tests/test_single_source_of_truth.py tests/test_queries_md_human_text.py tests/test_qa_suite.py tests/test_docker_postgres_qa.py tests/test_bird_workbench_acid.py -q --tb=line"
+run "single_source_of_truth" "$PYTHON -m pytest tests/test_single_source_of_truth.py tests/test_queries_md_human_text.py tests/test_qa_suite.py tests/test_docker_postgres_qa.py tests/test_bird_workbench_acid.py tests/test_scripts_refactor.py -q --tb=line"
 run "db_check validate" "$PYTHON scripts/db_check.py validate ${DB_ARGS[*]}"
 run "db_check format" "$PYTHON scripts/db_check.py format ${DB_ARGS[*]}"
 run "db_check qa-suite" "$PYTHON scripts/db_check.py qa-suite ${DB_ARGS[*]}"

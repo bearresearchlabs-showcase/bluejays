@@ -152,451 +152,377 @@ info:
     - Complexity: Technical complexity indicators\n- SQL Code: Complete, production-ready\
     \ SQL query\n\n---\n\nUse Case: Competitive intelligence analysis for AI model\
     \ benchmarking platforms - identify top-performing models across different performance\
-    \ dimensions and price points\n\nDescription: Analyzes AI model performance across\
+    \ dimensions\n\nDescription: Description: Analyzes AI model performance across\
     \ multiple dimensions including Intelligence Index scores, output speed, latency,\
     \ and pricing. Uses multiple CTEs to rank models, calculate competitive positioning\
     \ metrics, identify market leaders, and perform percentile-based analysis with\
-    \ window functions for comprehensive performance comparison.\n\nUse Case: Competitive\
+    \ window functions for comprehensive performance comparison. Use Case: Competitive\
     \ intelligence analysis for AI model benchmarking platforms - identify top-performing\
-    \ models across different performance dimensions and price points\n\nBusiness\
-    \ Value: Enables AI companies and researchers to identify market leaders, competitive\
-    \ positioning, and optimal price-performance models, supporting $1M+ ARR AI benchmarking\
-    \ platforms\n\nPurpose: Provides comprehensive multi-dimensional model performance\
-    \ comparison with competitive positioning for strategic model selection decisions\n\
-    \nComplexity: Deep nested CTEs (7+ levels), multiple joins across ai_models/model_performance_metrics/benchmark_evaluations\
+    \ models across different performance dimensions\n\nBusiness Value: Model performance\
+    \ comparison report showing top models by intelligence, speed, and price-performance\
+    \ ratio with competitive positioning metrics\n\nComplexity: Deep nested CTEs (7+\
+    \ levels), multiple joins across ai_models/model_performance_metrics/benchmark_evaluations\
     \ tables, window functions with frame clauses, percentile calculations, ranking\
-    \ functions, correlated subqueries, complex aggregations\n\nExpected Output: Model\
-    \ performance comparison report showing top models by intelligence, speed, and\
-    \ price-performance ratio with competitive positioning metrics\n\n---\n\nUse Case:\
-    \ Pricing strategy analysis for AI model providers - understand how pricing changes\
-    \ affect market share and adoption rates\n\nDescription: Analyzes historical pricing\
-    \ trends for AI models, correlating price changes with market share shifts and\
-    \ adoption metrics. Uses recursive CTEs for temporal analysis, window functions\
+    \ functions, correlated subqueries, complex aggregations\n\n---\n\nUse Case: Pricing\
+    \ strategy analysis for AI model providers - understand how pricing changes affect\
+    \ market share and adoption rates\n\nDescription: Description: Analyzes historical\
+    \ pricing trends for AI models, correlating price changes with market share shifts\
+    \ and adoption metrics. Uses recursive CTEs for temporal analysis, window functions\
     \ for trend detection, and complex aggregations to identify pricing strategies\
-    \ and their market impact.\n\nUse Case: Pricing strategy analysis for AI model\
-    \ providers - understand how pricing changes affect market share and adoption\
-    \ rates\n\nBusiness Value: Enables AI companies to optimize pricing strategies\
-    \ based on market response, supporting $1M+ ARR AI model marketplace platforms\n\
-    \nPurpose: Provides pricing trend analysis with market impact correlation for\
-    \ strategic pricing decisions\n\nComplexity: Recursive CTEs for temporal analysis,\
-    \ multiple window functions with different frame clauses, complex joins across\
-    \ model_pricing_history/model_adoption_metrics/marketing_intelligence, correlation\
-    \ calculations, trend detection algorithms\n\nExpected Output: Pricing trend report\
-    \ showing price changes over time with corresponding market share and adoption\
-    \ rate changes\n\n---\n\nUse Case: Model family competitive analysis for AI research\
-    \ organizations - identify which model families excel in specific benchmark categories\n\
-    \nDescription: Compares benchmark evaluation results across different model families\
-    \ (GPT, Claude, Gemini, Llama, etc.), calculating statistical significance, performance\
+    \ and their market impact. Use Case: Pricing strategy analysis for AI model providers\
+    \ - understand how pricing changes affect market share and adoption rates Business\
+    \ Value: Enables AI companies to optimize pricing strategies bas\n\nBusiness Value:\
+    \ Enables AI companies to optimize pricing strategies bas\n\nComplexity: Recursive\
+    \ CTEs for temporal analysis, multiple window functions with different frame clauses,\
+    \ complex joins across model_pricing_history/model_adoption_metrics/marketing_intelligence,\
+    \ correlation calculations, trend detection algorithms\n\n---\n\nUse Case: Model\
+    \ family competitive analysis for AI research organizations - identify which model\
+    \ families excel in specific benchmark categories\n\nDescription: Description:\
+    \ Compares benchmark evaluation results across different model families (GPT,\
+    \ Claude, Gemini, Llama, etc.), calculating statistical significance, performance\
     \ variance, and family-level competitive advantages. Uses multiple CTEs for family\
-    \ aggregation, statistical calculations, and performance ranking.\n\nUse Case:\
-    \ Model family competitive analysis for AI research organizations - identify which\
-    \ model families excel in specific benchmark categories\n\nBusiness Value: Enables\
-    \ AI research organizations to identify competitive advantages by model family,\
-    \ supporting $1M+ ARR AI research platforms\n\nPurpose: Provides model family-level\
-    \ benchmark performance analysis with statistical significance for research and\
-    \ competitive intelligence\n\nComplexity: Multiple CTEs (6+ levels), complex aggregations\
-    \ with statistical functions (STDDEV, VARIANCE), window functions for ranking,\
-    \ joins across ai_models/benchmark_evaluations, statistical significance calculations,\
-    \ family-level grouping\n\nExpected Output: Model family benchmark performance\
-    \ report showing average scores, variance, and statistical significance by benchmark\
-    \ category\n\n---\n\nUse Case: Regulatory compliance tracking for enterprise AI\
-    \ deployments - ensure models meet government safety and robustness standards\n\
-    \nDescription: Tracks AI model compliance with government benchmarks (NIST, NSF,\
-    \ DARPA), calculating compliance scores, risk assessments, and regulatory alignment\
-    \ metrics. Uses multiple CTEs to aggregate government benchmark data, calculate\
-    \ compliance levels, and identify compliance gaps.\n\nUse Case: Regulatory compliance\
-    \ tracking for enterprise AI deployments - ensure models meet government safety\
-    \ and robustness standards\n\nBusiness Value: Enables enterprises to ensure AI\
-    \ model compliance with government standards, supporting $1M+ ARR enterprise AI\
-    \ governance platforms\n\nPurpose: Provides comprehensive government benchmark\
-    \ compliance tracking with risk assessment for regulatory compliance\n\nComplexity:\
-    \ Multiple CTEs (5+ levels), complex joins across ai_models/government_benchmark_data,\
+    \ aggregation, statistical calculations, and performance ranking. Use Case: Model\
+    \ family competitive analysis for AI research organizations - identify which model\
+    \ families excel in specific benchmark categories Business Value: Enables AI research\
+    \ organ\n\nBusiness Value: Enables AI research organ\n\nComplexity: Multiple CTEs\
+    \ (6+ levels), complex aggregations with statistical functions (STDDEV, VARIANCE),\
+    \ window functions for ranking, joins across ai_models/benchmark_evaluations,\
+    \ statistical significance calculations, family-level grouping\n\n---\n\nUse Case:\
+    \ Regulatory compliance tracking for enterprise AI deployments - ensure models\
+    \ meet government safety and robustness standards\n\nDescription: Description:\
+    \ Tracks AI model compliance with government benchmarks (NIST, NSF, DARPA), calculating\
+    \ compliance scores, risk assessments, and regulatory alignment metrics. Uses\
+    \ multiple CTEs to aggregate government benchmark data, calculate compliance levels,\
+    \ and identify compliance gaps. Use Case: Regulatory compliance tracking for enterprise\
+    \ AI deployments - ensure models meet government safety and robustness standards\
+    \ Business Value: Enables enterprises to ensure AI model compliance with govern\n\
+    \nBusiness Value: Enables enterprises to ensure AI model compliance with govern\n\
+    \nComplexity: Multiple CTEs (5+ levels), complex joins across ai_models/government_benchmark_data,\
     \ compliance scoring algorithms, risk calculation functions, regulatory alignment\
-    \ metrics, conditional aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for query 4\n\n---\n\nUse Case: Market forecasting for\
+    \ metrics, conditional aggregations\n\n---\n\nUse Case: Market forecasting for\
     \ AI model providers - predict which models will gain market share based on performance\
-    \ and pricing\n\nDescription: Predicts model adoption trends based on performance\
-    \ metrics, pricing, and historical adoption data. Uses recursive CTEs for trend\
-    \ projection, window functions for moving averages, and complex correlation calculations\
-    \ between performance and adoption metrics.\n\nUse Case: Market forecasting for\
-    \ AI model providers - predict which models will gain market share based on performance\
-    \ and pricing\n\nBusiness Value: Enables AI companies to forecast market adoption\
-    \ and optimize product strategy, supporting $1M+ ARR AI market intelligence platforms\n\
-    \nPurpose: Provides model adoption prediction with performance correlation for\
-    \ strategic market planning\n\nComplexity: Recursive CTEs for trend projection,\
-    \ multiple window functions with different frame clauses, correlation calculations,\
-    \ predictive analytics, joins across model_adoption_metrics/model_performance_metrics/model_pricing_history\n\
-    \nExpected Output: Analysis report with comprehensive metrics and insights for\
-    \ query 5\n\n---\n\nUse Case: Performance monitoring for AI model providers -\
-    \ track model performance evolution and identify degradation or improvement patterns\n\
-    \nDescription: Analyzes model performance trajectories over time using temporal\
+    \ and pricing\n\nDescription: Description: Predicts model adoption trends based\
+    \ on performance metrics, pricing, and historical adoption data. Uses recursive\
+    \ CTEs for trend projection, window functions for moving averages, and complex\
+    \ correlation calculations between performance and adoption metrics. Use Case:\
+    \ Market forecasting for AI model providers - predict which models will gain market\
+    \ share based on performance and pricing Business Value: Enables AI companies\
+    \ to forecast market adoption and optimize product strategy, s\n\nBusiness Value:\
+    \ Enables AI companies to forecast market adoption and optimize product strategy,\
+    \ s\n\nComplexity: Recursive CTEs for trend projection, multiple window functions\
+    \ with different frame clauses, correlation calculations, predictive analytics,\
+    \ joins across model_adoption_metrics/model_performance_metrics/model_pricing_history\n\
+    \n---\n\nUse Case: Performance monitoring for AI model providers - track model\
+    \ performance evolution and identify degradation or improvement patterns\n\nDescription:\
+    \ Description: Analyzes model performance trajectories over time using temporal\
     \ clustering, identifying performance trends, degradation patterns, and improvement\
     \ cycles. Uses multiple CTEs with window functions for trajectory analysis, temporal\
-    \ clustering algorithms, and performance trend detection.\n\nUse Case: Performance\
+    \ clustering algorithms, and performance trend detection. Use Case: Performance\
     \ monitoring for AI model providers - track model performance evolution and identify\
-    \ degradation or improvement patterns\n\nBusiness Value: Enables AI companies\
-    \ to monitor model performance trajectories and optimize model updates, supporting\
-    \ $1M+ ARR AI performance monitoring platforms\n\nPurpose: Provides comprehensive\
-    \ performance trajectory analysis with temporal clustering for model lifecycle\
-    \ management\n\nComplexity: Multiple CTEs (7+ levels), window functions with complex\
+    \ degradation or improvement patterns Business Value: Enables AI companies to\
+    \ monitor model perfor\n\nBusiness Value: Enables AI companies to monitor model\
+    \ perfor\n\nComplexity: Multiple CTEs (7+ levels), window functions with complex\
     \ frame clauses, temporal clustering algorithms, performance trend detection,\
-    \ joins across model_performance_history/ai_models/benchmark_evaluations\n\nExpected\
-    \ Output: Performance trajectory analysis with clustering results, trend indicators,\
-    \ and lifecycle stage identification\n\n---\n\nUse Case: Marketing intelligence\
+    \ joins across model_performance_history/ai_models/benchmark_evaluations\n\n---\n\
+    \nUse Case: Marketing intelligence analysis for AI benchmark platforms - model\
+    \ market share evolution with competitive dynamics\n\nDescription: Description:\
+    \ Tracks market share evolution for AI models, analyzing competitive dynamics,\
+    \ market penetration trends, and competitive positioning shifts over time. Uses\
+    \ multiple CTEs with window functions, complex aggregations, and joins across\
+    \ multiple tables for comprehensive analysis. Use Case: Marketing intelligence\
     \ analysis for AI benchmark platforms - model market share evolution with competitive\
-    \ dynamics\n\nDescription: Tracks market share evolution for AI models, analyzing\
-    \ competitive dynamics, market penetration trends, and competitive positioning\
-    \ shifts over time. Uses multiple CTEs with window functions, complex aggregations,\
-    \ and joins across multiple tables for comprehensive analysis.\n\nUse Case: Marketing\
-    \ intelligence analysis for AI benchmark platforms - model market share evolution\
-    \ with competitive dynamics\n\nBusiness Value: Enables AI companies to gain marketing\
-    \ insights and optimize strategies, supporting $1M+ ARR AI benchmarking platforms\n\
-    \nPurpose: Provides comprehensive marketing intelligence analysis for model market\
-    \ share evolution with competitive dynamics\n\nComplexity: Multiple CTEs (6+ levels),\
-    \ window functions with complex frame clauses, complex aggregations, joins across\
-    \ ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for model market share evolution with competitive dynamics\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - benchmark performance correlation matrix with cross-model analysis\n\nDescription:\
-    \ Creates correlation matrices between different benchmark evaluations, identifying\
-    \ which benchmarks correlate strongly and which models excel across multiple benchmarks.\
-    \ Uses multiple CTEs with window functions, complex aggregations, and joins across\
-    \ multiple tables for comprehensive analysis.\n\nUse Case: Marketing intelligence\
-    \ analysis for AI benchmark platforms - benchmark performance correlation matrix\
-    \ with cross-model analysis\n\nBusiness Value: Enables AI companies to gain marketing\
-    \ insights and optimize strategies, supporting $1M+ ARR AI benchmarking platforms\n\
-    \nPurpose: Provides comprehensive marketing intelligence analysis for benchmark\
-    \ performance correlation matrix with cross-model analysis\n\nComplexity: Multiple\
-    \ CTEs (6+ levels), window functions with complex frame clauses, complex aggregations,\
-    \ joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for benchmark performance correlation matrix with cross-model\
-    \ analysis\n\n---\n\nUse Case: Marketing intelligence analysis for AI benchmark\
-    \ platforms - pricing strategy impact analysis with revenue optimization\n\nDescription:\
-    \ Analyzes the impact of pricing strategies on adoption, revenue, and market position,\
-    \ identifying optimal pricing points for maximum revenue. Uses multiple CTEs with\
-    \ window functions, complex aggregations, and joins across multiple tables for\
-    \ comprehensive analysis.\n\nUse Case: Marketing intelligence analysis for AI\
-    \ benchmark platforms - pricing strategy impact analysis with revenue optimization\n\
-    \nBusiness Value: Enables AI companies to gain marketing insights and optimize\
-    \ strategies, supporting $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides\
-    \ comprehensive marketing intelligence analysis for pricing strategy impact analysis\
-    \ with revenue optimization\n\nComplexity: Multiple CTEs (6+ levels), window functions\
-    \ with complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for pricing strategy impact analysis with revenue optimization\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - model family performance comparison with statistical testing\n\nDescription:\
-    \ Compares performance across model families using statistical tests, identifying\
-    \ which families consistently outperform and under what conditions. Uses multiple\
-    \ CTEs with window functions, complex aggregations, and joins across multiple\
-    \ tables for comprehensive analysis.\n\nUse Case: Marketing intelligence analysis\
-    \ for AI benchmark platforms - model family performance comparison with statistical\
-    \ testing\n\nBusiness Value: Enables AI companies to gain marketing insights and\
-    \ optimize strategies, supporting $1M+ ARR AI benchmarking platforms\n\nPurpose:\
-    \ Provides comprehensive marketing intelligence analysis for model family performance\
-    \ comparison with statistical testing\n\nComplexity: Multiple CTEs (6+ levels),\
-    \ window functions with complex frame clauses, complex aggregations, joins across\
-    \ ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for model family performance comparison with statistical\
-    \ testing\n\n---\n\nUse Case: Marketing intelligence analysis for AI benchmark\
-    \ platforms - government compliance scorecard with regulatory risk assessment\n\
-    \nDescription: Creates comprehensive compliance scorecards for models across multiple\
-    \ government benchmarks, calculating overall compliance scores and regulatory\
-    \ risk. Uses multiple CTEs with window functions, complex aggregations, and joins\
-    \ across multiple tables for comprehensive analysis.\n\nUse Case: Marketing intelligence\
-    \ analysis for AI benchmark platforms - government compliance scorecard with regulatory\
-    \ risk assessment\n\nBusiness Value: Enables AI companies to gain marketing insights\
-    \ and optimize strategies, supporting $1M+ ARR AI benchmarking platforms\n\nPurpose:\
-    \ Provides comprehensive marketing intelligence analysis for government compliance\
-    \ scorecard with regulatory risk assessment\n\nComplexity: Multiple CTEs (6+ levels),\
-    \ window functions with complex frame clauses, complex aggregations, joins across\
-    \ ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for government compliance scorecard with regulatory risk\
-    \ assessment\n\n---\n\nUse Case: Marketing intelligence analysis for AI benchmark\
-    \ platforms - adoption prediction model with performance correlation\n\nDescription:\
-    \ Predicts model adoption based on performance metrics, pricing, and historical\
-    \ adoption patterns using advanced correlation analysis. Uses multiple CTEs with\
-    \ window functions, complex aggregations, and joins across multiple tables for\
-    \ comprehensive analysis.\n\nUse Case: Marketing intelligence analysis for AI\
-    \ benchmark platforms - adoption prediction model with performance correlation\n\
-    \nBusiness Value: Enables AI companies to gain marketing insights and optimize\
-    \ strategies, supporting $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides\
-    \ comprehensive marketing intelligence analysis for adoption prediction model\
-    \ with performance correlation\n\nComplexity: Multiple CTEs (6+ levels), window\
+    \ dynamics Business Value: Enables AI companies to gain marketing insights and\
+    \ optimize strategie\n\nBusiness Value: Enables AI companies to gain marketing\
+    \ insights and optimize strategie\n\nComplexity: Multiple CTEs (6+ levels), window\
     \ functions with complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for adoption prediction model with performance correlation\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - benchmark leaderboard with dynamic ranking and tier classification\n\nDescription:\
-    \ Creates dynamic leaderboards for models across benchmarks, with tier classifications\
-    \ and ranking changes over time. Uses multiple CTEs with window functions, complex\
-    \ aggregations, and joins across multiple tables for comprehensive analysis.\n\
-    \nUse Case: Marketing intelligence analysis for AI benchmark platforms - benchmark\
-    \ leaderboard with dynamic ranking and tier classification\n\nBusiness Value:\
-    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\
-    \ $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides comprehensive marketing\
-    \ intelligence analysis for benchmark leaderboard with dynamic ranking and tier\
-    \ classification\n\nComplexity: Multiple CTEs (6+ levels), window functions with\
-    \ complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for benchmark leaderboard with dynamic ranking and tier\
-    \ classification\n\n---\n\nUse Case: Marketing intelligence analysis for AI benchmark\
-    \ platforms - performance-price optimization analysis with roi calculation\n\n\
-    Description: Identifies optimal performance-price combinations, calculating ROI\
-    \ for different model selections based on use case requirements. Uses multiple\
-    \ CTEs with window functions, complex aggregations, and joins across multiple\
-    \ tables for comprehensive analysis.\n\nUse Case: Marketing intelligence analysis\
-    \ for AI benchmark platforms - performance-price optimization analysis with roi\
-    \ calculation\n\nBusiness Value: Enables AI companies to gain marketing insights\
-    \ and optimize strategies, supporting $1M+ ARR AI benchmarking platforms\n\nPurpose:\
-    \ Provides comprehensive marketing intelligence analysis for performance-price\
-    \ optimization analysis with roi calculation\n\nComplexity: Multiple CTEs (6+\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - benchmark performance correlation matrix\
+    \ with cross-model analysis\n\nDescription: Description: Creates correlation matrices\
+    \ between different benchmark evaluations, identifying which benchmarks correlate\
+    \ strongly and which models excel across multiple benchmarks. Uses multiple CTEs\
+    \ with window functions, complex aggregations, and joins across multiple tables\
+    \ for comprehensive analysis. Use Case: Marketing intelligence analysis for AI\
+    \ benchmark platforms - benchmark performance correlation matrix with cross-model\
+    \ analysis Business Value: Enables AI companies to gain marketing\n\nBusiness\
+    \ Value: Enables AI companies to gain marketing\n\nComplexity: Multiple CTEs (6+\
     \ levels), window functions with complex frame clauses, complex aggregations,\
     \ joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for performance-price optimization analysis with roi calculation\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - model comparison matrix with multi-dimensional scoring\n\nDescription: Creates\
-    \ comprehensive comparison matrices between models across multiple dimensions\
-    \ including performance, price, speed, and compliance. Uses multiple CTEs with\
-    \ window functions, complex aggregations, and joins across multiple tables for\
-    \ comprehensive analysis.\n\nUse Case: Marketing intelligence analysis for AI\
-    \ benchmark platforms - model comparison matrix with multi-dimensional scoring\n\
-    \nBusiness Value: Enables AI companies to gain marketing insights and optimize\
-    \ strategies, supporting $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides\
-    \ comprehensive marketing intelligence analysis for model comparison matrix with\
-    \ multi-dimensional scoring\n\nComplexity: Multiple CTEs (6+ levels), window functions\
-    \ with complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for model comparison matrix with multi-dimensional scoring\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - temporal performance forecasting with trend projection\n\nDescription: Forecasts\
-    \ future performance trends based on historical data using time series analysis\
-    \ and trend projection algorithms. Uses multiple CTEs with window functions, complex\
-    \ aggregations, and joins across multiple tables for comprehensive analysis.\n\
-    \nUse Case: Marketing intelligence analysis for AI benchmark platforms - temporal\
-    \ performance forecasting with trend projection\n\nBusiness Value: Enables AI\
-    \ companies to gain marketing insights and optimize strategies, supporting $1M+\
-    \ ARR AI benchmarking platforms\n\nPurpose: Provides comprehensive marketing intelligence\
-    \ analysis for temporal performance forecasting with trend projection\n\nComplexity:\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - pricing strategy impact analysis with\
+    \ revenue optimization\n\nDescription: Description: Analyzes the impact of pricing\
+    \ strategies on adoption, revenue, and market position, identifying optimal pricing\
+    \ points for maximum revenue. Uses multiple CTEs with window functions, complex\
+    \ aggregations, and joins across multiple tables for comprehensive analysis. Use\
+    \ Case: Marketing intelligence analysis for AI benchmark platforms - pricing strategy\
+    \ impact analysis with revenue optimization Business Value: Enables AI companies\
+    \ to gain marketing insights and optimize strategies, su\n\nBusiness Value: Enables\
+    \ AI companies to gain marketing insights and optimize strategies, su\n\nComplexity:\
     \ Multiple CTEs (6+ levels), window functions with complex frame clauses, complex\
     \ aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for temporal performance forecasting with trend projection\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - market intelligence aggregation with competitive positioning\n\nDescription:\
-    \ Aggregates marketing intelligence data to provide competitive positioning insights,\
-    \ market trends, and strategic recommendations. Uses multiple CTEs with window\
-    \ functions, complex aggregations, and joins across multiple tables for comprehensive\
-    \ analysis.\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - market intelligence aggregation with competitive positioning\n\nBusiness Value:\
-    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\
-    \ $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides comprehensive marketing\
-    \ intelligence analysis for market intelligence aggregation with competitive positioning\n\
-    \nComplexity: Multiple CTEs (6+ levels), window functions with complex frame clauses,\
-    \ complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for market intelligence aggregation with competitive positioning\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - benchmark evaluation quality assessment with statistical validation\n\nDescription:\
-    \ Assesses the quality and reliability of benchmark evaluations using statistical\
-    \ validation techniques and cross-validation. Uses multiple CTEs with window functions,\
-    \ complex aggregations, and joins across multiple tables for comprehensive analysis.\n\
-    \nUse Case: Marketing intelligence analysis for AI benchmark platforms - benchmark\
-    \ evaluation quality assessment with statistical validation\n\nBusiness Value:\
-    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\
-    \ $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides comprehensive marketing\
-    \ intelligence analysis for benchmark evaluation quality assessment with statistical\
-    \ validation\n\nComplexity: Multiple CTEs (6+ levels), window functions with complex\
-    \ frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for benchmark evaluation quality assessment with statistical\
-    \ validation\n\n---\n\nUse Case: Marketing intelligence analysis for AI benchmark\
-    \ platforms - model adoption funnel analysis with conversion metrics\n\nDescription:\
-    \ Analyzes model adoption funnels, tracking conversion rates from awareness to\
-    \ active usage with detailed conversion metrics. Uses multiple CTEs with window\
-    \ functions, complex aggregations, and joins across multiple tables for comprehensive\
-    \ analysis.\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - model adoption funnel analysis with conversion metrics\n\nBusiness Value:\
-    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\
-    \ $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides comprehensive marketing\
-    \ intelligence analysis for model adoption funnel analysis with conversion metrics\n\
-    \nComplexity: Multiple CTEs (6+ levels), window functions with complex frame clauses,\
-    \ complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for model adoption funnel analysis with conversion metrics\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - performance benchmark gap analysis with improvement recommendations\n\nDescription:\
-    \ Identifies performance gaps between models and benchmarks, providing improvement\
-    \ recommendations based on gap analysis. Uses multiple CTEs with window functions,\
-    \ complex aggregations, and joins across multiple tables for comprehensive analysis.\n\
-    \nUse Case: Marketing intelligence analysis for AI benchmark platforms - performance\
-    \ benchmark gap analysis with improvement recommendations\n\nBusiness Value: Enables\
-    \ AI companies to gain marketing insights and optimize strategies, supporting\
-    \ $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides comprehensive marketing\
-    \ intelligence analysis for performance benchmark gap analysis with improvement\
-    \ recommendations\n\nComplexity: Multiple CTEs (6+ levels), window functions with\
-    \ complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for performance benchmark gap analysis with improvement\
-    \ recommendations\n\n---\n\nUse Case: Marketing intelligence analysis for AI benchmark\
-    \ platforms - pricing elasticity analysis with demand forecasting\n\nDescription:\
-    \ Analyzes pricing elasticity and its impact on demand, forecasting adoption changes\
-    \ based on price adjustments. Uses multiple CTEs with window functions, complex\
-    \ aggregations, and joins across multiple tables for comprehensive analysis.\n\
-    \nUse Case: Marketing intelligence analysis for AI benchmark platforms - pricing\
-    \ elasticity analysis with demand forecasting\n\nBusiness Value: Enables AI companies\
-    \ to gain marketing insights and optimize strategies, supporting $1M+ ARR AI benchmarking\
-    \ platforms\n\nPurpose: Provides comprehensive marketing intelligence analysis\
-    \ for pricing elasticity analysis with demand forecasting\n\nComplexity: Multiple\
-    \ CTEs (6+ levels), window functions with complex frame clauses, complex aggregations,\
-    \ joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for pricing elasticity analysis with demand forecasting\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - cross-benchmark performance consistency analysis\n\nDescription: Analyzes\
-    \ consistency of model performance across different benchmarks, identifying models\
-    \ with consistent vs. variable performance. Uses multiple CTEs with window functions,\
-    \ complex aggregations, and joins across multiple tables for comprehensive analysis.\n\
-    \nUse Case: Marketing intelligence analysis for AI benchmark platforms - cross-benchmark\
-    \ performance consistency analysis\n\nBusiness Value: Enables AI companies to\
-    \ gain marketing insights and optimize strategies, supporting $1M+ ARR AI benchmarking\
-    \ platforms\n\nPurpose: Provides comprehensive marketing intelligence analysis\
-    \ for cross-benchmark performance consistency analysis\n\nComplexity: Multiple\
-    \ CTEs (6+ levels), window functions with complex frame clauses, complex aggregations,\
-    \ joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for cross-benchmark performance consistency analysis\n\n\
-    ---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms -\
-    \ model lifecycle performance tracking with stage classification\n\nDescription:\
-    \ Tracks model performance throughout lifecycle stages, classifying models by\
-    \ stage and analyzing performance patterns by stage. Uses multiple CTEs with window\
-    \ functions, complex aggregations, and joins across multiple tables for comprehensive\
-    \ analysis.\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - model lifecycle performance tracking with stage classification\n\nBusiness\
-    \ Value: Enables AI companies to gain marketing insights and optimize strategies,\
-    \ supporting $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides comprehensive\
-    \ marketing intelligence analysis for model lifecycle performance tracking with\
-    \ stage classification\n\nComplexity: Multiple CTEs (6+ levels), window functions\
-    \ with complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for model lifecycle performance tracking with stage classification\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - competitive intelligence dashboard with market dynamics\n\nDescription: Creates\
-    \ comprehensive competitive intelligence dashboards showing market dynamics, competitive\
-    \ positioning, and strategic insights. Uses multiple CTEs with window functions,\
-    \ complex aggregations, and joins across multiple tables for comprehensive analysis.\n\
-    \nUse Case: Marketing intelligence analysis for AI benchmark platforms - competitive\
-    \ intelligence dashboard with market dynamics\n\nBusiness Value: Enables AI companies\
-    \ to gain marketing insights and optimize strategies, supporting $1M+ ARR AI benchmarking\
-    \ platforms\n\nPurpose: Provides comprehensive marketing intelligence analysis\
-    \ for competitive intelligence dashboard with market dynamics\n\nComplexity: Multiple\
-    \ CTEs (6+ levels), window functions with complex frame clauses, complex aggregations,\
-    \ joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for competitive intelligence dashboard with market dynamics\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - benchmark evaluation reliability scoring with confidence intervals\n\nDescription:\
-    \ Calculates reliability scores for benchmark evaluations with confidence intervals\
-    \ and statistical significance testing. Uses multiple CTEs with window functions,\
-    \ complex aggregations, and joins across multiple tables for comprehensive analysis.\n\
-    \nUse Case: Marketing intelligence analysis for AI benchmark platforms - benchmark\
-    \ evaluation reliability scoring with confidence intervals\n\nBusiness Value:\
-    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\
-    \ $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides comprehensive marketing\
-    \ intelligence analysis for benchmark evaluation reliability scoring with confidence\
-    \ intervals\n\nComplexity: Multiple CTEs (6+ levels), window functions with complex\
-    \ frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for benchmark evaluation reliability scoring with confidence\
-    \ intervals\n\n---\n\nUse Case: Marketing intelligence analysis for AI benchmark\
-    \ platforms - model performance anomaly detection with outlier analysis\n\nDescription:\
-    \ Detects performance anomalies and outliers in model evaluations, identifying\
-    \ unusual performance patterns and potential issues. Uses multiple CTEs with window\
-    \ functions, complex aggregations, and joins across multiple tables for comprehensive\
-    \ analysis.\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - model performance anomaly detection with outlier analysis\n\nBusiness Value:\
-    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\
-    \ $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides comprehensive marketing\
-    \ intelligence analysis for model performance anomaly detection with outlier analysis\n\
-    \nComplexity: Multiple CTEs (6+ levels), window functions with complex frame clauses,\
-    \ complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for model performance anomaly detection with outlier analysis\n\
-    \n---\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - market penetration analysis with geographic and demographic segmentation\n\
-    \nDescription: Analyzes market penetration across geographic and demographic segments,\
-    \ identifying growth opportunities and market gaps. Uses multiple CTEs with window\
-    \ functions, complex aggregations, and joins across multiple tables for comprehensive\
-    \ analysis.\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - market penetration analysis with geographic and demographic segmentation\n\
-    \nBusiness Value: Enables AI companies to gain marketing insights and optimize\
-    \ strategies, supporting $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides\
-    \ comprehensive marketing intelligence analysis for market penetration analysis\
-    \ with geographic and demographic segmentation\n\nComplexity: Multiple CTEs (6+\
-    \ levels), window functions with complex frame clauses, complex aggregations,\
-    \ joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for market penetration analysis with geographic and demographic\
-    \ segmentation\n\n---\n\nUse Case: Marketing intelligence analysis for AI benchmark\
-    \ platforms - performance optimization recommendations with cost-benefit analysis\n\
-    \nDescription: Provides performance optimization recommendations with cost-benefit\
-    \ analysis, identifying highest-impact improvements. Uses multiple CTEs with window\
-    \ functions, complex aggregations, and joins across multiple tables for comprehensive\
-    \ analysis.\n\nUse Case: Marketing intelligence analysis for AI benchmark platforms\
-    \ - performance optimization recommendations with cost-benefit analysis\n\nBusiness\
-    \ Value: Enables AI companies to gain marketing insights and optimize strategies,\
-    \ supporting $1M+ ARR AI benchmarking platforms\n\nPurpose: Provides comprehensive\
-    \ marketing intelligence analysis for performance optimization recommendations\
-    \ with cost-benefit analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
-    \ functions with complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for performance optimization recommendations with cost-benefit\
-    \ analysis\n\n---\n\nUse Case: Marketing intelligence analysis for AI benchmark\
-    \ platforms - comprehensive model evaluation report with multi-dimensional scoring\n\
-    \nDescription: Generates comprehensive evaluation reports with multi-dimensional\
-    \ scoring across performance, price, compliance, and adoption metrics. Uses multiple\
-    \ CTEs with window functions, complex aggregations, and joins across multiple\
-    \ tables for comprehensive analysis.\n\nUse Case: Marketing intelligence analysis\
-    \ for AI benchmark platforms - comprehensive model evaluation report with multi-dimensional\
-    \ scoring\n\nBusiness Value: Enables AI companies to gain marketing insights and\
-    \ optimize strategies, supporting $1M+ ARR AI benchmarking platforms\n\nPurpose:\
-    \ Provides comprehensive marketing intelligence analysis for comprehensive model\
-    \ evaluation report with multi-dimensional scoring\n\nComplexity: Multiple CTEs\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - model family performance comparison with\
+    \ statistical testing\n\nDescription: Description: Compares performance across\
+    \ model families using statistical tests, identifying which families consistently\
+    \ outperform and under what conditions. Uses multiple CTEs with window functions,\
+    \ complex aggregations, and joins across multiple tables for comprehensive analysis.\
+    \ Use Case: Marketing intelligence analysis for AI benchmark platforms - model\
+    \ family performance comparison with statistical testing Business Value: Enables\
+    \ AI companies to gain marketing insights and optimize strateg\n\nBusiness Value:\
+    \ Enables AI companies to gain marketing insights and optimize strateg\n\nComplexity:\
+    \ Multiple CTEs (6+ levels), window functions with complex frame clauses, complex\
+    \ aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - government compliance scorecard with regulatory\
+    \ risk assessment\n\nDescription: Description: Creates comprehensive compliance\
+    \ scorecards for models across multiple government benchmarks, calculating overall\
+    \ compliance scores and regulatory risk. Uses multiple CTEs with window functions,\
+    \ complex aggregations, and joins across multiple tables for comprehensive analysis.\
+    \ Use Case: Marketing intelligence analysis for AI benchmark platforms - government\
+    \ compliance scorecard with regulatory risk assessment Business Value: Enables\
+    \ AI companies to gain marketing insights and optimi\n\nBusiness Value: Enables\
+    \ AI companies to gain marketing insights and optimi\n\nComplexity: Multiple CTEs\
     \ (6+ levels), window functions with complex frame clauses, complex aggregations,\
     \ joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for comprehensive model evaluation report with multi-dimensional\
-    \ scoring\n\n---\n\nUse Case: Marketing intelligence analysis for AI benchmark\
-    \ platforms - strategic model selection framework with use case optimization\n\
-    \nDescription: Provides strategic framework for model selection optimized by use\
-    \ case requirements, performance needs, and budget constraints. Uses multiple\
-    \ CTEs with window functions, complex aggregations, and joins across multiple\
-    \ tables for comprehensive analysis.\n\nUse Case: Marketing intelligence analysis\
-    \ for AI benchmark platforms - strategic model selection framework with use case\
-    \ optimization\n\nBusiness Value: Enables AI companies to gain marketing insights\
-    \ and optimize strategies, supporting $1M+ ARR AI benchmarking platforms\n\nPurpose:\
-    \ Provides comprehensive marketing intelligence analysis for strategic model selection\
-    \ framework with use case optimization\n\nComplexity: Multiple CTEs (6+ levels),\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - adoption prediction model with performance\
+    \ correlation\n\nDescription: Description: Predicts model adoption based on performance\
+    \ metrics, pricing, and historical adoption patterns using advanced correlation\
+    \ analysis. Uses multiple CTEs with window functions, complex aggregations, and\
+    \ joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - adoption prediction model\
+    \ with performance correlation Business Value: Enables AI companies to gain marketing\
+    \ insights and optimize strategies, supporting $1M\n\nBusiness Value: Enables\
+    \ AI companies to gain marketing insights and optimize strategies, supporting\
+    \ $1M\n\nComplexity: Multiple CTEs (6+ levels), window functions with complex\
+    \ frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - benchmark leaderboard with dynamic ranking\
+    \ and tier classification\n\nDescription: Description: Creates dynamic leaderboards\
+    \ for models across benchmarks, with tier classifications and ranking changes\
+    \ over time. Uses multiple CTEs with window functions, complex aggregations, and\
+    \ joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - benchmark leaderboard with\
+    \ dynamic ranking and tier classification Business Value: Enables AI companies\
+    \ to gain marketing insights and optimize strategies, supporting $1M+ ARR\n\n\
+    Business Value: Enables AI companies to gain marketing insights and optimize strategies,\
+    \ supporting $1M+ ARR\n\nComplexity: Multiple CTEs (6+ levels), window functions\
+    \ with complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - performance-price optimization analysis\
+    \ with roi calculation\n\nDescription: Description: Identifies optimal performance-price\
+    \ combinations, calculating ROI for different model selections based on use case\
+    \ requirements. Uses multiple CTEs with window functions, complex aggregations,\
+    \ and joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - performance-price optimization\
+    \ analysis with roi calculation Business Value: Enables AI companies to gain marketing\
+    \ insights and optimize strategies, supporting\n\nBusiness Value: Enables AI companies\
+    \ to gain marketing insights and optimize strategies, supporting\n\nComplexity:\
+    \ Multiple CTEs (6+ levels), window functions with complex frame clauses, complex\
+    \ aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - model comparison matrix with multi-dimensional\
+    \ scoring\n\nDescription: Description: Creates comprehensive comparison matrices\
+    \ between models across multiple dimensions including performance, price, speed,\
+    \ and compliance. Uses multiple CTEs with window functions, complex aggregations,\
+    \ and joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - model comparison matrix with\
+    \ multi-dimensional scoring Business Value: Enables AI companies to gain marketing\
+    \ insights and optimize strategies, supporting\n\nBusiness Value: Enables AI companies\
+    \ to gain marketing insights and optimize strategies, supporting\n\nComplexity:\
+    \ Multiple CTEs (6+ levels), window functions with complex frame clauses, complex\
+    \ aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - temporal performance forecasting with\
+    \ trend projection\n\nDescription: Description: Forecasts future performance trends\
+    \ based on historical data using time series analysis and trend projection algorithms.\
+    \ Uses multiple CTEs with window functions, complex aggregations, and joins across\
+    \ multiple tables for comprehensive analysis. Use Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - temporal performance forecasting with\
+    \ trend projection Business Value: Enables AI companies to gain marketing insights\
+    \ and optimize strategies, supporting $1M+ ARR AI ben\n\nBusiness Value: Enables\
+    \ AI companies to gain marketing insights and optimize strategies, supporting\
+    \ $1M+ ARR AI ben\n\nComplexity: Multiple CTEs (6+ levels), window functions with\
+    \ complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - market intelligence aggregation with competitive\
+    \ positioning\n\nDescription: Description: Aggregates marketing intelligence data\
+    \ to provide competitive positioning insights, market trends, and strategic recommendations.\
+    \ Uses multiple CTEs with window functions, complex aggregations, and joins across\
+    \ multiple tables for comprehensive analysis. Use Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - market intelligence aggregation with competitive\
+    \ positioning Business Value: Enables AI companies to gain marketing insights\
+    \ and optimize strategies, supporting\n\nBusiness Value: Enables AI companies\
+    \ to gain marketing insights and optimize strategies, supporting\n\nComplexity:\
+    \ Multiple CTEs (6+ levels), window functions with complex frame clauses, complex\
+    \ aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - benchmark evaluation quality assessment\
+    \ with statistical validation\n\nDescription: Description: Assesses the quality\
+    \ and reliability of benchmark evaluations using statistical validation techniques\
+    \ and cross-validation. Uses multiple CTEs with window functions, complex aggregations,\
+    \ and joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - benchmark evaluation quality\
+    \ assessment with statistical validation Business Value: Enables AI companies\
+    \ to gain marketing insights and optimize strategies, supporting\n\nBusiness Value:\
+    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\n\
+    \nComplexity: Multiple CTEs (6+ levels), window functions with complex frame clauses,\
+    \ complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - model adoption funnel analysis with conversion\
+    \ metrics\n\nDescription: Description: Analyzes model adoption funnels, tracking\
+    \ conversion rates from awareness to active usage with detailed conversion metrics.\
+    \ Uses multiple CTEs with window functions, complex aggregations, and joins across\
+    \ multiple tables for comprehensive analysis. Use Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - model adoption funnel analysis with conversion\
+    \ metrics Business Value: Enables AI companies to gain marketing insights and\
+    \ optimize strategies, supporting $1M+ ARR AI\n\nBusiness Value: Enables AI companies\
+    \ to gain marketing insights and optimize strategies, supporting $1M+ ARR AI\n\
+    \nComplexity: Multiple CTEs (6+ levels), window functions with complex frame clauses,\
+    \ complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - performance benchmark gap analysis with\
+    \ improvement recommendations\n\nDescription: Description: Identifies performance\
+    \ gaps between models and benchmarks, providing improvement recommendations based\
+    \ on gap analysis. Uses multiple CTEs with window functions, complex aggregations,\
+    \ and joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - performance benchmark gap\
+    \ analysis with improvement recommendations Business Value: Enables AI companies\
+    \ to gain marketing insights and optimize strategies, supporting $1M\n\nBusiness\
+    \ Value: Enables AI companies to gain marketing insights and optimize strategies,\
+    \ supporting $1M\n\nComplexity: Multiple CTEs (6+ levels), window functions with\
+    \ complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - pricing elasticity analysis with demand\
+    \ forecasting\n\nDescription: Description: Analyzes pricing elasticity and its\
+    \ impact on demand, forecasting adoption changes based on price adjustments. Uses\
+    \ multiple CTEs with window functions, complex aggregations, and joins across\
+    \ multiple tables for comprehensive analysis. Use Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - pricing elasticity analysis with demand\
+    \ forecasting Business Value: Enables AI companies to gain marketing insights\
+    \ and optimize strategies, supporting $1M+ ARR AI benchmarking pla\n\nBusiness\
+    \ Value: Enables AI companies to gain marketing insights and optimize strategies,\
+    \ supporting $1M+ ARR AI benchmarking pla\n\nComplexity: Multiple CTEs (6+ levels),\
     \ window functions with complex frame clauses, complex aggregations, joins across\
     \ ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
-    \ tables, statistical calculations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics and insights for strategic model selection framework with use case optimization\n\
-    \n---\n\n1. PostgreSQL Setup:\n   \n\n2. , Setup:\n   - Use Delta Lake format\n\
-    \   - Load schema.sql (adapting data types as needed)\n   - Use, SQL for query\
-    \ execution\n\n3. , Setup:\n   - Create database and schema\n   - Load schema.sql\n\
-    \   - Use, SQL for query execution\n\nRun the ETL pipeline to extract data from\
-    \ APIs:\n\nAll queries are located in `queries/queries.md` and can be executed\
-    \ directly on any supported database platform.\n\nRun the validation suite:\n\n\
-    Or use the validate command:\n\n---\n\nLast Updated: 2026-02-04\n\n---\n\nAll\
-    \ queries in this database are designed to work across multiple database platforms:\n\
-    \n- PostgreSQL: Full support with standard SQL features\n\nQueries use standard\
-    \ SQL syntax and avoid platform-specific features to ensure compatibility.\n\n\
-    ---\n\nDocument Information:\n\n- Generated: 20260214-0148\n- Database: db-13\n\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - cross-benchmark performance consistency\
+    \ analysis\n\nDescription: Description: Analyzes consistency of model performance\
+    \ across different benchmarks, identifying models with consistent vs. variable\
+    \ performance. Uses multiple CTEs with window functions, complex aggregations,\
+    \ and joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - cross-benchmark performance\
+    \ consistency analysis Business Value: Enables AI companies to gain marketing\
+    \ insights and optimize strategies, supporting $1M+ ARR A\n\nBusiness Value: Enables\
+    \ AI companies to gain marketing insights and optimize strategies, supporting\
+    \ $1M+ ARR A\n\nComplexity: Multiple CTEs (6+ levels), window functions with complex\
+    \ frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - model lifecycle performance tracking with\
+    \ stage classification\n\nDescription: Description: Tracks model performance throughout\
+    \ lifecycle stages, classifying models by stage and analyzing performance patterns\
+    \ by stage. Uses multiple CTEs with window functions, complex aggregations, and\
+    \ joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - model lifecycle performance\
+    \ tracking with stage classification Business Value: Enables AI companies to gain\
+    \ marketing insights and optimize strategies, supporting $\n\nBusiness Value:\
+    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\
+    \ $\n\nComplexity: Multiple CTEs (6+ levels), window functions with complex frame\
+    \ clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - competitive intelligence dashboard with\
+    \ market dynamics\n\nDescription: Description: Creates comprehensive competitive\
+    \ intelligence dashboards showing market dynamics, competitive positioning, and\
+    \ strategic insights. Uses multiple CTEs with window functions, complex aggregations,\
+    \ and joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - competitive intelligence\
+    \ dashboard with market dynamics Business Value: Enables AI companies to gain\
+    \ marketing insights and optimize strategies, supporting $1M\n\nBusiness Value:\
+    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\
+    \ $1M\n\nComplexity: Multiple CTEs (6+ levels), window functions with complex\
+    \ frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - benchmark evaluation reliability scoring\
+    \ with confidence intervals\n\nDescription: Description: Calculates reliability\
+    \ scores for benchmark evaluations with confidence intervals and statistical significance\
+    \ testing. Uses multiple CTEs with window functions, complex aggregations, and\
+    \ joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - benchmark evaluation reliability\
+    \ scoring with confidence intervals Business Value: Enables AI companies to gain\
+    \ marketing insights and optimize strategies, supporting $1M+\n\nBusiness Value:\
+    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\
+    \ $1M+\n\nComplexity: Multiple CTEs (6+ levels), window functions with complex\
+    \ frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - model performance anomaly detection with\
+    \ outlier analysis\n\nDescription: Description: Detects performance anomalies\
+    \ and outliers in model evaluations, identifying unusual performance patterns\
+    \ and potential issues. Uses multiple CTEs with window functions, complex aggregations,\
+    \ and joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - model performance anomaly\
+    \ detection with outlier analysis Business Value: Enables AI companies to gain\
+    \ marketing insights and optimize strategies, supporting $1M+\n\nBusiness Value:\
+    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\
+    \ $1M+\n\nComplexity: Multiple CTEs (6+ levels), window functions with complex\
+    \ frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - market penetration analysis with geographic\
+    \ and demographic segmentation\n\nDescription: Description: Analyzes market penetration\
+    \ across geographic and demographic segments, identifying growth opportunities\
+    \ and market gaps. Uses multiple CTEs with window functions, complex aggregations,\
+    \ and joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - market penetration analysis\
+    \ with geographic and demographic segmentation Business Value: Enables AI companies\
+    \ to gain marketing insights and optimize strategies, support\n\nBusiness Value:\
+    \ Enables AI companies to gain marketing insights and optimize strategies, support\n\
+    \nComplexity: Multiple CTEs (6+ levels), window functions with complex frame clauses,\
+    \ complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - performance optimization recommendations\
+    \ with cost-benefit analysis\n\nDescription: Description: Provides performance\
+    \ optimization recommendations with cost-benefit analysis, identifying highest-impact\
+    \ improvements. Uses multiple CTEs with window functions, complex aggregations,\
+    \ and joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - performance optimization\
+    \ recommendations with cost-benefit analysis Business Value: Enables AI companies\
+    \ to gain marketing insights and optimize strategies, supporting $1M+\n\nBusiness\
+    \ Value: Enables AI companies to gain marketing insights and optimize strategies,\
+    \ supporting $1M+\n\nComplexity: Multiple CTEs (6+ levels), window functions with\
+    \ complex frame clauses, complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - comprehensive model evaluation report\
+    \ with multi-dimensional scoring\n\nDescription: Description: Generates comprehensive\
+    \ evaluation reports with multi-dimensional scoring across performance, price,\
+    \ compliance, and adoption metrics. Uses multiple CTEs with window functions,\
+    \ complex aggregations, and joins across multiple tables for comprehensive analysis.\
+    \ Use Case: Marketing intelligence analysis for AI benchmark platforms - comprehensive\
+    \ model evaluation report with multi-dimensional scoring Business Value: Enables\
+    \ AI companies to gain marketing insights and optimize strategies\n\nBusiness\
+    \ Value: Enables AI companies to gain marketing insights and optimize strategies\n\
+    \nComplexity: Multiple CTEs (6+ levels), window functions with complex frame clauses,\
+    \ complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\nUse Case: Marketing intelligence\
+    \ analysis for AI benchmark platforms - strategic model selection framework with\
+    \ use case optimization\n\nDescription: Description: Provides strategic framework\
+    \ for model selection optimized by use case requirements, performance needs, and\
+    \ budget constraints. Uses multiple CTEs with window functions, complex aggregations,\
+    \ and joins across multiple tables for comprehensive analysis. Use Case: Marketing\
+    \ intelligence analysis for AI benchmark platforms - strategic model selection\
+    \ framework with use case optimization Business Value: Enables AI companies to\
+    \ gain marketing insights and optimize strategies, supporting\n\nBusiness Value:\
+    \ Enables AI companies to gain marketing insights and optimize strategies, supporting\n\
+    \nComplexity: Multiple CTEs (6+ levels), window functions with complex frame clauses,\
+    \ complex aggregations, joins across ai_models/model_performance_metrics/benchmark_evaluations/marketing_intelligence\
+    \ tables, statistical calculations\n\n---\n\n1. PostgreSQL Setup:\n   \n\n2. ,\
+    \ Setup:\n   - Use Delta Lake format\n   - Load schema.sql (adapting data types\
+    \ as needed)\n   - Use, SQL for query execution\n\n3. , Setup:\n   - Create database\
+    \ and schema\n   - Load schema.sql\n   - Use, SQL for query execution\n\nRun the\
+    \ ETL pipeline to extract data from APIs:\n\nAll queries are located in `queries/queries.md`\
+    \ and can be executed directly on any supported database platform.\n\nRun the\
+    \ validation suite:\n\nOr use the validate command:\n\n---\n\nLast Updated: 2026-02-04\n\
+    \n---\n\nAll queries in this database are designed to work across multiple database\
+    \ platforms:\n\n- PostgreSQL: Full support with standard SQL features\n\nQueries\
+    \ use standard SQL syntax and avoid platform-specific features to ensure compatibility.\n\
+    \n---\n\nDocument Information:\n\n- Generated: 20260214-1523\n- Database: db-13\n\
     - Type: AI Benchmark Marketing Database\n- Queries: 30 production queries\n- Status:\
     \ ✅ Complete Comprehensive Deliverable"
   version: 1.0.0

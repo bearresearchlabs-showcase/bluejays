@@ -1,6 +1,6 @@
 -- Chat Messaging Platform Schema (db-1)
 -- Compatible with PostgreSQL
--- Matches deliverable queries (profiles, chats, messages, chat_participants, friends, etc.)
+-- ACID-compliant: PKs and FKs for referential integrity
 
 CREATE TABLE profiles (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -89,6 +89,17 @@ CREATE TABLE chat_invitations (
     status VARCHAR(50) NOT NULL DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Aircraft position history (for time-series analytics queries)
+CREATE TABLE aircraft_position_history (
+    id SERIAL PRIMARY KEY,
+    hex VARCHAR(20) NOT NULL,
+    speed NUMERIC(10, 2),
+    altitude NUMERIC(10, 2),
+    timestamp TIMESTAMP NOT NULL
+);
+CREATE INDEX idx_aircraft_position_hex ON aircraft_position_history(hex);
+CREATE INDEX idx_aircraft_position_timestamp ON aircraft_position_history(timestamp);
 
 CREATE INDEX idx_messages_chat_id ON messages(chat_id);
 CREATE INDEX idx_messages_sender_id ON messages(sender_id);

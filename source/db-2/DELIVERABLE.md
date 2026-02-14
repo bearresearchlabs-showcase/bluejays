@@ -23,14 +23,12 @@ Real-world retail Point-of-Sale (POS) database from a family business in Kenya, 
 ### Database Platforms Supported
 
 - **PostgreSQL**: Full support
-- **Databricks**: Compatible with Delta Lake
-- **Databricks**: Full support
 
 ---
 
 ## Database Schema Documentation
 
-See `docs/SCHEMA.md` for table relationships. Core tables include `phppos_sales`, `phppos_sales_items`, `phppos_payments`, `phppos_items`, `phppos_inventory`, `phppos_suppliers`, and related phppos tables.
+See `docs/SCHEMA.md` for full LUCASA schema. This deliverable uses a minimal 8-table subset: `phppos_people`, `phppos_employees`, `phppos_employees_locations`, `phppos_items`, `phppos_locations`, `phppos_location_items`, `phppos_sales`. ACID-compliant with PKs and FKs.
 
 ---
 

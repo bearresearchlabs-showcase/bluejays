@@ -1,6 +1,6 @@
 -- Chat Messaging Platform Schema (db-1)
 -- Compatible with PostgreSQL
--- Matches deliverable queries (profiles, chats, messages, chat_participants, friends, etc.)
+-- ACID-compliant: PKs and FKs for referential integrity
 
 CREATE TABLE profiles (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

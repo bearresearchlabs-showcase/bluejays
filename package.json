@@ -3,22 +3,43 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
-    "build": "node scripts/generate-sources-manifest.js && next build",
-    "start": "next start -p 3001",
-    "lint": "next lint"
+    "dev": "next dev -p 3006",
+    "dev:test": "next dev -p 3007",
+    "build": "node scripts/generate-sources-manifest.js && next build --webpack",
+    "start": "next start -p 3008",
+    "lint": "eslint . --max-warnings 0",
+    "test": "jest",
+    "test:build": "TEST_BUILD=1 jest __tests__/quality/build-succeeds.test.ts --testTimeout=120000",
+    "test:quality": "jest __tests__/quality --testTimeout=10000",
+    "test:watch": "jest --watch",
+    "test:integration": "BASE_URL=http://localhost:3007 jest __tests__/integration --testTimeout=10000",
+    "kill:sessions": "bash scripts/kill-dev-sessions.sh",
+    "queries:convert": "node scripts/queries-convert/cli.js",
+    "queries:md-to-json": "node scripts/queries-convert/cli.js md-to-json",
+    "queries:json-to-md": "node scripts/queries-convert/cli.js json-to-md"
   },
   "dependencies": {
     "@vercel/analytics": "^1.1.0",
     "jose": "^5.2.0",
-    "next": "^15.0.0",
+    "next": "16.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^22.19.11",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.0.0"
+    "autoprefixer": "^10.4.24",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.6",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
   }
 }

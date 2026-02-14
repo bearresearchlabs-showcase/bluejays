@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Comprehensive validation script for db-1 queries.md
+Comprehensive validation script for db-4 queries
 Performs syntax validation, execution testing, and comprehensive evaluation
 """
 
@@ -253,15 +253,17 @@ class QueryEvaluator:
 def main():
     """Main validation function"""
     script_dir = Path(__file__).parent
-    queries_file = script_dir.parent / 'queries' / 'queries.md'
-    results_file = script_dir.parent / 'results' / 'comprehensive_validation_report.json'
+    # Prefer app/QUERIES/queries.md (source layout), fallback to queries/queries.md
+    base = script_dir.parent
+    queries_file = (base / 'app' / 'QUERIES' / 'queries.md') if (base / 'app' / 'QUERIES' / 'queries.md').exists() else (base / 'queries' / 'queries.md')
+    results_file = base / 'results' / 'comprehensive_validation_report.json'
 
     if not queries_file.exists():
         print(f"Error: {queries_file} not found")
         return
 
     print("="*70)
-    print("Comprehensive Validation for db-1 queries.md")
+    print("Comprehensive Validation for db-4 queries")
     print("="*70)
 
     # Extract queries
@@ -276,7 +278,7 @@ def main():
     # Initialize results
     results = {
         'validation_date': datetime.now().isoformat(),
-        'database': 'db-1',
+        'database': 'db-4',
         'file': str(queries_file),
         'total_queries': len(queries),
         'syntax_validation': {},
@@ -292,7 +294,7 @@ def main():
         'port': int(os.environ.get('PG_PORT', 5432)),
         'user': os.environ.get('PG_USER', os.environ.get('USER', 'postgres')),
         'password': os.environ.get('PG_PASSWORD', ''),
-        'database': os.environ.get('PG_DATABASE', 'postgres')
+        'database': os.environ.get('PG_DATABASE', 'db4')
     }
 
     if not PG_AVAILABLE:

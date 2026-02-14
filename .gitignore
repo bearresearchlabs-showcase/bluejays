@@ -26,6 +26,8 @@ ENV/
 .pytest_cache/
 .coverage
 htmlcov/
+coverage/
+jest-cache/
 test_outputs/
 
 # Next.js / Node
@@ -117,6 +119,9 @@ source/db-*/research/*.csv
 
 # Client data mirror (85GB+)
 client/
+
+# Rust (scripts/bin/checksum)
+scripts/bin/checksum/target/
 
 # Kubernetes secrets (use secret.yaml.example)
 k8s/secret.yaml

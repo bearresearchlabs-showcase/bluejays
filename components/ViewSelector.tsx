@@ -3,37 +3,37 @@
 import { useRouter, usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-const VIEWS = [
-  { value: '/staff', label: 'Staff' },
-  { value: '/', label: 'Annotator' },
-  { value: '/admin/tasks', label: 'Task Board' },
-  { value: '/dashboard', label: 'Dashboard' },
-  { value: '/suite', label: 'Full Suite' },
-  { value: '/customer', label: 'Customer Portal' },
-]
+const VIEW_LABELS: Record<string, string> = {
+  '/': 'Annotator',
+  '/dashboard': 'Dashboard',
+  '/suite': 'Databases',
+  '/customer': 'Customer Portal',
+  '/admin/tasks': 'Task Board',
+  '/admin/privileges': 'Privileges',
+  '/staff': 'Staff',
+  '/staff/pipeline': 'Pipeline',
+}
 
 export function ViewSelector() {
   const router = useRouter()
   const pathname = usePathname()
-  const [views, setViews] = useState(VIEWS)
+  const [views, setViews] = useState<{ value: string; label: string }[]>([])
   const [mode, setMode] = useState<'annotator' | 'admin'>('annotator')
   const [showMode, setShowMode] = useState(false)
 
   useEffect(() => {
-    fetch('/api/me')
-      .then((r) => r.json())
-      .then((me) => {
+    Promise.all([fetch('/api/me').then((r) => r.json()), fetch('/api/privileges').then((r) => r.json())])
+      .then(([me, priv]) => {
         if (me.canSwitchMode) {
           setShowMode(true)
           setMode((me.mode || 'annotator') as 'annotator' | 'admin')
         }
-        if (me.mode === 'annotator' || me.user === 'annotator') {
-          setViews(VIEWS.filter((v) => !['/dashboard', '/suite', '/customer'].includes(v.value)))
-        } else if (me.user === 'customer') {
-          setViews(VIEWS.filter((v) => ['/suite', '/customer'].includes(v.value)))
-        }
+        const viewPaths = priv.views || []
+        setViews(
+          viewPaths.map((v: string) => ({ value: v, label: VIEW_LABELS[v] || v }))
+        )
       })
-      .catch(() => {})
+      .catch(() => setViews([{ value: '/', label: 'Annotator' }]))
   }, [])
 
   const handleModeChange = async (m: 'annotator' | 'admin') => {
@@ -49,7 +49,6 @@ export function ViewSelector() {
   const pathMap: Record<string, string> = {
     '/': '/',
     '/dashboard': '/dashboard',
-    '/staff': '/staff',
     '/admin/tasks': '/admin/tasks',
     '/suite': '/suite',
     '/customer': '/customer',
@@ -57,46 +56,30 @@ export function ViewSelector() {
   const current = pathMap[pathname] ?? pathname
 
   return (
-    <div style={{ marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid var(--border)' }}>
+    <div className="mb-4 pb-4 border-b border-[var(--border)]">
       {showMode && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-          <label style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--fg-muted)', textTransform: 'uppercase' }}>
+        <div className="flex items-center gap-2 mb-2">
+          <label className="text-xs font-semibold uppercase text-[var(--fg-muted)]">
             Mode
           </label>
           <select
             value={mode}
             onChange={(e) => handleModeChange(e.target.value as 'annotator' | 'admin')}
-            style={{
-              padding: '0.4rem 0.75rem',
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border)',
-              color: 'var(--fg)',
-              borderRadius: 6,
-              fontSize: '0.875rem',
-              cursor: 'pointer',
-            }}
+            className="px-3 py-1.5 rounded-md text-sm cursor-pointer bg-[var(--bg-card)] border border-[var(--border)] text-[var(--fg)]"
           >
             <option value="annotator">Annotator</option>
             <option value="admin">Admin</option>
           </select>
         </div>
       )}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <label style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--fg-muted)', textTransform: 'uppercase' }}>
+      <div className="flex items-center gap-2">
+        <label className="text-xs font-semibold uppercase text-[var(--fg-muted)]">
           View
         </label>
         <select
           value={current}
           onChange={(e) => e.target.value && router.push(e.target.value)}
-          style={{
-            padding: '0.4rem 0.75rem',
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border)',
-            color: 'var(--fg)',
-            borderRadius: 6,
-            fontSize: '0.875rem',
-            cursor: 'pointer',
-          }}
+          className="px-3 py-1.5 rounded-md text-sm cursor-pointer bg-[var(--bg-card)] border border-[var(--border)] text-[var(--fg)]"
         >
           {views.map((v) => (
             <option key={v.value} value={v.value}>

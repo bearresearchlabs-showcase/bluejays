@@ -6,7 +6,6 @@ Stores results in db-{N}/metadata/integrity.json.
 
 import hashlib
 import json
-import struct
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -64,10 +63,32 @@ def sha256_hex(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def _checksum_binary() -> Optional[Path]:
+    """Path to compiled checksum binary, if built."""
+    bin_path = scripts_dir / "bin" / "checksum" / "target" / "release" / "checksum"
+    if bin_path.exists():
+        return bin_path
+    return None
+
+
 def compute_file_checksums(filepath: Path) -> Optional[Dict[str, str]]:
-    """Compute CRC-32, CRC-64, SHA-256 for a file."""
+    """Compute CRC-32, CRC-64, SHA-256 for a file. Uses bin/checksum when built."""
     if not filepath.exists() or not filepath.is_file():
         return None
+    bin_path = _checksum_binary()
+    if bin_path:
+        try:
+            import subprocess
+            r = subprocess.run(
+                [str(bin_path), str(filepath)],
+                capture_output=True,
+                text=True,
+                timeout=60,
+            )
+            if r.returncode == 0 and r.stdout.strip():
+                return json.loads(r.stdout.strip())
+        except (subprocess.TimeoutExpired, json.JSONDecodeError, OSError):
+            pass
     try:
         data = filepath.read_bytes()
     except (OSError, IOError):

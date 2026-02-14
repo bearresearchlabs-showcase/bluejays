@@ -246,7 +246,6 @@ Lucasa POS database - anonymized retail Point-of-Sale dataset from a family busi
 
 - **PostgreSQL**: Full support
 - **, **: Compatible with Delta Lake
-- **, **: Full support
 
 ---
 
@@ -256,7 +255,7 @@ Lucasa POS database - anonymized retail Point-of-Sale dataset from a family busi
 
 This section provides a comprehensive data dictionary for all tables in the database, including column names, data types, constraints, and descriptions. Tables are organized by functional category for easier navigation.
 
-See `docs/SCHEMA.md` for table relationships. Core phppos tables: sales, items, payments, inventory, products, suppliers.
+See `docs/SCHEMA.md` for table relationships. Core phppos tables: people, employees, items, locations, location_items, sales.
 
 ---
 
@@ -2933,7 +2932,7 @@ LIMIT 100
 
 ## Usage Instructions
 
-Load schema.sql and data.sql. See docs/POSTGRES_MIGRATION.md for MySQL to PostgreSQL migration.
+Load `data/schema.sql` then data load scripts. Schema is PostgreSQL-native with ACID constraints.
 
 ---
 
@@ -2949,7 +2948,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260214-0148
+- **Generated**: 20260214-1518
 - **Database**: db-5
 - **Type**: POS Retail (Lucasa)
 - **Queries**: 30 production queries

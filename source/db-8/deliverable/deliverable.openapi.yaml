@@ -122,26 +122,17 @@ info:
     Applications
 
 
-    Description: Enterprise-level job matching algorithm with multi-dimensional scoring
-    (skills, location, salary, experience, work model), skill gap analysis, weighted
-    matching scores, and recommendation ranking. Demonstrates production patterns
-    used by jobright.ai, LinkedIn, and Indeed for personalized job recommendations.
-
-
+    Description: Description: Enterprise-level job matching algorithm with multi-dimensional
+    scoring (skills, location, salary, experience, work model), skill gap analysis,
+    weighted matching scores, and recommendation ranking. Demonstrates production
+    patterns used by jobright.ai, LinkedIn, and Indeed for personalized job recommendations.
     Use Case: Personalized Job Recommendations - AI-Powered Job Matching for Targeted
-    Applications
+    Applications Business Value: Generates personalized job recommendations with detailed
+    match sco
 
 
     Business Value: Generates personalized job recommendations with detailed match
-    scores across multiple dimensions (skills, location, salary, experience, work
-    model), skill gap analysis showing missing requirements, and ranked recommendations.
-    Enables users to identify best-fit opportunities and prioritize applications based
-    on match quality.
-
-
-    Purpose: Provides intelligent job matching that considers multiple factors simultaneously,
-    enabling users to focus on opportunities with highest alignment to their profile
-    and preferences.
+    sco
 
 
     Complexity: Deep nested CTEs (8+ levels), multi-dimensional scoring algorithms,
@@ -149,10 +140,6 @@ info:
     calculations, correlated subqueries, complex joins across 6+ tables
 
 
-    Expected Output: Ranked list of job recommendations with match scores, skill alignment
-    details, location compatibility, salary match, and recommendation reasons.
-
-
     ---
 
 
@@ -160,57 +147,39 @@ info:
     Advancement
 
 
-    Description: Recursive CTE-based skill gap analysis that identifies missing skills
-    for target jobs, analyzes skill hierarchies and dependencies, calculates learning
-    path recommendations, and determines prerequisite skills. Uses recursive CTEs
-    to traverse skill dependency trees and identify optimal skill acquisition paths.
+    Description: Description: Recursive CTE-based skill gap analysis that identifies
+    missing skills for target jobs, analyzes skill hierarchies and dependencies, calculates
+    learning path recommendations, and determines prerequisite skills. Uses recursive
+    CTEs to traverse skill dependency trees and identify optimal skill acquisition
+    paths. Use Case: Skill Development Planning - Learning Path Recommendations for
+    Career Advancement Business Value: Identifies skill gaps for target job roles,
+    analyzes skill hierarchi
 
 
-    Use Case: Skill Development Planning - Learning Path Recommendations for Career
-    Advancement
-
-
-    Business Value: Identifies skill gaps for target job roles, analyzes skill hierarchies
-    to determine prerequisite skills, and generates personalized learning path recommendations.
-    Helps users understand what skills they need to acquire and in what order to qualify
-    for desired positions.
-
-
-    Purpose: Enables data-driven skill development planning by identifying gaps, dependencies,
-    and optimal learning sequences for career advancement.
+    Business Value: Identifies skill gaps for target job roles, analyzes skill hierarchi
 
 
     Complexity: Recursive CTEs (WITH RECURSIVE), hierarchical skill traversal, dependency
     analysis, path finding algorithms, complex aggregations, window functions
 
 
-    Expected Output: Skill gap analysis with missing skills, prerequisite skill chains,
-    learning path recommendations, and estimated time to acquire skills.
-
-
     ---
 
 
     Use Case: Market Intelligence - Job Market Trend Analysis and Skill Demand Forecasting
 
 
-    Description: Advanced time-series analysis of job market trends with forecasting,
-    skill demand projections, growth rate calculations, and competitive intelligence.
-    Uses window functions for trend analysis, moving averages, and predictive modeling
-    patterns.
-
-
-    Use Case: Market Intelligence - Job Market Trend Analysis and Skill Demand Forecasting
+    Description: Description: Advanced time-series analysis of job market trends with
+    forecasting, skill demand projections, growth rate calculations, and competitive
+    intelligence. Uses window functions for trend analysis, moving averages, and predictive
+    modeling patterns. Use Case: Market Intelligence - Job Market Trend Analysis and
+    Skill Demand Forecasting Business Value: Provides comprehensive market trend analysis
+    showing job posting growth rates, skill demand trends, salary trends, geographic
+    distribution s
 
 
     Business Value: Provides comprehensive market trend analysis showing job posting
-    growth rates, skill demand trends, salary trends, geographic distribution shifts,
-    and competitive intelligence. Enables users to identify emerging opportunities,
-    declining markets, and skill demand projections for career planning.
-
-
-    Purpose: Delivers actionable market intelligence for strategic career decisions
-    and skill investment planning.
+    growth rates, skill demand trends, salary trends, geographic distribution s
 
 
     Complexity: Deep nested CTEs (6+ levels), time-series analysis, window functions
@@ -218,10 +187,6 @@ info:
     rankings, forecasting patterns
 
 
-    Expected Output: Market trend analysis with growth rates, skill demand projections,
-    salary trends, geographic shifts, and competitive metrics.
-
-
     ---
 
 
@@ -229,24 +194,17 @@ info:
     Optimization
 
 
-    Description: Comprehensive application success rate analysis with cohort segmentation
-    by application date, conversion funnel metrics, time-to-response analysis, and
-    success factor identification. Uses window functions for cohort analysis and conversion
-    rate calculations.
-
-
-    Use Case: Application Performance Tracking - Success Rate Analysis and Conversion
-    Optimization
+    Description: Description: Comprehensive application success rate analysis with
+    cohort segmentation by application date, conversion funnel metrics, time-to-response
+    analysis, and success factor identification. Uses window functions for cohort
+    analysis and conversion rate calculations. Use Case: Application Performance Tracking
+    - Success Rate Analysis and Conversion Optimization Business Value: Analyzes application
+    success rates by cohort, identifies conversion bottlenecks in the application
+    funnel, calculates
 
 
     Business Value: Analyzes application success rates by cohort, identifies conversion
-    bottlenecks in the application funnel, calculates time-to-response metrics, and
-    determines factors correlated with successful applications. Helps users optimize
-    application strategies and improve success rates.
-
-
-    Purpose: Provides data-driven insights into application performance to optimize
-    job search strategies and increase interview conversion rates.
+    bottlenecks in the application funnel, calculates
 
 
     Complexity: Deep nested CTEs (7+ levels), cohort analysis, conversion funnel calculations,
@@ -254,10 +212,6 @@ info:
     analysis
 
 
-    Expected Output: Application success rates by cohort, conversion funnel metrics,
-    time-to-response statistics, and success factor correlations.
-
-
     ---
 
 
@@ -265,33 +219,24 @@ info:
     Analysis
 
 
-    Description: Comprehensive competitive intelligence analysis comparing companies
-    by market share, job posting volume, application rates, employer ratings, and
-    brand strength metrics. Uses aggregations, rankings, and comparative analytics.
-
-
+    Description: Description: Comprehensive competitive intelligence analysis comparing
+    companies by market share, job posting volume, application rates, employer ratings,
+    and brand strength metrics. Uses aggregations, rankings, and comparative analytics.
     Use Case: Competitive Intelligence - Company Market Position and Employer Brand
-    Analysis
+    Analysis Business Value: Provides competitive intelligence showing company market
+    share by industry, job posting trends, application attraction rates, employer
+    brand strength, and c
 
 
     Business Value: Provides competitive intelligence showing company market share
     by industry, job posting trends, application attraction rates, employer brand
-    strength, and competitive positioning. Helps users identify top employers and
-    understand market dynamics.
-
-
-    Purpose: Delivers actionable competitive intelligence for understanding employer
-    landscape and making informed career decisions.
+    strength, and c
 
 
     Complexity: Deep nested CTEs (6+ levels), market share calculations, competitive
     rankings, window functions with rankings, percentile analysis, comparative metrics
 
 
-    Expected Output: Company competitive analysis with market share, posting trends,
-    application rates, brand metrics, and competitive rankings.
-
-
     ---
 
 
@@ -299,95 +244,71 @@ info:
     Planning
 
 
-    Description: Comprehensive geographic analysis of job markets by location, analyzing
-    job density, salary variations, remote work adoption, competition levels, and
-    location attractiveness scores. Uses spatial aggregations and geographic comparisons.
-
-
-    Use Case: Location Intelligence - Geographic Job Market Analysis and Relocation
-    Planning
+    Description: Description: Comprehensive geographic analysis of job markets by
+    location, analyzing job density, salary variations, remote work adoption, competition
+    levels, and location attractiveness scores. Uses spatial aggregations and geographic
+    comparisons. Use Case: Location Intelligence - Geographic Job Market Analysis
+    and Relocation Planning Business Value: Provides geographic job market intelligence
+    showing job density by location, salary variations across regions, remote work
+    adoption rates, competi
 
 
     Business Value: Provides geographic job market intelligence showing job density
-    by location, salary variations across regions, remote work adoption rates, competition
-    levels, and location attractiveness scores. Helps users make informed decisions
-    about job locations and relocation opportunities.
-
-
-    Purpose: Delivers location-based market intelligence for strategic career and
-    relocation planning.
+    by location, salary variations across regions, remote work adoption rates, competi
 
 
     Complexity: Deep nested CTEs (6+ levels), geographic aggregations, spatial comparisons,
     window functions with geographic partitions, percentile analysis by location
 
 
-    Expected Output: Geographic market analysis with job density, salary ranges, remote
-    work rates, competition metrics, and location attractiveness scores.
-
-
     ---
 
 
     Use Case: Salary Intelligence - Compensation Benchmarking and Market Positioning
 
 
-    Description: Comprehensive salary benchmarking analysis comparing salaries across
-    roles, industries, locations, and experience levels. Uses percentile rankings,
-    market positioning, and comparative analytics.
-
-
-    Use Case: Salary Intelligence - Compensation Benchmarking and Market Positioning
+    Description: Description: Comprehensive salary benchmarking analysis comparing
+    salaries across roles, industries, locations, and experience levels. Uses percentile
+    rankings, market positioning, and comparative analytics. Use Case: Salary Intelligence
+    - Compensation Benchmarking and Market Positioning Business Value: Provides salary
+    benchmarking data showing percentile rankings, market positioning, salary ranges
+    by role/industry/location, and compensation trends. Helps users understand market
+    rates and negoti
 
 
     Business Value: Provides salary benchmarking data showing percentile rankings,
     market positioning, salary ranges by role/industry/location, and compensation
-    trends. Helps users understand market rates and negotiate competitive salaries.
-
-
-    Purpose: Delivers actionable salary intelligence for compensation negotiation
-    and career planning.
+    trends. Helps users understand market rates and negoti
 
 
     Complexity: Deep nested CTEs (7+ levels), percentile calculations, market positioning,
     window functions with multiple partitions, comparative analytics
 
 
-    Expected Output: Salary benchmarking analysis with percentile rankings, market
-    positioning, salary ranges, and compensation trends.
-
-
     ---
 
 
     Use Case: User Analytics - Cohort Analysis and Career Progression Tracking
 
 
-    Description: Comprehensive user cohort analysis tracking user registration cohorts,
-    application activity patterns, retention metrics, career progression indicators,
-    and engagement trends. Uses cohort segmentation and retention analysis patterns.
-
-
-    Use Case: User Analytics - Cohort Analysis and Career Progression Tracking
+    Description: Description: Comprehensive user cohort analysis tracking user registration
+    cohorts, application activity patterns, retention metrics, career progression
+    indicators, and engagement trends. Uses cohort segmentation and retention analysis
+    patterns. Use Case: User Analytics - Cohort Analysis and Career Progression Tracking
+    Business Value: Provides user cohort analysis showing registration cohorts, application
+    activity patterns, retention rates, career progression indicators, and engagement
+    trends. H
 
 
     Business Value: Provides user cohort analysis showing registration cohorts, application
     activity patterns, retention rates, career progression indicators, and engagement
-    trends. Helps understand user behavior patterns and optimize platform features.
-
-
-    Purpose: Delivers actionable user analytics for understanding user lifecycle and
-    optimizing job search platform features.
+    trends. H
 
 
     Complexity: Deep nested CTEs (7+ levels), cohort analysis, retention calculations,
     window functions with cohort partitions, time-series analysis
 
 
-    Expected Output: User cohort analysis with registration cohorts, retention metrics,
-    application patterns, and career progression indicators.
-
-
     ---
 
 
@@ -395,32 +316,23 @@ info:
     Identification
 
 
-    Description: Comprehensive analysis comparing skill demand (from job postings)
-    vs skill supply (from user profiles), identifying market imbalances, high-demand/low-supply
-    skills, and skill gap opportunities. Uses aggregations and comparative analytics.
-
-
-    Use Case: Skill Market Intelligence - Demand vs Supply Analysis and Skill Gap
-    Identification
+    Description: Description: Comprehensive analysis comparing skill demand (from
+    job postings) vs skill supply (from user profiles), identifying market imbalances,
+    high-demand/low-supply skills, and skill gap opportunities. Uses aggregations
+    and comparative analytics. Use Case: Skill Market Intelligence - Demand vs Supply
+    Analysis and Skill Gap Identification Business Value: Identifies skill market
+    imbalances showing high-demand/low-supply skills, skill gap opportunities, and
+    market trends. Helps users identify
 
 
     Business Value: Identifies skill market imbalances showing high-demand/low-supply
-    skills, skill gap opportunities, and market trends. Helps users identify valuable
-    skills to learn and understand market dynamics.
-
-
-    Purpose: Delivers actionable skill market intelligence for career planning and
-    skill development decisions.
+    skills, skill gap opportunities, and market trends. Helps users identify
 
 
     Complexity: Deep nested CTEs (6+ levels), demand vs supply comparisons, market
     imbalance calculations, window functions with rankings, percentile analysis
 
 
-    Expected Output: Skill demand vs supply analysis with market imbalances, skill
-    gap opportunities, and market trend indicators.
-
-
     ---
 
 
@@ -428,96 +340,71 @@ info:
     Patterns
 
 
-    Description: Comprehensive analysis of federal job opportunities from USAJobs.gov,
-    analyzing agency hiring patterns, pay plan distributions, grade levels, geographic
-    distribution, and federal employment trends. Uses aggregations and federal-specific
-    analytics.
-
-
-    Use Case: Federal Employment Intelligence - USAJobs.gov Analysis and Agency Hiring
-    Patterns
+    Description: Description: Comprehensive analysis of federal job opportunities
+    from USAJobs.gov, analyzing agency hiring patterns, pay plan distributions, grade
+    levels, geographic distribution, and federal employment trends. Uses aggregations
+    and federal-specific analytics. Use Case: Federal Employment Intelligence - USAJobs.gov
+    Analysis and Agency Hiring Patterns Business Value: Provides federal job market
+    intelligence showing agency hiring patterns, pay plan distributions, grade level
+    trends, geographic dis
 
 
     Business Value: Provides federal job market intelligence showing agency hiring
-    patterns, pay plan distributions, grade level trends, geographic distribution,
-    and federal employment opportunities. Helps users understand federal job market
-    and identify opportunities.
-
-
-    Purpose: Delivers actionable federal employment intelligence for government career
-    planning.
+    patterns, pay plan distributions, grade level trends, geographic dis
 
 
     Complexity: Deep nested CTEs (6+ levels), federal-specific aggregations, agency
     analysis, pay plan distributions, geographic analysis
 
 
-    Expected Output: Federal job opportunities analysis with agency patterns, pay
-    plan distributions, grade level trends, and geographic distribution.
-
-
     ---
 
 
     Use Case: Search Intelligence - User Behavior Analysis and Recommendation Optimization
 
 
-    Description: Comprehensive analysis of user job search behavior patterns, search
-    query analysis, filter usage patterns, and recommendation engagement metrics.
-    Uses pattern recognition and behavioral analytics.
-
-
-    Use Case: Search Intelligence - User Behavior Analysis and Recommendation Optimization
+    Description: Description: Comprehensive analysis of user job search behavior patterns,
+    search query analysis, filter usage patterns, and recommendation engagement metrics.
+    Uses pattern recognition and behavioral analytics. Use Case: Search Intelligence
+    - User Behavior Analysis and Recommendation Optimization Business Value: Analyzes
+    user search behavior patterns, identifies common search queries, filter usage
+    patterns, and recommendation engagement metrics. Helps optimize search functionality
+    and improve rec
 
 
     Business Value: Analyzes user search behavior patterns, identifies common search
     queries, filter usage patterns, and recommendation engagement metrics. Helps optimize
-    search functionality and improve recommendation algorithms.
-
-
-    Purpose: Delivers actionable insights into user behavior for platform optimization
-    and recommendation improvement.
+    search functionality and improve rec
 
 
     Complexity: Deep nested CTEs (6+ levels), pattern recognition, behavioral analytics,
     window functions with user partitions, time-series analysis
 
 
-    Expected Output: Job search behavior analysis with search patterns, filter usage,
-    recommendation engagement, and optimization insights.
-
-
     ---
 
 
     Use Case: Funnel Optimization - Application Conversion Analysis and Drop-off Identification
 
 
-    Description: Comprehensive application funnel analysis tracking conversion rates
-    at each stage, identifying drop-off points, analyzing time-to-conversion, and
-    optimizing application flow. Uses funnel analysis patterns.
-
-
-    Use Case: Funnel Optimization - Application Conversion Analysis and Drop-off Identification
+    Description: Description: Comprehensive application funnel analysis tracking conversion
+    rates at each stage, identifying drop-off points, analyzing time-to-conversion,
+    and optimizing application flow. Uses funnel analysis patterns. Use Case: Funnel
+    Optimization - Application Conversion Analysis and Drop-off Identification Business
+    Value: Analyzes application funnel conversion rates, identifies drop-off points,
+    calculates time-to-conversion metrics, and provides optimization recommendations.
+    Helps improve app
 
 
     Business Value: Analyzes application funnel conversion rates, identifies drop-off
     points, calculates time-to-conversion metrics, and provides optimization recommendations.
-    Helps improve application success rates and user experience.
-
-
-    Purpose: Delivers actionable insights for optimizing application funnel and improving
-    conversion rates.
+    Helps improve app
 
 
     Complexity: Deep nested CTEs (7+ levels), funnel analysis, conversion rate calculations,
     drop-off identification, time-to-event analysis
 
 
-    Expected Output: Application funnel analysis with conversion rates, drop-off points,
-    time-to-conversion metrics, and optimization recommendations.
-
-
     ---
 
 
@@ -525,63 +412,48 @@ info:
     Value Maximization
 
 
-    Description: Comprehensive analysis of skill combinations, identifying co-occurrence
-    patterns, high-value skill pairs, and optimal skill portfolios. Uses graph-like
-    analysis and combination scoring.
-
-
-    Use Case: Skill Portfolio Optimization - Skill Combination Analysis and Market
-    Value Maximization
+    Description: Description: Comprehensive analysis of skill combinations, identifying
+    co-occurrence patterns, high-value skill pairs, and optimal skill portfolios.
+    Uses graph-like analysis and combination scoring. Use Case: Skill Portfolio Optimization
+    - Skill Combination Analysis and Market Value Maximization Business Value: Identifies
+    valuable skill combinations, analyzes co-occurrence patterns in job postings,
+    and recommends optimal skill portfolios. Helps users understand which skills to
+    combine for maximu
 
 
     Business Value: Identifies valuable skill combinations, analyzes co-occurrence
     patterns in job postings, and recommends optimal skill portfolios. Helps users
-    understand which skills to combine for maximum market value.
-
-
-    Purpose: Delivers actionable insights for building optimal skill portfolios and
-    maximizing career opportunities.
+    understand which skills to combine for maximu
 
 
     Complexity: Deep nested CTEs (7+ levels), skill combination analysis, co-occurrence
     calculations, graph-like patterns, combination scoring
 
 
-    Expected Output: Skill combination analysis with co-occurrence patterns, high-value
-    skill pairs, and optimal skill portfolio recommendations.
-
-
     ---
 
 
     Use Case: Hiring Intelligence - Time-to-Fill Analysis and Market Efficiency Metrics
 
 
-    Description: Comprehensive analysis of time-to-fill metrics, hiring velocity,
-    market efficiency indicators, and factors affecting time-to-hire. Uses time-to-event
-    analysis and efficiency calculations.
-
-
-    Use Case: Hiring Intelligence - Time-to-Fill Analysis and Market Efficiency Metrics
+    Description: Description: Comprehensive analysis of time-to-fill metrics, hiring
+    velocity, market efficiency indicators, and factors affecting time-to-hire. Uses
+    time-to-event analysis and efficiency calculations. Use Case: Hiring Intelligence
+    - Time-to-Fill Analysis and Market Efficiency Metrics Business Value: Analyzes
+    time-to-fill metrics, identifies factors affecting hiring speed, calculates market
+    efficiency indicators, and provides insights for optimizing hiring processes.
+    Helps understand market dynam
 
 
     Business Value: Analyzes time-to-fill metrics, identifies factors affecting hiring
     speed, calculates market efficiency indicators, and provides insights for optimizing
-    hiring processes. Helps understand market dynamics and hiring efficiency.
-
-
-    Purpose: Delivers actionable insights for understanding hiring velocity and market
-    efficiency.
+    hiring processes. Helps understand market dynam
 
 
     Complexity: Deep nested CTEs (6+ levels), time-to-event analysis, efficiency calculations,
     factor analysis, window functions
 
 
-    Expected Output: Time-to-fill analysis with hiring velocity metrics, market efficiency
-    indicators, and optimization insights.
-
-
     ---
 
 
@@ -589,43 +461,37 @@ info:
     Analysis
 
 
-    Description: Comprehensive analysis of remote work trends, geographic distribution
-    patterns, work model evolution over time, and remote work adoption rates. Uses
-    time-series analysis and trend calculations.
-
-
-    Use Case: Work Model Intelligence - Remote Work Trends and Geographic Distribution
-    Analysis
+    Description: Description: Comprehensive analysis of remote work trends, geographic
+    distribution patterns, work model evolution over time, and remote work adoption
+    rates. Uses time-series analysis and trend calculations. Use Case: Work Model
+    Intelligence - Remote Work Trends and Geographic Distribution Analysis Business
+    Value: Analyzes remote work trends, tracks work model evolution, identifies geographic
+    distribution patterns, and provides insights into remote work adoption. Helps
+    understand work model trend
 
 
     Business Value: Analyzes remote work trends, tracks work model evolution, identifies
     geographic distribution patterns, and provides insights into remote work adoption.
-    Helps understand work model trends and opportunities.
-
-
-    Purpose: Delivers actionable insights into remote work trends and work model evolution.
+    Helps understand work model trend
 
 
     Complexity: Deep nested CTEs (6+ levels), time-series analysis, trend calculations,
     geographic aggregations, window functions
 
 
-    Expected Output: Remote work trends analysis with adoption rates, geographic distribution,
-    work model evolution, and trend projections.
-
-
     ---
 
 
     Use Case: Data Quality Intelligence - Source Quality Analysis and Extraction Monitoring
 
 
-    Description: Comprehensive analysis of data source quality, extraction success
-    rates, data freshness metrics, and source reliability scoring. Uses quality metrics
-    and reliability calculations.
-
-
-    Use Case: Data Quality Intelligence - Source Quality Analysis and Extraction Monitoring
+    Description: Description: Comprehensive analysis of data source quality, extraction
+    success rates, data freshness metrics, and source reliability scoring. Uses quality
+    metrics and reliability calculations. Use Case: Data Quality Intelligence - Source
+    Quality Analysis and Extraction Monitoring Business Value: Analyzes data source
+    quality, tracks extraction success rates, monitors data freshness, and provides
+    reliability scores. Helps ensure data quality and identify source issues. Purpose:
+    Delivers actionable
 
 
     Business Value: Analyzes data source quality, tracks extraction success rates,
@@ -633,15 +499,11 @@ info:
     and identify source issues.
 
 
-    Purpose: Delivers actionable insights for data quality management and source monitoring.
+    Purpose: Delivers actionable
 
 
     Complexity: Deep nested CTEs (6+ levels), quality metrics, reliability scoring,
     time-series analysis, window functions
-
-
-    Expected Output: Data source quality analysis with extraction metrics, freshness
-    tracking, and reliability scores.
 
 
     ---
@@ -650,11 +512,13 @@ info:
     Use Case: Title Intelligence - Job Title Normalization and Clustering Analysis
 
 
-    Description: Comprehensive job title normalization, clustering similar titles,
-    and similarity analysis. Uses text similarity patterns and clustering algorithms.
-
-
-    Use Case: Title Intelligence - Job Title Normalization and Clustering Analysis
+    Description: Description: Comprehensive job title normalization, clustering similar
+    titles, and similarity analysis. Uses text similarity patterns and clustering
+    algorithms. Use Case: Title Intelligence - Job Title Normalization and Clustering
+    Analysis Business Value: Normalizes job titles, clusters similar titles, and identifies
+    title variations. Helps standardize job titles and improve matching accuracy.
+    Purpose: Delivers actionable insights for job title standardization and matching
+    improvement. Complexit
 
 
     Business Value: Normalizes job titles, clusters similar titles, and identifies
@@ -662,17 +526,13 @@ info:
 
 
     Purpose: Delivers actionable insights for job title standardization and matching
-    improvement.
+    improvement. Complexit
 
 
     Complexity: Deep nested CTEs (6+ levels), text similarity analysis, clustering
     patterns, normalization algorithms
 
 
-    Expected Output: Job title normalization analysis with clusters, similarity scores,
-    and standardized titles.
-
-
     ---
 
 
@@ -680,43 +540,37 @@ info:
     Scoring
 
 
-    Description: Comprehensive analysis for predicting application success using feature
-    engineering, probability scoring, and success factor identification. Uses predictive
-    analytics patterns.
-
-
-    Use Case: Predictive Analytics - Application Success Prediction and Probability
-    Scoring
+    Description: Description: Comprehensive analysis for predicting application success
+    using feature engineering, probability scoring, and success factor identification.
+    Uses predictive analytics patterns. Use Case: Predictive Analytics - Application
+    Success Prediction and Probability Scoring Business Value: Predicts application
+    success probability, identifies success factors, and provides actionable insights
+    for improving application outcomes. Helps users optimize applications and increase
+    success rates. Purpo
 
 
     Business Value: Predicts application success probability, identifies success factors,
     and provides actionable insights for improving application outcomes. Helps users
-    optimize applications and increase success rates.
-
-
-    Purpose: Delivers predictive insights for application optimization and success
-    rate improvement.
+    optimize applications and increase success rates. Purpo
 
 
     Complexity: Deep nested CTEs (7+ levels), feature engineering, probability calculations,
     predictive patterns, window functions
 
 
-    Expected Output: Application success prediction with probability scores, success
-    factors, and optimization recommendations.
-
-
     ---
 
 
     Use Case: Company Intelligence - Growth Analysis and Expansion Pattern Tracking
 
 
-    Description: Comprehensive analysis of company growth patterns, hiring trends,
-    geographic expansion, and growth indicators. Uses trend analysis and growth calculations.
-
-
-    Use Case: Company Intelligence - Growth Analysis and Expansion Pattern Tracking
+    Description: Description: Comprehensive analysis of company growth patterns, hiring
+    trends, geographic expansion, and growth indicators. Uses trend analysis and growth
+    calculations. Use Case: Company Intelligence - Growth Analysis and Expansion Pattern
+    Tracking Business Value: Analyzes company growth patterns, tracks hiring trends,
+    identifies expansion patterns, and provides growth indicators. Helps understand
+    company dynamics and opportunities. Purpose: Delivers actionable insights into
+    company growth and e
 
 
     Business Value: Analyzes company growth patterns, tracks hiring trends, identifies
@@ -724,15 +578,11 @@ info:
     and opportunities.
 
 
-    Purpose: Delivers actionable insights into company growth and expansion patterns.
+    Purpose: Delivers actionable insights into company growth and e
 
 
     Complexity: Deep nested CTEs (6+ levels), growth trend analysis, expansion pattern
     detection, window functions, time-series analysis
-
-
-    Expected Output: Company growth analysis with hiring trends, expansion patterns,
-    and growth indicators.
 
 
     ---
@@ -741,12 +591,13 @@ info:
     Use Case: Skill Intelligence - Evolution Tracking and Emerging Skills Detection
 
 
-    Description: Comprehensive tracking of skill evolution, detecting emerging skills,
-    analyzing skill trends, and identifying skill lifecycle stages. Uses time-series
-    analysis and trend detection.
-
-
-    Use Case: Skill Intelligence - Evolution Tracking and Emerging Skills Detection
+    Description: Description: Comprehensive tracking of skill evolution, detecting
+    emerging skills, analyzing skill trends, and identifying skill lifecycle stages.
+    Uses time-series analysis and trend detection. Use Case: Skill Intelligence -
+    Evolution Tracking and Emerging Skills Detection Business Value: Tracks skill
+    evolution, detects emerging skills, analyzes trends, and identifies skill lifecycle
+    stages. Helps users stay ahead of skill trends and identify valuable skills early.
+    Purpose: Delivers actionable i
 
 
     Business Value: Tracks skill evolution, detects emerging skills, analyzes trends,
@@ -754,60 +605,50 @@ info:
     and identify valuable skills early.
 
 
-    Purpose: Delivers actionable insights into skill evolution and emerging opportunities.
+    Purpose: Delivers actionable i
 
 
     Complexity: Deep nested CTEs (6+ levels), time-series analysis, trend detection,
     lifecycle analysis, window functions
 
 
-    Expected Output: Skill evolution analysis with emerging skills, trend indicators,
-    and lifecycle stages.
-
-
     ---
 
 
     Use Case: Timing Intelligence - Optimal Application Timing and Success Rate Optimization
 
 
-    Description: Comprehensive analysis of optimal application timing, analyzing when
-    to apply for best success rates, time-to-response patterns, and application timing
-    strategies. Uses temporal analysis and optimization patterns.
-
-
+    Description: Description: Comprehensive analysis of optimal application timing,
+    analyzing when to apply for best success rates, time-to-response patterns, and
+    application timing strategies. Uses temporal analysis and optimization patterns.
     Use Case: Timing Intelligence - Optimal Application Timing and Success Rate Optimization
+    Business Value: Identifies optimal application timing, analyzes time-to-response
+    patterns, and provides timing strategies for maximizing success rates. Helps users
+    apply at the right t
 
 
     Business Value: Identifies optimal application timing, analyzes time-to-response
     patterns, and provides timing strategies for maximizing success rates. Helps users
-    apply at the right time for best results.
-
-
-    Purpose: Delivers actionable insights for optimizing application timing and improving
-    success rates.
+    apply at the right t
 
 
     Complexity: Deep nested CTEs (6+ levels), temporal analysis, optimization patterns,
     window functions, time-series analysis
 
 
-    Expected Output: Application timing analysis with optimal timing recommendations,
-    time-to-response patterns, and success rate optimizations.
-
-
     ---
 
 
     Use Case: Career Intelligence - Industry Transition Analysis and Career Path Mapping
 
 
-    Description: Comprehensive analysis of industry transitions, mapping career paths,
-    analyzing transition success rates, and identifying optimal transition strategies.
-    Uses path analysis and transition patterns.
-
-
-    Use Case: Career Intelligence - Industry Transition Analysis and Career Path Mapping
+    Description: Description: Comprehensive analysis of industry transitions, mapping
+    career paths, analyzing transition success rates, and identifying optimal transition
+    strategies. Uses path analysis and transition patterns. Use Case: Career Intelligence
+    - Industry Transition Analysis and Career Path Mapping Business Value: Maps career
+    paths across industries, analyzes transition success rates, and identifies optimal
+    transition strategies. Helps users plan industry transitions and career changes.
+    Purpose: Deli
 
 
     Business Value: Maps career paths across industries, analyzes transition success
@@ -815,16 +656,11 @@ info:
     transitions and career changes.
 
 
-    Purpose: Delivers actionable insights for industry transitions and career path
-    planning.
+    Purpose: Deli
 
 
     Complexity: Deep nested CTEs (7+ levels), path analysis, transition patterns,
     success rate calculations, graph-like analysis
-
-
-    Expected Output: Industry transition analysis with career paths, transition success
-    rates, and optimal transition strategies.
 
 
     ---
@@ -833,12 +669,13 @@ info:
     Use Case: Negotiation Intelligence - Salary Negotiation Support and Market Positioning
 
 
-    Description: Comprehensive analysis for salary negotiation, providing market positioning
-    data, negotiation leverage factors, and salary range recommendations. Uses market
-    analysis and leverage calculations.
-
-
-    Use Case: Negotiation Intelligence - Salary Negotiation Support and Market Positioning
+    Description: Description: Comprehensive analysis for salary negotiation, providing
+    market positioning data, negotiation leverage factors, and salary range recommendations.
+    Uses market analysis and leverage calculations. Use Case: Negotiation Intelligence
+    - Salary Negotiation Support and Market Positioning Business Value: Provides market
+    positioning data, identifies negotiation leverage factors, and recommends salary
+    ranges for negotiation. Helps users negotiate competitive salaries effectively.
+    Purpose: Deli
 
 
     Business Value: Provides market positioning data, identifies negotiation leverage
@@ -846,17 +683,13 @@ info:
     salaries effectively.
 
 
-    Purpose: Delivers actionable insights for salary negotiation and market positioning.
+    Purpose: Deli
 
 
     Complexity: Deep nested CTEs (6+ levels), market positioning, leverage analysis,
     percentile calculations, comparative analytics
 
 
-    Expected Output: Salary negotiation intelligence with market positioning, leverage
-    factors, and negotiation recommendations.
-
-
     ---
 
 
@@ -864,44 +697,37 @@ info:
     Density Metrics
 
 
-    Description: Comprehensive analysis of job market saturation, calculating competition
-    intensity, opportunity density, and market saturation indicators. Uses saturation
-    metrics and density calculations.
-
-
-    Use Case: Market Saturation Intelligence - Competition Analysis and Opportunity
-    Density Metrics
+    Description: Description: Comprehensive analysis of job market saturation, calculating
+    competition intensity, opportunity density, and market saturation indicators.
+    Uses saturation metrics and density calculations. Use Case: Market Saturation
+    Intelligence - Competition Analysis and Opportunity Density Metrics Business Value:
+    Analyzes market saturation, calculates competition intensity, measures opportunity
+    density, and identifies saturated vs. unsaturated markets. Helps users identify
+    less competitive opport
 
 
     Business Value: Analyzes market saturation, calculates competition intensity,
     measures opportunity density, and identifies saturated vs. unsaturated markets.
-    Helps users identify less competitive opportunities.
-
-
-    Purpose: Delivers actionable insights for identifying market opportunities and
-    avoiding saturated markets.
+    Helps users identify less competitive opport
 
 
     Complexity: Deep nested CTEs (6+ levels), saturation calculations, density metrics,
     competition analysis, percentile rankings
 
 
-    Expected Output: Market saturation analysis with competition intensity, opportunity
-    density, and saturation indicators.
-
-
     ---
 
 
     Use Case: User Experience Intelligence - Journey Analysis and Conversion Optimization
 
 
-    Description: Comprehensive analysis of user journeys, tracking engagement funnels,
-    analyzing conversion paths, and identifying optimization opportunities. Uses funnel
-    analysis and journey mapping.
-
-
-    Use Case: User Experience Intelligence - Journey Analysis and Conversion Optimization
+    Description: Description: Comprehensive analysis of user journeys, tracking engagement
+    funnels, analyzing conversion paths, and identifying optimization opportunities.
+    Uses funnel analysis and journey mapping. Use Case: User Experience Intelligence
+    - Journey Analysis and Conversion Optimization Business Value: Maps user journeys,
+    analyzes engagement funnels, tracks conversion paths, and identifies optimization
+    opportunities. Helps improve user experience and conversion rates. Purpose: Delivers
+    actionable ins
 
 
     Business Value: Maps user journeys, analyzes engagement funnels, tracks conversion
@@ -909,18 +735,13 @@ info:
     and conversion rates.
 
 
-    Purpose: Delivers actionable insights for optimizing user journeys and improving
-    conversion rates.
+    Purpose: Delivers actionable ins
 
 
     Complexity: Deep nested CTEs (7+ levels), funnel analysis, journey mapping, conversion
     tracking, path analysis
 
 
-    Expected Output: User journey analysis with engagement funnels, conversion paths,
-    and optimization recommendations.
-
-
     ---
 
 
@@ -928,33 +749,23 @@ info:
     Optimization
 
 
-    Description: Recursive CTE-based career path analysis that identifies optimal
-    career progression paths, analyzes job hierarchies, and determines advancement
+    Description: Description: Recursive CTE-based career path analysis that identifies
+    optimal career progression paths, analyzes job hierarchies, and determines advancement
     sequences. Uses recursive CTEs to traverse career progression trees and identify
-    optimal paths.
-
-
-    Use Case: Career Path Intelligence - Hierarchical Progression Analysis and Path
-    Optimization
+    optimal paths. Use Case: Career Path Intelligence - Hierarchical Progression Analysis
+    and Path Optimization Business Value: Identifies optimal career progression paths,
+    analyzes job hierarchies, and determines advancement sequences. Helps users plan
+    career advan
 
 
     Business Value: Identifies optimal career progression paths, analyzes job hierarchies,
-    and determines advancement sequences. Helps users plan career advancement and
-    understand progression opportunities.
-
-
-    Purpose: Enables data-driven career path planning by identifying progression sequences
-    and optimal advancement paths.
+    and determines advancement sequences. Helps users plan career advan
 
 
     Complexity: Recursive CTEs (WITH RECURSIVE), hierarchical path traversal, progression
     analysis, path optimization algorithms, complex aggregations
 
 
-    Expected Output: Career path analysis with progression sequences, advancement
-    paths, and optimization recommendations.
-
-
     ---
 
 
@@ -962,62 +773,49 @@ info:
     Profiling
 
 
-    Description: Comprehensive multi-dimensional market segmentation analyzing jobs
-    across multiple dimensions (industry, location, skills, salary), identifying market
-    segments, and profiling segment characteristics. Uses clustering patterns and
-    multi-dimensional analysis.
-
-
-    Use Case: Market Segmentation Intelligence - Multi-Dimensional Analysis and Segment
-    Profiling
+    Description: Description: Comprehensive multi-dimensional market segmentation
+    analyzing jobs across multiple dimensions (industry, location, skills, salary),
+    identifying market segments, and profiling segment characteristics. Uses clustering
+    patterns and multi-dimensional analysis. Use Case: Market Segmentation Intelligence
+    - Multi-Dimensional Analysis and Segment Profiling Business Value: Identifies
+    market segments across multiple dimensions, profiles segment characteristics,
+    and provides segment-specific i
 
 
     Business Value: Identifies market segments across multiple dimensions, profiles
-    segment characteristics, and provides segment-specific insights. Helps users understand
-    market structure and identify niche opportunities.
-
-
-    Purpose: Delivers actionable insights into market segmentation and segment-specific
-    opportunities.
+    segment characteristics, and provides segment-specific i
 
 
     Complexity: Deep nested CTEs (7+ levels), multi-dimensional analysis, clustering
     patterns, segment profiling, percentile calculations
 
 
-    Expected Output: Market segmentation analysis with segment profiles, characteristics,
-    and segment-specific insights.
-
-
     ---
 
 
     Use Case: Predictive Intelligence - Market Forecasting and Trend Projections
 
 
-    Description: Comprehensive predictive market forecasting using time-series analysis,
-    trend extrapolation, and projection models. Uses forecasting patterns and predictive
-    analytics.
-
-
-    Use Case: Predictive Intelligence - Market Forecasting and Trend Projections
+    Description: Description: Comprehensive predictive market forecasting using time-series
+    analysis, trend extrapolation, and projection models. Uses forecasting patterns
+    and predictive analytics. Use Case: Predictive Intelligence - Market Forecasting
+    and Trend Projections Business Value: Provides market forecasts, projects future
+    trends, and extrapolates market patterns. Helps users anticipate market changes
+    and plan strategically. Purpose: Delivers predictive insights for strategic planning
+    and market anticip
 
 
     Business Value: Provides market forecasts, projects future trends, and extrapolates
     market patterns. Helps users anticipate market changes and plan strategically.
 
 
-    Purpose: Delivers predictive insights for strategic planning and market anticipation.
+    Purpose: Delivers predictive insights for strategic planning and market anticip
 
 
     Complexity: Deep nested CTEs (7+ levels), time-series forecasting, trend extrapolation,
     projection models, window functions
 
 
-    Expected Output: Market forecasts with trend projections, future predictions,
-    and forecast confidence intervals.
-
-
     ---
 
 
@@ -1025,32 +823,24 @@ info:
     Integration
 
 
-    Description: Comprehensive cross-database job matching that integrates data from
-    multiple sources (USAJobs.gov, BLS, aggregated sources), handles redundancy architecture,
-    and provides unified matching results. Uses cross-source integration patterns.
-
-
-    Use Case: Integration Intelligence - Cross-Database Matching and Multi-Source
-    Integration
+    Description: Description: Comprehensive cross-database job matching that integrates
+    data from multiple sources (USAJobs.gov, BLS, aggregated sources), handles redundancy
+    architecture, and provides unified matching results. Uses cross-source integration
+    patterns. Use Case: Integration Intelligence - Cross-Database Matching and Multi-Source
+    Integration Business Value: Integrates job data from multiple sources, handles
+    redundancy architecture, and provides unified matching results. Ensures comprehensive
+    job cov
 
 
     Business Value: Integrates job data from multiple sources, handles redundancy
     architecture, and provides unified matching results. Ensures comprehensive job
-    coverage and redundancy support.
-
-
-    Purpose: Delivers unified job matching across multiple data sources with redundancy
-    architecture support.
+    cov
 
 
     Complexity: Deep nested CTEs (8+ levels), cross-source integration, redundancy
     handling, unified matching, data source reconciliation
 
 
-    Expected Output: Cross-database job matching with unified results, source attribution,
-    and redundancy handling.
-
-
     ---
 
 
@@ -1058,30 +848,22 @@ info:
     Summary
 
 
-    Description: Comprehensive market intelligence dashboard aggregating all key metrics,
-    providing executive summary, multi-dimensional analytics, and holistic market
-    view. Uses dashboard aggregation patterns and executive reporting.
-
-
+    Description: Description: Comprehensive market intelligence dashboard aggregating
+    all key metrics, providing executive summary, multi-dimensional analytics, and
+    holistic market view. Uses dashboard aggregation patterns and executive reporting.
     Use Case: Executive Intelligence - Comprehensive Market Dashboard and Executive
-    Summary
+    Summary Business Value: Provides comprehensive market intelligence dashboard with
+    all key metrics, executive summary, and multi-dimensional analytics. Delivers
+    holistic market view for stra
 
 
     Business Value: Provides comprehensive market intelligence dashboard with all
     key metrics, executive summary, and multi-dimensional analytics. Delivers holistic
-    market view for strategic decision-making.
-
-
-    Purpose: Delivers comprehensive market intelligence for executive decision-making
-    and strategic planning.
+    market view for stra
 
 
     Complexity: Deep nested CTEs (10+ levels), dashboard aggregation, executive summary,
     multi-dimensional analytics, comprehensive reporting
-
-
-    Expected Output: Comprehensive market intelligence dashboard with executive summary,
-    key metrics, and multi-dimensional analytics.
 
 
     ---
@@ -1112,7 +894,7 @@ info:
     Document Information:
 
 
-    - Generated: 20260214-0148
+    - Generated: 20260214-1523
 
     - Database: db-8
 

@@ -55,6 +55,6 @@ Agent 3: python3 scripts/scrub_keywords.py --worktree 3 4
 
 ## Related
 
-- `scripts/remove_non_postgres_vendors.py` - Hardcoded databricks/snowflake removal (legacy)
-- `make remove-vendors` - Runs remove_non_postgres_vendors.py
+- `scripts/archive/legacy-vendor/` - remove_databricks.py, remove_non_postgres_vendors.py (superseded by scrub_keywords)
+- `make scrub` - Runs scrub_keywords.py
 - `.cursor/worktrees.json` - Worktree setup; `scrub-4x` key documents 4x commands

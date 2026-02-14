@@ -1,9 +1,27 @@
 {
   "database": "db-1",
   "database_number": 1,
-  "test_timestamp": "2026-02-14T00:04:05.575550",
+  "test_timestamp": "2026-02-14T18:00:34.164770",
   "postgresql": {
-    "available": false,
-    "queries": []
+    "available": true,
+    "queries": [
+      {
+        "query_number": 1,
+        "description": "Query 1",
+        "success": false,
+        "execution_time_ms": 27.248859405517578,
+        "row_count": 0,
+        "error": "syntax error at end of input\nLINE 65: -- ...\n               ^\n",
+        "error_type": "SyntaxError"
+      }
+    ],
+    "statistics": {
+      "total_queries": 1,
+      "successful": 0,
+      "failed": 1,
+      "success_rate": 0.0,
+      "avg_execution_time_ms": 0,
+      "total_rows_returned": 0
+    }
   }
 }

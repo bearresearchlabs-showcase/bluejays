@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getSession, setViewModeCookie } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
   const session = await getSession()

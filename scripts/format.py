@@ -12,6 +12,7 @@ Usage:
 
 import sys
 import subprocess
+import shutil
 import json
 import yaml
 import re
@@ -24,6 +25,88 @@ scripts_dir = Path(__file__).parent
 sys.path.insert(0, str(scripts_dir))
 from timestamp_utils import get_est_timestamp
 from db_paths import get_queries_dir
+
+try:
+    from queries_rubric_anchor import (
+        format_queries_md_with_anchor,
+        validate_rubric_alignment,
+        load_qa_anchor,
+    )
+except ImportError:
+    format_queries_md_with_anchor = None
+    validate_rubric_alignment = None
+    load_qa_anchor = None
+
+
+def _queries_from_json(queries_data: Dict, db_id: str) -> List[Dict]:
+    """Convert queries.json format to format expected by generate_comprehensive_deliverable."""
+    queries = queries_data.get("queries", [])
+    if isinstance(queries_data, list):
+        queries = queries_data
+    result = []
+    for q in queries:
+        num = q.get("question_id", q.get("number", 0))
+        title = q.get("question", q.get("title", f"Query {num}"))
+        evidence = q.get("evidence", q.get("description", ""))
+        sql = q.get("SQL", q.get("sql", ""))
+        # Parse evidence for Use Case, Business Value, Purpose if present
+        use_case = title
+        business_value = q.get("business_value", "")
+        purpose = q.get("purpose", "")
+        if evidence:
+            uc = re.search(r"Use Case:\s*(.+?)(?=Business Value|Purpose|Complexity|$)", evidence, re.DOTALL | re.I)
+            if uc:
+                use_case = uc.group(1).strip()
+            bv = re.search(r"Business Value:\s*(.+?)(?=Purpose|Complexity|Expected Output|$)", evidence, re.DOTALL | re.I)
+            if bv:
+                business_value = bv.group(1).strip()
+            pur = re.search(r"Purpose:\s*(.+?)(?=Complexity|Expected Output|$)", evidence, re.DOTALL | re.I)
+            if pur:
+                purpose = pur.group(1).strip()
+        result.append({
+            "number": num,
+            "title": title,
+            "use_case": use_case,
+            "description": evidence,
+            "business_value": business_value or q.get("expected_output", ""),
+            "purpose": purpose,
+            "complexity": q.get("difficulty", q.get("complexity", "moderate")),
+            "sql": sql,
+            "full_content": evidence,
+        })
+    return sorted(result, key=lambda x: x["number"])
+
+
+def _load_schema_snippet(db_dir: Path, db_num: int) -> str:
+    """Load first 2000 chars of schema.sql."""
+    for base in (db_dir / "app" / "DATABASE", db_dir / "data", db_dir / "deliverable" / "data"):
+        if not base.exists():
+            continue
+        for name in ("schema.sql", "schema_postgresql.sql"):
+            p = base / name
+            if p.exists():
+                txt = p.read_text(encoding="utf-8").strip()
+                return txt[:2000] + "\n-- ..." if len(txt) > 2000 else txt
+    return f"-- Schema for db-{db_num}"
+
+
+def _get_db_name_for_queries(db_dir: Path, db_id: str) -> str:
+    """Get database name for queries.md title."""
+    for candidate in (
+        db_dir / "deliverable" / f"{db_id}.md",
+        db_dir / "app" / "DOCUMENTATION" / f"{db_id}.md",
+        db_dir / "DELIVERABLE.md",
+        db_dir / "app" / "QUERIES" / "queries.md",
+        db_dir / "queries" / "queries.md",
+    ):
+        if candidate and candidate.exists():
+            first = candidate.read_text(encoding="utf-8").split("\n")[0]
+            if " — " in first:
+                return first.split(" — ", 1)[-1].strip()
+            if "Name:" in first:
+                return first.split("Name:")[-1].strip()
+    return f"Database {db_id}"
+
 
 class DeliverableFormatter:
     """Format database deliverables using OpenAPI/Swagger specification"""
@@ -42,7 +125,7 @@ class DeliverableFormatter:
 
         # Handle -a flag (all databases)
         if '-a' in args or '--all' in args:
-            return list(range(1, 16))  # db-1 through db-15
+            return list(range(1, 17))  # db-1 through db-16
 
         # Handle --help
         if '--help' in args or '-h' in args:
@@ -202,22 +285,38 @@ class DeliverableFormatter:
             # Read base deliverable markdown
             deliverable_content = deliverable_file.read_text(encoding='utf-8')
 
-            # Read queries markdown
-            queries_content = queries_md_file.read_text(encoding='utf-8')
+            # Read queries: prefer queries.json (anchor/template format), fallback to parse queries.md
+            queries_data = None
+            if queries_json_file.exists():
+                queries_data = json.loads(queries_json_file.read_text(encoding='utf-8'))
 
-            # Parse queries
-            queries = self.parse_queries(queries_content)
+            if queries_data and queries_data.get("queries"):
+                queries = _queries_from_json(queries_data, f"db-{db_num}")
+                # Format queries.md with rubric alignment and anchor (YAML/JSON styles and headers)
+                rubric_result = {}
+                if format_queries_md_with_anchor and load_qa_anchor():
+                    db_id = f"db-{db_num}"
+                    db_name = _get_db_name_for_queries(db_dir, db_id)
+                    schema_sql = _load_schema_snippet(db_dir, db_num)
+                    formatted_md = format_queries_md_with_anchor(
+                        queries_data["queries"],
+                        db_id=db_id,
+                        db_name=db_name,
+                        schema_sql=schema_sql,
+                    )
+                    queries_md_file.write_text(formatted_md, encoding="utf-8")
+                    if validate_rubric_alignment:
+                        rubric_result = validate_rubric_alignment(formatted_md, db_name=db_name)
+            else:
+                queries_content = queries_md_file.read_text(encoding='utf-8')
+                queries = self.parse_queries(queries_content)
+                rubric_result = {}
 
             if not queries:
                 return {
                     'status': 'FAILED',
                     'error': f'No queries found in queries.md'
                 }
-
-            # Read queries JSON if available for OpenAPI spec
-            queries_data = None
-            if queries_json_file.exists():
-                queries_data = json.loads(queries_json_file.read_text(encoding='utf-8'))
 
             # Generate comprehensive single-file deliverable
             comprehensive_deliverable = self.generate_comprehensive_deliverable(
@@ -236,12 +335,31 @@ class DeliverableFormatter:
                 encoding='utf-8'
             )
 
-            return {
+            # Sync queries.md and queries.json across all branches for consistency
+            qdests = [db_dir / 'queries', deliverable_dir / 'queries']
+            for web_dir in deliverable_dir.glob(f'db{db_num}-*'):
+                if web_dir.is_dir():
+                    qdests.append(web_dir / 'queries')
+            for qdest in qdests:
+                qdest.mkdir(parents=True, exist_ok=True)
+                for fname in ('queries.md', 'queries.json'):
+                    src = queries_dir / fname
+                    if src.exists():
+                        shutil.copy2(src, qdest / fname)
+
+            result = {
                 'status': 'SUCCESS',
                 'output_file': str(deliverable_output),
                 'queries_count': len(queries),
                 'format_date': get_est_timestamp()
             }
+            if rubric_result:
+                result['rubric_alignment'] = {
+                    'Pass': rubric_result.get('Pass', 1),
+                    'alignment_pct': rubric_result.get('alignment_pct'),
+                    'schema_anchor': rubric_result.get('schema_anchor', 'template/qa_anchor.json'),
+                }
+            return result
 
         except Exception as e:
             import traceback
@@ -1370,6 +1488,11 @@ This deliverable package includes:
                 print(f"     Output: {result['output_file']}")
                 if 'queries_count' in result:
                     print(f"     Queries: {result['queries_count']} embedded")
+                if 'rubric_alignment' in result:
+                    ra = result['rubric_alignment']
+                    pct = ra.get('alignment_pct', 'N/A')
+                    anchor = ra.get('schema_anchor', '')
+                    print(f"     Rubric alignment: {pct}% (anchor: {anchor})")
                 success_count += 1
             elif result['status'] == 'SKIPPED':
                 print(f"⏭️  Skipped: {result.get('error', 'Unknown reason')}")

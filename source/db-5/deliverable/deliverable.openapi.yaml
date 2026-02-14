@@ -19,8 +19,6 @@ info:
 
     - , : Compatible with Delta Lake
 
-    - , : Full support
-
 
     ---
 
@@ -33,8 +31,8 @@ info:
     organized by functional category for easier navigation.
 
 
-    See `docs/SCHEMA.md` for table relationships. Core phppos tables: sales, items,
-    payments, inventory, products, suppliers.
+    See `docs/SCHEMA.md` for table relationships. Core phppos tables: people, employees,
+    items, locations, location_items, sales.
 
 
     ---
@@ -746,8 +744,8 @@ info:
     ---
 
 
-    Load schema.sql and data.sql. See docs/POSTGRES_MIGRATION.md for MySQL to PostgreSQL
-    migration.
+    Load `data/schema.sql` then data load scripts. Schema is PostgreSQL-native with
+    ACID constraints.
 
 
     ---
@@ -769,7 +767,7 @@ info:
     Document Information:
 
 
-    - Generated: 20260214-0148
+    - Generated: 20260214-1518
 
     - Database: db-5
 

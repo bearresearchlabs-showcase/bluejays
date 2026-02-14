@@ -87,7 +87,7 @@
           },
           {
             "name": "description",
-            "data_type": "VARCHAR(16777216)",
+            "data_type": "TEXT",
             "constraints": "",
             "description": ""
           },

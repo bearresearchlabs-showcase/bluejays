@@ -1,445 +1,179 @@
-# SharedAI Data Dictionary
+# DB-5 Data Dictionary – Lucasa POS Retail
 
-This document lists all application tables and their columns, with types, constraints, and descriptions.
-
-> Types are PostgreSQL types. `timestamptz` = `timestamp with time zone`.
+Column-level reference for all phppos tables in db-5. Types are PostgreSQL types.
 
 ---
 
-## 1. `profiles`
+## 1. `phppos_people`
 
-User accounts synced from Supabase Auth. One row per registered user.
+Base table for all persons (customers, employees, suppliers).
 
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | — | User ID (FK to `auth.users.id`) |
-| `username` | text | yes | — | Unique username for mentions and display |
-| `display_name` | text | yes | — | Display name (can differ from username) |
-| `avatar_url` | text | yes | — | URL to profile image (Google OAuth or uploaded) |
-| `created_at` | timestamptz | yes | `now()` | When the profile was created |
-| `updated_at` | timestamptz | yes | `now()` | Last profile update |
-| `ai_character_id` | text | yes | — | Preferred AI character (currently unused) |
-| `user_role` | user_role | yes | `'user'` | Role enum: `user` or `admin` |
-| `email` | text | yes | — | User's email address |
-| `bio` | text | yes | — | User biography/description |
-| `last_username_changed_at` | timestamptz | yes | — | When username was last changed (for cooldown) |
-| `prompt_username_setup` | boolean | no | `false` | Flag to prompt OAuth users to set username |
+| `first_name` | varchar(255) | yes | — | First name |
+| `last_name` | varchar(255) | yes | — | Last name |
+| `phone_number` | varchar(50) | yes | — | Phone number |
+| `email` | varchar(255) | yes | — | Email address |
+| `address_1` | varchar(255) | yes | — | Address line 1 |
+| `address_2` | varchar(255) | yes | — | Address line 2 |
+| `city` | varchar(255) | yes | — | City |
+| `state` | varchar(50) | yes | — | State/region |
+| `zip` | varchar(20) | yes | — | Postal code |
+| `country` | varchar(100) | yes | — | Country |
+| `comments` | text | yes | — | Notes |
+| `person_id` | integer | **PK** | — | Unique person identifier |
 
-**Constraints:**
-- Primary key: `id`
-- Unique: `username`, `email`
-- Foreign key: `id` → `auth.users(id)` ON DELETE CASCADE
-
-**Indexes:**
-- Unique index on `email` WHERE `email IS NOT NULL`
-
-**Row count:** ~70
-**Data range:** April 2025 – July 2025
+**Constraints:** Primary key: `person_id`
 
 ---
 
-## 2. `chats`
+## 2. `phppos_employees`
 
-Chat rooms created by authenticated users.
+Employee accounts linked to people.
 
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | `uuid_generate_v4()` | Chat room ID |
-| `title` | text | yes | — | Chat room title/name |
-| `created_at` | timestamptz | no | `now()` | When the chat was created |
-| `updated_at` | timestamptz | no | `now()` | Last activity timestamp |
-| `current_ai_character_id` | text | yes | — | Active AI tutor for this chat |
-| `created_by` | uuid | no | — | User who created the chat |
+| `username` | varchar(255) | yes | — | Login username |
+| `password` | varchar(255) | yes | — | Password hash |
+| `person_id` | integer | yes | — | FK to phppos_people |
+| `balance` | numeric(15,2) | yes | 0 | Employee balance |
+| `deleted` | integer | yes | 0 | Soft delete flag |
+| `hide_from_switch_user` | integer | yes | 0 | Hide from user switcher |
 
-**Constraints:**
-- Primary key: `id`
-- Foreign key: `created_by` → `profiles(id)`
-
-**Indexes:**
-- `idx_chats_created_by` on `(created_by)`
-
-**AI Character IDs in use:**
-- `generic-tutor`, `generic-ai`
-- `math-ai`, `science-ai`, `english-ai`, `language-ai`
-- `technology-ai`, `art-ai`, `physical-education-ai`
-- `physics-professor`, `literature-professor`
-- `microsoft-senior-engineer`
-
-**Row count:** ~100
-**Data range:** April 2025 – July 2025
+**Constraints:** Foreign key: `person_id` → `phppos_people(person_id)`
 
 ---
 
-## 3. `chat_participants`
+## 3. `phppos_employees_locations`
 
-Many-to-many join between users and chats.
+Assigns employees to store locations.
 
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
-| `chat_id` | uuid | **PK** | — | Chat room ID |
-| `user_id` | uuid | **PK** | — | User ID |
-| `joined_at` | timestamptz | yes | `now()` | When the user joined |
+| `employee_id` | integer | yes | — | FK to phppos_employees (person_id) |
+| `location_id` | integer | yes | — | FK to phppos_locations |
 
-**Constraints:**
-- Primary key: `(chat_id, user_id)`
-- Foreign key: `user_id` → `profiles(id)` ON DELETE CASCADE
-
-**Row count:** ~250
+**Constraints:** Foreign keys: `employee_id` → `phppos_people(person_id)`, `location_id` → `phppos_locations(location_id)`
 
 ---
 
-## 4. `messages`
+## 4. `phppos_items`
 
-All messages within authenticated chats.
+Product/item master data.
 
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | `uuid_generate_v4()` | Message ID |
-| `chat_id` | uuid | no | — | Chat this message belongs to |
-| `sender_id` | uuid | yes | — | User who sent the message (NULL for AI) |
-| `content` | text | no | — | Message text content |
-| `is_ai` | boolean | yes | `false` | Whether this is an AI-generated message |
-| `ai_character_id` | text | yes | — | Which AI tutor generated this message |
-| `created_at` | timestamptz | no | `now()` | When the message was sent |
-| `updated_at` | timestamptz | no | `now()` | Last edit timestamp |
-| `deleted_at` | timestamptz | yes | — | Soft delete timestamp |
-| `mentioned_users` | text[] | yes | — | Array of mentioned usernames (legacy) |
-| `is_system_message` | boolean | no | `false` | Whether this is a system notification |
-| `mentions_data` | jsonb | yes | `'[]'` | Structured mention data |
+| `name` | varchar(255) | yes | — | Item name |
+| `category` | varchar(255) | yes | — | Category |
+| `description` | text | yes | — | Description |
+| `cost_price` | numeric(15,2) | yes | 0 | Cost price |
+| `unit_price` | numeric(15,2) | yes | 0 | Selling price |
+| `item_id` | integer | **PK** | — | Unique item identifier |
+| `allow_alt_description` | integer | yes | 0 | Allow alternate description |
+| `is_serialized` | integer | yes | 0 | Serial number tracking |
+| `override_default_tax` | integer | yes | 0 | Override default tax |
+| `is_service` | integer | yes | 0 | Service item flag |
+| `deleted` | integer | yes | 0 | Soft delete flag |
 
-**Constraints:**
-- Primary key: `id`
-- Foreign key: `chat_id` → `chats(id)` ON DELETE CASCADE
-- Foreign key: `sender_id` → `profiles(id)` ON DELETE SET NULL
-
-**Indexes:**
-- `idx_messages_chat_id` on `(chat_id)`
-- `idx_messages_sender_id` on `(sender_id)`
-- `idx_messages_created_at` on `(created_at)`
-- `idx_messages_ai_character_id` on `(ai_character_id)` WHERE `ai_character_id IS NOT NULL`
-
-**Triggers:**
-- `handle_updated_at` — Updates `updated_at` on modification
-- `on_new_mention` — Creates notifications when `mentions_data` is populated
-- `trigger_update_chat_timestamp` — Updates parent chat's `updated_at`
-
-**Row count:** ~370
-**Data range:** April 2025 – July 2025
+**Constraints:** Primary key: `item_id`
 
 ---
 
-## 5. `chat_invitations`
+## 5. `phppos_locations`
 
-Invitations for users to join private chats.
+Store location definitions.
 
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | `uuid_generate_v4()` | Invitation ID |
-| `chat_id` | uuid | no | — | Chat being invited to |
-| `inviting_user_id` | uuid | yes | — | User who sent the invitation |
-| `invited_user_id` | uuid | yes | — | User being invited |
-| `status` | text | yes | `'pending'` | Status: `pending`, `accepted`, `rejected`, `declined`, `expired` |
-| `created_at` | timestamptz | yes | `now()` | When invitation was created |
-| `updated_at` | timestamptz | yes | `now()` | Last status change |
-| `expires_at` | timestamptz | yes | `now() + 7 days` | When invitation expires |
+| `location_id` | integer | **PK** | — | Unique location identifier |
+| `name` | varchar(255) | yes | — | Location name |
+| `address` | text | yes | — | Address |
+| `phone` | varchar(50) | yes | — | Phone |
+| `fax` | varchar(50) | yes | — | Fax |
+| `email` | varchar(255) | yes | — | Email |
+| `receive_stock_alert` | varchar(10) | yes | '0' | Stock alert enabled |
+| `stock_alert_email` | varchar(255) | yes | — | Alert email |
+| `timezone` | varchar(100) | yes | — | Timezone |
+| `mailchimp_api_key` | varchar(255) | yes | — | Mailchimp key |
+| `enable_credit_card_processing` | varchar(10) | yes | '0' | CC processing |
+| `merchant_id` | varchar(255) | yes | — | Merchant ID |
+| `merchant_password` | varchar(255) | yes | — | Merchant password |
+| `default_tax_1_rate` | numeric(10,2) | yes | — | Tax 1 rate |
+| `default_tax_1_name` | varchar(255) | yes | — | Tax 1 name |
+| `default_tax_2_rate` | numeric(10,2) | yes | — | Tax 2 rate |
+| `default_tax_2_name` | varchar(255) | yes | — | Tax 2 name |
+| `default_tax_2_cumulative` | varchar(10) | yes | '0' | Tax 2 cumulative |
+| `default_tax_3_rate` | numeric(10,2) | yes | — | Tax 3 rate |
+| `default_tax_3_name` | varchar(255) | yes | — | Tax 3 name |
+| `default_tax_4_rate` | numeric(10,2) | yes | — | Tax 4 rate |
+| `default_tax_4_name` | varchar(255) | yes | — | Tax 4 name |
+| `default_tax_5_rate` | numeric(10,2) | yes | — | Tax 5 rate |
+| `default_tax_5_name` | varchar(255) | yes | — | Tax 5 name |
+| `deleted` | integer | yes | 0 | Soft delete flag |
 
-**Constraints:**
-- Primary key: `id`
-- Check: `status IN ('pending', 'accepted', 'rejected', 'declined', 'expired')`
-- Foreign key: `chat_id` → `chats(id)` ON DELETE CASCADE
-- Foreign key: `inviting_user_id` → `profiles(id)`
-- Foreign key: `invited_user_id` → `profiles(id)`
-
-**Indexes:**
-- `idx_chat_invitations_chat_id` on `(chat_id)`
-
-**Row count:** ~5
+**Constraints:** Primary key: `location_id`
 
 ---
 
-## 6. `chat_users`
+## 6. `phppos_location_items`
 
-Legacy/alternate chat membership table.
+Location-specific inventory quantities.
 
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | `gen_random_uuid()` | Row ID |
-| `chat_id` | uuid | no | — | Chat ID |
-| `user_id` | uuid | no | — | User ID |
-| `created_at` | timestamptz | yes | `now()` | When added |
+| `location_id` | integer | yes | — | FK to phppos_locations |
+| `item_id` | integer | yes | — | FK to phppos_items |
+| `quantity` | numeric(15,2) | yes | 0 | Quantity on hand |
 
-**Constraints:**
-- Primary key: `id`
-- Unique: `(chat_id, user_id)`
-- Foreign key: `chat_id` → `chats(id)` ON DELETE CASCADE
-- Foreign key: `user_id` → `auth.users(id)` ON DELETE CASCADE
-
-**Indexes:**
-- `idx_chat_users_chat_id` on `(chat_id)`
-- `idx_chat_users_user_id` on `(user_id)`
-
-**Note:** This table appears to be a legacy alternative to `chat_participants`. Both track the same relationship.
+**Constraints:** Foreign keys: `location_id` → `phppos_locations(location_id)`, `item_id` → `phppos_items(item_id)`
 
 ---
 
-## 7. `friends`
+## 7. `phppos_sales`
 
-Friend relationships between users.
+Main sales transaction header.
 
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | `gen_random_uuid()` | Relationship ID |
-| `user_id` | uuid | no | — | User who initiated the request |
-| `friend_id` | uuid | no | — | User being friended |
-| `status` | text | yes | `'pending'` | Status: `pending`, `accepted`, `declined` |
-| `created_at` | timestamptz | no | `now()` | When request was created |
-| `updated_at` | timestamptz | no | `now()` | Last status change |
+| `sale_id` | integer | **PK** | — | Unique sale identifier |
+| `employee_id` | integer | yes | — | FK to phppos_employees (person_id) |
+| `sale_time` | timestamp | yes | — | Sale timestamp |
+| `customer_id` | integer | yes | — | Customer (person_id) |
+| `payment_type` | varchar(50) | yes | — | Payment method |
+| `location_id` | integer | yes | — | FK to phppos_locations |
 
-**Constraints:**
-- Primary key: `id`
-- Unique: `(user_id, friend_id)`
-- Check: `status IN ('pending', 'accepted', 'declined')`
-- Foreign key: `user_id` → `profiles(id)` ON DELETE CASCADE
-- Foreign key: `friend_id` → `profiles(id)` ON DELETE CASCADE
-
-**Indexes:**
-- `idx_friends_user_id` on `(user_id)`
-- `idx_friends_friend_id` on `(friend_id)`
-- `idx_friends_status` on `(status)`
-
-**Row count:** ~10
-
----
-
-## 8. `notifications`
-
-In-app notifications for users.
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | `gen_random_uuid()` | Notification ID |
-| `user_id` | uuid | no | — | User receiving the notification |
-| `type` | text | no | — | Type: `friend_request`, `mention`, `chat_invite` |
-| `title` | text | no | — | Notification title |
-| `message` | text | no | — | Notification body text |
-| `data` | jsonb | yes | — | Additional structured data (chatId, messageId, etc.) |
-| `created_at` | timestamptz | no | `now()` | When notification was created |
-| `read` | boolean | no | `false` | Whether user has read the notification |
-| `updated_at` | timestamptz | yes | `now()` | Last update |
-| `seen_at` | timestamptz | yes | — | When notification was first seen |
-
-**Constraints:**
-- Primary key: `id`
-- Check: `type IN ('friend_request', 'mention', 'chat_invite')`
-- Foreign key: `user_id` → `profiles(id)` ON DELETE CASCADE
-
-**Indexes:**
-- `idx_notifications_user_id` on `(user_id)`
-- `idx_notifications_type` on `(type)`
-- `idx_notifications_read` on `(read)`
-- `idx_notifications_created_at` on `(created_at)`
-- `idx_notifications_user_id_created_at` on `(user_id, created_at DESC)`
-- `idx_user_unseen_notifications` on `(user_id, seen_at)` WHERE `seen_at IS NULL`
-
-**Row count:** ~20
-
----
-
-## 9. `file_attachments`
-
-Files uploaded to chats.
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | `gen_random_uuid()` | Attachment ID |
-| `message_id` | uuid | yes | — | Message this file is attached to |
-| `chat_id` | uuid | yes | — | Chat this file belongs to |
-| `user_id` | uuid | yes | — | User who uploaded the file |
-| `file_name` | text | no | — | Original filename |
-| `file_size` | integer | no | — | File size in bytes |
-| `file_type` | text | no | — | MIME type |
-| `file_path` | text | no | — | Storage path/URL |
-| `created_at` | timestamptz | no | `now()` | When uploaded |
-
-**Constraints:**
-- Primary key: `id`
-- Foreign key: `message_id` → `messages(id)` ON DELETE CASCADE
-- Foreign key: `chat_id` → `chats(id)` ON DELETE CASCADE
-- Foreign key: `user_id` → `auth.users(id)` ON DELETE SET NULL
-
-**Row count:** ~5
-
----
-
-## 10. `anonymous_chats`
-
-Temporary anonymous chat sessions.
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | `gen_random_uuid()` | Chat session ID |
-| `join_code` | text | no | — | 6-character alphanumeric code for joining |
-| `created_at` | timestamptz | no | `now()` | When session was created |
-
-**Constraints:**
-- Primary key: `id`
-- Unique: `join_code`
-
-**Indexes:**
-- `idx_anonymous_chats_join_code` on `(join_code)`
-
-**Join Code Format:** 6 uppercase alphanumeric characters (e.g., `A1B2C3`, `XYZ789`)
-
-**Row count:** ~70
-
----
-
-## 11. `anonymous_chat_users`
-
-Guest participants in anonymous chats.
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | `uuid_generate_v4()` | Row ID |
-| `chat_id` | uuid | yes | — | Anonymous chat session |
-| `display_name` | text | no | — | Guest's chosen display name |
-| `guest_id` | uuid | no | — | Client-generated UUID for the guest |
-| `created_at` | timestamptz | no | `now()` | When guest joined |
-
-**Constraints:**
-- Primary key: `id`
-- Unique: `(chat_id, guest_id)`
-- Foreign key: `chat_id` → `anonymous_chats(id)` ON DELETE CASCADE
-
-**Row count:** ~50
-
----
-
-## 12. `anonymous_messages`
-
-Messages within anonymous chat sessions.
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| `id` | uuid | **PK** | `gen_random_uuid()` | Message ID |
-| `chat_id` | uuid | no | — | Anonymous chat session |
-| `sender_display_name` | text | no | — | Display name of sender |
-| `content` | text | no | — | Message text |
-| `created_at` | timestamptz | no | `now()` | When sent |
-| `is_ai` | boolean | no | `false` | Whether AI-generated |
-| `ai_character_id` | text | yes | `'default-ai'` | Which AI character responded |
-
-**Constraints:**
-- Primary key: `id`
-- Foreign key: `chat_id` → `anonymous_chats(id)` ON DELETE CASCADE
-
-**Indexes:**
-- `idx_anonymous_messages_chat_id` on `(chat_id)`
-
-**Row count:** ~370
-
----
-
-## Enum Types
-
-### `user_role`
-
-```sql
-CREATE TYPE public.user_role AS ENUM ('user', 'admin');
-```
-
-Used in `profiles.user_role` to distinguish regular users from administrators.
-
----
-
-## Key Functions Reference
-
-### `create_anonymous_chat()`
-
-Creates a new anonymous chat with a unique 6-character join code.
-
-**Returns:** `TABLE(chat_id uuid, join_code text)`
-
-**Logic:**
-1. Generates random 6-character alphanumeric code
-2. Attempts to insert into `anonymous_chats`
-3. Retries up to 5 times on collision
-4. Returns the new chat ID and join code
-
----
-
-### `accept_chat_invitation(invitation_id uuid)`
-
-Accepts a pending chat invitation.
-
-**Logic:**
-1. Validates invitation exists and is pending
-2. Verifies current user is the invited user
-3. Updates invitation status to `accepted`
-4. Adds user to `chat_participants`
-
----
-
-### `leave_chat(p_chat_id uuid)`
-
-Removes the current user from a chat.
-
-**Logic:**
-1. Removes user from `chat_participants`
-2. If no participants remain, deletes the chat
-3. If leaving user was creator, transfers ownership to another participant
-
----
-
-### `handle_new_user()`
-
-Trigger function called when a new user signs up.
-
-**Logic:**
-1. Detects OAuth vs email signup
-2. Extracts name/avatar from OAuth metadata
-3. Generates temporary username for OAuth users
-4. Creates profile record
-5. Sets `prompt_username_setup` flag for OAuth users
+**Constraints:** Primary key: `sale_id`. Foreign keys: `employee_id` → `phppos_people(person_id)`, `location_id` → `phppos_locations(location_id)`
 
 ---
 
 ## Sample Query Patterns
 
-### Get all messages in a chat with sender info
+### Sales by employee with person details
 ```sql
-SELECT m.*, p.username, p.display_name, p.avatar_url
-FROM messages m
-LEFT JOIN profiles p ON m.sender_id = p.id
-WHERE m.chat_id = '<chat_uuid>'
-ORDER BY m.created_at;
+SELECT s.sale_id, s.sale_time, s.payment_type,
+       p.first_name, p.last_name, p.email
+FROM phppos_sales s
+JOIN phppos_people p ON s.employee_id = p.person_id
+WHERE s.sale_time >= CURRENT_DATE - INTERVAL '30 days'
+ORDER BY s.sale_time DESC;
 ```
 
-### Get user's chats with last message
+### Inventory by location
 ```sql
-SELECT c.*,
-       m.content as last_message,
-       m.created_at as last_message_at
-FROM chats c
-JOIN chat_participants cp ON c.id = cp.chat_id
-LEFT JOIN LATERAL (
-    SELECT content, created_at
-    FROM messages
-    WHERE chat_id = c.id
-    ORDER BY created_at DESC
-    LIMIT 1
-) m ON true
-WHERE cp.user_id = '<user_uuid>'
-ORDER BY COALESCE(m.created_at, c.updated_at) DESC;
+SELECT l.name AS location_name, i.name AS item_name, li.quantity
+FROM phppos_location_items li
+JOIN phppos_locations l ON li.location_id = l.location_id
+JOIN phppos_items i ON li.item_id = i.item_id
+WHERE i.deleted = 0 AND l.deleted = 0
+ORDER BY l.name, i.name;
 ```
 
-### Get friend list with status
+### Sales summary by location
 ```sql
-SELECT p.*, f.status, f.created_at as friends_since
-FROM friends f
-JOIN profiles p ON (
-    CASE WHEN f.user_id = '<user_uuid>' THEN f.friend_id ELSE f.user_id END
-) = p.id
-WHERE (f.user_id = '<user_uuid>' OR f.friend_id = '<user_uuid>')
-  AND f.status = 'accepted';
+SELECT l.name, COUNT(*) AS sale_count
+FROM phppos_sales s
+JOIN phppos_locations l ON s.location_id = l.location_id
+WHERE s.sale_time >= CURRENT_DATE - INTERVAL '90 days'
+GROUP BY l.name
+ORDER BY sale_count DESC;
 ```

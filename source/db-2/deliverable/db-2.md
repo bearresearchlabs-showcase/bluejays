@@ -245,8 +245,6 @@ Real-world retail Point-of-Sale (POS) database from a family business in Kenya, 
 - Supplier receivings and multi-location support
 
 - **PostgreSQL**: Full support
-- **, **: Compatible with Delta Lake
-- **, **: Full support
 
 ---
 
@@ -256,7 +254,7 @@ Real-world retail Point-of-Sale (POS) database from a family business in Kenya, 
 
 This section provides a comprehensive data dictionary for all tables in the database, including column names, data types, constraints, and descriptions. Tables are organized by functional category for easier navigation.
 
-See `docs/SCHEMA.md` for table relationships. Core tables include `phppos_sales`, `phppos_sales_items`, `phppos_payments`, `phppos_items`, `phppos_inventory`, `phppos_suppliers`, and related phppos tables.
+See `docs/SCHEMA.md` for full LUCASA schema. This deliverable uses a minimal 8-table subset: `phppos_people`, `phppos_employees`, `phppos_employees_locations`, `phppos_items`, `phppos_locations`, `phppos_location_items`, `phppos_sales`. ACID-compliant with PKs and FKs.
 
 ---
 
@@ -3009,7 +3007,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260214-0148
+- **Generated**: 20260214-1518
 - **Database**: db-2
 - **Type**: Filling Station Retail / POS (phppos)
 - **Queries**: 30 production queries

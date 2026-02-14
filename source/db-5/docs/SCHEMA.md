@@ -1,34 +1,27 @@
-# SharedAI Database Schema Overview
+# DB-5 Schema Overview – Lucasa POS Retail
 
-This document describes the **logical schema** of the SharedAI production database as captured in the Supabase export.
+This document describes the **logical schema** of the db-5 POS (Point-of-Sale) database. It is a minimal phppos schema for PostgreSQL, containing only the tables needed for gov-rebuilt data and queries.
 
-The physical database is PostgreSQL 15.8, hosted on Supabase. All application tables live under the `public` schema.
+**Database:** db-5 (Lucasa POS Retail)  
+**Source:** Anonymized retail Point-of-Sale dataset from a family business in Kenya  
+**Engine:** PostgreSQL (InnoDB-compatible)
 
 ---
 
 ## Main Domains
 
-### Users & Profiles
-- `profiles` — User accounts with username, display name, avatar, bio, and role.
+### People & Employees
+- `phppos_people` — Base table for all persons (customers, employees, suppliers).
+- `phppos_employees` — Employee accounts linked to people.
+- `phppos_employees_locations` — Many-to-many: employees assigned to locations.
 
-### Authenticated Chats
-- `chats` — Chat rooms created by authenticated users.
-- `chat_participants` — Many-to-many relationship between users and chats.
-- `messages` — Messages within chats (both user and AI-generated).
-- `chat_invitations` — Invitations to join private chats.
-- `chat_users` — Legacy/alternate chat membership table.
+### Products & Inventory
+- `phppos_items` — Product/item master data.
+- `phppos_locations` — Store location definitions.
+- `phppos_location_items` — Location-specific inventory quantities.
 
-### Anonymous Chats
-- `anonymous_chats` — Temporary chat sessions with join codes.
-- `anonymous_chat_users` — Guest participants in anonymous chats.
-- `anonymous_messages` — Messages within anonymous chats.
-
-### Social Features
-- `friends` — Friend relationships (pending, accepted, declined).
-- `notifications` — In-app notifications (mentions, friend requests, chat invites).
-
-### Attachments
-- `file_attachments` — Files uploaded to chats.
+### Sales
+- `phppos_sales` — Main sales transaction header.
 
 ---
 
@@ -36,233 +29,137 @@ The physical database is PostgreSQL 15.8, hosted on Supabase. All application ta
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                           USER AUTHENTICATION                            │
-│                    (Supabase Auth / auth.users)                         │
+│                           phppos_people                                  │
+│         (person_id PK, first_name, last_name, email, address, etc.)       │
+└─────────────────────────────────────┬───────────────────────────────────┘
+                                     │
+                                     │ person_id
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         phppos_employees                                 │
+│              (person_id FK, username, password, balance, deleted)        │
+└─────────────────────────────────────┬───────────────────────────────────┘
+                                     │
+          ┌──────────────────────────┼──────────────────────────┐
+          │ employee_id              │                          │
+          ▼                          │                          │
+┌─────────────────────┐              │              ┌─────────────────────┐
+│ phppos_employees_   │              │              │    phppos_sales      │
+│ locations           │              │              │ (sale_id, employee_id,│
+│ (employee_id,       │              └──────────────│  sale_time, customer_ │
+│  location_id)       │                            │  id, payment_type,   │
+└─────────────────────┘                            │  location_id)       │
+          │                                        └─────────────────────┘
+          │ location_id                                      │
+          ▼                                                  │ location_id
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         phppos_locations                                 │
+│    (location_id PK, name, address, default_tax_*, deleted)              │
 └─────────────────────────────────────┬───────────────────────────────────┘
                                       │
-                                      │ Trigger: handle_new_user()
+                                      │ location_id, item_id
                                       ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                              profiles                                    │
-│         (username, display_name, avatar_url, email, bio, role)          │
+│                      phppos_location_items                               │
+│              (location_id, item_id, quantity)                            │
 └─────────────────────────────────────┬───────────────────────────────────┘
-                                      │
-          ┌───────────────────────────┼───────────────────────────┐
-          │                           │                           │
-          ▼                           ▼                           ▼
-┌─────────────────┐       ┌─────────────────────┐       ┌─────────────────┐
-│     chats       │       │      friends        │       │  notifications  │
-│  (title, AI)    │       │ (user_id, friend_id)│       │ (type, message) │
-└────────┬────────┘       └─────────────────────┘       └─────────────────┘
-         │
-         │
-         ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                         chat_participants                                │
-│                      (chat_id, user_id, joined_at)                      │
-└─────────────────────────────────────┬───────────────────────────────────┘
-                                      │
+                                      │ item_id
                                       ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                             messages                                     │
-│    (chat_id, sender_id, content, is_ai, ai_character_id, mentions)      │
+│                          phppos_items                                    │
+│  (item_id PK, name, category, cost_price, unit_price, deleted, etc.)     │
 └─────────────────────────────────────────────────────────────────────────┘
-
-
-                    ═══════════════════════════════════
-                           ANONYMOUS CHAT FLOW
-                    ═══════════════════════════════════
-
-┌─────────────────────────────────────────────────────────────────────────┐
-│                         anonymous_chats                                  │
-│                    (join_code, created_at)                              │
-└─────────────────────────────────────┬───────────────────────────────────┘
-                                      │
-          ┌───────────────────────────┴───────────────────────────┐
-          │                                                       │
-          ▼                                                       ▼
-┌─────────────────────┐                               ┌─────────────────────┐
-│ anonymous_chat_users│                               │  anonymous_messages │
-│ (display_name,      │                               │  (sender_display,   │
-│  guest_id)          │                               │   content, is_ai)   │
-└─────────────────────┘                               └─────────────────────┘
 ```
 
 ---
 
-## High-Level Relationships (ERD)
+## Table Relationships (ERD)
 
 ```mermaid
 erDiagram
-    AUTH_USERS ||--|| PROFILES : "1:1 via trigger"
+    phppos_people ||--o{ phppos_employees : "person_id"
 
-    PROFILES ||--o{ CHATS : "creates"
-    PROFILES ||--o{ CHAT_PARTICIPANTS : "joins"
-    CHATS ||--o{ CHAT_PARTICIPANTS : "has members"
+    phppos_employees ||--o{ phppos_employees_locations : "employee_id"
+    phppos_locations ||--o{ phppos_employees_locations : "location_id"
 
-    PROFILES ||--o{ MESSAGES : "sends"
-    CHATS ||--o{ MESSAGES : "contains"
+    phppos_sales }o--|| phppos_employees : "employee_id"
+    phppos_sales }o--|| phppos_locations : "location_id"
 
-    PROFILES ||--o{ CHAT_INVITATIONS : "sends/receives"
-    CHATS ||--o{ CHAT_INVITATIONS : "invitation for"
-
-    PROFILES ||--o{ FRIENDS : "user_id"
-    PROFILES ||--o{ FRIENDS : "friend_id"
-
-    PROFILES ||--o{ NOTIFICATIONS : "receives"
-
-    CHATS ||--o{ FILE_ATTACHMENTS : "has files"
-    MESSAGES ||--o{ FILE_ATTACHMENTS : "attached to"
-    PROFILES ||--o{ FILE_ATTACHMENTS : "uploaded by"
-
-    ANONYMOUS_CHATS ||--o{ ANONYMOUS_CHAT_USERS : "has guests"
-    ANONYMOUS_CHATS ||--o{ ANONYMOUS_MESSAGES : "contains"
+    phppos_locations ||--o{ phppos_location_items : "location_id"
+    phppos_items ||--o{ phppos_location_items : "item_id"
 ```
 
 ---
 
-## Table Relationships
-
-### Primary Join Keys
+## Primary Join Keys
 
 ```
-profiles.id ──────────────┬──── chats.created_by
-    (user identity)       │
-                          ├──── chat_participants.user_id
-                          │
-                          ├──── messages.sender_id
-                          │
-                          ├──── friends.user_id / friend_id
-                          │
-                          ├──── notifications.user_id
-                          │
-                          ├──── chat_invitations.inviting_user_id
-                          │
-                          └──── chat_invitations.invited_user_id
-
-
-chats.id ─────────────────┬──── chat_participants.chat_id
-    (chat identity)       │
-                          ├──── messages.chat_id
-                          │
-                          ├──── chat_invitations.chat_id
-                          │
-                          └──── file_attachments.chat_id
-
-
-anonymous_chats.id ───────┬──── anonymous_chat_users.chat_id
-    (anon chat identity)  │
-                          └──── anonymous_messages.chat_id
+phppos_people.person_id ─────── phppos_employees.person_id
+phppos_employees (person_id) ── phppos_employees_locations.employee_id
+phppos_locations.location_id ─ phppos_employees_locations.location_id
+phppos_locations.location_id ─ phppos_location_items.location_id
+phppos_items.item_id ───────── phppos_location_items.item_id
+phppos_sales.employee_id ───── phppos_employees (via person_id / employee linkage)
+phppos_sales.location_id ───── phppos_locations.location_id
 ```
 
 ---
 
-## Core Tables and Their Roles
+## Core Tables
 
-### 1. `profiles`
-- User accounts synced from Supabase Auth via trigger.
-- Contains profile info (username, display_name, avatar, bio).
-- Supports OAuth (Google) and email/password signup.
-- Includes `prompt_username_setup` flag for OAuth users to set username.
+### 1. `phppos_people`
+Base table for persons. One row per customer, employee, or supplier.
 
-### 2. `chats`
-- Chat rooms with optional AI character assignment.
-- Each chat has a creator (`created_by`) who can manage the room.
-- Supports various AI tutors: `math-ai`, `science-ai`, `language-ai`, `physics-professor`, `microsoft-senior-engineer`, etc.
+- **PK:** `person_id`
+- **Key columns:** `first_name`, `last_name`, `phone_number`, `email`, `address_1`, `address_2`, `city`, `state`, `zip`, `country`, `comments`
 
-### 3. `chat_participants`
-- Many-to-many join between `profiles` and `chats`.
-- Tracks when each user joined (`joined_at`).
-- Primary key: `(chat_id, user_id)`.
+### 2. `phppos_employees`
+Employee accounts linked to people.
 
-### 4. `messages`
-- All chat messages, both human and AI-generated.
-- `is_ai` flag indicates AI-generated messages.
-- `ai_character_id` identifies which AI tutor responded.
-- Supports `@mentions` via `mentions_data` JSONB field.
-- Triggers create notifications for mentioned users.
+- **FK:** `person_id` → `phppos_people(person_id)`
+- **Key columns:** `username`, `password`, `balance`, `deleted`, `hide_from_switch_user`
+- **Note:** In phppos, employees are identified by `person_id`; `employee_id` is typically the same as `person_id` in application logic.
 
-### 5. `chat_invitations`
-- Invitations to join private chats.
-- Status flow: `pending` → `accepted` / `rejected` / `expired`.
-- Expires after 7 days by default.
+### 3. `phppos_employees_locations`
+Assigns employees to locations.
 
-### 6. `friends`
-- Bi-directional friend relationships.
-- Status flow: `pending` → `accepted` / `declined`.
-- Unique constraint on `(user_id, friend_id)`.
+- **FK:** `employee_id` → `phppos_employees.person_id` (or equivalent)
+- **FK:** `location_id` → `phppos_locations.location_id`
 
-### 7. `notifications`
-- In-app notifications for users.
-- Types: `friend_request`, `mention`, `chat_invite`.
-- Supports `read` flag and `seen_at` timestamp.
+### 4. `phppos_items`
+Product catalog.
 
-### 8. `file_attachments`
-- Files uploaded to chats.
-- Stores file metadata (name, size, type, path).
-- Links to chat, message, and uploading user.
+- **PK:** `item_id`
+- **Key columns:** `name`, `category`, `description`, `cost_price`, `unit_price`, `allow_alt_description`, `is_serialized`, `override_default_tax`, `is_service`, `deleted`
 
-### 9. `anonymous_chats`
-- Temporary chat sessions with 6-character join codes.
-- Created via `create_anonymous_chat()` function.
-- No authentication required to participate.
+### 5. `phppos_locations`
+Store locations.
 
-### 10. `anonymous_chat_users`
-- Guest participants in anonymous chats.
-- Identified by `guest_id` (client-generated UUID) and `display_name`.
+- **PK:** `location_id`
+- **Key columns:** `name`, `address`, `phone`, `fax`, `email`, `default_tax_1_rate` … `default_tax_5_rate`, `deleted`
 
-### 11. `anonymous_messages`
-- Messages in anonymous chats.
-- Identified by `sender_display_name` instead of user ID.
-- Supports AI responses via `is_ai` and `ai_character_id`.
+### 6. `phppos_location_items`
+Location-specific inventory quantities.
+
+- **FK:** `location_id` → `phppos_locations.location_id`
+- **FK:** `item_id` → `phppos_items.item_id`
+- **Key columns:** `quantity`
+
+### 7. `phppos_sales`
+Sales transaction header.
+
+- **PK:** `sale_id`
+- **FK:** `employee_id` → `phppos_employees`
+- **FK:** `location_id` → `phppos_locations.location_id`
+- **Key columns:** `sale_time`, `customer_id`, `payment_type`
 
 ---
 
-## Key Functions
+## ACID & Integrity Notes
 
-| Function | Purpose |
-|----------|---------|
-| `handle_new_user()` | Trigger that creates a profile when a user signs up |
-| `accept_chat_invitation(uuid)` | Accepts an invitation and adds user to chat |
-| `leave_chat(uuid)` | Removes user from chat, transfers ownership if needed |
-| `create_anonymous_chat()` | Creates new anonymous chat with unique join code |
-| `is_user_in_chat(uuid)` | Checks if current user is a chat participant |
-| `is_chat_participant(uuid, uuid)` | Checks if a specific user is in a specific chat |
-| `handle_new_mention()` | Trigger that creates notifications for @mentions |
-| `update_chat_timestamp()` | Updates chat's `updated_at` when new message arrives |
+- **Atomicity:** Transactions are handled by the database engine.
+- **Consistency:** Foreign keys and constraints enforce referential integrity.
+- **Isolation:** Default transaction isolation applies.
+- **Durability:** Committed data is persisted.
 
----
-
-## Row Level Security (RLS)
-
-All tables have RLS enabled with policies that ensure:
-
-- Users can only view/modify their own profiles
-- Users can only see chats they participate in
-- Users can only send messages to chats they're in
-- Chat creators can manage participants and delete chats
-- Notifications are private to each user
-- Anonymous chats/messages are publicly accessible
-
----
-
-## Real-Time Subscriptions
-
-The following tables are added to Supabase Realtime publication:
-
-- `chats`
-- `messages`
-- `chat_participants`
-- `chat_invitations`
-- `friends`
-- `notifications`
-- `anonymous_chats`
-- `anonymous_messages`
-- `profiles`
-- `file_attachments`
-
-This enables real-time updates in the client application via Supabase's WebSocket API.
-
----
-
-For detailed per-column information (types, constraints, descriptions), see `DATA_DICTIONARY.md`.
+For detailed column definitions, see `DATA_DICTIONARY.md`.

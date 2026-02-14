@@ -142,248 +142,305 @@ info:
     \ The business impact and value delivered\n- Complexity: Technical complexity\
     \ indicators\n- SQL Code: Complete, production-ready SQL query\n\n---\n\nUse Case:\
     \ Competitive pricing analysis for retail intelligence platforms - identify best\
-    \ prices by location and track price trends over time\n\nDescription: Analyzes\
-    \ pricing across multiple retailers for products within geographic markets, incorporating\
-    \ temporal trends, price volatility metrics, and competitive positioning. Uses\
-    \ multiple CTEs to aggregate pricing data, calculate price differences, identify\
-    \ best deals, and track price movements over time with window functions.\n\nUse\
-    \ Case: Competitive pricing analysis for retail intelligence platforms - identify\
-    \ best prices by location and track price trends over time\n\nBusiness Value:\
-    \ Enables retailers and consumers to identify optimal pricing strategies and best\
-    \ deals by geographic market, supporting $1M+ ARR pricing intelligence platforms\n\
-    \nPurpose: Provides comprehensive multi-retailer price comparison with geographic\
-    \ and temporal dimensions for strategic pricing decisions\n\nComplexity: Deep\
-    \ nested CTEs (6+ levels), multiple joins across products/retailers/stores/pricing\
-    \ tables, window functions with frame clauses, percentile calculations, temporal\
-    \ aggregations, geographic filtering, correlated subqueries\n\nExpected Output:\
-    \ Product pricing comparison report showing best prices by retailer and location,\
-    \ price trends, and competitive positioning metrics\n\n---\n\nUse Case: Inventory\
-    \ forecasting for retail operations - predict when products will be in stock and\
-    \ optimize restocking schedules\n\nDescription: Predicts inventory availability\
-    \ by analyzing historical stock patterns, restocking frequencies, seasonal trends,\
-    \ and geographic distribution. Uses recursive CTEs for pattern detection, window\
-    \ functions for trend analysis, and complex aggregations to forecast stock levels.\n\
-    \nUse Case: Inventory forecasting for retail operations - predict when products\
-    \ will be in stock and optimize restocking schedules\n\nBusiness Value: Enables\
-    \ retailers to optimize inventory management, reduce stockouts, and improve customer\
-    \ satisfaction, supporting $1M+ ARR inventory intelligence platforms\n\nPurpose:\
-    \ Provides predictive analytics for inventory availability based on historical\
-    \ patterns and geographic factors\n\nComplexity: Recursive CTEs for pattern detection,\
-    \ multiple CTEs (7+ levels), window functions with complex frame clauses, temporal\
-    \ aggregations, geographic clustering, statistical forecasting calculations\n\n\
-    Expected Output: Inventory availability predictions with confidence scores, restocking\
-    \ recommendations, and geographic distribution analysis\n\n---\n\nUse Case: Competitive\
-    \ market analysis for retail intelligence - identify market leaders, track share\
-    \ changes, and analyze competitive dynamics\n\nDescription: Analyzes market share\
-    \ by retailer and product category, incorporating competitive positioning metrics,\
-    \ temporal trends, and geographic distribution. Uses multiple CTEs to calculate\
-    \ market share percentages, competitive rankings, share changes over time, and\
-    \ market concentration metrics with window functions.\n\nUse Case: Competitive\
-    \ market analysis for retail intelligence - identify market leaders, track share\
-    \ changes, and analyze competitive dynamics\n\nBusiness Value: Enables retailers\
-    \ to understand their market position, track competitive movements, and identify\
-    \ growth opportunities, supporting $1M+ ARR market intelligence platforms\n\n\
-    Purpose: Provides comprehensive market share analysis with competitive positioning\
-    \ and temporal trend tracking\n\nComplexity: Multiple CTEs (6+ levels), complex\
-    \ aggregations, window functions with frame clauses, percentile rankings, temporal\
-    \ comparisons, market concentration calculations\n\nExpected Output: Market share\
-    \ report showing retailer rankings, share percentages, competitive positioning,\
-    \ and temporal trends by product category\n\n---\n\nUse Case: Automated deal detection\
-    \ for retail intelligence platforms\n\nDescription: Detects deals and generates\
-    \ alerts by analyzing price changes, discount patterns, and temporal trends. Uses\
-    \ recursive CTEs for pattern detection, window functions for trend analysis, and\
-    \ complex aggregations to identify optimal deals.\n\nUse Case: Automated deal\
-    \ detection for retail intelligence platforms\n\nBusiness Value: Enables consumers\
-    \ and retailers to identify best deals automatically, supporting $1M+ ARR deal\
-    \ aggregation platforms\n\nPurpose: Provides comprehensive analysis for marketing\
-    \ intelligence\n\nComplexity: Recursive CTEs, multiple CTEs (7+ levels), window\
-    \ functions with frame clauses, temporal pattern detection, discount analysis\n\
-    \nExpected Output: Detailed analysis report with metrics and insights\n\n---\n\
-    \nUse Case: Category performance analysis for retail strategy\n\nDescription:\
-    \ Analyzes product category trends with seasonal decomposition, identifying cyclical\
-    \ patterns, growth trends, and category performance metrics. Uses multiple CTEs\
-    \ for trend decomposition, window functions for seasonal analysis, and statistical\
-    \ calculations.\n\nUse Case: Category performance analysis for retail strategy\n\
-    \nBusiness Value: Enables retailers to understand category trends and optimize\
-    \ product mix, supporting $1M+ ARR retail analytics platforms\n\nPurpose: Provides\
-    \ comprehensive analysis for marketing intelligence\n\nComplexity: Multiple CTEs\
-    \ (8+ levels), seasonal decomposition, window functions with RANGE frames, trend\
-    \ analysis, statistical calculations\n\nExpected Output: Detailed analysis report\
-    \ with metrics and insights\n\n---\n\nUse Case: Marketing intelligence for retail\
-    \ operations\n\nDescription: Comprehensive marketing intelligence analysis with\
-    \ multiple CTEs, window functions, and complex aggregations.\n\nUse Case: Marketing\
-    \ intelligence for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing\
-    \ intelligence platforms\n\nPurpose: Provides detailed marketing intelligence\
-    \ analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions, complex\
-    \ aggregations\n\nExpected Output: Analysis report with comprehensive metrics\n\
+    \ prices by location and track price trends over time\n\nDescription: Description:\
+    \ Analyzes pricing across multiple retailers for products within geographic markets,\
+    \ incorporating temporal trends, price volatility metrics, and competitive positioning.\
+    \ Uses multiple CTEs to aggregate pricing data, calculate price differences, identify\
+    \ best deals, and track price movements over time with window functions. Use Case:\
+    \ Competitive pricing analysis for retail intelligence platforms - identify best\
+    \ prices by location and track price trends over time Business Value: Enable\n\
+    \nBusiness Value: Enable\n\nComplexity: Deep nested CTEs (6+ levels), multiple\
+    \ joins across products/retailers/stores/pricing tables, window functions with\
+    \ frame clauses, percentile calculations, temporal aggregations, geographic filtering,\
+    \ correlated subqueries\n\n---\n\nUse Case: Inventory forecasting for retail operations\
+    \ - predict when products will be in stock and optimize restocking schedules\n\
+    \nDescription: Description: Predicts inventory availability by analyzing historical\
+    \ stock patterns, restocking frequencies, seasonal trends, and geographic distribution.\
+    \ Uses recursive CTEs for pattern detection, window functions for trend analysis,\
+    \ and complex aggregations to forecast stock levels. Use Case: Inventory forecasting\
+    \ for retail operations - predict when products will be in stock and optimize\
+    \ restocking schedules Business Value: Enables retailers to optimize inventory\
+    \ management, reduce stockouts,\n\nBusiness Value: Enables retailers to optimize\
+    \ inventory management, reduce stockouts,\n\nComplexity: Recursive CTEs for pattern\
+    \ detection, multiple CTEs (7+ levels), window functions with complex frame clauses,\
+    \ temporal aggregations, geographic clustering, statistical forecasting calculations\n\
+    \n---\n\nUse Case: Competitive market analysis for retail intelligence - identify\
+    \ market leaders, track share changes, and analyze competitive dynamics\n\nDescription:\
+    \ Description: Analyzes market share by retailer and product category, incorporating\
+    \ competitive positioning metrics, temporal trends, and geographic distribution.\
+    \ Uses multiple CTEs to calculate market share percentages, competitive rankings,\
+    \ share changes over time, and market concentration metrics with window functions.\
+    \ Use Case: Competitive market analysis for retail intelligence - identify market\
+    \ leaders, track share changes, and analyze competitive dynamics Business Value:\
+    \ Enables retailers\n\nBusiness Value: Enables retailers\n\nComplexity: Multiple\
+    \ CTEs (6+ levels), complex aggregations, window functions with frame clauses,\
+    \ percentile rankings, temporal comparisons, market concentration calculations\n\
+    \n---\n\nUse Case: Automated deal detection for retail intelligence platforms\n\
+    \nDescription: Description: Detects deals and generates alerts by analyzing price\
+    \ changes, discount patterns, and temporal trends. Uses recursive CTEs for pattern\
+    \ detection, window functions for trend analysis, and complex aggregations to\
+    \ identify optimal deals. Use Case: Automated deal detection for retail intelligence\
+    \ platforms Business Value: Enables consumers and retailers to identify best deals\
+    \ automatically, supporting $1M+ ARR deal aggregation platforms Purpose: Provides\
+    \ comprehensive analysis for marke\n\nBusiness Value: Enables consumers and retailers\
+    \ to identify best deals automatically, supporting $1M+ ARR deal aggregation platforms\n\
+    \nPurpose: Provides comprehensive analysis for marke\n\nComplexity: Recursive\
+    \ CTEs, multiple CTEs (7+ levels), window functions with frame clauses, temporal\
+    \ pattern detection, discount analysis\n\n---\n\nUse Case: Category performance\
+    \ analysis for retail strategy\n\nDescription: Description: Analyzes product category\
+    \ trends with seasonal decomposition, identifying cyclical patterns, growth trends,\
+    \ and category performance metrics. Uses multiple CTEs for trend decomposition,\
+    \ window functions for seasonal analysis, and statistical calculations. Use Case:\
+    \ Category performance analysis for retail strategy Business Value: Enables retailers\
+    \ to understand category trends and optimize product mix, supporting $1M+ ARR\
+    \ retail analytics platforms Purpose: Provides comprehensive an\n\nBusiness Value:\
+    \ Enables retailers to understand category trends and optimize product mix, supporting\
+    \ $1M+ ARR retail analytics platforms\n\nPurpose: Provides comprehensive an\n\n\
+    Complexity: Multiple CTEs (8+ levels), seasonal decomposition, window functions\
+    \ with RANGE frames, trend analysis, statistical calculations\n\n---\n\nUse Case:\
+    \ Marketing intelligence for retail operations\n\nDescription: Description: Comprehensive\
+    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
+    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
+    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
+    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
+    \ window functions, complex aggregations Expected Output: Analysis report with\
+    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
+    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
+    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
     \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
-    \ Comprehensive marketing intelligence analysis with multiple CTEs, window functions,\
-    \ and complex aggregations.\n\nUse Case: Marketing intelligence for retail operations\n\
-    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
-    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
-    \ (6+ levels), window functions, complex aggregations\n\nExpected Output: Analysis\
-    \ report with comprehensive metrics\n\n---\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nDescription: Comprehensive marketing intelligence analysis\
-    \ with multiple CTEs, window functions, and complex aggregations.\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nBusiness Value: Supports $1M+\
+    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
+    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
+    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
+    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
+    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
+    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
     \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
     \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
+    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
+    \nDescription: Description: Comprehensive marketing intelligence analysis with\
+    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
+    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
+    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
+    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
+    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
+    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
+    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
+    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
+    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
+    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
+    \ Case: Marketing intelligence for retail operations Business Value: Supports\
+    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
+    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
+    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
+    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
+    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
+    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
+    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
+    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
+    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
+    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
+    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
+    \ window functions, complex aggregations Expected Output: Analysis report with\
+    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
     \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
     Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
+    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
+    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
+    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
+    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
+    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
+    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
+    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
+    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
     \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
+    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
+    \nDescription: Description: Comprehensive marketing intelligence analysis with\
+    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
+    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
+    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
+    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
+    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
+    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
+    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
+    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
+    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
+    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
+    \ Case: Marketing intelligence for retail operations Business Value: Supports\
+    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
+    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
+    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
+    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
+    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
+    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
+    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
+    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
+    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
+    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
+    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
+    \ window functions, complex aggregations Expected Output: Analysis report with\
+    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
     \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
     Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
+    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
+    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
+    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
+    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
+    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
+    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
+    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
+    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
     \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
+    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
+    \nDescription: Description: Comprehensive marketing intelligence analysis with\
+    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
+    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
+    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
+    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
+    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
+    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
+    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
+    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
+    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
+    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
+    \ Case: Marketing intelligence for retail operations Business Value: Supports\
+    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
+    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
+    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
+    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
+    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
+    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
+    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
+    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
+    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
+    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
+    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
+    \ window functions, complex aggregations Expected Output: Analysis report with\
+    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
     \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
     Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
+    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
+    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
+    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
+    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
+    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
+    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
+    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
+    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
     \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
+    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
+    \nDescription: Description: Comprehensive marketing intelligence analysis with\
+    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
+    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
+    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
+    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
+    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
+    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
+    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
+    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
+    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
+    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
+    \ Case: Marketing intelligence for retail operations Business Value: Supports\
+    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
+    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
+    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
+    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
+    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
+    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
+    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
+    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
+    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
+    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
+    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
+    \ window functions, complex aggregations Expected Output: Analysis report with\
+    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
     \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
     Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
+    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
+    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
+    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
+    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
+    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
+    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
+    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
+    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
     \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
+    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
+    \nDescription: Description: Comprehensive marketing intelligence analysis with\
+    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
+    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
+    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
+    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
+    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
+    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
+    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
+    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
+    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
+    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
+    \ Case: Marketing intelligence for retail operations Business Value: Supports\
+    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
+    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
+    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
+    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
+    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
+    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
+    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
+    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
+    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
+    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
+    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
+    \ window functions, complex aggregations Expected Output: Analysis report with\
+    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
     \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
     Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
+    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
+    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
+    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
+    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
+    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
+    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
+    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
+    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
     \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
+    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
+    \nDescription: Description: Comprehensive marketing intelligence analysis with\
+    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
+    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
+    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
+    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
+    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
+    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
+    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
+    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
+    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
+    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
+    \ Case: Marketing intelligence for retail operations Business Value: Supports\
+    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
+    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
+    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
+    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
+    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
+    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
+    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
+    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
+    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
+    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
+    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
+    \ window functions, complex aggregations Expected Output: Analysis report with\
+    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
     \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
     Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\n\
-    Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations.\n\nUse Case: Marketing intelligence\
-    \ for retail operations\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \nExpected Output: Analysis report with comprehensive metrics\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Comprehensive marketing\
-    \ intelligence analysis with multiple CTEs, window functions, and complex aggregations.\n\
-    \nUse Case: Marketing intelligence for retail operations\n\nBusiness Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\nExpected Output: Analysis report with comprehensive\
-    \ metrics\n\n---\n\n1. PostgreSQL Setup:\n   \n\n2. , Setup:\n   - Use Delta Lake\
-    \ format\n   - Load schema.sql (adapting GEOGRAPHY types as needed)\n   - Use,\
-    \ SQL for query execution\n\n3. , Setup:\n   - Create database and schema\n  \
-    \ - Load schema.sql (GEOGRAPHY types supported)\n   - Use, SQL for query execution\n\
-    \nRun the ETL pipeline to extract data from government APIs:\n\nOr use the bulk\
-    \ download script:\n\nAll queries are located in `queries/queries.md` and can\
-    \ be executed directly on any supported database platform.\n\nRun the validation\
-    \ suite:\n\nOr use the validate command:\n\n---\n\nLast Updated: 2026-02-04\n\n\
-    ---\n\nAll queries in this database are designed to work across multiple database\
-    \ platforms:\n\n- PostgreSQL: Full support with standard SQL features\n\nQueries\
-    \ use standard SQL syntax and avoid platform-specific features to ensure compatibility.\n\
-    \n---\n\nDocument Information:\n\n- Generated: 20260214-0148\n- Database: db-10\n\
+    \n---\n\n1. PostgreSQL Setup:\n   \n\n2. , Setup:\n   - Use Delta Lake format\n\
+    \   - Load schema.sql (adapting GEOGRAPHY types as needed)\n   - Use, SQL for\
+    \ query execution\n\n3. , Setup:\n   - Create database and schema\n   - Load schema.sql\
+    \ (GEOGRAPHY types supported)\n   - Use, SQL for query execution\n\nRun the ETL\
+    \ pipeline to extract data from government APIs:\n\nOr use the bulk download script:\n\
+    \nAll queries are located in `queries/queries.md` and can be executed directly\
+    \ on any supported database platform.\n\nRun the validation suite:\n\nOr use the\
+    \ validate command:\n\n---\n\nLast Updated: 2026-02-04\n\n---\n\nAll queries in\
+    \ this database are designed to work across multiple database platforms:\n\n-\
+    \ PostgreSQL: Full support with standard SQL features\n\nQueries use standard\
+    \ SQL syntax and avoid platform-specific features to ensure compatibility.\n\n\
+    ---\n\nDocument Information:\n\n- Generated: 20260214-1523\n- Database: db-10\n\
     - Type: Marketing Intelligence Database\n- Queries: 30 production queries\n- Status:\
     \ ✅ Complete Comprehensive Deliverable"
   version: 1.0.0

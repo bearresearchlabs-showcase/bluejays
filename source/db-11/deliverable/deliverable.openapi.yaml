@@ -51,335 +51,359 @@ info:
     \ delivered\n- Complexity: Technical complexity indicators\n- SQL Code: Complete,\
     \ production-ready SQL query\n\n---\n\nUse Case: Identify high-demand markets\
     \ for parking marketplace expansion by analyzing utilization patterns, demographic\
-    \ indicators, and traffic correlations across 400+ cities.\n\nDescription: Analyzes\
-    \ parking demand across metropolitan areas using multi-level CTEs, spatial aggregations,\
-    \ temporal window functions, and demographic correlations. Calculates demand scores\
-    \ by combining utilization rates, population density, traffic volumes, and economic\
-    \ indicators with weighted scoring algorithms.\n\nUse Case: Identify high-demand\
-    \ markets for parking marketplace expansion by analyzing utilization patterns,\
-    \ demographic indicators, and traffic correlations across 400+ cities.\n\nBusiness\
-    \ Value: Market expansion prioritization report showing demand scores, growth\
-    \ potential, and revenue opportunities by metropolitan area. Enables data-driven\
-    \ market entry decisions for parking marketplace platforms.\n\nPurpose: Quantifies\
-    \ parking demand potential across geographic markets using multi-factor analysis,\
-    \ enabling strategic market expansion planning.\n\nComplexity: Deep nested CTEs\
-    \ (8+ levels), spatial aggregations, complex window functions with multiple frame\
-    \ clauses, percentile calculations, weighted scoring algorithms, temporal pattern\
-    \ analysis, correlated subqueries, multi-table joins\n\nExpected Output: Market\
-    \ demand scores by metropolitan area with rankings, growth indicators, and expansion\
-    \ recommendations.\n\n---\n\nUse Case: Optimize pricing strategies by analyzing\
-    \ competitor pricing, market share, and pricing elasticity across geographic clusters\
-    \ of parking facilities.\n\nDescription: Analyzes competitive parking landscape\
-    \ using multi-level CTEs for market penetration analysis, pricing elasticity calculations,\
-    \ distance-based competitive clustering, and revenue optimization modeling. Identifies\
-    \ pricing gaps and competitive advantages through multi-dimensional analysis.\n\
+    \ indicators, and traffic correlations across 400+ cities. Busin\n\nDescription:\
+    \ Description: Analyzes parking demand across metropolitan areas using multi-level\
+    \ CTEs, spatial aggregations, temporal window functions, and demographic correlations.\
+    \ Calculates demand scores by combining utilization rates, population density,\
+    \ traffic volumes, and economic indicators with weighted scoring algorithms. Use\
+    \ Case: Identify high-demand markets for parking marketplace expansion by analyzing\
+    \ utilization patterns, demographic indicators, and traffic correlations across\
+    \ 400+ cities. Busin\n\nBusiness Value: Market demand scores by metropolitan area\
+    \ with rankings, growth indicators, and expansion recommendations.\n\nComplexity:\
+    \ Deep nested CTEs (8+ levels), spatial aggregations, complex window functions\
+    \ with multiple frame clauses, percentile calculations, weighted scoring algorithms,\
+    \ temporal pattern analysis, correlated subqueries, multi-table joins\n\n---\n\
     \nUse Case: Optimize pricing strategies by analyzing competitor pricing, market\
     \ share, and pricing elasticity across geographic clusters of parking facilities.\n\
-    \nBusiness Value: Competitive pricing intelligence report showing optimal pricing\
-    \ strategies, market share opportunities, and revenue maximization recommendations\
-    \ by facility cluster.\n\nPurpose: Enables data-driven pricing decisions by identifying\
-    \ competitive gaps and pricing optimization opportunities in local markets.\n\n\
-    Complexity: Multi-level CTEs for market clustering, complex aggregations with\
+    \nDescription: Description: Analyzes competitive parking landscape using multi-level\
+    \ CTEs for market penetration analysis, pricing elasticity calculations, distance-based\
+    \ competitive clustering, and revenue optimization modeling. Identifies pricing\
+    \ gaps and competitive advantages through multi-dimensional analysis. Use Case:\
+    \ Optimize pricing strategies by analyzing competitor pricing, market share, and\
+    \ pricing elasticity across geographic clusters of parking facilities. Business\
+    \ Value: Competitive pricing inte\n\nBusiness Value: Competitive pricing inte\n\
+    \nComplexity: Multi-level CTEs for market clustering, complex aggregations with\
     \ window functions, distance calculations, pricing elasticity modeling, percentile\
-    \ rankings, multi-level joins\n\nExpected Output: Competitive analysis by facility\
-    \ cluster with pricing recommendations, market share calculations, and revenue\
-    \ optimization opportunities.\n\n---\n\nUse Case: Predict parking demand and optimize\
+    \ rankings, multi-level joins\n\n---\n\nUse Case: Predict parking demand and optimize\
     \ pricing for upcoming events (sports games, concerts, conventions) to maximize\
-    \ revenue and ensure availability.\n\nDescription: Forecasts parking demand for\
-    \ events using multi-level CTEs for event pattern analysis, temporal correlation\
-    \ with historical utilization, venue capacity modeling, and dynamic pricing recommendations.\
-    \ Analyzes event types, attendance patterns, and parking multiplier effects.\n\
-    \nUse Case: Predict parking demand and optimize pricing for upcoming events (sports\
-    \ games, concerts, conventions) to maximize revenue and ensure availability.\n\
-    \nBusiness Value: Event parking demand forecast report with pricing recommendations,\
-    \ capacity planning, and revenue optimization strategies for event-based parking\
-    \ operations.\n\nPurpose: Enables proactive event parking management by forecasting\
-    \ demand and optimizing pricing strategies based on historical patterns and event\
-    \ characteristics.\n\nComplexity: Multi-level CTEs for event pattern analysis,\
-    \ temporal window functions, correlation analysis, demand multiplier calculations,\
-    \ revenue optimization modeling, multi-table joins with aggregations\n\nExpected\
-    \ Output: Event parking demand forecasts with pricing recommendations and revenue\
-    \ optimization opportunities.\n\n---\n\nUse Case: Optimize airport parking revenue\
-    \ by analyzing passenger volume correlations, seasonal patterns, and pricing strategies\
-    \ across different airport facilities.\n\nDescription: Analyzes airport parking\
-    \ performance using multi-level CTEs, passenger volume correlations, seasonal\
+    \ revenue and ensure availability.\n\nDescription: Description: Forecasts parking\
+    \ demand for events using multi-level CTEs for event pattern analysis, temporal\
+    \ correlation with historical utilization, venue capacity modeling, and dynamic\
+    \ pricing recommendations. Analyzes event types, attendance patterns, and parking\
+    \ multiplier effects. Use Case: Predict parking demand and optimize pricing for\
+    \ upcoming events (sports games, concerts, conventions) to maximize revenue and\
+    \ ensure availability. Business Value: Event parking demand forecast report wit\n\
+    \nBusiness Value: Event parking demand forecast report wit\n\nComplexity: Multi-level\
+    \ CTEs for event pattern analysis, temporal window functions, correlation analysis,\
+    \ demand multiplier calculations, revenue optimization modeling, multi-table joins\
+    \ with aggregations\n\n---\n\nUse Case: Optimize airport parking revenue by analyzing\
+    \ passenger volume correlations, seasonal patterns, and pricing strategies across\
+    \ different airport facilities.\n\nDescription: Description: Analyzes airport\
+    \ parking performance using multi-level CTEs, passenger volume correlations, seasonal\
     \ pattern detection with window functions, pricing elasticity modeling, and revenue\
-    \ optimization across airport facilities.\n\nUse Case: Optimize airport parking\
-    \ revenue by analyzing passenger volume correlations, seasonal patterns, and pricing\
-    \ strategies across different airport facilities.\n\nBusiness Value: Airport parking\
-    \ revenue optimization report with seasonal pricing recommendations, capacity\
-    \ utilization analysis, and passenger volume correlation insights.\n\nPurpose:\
-    \ Maximizes airport parking revenue through data-driven pricing and capacity optimization\
-    \ based on passenger patterns and seasonal trends.\n\nComplexity: Multi-level\
-    \ CTEs (6+ levels), temporal window functions with seasonal patterns, correlation\
-    \ analysis, revenue optimization modeling, percentile calculations, multi-table\
-    \ joins\n\nExpected Output: Airport parking revenue optimization recommendations\
-    \ with seasonal pricing strategies and capacity utilization insights.\n\n---\n\
-    \nUse Case: Predict parking demand based on traffic patterns and optimize facility\
-    \ locations near high-traffic corridors to maximize utilization and revenue.\n\
-    \nDescription: Correlates traffic volume patterns with parking utilization using\
-    \ multi-level CTEs, temporal alignment analysis, lag correlation calculations,\
-    \ and demand forecasting models. Identifies traffic patterns that predict parking\
-    \ demand and optimizes facility placement.\n\nUse Case: Predict parking demand\
-    \ based on traffic patterns and optimize facility locations near high-traffic\
-    \ corridors to maximize utilization and revenue.\n\nBusiness Value: Traffic-parking\
-    \ correlation report with demand forecasting, optimal facility placement recommendations,\
-    \ and revenue impact analysis for strategic facility development.\n\nPurpose:\
-    \ Enables data-driven facility placement decisions by correlating traffic patterns\
-    \ with parking demand patterns.\n\nComplexity: Multi-level CTEs (7+ levels), temporal\
-    \ correlation analysis, lag functions, demand forecasting models, spatial proximity\
-    \ calculations, revenue impact modeling\n\nExpected Output: Traffic-parking correlation\
-    \ analysis with demand forecasts and facility placement recommendations.\n\n---\n\
-    \nUse Case: Optimize pricing and marketing strategies by targeting specific demographic\
-    \ segments based on income, age, and employment patterns.\n\nDescription: Analyzes\
-    \ parking demand by demographic segments using multi-level CTEs, income correlation\
-    \ analysis, age-based pattern detection, employment correlation, and demographic\
-    \ targeting optimization. Identifies optimal pricing strategies for different\
-    \ demographic segments.\n\nUse Case: Optimize pricing and marketing strategies\
+    \ optimization across airport facilities. Use Case: Optimize airport parking revenue\
+    \ by analyzing passenger volume correlations, seasonal patterns, and pricing strategies\
+    \ across different airport facilities. Business Value: Airport parking revenue\
+    \ optimization report with seasonal pricing recommendations,\n\nBusiness Value:\
+    \ Airport parking revenue optimization report with seasonal pricing recommendations,\n\
+    \nComplexity: Multi-level CTEs (6+ levels), temporal window functions with seasonal\
+    \ patterns, correlation analysis, revenue optimization modeling, percentile calculations,\
+    \ multi-table joins\n\n---\n\nUse Case: Predict parking demand based on traffic\
+    \ patterns and optimize facility locations near high-traffic corridors to maximize\
+    \ utilization and revenue.\n\nDescription: Description: Correlates traffic volume\
+    \ patterns with parking utilization using multi-level CTEs, temporal alignment\
+    \ analysis, lag correlation calculations, and demand forecasting models. Identifies\
+    \ traffic patterns that predict parking demand and optimizes facility placement.\
+    \ Use Case: Predict parking demand based on traffic patterns and optimize facility\
+    \ locations near high-traffic corridors to maximize utilization and revenue. Business\
+    \ Value: Traffic-parking correlation report with demand fore\n\nBusiness Value:\
+    \ Traffic-parking correlation report with demand fore\n\nComplexity: Multi-level\
+    \ CTEs (7+ levels), temporal correlation analysis, lag functions, demand forecasting\
+    \ models, spatial proximity calculations, revenue impact modeling\n\n---\n\nUse\
+    \ Case: Optimize pricing and marketing strategies by targeting specific demographic\
+    \ segments based on income, age, and employment patterns.\n\nDescription: Description:\
+    \ Analyzes parking demand by demographic segments using multi-level CTEs, income\
+    \ correlation analysis, age-based pattern detection, employment correlation, and\
+    \ demographic targeting optimization. Identifies optimal pricing strategies for\
+    \ different demographic segments. Use Case: Optimize pricing and marketing strategies\
     \ by targeting specific demographic segments based on income, age, and employment\
-    \ patterns.\n\nBusiness Value: Demographic targeting report with segment-specific\
-    \ pricing recommendations, market penetration analysis, and revenue optimization\
-    \ by demographic cohort.\n\nPurpose: Enables targeted marketing and pricing strategies\
-    \ by understanding demographic preferences and parking behavior patterns.\n\n\
-    Complexity: Multi-level CTEs (6+ levels), demographic segmentation, correlation\
-    \ analysis, market penetration calculations, revenue optimization modeling, percentile\
-    \ rankings\n\nExpected Output: Demographic targeting analysis with segment-specific\
-    \ pricing and marketing recommendations.\n\n---\n\nUse Case: Identify distinct\
-    \ market segments for targeted marketing campaigns and segment-specific pricing\
-    \ strategies based on demographic, economic, and utilization characteristics.\n\
-    \nDescription: Segments parking markets using multi-dimensional clustering analysis\
-    \ with multi-level CTEs, K-means-like grouping algorithms, revenue potential scoring,\
-    \ segment-specific optimization strategies, and demographic-economic correlation\
-    \ analysis.\n\nUse Case: Identify distinct market segments for targeted marketing\
-    \ campaigns and segment-specific pricing strategies based on demographic, economic,\
-    \ and utilization characteristics.\n\nBusiness Value: Market segmentation report\
-    \ with segment profiles, revenue potential scores, optimization recommendations,\
-    \ and targeted marketing strategies for each segment.\n\nPurpose: Enables targeted\
-    \ marketing and pricing by identifying homogeneous market segments with similar\
-    \ characteristics and behaviors.\n\nComplexity: Multi-level CTEs (7+ levels),\
-    \ clustering algorithms, multi-dimensional distance calculations, revenue optimization\
-    \ modeling, segment profiling, percentile rankings\n\nExpected Output: Market\
-    \ segments with characteristics, revenue potential, and optimization recommendations.\n\
+    \ patterns. Business Value: Demographic targeting report with segment-specific\
+    \ pricing re\n\nBusiness Value: Demographic targeting report with segment-specific\
+    \ pricing re\n\nComplexity: Multi-level CTEs (6+ levels), demographic segmentation,\
+    \ correlation analysis, market penetration calculations, revenue optimization\
+    \ modeling, percentile rankings\n\n---\n\nUse Case: Identify distinct market segments\
+    \ for targeted marketing campaigns and segment-specific pricing strategies based\
+    \ on demographic, economic, and utilization characteristics.\n\nDescription: Description:\
+    \ Segments parking markets using multi-dimensional clustering analysis with multi-level\
+    \ CTEs, K-means-like grouping algorithms, revenue potential scoring, segment-specific\
+    \ optimization strategies, and demographic-economic correlation analysis. Use\
+    \ Case: Identify distinct market segments for targeted marketing campaigns and\
+    \ segment-specific pricing strategies based on demographic, economic, and utilization\
+    \ characteristics. Business Value: Market segmentation report with segment profile\n\
+    \nBusiness Value: Market segmentation report with segment profile\n\nComplexity:\
+    \ Multi-level CTEs (7+ levels), clustering algorithms, multi-dimensional distance\
+    \ calculations, revenue optimization modeling, segment profiling, percentile rankings\n\
     \n---\n\nUse Case: Identify utilization patterns, seasonal trends, and anomalies\
     \ for capacity planning, pricing optimization, and operational efficiency improvements.\n\
-    \nDescription: Analyzes parking utilization patterns using time-series decomposition\
-    \ CTEs, seasonal trend analysis with window functions, anomaly detection algorithms\
-    \ using statistical methods, and pattern classification for capacity planning.\n\
-    \nUse Case: Identify utilization patterns, seasonal trends, and anomalies for\
-    \ capacity planning, pricing optimization, and operational efficiency improvements.\n\
-    \nBusiness Value: Utilization pattern report with trend analysis, anomaly alerts,\
-    \ capacity planning recommendations, and operational optimization strategies.\n\
-    \nPurpose: Enables data-driven capacity planning and operational optimization\
-    \ by identifying patterns and anomalies in parking utilization data.\n\nComplexity:\
-    \ Time-series CTEs (6+ levels), decomposition analysis, statistical anomaly detection,\
-    \ pattern classification, moving averages, seasonal decomposition\n\nExpected\
-    \ Output: Utilization patterns with trend analysis, anomaly flags, and capacity\
-    \ planning recommendations.\n\n---\n\nUse Case: Prioritize geographic expansion\
-    \ markets by analyzing market opportunities, competitive landscapes, and risk\
-    \ factors for strategic market entry decisions.\n\nDescription: Identifies geographic\
-    \ expansion opportunities using multi-level CTEs, market opportunity scoring algorithms,\
-    \ competitive landscape analysis, risk assessment modeling, and expansion prioritization\
-    \ ranking.\n\nUse Case: Prioritize geographic expansion markets by analyzing market\
-    \ opportunities, competitive landscapes, and risk factors for strategic market\
-    \ entry decisions.\n\nBusiness Value: Geographic expansion report with market\
-    \ opportunity scores, risk assessments, competitive analysis, and prioritized\
-    \ expansion recommendations.\n\nPurpose: Enables data-driven geographic expansion\
-    \ decisions by quantifying market opportunities and risks across potential expansion\
-    \ markets.\n\nComplexity: Multi-level CTEs (7+ levels), market scoring algorithms,\
-    \ risk modeling, competitive analysis, spatial proximity calculations, expansion\
-    \ prioritization\n\nExpected Output: Market expansion opportunities with opportunity\
-    \ scores, risk assessments, and expansion priorities.\n\n---\n\nUse Case: Predict\
-    \ future revenue trends for financial planning and budget forecasting.\n\nDescription:\
-    \ Forecasts parking revenue using time-series analysis CTEs, ARIMA-like modeling,\
-    \ confidence interval calculations, and revenue projection scenarios.\n\nUse Case:\
-    \ Predict future revenue trends for financial planning and budget forecasting.\n\
-    \nBusiness Value: Revenue forecast report with projections, confidence intervals,\
-    \ and scenario analysis.\n\nPurpose: Enables data-driven decision making through\
-    \ advanced analytics and business intelligence.\n\nComplexity: Time-series CTEs\
-    \ (7+ levels), forecasting models, confidence intervals, scenario analysis\n\n\
-    Expected Output: Query results with analysis and recommendations.\n\n---\n\nUse\
-    \ Case: Understand competitive position and develop strategic recommendations\
-    \ for market leadership.\n\nDescription: Analyzes competitive positioning using\
-    \ multi-level CTEs, market share calculations, competitive advantage scoring,\
-    \ and strategic positioning recommendations.\n\nUse Case: Understand competitive\
-    \ position and develop strategic recommendations for market leadership.\n\nBusiness\
+    \nDescription: Description: Analyzes parking utilization patterns using time-series\
+    \ decomposition CTEs, seasonal trend analysis with window functions, anomaly detection\
+    \ algorithms using statistical methods, and pattern classification for capacity\
+    \ planning. Use Case: Identify utilization patterns, seasonal trends, and anomalies\
+    \ for capacity planning, pricing optimization, and operational efficiency improvements.\
+    \ Business Value: Utilization pattern report with trend analysis, anomaly alerts,\
+    \ capacity planning re\n\nBusiness Value: Utilization pattern report with trend\
+    \ analysis, anomaly alerts, capacity planning re\n\nComplexity: Time-series CTEs\
+    \ (6+ levels), decomposition analysis, statistical anomaly detection, pattern\
+    \ classification, moving averages, seasonal decomposition\n\n---\n\nUse Case:\
+    \ Prioritize geographic expansion markets by analyzing market opportunities, competitive\
+    \ landscapes, and risk factors for strategic market entry decisions.\n\nDescription:\
+    \ Description: Identifies geographic expansion opportunities using multi-level\
+    \ CTEs, market opportunity scoring algorithms, competitive landscape analysis,\
+    \ risk assessment modeling, and expansion prioritization ranking. Use Case: Prioritize\
+    \ geographic expansion markets by analyzing market opportunities, competitive\
+    \ landscapes, and risk factors for strategic market entry decisions. Business\
+    \ Value: Geographic expansion report with market opportunity scores, risk assessments,\
+    \ competitive analysis, an\n\nBusiness Value: Geographic expansion report with\
+    \ market opportunity scores, risk assessments, competitive analysis, an\n\nComplexity:\
+    \ Multi-level CTEs (7+ levels), market scoring algorithms, risk modeling, competitive\
+    \ analysis, spatial proximity calculations, expansion prioritization\n\n---\n\n\
+    Use Case: Predict future revenue trends for financial planning and budget forecasting.\n\
+    \nDescription: Description: Forecasts parking revenue using time-series analysis\
+    \ CTEs, ARIMA-like modeling, confidence interval calculations, and revenue projection\
+    \ scenarios. Use Case: Predict future revenue trends for financial planning and\
+    \ budget forecasting. Business Value: Revenue forecast report with projections,\
+    \ confidence intervals, and scenario analysis. Purpose: Enables data-driven decision\
+    \ making through advanced analytics and business intelligence. Complexity: Time-series\
+    \ CTEs (7+ levels), forecast\n\nBusiness Value: Revenue forecast report with projections,\
+    \ confidence intervals, and scenario analysis.\n\nPurpose: Enables data-driven\
+    \ decision making through advanced analytics and business intelligence.\n\nComplexity:\
+    \ Time-series CTEs (7+ levels), forecasting models, confidence intervals, scenario\
+    \ analysis\n\n---\n\nUse Case: Understand competitive position and develop strategic\
+    \ recommendations for market leadership.\n\nDescription: Description: Analyzes\
+    \ competitive positioning using multi-level CTEs, market share calculations, competitive\
+    \ advantage scoring, and strategic positioning recommendations. Use Case: Understand\
+    \ competitive position and develop strategic recommendations for market leadership.\
+    \ Business Value: Competitive positioning report with market share analysis and\
+    \ strategic recommendations. Purpose: Enables data-driven decision making through\
+    \ advanced analytics and business intelligence. Complexity: Multi-leve\n\nBusiness\
     \ Value: Competitive positioning report with market share analysis and strategic\
     \ recommendations.\n\nPurpose: Enables data-driven decision making through advanced\
     \ analytics and business intelligence.\n\nComplexity: Multi-level CTEs (6+ levels),\
-    \ market share calculations, competitive analysis, strategic scoring\n\nExpected\
-    \ Output: Query results with analysis and recommendations.\n\n---\n\nUse Case:\
-    \ Optimize parking strategies for business districts based on employment patterns\
-    \ and demand.\n\nDescription: Analyzes business districts using spatial CTEs,\
-    \ employment correlation analysis, parking demand modeling, and district-specific\
-    \ revenue optimization.\n\nUse Case: Optimize parking strategies for business\
-    \ districts based on employment patterns and demand.\n\nBusiness Value: Business\
+    \ market share calculations, competitive analysis, strategic scoring\n\n---\n\n\
+    Use Case: Optimize parking strategies for business districts based on employment\
+    \ patterns and demand.\n\nDescription: Description: Analyzes business districts\
+    \ using spatial CTEs, employment correlation analysis, parking demand modeling,\
+    \ and district-specific revenue optimization. Use Case: Optimize parking strategies\
+    \ for business districts based on employment patterns and demand. Business Value:\
+    \ Business district analysis report with demand correlations and revenue optimization\
+    \ strategies. Purpose: Enables data-driven decision making through advanced analytics\
+    \ and business intelligence. Complexity: Spatial CTEs\n\nBusiness Value: Business\
     \ district analysis report with demand correlations and revenue optimization strategies.\n\
     \nPurpose: Enables data-driven decision making through advanced analytics and\
     \ business intelligence.\n\nComplexity: Spatial CTEs (6+ levels), correlation\
-    \ analysis, demand modeling, revenue optimization\n\nExpected Output: Query results\
-    \ with analysis and recommendations.\n\n---\n\nUse Case: Optimize monthly parking\
-    \ pricing to maximize customer lifetime value and retention.\n\nDescription: Optimizes\
-    \ monthly parking pricing using CTEs for customer segmentation, lifetime value\
-    \ calculations, retention analysis, and pricing optimization.\n\nUse Case: Optimize\
+    \ analysis, demand modeling, revenue optimization\n\n---\n\nUse Case: Optimize\
     \ monthly parking pricing to maximize customer lifetime value and retention.\n\
-    \nBusiness Value: Monthly parking optimization report with CLV analysis and retention\
-    \ strategies.\n\nPurpose: Enables data-driven decision making through advanced\
-    \ analytics and business intelligence.\n\nComplexity: Customer segmentation CTEs\
-    \ (7+ levels), CLV calculations, retention modeling, pricing optimization\n\n\
-    Expected Output: Query results with analysis and recommendations.\n\n---\n\nUse\
-    \ Case: Plan EV charging facility expansion and optimize revenue from EV charging\
-    \ services.\n\nDescription: Analyzes EV charging facilities using multi-level\
-    \ CTEs, demand forecasting, revenue impact calculations, and expansion recommendations.\n\
-    \nUse Case: Plan EV charging facility expansion and optimize revenue from EV charging\
-    \ services.\n\nBusiness Value: EV charging analysis report with demand forecasts\
-    \ and expansion recommendations.\n\nPurpose: Enables data-driven decision making\
-    \ through advanced analytics and business intelligence.\n\nComplexity: Multi-level\
-    \ CTEs (6+ levels), demand forecasting, revenue impact modeling, expansion analysis\n\
-    \nExpected Output: Query results with analysis and recommendations.\n\n---\n\n\
-    Use Case: Optimize reservation vs walk-in mix to maximize revenue and capacity\
-    \ utilization.\n\nDescription: Compares reservation and walk-in patterns using\
-    \ CTEs for pattern analysis, revenue comparison, capacity optimization, and booking\
-    \ strategy recommendations.\n\nUse Case: Optimize reservation vs walk-in mix to\
-    \ maximize revenue and capacity utilization.\n\nBusiness Value: Reservation analysis\
-    \ report with revenue optimization and capacity planning recommendations.\n\n\
-    Purpose: Enables data-driven decision making through advanced analytics and business\
-    \ intelligence.\n\nComplexity: Pattern analysis CTEs (6+ levels), revenue comparison,\
-    \ capacity optimization, booking strategies\n\nExpected Output: Query results\
-    \ with analysis and recommendations.\n\n---\n\nUse Case: Implement dynamic pricing\
-    \ and capacity management for peak hours to maximize revenue.\n\nDescription:\
-    \ Analyzes peak hour patterns using temporal CTEs, dynamic pricing models, capacity\
-    \ management algorithms, and revenue maximization strategies.\n\nUse Case: Implement\
-    \ dynamic pricing and capacity management for peak hours to maximize revenue.\n\
-    \nBusiness Value: Peak hour analysis report with dynamic pricing recommendations\
-    \ and capacity management strategies.\n\nPurpose: Enables data-driven decision\
+    \nDescription: Description: Optimizes monthly parking pricing using CTEs for customer\
+    \ segmentation, lifetime value calculations, retention analysis, and pricing optimization.\
+    \ Use Case: Optimize monthly parking pricing to maximize customer lifetime value\
+    \ and retention. Business Value: Monthly parking optimization report with CLV\
+    \ analysis and retention strategies. Purpose: Enables data-driven decision making\
+    \ through advanced analytics and business intelligence. Complexity: Customer segmentation\
+    \ CTEs (7+ levels),\n\nBusiness Value: Monthly parking optimization report with\
+    \ CLV analysis and retention strategies.\n\nPurpose: Enables data-driven decision\
     \ making through advanced analytics and business intelligence.\n\nComplexity:\
-    \ Temporal CTEs (7+ levels), dynamic pricing models, capacity management, revenue\
-    \ optimization\n\nExpected Output: Query results with analysis and recommendations.\n\
-    \n---\n\nUse Case: Optimize pricing strategies for weekends vs weekdays to maximize\
-    \ revenue.\n\nDescription: Compares weekend and weekday patterns using CTEs for\
-    \ pattern analysis, pricing strategy optimization, and revenue maximization.\n\
-    \nUse Case: Optimize pricing strategies for weekends vs weekdays to maximize revenue.\n\
-    \nBusiness Value: Weekend/weekday analysis report with pricing strategy recommendations.\n\
-    \nPurpose: Enables data-driven decision making through advanced analytics and\
-    \ business intelligence.\n\nComplexity: Pattern comparison CTEs (6+ levels), pricing\
-    \ optimization, revenue analysis\n\nExpected Output: Query results with analysis\
-    \ and recommendations.\n\n---\n\nUse Case: Optimize facility type mix and strategies\
-    \ for different facility types.\n\nDescription: Analyzes facility types using\
-    \ CTEs for performance benchmarking, revenue comparison, optimization recommendations,\
-    \ and type-specific strategies.\n\nUse Case: Optimize facility type mix and strategies\
-    \ for different facility types.\n\nBusiness Value: Facility type analysis report\
+    \ Customer segmentation CTEs (7+ levels), CLV calculations, retention modeling,\
+    \ pricing optimization\n\n---\n\nUse Case: Plan EV charging facility expansion\
+    \ and optimize revenue from EV charging services.\n\nDescription: Description:\
+    \ Analyzes EV charging facilities using multi-level CTEs, demand forecasting,\
+    \ revenue impact calculations, and expansion recommendations. Use Case: Plan EV\
+    \ charging facility expansion and optimize revenue from EV charging services.\
+    \ Business Value: EV charging analysis report with demand forecasts and expansion\
+    \ recommendations. Purpose: Enables data-driven decision making through advanced\
+    \ analytics and business intelligence. Complexity: Multi-level CTEs (6+ levels),\
+    \ demand forecasting,\n\nBusiness Value: EV charging analysis report with demand\
+    \ forecasts and expansion recommendations.\n\nPurpose: Enables data-driven decision\
+    \ making through advanced analytics and business intelligence.\n\nComplexity:\
+    \ Multi-level CTEs (6+ levels), demand forecasting, revenue impact modeling, expansion\
+    \ analysis\n\n---\n\nUse Case: Optimize reservation vs walk-in mix to maximize\
+    \ revenue and capacity utilization.\n\nDescription: Description: Compares reservation\
+    \ and walk-in patterns using CTEs for pattern analysis, revenue comparison, capacity\
+    \ optimization, and booking strategy recommendations. Use Case: Optimize reservation\
+    \ vs walk-in mix to maximize revenue and capacity utilization. Business Value:\
+    \ Reservation analysis report with revenue optimization and capacity planning\
+    \ recommendations. Purpose: Enables data-driven decision making through advanced\
+    \ analytics and business intelligence. Complexity: Pattern analysis CT\n\nBusiness\
+    \ Value: Reservation analysis report with revenue optimization and capacity planning\
+    \ recommendations.\n\nPurpose: Enables data-driven decision making through advanced\
+    \ analytics and business intelligence.\n\nComplexity: Pattern analysis CTEs (6+\
+    \ levels), revenue comparison, capacity optimization, booking strategies\n\n---\n\
+    \nUse Case: Implement dynamic pricing and capacity management for peak hours to\
+    \ maximize revenue.\n\nDescription: Description: Analyzes peak hour patterns using\
+    \ temporal CTEs, dynamic pricing models, capacity management algorithms, and revenue\
+    \ maximization strategies. Use Case: Implement dynamic pricing and capacity management\
+    \ for peak hours to maximize revenue. Business Value: Peak hour analysis report\
+    \ with dynamic pricing recommendations and capacity management strategies. Purpose:\
+    \ Enables data-driven decision making through advanced analytics and business\
+    \ intelligence. Complexity: Temporal CTEs (7+ level\n\nBusiness Value: Peak hour\
+    \ analysis report with dynamic pricing recommendations and capacity management\
+    \ strategies.\n\nPurpose: Enables data-driven decision making through advanced\
+    \ analytics and business intelligence.\n\nComplexity: Temporal CTEs (7+ levels),\
+    \ dynamic pricing models, capacity management, revenue optimization\n\n---\n\n\
+    Use Case: Optimize pricing strategies for weekends vs weekdays to maximize revenue.\n\
+    \nDescription: Description: Compares weekend and weekday patterns using CTEs for\
+    \ pattern analysis, pricing strategy optimization, and revenue maximization. Use\
+    \ Case: Optimize pricing strategies for weekends vs weekdays to maximize revenue.\
+    \ Business Value: Weekend/weekday analysis report with pricing strategy recommendations.\
+    \ Purpose: Enables data-driven decision making through advanced analytics and\
+    \ business intelligence. Complexity: Pattern comparison CTEs (6+ levels), pricing\
+    \ optimization, revenue analysis E\n\nBusiness Value: Weekend/weekday analysis\
+    \ report with pricing strategy recommendations.\n\nPurpose: Enables data-driven\
+    \ decision making through advanced analytics and business intelligence.\n\nComplexity:\
+    \ Pattern comparison CTEs (6+ levels), pricing optimization, revenue analysis\n\
+    \n---\n\nUse Case: Optimize facility type mix and strategies for different facility\
+    \ types.\n\nDescription: Description: Analyzes facility types using CTEs for performance\
+    \ benchmarking, revenue comparison, optimization recommendations, and type-specific\
+    \ strategies. Use Case: Optimize facility type mix and strategies for different\
+    \ facility types. Business Value: Facility type analysis report with performance\
+    \ benchmarks and optimization recommendations. Purpose: Enables data-driven decision\
+    \ making through advanced analytics and business intelligence. Complexity: Benchmarking\
+    \ CTEs (6+ levels), performanc\n\nBusiness Value: Facility type analysis report\
     \ with performance benchmarks and optimization recommendations.\n\nPurpose: Enables\
     \ data-driven decision making through advanced analytics and business intelligence.\n\
     \nComplexity: Benchmarking CTEs (6+ levels), performance comparison, optimization\
-    \ modeling\n\nExpected Output: Query results with analysis and recommendations.\n\
-    \n---\n\nUse Case: Understand operator type dynamics and develop competitive strategies.\n\
-    \nDescription: Analyzes operator types using CTEs for market share calculations,\
-    \ competitive advantage assessment, and operator-specific strategies.\n\nUse Case:\
-    \ Understand operator type dynamics and develop competitive strategies.\n\nBusiness\
-    \ Value: Operator type analysis report with market share and competitive advantage\
-    \ insights.\n\nPurpose: Enables data-driven decision making through advanced analytics\
-    \ and business intelligence.\n\nComplexity: Market analysis CTEs (6+ levels),\
-    \ competitive assessment, strategic analysis\n\nExpected Output: Query results\
-    \ with analysis and recommendations.\n\n---\n\nUse Case: Identify best practices\
-    \ and performance benchmarks across cities.\n\nDescription: Compares multiple\
-    \ cities using CTEs for performance benchmarking, best practice identification,\
-    \ and cross-city learning opportunities.\n\nUse Case: Identify best practices\
-    \ and performance benchmarks across cities.\n\nBusiness Value: Multi-city comparison\
-    \ report with benchmarks and best practices.\n\nPurpose: Enables data-driven decision\
-    \ making through advanced analytics and business intelligence.\n\nComplexity:\
-    \ Comparison CTEs (7+ levels), benchmarking, best practice analysis\n\nExpected\
-    \ Output: Query results with analysis and recommendations.\n\n---\n\nUse Case:\
-    \ Analyze markets at metropolitan area level for regional expansion planning.\n\
-    \nDescription: Aggregates data at MSA level using CTEs for regional analysis,\
-    \ market intelligence, and expansion opportunity identification.\n\nUse Case:\
-    \ Analyze markets at metropolitan area level for regional expansion planning.\n\
-    \nBusiness Value: MSA-level intelligence report with regional insights and expansion\
-    \ opportunities.\n\nPurpose: Enables data-driven decision making through advanced\
-    \ analytics and business intelligence.\n\nComplexity: Aggregation CTEs (6+ levels),\
-    \ regional analysis, expansion planning\n\nExpected Output: Query results with\
-    \ analysis and recommendations.\n\n---\n\nUse Case: Forecast future trends and\
-    \ patterns for strategic planning.\n\nDescription: Forecasts time-series patterns\
-    \ using CTEs for seasonal decomposition, trend analysis, and predictive modeling.\n\
-    \nUse Case: Forecast future trends and patterns for strategic planning.\n\nBusiness\
-    \ Value: Time-series forecast report with seasonal patterns and trend projections.\n\
-    \nPurpose: Enables data-driven decision making through advanced analytics and\
-    \ business intelligence.\n\nComplexity: Time-series CTEs (7+ levels), decomposition,\
-    \ trend analysis, forecasting\n\nExpected Output: Query results with analysis\
-    \ and recommendations.\n\n---\n\nUse Case: Identify anomalies and outliers for\
-    \ operational monitoring and alerting.\n\nDescription: Detects anomalies using\
-    \ CTEs with statistical methods, outlier identification, and alert generation\
-    \ for operational monitoring.\n\nUse Case: Identify anomalies and outliers for\
-    \ operational monitoring and alerting.\n\nBusiness Value: Anomaly detection report\
-    \ with statistical analysis and alert recommendations.\n\nPurpose: Enables data-driven\
+    \ modeling\n\n---\n\nUse Case: Understand operator type dynamics and develop competitive\
+    \ strategies.\n\nDescription: Description: Analyzes operator types using CTEs\
+    \ for market share calculations, competitive advantage assessment, and operator-specific\
+    \ strategies. Use Case: Understand operator type dynamics and develop competitive\
+    \ strategies. Business Value: Operator type analysis report with market share\
+    \ and competitive advantage insights. Purpose: Enables data-driven decision making\
+    \ through advanced analytics and business intelligence. Complexity: Market analysis\
+    \ CTEs (6+ levels), competitive assessment, stra\n\nBusiness Value: Operator type\
+    \ analysis report with market share and competitive advantage insights.\n\nPurpose:\
+    \ Enables data-driven decision making through advanced analytics and business\
+    \ intelligence.\n\nComplexity: Market analysis CTEs (6+ levels), competitive assessment,\
+    \ strategic analysis\n\n---\n\nUse Case: Identify best practices and performance\
+    \ benchmarks across cities.\n\nDescription: Description: Compares multiple cities\
+    \ using CTEs for performance benchmarking, best practice identification, and cross-city\
+    \ learning opportunities. Use Case: Identify best practices and performance benchmarks\
+    \ across cities. Business Value: Multi-city comparison report with benchmarks\
+    \ and best practices. Purpose: Enables data-driven decision making through advanced\
+    \ analytics and business intelligence. Complexity: Comparison CTEs (7+ levels),\
+    \ benchmarking, best practice analysis Expected Output: Q\n\nBusiness Value: Multi-city\
+    \ comparison report with benchmarks and best practices.\n\nPurpose: Enables data-driven\
     \ decision making through advanced analytics and business intelligence.\n\nComplexity:\
-    \ Statistical CTEs (6+ levels), outlier detection, alert generation\n\nExpected\
-    \ Output: Query results with analysis and recommendations.\n\n---\n\nUse Case:\
-    \ Segment customers for targeted marketing and personalized strategies.\n\nDescription:\
-    \ Segments customers using CTEs for behavioral analysis, pattern identification,\
-    \ and targeted marketing strategies.\n\nUse Case: Segment customers for targeted\
-    \ marketing and personalized strategies.\n\nBusiness Value: Customer segmentation\
+    \ Comparison CTEs (7+ levels), benchmarking, best practice analysis\n\n---\n\n\
+    Use Case: Analyze markets at metropolitan area level for regional expansion planning.\n\
+    \nDescription: Description: Aggregates data at MSA level using CTEs for regional\
+    \ analysis, market intelligence, and expansion opportunity identification. Use\
+    \ Case: Analyze markets at metropolitan area level for regional expansion planning.\
+    \ Business Value: MSA-level intelligence report with regional insights and expansion\
+    \ opportunities. Purpose: Enables data-driven decision making through advanced\
+    \ analytics and business intelligence. Complexity: Aggregation CTEs (6+ levels),\
+    \ regional analysis, expansion plannin\n\nBusiness Value: MSA-level intelligence\
+    \ report with regional insights and expansion opportunities.\n\nPurpose: Enables\
+    \ data-driven decision making through advanced analytics and business intelligence.\n\
+    \nComplexity: Aggregation CTEs (6+ levels), regional analysis, expansion planning\n\
+    \n---\n\nUse Case: Forecast future trends and patterns for strategic planning.\n\
+    \nDescription: Description: Forecasts time-series patterns using CTEs for seasonal\
+    \ decomposition, trend analysis, and predictive modeling. Use Case: Forecast future\
+    \ trends and patterns for strategic planning. Business Value: Time-series forecast\
+    \ report with seasonal patterns and trend projections. Purpose: Enables data-driven\
+    \ decision making through advanced analytics and business intelligence. Complexity:\
+    \ Time-series CTEs (7+ levels), decomposition, trend analysis, forecasting Expected\
+    \ Output: Query results w\n\nBusiness Value: Time-series forecast report with\
+    \ seasonal patterns and trend projections.\n\nPurpose: Enables data-driven decision\
+    \ making through advanced analytics and business intelligence.\n\nComplexity:\
+    \ Time-series CTEs (7+ levels), decomposition, trend analysis, forecasting\n\n\
+    ---\n\nUse Case: Identify anomalies and outliers for operational monitoring and\
+    \ alerting.\n\nDescription: Description: Detects anomalies using CTEs with statistical\
+    \ methods, outlier identification, and alert generation for operational monitoring.\
+    \ Use Case: Identify anomalies and outliers for operational monitoring and alerting.\
+    \ Business Value: Anomaly detection report with statistical analysis and alert\
+    \ recommendations. Purpose: Enables data-driven decision making through advanced\
+    \ analytics and business intelligence. Complexity: Statistical CTEs (6+ levels),\
+    \ outlier detection, alert generation Expec\n\nBusiness Value: Anomaly detection\
+    \ report with statistical analysis and alert recommendations.\n\nPurpose: Enables\
+    \ data-driven decision making through advanced analytics and business intelligence.\n\
+    \nComplexity: Statistical CTEs (6+ levels), outlier detection, alert generation\n\
+    \n---\n\nUse Case: Segment customers for targeted marketing and personalized strategies.\n\
+    \nDescription: Description: Segments customers using CTEs for behavioral analysis,\
+    \ pattern identification, and targeted marketing strategies. Use Case: Segment\
+    \ customers for targeted marketing and personalized strategies. Business Value:\
+    \ Customer segmentation report with behavioral insights and targeting strategies.\
+    \ Purpose: Enables data-driven decision making through advanced analytics and\
+    \ business intelligence. Complexity: Segmentation CTEs (7+ levels), behavioral\
+    \ analysis, targeting strategies Expected Outp\n\nBusiness Value: Customer segmentation\
     \ report with behavioral insights and targeting strategies.\n\nPurpose: Enables\
     \ data-driven decision making through advanced analytics and business intelligence.\n\
     \nComplexity: Segmentation CTEs (7+ levels), behavioral analysis, targeting strategies\n\
-    \nExpected Output: Query results with analysis and recommendations.\n\n---\n\n\
-    Use Case: Understand price sensitivity and optimize pricing for revenue maximization.\n\
-    \nDescription: Analyzes price elasticity using CTEs for demand response modeling,\
-    \ elasticity calculations, and revenue optimization.\n\nUse Case: Understand price\
-    \ sensitivity and optimize pricing for revenue maximization.\n\nBusiness Value:\
-    \ Price elasticity report with demand response analysis and pricing recommendations.\n\
-    \nPurpose: Enables data-driven decision making through advanced analytics and\
-    \ business intelligence.\n\nComplexity: Elasticity CTEs (6+ levels), demand modeling,\
-    \ revenue optimization\n\nExpected Output: Query results with analysis and recommendations.\n\
-    \n---\n\nUse Case: Identify supply-demand gaps and plan facility expansion.\n\n\
-    Description: Analyzes supply-demand gaps using CTEs for gap identification, capacity\
-    \ planning, and expansion recommendations.\n\nUse Case: Identify supply-demand\
-    \ gaps and plan facility expansion.\n\nBusiness Value: Supply-demand gap report\
-    \ with capacity planning and expansion recommendations.\n\nPurpose: Enables data-driven\
-    \ decision making through advanced analytics and business intelligence.\n\nComplexity:\
-    \ Gap analysis CTEs (6+ levels), capacity planning, expansion modeling\n\nExpected\
-    \ Output: Query results with analysis and recommendations.\n\n---\n\nUse Case:\
-    \ Measure market penetration and develop expansion strategies.\n\nDescription:\
-    \ Analyzes market penetration using CTEs for penetration calculations, growth\
-    \ metrics, and expansion strategy development.\n\nUse Case: Measure market penetration\
-    \ and develop expansion strategies.\n\nBusiness Value: Market penetration report\
-    \ with growth metrics and expansion strategies.\n\nPurpose: Enables data-driven\
-    \ decision making through advanced analytics and business intelligence.\n\nComplexity:\
-    \ Penetration CTEs (6+ levels), growth metrics, expansion strategies\n\nExpected\
-    \ Output: Query results with analysis and recommendations.\n\n---\n\nUse Case:\
-    \ Optimize facility efficiency and space utilization for revenue maximization.\n\
-    \nDescription: Analyzes revenue per square foot using CTEs for efficiency calculations,\
-    \ facility optimization, and space utilization analysis.\n\nUse Case: Optimize\
-    \ facility efficiency and space utilization for revenue maximization.\n\nBusiness\
+    \n---\n\nUse Case: Understand price sensitivity and optimize pricing for revenue\
+    \ maximization.\n\nDescription: Description: Analyzes price elasticity using CTEs\
+    \ for demand response modeling, elasticity calculations, and revenue optimization.\
+    \ Use Case: Understand price sensitivity and optimize pricing for revenue maximization.\
+    \ Business Value: Price elasticity report with demand response analysis and pricing\
+    \ recommendations. Purpose: Enables data-driven decision making through advanced\
+    \ analytics and business intelligence. Complexity: Elasticity CTEs (6+ levels),\
+    \ demand modeling, revenue optimization Expect\n\nBusiness Value: Price elasticity\
+    \ report with demand response analysis and pricing recommendations.\n\nPurpose:\
+    \ Enables data-driven decision making through advanced analytics and business\
+    \ intelligence.\n\nComplexity: Elasticity CTEs (6+ levels), demand modeling, revenue\
+    \ optimization\n\n---\n\nUse Case: Identify supply-demand gaps and plan facility\
+    \ expansion.\n\nDescription: Description: Analyzes supply-demand gaps using CTEs\
+    \ for gap identification, capacity planning, and expansion recommendations. Use\
+    \ Case: Identify supply-demand gaps and plan facility expansion. Business Value:\
+    \ Supply-demand gap report with capacity planning and expansion recommendations.\
+    \ Purpose: Enables data-driven decision making through advanced analytics and\
+    \ business intelligence. Complexity: Gap analysis CTEs (6+ levels), capacity planning,\
+    \ expansion modeling Expected Output: Query results w\n\nBusiness Value: Supply-demand\
+    \ gap report with capacity planning and expansion recommendations.\n\nPurpose:\
+    \ Enables data-driven decision making through advanced analytics and business\
+    \ intelligence.\n\nComplexity: Gap analysis CTEs (6+ levels), capacity planning,\
+    \ expansion modeling\n\n---\n\nUse Case: Measure market penetration and develop\
+    \ expansion strategies.\n\nDescription: Description: Analyzes market penetration\
+    \ using CTEs for penetration calculations, growth metrics, and expansion strategy\
+    \ development. Use Case: Measure market penetration and develop expansion strategies.\
+    \ Business Value: Market penetration report with growth metrics and expansion\
+    \ strategies. Purpose: Enables data-driven decision making through advanced analytics\
+    \ and business intelligence. Complexity: Penetration CTEs (6+ levels), growth\
+    \ metrics, expansion strategies Expected Output: Query result\n\nBusiness Value:\
+    \ Market penetration report with growth metrics and expansion strategies.\n\n\
+    Purpose: Enables data-driven decision making through advanced analytics and business\
+    \ intelligence.\n\nComplexity: Penetration CTEs (6+ levels), growth metrics, expansion\
+    \ strategies\n\n---\n\nUse Case: Optimize facility efficiency and space utilization\
+    \ for revenue maximization.\n\nDescription: Description: Analyzes revenue per\
+    \ square foot using CTEs for efficiency calculations, facility optimization, and\
+    \ space utilization analysis. Use Case: Optimize facility efficiency and space\
+    \ utilization for revenue maximization. Business Value: Revenue efficiency report\
+    \ with facility optimization recommendations. Purpose: Enables data-driven decision\
+    \ making through advanced analytics and business intelligence. Complexity: Efficiency\
+    \ CTEs (6+ levels), space utilization, optimization modeling Expec\n\nBusiness\
     \ Value: Revenue efficiency report with facility optimization recommendations.\n\
     \nPurpose: Enables data-driven decision making through advanced analytics and\
     \ business intelligence.\n\nComplexity: Efficiency CTEs (6+ levels), space utilization,\
-    \ optimization modeling\n\nExpected Output: Query results with analysis and recommendations.\n\
-    \n---\n\nUse Case: Provide executive dashboard with comprehensive market intelligence\
-    \ metrics.\n\nDescription: Creates comprehensive dashboard using CTEs for multi-dimensional\
-    \ analytics, KPI calculations, and executive reporting.\n\nUse Case: Provide executive\
-    \ dashboard with comprehensive market intelligence metrics.\n\nBusiness Value:\
-    \ Executive dashboard with comprehensive market intelligence and KPIs.\n\nPurpose:\
-    \ Enables data-driven decision making through advanced analytics and business\
-    \ intelligence.\n\nComplexity: Dashboard CTEs (8+ levels), multi-dimensional analytics,\
-    \ KPI calculations\n\nExpected Output: Query results with analysis and recommendations.\n\
-    \n---\n\nUse Case: Optimize query performance across PostgreSQL.\n\nDescription:\
-    \ Analyzes cross-database performance using CTEs for query efficiency metrics,\
-    \ optimization recommendations, and performance benchmarking.\n\nUse Case: Optimize\
-    \ query performance across PostgreSQL.\n\nBusiness Value: Performance optimization\
-    \ report with efficiency metrics and optimization recommendations.\n\nPurpose:\
-    \ Enables data-driven decision making through advanced analytics and business\
-    \ intelligence.\n\nComplexity: Performance CTEs (7+ levels), efficiency metrics,\
-    \ optimization analysis\n\nExpected Output: Query results with analysis and recommendations.\n\
-    \n---\n\n1. Create Database Schema:\n   \n\n2. Load Sample Data (optional):\n\
-    \   \n\nRun the ETL pipeline to extract data from government sources:\n\nExecute\
-    \ queries from `queries/queries.md` using your preferred database client or application.\n\
-    \nRun the validation suite to verify queries:\n\n---\n\nLast Updated: 2026-02-04\n\
-    \n---\n\nAll queries in this database are designed to work across multiple database\
-    \ platforms:\n\n- PostgreSQL: Full support with standard SQL features\n\nQueries\
-    \ use standard SQL syntax and avoid platform-specific features to ensure compatibility.\n\
-    \n---\n\nDocument Information:\n\n- Generated: 20260214-0148\n- Database: db-11\n\
-    - Type: Parking Intelligence Database\n- Queries: 30 production queries\n- Status:\
-    \ ✅ Complete Comprehensive Deliverable"
+    \ optimization modeling\n\n---\n\nUse Case: Provide executive dashboard with comprehensive\
+    \ market intelligence metrics.\n\nDescription: Description: Creates comprehensive\
+    \ dashboard using CTEs for multi-dimensional analytics, KPI calculations, and\
+    \ executive reporting. Use Case: Provide executive dashboard with comprehensive\
+    \ market intelligence metrics. Business Value: Executive dashboard with comprehensive\
+    \ market intelligence and KPIs. Purpose: Enables data-driven decision making through\
+    \ advanced analytics and business intelligence. Complexity: Dashboard CTEs (8+\
+    \ levels), multi-dimensional analytics, KPI calculations Expected Out\n\nBusiness\
+    \ Value: Executive dashboard with comprehensive market intelligence and KPIs.\n\
+    \nPurpose: Enables data-driven decision making through advanced analytics and\
+    \ business intelligence.\n\nComplexity: Dashboard CTEs (8+ levels), multi-dimensional\
+    \ analytics, KPI calculations\n\n---\n\nUse Case: Optimize query performance across\
+    \ PostgreSQL.\n\nDescription: Description: Analyzes cross-database performance\
+    \ using CTEs for query efficiency metrics, optimization recommendations, and performance\
+    \ benchmarking. Use Case: Optimize query performance across PostgreSQL. Business\
+    \ Value: Performance optimization report with efficiency metrics and optimization\
+    \ recommendations. Purpose: Enables data-driven decision making through advanced\
+    \ analytics and business intelligence. Complexity: Performance CTEs (7+ levels),\
+    \ efficiency metrics, optimization analysis Expec\n\nBusiness Value: Performance\
+    \ optimization report with efficiency metrics and optimization recommendations.\n\
+    \nPurpose: Enables data-driven decision making through advanced analytics and\
+    \ business intelligence.\n\nComplexity: Performance CTEs (7+ levels), efficiency\
+    \ metrics, optimization analysis\n\n---\n\n1. Create Database Schema:\n   \n\n\
+    2. Load Sample Data (optional):\n   \n\nRun the ETL pipeline to extract data from\
+    \ government sources:\n\nExecute queries from `queries/queries.md` using your\
+    \ preferred database client or application.\n\nRun the validation suite to verify\
+    \ queries:\n\n---\n\nLast Updated: 2026-02-04\n\n---\n\nAll queries in this database\
+    \ are designed to work across multiple database platforms:\n\n- PostgreSQL: Full\
+    \ support with standard SQL features\n\nQueries use standard SQL syntax and avoid\
+    \ platform-specific features to ensure compatibility.\n\n---\n\nDocument Information:\n\
+    \n- Generated: 20260214-1523\n- Database: db-11\n- Type: Parking Intelligence\
+    \ Database\n- Queries: 30 production queries\n- Status: ✅ Complete Comprehensive\
+    \ Deliverable"
   version: 1.0.0
   contact:
     name: Database Team

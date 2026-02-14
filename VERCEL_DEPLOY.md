@@ -51,6 +51,18 @@ curl -b cookies.txt "https://YOUR_PROJECT.vercel.app/api/queries?source=db-1"
 - `/suite` — Full Suite
 - `/customer` — Customer Portal
 
+### Database compatibility: Vercel Next.js + PostgreSQL + Qdrant
+
+The annotator app works in two modes:
+
+1. **Static mode (default)**: Uses `lib/sources-manifest.json` and `lib/data.ts` — no database required. Sources and queries are bundled at build time. Works on Vercel without any DB.
+
+2. **PostgreSQL mode**: Set `POSTGRES_URL` (Neon/Supabase) for optional relational data. Use `scripts/load_all_to_vercel_postgres.py` to load db-1..db-16 schemas and sample data.
+
+3. **Qdrant (vector DB)**: Used by microservices (Docker). Run `docker compose -f docker/docker-compose.work-microservices.yml up -d` for Qdrant + Work API. The Next.js app does not connect to Qdrant directly; it uses Sources API or built-in manifest.
+
+**Summary**: The Next.js app runs on Vercel without any database. Add Neon/Supabase for PostgreSQL; Qdrant runs separately in Docker for vector search workloads.
+
 ### PostgreSQL + pgvector
 
 Add **Neon** or **Supabase** integration for `POSTGRES_URL`. See below.

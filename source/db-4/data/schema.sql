@@ -1,13 +1,14 @@
--- db-4 SharedAI Models - Minimal standalone schema for query execution
--- Compatible with PostgreSQL - models table only (queries use FROM models)
+-- db-4 SharedAI Models - Production schema for query execution
+-- Compatible with PostgreSQL
+-- Single canonical schema: models table (queries use FROM models)
 
-CREATE TABLE models (
-    id INTEGER PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS public.models (
+    id BIGINT PRIMARY KEY,
     name VARCHAR(255),
-    user_id INTEGER,
-    created_at TIMESTAMP
+    user_id BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_models_created_at ON models(created_at);
-CREATE INDEX idx_models_user_id ON models(user_id);
-CREATE INDEX idx_models_name ON models(name);
+CREATE INDEX IF NOT EXISTS idx_models_created_at ON public.models(created_at);
+CREATE INDEX IF NOT EXISTS idx_models_user_id ON public.models(user_id);
+CREATE INDEX IF NOT EXISTS idx_models_name ON public.models(name);

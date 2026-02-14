@@ -24,22 +24,21 @@ Lucasa POS database - anonymized retail Point-of-Sale dataset from a family busi
 
 - **PostgreSQL**: Full support
 - **Databricks**: Compatible with Delta Lake
-- **Databricks**: Full support
 
 ---
 
 ## Database Schema Documentation
 
-See `docs/SCHEMA.md` for table relationships. Core phppos tables: sales, items, payments, inventory, products, suppliers.
+See `docs/SCHEMA.md` for table relationships. Core phppos tables: people, employees, items, locations, location_items, sales.
 
 ---
 
 ## SQL Queries
 
-See `queries/queries.md` for all 30 production queries.
+See `app/QUERIES/queries.md` for all 30 production queries.
 
 ---
 
 ## Usage Instructions
 
-Load schema.sql and data.sql. See docs/POSTGRES_MIGRATION.md for MySQL to PostgreSQL migration.
+Load `data/schema.sql` then data load scripts. Schema is PostgreSQL-native with ACID constraints.

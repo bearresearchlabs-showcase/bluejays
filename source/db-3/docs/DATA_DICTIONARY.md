@@ -1,6 +1,6 @@
 ## LinkWay Data Dictionary
 
-This document lists the core application tables and their columns, with simplified types and meanings. Internal Django/Celery tables are omitted for brevity.
+This document lists the **source** LinkWay production tables and their columns. The db-3 deployed schema is a simplified subset: `table1`, `table2`, `table3`, and the `orders_order` view. See `SCHEMA.md` for the deployed schema.
 
 > Types are simplified: e.g. `decimal` stands for `DecimalField(max_digits=…, decimal_places=…)`.
 

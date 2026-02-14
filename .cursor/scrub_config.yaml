@@ -30,7 +30,11 @@ patterns:
     regex: true
     ignore_case: true
   - find: 'remove_databricks\.py'
-    replace: 'remove_non_postgres_vendors.py'
+    replace: 'scrub_keywords.py'
+    regex: true
+    ignore_case: true
+  - find: 'remove_non_postgres_vendors\.py'
+    replace: 'scrub_keywords.py'
     regex: true
     ignore_case: true
 

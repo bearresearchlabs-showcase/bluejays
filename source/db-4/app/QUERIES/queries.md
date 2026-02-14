@@ -1,2431 +1,789 @@
-# SQL Queries for Database
-## Query 1: Multi-Window Time-Series Analysis with Rolling Aggregates
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for multi-window time-series analysis with rolling aggregates.
-**Use Case:** Business analytics for multi-window time-series analysis with rolling aggregates
-**Business Value:** Actionable insights from multi-window time-series analysis with rolling aggregates
-**Purpose:** Production multi-window time-series analysis with rolling aggregates analysis
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and name
+# SharedAI Models (Seydam AI) — Query Documentation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 60
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(5) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.name
-HAVING COUNT(*) >= 2
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+## Database Overview
+
+```yaml
+db_id: db-4
+domain: Database domain
+source: [synthetic / open / commercial]
+license_type: [Commercial / Open / Academic]
+license_cost: [Annual cost if applicable]
+tables: 0
+total_rows: ~0
+date_range: 2020-01-01 to 2024-12-31
+sql_dialect: PostgreSQL
 ```
 
-## Query 2: Segmentation Analysis with Decile Ranking
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for segmentation analysis with decile ranking.
-**Use Case:** Business analytics for segmentation analysis with decile ranking
-**Business Value:** Actionable insights from segmentation analysis with decile ranking
-**Purpose:** Production segmentation analysis with decile ranking analysis
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by week and user_id
+## Purpose
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 5 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 70
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(6) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('week', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('week', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 3
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```text
+This database supports analytics for db-4.
 ```
 
-## Query 3: Performance Quartile Distribution
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for performance quartile distribution.
-**Use Case:** Business analytics for performance quartile distribution
-**Business Value:** Actionable insights from performance quartile distribution
-**Purpose:** Production performance quartile distribution analysis
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by month and name
+## Use Case
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 80
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(7) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('month', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('month', c4.created_at), c4.name
-HAVING COUNT(*) >= 1
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```text
+Target use cases for db-4: analytics, reporting, dashboards.
 ```
 
-## Query 4: Revenue Distribution by Category
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for revenue distribution by category.
-**Use Case:** Business analytics for revenue distribution by category
-**Business Value:** Actionable insights from revenue distribution by category
-**Purpose:** Production revenue distribution by category analysis
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and user_id
+## Business Value
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 7 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 90
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(8) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 2
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```text
+Business value for db-4.
 ```
 
-## Query 5: Velocity and Acceleration Metrics
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for velocity and acceleration metrics.
-**Use Case:** Business analytics for velocity and acceleration metrics
-**Business Value:** Actionable insights from velocity and acceleration metrics
-**Purpose:** Production velocity and acceleration metrics analysis
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by week and name
+## Schema
 
 ```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 8 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 100
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(9) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('week', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('week', c4.created_at), c4.name
-HAVING COUNT(*) >= 3
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+-- db-4 SharedAI Models - Production schema for query execution
+-- Compatible with PostgreSQL
+-- Single canonical schema: models table (queries use FROM models)
+
+CREATE TABLE IF NOT EXISTS public.models (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(255),
+    user_id BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_models_created_at ON public.models(created_at);
+CREATE INDEX IF NOT EXISTS idx_models_user_id ON public.models(user_id);
+CREATE INDEX IF NOT EXISTS idx_models_name ON public.models(name);
 ```
 
-## Query 6: Hourly Pattern Detection and Clustering
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for hourly pattern detection and clustering.
-**Use Case:** Business analytics for hourly pattern detection and clustering
-**Business Value:** Actionable insights from hourly pattern detection and clustering
-**Purpose:** Production hourly pattern detection and clustering analysis
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and user_id
+## Domain Knowledge
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 110
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(4) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 1
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```text
+Domain-specific concepts for this database.
 ```
 
-## Query 7: Gap Analysis with Sequential Difference
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for gap analysis with sequential difference.
-**Use Case:** Business analytics for gap analysis with sequential difference
-**Business Value:** Actionable insights from gap analysis with sequential difference
-**Purpose:** Production gap analysis with sequential difference analysis
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by month and name
+## Query Difficulty Distribution
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 120
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(5) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('month', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('month', c4.created_at), c4.name
-HAVING COUNT(*) >= 2
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```text
+Target distribution across 30 queries:
+- simple (10): Single-table, basic aggregation
+- moderate (12): 2-3 table joins, GROUP BY
+- challenging (8): CTEs, window functions
 ```
 
-## Query 8: Anomaly Detection Using Z-Score Windows
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for anomaly detection using z-score windows.
-**Use Case:** Business analytics for anomaly detection using z-score windows
-**Business Value:** Actionable insights from anomaly detection using z-score windows
-**Purpose:** Production anomaly detection using z-score windows analysis
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and user_id
+## Queries
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 130
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(6) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 3
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+### Query 1 — challenging / aggregation
+
+```json
+{
+  "db_id": "db-4",
+  "question_id": 1,
+  "question": "Multi-Window Time-Series Analysis with Rolling Aggregates",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 60\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(5) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.name\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for multi-window time-series analysis with rolling aggregates. Use Case: Business analytics for multi-window time-series analysis with rolling aggregates Business Value: Actionable insights from multi-window time-series analysis with rolling aggregates Purpose: Production multi-window time-series analysis with rolling aggregates analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, d",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and name"
+}
 ```
 
-## Query 9: Recency-Frequency-Monetary Scoring
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for recency-frequency-monetary scoring.
-**Use Case:** Business analytics for recency-frequency-monetary scoring
-**Business Value:** Actionable insights from recency-frequency-monetary scoring
-**Purpose:** Production recency-frequency-monetary scoring analysis
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by week and name
+### Query 2 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 5 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 140
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(7) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('week', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('week', c4.created_at), c4.name
-HAVING COUNT(*) >= 1
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 2,
+  "question": "Segmentation Analysis with Decile Ranking",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 5 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 70\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(6) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for segmentation analysis with decile ranking. Use Case: Business analytics for segmentation analysis with decile ranking Business Value: Actionable insights from segmentation analysis with decile ranking Purpose: Production segmentation analysis with decile ranking analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by w",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by week and user_id"
+}
 ```
 
-## Query 10: Multi-Period Cohort Retention Analysis
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for multi-period cohort retention analysis.
-**Use Case:** Business analytics for multi-period cohort retention analysis
-**Business Value:** Actionable insights from multi-period cohort retention analysis
-**Purpose:** Production multi-period cohort retention analysis analysis
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by month and user_id
+### Query 3 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 150
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(8) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('month', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('month', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 2
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 3,
+  "question": "Performance Quartile Distribution",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 80\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(7) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.name\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for performance quartile distribution. Use Case: Business analytics for performance quartile distribution Business Value: Actionable insights from performance quartile distribution Purpose: Production performance quartile distribution analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by month and name"
+}
 ```
 
-## Query 11: Second-Order Derivative Computation
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for second-order derivative computation.
-**Use Case:** Business analytics for second-order derivative computation
-**Business Value:** Actionable insights from second-order derivative computation
-**Purpose:** Production second-order derivative computation analysis
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and name
+### Query 4 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 7 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 160
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(9) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.name
-HAVING COUNT(*) >= 3
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 4,
+  "question": "Revenue Distribution by Category",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 7 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 90\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(8) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for revenue distribution by category. Use Case: Business analytics for revenue distribution by category Business Value: Actionable insights from revenue distribution by category Purpose: Production revenue distribution by category analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and user_id",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and user_id"
+}
 ```
 
-## Query 12: Cross-Category Benchmarking with Percentiles
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for cross-category benchmarking with percentiles.
-**Use Case:** Business analytics for cross-category benchmarking with percentiles
-**Business Value:** Actionable insights from cross-category benchmarking with percentiles
-**Purpose:** Production cross-category benchmarking with percentiles analysis
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by week and user_id
+### Query 5 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 8 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 170
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(4) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('week', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('week', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 1
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 5,
+  "question": "Velocity and Acceleration Metrics",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 8 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 100\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(9) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.name\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for velocity and acceleration metrics. Use Case: Business analytics for velocity and acceleration metrics Business Value: Actionable insights from velocity and acceleration metrics Purpose: Production velocity and acceleration metrics analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by week and name"
+}
 ```
 
-## Query 13: Exponentially Weighted Moving Average
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for exponentially weighted moving average.
-**Use Case:** Business analytics for exponentially weighted moving average
-**Business Value:** Actionable insights from exponentially weighted moving average
-**Purpose:** Production exponentially weighted moving average analysis
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by month and name
+### Query 6 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 180
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(5) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('month', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('month', c4.created_at), c4.name
-HAVING COUNT(*) >= 2
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 6,
+  "question": "Hourly Pattern Detection and Clustering",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 110\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(4) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for hourly pattern detection and clustering. Use Case: Business analytics for hourly pattern detection and clustering Business Value: Actionable insights from hourly pattern detection and clustering Purpose: Production hourly pattern detection and clustering analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and us",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and user_id"
+}
 ```
 
-## Query 14: Peak Period Identification and Efficiency
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for peak period identification and efficiency.
-**Use Case:** Business analytics for peak period identification and efficiency
-**Business Value:** Actionable insights from peak period identification and efficiency
-**Purpose:** Production peak period identification and efficiency analysis
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and user_id
+### Query 7 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 190
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(6) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 3
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 7,
+  "question": "Gap Analysis with Sequential Difference",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 120\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(5) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.name\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for gap analysis with sequential difference. Use Case: Business analytics for gap analysis with sequential difference Business Value: Actionable insights from gap analysis with sequential difference Purpose: Production gap analysis with sequential difference analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month an",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by month and name"
+}
 ```
 
-## Query 15: Lifetime Value Estimation Model
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for lifetime value estimation model.
-**Use Case:** Business analytics for lifetime value estimation model
-**Business Value:** Actionable insights from lifetime value estimation model
-**Purpose:** Production lifetime value estimation model analysis
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by week and name
+### Query 8 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 200
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(7) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('week', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('week', c4.created_at), c4.name
-HAVING COUNT(*) >= 1
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 8,
+  "question": "Anomaly Detection Using Z-Score Windows",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 130\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(6) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for anomaly detection using z-score windows. Use Case: Business analytics for anomaly detection using z-score windows Business Value: Actionable insights from anomaly detection using z-score windows Purpose: Production anomaly detection using z-score windows analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and us",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and user_id"
+}
 ```
 
-## Query 16: Year-over-Year Growth Rate Analysis
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for year-over-year growth rate analysis.
-**Use Case:** Business analytics for year-over-year growth rate analysis
-**Business Value:** Actionable insights from year-over-year growth rate analysis
-**Purpose:** Production year-over-year growth rate analysis analysis
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by month and user_id
+### Query 9 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 5 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 210
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(8) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('month', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('month', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 2
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 9,
+  "question": "Recency-Frequency-Monetary Scoring",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 5 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 140\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(7) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.name\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for recency-frequency-monetary scoring. Use Case: Business analytics for recency-frequency-monetary scoring Business Value: Actionable insights from recency-frequency-monetary scoring Purpose: Production recency-frequency-monetary scoring analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by week and name"
+}
 ```
 
-## Query 17: Heatmap Data Generation by Time Dimensions
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for heatmap data generation by time dimensions.
-**Use Case:** Business analytics for heatmap data generation by time dimensions
-**Business Value:** Actionable insights from heatmap data generation by time dimensions
-**Purpose:** Production heatmap data generation by time dimensions analysis
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and name
+### Query 10 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 220
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(9) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.name
-HAVING COUNT(*) >= 3
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 10,
+  "question": "Multi-Period Cohort Retention Analysis",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 150\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(8) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for multi-period cohort retention analysis. Use Case: Business analytics for multi-period cohort retention analysis Business Value: Actionable insights from multi-period cohort retention analysis Purpose: Production multi-period cohort retention analysis analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and us",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by month and user_id"
+}
 ```
 
-## Query 18: Running Percentile Distribution Computation
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for running percentile distribution computation.
-**Use Case:** Business analytics for running percentile distribution computation
-**Business Value:** Actionable insights from running percentile distribution computation
-**Purpose:** Production running percentile distribution computation analysis
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by week and user_id
+### Query 11 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 7 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 230
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(4) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('week', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('week', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 1
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 11,
+  "question": "Second-Order Derivative Computation",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 7 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 160\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(9) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.name\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for second-order derivative computation. Use Case: Business analytics for second-order derivative computation Business Value: Actionable insights from second-order derivative computation Purpose: Production second-order derivative computation analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and name"
+}
 ```
 
-## Query 19: Cross-Correlation Pattern Analysis
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for cross-correlation pattern analysis.
-**Use Case:** Business analytics for cross-correlation pattern analysis
-**Business Value:** Actionable insights from cross-correlation pattern analysis
-**Purpose:** Production cross-correlation pattern analysis analysis
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by month and name
+### Query 12 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 8 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 240
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(5) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('month', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('month', c4.created_at), c4.name
-HAVING COUNT(*) >= 2
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 12,
+  "question": "Cross-Category Benchmarking with Percentiles",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 8 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 170\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(4) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for cross-category benchmarking with percentiles. Use Case: Business analytics for cross-category benchmarking with percentiles Business Value: Actionable insights from cross-category benchmarking with percentiles Purpose: Production cross-category benchmarking with percentiles analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics ",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by week and user_id"
+}
 ```
 
-## Query 20: Forensic Analysis of Status Transitions
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for forensic analysis of status transitions.
-**Use Case:** Business analytics for forensic analysis of status transitions
-**Business Value:** Actionable insights from forensic analysis of status transitions
-**Purpose:** Production forensic analysis of status transitions analysis
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and user_id
+### Query 13 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 250
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(6) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 3
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 13,
+  "question": "Exponentially Weighted Moving Average",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 180\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(5) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.name\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for exponentially weighted moving average. Use Case: Business analytics for exponentially weighted moving average Business Value: Actionable insights from exponentially weighted moving average Purpose: Production exponentially weighted moving average analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by month and name"
+}
 ```
 
-## Query 21: Multi-Metric Dashboard Aggregation Pipeline
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for multi-metric dashboard aggregation pipeline.
-**Use Case:** Business analytics for multi-metric dashboard aggregation pipeline
-**Business Value:** Actionable insights from multi-metric dashboard aggregation pipeline
-**Purpose:** Production multi-metric dashboard aggregation pipeline analysis
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by week and name
+### Query 14 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 260
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(7) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('week', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('week', c4.created_at), c4.name
-HAVING COUNT(*) >= 1
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 14,
+  "question": "Peak Period Identification and Efficiency",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 190\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(6) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for peak period identification and efficiency. Use Case: Business analytics for peak period identification and efficiency Business Value: Actionable insights from peak period identification and efficiency Purpose: Production peak period identification and efficiency analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by da",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and user_id"
+}
 ```
 
-## Query 22: Sequential Pattern Mining with Windows
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for sequential pattern mining with windows.
-**Use Case:** Business analytics for sequential pattern mining with windows
-**Business Value:** Actionable insights from sequential pattern mining with windows
-**Purpose:** Production sequential pattern mining with windows analysis
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by month and user_id
+### Query 15 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 270
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(8) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('month', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('month', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 2
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 15,
+  "question": "Lifetime Value Estimation Model",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 200\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(7) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.name\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for lifetime value estimation model. Use Case: Business analytics for lifetime value estimation model Business Value: Actionable insights from lifetime value estimation model Purpose: Production lifetime value estimation model analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by week and name"
+}
 ```
 
-## Query 23: Concentration Index Computation
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for concentration index computation.
-**Use Case:** Business analytics for concentration index computation
-**Business Value:** Actionable insights from concentration index computation
-**Purpose:** Production concentration index computation analysis
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and name
+### Query 16 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 5 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 280
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(9) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.name
-HAVING COUNT(*) >= 3
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 16,
+  "question": "Year-over-Year Growth Rate Analysis",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 5 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 210\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(8) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for year-over-year growth rate analysis. Use Case: Business analytics for year-over-year growth rate analysis Business Value: Actionable insights from year-over-year growth rate analysis Purpose: Production year-over-year growth rate analysis analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and user_id",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by month and user_id"
+}
 ```
 
-## Query 24: Statistical Anomaly Score Assignment
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for statistical anomaly score assignment.
-**Use Case:** Business analytics for statistical anomaly score assignment
-**Business Value:** Actionable insights from statistical anomaly score assignment
-**Purpose:** Production statistical anomaly score assignment analysis
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by week and user_id
+### Query 17 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 290
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(4) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('week', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('week', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 1
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 17,
+  "question": "Heatmap Data Generation by Time Dimensions",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 220\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(9) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.name\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for heatmap data generation by time dimensions. Use Case: Business analytics for heatmap data generation by time dimensions Business Value: Actionable insights from heatmap data generation by time dimensions Purpose: Production heatmap data generation by time dimensions analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped b",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and name"
+}
 ```
 
-## Query 25: Fiscal Period Comparative Reporting
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for fiscal period comparative reporting.
-**Use Case:** Business analytics for fiscal period comparative reporting
-**Business Value:** Actionable insights from fiscal period comparative reporting
-**Purpose:** Production fiscal period comparative reporting analysis
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by month and name
+### Query 18 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 7 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 300
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(5) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('month', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('month', c4.created_at), c4.name
-HAVING COUNT(*) >= 2
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 18,
+  "question": "Running Percentile Distribution Computation",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 7 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 230\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(4) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for running percentile distribution computation. Use Case: Business analytics for running percentile distribution computation Business Value: Actionable insights from running percentile distribution computation Purpose: Production running percentile distribution computation analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grou",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by week and user_id"
+}
 ```
 
-## Query 26: Throughput Optimization Metrics
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for throughput optimization metrics.
-**Use Case:** Business analytics for throughput optimization metrics
-**Business Value:** Actionable insights from throughput optimization metrics
-**Purpose:** Production throughput optimization metrics analysis
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and user_id
+### Query 19 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 8 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 310
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(6) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 3
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 19,
+  "question": "Cross-Correlation Pattern Analysis",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 8 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 240\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(5) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.name\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for cross-correlation pattern analysis. Use Case: Business analytics for cross-correlation pattern analysis Business Value: Actionable insights from cross-correlation pattern analysis Purpose: Production cross-correlation pattern analysis analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by month and name"
+}
 ```
 
-## Query 27: Cumulative Trend Analysis Pipeline
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for cumulative trend analysis pipeline.
-**Use Case:** Business analytics for cumulative trend analysis pipeline
-**Business Value:** Actionable insights from cumulative trend analysis pipeline
-**Purpose:** Production cumulative trend analysis pipeline analysis
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by week and name
+### Query 20 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 320
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(7) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('week', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('week', c4.created_at), c4.name
-HAVING COUNT(*) >= 1
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 20,
+  "question": "Forensic Analysis of Status Transitions",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 250\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(6) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for forensic analysis of status transitions. Use Case: Business analytics for forensic analysis of status transitions Business Value: Actionable insights from forensic analysis of status transitions Purpose: Production forensic analysis of status transitions analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and us",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and user_id"
+}
 ```
 
-## Query 28: Multi-Dimensional Pivot Aggregation
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for multi-dimensional pivot aggregation.
-**Use Case:** Business analytics for multi-dimensional pivot aggregation
-**Business Value:** Actionable insights from multi-dimensional pivot aggregation
-**Purpose:** Production multi-dimensional pivot aggregation analysis
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by month and user_id
+### Query 21 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 330
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(8) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('month', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('month', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 2
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 21,
+  "question": "Multi-Metric Dashboard Aggregation Pipeline",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 260\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(7) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.name\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for multi-metric dashboard aggregation pipeline. Use Case: Business analytics for multi-metric dashboard aggregation pipeline Business Value: Actionable insights from multi-metric dashboard aggregation pipeline Purpose: Production multi-metric dashboard aggregation pipeline analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grou",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by week and name"
+}
 ```
 
-## Query 29: Funnel Stage Progression Tracking
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for funnel stage progression tracking.
-**Use Case:** Business analytics for funnel stage progression tracking
-**Business Value:** Actionable insights from funnel stage progression tracking
-**Purpose:** Production funnel stage progression tracking analysis
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by day and name
+### Query 22 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 340
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,
-        NTILE(9) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('day', c4.created_at) AS period,
-    c4.name,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('day', c4.created_at), c4.name
-HAVING COUNT(*) >= 3
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 22,
+  "question": "Sequential Pattern Mining with Windows",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 270\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(8) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for sequential pattern mining with windows. Use Case: Business analytics for sequential pattern mining with windows Business Value: Actionable insights from sequential pattern mining with windows Purpose: Production sequential pattern mining with windows analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and us",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by month and user_id"
+}
 ```
 
-## Query 30: Outlier Detection with IQR Method
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for outlier detection with iqr method.
-**Use Case:** Business analytics for outlier detection with iqr method
-**Business Value:** Actionable insights from outlier detection with iqr method
-**Purpose:** Production outlier detection with iqr method analysis
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-**Expected Output:** Aggregated metrics grouped by week and user_id
+### Query 23 — challenging / aggregation
 
-```sql
-WITH cte_level_1 AS (
-    SELECT 
-        *,
-        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,
-        DATE_TRUNC('day', created_at) AS day_bucket,
-        DATE_TRUNC('week', created_at) AS week_bucket,
-        EXTRACT(HOUR FROM created_at) AS hour_val,
-        EXTRACT(DOW FROM created_at) AS dow_val
-    FROM models
-    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'
-),
-cte_level_2 AS (
-    SELECT
-        c1.*,
-        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,
-        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 5 PRECEDING AND CURRENT ROW) AS rolling_avg,
-        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,
-        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,
-        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val
-    FROM cte_level_1 c1
-    WHERE c1.rn <= 350
-),
-cte_level_3 AS (
-    SELECT
-        c2.*,
-        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,
-        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,
-        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,
-        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,
-        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,
-        NTILE(4) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,
-        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank
-    FROM cte_level_2 c2
-),
-cte_level_4 AS (
-    SELECT
-        c3.*,
-        CASE 
-            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev
-            ELSE 0 
-        END AS z_score,
-        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,
-        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,
-        CASE
-            WHEN c3.delta_value > 0 THEN 'Increasing'
-            WHEN c3.delta_value < 0 THEN 'Decreasing'
-            ELSE 'Stable'
-        END AS trend_direction
-    FROM cte_level_3 c3
-)
-SELECT
-    DATE_TRUNC('week', c4.created_at) AS period,
-    c4.user_id,
-    COUNT(*) AS record_count,
-    AVG(c4.id) AS avg_value,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,
-    STDDEV(c4.id) AS stddev_value,
-    MIN(c4.id) AS min_value,
-    MAX(c4.id) AS max_value,
-    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,
-    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,
-    AVG(c4.rolling_avg) AS avg_rolling,
-    MAX(c4.cumulative_sum) AS max_cumulative
-FROM cte_level_4 c4
-GROUP BY DATE_TRUNC('week', c4.created_at), c4.user_id
-HAVING COUNT(*) >= 1
-ORDER BY period DESC, avg_value DESC
-LIMIT 100
+```json
+{
+  "db_id": "db-4",
+  "question_id": 23,
+  "question": "Concentration Index Computation",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 5 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 280\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(9) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.name\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for concentration index computation. Use Case: Business analytics for concentration index computation Business Value: Actionable insights from concentration index computation Purpose: Production concentration index computation analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and name"
+}
 ```
 
+### Query 24 — challenging / aggregation
+
+```json
+{
+  "db_id": "db-4",
+  "question_id": 24,
+  "question": "Statistical Anomaly Score Assignment",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 290\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(4) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for statistical anomaly score assignment. Use Case: Business analytics for statistical anomaly score assignment Business Value: Actionable insights from statistical anomaly score assignment Purpose: Production statistical anomaly score assignment analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and user_id",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by week and user_id"
+}
+```
+
+### Query 25 — challenging / aggregation
+
+```json
+{
+  "db_id": "db-4",
+  "question_id": 25,
+  "question": "Fiscal Period Comparative Reporting",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 7 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 300\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(5) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.name\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for fiscal period comparative reporting. Use Case: Business analytics for fiscal period comparative reporting Business Value: Actionable insights from fiscal period comparative reporting Purpose: Production fiscal period comparative reporting analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by month and name"
+}
+```
+
+### Query 26 — challenging / aggregation
+
+```json
+{
+  "db_id": "db-4",
+  "question_id": 26,
+  "question": "Throughput Optimization Metrics",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 8 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 310\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(6) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for throughput optimization metrics. Use Case: Business analytics for throughput optimization metrics Business Value: Actionable insights from throughput optimization metrics Purpose: Production throughput optimization metrics analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and user_id",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and user_id"
+}
+```
+
+### Query 27 — challenging / aggregation
+
+```json
+{
+  "db_id": "db-4",
+  "question_id": 27,
+  "question": "Cumulative Trend Analysis Pipeline",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 320\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(7) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.name\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for cumulative trend analysis pipeline. Use Case: Business analytics for cumulative trend analysis pipeline Business Value: Actionable insights from cumulative trend analysis pipeline Purpose: Production cumulative trend analysis pipeline analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by week and name"
+}
+```
+
+### Query 28 — challenging / aggregation
+
+```json
+{
+  "db_id": "db-4",
+  "question_id": 28,
+  "question": "Multi-Dimensional Pivot Aggregation",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 330\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(8) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for multi-dimensional pivot aggregation. Use Case: Business analytics for multi-dimensional pivot aggregation Business Value: Actionable insights from multi-dimensional pivot aggregation Purpose: Production multi-dimensional pivot aggregation analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and user_id",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by month and user_id"
+}
+```
+
+### Query 29 — challenging / aggregation
+
+```json
+{
+  "db_id": "db-4",
+  "question_id": 29,
+  "question": "Funnel Stage Progression Tracking",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY name ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.name) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.name ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 340\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.name ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.name) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.name) AS partition_stddev,\n        NTILE(9) OVER (PARTITION BY c2.name ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.name ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.name,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.name\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for funnel stage progression tracking. Use Case: Business analytics for funnel stage progression tracking Business Value: Actionable insights from funnel stage progression tracking Purpose: Production funnel stage progression tracking analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and name",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by day and name"
+}
+```
+
+### Query 30 — challenging / aggregation
+
+```json
+{
+  "db_id": "db-4",
+  "question_id": 30,
+  "question": "Outlier Detection with IQR Method",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM models\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.user_id) AS daily_partition_count,\n        AVG(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN 5 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.id) OVER (PARTITION BY c1.user_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 350\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS next_value,\n        c2.id - LAG(c2.id, 1) OVER (PARTITION BY c2.user_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.id) OVER (PARTITION BY c2.user_id) AS partition_avg,\n        STDDEV(c2.id) OVER (PARTITION BY c2.user_id) AS partition_stddev,\n        NTILE(4) OVER (PARTITION BY c2.user_id ORDER BY c2.id) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.id DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.id - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.user_id ORDER BY c3.id) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.user_id,\n    COUNT(*) AS record_count,\n    AVG(c4.id) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.id) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.id) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.id) AS q3_value,\n    STDDEV(c4.id) AS stddev_value,\n    MIN(c4.id) AS min_value,\n    MAX(c4.id) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.user_id\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for outlier detection with iqr method. Use Case: Business analytics for outlier detection with iqr method Business Value: Actionable insights from outlier detection with iqr method Purpose: Production outlier detection with iqr method analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and user_id",
+  "difficulty": "challenging",
+  "query_category": "aggregation",
+  "tables_used": [
+    "created_at",
+    "models",
+    "cte_level_1",
+    "cte_level_2",
+    "cte_level_3",
+    "cte_level_4"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by week and user_id"
+}
+```

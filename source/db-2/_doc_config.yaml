@@ -7,23 +7,22 @@ database:
 
 overview:
   description: |
-    Real-world retail Point-of-Sale (POS) database from a family business in Kenya,
-    featuring complete transactional history, inventory management, and multi-location
-    operations. Includes phppos schema with sales, line items, payments, inventory,
-    products, and suppliers.
+    Real-world retail Point-of-Sale (POS) database from a family business in Kenya.
+    Minimal phppos schema with sales transactions, products, employees, and
+    multi-location support.
   key_features:
-    - Sales transactions and line items
-    - Payment records and inventory movements
-    - Product catalog and purchase orders
-    - Supplier receivings and multi-location support
+    - Sales transactions (phppos_sales)
+    - Product catalog and location inventory (phppos_items, phppos_location_items)
+    - Employee and location management
   platforms:
     - PostgreSQL
 
 schema:
   overview: |
-    See `docs/SCHEMA.md` for table relationships. Core tables include `phppos_sales`,
-    `phppos_sales_items`, `phppos_payments`, `phppos_items`, `phppos_inventory`,
-    `phppos_suppliers`, and related phppos tables.
+    Minimal 8-table phppos subset. See `docs/SCHEMA.md` for full LUCASA schema.
+    Tables: `phppos_people`, `phppos_employees`, `phppos_employees_locations`,
+    `phppos_items`, `phppos_locations`, `phppos_location_items`, `phppos_sales`.
+    ACID-compliant with PKs and FKs.
 
 usage:
   instructions: |

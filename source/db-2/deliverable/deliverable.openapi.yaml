@@ -18,10 +18,6 @@ info:
 
     - PostgreSQL: Full support
 
-    - , : Compatible with Delta Lake
-
-    - , : Full support
-
 
     ---
 
@@ -34,9 +30,10 @@ info:
     organized by functional category for easier navigation.
 
 
-    See `docs/SCHEMA.md` for table relationships. Core tables include `phppos_sales`,
-    `phppos_sales_items`, `phppos_payments`, `phppos_items`, `phppos_inventory`, `phppos_suppliers`,
-    and related phppos tables.
+    See `docs/SCHEMA.md` for full LUCASA schema. This deliverable uses a minimal 8-table
+    subset: `phppos_people`, `phppos_employees`, `phppos_employees_locations`, `phppos_items`,
+    `phppos_locations`, `phppos_location_items`, `phppos_sales`. ACID-compliant with
+    PKs and FKs.
 
 
     ---
@@ -831,7 +828,7 @@ info:
     Document Information:
 
 
-    - Generated: 20260214-0148
+    - Generated: 20260214-1518
 
     - Database: db-2
 

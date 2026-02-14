@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession, getViewMode } from '@/lib/auth'
 import { loadQueries } from '@/lib/data'
+import { formatQueriesMd } from '@/lib/queries-convert'
+import { loadPrivilegesConfig, canExport } from '@/lib/privileges'
 
 export async function GET(request: NextRequest) {
   const session = await getSession()
@@ -8,11 +10,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   const viewMode = await getViewMode()
-  if (session.user === 'annotator' || (session.user === 'staff' && viewMode === 'annotator')) {
+  const config = loadPrivilegesConfig()
+  if (!canExport(session.user, viewMode, config)) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-  }
-  if (session.user === 'customer') {
-    // customer can export
   }
 
   const source = request.nextUrl.searchParams.get('source')
@@ -35,6 +35,19 @@ export async function GET(request: NextRequest) {
         },
       }
     )
+  }
+
+  if (fmt === 'md') {
+    const md = formatQueriesMd(queries as { db_id?: string; question_id?: number; [key: string]: unknown }[], {
+      db_id: source,
+      db_name: `${source} — Query Documentation`,
+    })
+    return new NextResponse(md, {
+      headers: {
+        'Content-Type': 'text/markdown',
+        'Content-Disposition': `attachment; filename="queries_${source.replace('-', '_')}.md"`,
+      },
+    })
   }
 
   if (fmt === 'csv') {
@@ -76,5 +89,5 @@ export async function GET(request: NextRequest) {
     })
   }
 
-  return NextResponse.json({ error: 'format must be csv or json' }, { status: 400 })
+  return NextResponse.json({ error: 'format must be csv, json, or md' }, { status: 400 })
 }

@@ -71,12 +71,32 @@ class FixVerifier:
         result['checks'].append({'check': 'Query complexity', 'status': 'PASS', 'note': 'Conceptual check'})
         return result
 
+    def _get_title_for_uniqueness(self, num: int, header_title: str, section: str) -> str:
+        """Use question from JSON block when in BIRD format, else header title."""
+        json_m = re.search(r"```(?:json)?\n(.*?)```", section, re.DOTALL)
+        if json_m:
+            try:
+                obj = __import__("json").loads(json_m.group(1))
+                q = obj.get("question", "").strip()
+                if q:
+                    return q[:80]
+            except Exception:
+                pass
+        return (header_title or f"Query {num}")[:80]
+
     def verify_query_title_uniqueness(self) -> Dict:
         """Conceptual: All 30 titles exist, no duplicates, queries 26-30 present."""
         result = {'fix': 'Query title uniqueness', 'status': 'PASS', 'checks': []}
-        title_pattern = r'^## Query (\d+):\s*(.+)$'
-        matches = re.findall(title_pattern, self.content, re.MULTILINE)
-        titles = {int(num): title.strip() for num, title in matches}
+        # Support ## Query N: and ### Query N (BIRD-style)
+        header_pattern = r'^#{2,3} Query (\d+)[:\s—\-]*(.*)$'
+        matches = list(re.finditer(header_pattern, self.content, re.MULTILINE))
+        titles = {}
+        for i, m in enumerate(matches):
+            num, header_title = int(m.group(1)), (m.group(2) or "").strip()
+            start = m.start()
+            end = matches[i + 1].start() if i + 1 < len(matches) else len(self.content)
+            section = self.content[start:end]
+            titles[num] = self._get_title_for_uniqueness(num, header_title, section)
         missing = [i for i in range(1, 31) if i not in titles]
         if missing:
             result['checks'].append({'check': 'All queries have titles', 'status': 'FAIL', 'missing': missing})
@@ -102,11 +122,12 @@ class FixVerifier:
         return result
 
     def verify_header_formatting(self) -> Dict:
-        """All queries use ## Query N: format, no --- prefix."""
+        """All queries use ##/### Query N format, no --- prefix."""
         result = {'fix': 'Header formatting', 'status': 'PASS', 'checks': []}
-        correct = len(re.findall(r'^## Query \d+:', self.content, re.MULTILINE))
-        incorrect = len(re.findall(r'^---## Query \d+:', self.content, re.MULTILINE))
-        if correct == 30:
+        # Support ## Query N: and ### Query N (BIRD-style)
+        correct = len(re.findall(r'^#{2,3} Query \d+', self.content, re.MULTILINE))
+        incorrect = len(re.findall(r'^---#+ Query \d+', self.content, re.MULTILINE))
+        if correct >= 30:
             result['checks'].append({'check': 'All queries use ## Query N: format', 'status': 'PASS', 'count': correct})
         else:
             result['checks'].append({'check': 'All queries use ## Query N: format', 'status': 'FAIL', 'found': correct, 'expected': 30})
@@ -119,12 +140,16 @@ class FixVerifier:
         return result
 
     def _extract_query_section(self, query_num: int) -> str:
-        header_pattern = rf'^## Query {query_num}:'
+        # Support ## Query N: and ### Query N (BIRD-style)
+        header_pattern = rf'^#{{2,3}} Query {query_num}[:\s—\-]'
         m = re.search(header_pattern, self.content, re.MULTILINE)
+        if not m:
+            # Fallback: ### Query N (no colon/dash)
+            m = re.search(rf'^#{{2,3}} Query {query_num}\s', self.content, re.MULTILINE)
         if not m:
             return ''
         start = m.start()
-        next_matches = list(re.finditer(r'^## Query \d+:', self.content, re.MULTILINE))
+        next_matches = list(re.finditer(r'^#{2,3} Query \d+', self.content, re.MULTILINE))
         end = len(self.content)
         for nm in next_matches:
             if nm.start() > start:

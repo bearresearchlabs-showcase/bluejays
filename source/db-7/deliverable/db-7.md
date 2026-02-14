@@ -29,184 +29,154 @@ This document provides comprehensive documentation for database db-7, including 
 ### SQL Queries (30 Production Queries)
 
 1. [Query 1: Production-Grade Vessel Position Tracking Analysis with Multi-Level CTE Nesting and Temporal Analytics](#query-1)
-    - **Use Case:** Real-Time Vessel Monitoring - Comprehensive Vessel Position Tracking and Route Deviation Analysis for Maritime Operations
-    - *What it does:* Enterprise-level vessel position tracking analysis with multi-level CTE nesting, temporal analysis, route deviation detection, speed analysis, and adv...
-    - *Business Value:* Real-time vessel position report showing current locations, speeds, courses, navigation status, and...
-    - *Purpose:* Provides comprehensive vessel tracking intelligence by analyzing AIS position data, calculating vess...
+    - **Use Case:** Real-Time Vessel Monitoring - Comprehensive Vessel Position Tracking and Route Deviation Analysis for Maritime Operations Description: Enterprise-level vessel position tracking analysis with multi-level CTE nesting, temporal analysis, route deviation detection, speed analysis, and advanced window functions. Demonstrates production patterns used by maritime intelligence platforms like Linescape, MarineTraffic, and VesselFinder.
+    - *What it does:* Use Case: Real-Time Vessel Monitoring - Comprehensive Vessel Position Tracking and Route Deviation Analysis for Maritime Operations Description: Enter...
+    - *Business Value:* Real-time vessel position report showing cu
 
 2. [Query 2: Port Call Performance Analysis with Delay Detection and On-Time Performance Metrics](#query-2)
-    - **Use Case:** Port Operations Optimization - Comprehensive Port Call Performance Analysis with Delay Detection for Terminal Efficiency
-    - *What it does:* Enterprise-level port call performance analysis with multi-level CTE nesting, delay detection algorithms, on-time performance calculations, dwell time...
-    - *Business Value:* Port call performance report showing arrival/departure delays, on-time performance rates, dwell time...
-    - *Purpose:* Provides comprehensive port call intelligence by analyzing scheduled vs actual port call times, calc...
+    - **Use Case:** Port Operations Optimization - Comprehensive Port Call Performance Analysis with Delay Detection for Terminal Efficiency Description: Enterprise-level port call performance analysis with multi-level CTE nesting, delay detection algorithms, on-time performance calculations, dwell time analysis, and advanced window functions. Demonstrates production patterns used by port authorities and terminal operators for operational efficiency monitoring.
+    - *What it does:* Use Case: Port Operations Optimization - Comprehensive Port Call Performance Analysis with Delay Detection for Terminal Efficiency Description: Enterp...
+    - *Business Value:* Port call performance report
 
 3. [Query 3: Route Optimization Analysis with Transit Time Comparison and Multi-Carrier Benchmarking](#query-3)
-    - **Use Case:** Logistics Route Planning - Comprehensive Route Optimization Analysis with Transit Time Comparison for Supply Chain Efficiency
-    - *What it does:* Enterprise-level route optimization analysis with multi-level CTE nesting, transit time comparison across carriers, route efficiency scoring, distance...
-    - *Business Value:* Route optimization report showing transit times, distances, efficiency metrics, and carrier comparis...
-    - *Purpose:* Provides comprehensive route intelligence by analyzing transit times, comparing carrier performance,...
+    - **Use Case:** Logistics Route Planning - Comprehensive Route Optimization Analysis with Transit Time Comparison for Supply Chain Efficiency Description: Enterprise-level route optimization analysis with multi-level CTE nesting, transit time comparison across carriers, route efficiency scoring, distance analysis, and advanced window functions. Demonstrates production patterns used by logistics companies and shipping lines for route optimization.
+    - *What it does:* Use Case: Logistics Route Planning - Comprehensive Route Optimization Analysis with Transit Time Comparison for Supply Chain Efficiency Description: E...
+    - *Business Value:* Route optimization report showing trans
 
 4. [Query 4: Carrier Performance Metrics with On-Time Performance Analysis and Reliability Scoring](#query-4)
-    - **Use Case:** Carrier Selection - Comprehensive Carrier Performance Analysis with On-Time Performance Metrics for Shipping Line Evaluation
-    - *What it does:* Enterprise-level carrier performance analysis with multi-level CTE nesting, on-time performance calculations, vessel utilization metrics, capacity ana...
-    - *Business Value:* Carrier performance report showing on-time rates, vessel utilization, capacity metrics, reliability...
-    - *Purpose:* Provides comprehensive carrier intelligence by analyzing performance metrics, calculating reliabilit...
+    - **Use Case:** Carrier Selection - Comprehensive Carrier Performance Analysis with On-Time Performance Metrics for Shipping Line Evaluation Description: Enterprise-level carrier performance analysis with multi-level CTE nesting, on-time performance calculations, vessel utilization metrics, capacity analysis, reliability scoring, and advanced window functions. Demonstrates production patterns used by freight forwarders and shippers for carrier evaluation.
+    - *What it does:* Use Case: Carrier Selection - Comprehensive Carrier Performance Analysis with On-Time Performance Metrics for Shipping Line Evaluation Description: En...
+    - *Business Value:* Carrier performance report sho
 
 5. [Query 5: Port Statistics Aggregation with Throughput Analysis and Operational Efficiency Metrics](#query-5)
-    - **Use Case:** Port Operations Management - Comprehensive Port Statistics Aggregation with Throughput Analysis for Terminal Planning
-    - *What it does:* Enterprise-level port statistics aggregation with multi-level CTE nesting, throughput calculations, vessel call analysis, container flow metrics, bert...
-    - *Business Value:* Port statistics report showing vessel calls, container throughput, berth utilization, operational ef...
-    - *Purpose:* Provides comprehensive port intelligence by aggregating statistics, analyzing throughput patterns, c...
+    - **Use Case:** Port Operations Management - Comprehensive Port Statistics Aggregation with Throughput Analysis for Terminal Planning Description: Enterprise-level port statistics aggregation with multi-level CTE nesting, throughput calculations, vessel call analysis, container flow metrics, berth utilization, and advanced window functions. Demonstrates production patterns used by port authorities and terminal operators for operational planning.
+    - *What it does:* Use Case: Port Operations Management - Comprehensive Port Statistics Aggregation with Throughput Analysis for Terminal Planning Description: Enterpris...
+    - *Business Value:* Port statistics report showing vessel ca
 
 6. [Query 6: Sailing Capacity Utilization Analysis with Vessel Deployment Optimization](#query-6)
-    - **Use Case:** Fleet Optimization - Comprehensive Sailing Capacity Utilization Analysis for Vessel Deployment Planning
-    - *What it does:* Enterprise-level sailing capacity utilization analysis with multi-level CTE nesting, capacity calculations, utilization scoring, route analysis, vesse...
-    - *Business Value:* Capacity utilization report showing vessel utilization rates, route efficiency, optimization opportu...
-    - *Purpose:* Provides comprehensive capacity intelligence by analyzing utilization rates, identifying optimizatio...
+    - **Use Case:** Fleet Optimization - Comprehensive Sailing Capacity Utilization Analysis for Vessel Deployment Planning Description: Enterprise-level sailing capacity utilization analysis with multi-level CTE nesting, capacity calculations, utilization scoring, route analysis, vessel deployment optimization, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization.
+    - *What it does:* Use Case: Fleet Optimization - Comprehensive Sailing Capacity Utilization Analysis for Vessel Deployment Planning Description: Enterprise-level sailin...
+    - *Business Value:* Capacity utilization report showing vessel utilization rates, route e
 
 7. [Query 7: Multi-Port Route Analysis with Transshipment Detection and Route Path Optimization](#query-7)
-    - **Use Case:** Route Planning - Comprehensive Multi-Port Route Analysis with Transshipment Detection for Logistics Optimization
-    - *What it does:* Enterprise-level multi-port route analysis with recursive CTE traversal, transshipment detection, route path analysis, connectivity mapping, and advan...
-    - *Business Value:* Multi-port route report showing route paths, transshipment points, connectivity analysis, and path o...
-    - *Purpose:* Provides comprehensive route intelligence by analyzing multi-port routes, detecting transshipments,...
+    - **Use Case:** Route Planning - Comprehensive Multi-Port Route Analysis with Transshipment Detection for Logistics Optimization Description: Enterprise-level multi-port route analysis with recursive CTE traversal, transshipment detection, route path analysis, connectivity mapping, and advanced window functions. Demonstrates production patterns used by logistics companies for multi-port route optimization.
+    - *What it does:* Use Case: Route Planning - Comprehensive Multi-Port Route Analysis with Transshipment Detection for Logistics Optimization Description: Enterprise-lev...
+    - *Business Value:* Multi-port route report showing route paths, transshipment points, connectivity
 
 8. [Query 8: Vessel Utilization Analysis Across Carriers with Fleet Performance Comparison](#query-8)
-    - **Use Case:** Fleet Management - Comprehensive Vessel Utilization Analysis Across Carriers for Fleet Optimization
-    - *What it does:* Enterprise-level vessel utilization analysis with multi-level CTE nesting, utilization calculations, carrier comparisons, vessel performance metrics,...
-    - *Business Value:* Vessel utilization report showing utilization rates across carriers, vessel performance, optimizatio...
-    - *Purpose:* Provides comprehensive vessel intelligence by analyzing utilization rates, comparing carrier perform...
+    - **Use Case:** Fleet Management - Comprehensive Vessel Utilization Analysis Across Carriers for Fleet Optimization Description: Enterprise-level vessel utilization analysis with multi-level CTE nesting, utilization calculations, carrier comparisons, vessel performance metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization.
+    - *What it does:* Use Case: Fleet Management - Comprehensive Vessel Utilization Analysis Across Carriers for Fleet Optimization Description: Enterprise-level vessel uti...
+    - *Business Value:* Vessel utilization report showing utilization rates across carriers, vessel performance, optimizatio
 
 9. [Query 9: Port Pair Demand Analysis with Trade Flow Intelligence and Market Trends](#query-9)
-    - **Use Case:** Market Analysis - Comprehensive Port Pair Demand Analysis for Trade Flow Intelligence
-    - *What it does:* Enterprise-level port pair demand analysis with multi-level CTE nesting, demand calculations, trade flow analysis, trend detection, market opportunity...
-    - *Business Value:* Port pair demand report showing trade volumes, demand trends, market opportunities, and growth patte...
-    - *Purpose:* Provides comprehensive demand intelligence by analyzing port pair volumes, identifying trends, calcu...
+    - **Use Case:** Market Analysis - Comprehensive Port Pair Demand Analysis for Trade Flow Intelligence Description: Enterprise-level port pair demand analysis with multi-level CTE nesting, demand calculations, trade flow analysis, trend detection, market opportunity identification, and advanced window functions. Demonstrates production patterns used by shipping lines for market analysis.
+    - *What it does:* Use Case: Market Analysis - Comprehensive Port Pair Demand Analysis for Trade Flow Intelligence Description: Enterprise-level port pair demand analysi...
+    - *Business Value:* Port pair demand report showing trade volumes, demand trends, market opportunities, and growth patte
 
 10. [Query 10: Voyage Completion Rate Analysis with Port Call Success Metrics and Delay Root Cause Analysis](#query-10)
-    - **Use Case:** Operations Management - Comprehensive Voyage Completion Rate Analysis for Service Reliability
-    - *What it does:* Enterprise-level voyage completion analysis with multi-level CTE nesting, completion rate calculations, port call success metrics, delay root cause an...
-    - *Business Value:* Voyage completion report showing completion rates, port call success metrics, delay patterns, and ro...
-    - *Purpose:* Provides comprehensive operational intelligence by analyzing voyage completion rates, identifying de...
+    - **Use Case:** Operations Management - Comprehensive Voyage Completion Rate Analysis for Service Reliability Description: Enterprise-level voyage completion analysis with multi-level CTE nesting, completion rate calculations, port call success metrics, delay root cause analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for operational reliability.
+    - *What it does:* Use Case: Operations Management - Comprehensive Voyage Completion Rate Analysis for Service Reliability Description: Enterprise-level voyage completio...
+    - *Business Value:* Voyage completion report showing completion rates, port call success metrics, delay patterns,
 
 11. [Query 11: Carrier Route Performance Analysis with Service Quality Metrics and Competitive Benchmarking](#query-11)
-    - **Use Case:** Strategic Planning - Comprehensive Carrier Route Performance Analysis for Service Optimization
-    - *What it does:* Enterprise-level carrier route performance analysis with multi-level CTE nesting, performance metrics, service quality scoring, competitive benchmarki...
-    - *Business Value:* Carrier route performance report showing service quality metrics, competitive positioning, route pro...
-    - *Purpose:* Provides comprehensive route intelligence by analyzing carrier performance across routes, comparing...
+    - **Use Case:** Strategic Planning - Comprehensive Carrier Route Performance Analysis for Service Optimization Description: Enterprise-level carrier route performance analysis with multi-level CTE nesting, performance metrics, service quality scoring, competitive benchmarking, and advanced window functions. Demonstrates production patterns used by shipping lines for strategic route planning.
+    - *What it does:* Use Case: Strategic Planning - Comprehensive Carrier Route Performance Analysis for Service Optimization Description: Enterprise-level carrier route p...
+    - *Business Value:* Carrier route performance report showing service quality metrics, competitive positioning, rout
 
 12. [Query 12: Vessel Tracking and Position Analysis with Route Deviation Detection and Speed Optimization](#query-12)
-    - **Use Case:** Real-Time Monitoring - Comprehensive Vessel Tracking Analysis for Route Optimization
-    - *What it does:* Enterprise-level vessel tracking analysis with multi-level CTE nesting, position tracking, route deviation detection, speed analysis, distance calcula...
-    - *Business Value:* Vessel tracking report showing current positions, route deviations, speed patterns, distance travele...
-    - *Purpose:* Provides comprehensive tracking intelligence by analyzing vessel positions, detecting deviations fro...
+    - **Use Case:** Real-Time Monitoring - Comprehensive Vessel Tracking Analysis for Route Optimization Description: Enterprise-level vessel tracking analysis with multi-level CTE nesting, position tracking, route deviation detection, speed analysis, distance calculations, and advanced spatial operations. Demonstrates production patterns used by shipping lines for real-time vessel monitoring.
+    - *What it does:* Use Case: Real-Time Monitoring - Comprehensive Vessel Tracking Analysis for Route Optimization Description: Enterprise-level vessel tracking analysis...
+    - *Business Value:* Vessel tracking report showing current positions, route deviations, speed patterns, distance trav
 
 13. [Query 13: Port Capacity Utilization Analysis with Berth Optimization and Congestion Detection](#query-13)
-    - **Use Case:** Port Operations - Comprehensive Port Capacity Utilization Analysis for Berth Optimization
-    - *What it does:* Enterprise-level port capacity analysis with multi-level CTE nesting, capacity calculations, berth utilization, congestion detection, throughput analy...
+    - **Use Case:** Port Operations - Comprehensive Port Capacity Utilization Analysis for Berth Optimization Description: Enterprise-level port capacity analysis with multi-level CTE nesting, capacity calculations, berth utilization, congestion detection, throughput analysis, and advanced window functions. Demonstrates production patterns used by port operators for capacity planning.
+    - *What it does:* Use Case: Port Operations - Comprehensive Port Capacity Utilization Analysis for Berth Optimization Description: Enterprise-level port capacity analys...
     - *Business Value:* Port capacity report showing utilization rates, berth efficiency, congestion patterns, and optimizat...
-    - *Purpose:* Provides comprehensive capacity intelligence by analyzing port utilization, identifying congestion p...
 
 14. [Query 14: Sailing Schedule Reliability Analysis with On-Time Performance Metrics and Service Consistency](#query-14)
-    - **Use Case:** Service Quality - Comprehensive Sailing Schedule Reliability Analysis for Service Consistency
-    - *What it does:* Enterprise-level sailing schedule reliability analysis with multi-level CTE nesting, on-time performance calculations, schedule adherence metrics, ser...
-    - *Business Value:* Sailing schedule reliability report showing on-time performance, schedule adherence, service consist...
-    - *Purpose:* Provides comprehensive reliability intelligence by analyzing sailing schedules, calculating on-time...
+    - **Use Case:** Service Quality - Comprehensive Sailing Schedule Reliability Analysis for Service Consistency Description: Enterprise-level sailing schedule reliability analysis with multi-level CTE nesting, on-time performance calculations, schedule adherence metrics, service consistency analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for schedule reliability.
+    - *What it does:* Use Case: Service Quality - Comprehensive Sailing Schedule Reliability Analysis for Service Consistency Description: Enterprise-level sailing schedule...
+    - *Business Value:* Sailing schedule reliability report showing on-time performance, schedule adh
 
 15. [Query 15: Carrier Market Share Analysis with Route Dominance and Competitive Positioning](#query-15)
-    - **Use Case:** Market Intelligence - Comprehensive Carrier Market Share Analysis for Competitive Strategy
-    - *What it does:* Enterprise-level carrier market share analysis with multi-level CTE nesting, market share calculations, route dominance analysis, competitive position...
+    - **Use Case:** Market Intelligence - Comprehensive Carrier Market Share Analysis for Competitive Strategy Description: Enterprise-level carrier market share analysis with multi-level CTE nesting, market share calculations, route dominance analysis, competitive positioning, and advanced window functions. Demonstrates production patterns used by shipping lines for market intelligence.
+    - *What it does:* Use Case: Market Intelligence - Comprehensive Carrier Market Share Analysis for Competitive Strategy Description: Enterprise-level carrier market shar...
     - *Business Value:* Carrier market share report showing market share by route, competitive positioning, route dominance,...
-    - *Purpose:* Provides comprehensive market intelligence by analyzing carrier market shares, identifying route dom...
 
 16. [Query 16: Vessel Route Efficiency Analysis with Fuel Optimization and Transit Time Benchmarking](#query-16)
-    - **Use Case:** Fleet Optimization - Comprehensive Vessel Route Efficiency Analysis for Fuel Optimization
-    - *What it does:* Enterprise-level vessel route efficiency analysis with multi-level CTE nesting, efficiency calculations, fuel optimization metrics, transit time bench...
-    - *Business Value:* Vessel route efficiency report showing efficiency metrics, fuel consumption patterns, transit time c...
-    - *Purpose:* Provides comprehensive efficiency intelligence by analyzing vessel routes, calculating efficiency me...
+    - **Use Case:** Fleet Optimization - Comprehensive Vessel Route Efficiency Analysis for Fuel Optimization Description: Enterprise-level vessel route efficiency analysis with multi-level CTE nesting, efficiency calculations, fuel optimization metrics, transit time benchmarking, distance analysis, and advanced spatial operations. Demonstrates production patterns used by shipping lines for route optimization.
+    - *What it does:* Use Case: Fleet Optimization - Comprehensive Vessel Route Efficiency Analysis for Fuel Optimization Description: Enterprise-level vessel route efficie...
+    - *Business Value:* Vessel route efficiency report showing efficiency metrics, fuel consumption patt
 
 17. [Query 17: Port Call Sequence Optimization with Multi-Port Voyage Planning and Dwell Time Minimization](#query-17)
-    - **Use Case:** Voyage Planning - Comprehensive Port Call Sequence Optimization for Multi-Port Voyage Efficiency
-    - *What it does:* Enterprise-level port call sequence analysis with multi-level CTE nesting, sequence optimization, dwell time minimization, voyage planning, and advanc...
+    - **Use Case:** Voyage Planning - Comprehensive Port Call Sequence Optimization for Multi-Port Voyage Efficiency Description: Enterprise-level port call sequence analysis with multi-level CTE nesting, sequence optimization, dwell time minimization, voyage planning, and advanced recursive CTEs. Demonstrates production patterns used by shipping lines for voyage optimization.
+    - *What it does:* Use Case: Voyage Planning - Comprehensive Port Call Sequence Optimization for Multi-Port Voyage Efficiency Description: Enterprise-level port call seq...
     - *Business Value:* Port call sequence report showing optimal port call orders, dwell time minimization, voyage efficien...
-    - *Purpose:* Provides comprehensive voyage planning intelligence by analyzing port call sequences, identifying op...
 
 18. [Query 18: Vessel Performance Benchmarking with Fleet Comparison and Operational Excellence Metrics](#query-18)
-    - **Use Case:** Fleet Management - Comprehensive Vessel Performance Benchmarking for Operational Excellence
-    - *What it does:* Enterprise-level vessel performance benchmarking with multi-level CTE nesting, performance metrics, fleet comparisons, operational excellence scoring,...
+    - **Use Case:** Fleet Management - Comprehensive Vessel Performance Benchmarking for Operational Excellence Description: Enterprise-level vessel performance benchmarking with multi-level CTE nesting, performance metrics, fleet comparisons, operational excellence scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization.
+    - *What it does:* Use Case: Fleet Management - Comprehensive Vessel Performance Benchmarking for Operational Excellence Description: Enterprise-level vessel performance...
     - *Business Value:* Vessel performance report showing performance benchmarks, fleet comparisons, operational excellence...
-    - *Purpose:* Provides comprehensive performance intelligence by analyzing vessel metrics, comparing fleet perform...
 
 19. [Query 19: Route Network Connectivity Analysis with Port Hub Identification and Network Optimization](#query-19)
-    - **Use Case:** Network Planning - Comprehensive Route Network Connectivity Analysis for Hub Optimization
-    - *What it does:* Enterprise-level route network analysis with multi-level CTE nesting, connectivity calculations, hub identification, network optimization, and advance...
+    - **Use Case:** Network Planning - Comprehensive Route Network Connectivity Analysis for Hub Optimization Description: Enterprise-level route network analysis with multi-level CTE nesting, connectivity calculations, hub identification, network optimization, and advanced recursive CTEs. Demonstrates production patterns used by shipping lines for network planning.
+    - *What it does:* Use Case: Network Planning - Comprehensive Route Network Connectivity Analysis for Hub Optimization Description: Enterprise-level route network analys...
     - *Business Value:* Route network report showing port connectivity, hub identification, network efficiency, and optimiza...
-    - *Purpose:* Provides comprehensive network intelligence by analyzing route connectivity, identifying hub ports,...
 
 20. [Query 20: Sailing Frequency Analysis with Service Consistency Metrics and Schedule Optimization](#query-20)
-    - **Use Case:** Service Planning - Comprehensive Sailing Frequency Analysis for Schedule Optimization
-    - *What it does:* Enterprise-level sailing frequency analysis with multi-level CTE nesting, frequency calculations, service consistency metrics, schedule optimization,...
+    - **Use Case:** Service Planning - Comprehensive Sailing Frequency Analysis for Schedule Optimization Description: Enterprise-level sailing frequency analysis with multi-level CTE nesting, frequency calculations, service consistency metrics, schedule optimization, and advanced window functions. Demonstrates production patterns used by shipping lines for service planning.
+    - *What it does:* Use Case: Service Planning - Comprehensive Sailing Frequency Analysis for Schedule Optimization Description: Enterprise-level sailing frequency analys...
     - *Business Value:* Sailing frequency report showing service frequencies, consistency metrics, schedule gaps, and optimi...
-    - *Purpose:* Provides comprehensive frequency intelligence by analyzing sailing patterns, calculating consistency...
 
 21. [Query 21: Port Call Delay Prediction with Risk Assessment and Delay Pattern Analysis](#query-21)
-    - **Use Case:** Predictive Analytics - Comprehensive Port Call Delay Prediction for Risk Management
-    - *What it does:* Enterprise-level port call delay prediction with multi-level CTE nesting, delay pattern analysis, risk assessment, predictive metrics, and advanced wi...
+    - **Use Case:** Predictive Analytics - Comprehensive Port Call Delay Prediction for Risk Management Description: Enterprise-level port call delay prediction with multi-level CTE nesting, delay pattern analysis, risk assessment, predictive metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for delay prediction and risk management.
+    - *What it does:* Use Case: Predictive Analytics - Comprehensive Port Call Delay Prediction for Risk Management Description: Enterprise-level port call delay prediction...
     - *Business Value:* Port call delay prediction report showing delay probabilities, risk factors, pattern analysis, and m...
-    - *Purpose:* Provides comprehensive predictive intelligence by analyzing delay patterns, identifying risk factors...
 
 22. [Query 22: Carrier Route Profitability Analysis with Revenue Optimization and Cost Efficiency Metrics](#query-22)
-    - **Use Case:** Financial Analysis - Comprehensive Carrier Route Profitability Analysis for Revenue Optimization
-    - *What it does:* Enterprise-level route profitability analysis with multi-level CTE nesting, revenue calculations, cost efficiency metrics, profitability scoring, and...
+    - **Use Case:** Financial Analysis - Comprehensive Carrier Route Profitability Analysis for Revenue Optimization Description: Enterprise-level route profitability analysis with multi-level CTE nesting, revenue calculations, cost efficiency metrics, profitability scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for financial analysis.
+    - *What it does:* Use Case: Financial Analysis - Comprehensive Carrier Route Profitability Analysis for Revenue Optimization Description: Enterprise-level route profita...
     - *Business Value:* Route profitability report showing revenue metrics, cost efficiency, profitability scores, and optim...
-    - *Purpose:* Provides comprehensive financial intelligence by analyzing route profitability, calculating efficien...
 
 23. [Query 23: Vessel Age and Performance Correlation Analysis with Fleet Modernization Recommendations](#query-23)
-    - **Use Case:** Fleet Strategy - Comprehensive Vessel Age and Performance Correlation Analysis for Fleet Modernization
-    - *What it does:* Enterprise-level vessel age analysis with multi-level CTE nesting, age-performance correlation, fleet modernization scoring, and advanced window funct...
+    - **Use Case:** Fleet Strategy - Comprehensive Vessel Age and Performance Correlation Analysis for Fleet Modernization Description: Enterprise-level vessel age analysis with multi-level CTE nesting, age-performance correlation, fleet modernization scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet strategy.
+    - *What it does:* Use Case: Fleet Strategy - Comprehensive Vessel Age and Performance Correlation Analysis for Fleet Modernization Description: Enterprise-level vessel...
     - *Business Value:* Vessel age-performance report showing age correlations, performance degradation patterns, modernizat...
-    - *Purpose:* Provides comprehensive fleet intelligence by analyzing age-performance relationships, identifying mo...
 
 24. [Query 24: Seasonal Demand Patterns Analysis with Peak Period Identification and Capacity Planning](#query-24)
-    - **Use Case:** Capacity Planning - Comprehensive Seasonal Demand Patterns Analysis for Capacity Optimization
-    - *What it does:* Enterprise-level seasonal demand analysis with multi-level CTE nesting, seasonal pattern detection, peak period identification, capacity planning metr...
-    - *Business Value:* Seasonal demand report showing demand patterns, peak periods, seasonal trends, and capacity planning...
-    - *Purpose:* Provides comprehensive seasonal intelligence by analyzing demand patterns, identifying peak periods,...
+    - **Use Case:** Capacity Planning - Comprehensive Seasonal Demand Patterns Analysis for Capacity Optimization Description: Enterprise-level seasonal demand analysis with multi-level CTE nesting, seasonal pattern detection, peak period identification, capacity planning metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for seasonal capacity planning.
+    - *What it does:* Use Case: Capacity Planning - Comprehensive Seasonal Demand Patterns Analysis for Capacity Optimization Description: Enterprise-level seasonal demand...
+    - *Business Value:* Seasonal demand report showing demand patterns, peak periods, seasonal trends, and capacity p
 
 25. [Query 25: Port Infrastructure Utilization Analysis with Resource Optimization and Throughput Efficiency](#query-25)
-    - **Use Case:** Port Operations - Comprehensive Port Infrastructure Utilization Analysis for Resource Optimization
-    - *What it does:* Enterprise-level port infrastructure analysis with multi-level CTE nesting, infrastructure utilization calculations, resource optimization, throughput...
-    - *Business Value:* Port infrastructure report showing utilization rates, resource efficiency, throughput metrics, and o...
-    - *Purpose:* Provides comprehensive infrastructure intelligence by analyzing utilization patterns, identifying bo...
+    - **Use Case:** Port Operations - Comprehensive Port Infrastructure Utilization Analysis for Resource Optimization Description: Enterprise-level port infrastructure analysis with multi-level CTE nesting, infrastructure utilization calculations, resource optimization, throughput efficiency metrics, and advanced window functions. Demonstrates production patterns used by port operators for infrastructure optimization.
+    - *What it does:* Use Case: Port Operations - Comprehensive Port Infrastructure Utilization Analysis for Resource Optimization Description: Enterprise-level port infras...
+    - *Business Value:* Port infrastructure report showing utilization rates, resource efficien
 
 26. [Query 26: Transit Time Variability Analysis with Reliability Scoring and Schedule Predictability](#query-26)
-    - **Use Case:** Service Reliability - Comprehensive Transit Time Variability Analysis for Schedule Predictability
-    - *What it does:* Enterprise-level transit time variability analysis with multi-level CTE nesting, variability calculations, reliability scoring, schedule predictabilit...
-    - *Business Value:* Transit time variability report showing variability patterns, reliability scores, schedule predictab...
-    - *Purpose:* Provides comprehensive reliability intelligence by analyzing transit time variability, calculating p...
+    - **Use Case:** Service Reliability - Comprehensive Transit Time Variability Analysis for Schedule Predictability Description: Enterprise-level transit time variability analysis with multi-level CTE nesting, variability calculations, reliability scoring, schedule predictability metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for service reliability.
+    - *What it does:* Use Case: Service Reliability - Comprehensive Transit Time Variability Analysis for Schedule Predictability Description: Enterprise-level transit time...
+    - *Business Value:* Transit time variability report showing variability patterns, reliability scores, schedule
 
 27. [Query 27: Port Pair Trade Volume Trends Analysis with Growth Forecasting and Market Opportunity Identification](#query-27)
-    - **Use Case:** Market Intelligence - Comprehensive Port Pair Trade Volume Trends Analysis for Strategic Planning
-    - *What it does:* Enterprise-level trade volume trends analysis with multi-level CTE nesting, trend detection, growth forecasting, market opportunity identification, an...
-    - *Business Value:* Trade volume trends report showing volume patterns, growth trends, forecasted demand, and market opp...
-    - *Purpose:* Provides comprehensive market intelligence by analyzing trade volume trends, forecasting growth, ide...
+    - **Use Case:** Market Intelligence - Comprehensive Port Pair Trade Volume Trends Analysis for Strategic Planning Description: Enterprise-level trade volume trends analysis with multi-level CTE nesting, trend detection, growth forecasting, market opportunity identification, and advanced window functions. Demonstrates production patterns used by shipping lines for strategic market planning.
+    - *What it does:* Use Case: Market Intelligence - Comprehensive Port Pair Trade Volume Trends Analysis for Strategic Planning Description: Enterprise-level trade volume...
+    - *Business Value:* Trade volume trends report showing volume patterns, growth trends, forecasted demand, and market
 
 28. [Query 28: Vessel Deployment Strategy Analysis with Fleet Optimization and Route Allocation](#query-28)
-    - **Use Case:** Fleet Strategy - Comprehensive Vessel Deployment Strategy Analysis for Fleet Optimization
-    - *What it does:* Enterprise-level vessel deployment analysis with multi-level CTE nesting, deployment optimization, route allocation analysis, fleet efficiency metrics...
+    - **Use Case:** Fleet Strategy - Comprehensive Vessel Deployment Strategy Analysis for Fleet Optimization Description: Enterprise-level vessel deployment analysis with multi-level CTE nesting, deployment optimization, route allocation analysis, fleet efficiency metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet strategy.
+    - *What it does:* Use Case: Fleet Strategy - Comprehensive Vessel Deployment Strategy Analysis for Fleet Optimization Description: Enterprise-level vessel deployment an...
     - *Business Value:* Vessel deployment report showing deployment patterns, route allocation efficiency, fleet optimizatio...
-    - *Purpose:* Provides comprehensive deployment intelligence by analyzing vessel allocation, calculating efficienc...
 
 29. [Query 29: Carrier Alliance Performance Analysis with Collaborative Efficiency Metrics and Network Synergy](#query-29)
-    - **Use Case:** Strategic Partnerships - Comprehensive Carrier Alliance Performance Analysis for Partnership Optimization
-    - *What it does:* Enterprise-level carrier alliance analysis with multi-level CTE nesting, alliance performance metrics, collaborative efficiency calculations, network...
-    - *Business Value:* Carrier alliance report showing alliance performance, collaborative efficiency, network synergy, and...
-    - *Purpose:* Provides comprehensive alliance intelligence by analyzing collaborative performance, calculating syn...
+    - **Use Case:** Strategic Partnerships - Comprehensive Carrier Alliance Performance Analysis for Partnership Optimization Description: Enterprise-level carrier alliance analysis with multi-level CTE nesting, alliance performance metrics, collaborative efficiency calculations, network synergy analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for alliance management.
+    - *What it does:* Use Case: Strategic Partnerships - Comprehensive Carrier Alliance Performance Analysis for Partnership Optimization Description: Enterprise-level carr...
+    - *Business Value:* Carrier alliance report showing alliance performance, collaborative efficie
 
 30. [Query 30: Comprehensive Maritime Intelligence Dashboard Query with Multi-Dimensional Analytics and Executive Summary](#query-30)
-    - **Use Case:** Executive Dashboard - Comprehensive Maritime Intelligence Dashboard for Strategic Decision Making
-    - *What it does:* Enterprise-level comprehensive dashboard query with multi-level CTE nesting, multi-dimensional analytics, executive summary metrics, KPI aggregation,...
-    - *Business Value:* Comprehensive maritime intelligence dashboard showing key performance indicators, operational metric...
-    - *Purpose:* Provides comprehensive executive intelligence by aggregating key metrics across operations, finance,...
+    - **Use Case:** Executive Dashboard - Comprehensive Maritime Intelligence Dashboard for Strategic Decision Making Description: Enterprise-level comprehensive dashboard query with multi-level CTE nesting, multi-dimensional analytics, executive summary metrics, KPI aggregation, and advanced window functions. Demonstrates production patterns used by shipping lines for executive dashboards and strategic intelligence.
+    - *What it does:* Use Case: Executive Dashboard - Comprehensive Maritime Intelligence Dashboard for Strategic Decision Making Description: Enterprise-level comprehensiv...
+    - *Business Value:* Comprehensive maritime intelligence dashboard showing key performance ind
 
 ### Additional Information
 
@@ -627,17 +597,13 @@ This database includes **30 production SQL queries**, each designed to solve spe
 
 ## Query 1: Production-Grade Vessel Position Tracking Analysis with Multi-Level CTE Nesting and Temporal Analytics {#query-1}
 
-**Use Case:** **Real-Time Vessel Monitoring - Comprehensive Vessel Position Tracking and Route Deviation Analysis for Maritime Operations**
+**Use Case:** **Real-Time Vessel Monitoring - Comprehensive Vessel Position Tracking and Route Deviation Analysis for Maritime Operations Description: Enterprise-level vessel position tracking analysis with multi-level CTE nesting, temporal analysis, route deviation detection, speed analysis, and advanced window functions. Demonstrates production patterns used by maritime intelligence platforms like Linescape, MarineTraffic, and VesselFinder.**
 
-**Description:** Enterprise-level vessel position tracking analysis with multi-level CTE nesting, temporal analysis, route deviation detection, speed analysis, and advanced window functions. Demonstrates production patterns used by maritime intelligence platforms like Linescape, MarineTraffic, and VesselFinder.
+**Description:** Use Case: Real-Time Vessel Monitoring - Comprehensive Vessel Position Tracking and Route Deviation Analysis for Maritime Operations Description: Enterprise-level vessel position tracking analysis with multi-level CTE nesting, temporal analysis, route deviation detection, speed analysis, and advanced window functions. Demonstrates production patterns used by maritime intelligence platforms like Linescape, MarineTraffic, and VesselFinder. Business Value: Real-time vessel position report showing cu
 
-**Business Value:** Real-time vessel position report showing current locations, speeds, courses, navigation status, and route deviations. Helps maritime operators monitor vessel movements, detect anomalies, and optimize routing decisions.
-
-**Purpose:** Provides comprehensive vessel tracking intelligence by analyzing AIS position data, calculating vessel movements, detecting route deviations, and identifying operational patterns.
+**Business Value:** Real-time vessel position report showing cu
 
 **Complexity:** Deep nested CTEs (7+ levels), temporal analysis, spatial operations (ST_DISTANCE, ST_BEARING), complex aggregations, window functions with multiple frame clauses, route deviation algorithms, speed calculations, navigation status analysis
-
-**Expected Output:** Vessel position tracking report with current positions, speeds, courses, route deviations, and navigation status for active vessels.
 
 ```sql
 WITH vessel_tracking_cohorts AS (
@@ -1041,17 +1007,13 @@ LIMIT 10000;
 
 ## Query 2: Port Call Performance Analysis with Delay Detection and On-Time Performance Metrics {#query-2}
 
-**Use Case:** **Port Operations Optimization - Comprehensive Port Call Performance Analysis with Delay Detection for Terminal Efficiency**
+**Use Case:** **Port Operations Optimization - Comprehensive Port Call Performance Analysis with Delay Detection for Terminal Efficiency Description: Enterprise-level port call performance analysis with multi-level CTE nesting, delay detection algorithms, on-time performance calculations, dwell time analysis, and advanced window functions. Demonstrates production patterns used by port authorities and terminal operators for operational efficiency monitoring.**
 
-**Description:** Enterprise-level port call performance analysis with multi-level CTE nesting, delay detection algorithms, on-time performance calculations, dwell time analysis, and advanced window functions. Demonstrates production patterns used by port authorities and terminal operators for operational efficiency monitoring.
+**Description:** Use Case: Port Operations Optimization - Comprehensive Port Call Performance Analysis with Delay Detection for Terminal Efficiency Description: Enterprise-level port call performance analysis with multi-level CTE nesting, delay detection algorithms, on-time performance calculations, dwell time analysis, and advanced window functions. Demonstrates production patterns used by port authorities and terminal operators for operational efficiency monitoring. Business Value: Port call performance report
 
-**Business Value:** Port call performance report showing arrival/departure delays, on-time performance rates, dwell times, and operational efficiency metrics. Helps port operators identify bottlenecks, optimize berth utilization, and improve terminal efficiency.
-
-**Purpose:** Provides comprehensive port call intelligence by analyzing scheduled vs actual port call times, calculating delays, identifying patterns, and enabling data-driven port operations optimization.
+**Business Value:** Port call performance report
 
 **Complexity:** Deep nested CTEs (7+ levels), temporal analysis, delay calculations, window functions with multiple frame clauses, percentile calculations, time-series analysis, performance scoring algorithms
-
-**Expected Output:** Port call performance report with delay metrics, on-time performance rates, dwell times, and operational efficiency classifications.
 
 ```sql
 WITH port_call_cohorts AS (
@@ -1325,17 +1287,13 @@ LIMIT 10000;
 
 ## Query 3: Route Optimization Analysis with Transit Time Comparison and Multi-Carrier Benchmarking {#query-3}
 
-**Use Case:** **Logistics Route Planning - Comprehensive Route Optimization Analysis with Transit Time Comparison for Supply Chain Efficiency**
+**Use Case:** **Logistics Route Planning - Comprehensive Route Optimization Analysis with Transit Time Comparison for Supply Chain Efficiency Description: Enterprise-level route optimization analysis with multi-level CTE nesting, transit time comparison across carriers, route efficiency scoring, distance analysis, and advanced window functions. Demonstrates production patterns used by logistics companies and shipping lines for route optimization.**
 
-**Description:** Enterprise-level route optimization analysis with multi-level CTE nesting, transit time comparison across carriers, route efficiency scoring, distance analysis, and advanced window functions. Demonstrates production patterns used by logistics companies and shipping lines for route optimization.
+**Description:** Use Case: Logistics Route Planning - Comprehensive Route Optimization Analysis with Transit Time Comparison for Supply Chain Efficiency Description: Enterprise-level route optimization analysis with multi-level CTE nesting, transit time comparison across carriers, route efficiency scoring, distance analysis, and advanced window functions. Demonstrates production patterns used by logistics companies and shipping lines for route optimization. Business Value: Route optimization report showing trans
 
-**Business Value:** Route optimization report showing transit times, distances, efficiency metrics, and carrier comparisons. Helps logistics companies identify optimal routes, compare carrier performance, and optimize supply chain operations.
-
-**Purpose:** Provides comprehensive route intelligence by analyzing transit times, comparing carrier performance, identifying optimal routes, and enabling data-driven route selection decisions.
+**Business Value:** Route optimization report showing trans
 
 **Complexity:** Deep nested CTEs (7+ levels), temporal analysis, spatial distance calculations, window functions with multiple frame clauses, percentile calculations, multi-carrier comparisons, efficiency scoring algorithms
-
-**Expected Output:** Route optimization report with transit times, distances, efficiency metrics, and carrier performance comparisons.
 
 ```sql
 WITH route_sailing_analysis AS (
@@ -1683,17 +1641,13 @@ LIMIT 1000;
 
 ## Query 4: Carrier Performance Metrics with On-Time Performance Analysis and Reliability Scoring {#query-4}
 
-**Use Case:** **Carrier Selection - Comprehensive Carrier Performance Analysis with On-Time Performance Metrics for Shipping Line Evaluation**
+**Use Case:** **Carrier Selection - Comprehensive Carrier Performance Analysis with On-Time Performance Metrics for Shipping Line Evaluation Description: Enterprise-level carrier performance analysis with multi-level CTE nesting, on-time performance calculations, vessel utilization metrics, capacity analysis, reliability scoring, and advanced window functions. Demonstrates production patterns used by freight forwarders and shippers for carrier evaluation.**
 
-**Description:** Enterprise-level carrier performance analysis with multi-level CTE nesting, on-time performance calculations, vessel utilization metrics, capacity analysis, reliability scoring, and advanced window functions. Demonstrates production patterns used by freight forwarders and shippers for carrier evaluation.
+**Description:** Use Case: Carrier Selection - Comprehensive Carrier Performance Analysis with On-Time Performance Metrics for Shipping Line Evaluation Description: Enterprise-level carrier performance analysis with multi-level CTE nesting, on-time performance calculations, vessel utilization metrics, capacity analysis, reliability scoring, and advanced window functions. Demonstrates production patterns used by freight forwarders and shippers for carrier evaluation. Business Value: Carrier performance report sho
 
-**Business Value:** Carrier performance report showing on-time rates, vessel utilization, capacity metrics, reliability scores, and performance rankings. Helps shippers evaluate carriers, negotiate contracts, and make informed shipping decisions.
-
-**Purpose:** Provides comprehensive carrier intelligence by analyzing performance metrics, calculating reliability scores, comparing carriers, and enabling data-driven carrier selection decisions.
+**Business Value:** Carrier performance report sho
 
 **Complexity:** Deep nested CTEs (7+ levels), temporal analysis, performance scoring algorithms, window functions with multiple frame clauses, percentile calculations, multi-metric aggregation, carrier comparisons
-
-**Expected Output:** Carrier performance report with on-time performance rates, vessel utilization, capacity metrics, reliability scores, and performance rankings.
 
 ```sql
 WITH carrier_sailing_metrics AS (
@@ -2041,17 +1995,13 @@ LIMIT 100;
 
 ## Query 5: Port Statistics Aggregation with Throughput Analysis and Operational Efficiency Metrics {#query-5}
 
-**Use Case:** **Port Operations Management - Comprehensive Port Statistics Aggregation with Throughput Analysis for Terminal Planning**
+**Use Case:** **Port Operations Management - Comprehensive Port Statistics Aggregation with Throughput Analysis for Terminal Planning Description: Enterprise-level port statistics aggregation with multi-level CTE nesting, throughput calculations, vessel call analysis, container flow metrics, berth utilization, and advanced window functions. Demonstrates production patterns used by port authorities and terminal operators for operational planning.**
 
-**Description:** Enterprise-level port statistics aggregation with multi-level CTE nesting, throughput calculations, vessel call analysis, container flow metrics, berth utilization, and advanced window functions. Demonstrates production patterns used by port authorities and terminal operators for operational planning.
+**Description:** Use Case: Port Operations Management - Comprehensive Port Statistics Aggregation with Throughput Analysis for Terminal Planning Description: Enterprise-level port statistics aggregation with multi-level CTE nesting, throughput calculations, vessel call analysis, container flow metrics, berth utilization, and advanced window functions. Demonstrates production patterns used by port authorities and terminal operators for operational planning. Business Value: Port statistics report showing vessel ca
 
-**Business Value:** Port statistics report showing vessel calls, container throughput, berth utilization, operational efficiency metrics, and performance trends. Helps port operators optimize terminal operations, plan capacity, and improve efficiency.
-
-**Purpose:** Provides comprehensive port intelligence by aggregating statistics, analyzing throughput patterns, calculating efficiency metrics, and enabling data-driven port operations optimization.
+**Business Value:** Port statistics report showing vessel ca
 
 **Complexity:** Deep nested CTEs (7+ levels), temporal aggregation, throughput calculations, window functions with multiple frame clauses, percentile calculations, efficiency metrics, trend analysis
-
-**Expected Output:** Port statistics report with vessel calls, container throughput, berth utilization, and operational efficiency metrics.
 
 ```sql
 WITH port_statistics_base AS (
@@ -2407,17 +2357,13 @@ LIMIT 1000;
 
 ## Query 6: Sailing Capacity Utilization Analysis with Vessel Deployment Optimization {#query-6}
 
-**Use Case:** **Fleet Optimization - Comprehensive Sailing Capacity Utilization Analysis for Vessel Deployment Planning**
+**Use Case:** **Fleet Optimization - Comprehensive Sailing Capacity Utilization Analysis for Vessel Deployment Planning Description: Enterprise-level sailing capacity utilization analysis with multi-level CTE nesting, capacity calculations, utilization scoring, route analysis, vessel deployment optimization, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization.**
 
-**Description:** Enterprise-level sailing capacity utilization analysis with multi-level CTE nesting, capacity calculations, utilization scoring, route analysis, vessel deployment optimization, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization.
+**Description:** Use Case: Fleet Optimization - Comprehensive Sailing Capacity Utilization Analysis for Vessel Deployment Planning Description: Enterprise-level sailing capacity utilization analysis with multi-level CTE nesting, capacity calculations, utilization scoring, route analysis, vessel deployment optimization, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization. Business Value: Capacity utilization report showing vessel utilization rates, route e
 
-**Business Value:** Capacity utilization report showing vessel utilization rates, route efficiency, optimization opportunities, and deployment recommendations. Helps shipping lines optimize fleet deployment, maximize capacity utilization, and improve profitability.
-
-**Purpose:** Provides comprehensive capacity intelligence by analyzing utilization rates, identifying optimization opportunities, comparing routes, and enabling data-driven fleet deployment decisions.
+**Business Value:** Capacity utilization report showing vessel utilization rates, route e
 
 **Complexity:** Deep nested CTEs (7+ levels), capacity calculations, utilization scoring algorithms, window functions with multiple frame clauses, percentile calculations, route analysis, optimization algorithms
-
-**Expected Output:** Capacity utilization report with vessel utilization rates, route efficiency metrics, and optimization recommendations.
 
 ```sql
 WITH vessel_capacity_analysis AS (
@@ -2713,17 +2659,13 @@ LIMIT 1000;
 
 ## Query 7: Multi-Port Route Analysis with Transshipment Detection and Route Path Optimization {#query-7}
 
-**Use Case:** **Route Planning - Comprehensive Multi-Port Route Analysis with Transshipment Detection for Logistics Optimization**
+**Use Case:** **Route Planning - Comprehensive Multi-Port Route Analysis with Transshipment Detection for Logistics Optimization Description: Enterprise-level multi-port route analysis with recursive CTE traversal, transshipment detection, route path analysis, connectivity mapping, and advanced window functions. Demonstrates production patterns used by logistics companies for multi-port route optimization.**
 
-**Description:** Enterprise-level multi-port route analysis with recursive CTE traversal, transshipment detection, route path analysis, connectivity mapping, and advanced window functions. Demonstrates production patterns used by logistics companies for multi-port route optimization.
+**Description:** Use Case: Route Planning - Comprehensive Multi-Port Route Analysis with Transshipment Detection for Logistics Optimization Description: Enterprise-level multi-port route analysis with recursive CTE traversal, transshipment detection, route path analysis, connectivity mapping, and advanced window functions. Demonstrates production patterns used by logistics companies for multi-port route optimization. Business Value: Multi-port route report showing route paths, transshipment points, connectivity
 
-**Business Value:** Multi-port route report showing route paths, transshipment points, connectivity analysis, and path optimization opportunities. Helps logistics companies optimize multi-port routes, identify transshipment hubs, and improve route efficiency.
-
-**Purpose:** Provides comprehensive route intelligence by analyzing multi-port routes, detecting transshipments, mapping connectivity, and enabling data-driven route planning decisions.
+**Business Value:** Multi-port route report showing route paths, transshipment points, connectivity
 
 **Complexity:** Recursive CTE with route traversal, transshipment detection algorithms, path analysis, window functions with multiple frame clauses, connectivity calculations, cycle detection
-
-**Expected Output:** Multi-port route report with route paths, transshipment points, connectivity analysis, and path optimization recommendations.
 
 ```sql
 WITH RECURSIVE route_port_paths AS (
@@ -3012,17 +2954,13 @@ LIMIT 2000;
 
 ## Query 8: Vessel Utilization Analysis Across Carriers with Fleet Performance Comparison {#query-8}
 
-**Use Case:** **Fleet Management - Comprehensive Vessel Utilization Analysis Across Carriers for Fleet Optimization**
+**Use Case:** **Fleet Management - Comprehensive Vessel Utilization Analysis Across Carriers for Fleet Optimization Description: Enterprise-level vessel utilization analysis with multi-level CTE nesting, utilization calculations, carrier comparisons, vessel performance metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization.**
 
-**Description:** Enterprise-level vessel utilization analysis with multi-level CTE nesting, utilization calculations, carrier comparisons, vessel performance metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization.
+**Description:** Use Case: Fleet Management - Comprehensive Vessel Utilization Analysis Across Carriers for Fleet Optimization Description: Enterprise-level vessel utilization analysis with multi-level CTE nesting, utilization calculations, carrier comparisons, vessel performance metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization. Business Value: Vessel utilization report showing utilization rates across carriers, vessel performance, optimizatio
 
-**Business Value:** Vessel utilization report showing utilization rates across carriers, vessel performance, optimization opportunities, and fleet comparisons. Helps shipping lines optimize vessel deployment, improve utilization, and maximize fleet efficiency.
-
-**Purpose:** Provides comprehensive vessel intelligence by analyzing utilization rates, comparing carrier performance, identifying optimization opportunities, and enabling data-driven fleet optimization decisions.
+**Business Value:** Vessel utilization report showing utilization rates across carriers, vessel performance, optimizatio
 
 **Complexity:** Deep nested CTEs (7+ levels), utilization calculations, carrier comparisons, window functions with multiple frame clauses, percentile calculations, performance metrics, fleet analysis
-
-**Expected Output:** Vessel utilization report with utilization rates across carriers, vessel performance metrics, and optimization opportunities.
 
 ```sql
 WITH vessel_sailing_utilization AS (
@@ -3267,17 +3205,13 @@ LIMIT 500;
 
 ## Query 9: Port Pair Demand Analysis with Trade Flow Intelligence and Market Trends {#query-9}
 
-**Use Case:** **Market Analysis - Comprehensive Port Pair Demand Analysis for Trade Flow Intelligence**
+**Use Case:** **Market Analysis - Comprehensive Port Pair Demand Analysis for Trade Flow Intelligence Description: Enterprise-level port pair demand analysis with multi-level CTE nesting, demand calculations, trade flow analysis, trend detection, market opportunity identification, and advanced window functions. Demonstrates production patterns used by shipping lines for market analysis.**
 
-**Description:** Enterprise-level port pair demand analysis with multi-level CTE nesting, demand calculations, trade flow analysis, trend detection, market opportunity identification, and advanced window functions. Demonstrates production patterns used by shipping lines for market analysis.
+**Description:** Use Case: Market Analysis - Comprehensive Port Pair Demand Analysis for Trade Flow Intelligence Description: Enterprise-level port pair demand analysis with multi-level CTE nesting, demand calculations, trade flow analysis, trend detection, market opportunity identification, and advanced window functions. Demonstrates production patterns used by shipping lines for market analysis. Business Value: Port pair demand report showing trade volumes, demand trends, market opportunities, and growth patte
 
-**Business Value:** Port pair demand report showing trade volumes, demand trends, market opportunities, and growth patterns. Helps shipping lines identify high-demand routes, optimize service offerings, and make strategic market decisions.
-
-**Purpose:** Provides comprehensive demand intelligence by analyzing port pair volumes, identifying trends, calculating growth rates, and enabling data-driven service planning decisions.
+**Business Value:** Port pair demand report showing trade volumes, demand trends, market opportunities, and growth patte
 
 **Complexity:** Deep nested CTEs (7+ levels), demand calculations, trend analysis, window functions with multiple frame clauses, percentile calculations, market analysis, growth rate calculations
-
-**Expected Output:** Port pair demand report with trade volumes, demand trends, and market opportunity analysis.
 
 ```sql
 WITH port_pair_sailing_volume AS (
@@ -3592,17 +3526,13 @@ LIMIT 2000;
 
 ## Query 10: Voyage Completion Rate Analysis with Port Call Success Metrics and Delay Root Cause Analysis {#query-10}
 
-**Use Case:** **Operations Management - Comprehensive Voyage Completion Rate Analysis for Service Reliability**
+**Use Case:** **Operations Management - Comprehensive Voyage Completion Rate Analysis for Service Reliability Description: Enterprise-level voyage completion analysis with multi-level CTE nesting, completion rate calculations, port call success metrics, delay root cause analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for operational reliability.**
 
-**Description:** Enterprise-level voyage completion analysis with multi-level CTE nesting, completion rate calculations, port call success metrics, delay root cause analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for operational reliability.
+**Description:** Use Case: Operations Management - Comprehensive Voyage Completion Rate Analysis for Service Reliability Description: Enterprise-level voyage completion analysis with multi-level CTE nesting, completion rate calculations, port call success metrics, delay root cause analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for operational reliability. Business Value: Voyage completion report showing completion rates, port call success metrics, delay patterns,
 
-**Business Value:** Voyage completion report showing completion rates, port call success metrics, delay patterns, and root cause analysis. Helps shipping lines improve service reliability, reduce delays, and optimize voyage planning.
-
-**Purpose:** Provides comprehensive operational intelligence by analyzing voyage completion rates, identifying delay patterns, calculating success metrics, and enabling data-driven operational improvements.
+**Business Value:** Voyage completion report showing completion rates, port call success metrics, delay patterns,
 
 **Complexity:** Deep nested CTEs (7+ levels), completion rate calculations, delay analysis, window functions with multiple frame clauses, percentile calculations, root cause analysis, temporal analysis
-
-**Expected Output:** Voyage completion report with completion rates, port call success metrics, and delay root cause analysis.
 
 ```sql
 WITH voyage_port_call_sequence AS (
@@ -4026,17 +3956,13 @@ LIMIT 1000;
 
 ## Query 11: Carrier Route Performance Analysis with Service Quality Metrics and Competitive Benchmarking {#query-11}
 
-**Use Case:** **Strategic Planning - Comprehensive Carrier Route Performance Analysis for Service Optimization**
+**Use Case:** **Strategic Planning - Comprehensive Carrier Route Performance Analysis for Service Optimization Description: Enterprise-level carrier route performance analysis with multi-level CTE nesting, performance metrics, service quality scoring, competitive benchmarking, and advanced window functions. Demonstrates production patterns used by shipping lines for strategic route planning.**
 
-**Description:** Enterprise-level carrier route performance analysis with multi-level CTE nesting, performance metrics, service quality scoring, competitive benchmarking, and advanced window functions. Demonstrates production patterns used by shipping lines for strategic route planning.
+**Description:** Use Case: Strategic Planning - Comprehensive Carrier Route Performance Analysis for Service Optimization Description: Enterprise-level carrier route performance analysis with multi-level CTE nesting, performance metrics, service quality scoring, competitive benchmarking, and advanced window functions. Demonstrates production patterns used by shipping lines for strategic route planning. Business Value: Carrier route performance report showing service quality metrics, competitive positioning, rout
 
-**Business Value:** Carrier route performance report showing service quality metrics, competitive positioning, route profitability, and optimization opportunities. Helps shipping lines optimize route offerings, improve service quality, and make strategic route decisions.
-
-**Purpose:** Provides comprehensive route intelligence by analyzing carrier performance across routes, comparing service quality, calculating competitive metrics, and enabling data-driven route optimization decisions.
+**Business Value:** Carrier route performance report showing service quality metrics, competitive positioning, rout
 
 **Complexity:** Deep nested CTEs (7+ levels), performance calculations, competitive analysis, window functions with multiple frame clauses, percentile calculations, service quality scoring, route profitability analysis
-
-**Expected Output:** Carrier route performance report with service quality metrics, competitive positioning, and route optimization recommendations.
 
 ```sql
 WITH carrier_route_sailing_metrics AS (
@@ -4405,17 +4331,13 @@ LIMIT 500;
 
 ## Query 12: Vessel Tracking and Position Analysis with Route Deviation Detection and Speed Optimization {#query-12}
 
-**Use Case:** **Real-Time Monitoring - Comprehensive Vessel Tracking Analysis for Route Optimization**
+**Use Case:** **Real-Time Monitoring - Comprehensive Vessel Tracking Analysis for Route Optimization Description: Enterprise-level vessel tracking analysis with multi-level CTE nesting, position tracking, route deviation detection, speed analysis, distance calculations, and advanced spatial operations. Demonstrates production patterns used by shipping lines for real-time vessel monitoring.**
 
-**Description:** Enterprise-level vessel tracking analysis with multi-level CTE nesting, position tracking, route deviation detection, speed analysis, distance calculations, and advanced spatial operations. Demonstrates production patterns used by shipping lines for real-time vessel monitoring.
+**Description:** Use Case: Real-Time Monitoring - Comprehensive Vessel Tracking Analysis for Route Optimization Description: Enterprise-level vessel tracking analysis with multi-level CTE nesting, position tracking, route deviation detection, speed analysis, distance calculations, and advanced spatial operations. Demonstrates production patterns used by shipping lines for real-time vessel monitoring. Business Value: Vessel tracking report showing current positions, route deviations, speed patterns, distance trav
 
-**Business Value:** Vessel tracking report showing current positions, route deviations, speed patterns, distance traveled, and optimization opportunities. Helps shipping lines monitor vessel movements, detect route deviations, optimize speeds, and improve operational efficiency.
-
-**Purpose:** Provides comprehensive tracking intelligence by analyzing vessel positions, detecting deviations from planned routes, calculating speeds and distances, and enabling data-driven route optimization decisions.
+**Business Value:** Vessel tracking report showing current positions, route deviations, speed patterns, distance trav
 
 **Complexity:** Deep nested CTEs (7+ levels), spatial operations (ST_DISTANCE, ST_BEARING, ST_MAKEPOINT), route deviation calculations, speed analysis, window functions with multiple frame clauses, temporal analysis, distance calculations
-
-**Expected Output:** Vessel tracking report with positions, route deviations, speed patterns, and optimization recommendations.
 
 ```sql
 WITH vessel_tracking_sequence AS (
@@ -4834,17 +4756,13 @@ LIMIT 5000;
 
 ## Query 13: Port Capacity Utilization Analysis with Berth Optimization and Congestion Detection {#query-13}
 
-**Use Case:** **Port Operations - Comprehensive Port Capacity Utilization Analysis for Berth Optimization**
+**Use Case:** **Port Operations - Comprehensive Port Capacity Utilization Analysis for Berth Optimization Description: Enterprise-level port capacity analysis with multi-level CTE nesting, capacity calculations, berth utilization, congestion detection, throughput analysis, and advanced window functions. Demonstrates production patterns used by port operators for capacity planning.**
 
-**Description:** Enterprise-level port capacity analysis with multi-level CTE nesting, capacity calculations, berth utilization, congestion detection, throughput analysis, and advanced window functions. Demonstrates production patterns used by port operators for capacity planning.
+**Description:** Use Case: Port Operations - Comprehensive Port Capacity Utilization Analysis for Berth Optimization Description: Enterprise-level port capacity analysis with multi-level CTE nesting, capacity calculations, berth utilization, congestion detection, throughput analysis, and advanced window functions. Demonstrates production patterns used by port operators for capacity planning. Business Value: Port capacity report showing utilization rates, berth efficiency, congestion patterns, and optimization op
 
-**Business Value:** Port capacity report showing utilization rates, berth efficiency, congestion patterns, and optimization opportunities. Helps port operators optimize berth allocation, reduce congestion, and improve throughput efficiency.
-
-**Purpose:** Provides comprehensive capacity intelligence by analyzing port utilization, identifying congestion patterns, calculating berth efficiency, and enabling data-driven capacity optimization decisions.
+**Business Value:** Port capacity report showing utilization rates, berth efficiency, congestion patterns, and optimization op
 
 **Complexity:** Deep nested CTEs (7+ levels), capacity calculations, berth utilization analysis, congestion detection, window functions with multiple frame clauses, percentile calculations, throughput analysis, temporal aggregation
-
-**Expected Output:** Port capacity report with utilization rates, berth efficiency, congestion patterns, and optimization recommendations.
 
 ```sql
 WITH port_call_detailed_metrics AS (
@@ -5177,17 +5095,13 @@ LIMIT 2000;
 
 ## Query 14: Sailing Schedule Reliability Analysis with On-Time Performance Metrics and Service Consistency {#query-14}
 
-**Use Case:** **Service Quality - Comprehensive Sailing Schedule Reliability Analysis for Service Consistency**
+**Use Case:** **Service Quality - Comprehensive Sailing Schedule Reliability Analysis for Service Consistency Description: Enterprise-level sailing schedule reliability analysis with multi-level CTE nesting, on-time performance calculations, schedule adherence metrics, service consistency analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for schedule reliability.**
 
-**Description:** Enterprise-level sailing schedule reliability analysis with multi-level CTE nesting, on-time performance calculations, schedule adherence metrics, service consistency analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for schedule reliability.
+**Description:** Use Case: Service Quality - Comprehensive Sailing Schedule Reliability Analysis for Service Consistency Description: Enterprise-level sailing schedule reliability analysis with multi-level CTE nesting, on-time performance calculations, schedule adherence metrics, service consistency analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for schedule reliability. Business Value: Sailing schedule reliability report showing on-time performance, schedule adh
 
-**Business Value:** Sailing schedule reliability report showing on-time performance, schedule adherence, service consistency, and reliability trends. Helps shipping lines improve schedule reliability, reduce delays, and maintain service consistency.
-
-**Purpose:** Provides comprehensive reliability intelligence by analyzing sailing schedules, calculating on-time performance, identifying consistency patterns, and enabling data-driven schedule optimization decisions.
+**Business Value:** Sailing schedule reliability report showing on-time performance, schedule adh
 
 **Complexity:** Deep nested CTEs (7+ levels), reliability calculations, schedule adherence analysis, window functions with multiple frame clauses, percentile calculations, consistency metrics, temporal analysis
-
-**Expected Output:** Sailing schedule reliability report with on-time performance metrics, schedule adherence, and service consistency analysis.
 
 ```sql
 WITH sailing_schedule_metrics AS (
@@ -5612,17 +5526,13 @@ LIMIT 1000;
 
 ## Query 15: Carrier Market Share Analysis with Route Dominance and Competitive Positioning {#query-15}
 
-**Use Case:** **Market Intelligence - Comprehensive Carrier Market Share Analysis for Competitive Strategy**
+**Use Case:** **Market Intelligence - Comprehensive Carrier Market Share Analysis for Competitive Strategy Description: Enterprise-level carrier market share analysis with multi-level CTE nesting, market share calculations, route dominance analysis, competitive positioning, and advanced window functions. Demonstrates production patterns used by shipping lines for market intelligence.**
 
-**Description:** Enterprise-level carrier market share analysis with multi-level CTE nesting, market share calculations, route dominance analysis, competitive positioning, and advanced window functions. Demonstrates production patterns used by shipping lines for market intelligence.
+**Description:** Use Case: Market Intelligence - Comprehensive Carrier Market Share Analysis for Competitive Strategy Description: Enterprise-level carrier market share analysis with multi-level CTE nesting, market share calculations, route dominance analysis, competitive positioning, and advanced window functions. Demonstrates production patterns used by shipping lines for market intelligence. Business Value: Carrier market share report showing market share by route, competitive positioning, route dominance, an
 
-**Business Value:** Carrier market share report showing market share by route, competitive positioning, route dominance, and growth trends. Helps shipping lines understand market position, identify opportunities, and make strategic competitive decisions.
-
-**Purpose:** Provides comprehensive market intelligence by analyzing carrier market shares, identifying route dominance, calculating competitive metrics, and enabling data-driven market strategy decisions.
+**Business Value:** Carrier market share report showing market share by route, competitive positioning, route dominance, an
 
 **Complexity:** Deep nested CTEs (7+ levels), market share calculations, route dominance analysis, window functions with multiple frame clauses, percentile calculations, competitive positioning, growth trend analysis
-
-**Expected Output:** Carrier market share report with market share by route, competitive positioning, and route dominance analysis.
 
 ```sql
 WITH carrier_route_volume AS (
@@ -5964,17 +5874,13 @@ LIMIT 2000;
 
 ## Query 16: Vessel Route Efficiency Analysis with Fuel Optimization and Transit Time Benchmarking {#query-16}
 
-**Use Case:** **Fleet Optimization - Comprehensive Vessel Route Efficiency Analysis for Fuel Optimization**
+**Use Case:** **Fleet Optimization - Comprehensive Vessel Route Efficiency Analysis for Fuel Optimization Description: Enterprise-level vessel route efficiency analysis with multi-level CTE nesting, efficiency calculations, fuel optimization metrics, transit time benchmarking, distance analysis, and advanced spatial operations. Demonstrates production patterns used by shipping lines for route optimization.**
 
-**Description:** Enterprise-level vessel route efficiency analysis with multi-level CTE nesting, efficiency calculations, fuel optimization metrics, transit time benchmarking, distance analysis, and advanced spatial operations. Demonstrates production patterns used by shipping lines for route optimization.
+**Description:** Use Case: Fleet Optimization - Comprehensive Vessel Route Efficiency Analysis for Fuel Optimization Description: Enterprise-level vessel route efficiency analysis with multi-level CTE nesting, efficiency calculations, fuel optimization metrics, transit time benchmarking, distance analysis, and advanced spatial operations. Demonstrates production patterns used by shipping lines for route optimization. Business Value: Vessel route efficiency report showing efficiency metrics, fuel consumption patt
 
-**Business Value:** Vessel route efficiency report showing efficiency metrics, fuel consumption patterns, transit time comparisons, and optimization opportunities. Helps shipping lines optimize routes, reduce fuel consumption, and improve operational efficiency.
-
-**Purpose:** Provides comprehensive efficiency intelligence by analyzing vessel routes, calculating efficiency metrics, benchmarking transit times, and enabling data-driven route optimization decisions.
+**Business Value:** Vessel route efficiency report showing efficiency metrics, fuel consumption patt
 
 **Complexity:** Deep nested CTEs (7+ levels), efficiency calculations, fuel optimization analysis, spatial operations (ST_DISTANCE), window functions with multiple frame clauses, percentile calculations, transit time benchmarking, distance analysis
-
-**Expected Output:** Vessel route efficiency report with efficiency metrics, fuel optimization, and transit time benchmarking.
 
 ```sql
 WITH vessel_route_sailing_metrics AS (
@@ -6450,17 +6356,13 @@ LIMIT 2000;
 
 ## Query 17: Port Call Sequence Optimization with Multi-Port Voyage Planning and Dwell Time Minimization {#query-17}
 
-**Use Case:** **Voyage Planning - Comprehensive Port Call Sequence Optimization for Multi-Port Voyage Efficiency**
+**Use Case:** **Voyage Planning - Comprehensive Port Call Sequence Optimization for Multi-Port Voyage Efficiency Description: Enterprise-level port call sequence analysis with multi-level CTE nesting, sequence optimization, dwell time minimization, voyage planning, and advanced recursive CTEs. Demonstrates production patterns used by shipping lines for voyage optimization.**
 
-**Description:** Enterprise-level port call sequence analysis with multi-level CTE nesting, sequence optimization, dwell time minimization, voyage planning, and advanced recursive CTEs. Demonstrates production patterns used by shipping lines for voyage optimization.
+**Description:** Use Case: Voyage Planning - Comprehensive Port Call Sequence Optimization for Multi-Port Voyage Efficiency Description: Enterprise-level port call sequence analysis with multi-level CTE nesting, sequence optimization, dwell time minimization, voyage planning, and advanced recursive CTEs. Demonstrates production patterns used by shipping lines for voyage optimization. Business Value: Port call sequence report showing optimal port call orders, dwell time minimization, voyage efficiency, and planni
 
-**Business Value:** Port call sequence report showing optimal port call orders, dwell time minimization, voyage efficiency, and planning recommendations. Helps shipping lines optimize multi-port voyages, reduce total voyage time, and improve operational efficiency.
-
-**Purpose:** Provides comprehensive voyage planning intelligence by analyzing port call sequences, identifying optimization opportunities, calculating efficiency gains, and enabling data-driven voyage planning decisions.
+**Business Value:** Port call sequence report showing optimal port call orders, dwell time minimization, voyage efficiency, and planni
 
 **Complexity:** Deep nested CTEs (7+ levels), recursive CTEs for sequence optimization, spatial distance calculations, temporal analysis, window functions with multiple frame clauses, optimization algorithms
-
-**Expected Output:** Port call sequence report with optimal sequences, dwell time analysis, and voyage efficiency recommendations.
 
 ```sql
 WITH voyage_port_call_sequence AS (
@@ -6731,17 +6633,13 @@ LIMIT 1000;
 
 ## Query 18: Vessel Performance Benchmarking with Fleet Comparison and Operational Excellence Metrics {#query-18}
 
-**Use Case:** **Fleet Management - Comprehensive Vessel Performance Benchmarking for Operational Excellence**
+**Use Case:** **Fleet Management - Comprehensive Vessel Performance Benchmarking for Operational Excellence Description: Enterprise-level vessel performance benchmarking with multi-level CTE nesting, performance metrics, fleet comparisons, operational excellence scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization.**
 
-**Description:** Enterprise-level vessel performance benchmarking with multi-level CTE nesting, performance metrics, fleet comparisons, operational excellence scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization.
+**Description:** Use Case: Fleet Management - Comprehensive Vessel Performance Benchmarking for Operational Excellence Description: Enterprise-level vessel performance benchmarking with multi-level CTE nesting, performance metrics, fleet comparisons, operational excellence scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet optimization. Business Value: Vessel performance report showing performance benchmarks, fleet comparisons, operational excellence metrics
 
-**Business Value:** Vessel performance report showing performance benchmarks, fleet comparisons, operational excellence metrics, and optimization opportunities. Helps shipping lines identify top performers, benchmark fleet performance, and drive operational excellence.
-
-**Purpose:** Provides comprehensive performance intelligence by analyzing vessel metrics, comparing fleet performance, calculating excellence scores, and enabling data-driven fleet optimization decisions.
+**Business Value:** Vessel performance report showing performance benchmarks, fleet comparisons, operational excellence metrics
 
 **Complexity:** Deep nested CTEs (7+ levels), performance benchmarking, fleet comparisons, window functions with multiple frame clauses, percentile calculations, excellence scoring, multi-dimensional analysis
-
-**Expected Output:** Vessel performance report with benchmarks, fleet comparisons, and operational excellence metrics.
 
 ```sql
 WITH vessel_operational_metrics AS (
@@ -7091,17 +6989,13 @@ LIMIT 500;
 
 ## Query 19: Route Network Connectivity Analysis with Port Hub Identification and Network Optimization {#query-19}
 
-**Use Case:** **Network Planning - Comprehensive Route Network Connectivity Analysis for Hub Optimization**
+**Use Case:** **Network Planning - Comprehensive Route Network Connectivity Analysis for Hub Optimization Description: Enterprise-level route network analysis with multi-level CTE nesting, connectivity calculations, hub identification, network optimization, and advanced recursive CTEs. Demonstrates production patterns used by shipping lines for network planning.**
 
-**Description:** Enterprise-level route network analysis with multi-level CTE nesting, connectivity calculations, hub identification, network optimization, and advanced recursive CTEs. Demonstrates production patterns used by shipping lines for network planning.
+**Description:** Use Case: Network Planning - Comprehensive Route Network Connectivity Analysis for Hub Optimization Description: Enterprise-level route network analysis with multi-level CTE nesting, connectivity calculations, hub identification, network optimization, and advanced recursive CTEs. Demonstrates production patterns used by shipping lines for network planning. Business Value: Route network report showing port connectivity, hub identification, network efficiency, and optimization opportunities. Helps
 
-**Business Value:** Route network report showing port connectivity, hub identification, network efficiency, and optimization opportunities. Helps shipping lines optimize network structure, identify strategic hubs, and improve connectivity.
-
-**Purpose:** Provides comprehensive network intelligence by analyzing route connectivity, identifying hub ports, calculating network efficiency, and enabling data-driven network optimization decisions.
+**Business Value:** Route network report showing port connectivity, hub identification, network efficiency, and optimization opportunities. Helps
 
 **Complexity:** Deep nested CTEs (7+ levels), recursive CTEs for network traversal, connectivity analysis, hub scoring, window functions with multiple frame clauses, network metrics
-
-**Expected Output:** Route network report with connectivity metrics, hub identification, and network optimization recommendations.
 
 ```sql
 WITH route_port_connections AS (
@@ -7374,17 +7268,13 @@ LIMIT 500;
 
 ## Query 20: Sailing Frequency Analysis with Service Consistency Metrics and Schedule Optimization {#query-20}
 
-**Use Case:** **Service Planning - Comprehensive Sailing Frequency Analysis for Schedule Optimization**
+**Use Case:** **Service Planning - Comprehensive Sailing Frequency Analysis for Schedule Optimization Description: Enterprise-level sailing frequency analysis with multi-level CTE nesting, frequency calculations, service consistency metrics, schedule optimization, and advanced window functions. Demonstrates production patterns used by shipping lines for service planning.**
 
-**Description:** Enterprise-level sailing frequency analysis with multi-level CTE nesting, frequency calculations, service consistency metrics, schedule optimization, and advanced window functions. Demonstrates production patterns used by shipping lines for service planning.
+**Description:** Use Case: Service Planning - Comprehensive Sailing Frequency Analysis for Schedule Optimization Description: Enterprise-level sailing frequency analysis with multi-level CTE nesting, frequency calculations, service consistency metrics, schedule optimization, and advanced window functions. Demonstrates production patterns used by shipping lines for service planning. Business Value: Sailing frequency report showing service frequencies, consistency metrics, schedule gaps, and optimization opportuni
 
-**Business Value:** Sailing frequency report showing service frequencies, consistency metrics, schedule gaps, and optimization opportunities. Helps shipping lines optimize sailing schedules, maintain service consistency, and improve customer satisfaction.
-
-**Purpose:** Provides comprehensive frequency intelligence by analyzing sailing patterns, calculating consistency metrics, identifying schedule gaps, and enabling data-driven schedule optimization decisions.
+**Business Value:** Sailing frequency report showing service frequencies, consistency metrics, schedule gaps, and optimization opportuni
 
 **Complexity:** Deep nested CTEs (7+ levels), frequency calculations, temporal analysis, consistency metrics, window functions with multiple frame clauses, schedule gap detection, optimization algorithms
-
-**Expected Output:** Sailing frequency report with service frequencies, consistency metrics, and schedule optimization recommendations.
 
 ```sql
 WITH sailing_schedule_analysis AS (
@@ -7689,17 +7579,13 @@ LIMIT 2000;
 
 ## Query 21: Port Call Delay Prediction with Risk Assessment and Delay Pattern Analysis {#query-21}
 
-**Use Case:** **Predictive Analytics - Comprehensive Port Call Delay Prediction for Risk Management**
+**Use Case:** **Predictive Analytics - Comprehensive Port Call Delay Prediction for Risk Management Description: Enterprise-level port call delay prediction with multi-level CTE nesting, delay pattern analysis, risk assessment, predictive metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for delay prediction and risk management.**
 
-**Description:** Enterprise-level port call delay prediction with multi-level CTE nesting, delay pattern analysis, risk assessment, predictive metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for delay prediction and risk management.
+**Description:** Use Case: Predictive Analytics - Comprehensive Port Call Delay Prediction for Risk Management Description: Enterprise-level port call delay prediction with multi-level CTE nesting, delay pattern analysis, risk assessment, predictive metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for delay prediction and risk management. Business Value: Port call delay prediction report showing delay probabilities, risk factors, pattern analysis, and mitigation rec
 
-**Business Value:** Port call delay prediction report showing delay probabilities, risk factors, pattern analysis, and mitigation recommendations. Helps shipping lines predict delays, assess risks, and implement proactive mitigation strategies.
-
-**Purpose:** Provides comprehensive predictive intelligence by analyzing delay patterns, identifying risk factors, calculating delay probabilities, and enabling data-driven risk management decisions.
+**Business Value:** Port call delay prediction report showing delay probabilities, risk factors, pattern analysis, and mitigation rec
 
 **Complexity:** Deep nested CTEs (7+ levels), delay pattern analysis, risk scoring, predictive metrics, window functions with multiple frame clauses, percentile calculations, temporal pattern detection
-
-**Expected Output:** Port call delay prediction report with delay probabilities, risk factors, and mitigation recommendations.
 
 ```sql
 WITH port_call_historical_delays AS (
@@ -8047,17 +7933,13 @@ LIMIT 500;
 
 ## Query 22: Carrier Route Profitability Analysis with Revenue Optimization and Cost Efficiency Metrics {#query-22}
 
-**Use Case:** **Financial Analysis - Comprehensive Carrier Route Profitability Analysis for Revenue Optimization**
+**Use Case:** **Financial Analysis - Comprehensive Carrier Route Profitability Analysis for Revenue Optimization Description: Enterprise-level route profitability analysis with multi-level CTE nesting, revenue calculations, cost efficiency metrics, profitability scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for financial analysis.**
 
-**Description:** Enterprise-level route profitability analysis with multi-level CTE nesting, revenue calculations, cost efficiency metrics, profitability scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for financial analysis.
+**Description:** Use Case: Financial Analysis - Comprehensive Carrier Route Profitability Analysis for Revenue Optimization Description: Enterprise-level route profitability analysis with multi-level CTE nesting, revenue calculations, cost efficiency metrics, profitability scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for financial analysis. Business Value: Route profitability report showing revenue metrics, cost efficiency, profitability scores, and optimization
 
-**Business Value:** Route profitability report showing revenue metrics, cost efficiency, profitability scores, and optimization opportunities. Helps shipping lines optimize route profitability, improve revenue, and reduce costs.
-
-**Purpose:** Provides comprehensive financial intelligence by analyzing route profitability, calculating efficiency metrics, identifying optimization opportunities, and enabling data-driven financial decisions.
+**Business Value:** Route profitability report showing revenue metrics, cost efficiency, profitability scores, and optimization
 
 **Complexity:** Deep nested CTEs (7+ levels), revenue calculations, cost analysis, profitability scoring, window functions with multiple frame clauses, efficiency metrics, financial ratios
-
-**Expected Output:** Route profitability report with revenue metrics, cost efficiency, and profitability optimization recommendations.
 
 ```sql
 WITH route_revenue_metrics AS (
@@ -8352,17 +8234,13 @@ LIMIT 2000;
 
 ## Query 23: Vessel Age and Performance Correlation Analysis with Fleet Modernization Recommendations {#query-23}
 
-**Use Case:** **Fleet Strategy - Comprehensive Vessel Age and Performance Correlation Analysis for Fleet Modernization**
+**Use Case:** **Fleet Strategy - Comprehensive Vessel Age and Performance Correlation Analysis for Fleet Modernization Description: Enterprise-level vessel age analysis with multi-level CTE nesting, age-performance correlation, fleet modernization scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet strategy.**
 
-**Description:** Enterprise-level vessel age analysis with multi-level CTE nesting, age-performance correlation, fleet modernization scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet strategy.
+**Description:** Use Case: Fleet Strategy - Comprehensive Vessel Age and Performance Correlation Analysis for Fleet Modernization Description: Enterprise-level vessel age analysis with multi-level CTE nesting, age-performance correlation, fleet modernization scoring, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet strategy. Business Value: Vessel age-performance report showing age correlations, performance degradation patterns, modernization priorities, and fleet
 
-**Business Value:** Vessel age-performance report showing age correlations, performance degradation patterns, modernization priorities, and fleet strategy recommendations. Helps shipping lines optimize fleet age, plan vessel replacements, and maintain competitive performance.
-
-**Purpose:** Provides comprehensive fleet intelligence by analyzing age-performance relationships, identifying modernization needs, calculating replacement priorities, and enabling data-driven fleet strategy decisions.
+**Business Value:** Vessel age-performance report showing age correlations, performance degradation patterns, modernization priorities, and fleet
 
 **Complexity:** Deep nested CTEs (7+ levels), age calculations, performance correlation analysis, window functions with multiple frame clauses, percentile calculations, modernization scoring, regression-like analysis
-
-**Expected Output:** Vessel age-performance report with correlations, modernization priorities, and fleet strategy recommendations.
 
 ```sql
 WITH vessel_age_calculations AS (
@@ -8730,17 +8608,13 @@ LIMIT 500;
 
 ## Query 24: Seasonal Demand Patterns Analysis with Peak Period Identification and Capacity Planning {#query-24}
 
-**Use Case:** **Capacity Planning - Comprehensive Seasonal Demand Patterns Analysis for Capacity Optimization**
+**Use Case:** **Capacity Planning - Comprehensive Seasonal Demand Patterns Analysis for Capacity Optimization Description: Enterprise-level seasonal demand analysis with multi-level CTE nesting, seasonal pattern detection, peak period identification, capacity planning metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for seasonal capacity planning.**
 
-**Description:** Enterprise-level seasonal demand analysis with multi-level CTE nesting, seasonal pattern detection, peak period identification, capacity planning metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for seasonal capacity planning.
+**Description:** Use Case: Capacity Planning - Comprehensive Seasonal Demand Patterns Analysis for Capacity Optimization Description: Enterprise-level seasonal demand analysis with multi-level CTE nesting, seasonal pattern detection, peak period identification, capacity planning metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for seasonal capacity planning. Business Value: Seasonal demand report showing demand patterns, peak periods, seasonal trends, and capacity p
 
-**Business Value:** Seasonal demand report showing demand patterns, peak periods, seasonal trends, and capacity planning recommendations. Helps shipping lines optimize capacity allocation, plan for peak seasons, and improve resource utilization.
-
-**Purpose:** Provides comprehensive seasonal intelligence by analyzing demand patterns, identifying peak periods, calculating seasonal trends, and enabling data-driven capacity planning decisions.
+**Business Value:** Seasonal demand report showing demand patterns, peak periods, seasonal trends, and capacity p
 
 **Complexity:** Deep nested CTEs (7+ levels), seasonal pattern analysis, peak detection, temporal aggregation, window functions with multiple frame clauses, trend analysis, capacity planning metrics
-
-**Expected Output:** Seasonal demand report with demand patterns, peak periods, and capacity planning recommendations.
 
 ```sql
 WITH sailing_seasonal_metrics AS (
@@ -9022,17 +8896,13 @@ LIMIT 2000;
 
 ## Query 25: Port Infrastructure Utilization Analysis with Resource Optimization and Throughput Efficiency {#query-25}
 
-**Use Case:** **Port Operations - Comprehensive Port Infrastructure Utilization Analysis for Resource Optimization**
+**Use Case:** **Port Operations - Comprehensive Port Infrastructure Utilization Analysis for Resource Optimization Description: Enterprise-level port infrastructure analysis with multi-level CTE nesting, infrastructure utilization calculations, resource optimization, throughput efficiency metrics, and advanced window functions. Demonstrates production patterns used by port operators for infrastructure optimization.**
 
-**Description:** Enterprise-level port infrastructure analysis with multi-level CTE nesting, infrastructure utilization calculations, resource optimization, throughput efficiency metrics, and advanced window functions. Demonstrates production patterns used by port operators for infrastructure optimization.
+**Description:** Use Case: Port Operations - Comprehensive Port Infrastructure Utilization Analysis for Resource Optimization Description: Enterprise-level port infrastructure analysis with multi-level CTE nesting, infrastructure utilization calculations, resource optimization, throughput efficiency metrics, and advanced window functions. Demonstrates production patterns used by port operators for infrastructure optimization. Business Value: Port infrastructure report showing utilization rates, resource efficien
 
-**Business Value:** Port infrastructure report showing utilization rates, resource efficiency, throughput metrics, and optimization opportunities. Helps port operators optimize infrastructure usage, improve throughput, and reduce bottlenecks.
-
-**Purpose:** Provides comprehensive infrastructure intelligence by analyzing utilization patterns, identifying bottlenecks, calculating efficiency metrics, and enabling data-driven infrastructure optimization decisions.
+**Business Value:** Port infrastructure report showing utilization rates, resource efficien
 
 **Complexity:** Deep nested CTEs (7+ levels), infrastructure utilization calculations, resource efficiency analysis, window functions with multiple frame clauses, throughput metrics, bottleneck detection
-
-**Expected Output:** Port infrastructure report with utilization rates, resource efficiency, and optimization recommendations.
 
 ```sql
 WITH port_infrastructure_metrics AS (
@@ -9337,17 +9207,13 @@ LIMIT 2000;
 
 ## Query 26: Transit Time Variability Analysis with Reliability Scoring and Schedule Predictability {#query-26}
 
-**Use Case:** **Service Reliability - Comprehensive Transit Time Variability Analysis for Schedule Predictability**
+**Use Case:** **Service Reliability - Comprehensive Transit Time Variability Analysis for Schedule Predictability Description: Enterprise-level transit time variability analysis with multi-level CTE nesting, variability calculations, reliability scoring, schedule predictability metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for service reliability.**
 
-**Description:** Enterprise-level transit time variability analysis with multi-level CTE nesting, variability calculations, reliability scoring, schedule predictability metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for service reliability.
+**Description:** Use Case: Service Reliability - Comprehensive Transit Time Variability Analysis for Schedule Predictability Description: Enterprise-level transit time variability analysis with multi-level CTE nesting, variability calculations, reliability scoring, schedule predictability metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for service reliability. Business Value: Transit time variability report showing variability patterns, reliability scores, schedule
 
-**Business Value:** Transit time variability report showing variability patterns, reliability scores, schedule predictability, and optimization opportunities. Helps shipping lines improve schedule reliability, reduce variability, and enhance customer satisfaction.
-
-**Purpose:** Provides comprehensive reliability intelligence by analyzing transit time variability, calculating predictability metrics, identifying consistency patterns, and enabling data-driven reliability improvements.
+**Business Value:** Transit time variability report showing variability patterns, reliability scores, schedule
 
 **Complexity:** Deep nested CTEs (7+ levels), variability calculations, reliability scoring, window functions with multiple frame clauses, percentile calculations, predictability metrics, statistical analysis
-
-**Expected Output:** Transit time variability report with reliability scores, schedule predictability, and optimization recommendations.
 
 ```sql
 WITH sailing_transit_time_metrics AS (
@@ -9679,17 +9545,13 @@ LIMIT 2000;
 
 ## Query 27: Port Pair Trade Volume Trends Analysis with Growth Forecasting and Market Opportunity Identification {#query-27}
 
-**Use Case:** **Market Intelligence - Comprehensive Port Pair Trade Volume Trends Analysis for Strategic Planning**
+**Use Case:** **Market Intelligence - Comprehensive Port Pair Trade Volume Trends Analysis for Strategic Planning Description: Enterprise-level trade volume trends analysis with multi-level CTE nesting, trend detection, growth forecasting, market opportunity identification, and advanced window functions. Demonstrates production patterns used by shipping lines for strategic market planning.**
 
-**Description:** Enterprise-level trade volume trends analysis with multi-level CTE nesting, trend detection, growth forecasting, market opportunity identification, and advanced window functions. Demonstrates production patterns used by shipping lines for strategic market planning.
+**Description:** Use Case: Market Intelligence - Comprehensive Port Pair Trade Volume Trends Analysis for Strategic Planning Description: Enterprise-level trade volume trends analysis with multi-level CTE nesting, trend detection, growth forecasting, market opportunity identification, and advanced window functions. Demonstrates production patterns used by shipping lines for strategic market planning. Business Value: Trade volume trends report showing volume patterns, growth trends, forecasted demand, and market
 
-**Business Value:** Trade volume trends report showing volume patterns, growth trends, forecasted demand, and market opportunities. Helps shipping lines identify growth markets, plan capacity, and make strategic route decisions.
-
-**Purpose:** Provides comprehensive market intelligence by analyzing trade volume trends, forecasting growth, identifying opportunities, and enabling data-driven strategic planning decisions.
+**Business Value:** Trade volume trends report showing volume patterns, growth trends, forecasted demand, and market
 
 **Complexity:** Deep nested CTEs (7+ levels), trend analysis, growth forecasting, window functions with multiple frame clauses, temporal analysis, market opportunity scoring
-
-**Expected Output:** Trade volume trends report with growth forecasts, market opportunities, and strategic planning recommendations.
 
 ```sql
 WITH port_pair_monthly_volumes AS (
@@ -10022,17 +9884,13 @@ LIMIT 2000;
 
 ## Query 28: Vessel Deployment Strategy Analysis with Fleet Optimization and Route Allocation {#query-28}
 
-**Use Case:** **Fleet Strategy - Comprehensive Vessel Deployment Strategy Analysis for Fleet Optimization**
+**Use Case:** **Fleet Strategy - Comprehensive Vessel Deployment Strategy Analysis for Fleet Optimization Description: Enterprise-level vessel deployment analysis with multi-level CTE nesting, deployment optimization, route allocation analysis, fleet efficiency metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet strategy.**
 
-**Description:** Enterprise-level vessel deployment analysis with multi-level CTE nesting, deployment optimization, route allocation analysis, fleet efficiency metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet strategy.
+**Description:** Use Case: Fleet Strategy - Comprehensive Vessel Deployment Strategy Analysis for Fleet Optimization Description: Enterprise-level vessel deployment analysis with multi-level CTE nesting, deployment optimization, route allocation analysis, fleet efficiency metrics, and advanced window functions. Demonstrates production patterns used by shipping lines for fleet strategy. Business Value: Vessel deployment report showing deployment patterns, route allocation efficiency, fleet optimization opportunit
 
-**Business Value:** Vessel deployment report showing deployment patterns, route allocation efficiency, fleet optimization opportunities, and strategic recommendations. Helps shipping lines optimize vessel deployment, improve fleet utilization, and maximize operational efficiency.
-
-**Purpose:** Provides comprehensive deployment intelligence by analyzing vessel allocation, calculating efficiency metrics, identifying optimization opportunities, and enabling data-driven fleet strategy decisions.
+**Business Value:** Vessel deployment report showing deployment patterns, route allocation efficiency, fleet optimization opportunit
 
 **Complexity:** Deep nested CTEs (7+ levels), deployment optimization, route allocation analysis, window functions with multiple frame clauses, efficiency metrics, fleet strategy scoring
-
-**Expected Output:** Vessel deployment report with deployment patterns, route allocation efficiency, and fleet optimization recommendations.
 
 ```sql
 WITH vessel_route_deployment AS (
@@ -10308,17 +10166,13 @@ LIMIT 500;
 
 ## Query 29: Carrier Alliance Performance Analysis with Collaborative Efficiency Metrics and Network Synergy {#query-29}
 
-**Use Case:** **Strategic Partnerships - Comprehensive Carrier Alliance Performance Analysis for Partnership Optimization**
+**Use Case:** **Strategic Partnerships - Comprehensive Carrier Alliance Performance Analysis for Partnership Optimization Description: Enterprise-level carrier alliance analysis with multi-level CTE nesting, alliance performance metrics, collaborative efficiency calculations, network synergy analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for alliance management.**
 
-**Description:** Enterprise-level carrier alliance analysis with multi-level CTE nesting, alliance performance metrics, collaborative efficiency calculations, network synergy analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for alliance management.
+**Description:** Use Case: Strategic Partnerships - Comprehensive Carrier Alliance Performance Analysis for Partnership Optimization Description: Enterprise-level carrier alliance analysis with multi-level CTE nesting, alliance performance metrics, collaborative efficiency calculations, network synergy analysis, and advanced window functions. Demonstrates production patterns used by shipping lines for alliance management. Business Value: Carrier alliance report showing alliance performance, collaborative efficie
 
-**Business Value:** Carrier alliance report showing alliance performance, collaborative efficiency, network synergy, and partnership optimization opportunities. Helps shipping lines optimize alliances, improve collaboration, and maximize network benefits.
-
-**Purpose:** Provides comprehensive alliance intelligence by analyzing collaborative performance, calculating synergy metrics, identifying optimization opportunities, and enabling data-driven partnership decisions.
+**Business Value:** Carrier alliance report showing alliance performance, collaborative efficie
 
 **Complexity:** Deep nested CTEs (7+ levels), alliance performance analysis, collaborative metrics, window functions with multiple frame clauses, synergy calculations, partnership scoring
-
-**Expected Output:** Carrier alliance report with performance metrics, collaborative efficiency, and partnership optimization recommendations.
 
 ```sql
 WITH route_carrier_participation AS (
@@ -10580,17 +10434,13 @@ LIMIT 2000;
 
 ## Query 30: Comprehensive Maritime Intelligence Dashboard Query with Multi-Dimensional Analytics and Executive Summary {#query-30}
 
-**Use Case:** **Executive Dashboard - Comprehensive Maritime Intelligence Dashboard for Strategic Decision Making**
+**Use Case:** **Executive Dashboard - Comprehensive Maritime Intelligence Dashboard for Strategic Decision Making Description: Enterprise-level comprehensive dashboard query with multi-level CTE nesting, multi-dimensional analytics, executive summary metrics, KPI aggregation, and advanced window functions. Demonstrates production patterns used by shipping lines for executive dashboards and strategic intelligence.**
 
-**Description:** Enterprise-level comprehensive dashboard query with multi-level CTE nesting, multi-dimensional analytics, executive summary metrics, KPI aggregation, and advanced window functions. Demonstrates production patterns used by shipping lines for executive dashboards and strategic intelligence.
+**Description:** Use Case: Executive Dashboard - Comprehensive Maritime Intelligence Dashboard for Strategic Decision Making Description: Enterprise-level comprehensive dashboard query with multi-level CTE nesting, multi-dimensional analytics, executive summary metrics, KPI aggregation, and advanced window functions. Demonstrates production patterns used by shipping lines for executive dashboards and strategic intelligence. Business Value: Comprehensive maritime intelligence dashboard showing key performance ind
 
-**Business Value:** Comprehensive maritime intelligence dashboard showing key performance indicators, operational metrics, financial performance, market intelligence, and strategic insights. Helps shipping line executives make data-driven strategic decisions, monitor performance, and identify opportunities.
-
-**Purpose:** Provides comprehensive executive intelligence by aggregating key metrics across operations, finance, market, and strategy, calculating KPIs, and enabling data-driven executive decision making.
+**Business Value:** Comprehensive maritime intelligence dashboard showing key performance ind
 
 **Complexity:** Deep nested CTEs (8+ levels), multi-dimensional analytics, KPI aggregation, executive metrics, window functions with multiple frame clauses, comprehensive reporting, strategic insights
-
-**Expected Output:** Comprehensive maritime intelligence dashboard with KPIs, operational metrics, financial performance, market intelligence, and strategic insights.
 
 ```sql
 WITH operational_kpis AS (
@@ -10968,7 +10818,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260214-0148
+- **Generated**: 20260214-1523
 - **Database**: db-7
 - **Type**: Maritime Shipping Intelligence Database
 - **Queries**: 30 production queries

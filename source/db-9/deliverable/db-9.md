@@ -30,183 +30,171 @@ This document provides comprehensive documentation for database db-9, including 
 
 1. [Query 1: Multi-Carrier Rate Comparison with Zone Analysis and Cost Optimization](#query-1)
     - **Use Case:** Shipping platform needs to compare rates across USPS, UPS, and other carriers for a package and recommend the most cost-effective option based on weight, dimensions, and destination zone.
-    - *What it does:* Comprehensive rate comparison across multiple carriers with zone-based analysis, dimensional weight calculations, and cost optimization recommendation...
-    - *Business Value:* Enables shippers to save up to 87% on shipping costs by automatically identifying the cheapest carri...
-    - *Purpose:* Provide real-time rate comparison and cost optimization recommendations to help users select the mos...
+    - *What it does:* Description: Comprehensive rate comparison across multiple carriers with zone-based analysis, dimensional weight calculations, and cost optimization r...
+    - *Business Value:* Rate comparison results showing cheapest carrier, fastest carrier, cost savings potential, and detai...
 
 2. [Query 2: Shipping Zone Analysis with Geographic Distribution and Transit Time Optimization](#query-2)
     - **Use Case:** Shipping platform needs to analyze zone distributions across carriers, identify zones with longest transit times, and optimize shipping routes based on geographic patterns.
-    - *What it does:* Advanced zone analysis query that calculates shipping zone distributions, analyzes transit time patterns, identifies optimal shipping routes, and prov...
-    - *Business Value:* Helps optimize shipping operations by identifying zones with faster transit times, understanding geo...
-    - *Purpose:* Provide geographic shipping intelligence and zone-based analytics to support strategic shipping deci...
+    - *What it does:* Description: Advanced zone analysis query that calculates shipping zone distributions, analyzes transit time patterns, identifies optimal shipping rou...
+    - *Business Value:* Helps
 
 3. [Query 3: Shipment Tracking Analytics with Event Pattern Analysis and Delivery Prediction](#query-3)
     - **Use Case:** Shipping platform needs to analyze tracking event patterns, predict delivery dates based on historical data, identify shipments with potential delays, and provide delivery insights to users.
-    - *What it does:* Advanced tracking analytics query that analyzes shipment tracking events, identifies delivery patterns, predicts delivery dates, and detects anomalies...
-    - *Business Value:* Improves customer experience by providing accurate delivery predictions, early warning of potential...
-    - *Purpose:* Enable predictive delivery analytics and tracking pattern analysis to improve shipping visibility an...
+    - *What it does:* Description: Advanced tracking analytics query that analyzes shipment tracking events, identifies delivery patterns, predicts delivery dates, and dete...
+    - *Business Value:* Improves customer experience b
 
 4. [Query 4: Address Validation Quality Analysis with Correction Rate Metrics](#query-4)
     - **Use Case:** Shipping platform needs to analyze address validation performance, identify common address errors, measure correction rates, and improve address validation accuracy.
-    - *What it does:* Comprehensive address validation analysis that evaluates validation quality, correction rates, and address standardization effectiveness. Uses multipl...
-    - *Business Value:* Reduces shipping errors, improves delivery success rates, and minimizes address-related shipping cos...
-    - *Purpose:* Provide address validation analytics and quality metrics to improve address accuracy and reduce ship...
+    - *What it does:* Description: Comprehensive address validation analysis that evaluates validation quality, correction rates, and address standardization effectiveness....
+    - *Business Value:* Reduces shipping errors, improves deliv
 
 5. [Query 5: Shipping Cost Analytics with Revenue Optimization and Carrier Performance Comparison](#query-5)
     - **Use Case:** Shipping platform needs to analyze shipping costs, identify revenue opportunities, compare carrier performance, and optimize shipping spend.
-    - *What it does:* Comprehensive shipping cost analytics that analyzes revenue, identifies cost optimization opportunities, compares carrier performance, and provides fi...
-    - *Business Value:* Enables cost optimization, identifies revenue opportunities, and provides insights for strategic shi...
-    - *Purpose:* Provide financial analytics and cost optimization insights to improve shipping profitability and ope...
+    - *What it does:* Description: Comprehensive shipping cost analytics that analyzes revenue, identifies cost optimization opportunities, compares carrier performance, an...
+    - *Business Value:* Enables cost optimization, identifies revenue opportunities, and prov
 
 6. [Query 6: Bulk Shipping Preset Optimization with Weight Distribution Analysis](#query-6)
     - **Use Case:** Shipping platform needs to optimize bulk shipping presets to reduce costs, improve efficiency, and provide better default configurations for frequent shippers.
-    - *What it does:* Analyzes bulk shipping presets to optimize package configurations, weight distributions, and shipping costs. Uses multiple CTEs to analyze preset usag...
-    - *Business Value:* Reduces shipping costs for bulk shippers by optimizing preset configurations, improving shipping eff...
-    - *Purpose:* Optimize bulk shipping operations by analyzing preset usage and recommending cost-effective configur...
+    - *What it does:* Description: Analyzes bulk shipping presets to optimize package configurations, weight distributions, and shipping costs. Uses multiple CTEs to analyz...
+    - *Business Value:* Reduces shipping costs for bulk shippers by optimi
 
 7. [Query 7: International Shipping Customs Analysis with Duty and Tax Optimization](#query-7)
     - **Use Case:** Shipping platform needs to analyze international shipping customs data, optimize duty and tax calculations, and provide customs clearance insights for international shipments.
-    - *What it does:* Comprehensive international shipping customs analysis that calculates duty and tax amounts, identifies optimization opportunities, and analyzes custom...
-    - *Business Value:* Reduces international shipping costs by optimizing customs declarations, identifying duty savings op...
-    - *Purpose:* Provide international shipping customs analytics and optimization recommendations to reduce costs an...
+    - *What it does:* Description: Comprehensive international shipping customs analysis that calculates duty and tax amounts, identifies optimization opportunities, and an...
+    - *Business Value:* Reduces internatio
 
 8. [Query 8: Shipping Adjustment Analysis with Discrepancy Detection and Cost Recovery](#query-8)
     - **Use Case:** Shipping platform needs to analyze shipping adjustments, identify discrepancy patterns, and recover costs from carrier adjustments.
-    - *What it does:* Analyzes shipping adjustments to identify discrepancies, detect patterns, and calculate cost recovery opportunities. Uses multiple CTEs to analyze adj...
+    - *What it does:* Description: Analyzes shipping adjustments to identify discrepancies, detect patterns, and calculate cost recovery opportunities. Uses multiple CTEs t...
     - *Business Value:* Reduces shipping costs by identifying and preventing adjustment discrepancies, recovering costs from...
-    - *Purpose:* Provide shipping adjustment analytics to identify discrepancies, prevent future adjustments, and rec...
 
 9. [Query 9: API Rate Request Performance Analysis with Optimization Recommendations](#query-9)
     - **Use Case:** Shipping platform needs to optimize API rate requests to reduce latency, minimize errors, and improve overall API performance.
-    - *What it does:* Analyzes API rate request performance to identify bottlenecks, optimize request patterns, and improve API efficiency. Uses multiple CTEs to analyze re...
+    - *What it does:* Description: Analyzes API rate request performance to identify bottlenecks, optimize request patterns, and improve API efficiency. Uses multiple CTEs...
     - *Business Value:* Improves API performance, reduces latency, minimizes API costs, and enhances user experience by opti...
-    - *Purpose:* Provide API performance analytics and optimization recommendations to improve rate request efficienc...
 
 10. [Query 10: Shipping Analytics Dashboard with Revenue Trends and Performance Metrics](#query-10)
     - **Use Case:** Shipping platform needs a comprehensive analytics dashboard showing revenue trends, shipment volumes, carrier performance, and operational metrics for business intelligence.
-    - *What it does:* Comprehensive shipping analytics dashboard that aggregates revenue trends, performance metrics, and operational insights. Uses multiple CTEs to calcul...
-    - *Business Value:* Provides actionable business intelligence for strategic decision-making, performance monitoring, and...
-    - *Purpose:* Deliver comprehensive shipping analytics and business intelligence insights for strategic planning a...
+    - *What it does:* Description: Comprehensive shipping analytics dashboard that aggregates revenue trends, performance metrics, and operational insights. Uses multiple C...
+    - *Business Value:* Provides actionable business intelligence for strategic decision
 
 11. [Query 11: Dimensional Weight Optimization with Package Configuration Analysis](#query-11)
     - **Use Case:** Shipping platform needs to optimize package dimensions to minimize dimensional weight charges and reduce shipping costs.
-    - *What it does:* Analyzes dimensional weight calculations to optimize package configurations and reduce shipping costs. Uses multiple CTEs to calculate dimensional wei...
-    - *Business Value:* Reduces shipping costs by optimizing package dimensions, minimizing dimensional weight charges, and...
-    - *Purpose:* Provide dimensional weight optimization recommendations to reduce shipping costs and improve packagi...
+    - *What it does:* Description: Analyzes dimensional weight calculations to optimize package configurations and reduce shipping costs. Uses multiple CTEs to calculate di...
+    - *Business Value:* Reduces shipping costs by optimizing package dimensions, minimizing dimensional weight charges
 
 12. [Query 12: Shipping Zone Coverage Analysis with Geographic Gap Identification](#query-12)
     - **Use Case:** Shipping platform needs to identify geographic areas with limited zone coverage and optimize shipping routes.
-    - *What it does:* Analyzes shipping zone coverage to identify geographic gaps, optimize zone coverage, and improve shipping route efficiency. Uses multiple CTEs with re...
+    - *What it does:* Description: Analyzes shipping zone coverage to identify geographic gaps, optimize zone coverage, and improve shipping route efficiency. Uses multiple...
     - *Business Value:* Improves shipping coverage, reduces shipping costs, and enables better route optimization by identif...
-    - *Purpose:* Provide zone coverage analytics to identify gaps and optimize shipping route coverage.
+    - *Purpose:* Provide zone coverage
 
 13. [Query 13: Shipping Rate Volatility Analysis with Price Trend Prediction](#query-13)
     - **Use Case:** Shipping platform needs to analyze rate volatility, predict price trends, and optimize rate selection to minimize costs.
-    - *What it does:* Analyzes shipping rate volatility to identify price trends, predict rate changes, and optimize rate selection timing. Uses multiple CTEs for time-seri...
+    - *What it does:* Description: Analyzes shipping rate volatility to identify price trends, predict rate changes, and optimize rate selection timing. Uses multiple CTEs...
     - *Business Value:* Reduces shipping costs by predicting rate changes, optimizing rate selection timing, and identifying...
-    - *Purpose:* Provide rate volatility analytics and trend predictions to optimize shipping cost management.
+    - *Purpose:* Provide rate volati
 
 14. [Query 14: Carrier Service Performance Comparison with Delivery Time Analysis](#query-14)
     - **Use Case:** Shipping platform needs to compare carrier service performance to recommend the best carrier-service combination for different shipping needs.
-    - *What it does:* Compares carrier service performance across different routes and time periods, analyzing delivery times, success rates, and service reliability. Uses...
+    - *What it does:* Description: Compares carrier service performance across different routes and time periods, analyzing delivery times, success rates, and service relia...
     - *Business Value:* Improves shipping reliability and customer satisfaction by recommending optimal carrier-service comb...
-    - *Purpose:* Provide carrier service performance analytics to support optimal carrier selection decisions.
 
 15. [Query 15: Route Optimization Analysis with Cost and Time Trade-offs](#query-15)
     - **Use Case:** Shipping platform needs to optimize routes by analyzing cost-time trade-offs and identifying the most efficient shipping paths.
-    - *What it does:* Analyzes shipping routes to optimize cost and time trade-offs, identifying optimal routes based on multiple factors including cost, transit time, and...
+    - *What it does:* Description: Analyzes shipping routes to optimize cost and time trade-offs, identifying optimal routes based on multiple factors including cost, trans...
     - *Business Value:* Reduces shipping costs and improves delivery times by optimizing route selection based on comprehens...
-    - *Purpose:* Provide route optimization analytics to identify optimal shipping paths balancing cost and time.
+    - *Purpose:* Provide route optimization analytics
 
 16. [Query 16: Shipping Cost Breakdown Analysis with Component Cost Attribution](#query-16)
     - **Use Case:** Shipping platform needs to understand cost structure and identify opportunities to reduce shipping costs through component-level analysis.
-    - *What it does:* Comprehensive cost breakdown analysis that attributes shipping costs to different components (base rate, surcharges, insurance, signature, etc.) and i...
+    - *What it does:* Description: Comprehensive cost breakdown analysis that attributes shipping costs to different components (base rate, surcharges, insurance, signature...
     - *Business Value:* Enables cost optimization by identifying high-cost components and providing actionable insights for...
-    - *Purpose:* Provide detailed cost breakdown analytics to understand shipping cost structure and identify savings...
+    - *Purpose:* Prov
 
 17. [Query 17: Tracking Event Pattern Recognition with Anomaly Detection](#query-17)
     - **Use Case:** Shipping platform needs to identify tracking event patterns, detect anomalies, and predict potential delivery issues before they occur.
-    - *What it does:* Advanced tracking event pattern recognition that identifies normal delivery patterns, detects anomalies, and predicts potential issues using machine l...
+    - *What it does:* Description: Advanced tracking event pattern recognition that identifies normal delivery patterns, detects anomalies, and predicts potential issues us...
     - *Business Value:* Improves delivery reliability by detecting anomalies early and enabling proactive issue resolution.
-    - *Purpose:* Provide tracking pattern recognition and anomaly detection to improve shipping reliability and custo...
+    - *Purpose:* Provide tracking pattern recognitio
 
 18. [Query 18: Address Validation Quality Metrics with Correction Impact Analysis](#query-18)
     - **Use Case:** Shipping platform needs to measure address validation quality, analyze correction impact, and track quality trends.
-    - *What it does:* Comprehensive address validation quality metrics that analyze validation accuracy, correction impact, and quality trends over time.  **Use Case:** Shi...
+    - *What it does:* Description: Comprehensive address validation quality metrics that analyze validation accuracy, correction impact, and quality trends over time. Use C...
     - *Business Value:* Improves address accuracy, reduces shipping errors, and enables data quality improvements.
     - *Purpose:* Provide address validation quality metrics and correction impact analysis to improve address data qu...
 
 19. [Query 19: International Shipping Route Analysis with Customs Optimization](#query-19)
     - **Use Case:** Shipping platform needs to analyze international shipping routes and optimize them considering customs, duties, and transit times.
-    - *What it does:* Comprehensive international shipping route analysis that optimizes routes considering customs requirements, duty rates, and transit times.  **Use Case...
+    - *What it does:* Description: Comprehensive international shipping route analysis that optimizes routes considering customs requirements, duty rates, and transit times...
     - *Business Value:* Reduces international shipping costs and improves delivery times by optimizing routes and customs ha...
-    - *Purpose:* Provide international route optimization considering customs, duties, and transit efficiency.
+    - *Purpose:* Provide international route optimization considering customs, duties, and
 
 20. [Query 20: Carrier Rate Comparison Matrix with Multi-Dimensional Analysis](#query-20)
     - **Use Case:** Shipping platform needs a comprehensive rate comparison matrix to identify the best carrier-service combinations across different scenarios.
-    - *What it does:* Comprehensive carrier rate comparison matrix that compares rates across multiple dimensions including weight, zone, service type, and time periods.  *...
+    - *What it does:* Description: Comprehensive carrier rate comparison matrix that compares rates across multiple dimensions including weight, zone, service type, and tim...
     - *Business Value:* Enables optimal carrier selection by providing comprehensive rate comparisons across all relevant di...
-    - *Purpose:* Provide multi-dimensional rate comparison matrix for optimal carrier selection decisions.
+    - *Purpose:* Provide multi-dimensional rate comparison matrix for
 
 21. [Query 21: Package Dimension Optimization with Volume Efficiency Analysis](#query-21)
     - **Use Case:** Shipping platform needs to optimize package dimensions to minimize dimensional weight charges and improve packaging efficiency.
-    - *What it does:* Advanced package dimension optimization that analyzes volume efficiency, identifies optimal package configurations, and recommends dimension adjustmen...
+    - *What it does:* Description: Advanced package dimension optimization that analyzes volume efficiency, identifies optimal package configurations, and recommends dimens...
     - *Business Value:* Reduces shipping costs by optimizing package dimensions and minimizing dimensional weight charges.
-    - *Purpose:* Provide package dimension optimization recommendations to reduce shipping costs and improve packagin...
+    - *Purpose:* Provide package dimension optimization recom
 
 22. [Query 22: Shipping Zone Transit Time Analysis with Reliability Metrics](#query-22)
     - **Use Case:** Shipping platform needs to analyze zone transit times, evaluate reliability, and identify zones with performance issues.
-    - *What it does:* Comprehensive zone transit time analysis that evaluates actual vs expected transit times, calculates reliability metrics, and identifies zones with pe...
+    - *What it does:* Description: Comprehensive zone transit time analysis that evaluates actual vs expected transit times, calculates reliability metrics, and identifies...
     - *Business Value:* Improves shipping reliability by identifying zones with transit time issues and enabling proactive i...
-    - *Purpose:* Provide zone transit time analytics to evaluate reliability and identify performance issues.
+    - *Purpose:* Provide zone transit time analytics to evaluate re
 
 23. [Query 23: Customs Duty Optimization with Tariff Code Analysis](#query-23)
     - **Use Case:** Shipping platform needs to optimize customs duties by analyzing tariff codes and identifying cost reduction opportunities.
-    - *What it does:* Advanced customs duty optimization that analyzes tariff codes, duty rates, and identifies opportunities to reduce customs costs through proper classif...
+    - *What it does:* Description: Advanced customs duty optimization that analyzes tariff codes, duty rates, and identifies opportunities to reduce customs costs through p...
     - *Business Value:* Reduces international shipping costs by optimizing customs duty classification and identifying cost...
-    - *Purpose:* Provide customs duty optimization through tariff code analysis and classification optimization.
+    - *Purpose:* Provide customs duty optimization through tariff code analysi
 
 24. [Query 24: API Rate Cache Optimization with Hit Rate Analysis](#query-24)
     - **Use Case:** Shipping platform needs to optimize API rate caching to reduce API calls, improve performance, and minimize costs.
-    - *What it does:* Comprehensive API rate cache optimization that analyzes cache hit rates, identifies caching opportunities, and optimizes cache strategies to reduce AP...
+    - *What it does:* Description: Comprehensive API rate cache optimization that analyzes cache hit rates, identifies caching opportunities, and optimizes cache strategies...
     - *Business Value:* Reduces API costs and improves performance by optimizing cache strategies and maximizing cache hit r...
-    - *Purpose:* Provide API cache optimization analytics to reduce API calls and improve performance.
+    - *Purpose:* Provide API cache optimization analytics to redu
 
 25. [Query 25: Shipping Revenue Forecasting with Trend Analysis](#query-25)
     - **Use Case:** Shipping platform needs revenue forecasts for business planning, budgeting, and strategic decision-making.
-    - *What it does:* Advanced revenue forecasting that uses historical data, trend analysis, and predictive modeling to forecast future shipping revenue.  **Use Case:** Sh...
+    - *What it does:* Description: Advanced revenue forecasting that uses historical data, trend analysis, and predictive modeling to forecast future shipping revenue. Use...
     - *Business Value:* Enables accurate revenue planning and strategic decision-making through predictive revenue forecasti...
     - *Purpose:* Provide revenue forecasting capabilities for business planning and strategic decision-making.
 
 26. [Query 26: Carrier Performance Benchmarking with Industry Standards](#query-26)
     - **Use Case:** Shipping platform needs to benchmark carrier performance against industry standards and identify best practices.
-    - *What it does:* Comprehensive carrier performance benchmarking that compares carrier performance against industry standards and identifies best practices.  **Use Case...
+    - *What it does:* Description: Comprehensive carrier performance benchmarking that compares carrier performance against industry standards and identifies best practices...
     - *Business Value:* Enables performance improvement by benchmarking against industry standards and identifying best prac...
-    - *Purpose:* Provide carrier performance benchmarking to evaluate performance relative to industry standards.
+    - *Purpose:* Provide carrier performance benchmarking to evaluate performance relative to industry standar
 
 27. [Query 27: Dimensional Weight Cost Analysis with Optimization Recommendations](#query-27)
     - **Use Case:** Shipping platform needs to analyze dimensional weight costs and provide optimization recommendations to reduce charges.
-    - *What it does:* Comprehensive dimensional weight cost analysis that quantifies the impact of dimensional weight charges and provides optimization recommendations.  **...
+    - *What it does:* Description: Comprehensive dimensional weight cost analysis that quantifies the impact of dimensional weight charges and provides optimization recomme...
     - *Business Value:* Reduces shipping costs by optimizing package dimensions to minimize dimensional weight charges.
-    - *Purpose:* Provide dimensional weight cost analysis and optimization recommendations to reduce shipping costs.
+    - *Purpose:* Provide dimensional weight cost analysis and optimization recommendations to reduce shipp
 
 28. [Query 28: Shipping Route Efficiency Metrics with Performance Scoring](#query-28)
     - **Use Case:** Shipping platform needs route efficiency metrics to evaluate route performance and identify optimization opportunities.
-    - *What it does:* Advanced route efficiency analysis that calculates efficiency metrics, scores route performance, and identifies optimization opportunities.  **Use Cas...
+    - *What it does:* Description: Advanced route efficiency analysis that calculates efficiency metrics, scores route performance, and identifies optimization opportunitie...
     - *Business Value:* Improves shipping efficiency by identifying inefficient routes and enabling route optimization.
-    - *Purpose:* Provide route efficiency metrics and performance scoring to enable route optimization.
+    - *Purpose:* Provide route efficiency metrics and performance scoring to enable route optimization. Complexit
 
 29. [Query 29: Multi-Carrier Rate Aggregation with Best Rate Selection](#query-29)
     - **Use Case:** Shipping platform needs to aggregate rates from multiple carriers and select the best option based on cost, time, and reliability.
-    - *What it does:* Comprehensive multi-carrier rate aggregation that aggregates rates from multiple carriers, compares options, and selects the best rate based on multip...
+    - *What it does:* Description: Comprehensive multi-carrier rate aggregation that aggregates rates from multiple carriers, compares options, and selects the best rate ba...
     - *Business Value:* Enables optimal carrier selection by aggregating and comparing rates across all available carriers.
-    - *Purpose:* Provide multi-carrier rate aggregation and best rate selection for optimal carrier choice.
+    - *Purpose:* Provide multi-carrier rate aggregation and best rate selec
 
 30. [Query 30: Comprehensive Shipping Intelligence Dashboard with Real-Time Analytics](#query-30)
     - **Use Case:** Shipping platform needs a comprehensive dashboard showing all key shipping intelligence metrics and real-time analytics.
-    - *What it does:* Comprehensive shipping intelligence dashboard that aggregates all key metrics, provides real-time analytics, and delivers actionable insights for stra...
+    - *What it does:* Description: Comprehensive shipping intelligence dashboard that aggregates all key metrics, provides real-time analytics, and delivers actionable insi...
     - *Business Value:* Provides comprehensive shipping intelligence for strategic decision-making and performance monitorin...
-    - *Purpose:* Deliver comprehensive shipping intelligence dashboard with real-time analytics and actionable insigh...
+    - *Purpose:* Deliver comprehensive shipping intelligence dashboard w
 
 ### Additional Information
 
@@ -587,17 +575,11 @@ This database includes **30 production SQL queries**, each designed to solve spe
 
 **Use Case:** **Shipping platform needs to compare rates across USPS, UPS, and other carriers for a package and recommend the most cost-effective option based on weight, dimensions, and destination zone.**
 
-**Description:** Comprehensive rate comparison across multiple carriers with zone-based analysis, dimensional weight calculations, and cost optimization recommendations. Uses multiple CTEs to calculate rates, compare carriers, identify cheapest options, and analyze cost savings potential.
+**Description:** Description: Comprehensive rate comparison across multiple carriers with zone-based analysis, dimensional weight calculations, and cost optimization recommendations. Uses multiple CTEs to calculate rates, compare carriers, identify cheapest options, and analyze cost savings potential. Use Case: Shipping platform needs to compare rates across USPS, UPS, and other carriers for a package and recommend the most cost-effective option based on weight, dimensions, and destination zone. Business Value:
 
-**Use Case:** Shipping platform needs to compare rates across USPS, UPS, and other carriers for a package and recommend the most cost-effective option based on weight, dimensions, and destination zone.
-
-**Business Value:** Enables shippers to save up to 87% on shipping costs by automatically identifying the cheapest carrier and service type for each shipment, similar to Pirate Ship's rate comparison functionality.
-
-**Purpose:** Provide real-time rate comparison and cost optimization recommendations to help users select the most economical shipping option.
+**Business Value:** Rate comparison results showing cheapest carrier, fastest carrier, cost savings potential, and detailed rate breakdowns for all available options.
 
 **Complexity:** Multiple CTEs (5+ levels), zone calculations, dimensional weight logic, rate aggregation, window functions for ranking, cost savings calculations, carrier comparison analytics.
-
-**Expected Output:** Rate comparison results showing cheapest carrier, fastest carrier, cost savings potential, and detailed rate breakdowns for all available options.
 
 ```sql
 WITH package_dimensions AS (
@@ -748,17 +730,11 @@ ORDER BY rr.rate_rank, rr.speed_rank;
 
 **Use Case:** **Shipping platform needs to analyze zone distributions across carriers, identify zones with longest transit times, and optimize shipping routes based on geographic patterns.**
 
-**Description:** Advanced zone analysis query that calculates shipping zone distributions, analyzes transit time patterns, identifies optimal shipping routes, and provides geographic shipping intelligence. Uses recursive CTEs for zone path analysis and multiple aggregations for geographic insights.
+**Description:** Description: Advanced zone analysis query that calculates shipping zone distributions, analyzes transit time patterns, identifies optimal shipping routes, and provides geographic shipping intelligence. Uses recursive CTEs for zone path analysis and multiple aggregations for geographic insights. Use Case: Shipping platform needs to analyze zone distributions across carriers, identify zones with longest transit times, and optimize shipping routes based on geographic patterns. Business Value: Helps
 
-**Use Case:** Shipping platform needs to analyze zone distributions across carriers, identify zones with longest transit times, and optimize shipping routes based on geographic patterns.
-
-**Business Value:** Helps optimize shipping operations by identifying zones with faster transit times, understanding geographic shipping patterns, and enabling route optimization for cost and time savings.
-
-**Purpose:** Provide geographic shipping intelligence and zone-based analytics to support strategic shipping decisions and route optimization.
+**Business Value:** Helps
 
 **Complexity:** Recursive CTEs for zone path analysis, multiple aggregations, window functions for ranking zones, geographic calculations, transit time analysis, carrier comparison across zones.
-
-**Expected Output:** Zone analysis results showing zone distributions, average transit times by zone, geographic shipping patterns, and optimization recommendations.
 
 ```sql
 WITH RECURSIVE zone_hierarchy AS (
@@ -902,17 +878,11 @@ ORDER BY zr.zone_number;
 
 **Use Case:** **Shipping platform needs to analyze tracking event patterns, predict delivery dates based on historical data, identify shipments with potential delays, and provide delivery insights to users.**
 
-**Description:** Advanced tracking analytics query that analyzes shipment tracking events, identifies delivery patterns, predicts delivery dates, and detects anomalies. Uses multiple CTEs for event sequencing, pattern recognition, and predictive analytics.
+**Description:** Description: Advanced tracking analytics query that analyzes shipment tracking events, identifies delivery patterns, predicts delivery dates, and detects anomalies. Uses multiple CTEs for event sequencing, pattern recognition, and predictive analytics. Use Case: Shipping platform needs to analyze tracking event patterns, predict delivery dates based on historical data, identify shipments with potential delays, and provide delivery insights to users. Business Value: Improves customer experience b
 
-**Use Case:** Shipping platform needs to analyze tracking event patterns, predict delivery dates based on historical data, identify shipments with potential delays, and provide delivery insights to users.
-
-**Business Value:** Improves customer experience by providing accurate delivery predictions, early warning of potential delays, and insights into carrier performance patterns.
-
-**Purpose:** Enable predictive delivery analytics and tracking pattern analysis to improve shipping visibility and customer satisfaction.
+**Business Value:** Improves customer experience b
 
 **Complexity:** Multiple CTEs (6+ levels), event sequencing with window functions, pattern recognition logic, predictive date calculations, anomaly detection, carrier performance analysis.
-
-**Expected Output:** Tracking analytics showing delivery predictions, event patterns, anomaly detection results, and carrier performance metrics.
 
 ```sql
 WITH tracking_event_sequence AS (
@@ -1089,17 +1059,11 @@ ORDER BY ad.predicted_delivery_date, ad.predicted_delay_days DESC;
 
 **Use Case:** **Shipping platform needs to analyze address validation performance, identify common address errors, measure correction rates, and improve address validation accuracy.**
 
-**Description:** Comprehensive address validation analysis that evaluates validation quality, correction rates, and address standardization effectiveness. Uses multiple CTEs to analyze validation patterns, identify common correction types, and measure validation accuracy.
+**Description:** Description: Comprehensive address validation analysis that evaluates validation quality, correction rates, and address standardization effectiveness. Uses multiple CTEs to analyze validation patterns, identify common correction types, and measure validation accuracy. Use Case: Shipping platform needs to analyze address validation performance, identify common address errors, measure correction rates, and improve address validation accuracy. Business Value: Reduces shipping errors, improves deliv
 
-**Use Case:** Shipping platform needs to analyze address validation performance, identify common address errors, measure correction rates, and improve address validation accuracy.
-
-**Business Value:** Reduces shipping errors, improves delivery success rates, and minimizes address-related shipping costs by identifying and correcting address issues before shipment creation.
-
-**Purpose:** Provide address validation analytics and quality metrics to improve address accuracy and reduce shipping errors.
+**Business Value:** Reduces shipping errors, improves deliv
 
 **Complexity:** Multiple CTEs (4+ levels), address comparison logic, validation pattern analysis, correction rate calculations, quality metrics aggregation.
-
-**Expected Output:** Address validation analytics showing validation rates, correction patterns, quality metrics, and recommendations for improving address accuracy.
 
 ```sql
 WITH address_validation_comparison AS (
@@ -1240,17 +1204,11 @@ ORDER BY vqm.validation_date DESC;
 
 **Use Case:** **Shipping platform needs to analyze shipping costs, identify revenue opportunities, compare carrier performance, and optimize shipping spend.**
 
-**Description:** Comprehensive shipping cost analytics that analyzes revenue, identifies cost optimization opportunities, compares carrier performance, and provides financial insights. Uses multiple CTEs for cost aggregation, carrier comparison, and revenue analysis.
+**Description:** Description: Comprehensive shipping cost analytics that analyzes revenue, identifies cost optimization opportunities, compares carrier performance, and provides financial insights. Uses multiple CTEs for cost aggregation, carrier comparison, and revenue analysis. Use Case: Shipping platform needs to analyze shipping costs, identify revenue opportunities, compare carrier performance, and optimize shipping spend. Business Value: Enables cost optimization, identifies revenue opportunities, and prov
 
-**Use Case:** Shipping platform needs to analyze shipping costs, identify revenue opportunities, compare carrier performance, and optimize shipping spend.
-
-**Business Value:** Enables cost optimization, identifies revenue opportunities, and provides insights for strategic shipping decisions to maximize profitability.
-
-**Purpose:** Provide financial analytics and cost optimization insights to improve shipping profitability and operational efficiency.
+**Business Value:** Enables cost optimization, identifies revenue opportunities, and prov
 
 **Complexity:** Multiple CTEs (5+ levels), cost aggregation, revenue calculations, carrier performance comparison, optimization recommendations, financial metrics.
-
-**Expected Output:** Shipping cost analytics showing revenue metrics, cost breakdowns, carrier performance comparisons, and optimization recommendations.
 
 ```sql
 WITH shipment_cost_details AS (
@@ -1413,17 +1371,11 @@ ORDER BY cpm.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to optimize bulk shipping presets to reduce costs, improve efficiency, and provide better default configurations for frequent shippers.**
 
-**Description:** Analyzes bulk shipping presets to optimize package configurations, weight distributions, and shipping costs. Uses multiple CTEs to analyze preset usage patterns, identify optimization opportunities, and recommend cost-effective preset configurations.
+**Description:** Description: Analyzes bulk shipping presets to optimize package configurations, weight distributions, and shipping costs. Uses multiple CTEs to analyze preset usage patterns, identify optimization opportunities, and recommend cost-effective preset configurations. Use Case: Shipping platform needs to optimize bulk shipping presets to reduce costs, improve efficiency, and provide better default configurations for frequent shippers. Business Value: Reduces shipping costs for bulk shippers by optimi
 
-**Use Case:** Shipping platform needs to optimize bulk shipping presets to reduce costs, improve efficiency, and provide better default configurations for frequent shippers.
-
-**Business Value:** Reduces shipping costs for bulk shippers by optimizing preset configurations, improving shipping efficiency, and enabling better cost management.
-
-**Purpose:** Optimize bulk shipping operations by analyzing preset usage and recommending cost-effective configurations.
+**Business Value:** Reduces shipping costs for bulk shippers by optimi
 
 **Complexity:** Multiple CTEs (4+ levels), weight distribution analysis, preset usage patterns, cost optimization calculations, aggregation analytics.
-
-**Expected Output:** Bulk shipping preset optimization results showing recommended configurations, cost savings potential, and usage patterns.
 
 ```sql
 WITH preset_usage_analysis AS (
@@ -1518,17 +1470,11 @@ ORDER BY pr.total_potential_savings DESC;
 
 **Use Case:** **Shipping platform needs to analyze international shipping customs data, optimize duty and tax calculations, and provide customs clearance insights for international shipments.**
 
-**Description:** Comprehensive international shipping customs analysis that calculates duty and tax amounts, identifies optimization opportunities, and analyzes customs clearance patterns. Uses multiple CTEs for customs value calculations, duty optimization, and clearance analytics.
+**Description:** Description: Comprehensive international shipping customs analysis that calculates duty and tax amounts, identifies optimization opportunities, and analyzes customs clearance patterns. Uses multiple CTEs for customs value calculations, duty optimization, and clearance analytics. Use Case: Shipping platform needs to analyze international shipping customs data, optimize duty and tax calculations, and provide customs clearance insights for international shipments. Business Value: Reduces internatio
 
-**Use Case:** Shipping platform needs to analyze international shipping customs data, optimize duty and tax calculations, and provide customs clearance insights for international shipments.
-
-**Business Value:** Reduces international shipping costs by optimizing customs declarations, identifying duty savings opportunities, and improving customs clearance success rates.
-
-**Purpose:** Provide international shipping customs analytics and optimization recommendations to reduce costs and improve clearance efficiency.
+**Business Value:** Reduces internatio
 
 **Complexity:** Multiple CTEs (5+ levels), customs value calculations, duty and tax optimization, clearance pattern analysis, international shipping analytics.
-
-**Expected Output:** International customs analysis showing duty amounts, tax calculations, optimization opportunities, and clearance success rates.
 
 ```sql
 WITH international_shipment_details AS (
@@ -1656,17 +1602,11 @@ ORDER BY ccp.clearance_success_rate DESC, ccp.avg_clearance_days ASC;
 
 **Use Case:** **Shipping platform needs to analyze shipping adjustments, identify discrepancy patterns, and recover costs from carrier adjustments.**
 
-**Description:** Analyzes shipping adjustments to identify discrepancies, detect patterns, and calculate cost recovery opportunities. Uses multiple CTEs to analyze adjustment types, identify root causes, and quantify financial impact.
+**Description:** Description: Analyzes shipping adjustments to identify discrepancies, detect patterns, and calculate cost recovery opportunities. Uses multiple CTEs to analyze adjustment types, identify root causes, and quantify financial impact. Use Case: Shipping platform needs to analyze shipping adjustments, identify discrepancy patterns, and recover costs from carrier adjustments. Business Value: Reduces shipping costs by identifying and preventing adjustment discrepancies, recovering costs from incorrect
 
-**Use Case:** Shipping platform needs to analyze shipping adjustments, identify discrepancy patterns, and recover costs from carrier adjustments.
-
-**Business Value:** Reduces shipping costs by identifying and preventing adjustment discrepancies, recovering costs from incorrect adjustments, and improving shipping accuracy.
-
-**Purpose:** Provide shipping adjustment analytics to identify discrepancies, prevent future adjustments, and recover costs.
+**Business Value:** Reduces shipping costs by identifying and preventing adjustment discrepancies, recovering costs from incorrect
 
 **Complexity:** Multiple CTEs (4+ levels), adjustment pattern analysis, discrepancy detection, cost recovery calculations, root cause analysis.
-
-**Expected Output:** Shipping adjustment analysis showing adjustment types, discrepancy patterns, cost recovery opportunities, and prevention recommendations.
 
 ```sql
 WITH adjustment_details AS (
@@ -1800,17 +1740,11 @@ ORDER BY as_stats.total_adjustment_amount DESC;
 
 **Use Case:** **Shipping platform needs to optimize API rate requests to reduce latency, minimize errors, and improve overall API performance.**
 
-**Description:** Analyzes API rate request performance to identify bottlenecks, optimize request patterns, and improve API efficiency. Uses multiple CTEs to analyze response times, error rates, and request patterns.
+**Description:** Description: Analyzes API rate request performance to identify bottlenecks, optimize request patterns, and improve API efficiency. Uses multiple CTEs to analyze response times, error rates, and request patterns. Use Case: Shipping platform needs to optimize API rate requests to reduce latency, minimize errors, and improve overall API performance. Business Value: Improves API performance, reduces latency, minimizes API costs, and enhances user experience by optimizing rate request patterns. Purpo
 
-**Use Case:** Shipping platform needs to optimize API rate requests to reduce latency, minimize errors, and improve overall API performance.
-
-**Business Value:** Improves API performance, reduces latency, minimizes API costs, and enhances user experience by optimizing rate request patterns.
-
-**Purpose:** Provide API performance analytics and optimization recommendations to improve rate request efficiency.
+**Business Value:** Improves API performance, reduces latency, minimizes API costs, and enhances user experience by optimizing rate request patterns. Purpo
 
 **Complexity:** Multiple CTEs (5+ levels), API performance analysis, response time calculations, error pattern detection, optimization recommendations.
-
-**Expected Output:** API performance analysis showing response times, error rates, optimization opportunities, and performance recommendations.
 
 ```sql
 WITH api_request_details AS (
@@ -1948,17 +1882,11 @@ ORDER BY or_rec.avg_response_time_ms DESC;
 
 **Use Case:** **Shipping platform needs a comprehensive analytics dashboard showing revenue trends, shipment volumes, carrier performance, and operational metrics for business intelligence.**
 
-**Description:** Comprehensive shipping analytics dashboard that aggregates revenue trends, performance metrics, and operational insights. Uses multiple CTEs to calculate key performance indicators, trend analysis, and comparative metrics.
+**Description:** Description: Comprehensive shipping analytics dashboard that aggregates revenue trends, performance metrics, and operational insights. Uses multiple CTEs to calculate key performance indicators, trend analysis, and comparative metrics. Use Case: Shipping platform needs a comprehensive analytics dashboard showing revenue trends, shipment volumes, carrier performance, and operational metrics for business intelligence. Business Value: Provides actionable business intelligence for strategic decision
 
-**Use Case:** Shipping platform needs a comprehensive analytics dashboard showing revenue trends, shipment volumes, carrier performance, and operational metrics for business intelligence.
-
-**Business Value:** Provides actionable business intelligence for strategic decision-making, performance monitoring, and revenue optimization.
-
-**Purpose:** Deliver comprehensive shipping analytics and business intelligence insights for strategic planning and performance monitoring.
+**Business Value:** Provides actionable business intelligence for strategic decision
 
 **Complexity:** Multiple CTEs (6+ levels), revenue trend analysis, performance metrics aggregation, comparative analytics, time-series analysis.
-
-**Expected Output:** Shipping analytics dashboard showing revenue trends, shipment volumes, performance metrics, and business intelligence insights.
 
 ```sql
 WITH daily_shipment_summary AS (
@@ -2114,17 +2042,11 @@ LIMIT 30;
 
 **Use Case:** **Shipping platform needs to optimize package dimensions to minimize dimensional weight charges and reduce shipping costs.**
 
-**Description:** Analyzes dimensional weight calculations to optimize package configurations and reduce shipping costs. Uses multiple CTEs to calculate dimensional weights, identify optimization opportunities, and recommend cost-effective package configurations.
+**Description:** Description: Analyzes dimensional weight calculations to optimize package configurations and reduce shipping costs. Uses multiple CTEs to calculate dimensional weights, identify optimization opportunities, and recommend cost-effective package configurations. Use Case: Shipping platform needs to optimize package dimensions to minimize dimensional weight charges and reduce shipping costs. Business Value: Reduces shipping costs by optimizing package dimensions, minimizing dimensional weight charges
 
-**Use Case:** Shipping platform needs to optimize package dimensions to minimize dimensional weight charges and reduce shipping costs.
-
-**Business Value:** Reduces shipping costs by optimizing package dimensions, minimizing dimensional weight charges, and improving packaging efficiency.
-
-**Purpose:** Provide dimensional weight optimization recommendations to reduce shipping costs and improve packaging efficiency.
+**Business Value:** Reduces shipping costs by optimizing package dimensions, minimizing dimensional weight charges
 
 **Complexity:** Multiple CTEs (4+ levels), dimensional weight calculations, package optimization logic, cost savings analysis.
-
-**Expected Output:** Dimensional weight optimization results showing recommended package configurations and cost savings potential.
 
 ```sql
 WITH package_dimension_analysis AS (
@@ -2241,17 +2163,13 @@ ORDER BY pcr.dimensional_weight_cost_impact DESC;
 
 **Use Case:** **Shipping platform needs to identify geographic areas with limited zone coverage and optimize shipping routes.**
 
-**Description:** Analyzes shipping zone coverage to identify geographic gaps, optimize zone coverage, and improve shipping route efficiency. Uses multiple CTEs with recursive logic to analyze zone coverage patterns.
-
-**Use Case:** Shipping platform needs to identify geographic areas with limited zone coverage and optimize shipping routes.
+**Description:** Description: Analyzes shipping zone coverage to identify geographic gaps, optimize zone coverage, and improve shipping route efficiency. Uses multiple CTEs with recursive logic to analyze zone coverage patterns. Use Case: Shipping platform needs to identify geographic areas with limited zone coverage and optimize shipping routes. Business Value: Improves shipping coverage, reduces shipping costs, and enables better route optimization by identifying geographic gaps. Purpose: Provide zone coverage
 
 **Business Value:** Improves shipping coverage, reduces shipping costs, and enables better route optimization by identifying geographic gaps.
 
-**Purpose:** Provide zone coverage analytics to identify gaps and optimize shipping route coverage.
+**Purpose:** Provide zone coverage
 
 **Complexity:** Multiple CTEs (5+ levels), recursive zone analysis, geographic gap detection, coverage optimization.
-
-**Expected Output:** Zone coverage analysis showing coverage gaps, optimization opportunities, and route recommendations.
 
 ```sql
 WITH RECURSIVE zone_coverage_map AS (
@@ -2353,17 +2271,13 @@ ORDER BY ccc.has_no_coverage DESC, ccc.carrier_count ASC;
 
 **Use Case:** **Shipping platform needs to analyze rate volatility, predict price trends, and optimize rate selection to minimize costs.**
 
-**Description:** Analyzes shipping rate volatility to identify price trends, predict rate changes, and optimize rate selection timing. Uses multiple CTEs for time-series analysis and trend prediction.
-
-**Use Case:** Shipping platform needs to analyze rate volatility, predict price trends, and optimize rate selection to minimize costs.
+**Description:** Description: Analyzes shipping rate volatility to identify price trends, predict rate changes, and optimize rate selection timing. Uses multiple CTEs for time-series analysis and trend prediction. Use Case: Shipping platform needs to analyze rate volatility, predict price trends, and optimize rate selection to minimize costs. Business Value: Reduces shipping costs by predicting rate changes, optimizing rate selection timing, and identifying cost-saving opportunities. Purpose: Provide rate volati
 
 **Business Value:** Reduces shipping costs by predicting rate changes, optimizing rate selection timing, and identifying cost-saving opportunities.
 
-**Purpose:** Provide rate volatility analytics and trend predictions to optimize shipping cost management.
+**Purpose:** Provide rate volati
 
 **Complexity:** Multiple CTEs (5+ levels), time-series analysis, volatility calculations, trend prediction, rate optimization.
-
-**Expected Output:** Rate volatility analysis showing price trends, volatility metrics, and optimization recommendations.
 
 ```sql
 WITH rate_history_analysis AS (
@@ -2501,17 +2415,11 @@ ORDER BY rp.rate_volatility DESC, rp.potential_savings_from_min_rate DESC;
 
 **Use Case:** **Shipping platform needs to compare carrier service performance to recommend the best carrier-service combination for different shipping needs.**
 
-**Description:** Compares carrier service performance across different routes and time periods, analyzing delivery times, success rates, and service reliability. Uses multiple CTEs for performance comparison and reliability analysis.
+**Description:** Description: Compares carrier service performance across different routes and time periods, analyzing delivery times, success rates, and service reliability. Uses multiple CTEs for performance comparison and reliability analysis. Use Case: Shipping platform needs to compare carrier service performance to recommend the best carrier-service combination for different shipping needs. Business Value: Improves shipping reliability and customer satisfaction by recommending optimal carrier-service combi
 
-**Use Case:** Shipping platform needs to compare carrier service performance to recommend the best carrier-service combination for different shipping needs.
-
-**Business Value:** Improves shipping reliability and customer satisfaction by recommending optimal carrier-service combinations based on performance data.
-
-**Purpose:** Provide carrier service performance analytics to support optimal carrier selection decisions.
+**Business Value:** Improves shipping reliability and customer satisfaction by recommending optimal carrier-service combi
 
 **Complexity:** Multiple CTEs (5+ levels), performance comparison, delivery time analysis, reliability metrics, service ranking.
-
-**Expected Output:** Carrier service performance comparison showing delivery times, success rates, and reliability metrics.
 
 ```sql
 WITH shipment_delivery_metrics AS (
@@ -2645,17 +2553,13 @@ ORDER BY pc.overall_rank_score ASC;
 
 **Use Case:** **Shipping platform needs to optimize routes by analyzing cost-time trade-offs and identifying the most efficient shipping paths.**
 
-**Description:** Analyzes shipping routes to optimize cost and time trade-offs, identifying optimal routes based on multiple factors including cost, transit time, and reliability.
-
-**Use Case:** Shipping platform needs to optimize routes by analyzing cost-time trade-offs and identifying the most efficient shipping paths.
+**Description:** Description: Analyzes shipping routes to optimize cost and time trade-offs, identifying optimal routes based on multiple factors including cost, transit time, and reliability. Use Case: Shipping platform needs to optimize routes by analyzing cost-time trade-offs and identifying the most efficient shipping paths. Business Value: Reduces shipping costs and improves delivery times by optimizing route selection based on comprehensive cost-time analysis. Purpose: Provide route optimization analytics
 
 **Business Value:** Reduces shipping costs and improves delivery times by optimizing route selection based on comprehensive cost-time analysis.
 
-**Purpose:** Provide route optimization analytics to identify optimal shipping paths balancing cost and time.
+**Purpose:** Provide route optimization analytics
 
 **Complexity:** Multiple CTEs (5+ levels), route analysis, cost-time optimization, path finding algorithms, multi-factor decision analysis.
-
-**Expected Output:** Route optimization results showing optimal routes, cost-time trade-offs, and efficiency metrics.
 
 ```sql
 WITH base_data AS (
@@ -2753,17 +2657,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to understand cost structure and identify opportunities to reduce shipping costs through component-level analysis.**
 
-**Description:** Comprehensive cost breakdown analysis that attributes shipping costs to different components (base rate, surcharges, insurance, signature, etc.) and identifies cost optimization opportunities.
-
-**Use Case:** Shipping platform needs to understand cost structure and identify opportunities to reduce shipping costs through component-level analysis.
+**Description:** Description: Comprehensive cost breakdown analysis that attributes shipping costs to different components (base rate, surcharges, insurance, signature, etc.) and identifies cost optimization opportunities. Use Case: Shipping platform needs to understand cost structure and identify opportunities to reduce shipping costs through component-level analysis. Business Value: Enables cost optimization by identifying high-cost components and providing actionable insights for cost reduction. Purpose: Prov
 
 **Business Value:** Enables cost optimization by identifying high-cost components and providing actionable insights for cost reduction.
 
-**Purpose:** Provide detailed cost breakdown analytics to understand shipping cost structure and identify savings opportunities.
+**Purpose:** Prov
 
 **Complexity:** Multiple CTEs (4+ levels), cost component analysis, cost attribution, optimization recommendations, cost trend analysis.
-
-**Expected Output:** Cost breakdown analysis showing component costs, cost attribution, and optimization recommendations.
 
 ```sql
 WITH base_data AS (
@@ -2861,17 +2761,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to identify tracking event patterns, detect anomalies, and predict potential delivery issues before they occur.**
 
-**Description:** Advanced tracking event pattern recognition that identifies normal delivery patterns, detects anomalies, and predicts potential issues using machine learning-like pattern analysis.
-
-**Use Case:** Shipping platform needs to identify tracking event patterns, detect anomalies, and predict potential delivery issues before they occur.
+**Description:** Description: Advanced tracking event pattern recognition that identifies normal delivery patterns, detects anomalies, and predicts potential issues using machine learning-like pattern analysis. Use Case: Shipping platform needs to identify tracking event patterns, detect anomalies, and predict potential delivery issues before they occur. Business Value: Improves delivery reliability by detecting anomalies early and enabling proactive issue resolution. Purpose: Provide tracking pattern recognitio
 
 **Business Value:** Improves delivery reliability by detecting anomalies early and enabling proactive issue resolution.
 
-**Purpose:** Provide tracking pattern recognition and anomaly detection to improve shipping reliability and customer satisfaction.
+**Purpose:** Provide tracking pattern recognitio
 
 **Complexity:** Multiple CTEs (6+ levels), pattern recognition, anomaly detection, sequence analysis, predictive analytics, statistical analysis.
-
-**Expected Output:** Tracking pattern analysis showing normal patterns, detected anomalies, and predictive insights.
 
 ```sql
 WITH base_data AS (
@@ -2969,17 +2865,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to measure address validation quality, analyze correction impact, and track quality trends.**
 
-**Description:** Comprehensive address validation quality metrics that analyze validation accuracy, correction impact, and quality trends over time.
-
-**Use Case:** Shipping platform needs to measure address validation quality, analyze correction impact, and track quality trends.
+**Description:** Description: Comprehensive address validation quality metrics that analyze validation accuracy, correction impact, and quality trends over time. Use Case: Shipping platform needs to measure address validation quality, analyze correction impact, and track quality trends. Business Value: Improves address accuracy, reduces shipping errors, and enables data quality improvements. Purpose: Provide address validation quality metrics and correction impact analysis to improve address data quality. Comple
 
 **Business Value:** Improves address accuracy, reduces shipping errors, and enables data quality improvements.
 
-**Purpose:** Provide address validation quality metrics and correction impact analysis to improve address data quality.
+**Purpose:** Provide address validation quality metrics and correction impact analysis to improve address data quality. Comple
 
 **Complexity:** Multiple CTEs (4+ levels), quality metrics calculation, correction impact analysis, trend analysis, quality scoring.
-
-**Expected Output:** Address validation quality metrics showing accuracy rates, correction impact, and quality trends.
 
 ```sql
 WITH base_data AS (
@@ -3077,17 +2969,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to analyze international shipping routes and optimize them considering customs, duties, and transit times.**
 
-**Description:** Comprehensive international shipping route analysis that optimizes routes considering customs requirements, duty rates, and transit times.
-
-**Use Case:** Shipping platform needs to analyze international shipping routes and optimize them considering customs, duties, and transit times.
+**Description:** Description: Comprehensive international shipping route analysis that optimizes routes considering customs requirements, duty rates, and transit times. Use Case: Shipping platform needs to analyze international shipping routes and optimize them considering customs, duties, and transit times. Business Value: Reduces international shipping costs and improves delivery times by optimizing routes and customs handling. Purpose: Provide international route optimization considering customs, duties, and
 
 **Business Value:** Reduces international shipping costs and improves delivery times by optimizing routes and customs handling.
 
-**Purpose:** Provide international route optimization considering customs, duties, and transit efficiency.
+**Purpose:** Provide international route optimization considering customs, duties, and
 
 **Complexity:** Multiple CTEs (5+ levels), international route analysis, customs optimization, duty rate analysis, transit time optimization.
-
-**Expected Output:** International route analysis showing optimal routes, customs considerations, and cost-time trade-offs.
 
 ```sql
 WITH base_data AS (
@@ -3185,17 +3073,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs a comprehensive rate comparison matrix to identify the best carrier-service combinations across different scenarios.**
 
-**Description:** Comprehensive carrier rate comparison matrix that compares rates across multiple dimensions including weight, zone, service type, and time periods.
-
-**Use Case:** Shipping platform needs a comprehensive rate comparison matrix to identify the best carrier-service combinations across different scenarios.
+**Description:** Description: Comprehensive carrier rate comparison matrix that compares rates across multiple dimensions including weight, zone, service type, and time periods. Use Case: Shipping platform needs a comprehensive rate comparison matrix to identify the best carrier-service combinations across different scenarios. Business Value: Enables optimal carrier selection by providing comprehensive rate comparisons across all relevant dimensions. Purpose: Provide multi-dimensional rate comparison matrix for
 
 **Business Value:** Enables optimal carrier selection by providing comprehensive rate comparisons across all relevant dimensions.
 
-**Purpose:** Provide multi-dimensional rate comparison matrix for optimal carrier selection decisions.
+**Purpose:** Provide multi-dimensional rate comparison matrix for
 
 **Complexity:** Multiple CTEs (6+ levels), multi-dimensional analysis, rate matrix generation, comparative analytics, optimization recommendations.
-
-**Expected Output:** Rate comparison matrix showing carrier rates across multiple dimensions and optimal selections.
 
 ```sql
 WITH base_data AS (
@@ -3293,17 +3177,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to optimize package dimensions to minimize dimensional weight charges and improve packaging efficiency.**
 
-**Description:** Advanced package dimension optimization that analyzes volume efficiency, identifies optimal package configurations, and recommends dimension adjustments to minimize shipping costs.
-
-**Use Case:** Shipping platform needs to optimize package dimensions to minimize dimensional weight charges and improve packaging efficiency.
+**Description:** Description: Advanced package dimension optimization that analyzes volume efficiency, identifies optimal package configurations, and recommends dimension adjustments to minimize shipping costs. Use Case: Shipping platform needs to optimize package dimensions to minimize dimensional weight charges and improve packaging efficiency. Business Value: Reduces shipping costs by optimizing package dimensions and minimizing dimensional weight charges. Purpose: Provide package dimension optimization recom
 
 **Business Value:** Reduces shipping costs by optimizing package dimensions and minimizing dimensional weight charges.
 
-**Purpose:** Provide package dimension optimization recommendations to reduce shipping costs and improve packaging efficiency.
+**Purpose:** Provide package dimension optimization recom
 
 **Complexity:** Multiple CTEs (5+ levels), dimension optimization, volume efficiency analysis, cost minimization, geometric calculations.
-
-**Expected Output:** Package dimension optimization results showing recommended dimensions and cost savings potential.
 
 ```sql
 WITH base_data AS (
@@ -3401,17 +3281,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to analyze zone transit times, evaluate reliability, and identify zones with performance issues.**
 
-**Description:** Comprehensive zone transit time analysis that evaluates actual vs expected transit times, calculates reliability metrics, and identifies zones with performance issues.
-
-**Use Case:** Shipping platform needs to analyze zone transit times, evaluate reliability, and identify zones with performance issues.
+**Description:** Description: Comprehensive zone transit time analysis that evaluates actual vs expected transit times, calculates reliability metrics, and identifies zones with performance issues. Use Case: Shipping platform needs to analyze zone transit times, evaluate reliability, and identify zones with performance issues. Business Value: Improves shipping reliability by identifying zones with transit time issues and enabling proactive improvements. Purpose: Provide zone transit time analytics to evaluate re
 
 **Business Value:** Improves shipping reliability by identifying zones with transit time issues and enabling proactive improvements.
 
-**Purpose:** Provide zone transit time analytics to evaluate reliability and identify performance issues.
+**Purpose:** Provide zone transit time analytics to evaluate re
 
 **Complexity:** Multiple CTEs (5+ levels), transit time analysis, reliability metrics, performance evaluation, zone ranking.
-
-**Expected Output:** Zone transit time analysis showing actual vs expected times, reliability metrics, and performance rankings.
 
 ```sql
 WITH base_data AS (
@@ -3509,17 +3385,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to optimize customs duties by analyzing tariff codes and identifying cost reduction opportunities.**
 
-**Description:** Advanced customs duty optimization that analyzes tariff codes, duty rates, and identifies opportunities to reduce customs costs through proper classification.
-
-**Use Case:** Shipping platform needs to optimize customs duties by analyzing tariff codes and identifying cost reduction opportunities.
+**Description:** Description: Advanced customs duty optimization that analyzes tariff codes, duty rates, and identifies opportunities to reduce customs costs through proper classification. Use Case: Shipping platform needs to optimize customs duties by analyzing tariff codes and identifying cost reduction opportunities. Business Value: Reduces international shipping costs by optimizing customs duty classification and identifying cost savings. Purpose: Provide customs duty optimization through tariff code analysi
 
 **Business Value:** Reduces international shipping costs by optimizing customs duty classification and identifying cost savings.
 
-**Purpose:** Provide customs duty optimization through tariff code analysis and classification optimization.
+**Purpose:** Provide customs duty optimization through tariff code analysi
 
 **Complexity:** Multiple CTEs (5+ levels), tariff code analysis, duty optimization, classification analysis, cost reduction recommendations.
-
-**Expected Output:** Customs duty optimization results showing tariff code analysis and cost reduction opportunities.
 
 ```sql
 WITH base_data AS (
@@ -3617,17 +3489,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to optimize API rate caching to reduce API calls, improve performance, and minimize costs.**
 
-**Description:** Comprehensive API rate cache optimization that analyzes cache hit rates, identifies caching opportunities, and optimizes cache strategies to reduce API calls and improve performance.
-
-**Use Case:** Shipping platform needs to optimize API rate caching to reduce API calls, improve performance, and minimize costs.
+**Description:** Description: Comprehensive API rate cache optimization that analyzes cache hit rates, identifies caching opportunities, and optimizes cache strategies to reduce API calls and improve performance. Use Case: Shipping platform needs to optimize API rate caching to reduce API calls, improve performance, and minimize costs. Business Value: Reduces API costs and improves performance by optimizing cache strategies and maximizing cache hit rates. Purpose: Provide API cache optimization analytics to redu
 
 **Business Value:** Reduces API costs and improves performance by optimizing cache strategies and maximizing cache hit rates.
 
-**Purpose:** Provide API cache optimization analytics to reduce API calls and improve performance.
+**Purpose:** Provide API cache optimization analytics to redu
 
 **Complexity:** Multiple CTEs (4+ levels), cache hit rate analysis, cache optimization, API call reduction, performance improvement.
-
-**Expected Output:** API cache optimization results showing hit rates, caching opportunities, and performance improvements.
 
 ```sql
 WITH base_data AS (
@@ -3725,17 +3593,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs revenue forecasts for business planning, budgeting, and strategic decision-making.**
 
-**Description:** Advanced revenue forecasting that uses historical data, trend analysis, and predictive modeling to forecast future shipping revenue.
-
-**Use Case:** Shipping platform needs revenue forecasts for business planning, budgeting, and strategic decision-making.
+**Description:** Description: Advanced revenue forecasting that uses historical data, trend analysis, and predictive modeling to forecast future shipping revenue. Use Case: Shipping platform needs revenue forecasts for business planning, budgeting, and strategic decision-making. Business Value: Enables accurate revenue planning and strategic decision-making through predictive revenue forecasting. Purpose: Provide revenue forecasting capabilities for business planning and strategic decision-making. Complexity: Mu
 
 **Business Value:** Enables accurate revenue planning and strategic decision-making through predictive revenue forecasting.
 
 **Purpose:** Provide revenue forecasting capabilities for business planning and strategic decision-making.
 
 **Complexity:** Multiple CTEs (6+ levels), time-series analysis, trend analysis, predictive modeling, revenue forecasting, statistical analysis.
-
-**Expected Output:** Revenue forecasts showing predicted revenue, confidence intervals, and trend analysis.
 
 ```sql
 WITH base_data AS (
@@ -3833,17 +3697,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to benchmark carrier performance against industry standards and identify best practices.**
 
-**Description:** Comprehensive carrier performance benchmarking that compares carrier performance against industry standards and identifies best practices.
-
-**Use Case:** Shipping platform needs to benchmark carrier performance against industry standards and identify best practices.
+**Description:** Description: Comprehensive carrier performance benchmarking that compares carrier performance against industry standards and identifies best practices. Use Case: Shipping platform needs to benchmark carrier performance against industry standards and identify best practices. Business Value: Enables performance improvement by benchmarking against industry standards and identifying best practices. Purpose: Provide carrier performance benchmarking to evaluate performance relative to industry standar
 
 **Business Value:** Enables performance improvement by benchmarking against industry standards and identifying best practices.
 
-**Purpose:** Provide carrier performance benchmarking to evaluate performance relative to industry standards.
+**Purpose:** Provide carrier performance benchmarking to evaluate performance relative to industry standar
 
 **Complexity:** Multiple CTEs (5+ levels), performance benchmarking, industry standard comparison, best practice identification, performance scoring.
-
-**Expected Output:** Carrier performance benchmarks showing performance relative to industry standards and best practices.
 
 ```sql
 WITH base_data AS (
@@ -3941,17 +3801,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to analyze dimensional weight costs and provide optimization recommendations to reduce charges.**
 
-**Description:** Comprehensive dimensional weight cost analysis that quantifies the impact of dimensional weight charges and provides optimization recommendations.
-
-**Use Case:** Shipping platform needs to analyze dimensional weight costs and provide optimization recommendations to reduce charges.
+**Description:** Description: Comprehensive dimensional weight cost analysis that quantifies the impact of dimensional weight charges and provides optimization recommendations. Use Case: Shipping platform needs to analyze dimensional weight costs and provide optimization recommendations to reduce charges. Business Value: Reduces shipping costs by optimizing package dimensions to minimize dimensional weight charges. Purpose: Provide dimensional weight cost analysis and optimization recommendations to reduce shipp
 
 **Business Value:** Reduces shipping costs by optimizing package dimensions to minimize dimensional weight charges.
 
-**Purpose:** Provide dimensional weight cost analysis and optimization recommendations to reduce shipping costs.
+**Purpose:** Provide dimensional weight cost analysis and optimization recommendations to reduce shipp
 
 **Complexity:** Multiple CTEs (4+ levels), dimensional weight analysis, cost impact quantification, optimization recommendations, cost savings calculation.
-
-**Expected Output:** Dimensional weight cost analysis showing cost impact and optimization recommendations.
 
 ```sql
 WITH base_data AS (
@@ -4049,17 +3905,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs route efficiency metrics to evaluate route performance and identify optimization opportunities.**
 
-**Description:** Advanced route efficiency analysis that calculates efficiency metrics, scores route performance, and identifies optimization opportunities.
-
-**Use Case:** Shipping platform needs route efficiency metrics to evaluate route performance and identify optimization opportunities.
+**Description:** Description: Advanced route efficiency analysis that calculates efficiency metrics, scores route performance, and identifies optimization opportunities. Use Case: Shipping platform needs route efficiency metrics to evaluate route performance and identify optimization opportunities. Business Value: Improves shipping efficiency by identifying inefficient routes and enabling route optimization. Purpose: Provide route efficiency metrics and performance scoring to enable route optimization. Complexit
 
 **Business Value:** Improves shipping efficiency by identifying inefficient routes and enabling route optimization.
 
-**Purpose:** Provide route efficiency metrics and performance scoring to enable route optimization.
+**Purpose:** Provide route efficiency metrics and performance scoring to enable route optimization. Complexit
 
 **Complexity:** Multiple CTEs (5+ levels), efficiency metrics calculation, performance scoring, route ranking, optimization identification.
-
-**Expected Output:** Route efficiency metrics showing efficiency scores, performance rankings, and optimization opportunities.
 
 ```sql
 WITH base_data AS (
@@ -4157,17 +4009,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs to aggregate rates from multiple carriers and select the best option based on cost, time, and reliability.**
 
-**Description:** Comprehensive multi-carrier rate aggregation that aggregates rates from multiple carriers, compares options, and selects the best rate based on multiple criteria.
-
-**Use Case:** Shipping platform needs to aggregate rates from multiple carriers and select the best option based on cost, time, and reliability.
+**Description:** Description: Comprehensive multi-carrier rate aggregation that aggregates rates from multiple carriers, compares options, and selects the best rate based on multiple criteria. Use Case: Shipping platform needs to aggregate rates from multiple carriers and select the best option based on cost, time, and reliability. Business Value: Enables optimal carrier selection by aggregating and comparing rates across all available carriers. Purpose: Provide multi-carrier rate aggregation and best rate selec
 
 **Business Value:** Enables optimal carrier selection by aggregating and comparing rates across all available carriers.
 
-**Purpose:** Provide multi-carrier rate aggregation and best rate selection for optimal carrier choice.
+**Purpose:** Provide multi-carrier rate aggregation and best rate selec
 
 **Complexity:** Multiple CTEs (6+ levels), rate aggregation, multi-criteria decision analysis, best rate selection, carrier comparison.
-
-**Expected Output:** Multi-carrier rate aggregation showing all available rates and best rate selections.
 
 ```sql
 WITH base_data AS (
@@ -4265,17 +4113,13 @@ ORDER BY or_rec.total_revenue DESC;
 
 **Use Case:** **Shipping platform needs a comprehensive dashboard showing all key shipping intelligence metrics and real-time analytics.**
 
-**Description:** Comprehensive shipping intelligence dashboard that aggregates all key metrics, provides real-time analytics, and delivers actionable insights for strategic decision-making.
-
-**Use Case:** Shipping platform needs a comprehensive dashboard showing all key shipping intelligence metrics and real-time analytics.
+**Description:** Description: Comprehensive shipping intelligence dashboard that aggregates all key metrics, provides real-time analytics, and delivers actionable insights for strategic decision-making. Use Case: Shipping platform needs a comprehensive dashboard showing all key shipping intelligence metrics and real-time analytics. Business Value: Provides comprehensive shipping intelligence for strategic decision-making and performance monitoring. Purpose: Deliver comprehensive shipping intelligence dashboard w
 
 **Business Value:** Provides comprehensive shipping intelligence for strategic decision-making and performance monitoring.
 
-**Purpose:** Deliver comprehensive shipping intelligence dashboard with real-time analytics and actionable insights.
+**Purpose:** Deliver comprehensive shipping intelligence dashboard w
 
 **Complexity:** Multiple CTEs (7+ levels), comprehensive aggregation, real-time analytics, multi-dimensional analysis, dashboard metrics, strategic insights.
-
-**Expected Output:** Comprehensive dashboard showing all key shipping intelligence metrics, trends, and actionable insights.
 
 ```sql
 WITH base_data AS (
@@ -4414,7 +4258,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260214-0148
+- **Generated**: 20260214-1523
 - **Database**: db-9
 - **Type**: Shipping Intelligence Database
 - **Queries**: 30 production queries

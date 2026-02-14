@@ -29,31 +29,60 @@ class QueryExtractor:
 
 
 def extract_queries(md_path: Path) -> List[Dict]:
-    """Extract queries from queries.md. Returns list of {number, title, description, complexity, expected_output, sql, line_number}."""
+    """Extract queries from queries.md. Supports:
+    - Legacy: ## Query N: Title with ```sql blocks
+    - BIRD-style: ### Query N — title with ```json blocks containing SQL key
+    Returns list of {number, title, description, complexity, expected_output, sql, line_number}."""
     content = md_path.read_text(encoding="utf-8")
-    headers = list(re.finditer(r"^## Query (\d+):\s*(.+)$", content, re.MULTILINE))
+    # Match ## Query N: or ### Query N (with optional — suffix)
+    headers = list(re.finditer(r"^#{2,3} Query (\d+)[:\s—\-]*(.*)$", content, re.MULTILINE))
     out = []
     for i, m in enumerate(headers):
-        qnum, title = int(m.group(1)), m.group(2).strip()
+        qnum, title = int(m.group(1)), (m.group(2) or "").strip()
+        if not title and "—" in m.group(0):
+            title = m.group(0).split("—", 1)[-1].strip() or f"Query {qnum}"
         start, end = m.start(), headers[i + 1].start() if i + 1 < len(headers) else len(content)
         section = content[start:end]
+        sql_text = None
+        desc = title or f"Query {qnum}"
+        complexity = ""
+        expected = "Query results"
+
+        # Try ```sql block first (legacy)
         sql_m = re.search(r"```(?:sql)?\n(.*?)```", section, re.DOTALL)
-        if not sql_m:
+        if sql_m:
+            sql_text = sql_m.group(1).strip()
+            desc_text = section[: sql_m.start()]
+            desc_lines = [re.sub(r"\*\*([^*]+)\*\*", r"\1", re.sub(r"`([^`]+)`", r"\1", L.strip())) for L in desc_text.split("\n") if L.strip() and not L.startswith("#")]
+            desc = " ".join(desc_lines).strip() or title
+            cm = re.search(r"\*\*Complexity:\*\*\s*(.+?)(?:\n|$)", desc_text, re.I)
+            em = re.search(r"\*\*Expected Output:\*\*\s*(.+?)(?:\n|$)", desc_text, re.I)
+            complexity = (cm.group(1).strip() if cm else "")[:500]
+            expected = (em.group(1).strip() if em else "Query results")[:200]
+        else:
+            # Try ```json block (BIRD-style)
+            json_m = re.search(r"```(?:json)?\n(.*?)```", section, re.DOTALL)
+            if json_m:
+                try:
+                    obj = json.loads(json_m.group(1))
+                    sql_text = obj.get("SQL", obj.get("sql", ""))
+                    if isinstance(sql_text, str) and sql_text.strip():
+                        title = (obj.get("question", "") or title or f"Query {qnum}").strip()
+                        desc = (obj.get("evidence", title) or title)[:500]
+                        expected = (obj.get("expected_output", "Query results") or "Query results")[:200]
+                        complexity = (obj.get("difficulty", "") or "")[:500]
+                except json.JSONDecodeError:
+                    pass
+
+        if not sql_text or not sql_text.strip():
             continue
-        desc_text = section[: sql_m.start()]
-        desc_lines = [re.sub(r"\*\*([^*]+)\*\*", r"\1", re.sub(r"`([^`]+)`", r"\1", L.strip())) for L in desc_text.split("\n") if L.strip() and not L.startswith("#")]
-        desc = " ".join(desc_lines).strip() or title
-        cm = re.search(r"\*\*Complexity:\*\*\s*(.+?)(?:\n|$)", desc_text, re.I)
-        em = re.search(r"\*\*Expected Output:\*\*\s*(.+?)(?:\n|$)", desc_text, re.I)
-        complexity = (cm.group(1).strip() if cm else "") or ""
-        expected = (em.group(1).strip() if em else "Query results") or "Query results"
         out.append({
             "number": qnum,
-            "title": title,
+            "title": title or f"Query {qnum}",
             "description": (desc[:500] if desc else title[:200]),
-            "complexity": complexity[:500] if complexity else "",
+            "complexity": complexity,
             "expected_output": expected[:200] if expected else "Query results",
-            "sql": sql_m.group(1).strip(),
+            "sql": sql_text.strip(),
             "line_number": content[:start].count("\n") + 1,
         })
     return sorted(out, key=lambda x: x["number"])

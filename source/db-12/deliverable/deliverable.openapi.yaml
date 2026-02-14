@@ -39,279 +39,292 @@ info:
     \ this query generates\n- Business Value: The business impact and value delivered\n\
     - Complexity: Technical complexity indicators\n- SQL Code: Complete, production-ready\
     \ SQL query\n\n---\n\nUse Case: CardPointers Best Card Wizard - Identify which\
-    \ card to use for maximum rewards on every purchase category, merchant, and time\
-    \ period with opportunity cost analysis.\n\nDescription: Analyzes user spending\
-    \ patterns across multiple dimensions (categories, merchants, time periods) to\
-    \ identify optimal card usage, calculate potential rewards lost from suboptimal\
-    \ card selection, and compare portfolio performance against optimal strategy.\
-    \ Uses recursive CTEs for hierarchical category analysis, window functions for\
-    \ temporal trends, and complex aggregations for multi-card portfolio optimization.\n\
-    \nUse Case: CardPointers Best Card Wizard - Identify which card to use for maximum\
-    \ rewards on every purchase category, merchant, and time period with opportunity\
-    \ cost analysis.\n\nBusiness Value: Provides users with personalized card recommendations\
-    \ showing potential annual savings of $750+ by optimizing card usage across all\
-    \ spending categories and merchants.\n\nPurpose: Maximize credit card rewards\
-    \ by identifying optimal card selection for each transaction type, calculating\
-    \ opportunity costs of suboptimal choices, and providing actionable recommendations.\n\
-    \nComplexity: Deep nested CTEs (8+ levels), recursive CTEs for category hierarchies,\
-    \ complex window functions with multiple frame clauses, correlated subqueries,\
-    \ percentile calculations, multi-dimensional aggregations, opportunity cost calculations\n\
-    \nExpected Output: Comprehensive report showing optimal card for each category/merchant\
-    \ combination, potential rewards lost from current usage, portfolio performance\
-    \ metrics, and ranked recommendations by savings potential.\n\n---\n\nUse Case:\
-    \ CardPointers Location-Based Recommendations - Show which card to use at nearby\
-    \ stores using AR camera or location services with real-time merchant matching.\n\
-    \nDescription: Analyzes user location and nearby merchants to provide real-time\
-    \ card recommendations using geospatial calculations, merchant category matching,\
-    \ and distance-based optimization. Uses spatial joins, proximity calculations,\
-    \ and multi-dimensional scoring to identify optimal cards for nearby merchants.\n\
-    \nUse Case: CardPointers Location-Based Recommendations - Show which card to use\
-    \ at nearby stores using AR camera or location services with real-time merchant\
-    \ matching.\n\nBusiness Value: Provides location-aware card recommendations showing\
-    \ optimal card for each nearby merchant, enabling users to maximize rewards at\
-    \ physical locations they visit.\n\nPurpose: Maximize rewards by providing real-time,\
-    \ location-specific card recommendations based on user's current location and\
-    \ nearby merchant data.\n\nComplexity: Geospatial operations (ST_DISTANCE, ST_WITHIN),\
-    \ multiple CTEs (7+ levels), window functions, proximity scoring, merchant category\
-    \ matching, distance-weighted recommendations\n\nExpected Output: Ranked list\
-    \ of nearby merchants with optimal card recommendations, expected rewards, distance,\
-    \ and activation status of applicable offers.\n\n---\n\nUse Case: CardPointers\
-    \ Offer Management - Auto-add and track Amex, Chase, BoA, Citi, Wells Fargo, and\
-    \ US Bank offers with activation recommendations and savings tracking.\n\nDescription:\
-    \ Analyzes bank offers across multiple issuers (Amex, Chase, BoA, Citi, Wells\
-    \ Fargo, US Bank) to identify optimal offers for user's card portfolio, tracks\
-    \ activation status, calculates potential savings, and provides activation recommendations.\
-    \ Uses complex joins across offer tables, aggregations, window functions, and\
-    \ multi-dimensional scoring to optimize offer utilization.\n\nUse Case: CardPointers\
-    \ Offer Management - Auto-add and track Amex, Chase, BoA, Citi, Wells Fargo, and\
-    \ US Bank offers with activation recommendations and savings tracking.\n\nBusiness\
-    \ Value: Identifies unactivated offers worth $500+ annually, provides activation\
-    \ recommendations, tracks offer redemption performance across all user cards,\
-    \ and maximizes savings from bank offers.\n\nPurpose: Maximize savings from bank\
-    \ offers by identifying eligible offers, tracking activation status, calculating\
-    \ potential savings, and providing actionable activation recommendations.\n\n\
+    \ card to use for ma\n\nDescription: Description: Analyzes user spending patterns\
+    \ across multiple dimensions (categories, merchants, time periods) to identify\
+    \ optimal card usage, calculate potential rewards lost from suboptimal card selection,\
+    \ and compare portfolio performance against optimal strategy. Uses recursive CTEs\
+    \ for hierarchical category analysis, window functions for temporal trends, and\
+    \ complex aggregations for multi-card portfolio optimization. Use Case: CardPointers\
+    \ Best Card Wizard - Identify which card to use for ma\n\nBusiness Value: Comprehensive\
+    \ report showing optimal card for each category/merchant combination, potential\
+    \ rewards lost from current usage, portfolio performance metrics, and ranked recommendations\
+    \ by savings potent\n\nComplexity: Deep nested CTEs (8+ levels), recursive CTEs\
+    \ for category hierarchies, complex window functions with multiple frame clauses,\
+    \ correlated subqueries, percentile calculations, multi-dimensional aggregations,\
+    \ opportunity cost calculations\n\n---\n\nUse Case: CardPointers Location-Based\
+    \ Recommendations - Show which card to use at nearby stores using AR camera or\
+    \ location services with real-time merchant matching.\n\nDescription: Description:\
+    \ Analyzes user location and nearby merchants to provide real-time card recommendations\
+    \ using geospatial calculations, merchant category matching, and distance-based\
+    \ optimization. Uses spatial joins, proximity calculations, and multi-dimensional\
+    \ scoring to identify optimal cards for nearby merchants. Use Case: CardPointers\
+    \ Location-Based Recommendations - Show which card to use at nearby stores using\
+    \ AR camera or location services with real-time merchant matching. Business Value:\
+    \ Prov\n\nBusiness Value: Prov\n\nComplexity: Geospatial operations (ST_DISTANCE,\
+    \ ST_WITHIN), multiple CTEs (7+ levels), window functions, proximity scoring,\
+    \ merchant category matching, distance-weighted recommendations\n\n---\n\nUse\
+    \ Case: CardPointers Offer Management - Auto-add and track Amex, Chase, BoA, Citi,\
+    \ Wells Fargo, and US Bank o\n\nDescription: Description: Analyzes bank offers\
+    \ across multiple issuers (Amex, Chase, BoA, Citi, Wells Fargo, US Bank) to identify\
+    \ optimal offers for user's card portfolio, tracks activation status, calculates\
+    \ potential savings, and provides activation recommendations. Uses complex joins\
+    \ across offer tables, aggregations, window functions, and multi-dimensional scoring\
+    \ to optimize offer utilization. Use Case: CardPointers Offer Management - Auto-add\
+    \ and track Amex, Chase, BoA, Citi, Wells Fargo, and US Bank o\n\nBusiness Value:\
+    \ Comprehensive list of available offers with eligibility status, activation recommendations,\
+    \ potential savings, redemption tracking, and prioritized activation list.\n\n\
     Complexity: Multiple CTEs (8+ levels), complex joins across offer tables, window\
     \ functions with multiple frame clauses, activation status tracking, savings calculations,\
-    \ offer ranking, multi-card eligibility analysis\n\nExpected Output: Comprehensive\
-    \ list of available offers with eligibility status, activation recommendations,\
-    \ potential savings, redemption tracking, and prioritized activation list.\n\n\
-    ---\n\nUse Case: Credit Card Analysis - Assess issuer reputation and risk based\
-    \ on CFPB complaint data for card selection decisions and portfolio risk management.\n\
-    \nDescription: Analyzes CFPB consumer complaints to assess issuer risk, identify\
-    \ complaint trends, forecast future complaint volumes, and correlate complaints\
-    \ with card features. Uses time-series analysis, correlation calculations, window\
-    \ functions with multiple frame clauses, trend forecasting, and risk scoring algorithms\
-    \ to evaluate issuer quality and customer service performance.\n\nUse Case: Credit\
-    \ Card Analysis - Assess issuer reputation and risk based on CFPB complaint data\
-    \ for card selection decisions and portfolio risk management.\n\nBusiness Value:\
-    \ Provides issuer risk scores based on complaint data, enabling users to avoid\
-    \ issuers with poor customer service records and high complaint rates. Helps identify\
-    \ issuers with improving or deteriorating service quality.\n\nPurpose: Evaluate\
-    \ issuer quality and customer service performance using government complaint data\
-    \ to inform card selection decisions and portfolio risk assessment.\n\nComplexity:\
-    \ Time-series analysis, correlation calculations, window functions with multiple\
-    \ frame clauses (ROWS BETWEEN, RANGE BETWEEN), trend forecasting, risk scoring\
-    \ algorithms, recursive CTEs for trend analysis, percentile calculations, moving\
-    \ averages\n\nExpected Output: Comprehensive issuer risk assessment with complaint\
-    \ trends, forecasted complaint volumes, risk scores, and recommendations for card\
-    \ selection based on issuer reputation.\n\n---\n\nUse Case: Market Analysis -\
-    \ Understand consumer credit trends and market conditions for strategic card portfolio\
-    \ decisions\n\nDescription: Analyzes Federal Reserve G.19 consumer credit data\
-    \ to identify trends, segment markets, forecast credit growth, and correlate with\
-    \ card features. Uses advanced time-series analysis, segmentation algorithms,\
-    \ and predictive modeling.\n\nUse Case: Market Analysis - Understand consumer\
-    \ credit trends and market conditions for strategic card portfolio decisions\n\
-    \nBusiness Value: Provides market insights showing credit growth trends, interest\
-    \ rate movements, and market conditions affecting card availability and terms\n\
-    \nPurpose: Understand macro-economic credit trends to inform strategic card portfolio\
-    \ decisions and timing of applications\n\nComplexity: Time-series analysis, market\
-    \ segmentation, trend forecasting, correlation analysis, window functions, predictive\
-    \ indicators, multiple CTEs (8+ levels)\n\nExpected Output: [Description of expected\
-    \ output]\n\n---\n\nUse Case: Chase Application Strategy - Track 5/24 status and\
-    \ optimize application timing for maximum Chase card approvals\n\nDescription:\
-    \ Tracks Chase 5/24 status across user profiles, calculates optimal application\
-    \ timing, identifies eligible cards, and provides application strategy recommendations.\
-    \ Uses recursive CTEs for application history tracking and complex timing calculations.\n\
-    \nUse Case: Chase Application Strategy - Track 5/24 status and optimize application\
-    \ timing for maximum Chase card approvals\n\nBusiness Value: Prevents wasted applications\
-    \ by tracking 5/24 status, identifies optimal timing for Chase applications, and\
-    \ maximizes approval chances\n\nPurpose: Optimize Chase card application strategy\
-    \ by tracking 5/24 rule compliance and identifying optimal application windows\n\
-    \nComplexity: Recursive CTEs for application history, date calculations, timing\
-    \ optimization, window functions, strategy recommendations, multiple CTEs (8+\
-    \ levels)\n\nExpected Output: [Description of expected output]\n\n---\n\nUse Case:\
+    \ offer ranking, multi-card eligibility analysis\n\n---\n\nUse Case: Credit Card\
+    \ Analysis - Assess issuer reputation and risk based on CFPB complaint data for\
+    \ card selection d\n\nDescription: Description: Analyzes CFPB consumer complaints\
+    \ to assess issuer risk, identify complaint trends, forecast future complaint\
+    \ volumes, and correlate complaints with card features. Uses time-series analysis,\
+    \ correlation calculations, window functions with multiple frame clauses, trend\
+    \ forecasting, and risk scoring algorithms to evaluate issuer quality and customer\
+    \ service performance. Use Case: Credit Card Analysis - Assess issuer reputation\
+    \ and risk based on CFPB complaint data for card selection d\n\nBusiness Value:\
+    \ Comprehensive issuer risk assessment with complaint trends, forecasted complaint\
+    \ volumes, risk scores, and recommendations for card selection based on issuer\
+    \ reputation.\n\nComplexity: Time-series analysis, correlation calculations, window\
+    \ functions with multiple frame clauses (ROWS BETWEEN, RANGE BETWEEN), trend forecasting,\
+    \ risk scoring algorithms, recursive CTEs for trend analysis, percentile calculations,\
+    \ moving averages\n\n---\n\nUse Case: Market Analysis - Understand consumer credit\
+    \ trends and market conditions for strategic card portfolio decisions\n\nDescription:\
+    \ Description: Analyzes Federal Reserve G.19 consumer credit data to identify\
+    \ trends, segment markets, forecast credit growth, and correlate with card features.\
+    \ Uses advanced time-series analysis, segmentation algorithms, and predictive\
+    \ modeling. Use Case: Market Analysis - Understand consumer credit trends and\
+    \ market conditions for strategic card portfolio decisions Business Value: Provides\
+    \ market insights showing credit growth trends, interest rate movements, and market\
+    \ conditions affecting card\n\nBusiness Value: Provides market insights showing\
+    \ credit growth trends, interest rate movements, and market conditions affecting\
+    \ card\n\nComplexity: Time-series analysis, market segmentation, trend forecasting,\
+    \ correlation analysis, window functions, predictive indicators, multiple CTEs\
+    \ (8+ levels)\n\n---\n\nUse Case: Chase Application Strategy - Track 5/24 status\
+    \ and optimize application timing for maximum Chase card approvals\n\nDescription:\
+    \ Description: Tracks Chase 5/24 status across user profiles, calculates optimal\
+    \ application timing, identifies eligible cards, and provides application strategy\
+    \ recommendations. Uses recursive CTEs for application history tracking and complex\
+    \ timing calculations. Use Case: Chase Application Strategy - Track 5/24 status\
+    \ and optimize application timing for maximum Chase card approvals Business Value:\
+    \ Prevents wasted applications by tracking 5/24 status, identifies optimal timing\
+    \ for Chase applicati\n\nBusiness Value: Prevents wasted applications by tracking\
+    \ 5/24 status, identifies optimal timing for Chase applicati\n\nComplexity: Recursive\
+    \ CTEs for application history, date calculations, timing optimization, window\
+    \ functions, strategy recommendations, multiple CTEs (8+ levels)\n\n---\n\nUse\
+    \ Case: Card Portfolio Management - Determine which cards to keep or cancel based\
+    \ on annual fee value analysis\n\nDescription: Description: Analyzes annual fees\
+    \ across card portfolio, calculates renewal value based on rewards earned, identifies\
+    \ cards to cancel or keep, and optimizes portfolio cost structure. Uses complex\
+    \ cost-benefit analysis, ROI calculations, and portfolio optimization. Use Case:\
     \ Card Portfolio Management - Determine which cards to keep or cancel based on\
-    \ annual fee value analysis\n\nDescription: Analyzes annual fees across card portfolio,\
-    \ calculates renewal value based on rewards earned, identifies cards to cancel\
-    \ or keep, and optimizes portfolio cost structure. Uses complex cost-benefit analysis,\
-    \ ROI calculations, and portfolio optimization.\n\nUse Case: Card Portfolio Management\
-    \ - Determine which cards to keep or cancel based on annual fee value analysis\n\
-    \nBusiness Value: Saves $200-500 annually by identifying cards with negative ROI,\
-    \ optimizing portfolio costs, and maximizing value from annual fees\n\nPurpose:\
-    \ Optimize card portfolio by analyzing annual fee value and making data-driven\
-    \ decisions about card retention\n\nComplexity: Cost-benefit analysis, ROI calculations,\
+    \ annual fee value analysis Business Value: Saves $200-500 annually by identifying\
+    \ cards with negative ROI, optimizing portfolio costs, and maximizing\n\nBusiness\
+    \ Value: Saves $200-500 annually by identifying cards with negative ROI, optimizing\
+    \ portfolio costs, and maximizing\n\nComplexity: Cost-benefit analysis, ROI calculations,\
     \ portfolio optimization, window functions, value scoring algorithms, multiple\
-    \ CTEs (8+ levels)\n\nExpected Output: [Description of expected output]\n\n---\n\
-    \nUse Case: Signup Bonus Optimization - Track progress toward signup bonuses and\
-    \ optimize spending to maximize bonus earnings\n\nDescription: Tracks signup bonus\
-    \ progress across all cards, calculates minimum spend requirements, identifies\
-    \ optimal spending allocation, and provides timing recommendations for bonus completion.\
-    \ Uses complex spend tracking, allocation optimization, and timing calculations.\n\
-    \nUse Case: Signup Bonus Optimization - Track progress toward signup bonuses and\
-    \ optimize spending to maximize bonus earnings\n\nBusiness Value: Maximizes signup\
-    \ bonus earnings by tracking progress, optimizing spend allocation, and ensuring\
-    \ timely completion of minimum spend requirements\n\nPurpose: Optimize signup\
-    \ bonus earnings by tracking progress and providing actionable recommendations\
-    \ for meeting minimum spend requirements\n\nComplexity: Spend tracking, allocation\
-    \ optimization, timing calculations, window functions, bonus progress analysis,\
-    \ multiple CTEs (8+ levels)\n\nExpected Output: [Description of expected output]\n\
-    \n---\n\nUse Case: Merchant-Specific Optimization - Get optimal card recommendations\
-    \ for specific merchants based on historical spending patterns\n\nDescription:\
-    \ Analyzes historical spending patterns at specific merchants, identifies optimal\
-    \ cards for each merchant, calculates expected rewards, and provides predictive\
-    \ recommendations. Uses pattern recognition, predictive scoring, and merchant-specific\
-    \ optimization.\n\nUse Case: Merchant-Specific Optimization - Get optimal card\
-    \ recommendations for specific merchants based on historical spending patterns\n\
-    \nBusiness Value: Maximizes rewards at frequently visited merchants by providing\
-    \ merchant-specific card recommendations based on historical spending data\n\n\
-    Purpose: Optimize card selection for specific merchants by analyzing historical\
-    \ spending patterns and predicting optimal card usage\n\nComplexity: Pattern recognition,\
-    \ predictive scoring, historical analysis, merchant-specific optimization, window\
-    \ functions, multiple CTEs (8+ levels)\n\nExpected Output: [Description of expected\
-    \ output]\n\n---\n\nUse Case: Rotating Category Optimization - Maximize rewards\
-    \ from cards with quarterly rotating bonus categories\n\nDescription: Analyzes\
-    \ rotating category bonus periods, tracks quarterly rotations, optimizes spending\
-    \ allocation across categories, and provides strategic recommendations. Uses temporal\
-    \ analysis, rotation tracking, and allocation optimization.\n\nUse Case: Rotating\
-    \ Category Optimization - Maximize rewards from cards with quarterly rotating\
-    \ bonus categories\n\nBusiness Value: Maximizes rewards from rotating category\
-    \ bonuses by tracking quarterly rotations and optimizing spending allocation across\
-    \ bonus periods\n\nPurpose: Optimize rewards from rotating category bonuses by\
-    \ tracking periods and providing strategic spending allocation recommendations\n\
-    \nComplexity: Temporal analysis, rotation tracking, allocation optimization, window\
-    \ functions, quarterly period analysis, multiple CTEs (8+ levels)\n\nExpected\
-    \ Output: [Description of expected output]\n\n---\n\nUse Case: [Use case description]\n\
-    \nDescription: Analyzes spending across categories to identify optimization opportunities\
-    \ - [Full description with 8+ CTEs, window functions, aggregations]\n\nUse Case:\
-    \ [Use case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ CTEs (8+ levels)\n\n---\n\nUse Case: Signup Bonus Optimization - Track progress\
+    \ toward signup bonuses and optimize spending to maximize bonus earnings\n\nDescription:\
+    \ Description: Tracks signup bonus progress across all cards, calculates minimum\
+    \ spend requirements, identifies optimal spending allocation, and provides timing\
+    \ recommendations for bonus completion. Uses complex spend tracking, allocation\
+    \ optimization, and timing calculations. Use Case: Signup Bonus Optimization -\
+    \ Track progress toward signup bonuses and optimize spending to maximize bonus\
+    \ earnings Business Value: Maximizes signup bonus earnings by tracking progress,\
+    \ optimizing spend allocation, a\n\nBusiness Value: Maximizes signup bonus earnings\
+    \ by tracking progress, optimizing spend allocation, a\n\nComplexity: Spend tracking,\
+    \ allocation optimization, timing calculations, window functions, bonus progress\
+    \ analysis, multiple CTEs (8+ levels)\n\n---\n\nUse Case: Merchant-Specific Optimization\
+    \ - Get optimal card recommendations for specific merchants based on historical\
+    \ spending patterns\n\nDescription: Description: Analyzes historical spending\
+    \ patterns at specific merchants, identifies optimal cards for each merchant,\
+    \ calculates expected rewards, and provides predictive recommendations. Uses pattern\
+    \ recognition, predictive scoring, and merchant-specific optimization. Use Case:\
+    \ Merchant-Specific Optimization - Get optimal card recommendations for specific\
+    \ merchants based on historical spending patterns Business Value: Maximizes rewards\
+    \ at frequently visited merchants by providing merchant-speci\n\nBusiness Value:\
+    \ Maximizes rewards at frequently visited merchants by providing merchant-speci\n\
+    \nComplexity: Pattern recognition, predictive scoring, historical analysis, merchant-specific\
+    \ optimization, window functions, multiple CTEs (8+ levels)\n\n---\n\nUse Case:\
+    \ Rotating Category Optimization - Maximize rewards from cards with quarterly\
+    \ rotating bonus categories\n\nDescription: Description: Analyzes rotating category\
+    \ bonus periods, tracks quarterly rotations, optimizes spending allocation across\
+    \ categories, and provides strategic recommendations. Uses temporal analysis,\
+    \ rotation tracking, and allocation optimization. Use Case: Rotating Category\
+    \ Optimization - Maximize rewards from cards with quarterly rotating bonus categories\
+    \ Business Value: Maximizes rewards from rotating category bonuses by tracking\
+    \ quarterly rotations and optimizing spending allocation across bonus\n\nBusiness\
+    \ Value: Maximizes rewards from rotating category bonuses by tracking quarterly\
+    \ rotations and optimizing spending allocation across bonus\n\nComplexity: Temporal\
+    \ analysis, rotation tracking, allocation optimization, window functions, quarterly\
+    \ period analysis, multiple CTEs (8+ levels)\n\n---\n\nUse Case: [Use case description]\n\
+    \nDescription: Description: Analyzes spending across categories to identify optimization\
+    \ opportunities - [Full description with 8+ CTEs, window functions, aggregations]\
+    \ Use Case: [Use case description] Business Value: [Business value description]\
+    \ Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity] Expected Output: [Expected\
+    \ output description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
     \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
-    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
-    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Analyzes\
-    \ card portfolio diversity across issuers, card types, and rewards structures\
-    \ - [Full description with 8+ CTEs, window functions, aggregations]\n\nUse Case:\
-    \ [Use case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
-    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
-    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
-    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Identifies\
+    \ aggregations, joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\
+    \nDescription: Description: Analyzes card portfolio diversity across issuers,\
+    \ card types, and rewards structures - [Full description with 8+ CTEs, window\
+    \ functions, aggregations] Use Case: [Use case description] Business Value: [Business\
+    \ value description] Purpose: [Purpose description] Complexity: Multiple CTEs\
+    \ (8+ levels), window functions, aggregations, joins, [additional complexity]\
+    \ Expected Output: [Expected output description]\n\nBusiness Value: [Business\
+    \ value description]\n\nPurpose: [Purpose description]\n\nComplexity: Multiple\
+    \ CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]\n\
+    \n---\n\nUse Case: [Use case description]\n\nDescription: Description: Identifies\
     \ cards with no foreign transaction fees and optimizes international spending\
-    \ - [Full description with 8+ CTEs, window functions, aggregations]\n\nUse Case:\
-    \ [Use case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
-    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
-    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
-    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Analyzes\
-    \ authorized user fees and calculates value of adding authorized users - [Full\
-    \ description with 8+ CTEs, window functions, aggregations]\n\nUse Case: [Use\
-    \ case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
-    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
-    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
-    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Tracks\
-    \ credit limit utilization and provides recommendations for optimal utilization\
-    \ - [Full description with 8+ CTEs, window functions, aggregations]\n\nUse Case:\
-    \ [Use case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
-    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
-    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
-    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Analyzes\
-    \ rewards redemption options and calculates optimal redemption strategies - [Full\
-    \ description with 8+ CTEs, window functions, aggregations]\n\nUse Case: [Use\
-    \ case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
-    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
-    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
-    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Analyzes\
-    \ transfer partner options for points and miles optimization - [Full description\
-    \ with 8+ CTEs, window functions, aggregations]\n\nUse Case: [Use case description]\n\
-    \nBusiness Value: [Business value description]\n\nPurpose: [Purpose description]\n\
-    \nComplexity: Multiple CTEs (8+ levels), window functions, aggregations, joins,\
-    \ [additional complexity]\n\nExpected Output: [Expected output description]\n\n\
-    ---\n\nUse Case: [Use case description]\n\nDescription: Identifies opportunities\
-    \ to upgrade or downgrade cards for better value - [Full description with 8+ CTEs,\
-    \ window functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness\
-    \ Value: [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
-    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
-    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
-    \ Case: [Use case description]\n\nDescription: Tracks annual, quarterly, and monthly\
-    \ spending limits for bonus categories - [Full description with 8+ CTEs, window\
-    \ functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value:\
-    \ [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
-    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
-    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
-    \ Case: [Use case description]\n\nDescription: Manages cards across multiple profiles\
-    \ (family, partner) with consolidated recommendations - [Full description with\
-    \ 8+ CTEs, window functions, aggregations]\n\nUse Case: [Use case description]\n\
-    \nBusiness Value: [Business value description]\n\nPurpose: [Purpose description]\n\
-    \nComplexity: Multiple CTEs (8+ levels), window functions, aggregations, joins,\
-    \ [additional complexity]\n\nExpected Output: [Expected output description]\n\n\
-    ---\n\nUse Case: [Use case description]\n\nDescription: Tracks offer expiration\
-    \ dates and provides activation reminders - [Full description with 8+ CTEs, window\
-    \ functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value:\
-    \ [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
-    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
-    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
-    \ Case: [Use case description]\n\nDescription: Analyzes statement credit options\
-    \ and calculates optimal redemption timing - [Full description with 8+ CTEs, window\
-    \ functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value:\
-    \ [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
-    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
-    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
-    \ Case: [Use case description]\n\nDescription: Optimizes card usage across Visa,\
-    \ Mastercard, Amex, and Discover networks - [Full description with 8+ CTEs, window\
-    \ functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value:\
-    \ [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
-    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
-    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
-    \ Case: [Use case description]\n\nDescription: Analyzes value proposition of metal\
-    \ cards vs standard cards - [Full description with 8+ CTEs, window functions,\
-    \ aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value: [Business\
-    \ value description]\n\nPurpose: [Purpose description]\n\nComplexity: Multiple\
-    \ CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]\n\
-    \nExpected Output: [Expected output description]\n\n---\n\nUse Case: [Use case\
-    \ description]\n\nDescription: Optimizes business card usage and tracks business\
-    \ spending separately - [Full description with 8+ CTEs, window functions, aggregations]\n\
-    \nUse Case: [Use case description]\n\nBusiness Value: [Business value description]\n\
+    \ - [Full description with 8+ CTEs, window functions, aggregations] Use Case:\
+    \ [Use case description] Business Value: [Business value description] Purpose:\
+    \ [Purpose description] Complexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity] Expected Output: [Expected output\
+    \ description]\n\nBusiness Value: [Business value description]\n\nPurpose: [Purpose\
+    \ description]\n\nComplexity: Multiple CTEs (8+ levels), window functions, aggregations,\
+    \ joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\n\
+    Description: Description: Analyzes authorized user fees and calculates value of\
+    \ adding authorized users - [Full description with 8+ CTEs, window functions,\
+    \ aggregations] Use Case: [Use case description] Business Value: [Business value\
+    \ description] Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels),\
+    \ window functions, aggregations, joins, [additional complexity] Expected Output:\
+    \ [Expected output description]\n\nBusiness Value: [Business value description]\n\
     \nPurpose: [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window\
-    \ functions, aggregations, joins, [additional complexity]\n\nExpected Output:\
-    \ [Expected output description]\n\n---\n\nUse Case: [Use case description]\n\n\
-    Description: Tracks secured card usage and identifies graduation opportunities\
-    \ - [Full description with 8+ CTEs, window functions, aggregations]\n\nUse Case:\
-    \ [Use case description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ functions, aggregations, joins, [additional complexity]\n\n---\n\nUse Case:\
+    \ [Use case description]\n\nDescription: Description: Tracks credit limit utilization\
+    \ and provides recommendations for optimal utilization - [Full description with\
+    \ 8+ CTEs, window functions, aggregations] Use Case: [Use case description] Business\
+    \ Value: [Business value description] Purpose: [Purpose description] Complexity:\
+    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
+    \ complexity] Expected Output: [Expected output description]\n\nBusiness Value:\
+    \ [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
+    \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
+    \ complexity]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Description:\
+    \ Analyzes rewards redemption options and calculates optimal redemption strategies\
+    \ - [Full description with 8+ CTEs, window functions, aggregations] Use Case:\
+    \ [Use case description] Business Value: [Business value description] Purpose:\
+    \ [Purpose description] Complexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity] Expected Output: [Expected output\
+    \ description]\n\nBusiness Value: [Business value description]\n\nPurpose: [Purpose\
+    \ description]\n\nComplexity: Multiple CTEs (8+ levels), window functions, aggregations,\
+    \ joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\n\
+    Description: Description: Analyzes transfer partner options for points and miles\
+    \ optimization - [Full description with 8+ CTEs, window functions, aggregations]\
+    \ Use Case: [Use case description] Business Value: [Business value description]\
+    \ Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity] Expected Output: [Expected\
+    \ output description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
     \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
-    \ aggregations, joins, [additional complexity]\n\nExpected Output: [Expected output\
-    \ description]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Analyzes\
-    \ credit score impact of card applications and account management - [Full description\
-    \ with 8+ CTEs, window functions, aggregations]\n\nUse Case: [Use case description]\n\
-    \nBusiness Value: [Business value description]\n\nPurpose: [Purpose description]\n\
-    \nComplexity: Multiple CTEs (8+ levels), window functions, aggregations, joins,\
-    \ [additional complexity]\n\nExpected Output: [Expected output description]\n\n\
-    ---\n\nUse Case: [Use case description]\n\nDescription: Tracks rewards expiration\
-    \ dates and provides redemption recommendations - [Full description with 8+ CTEs,\
-    \ window functions, aggregations]\n\nUse Case: [Use case description]\n\nBusiness\
+    \ aggregations, joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\
+    \nDescription: Description: Identifies opportunities to upgrade or downgrade cards\
+    \ for better value - [Full description with 8+ CTEs, window functions, aggregations]\
+    \ Use Case: [Use case description] Business Value: [Business value description]\
+    \ Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity] Expected Output: [Expected\
+    \ output description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\
+    \nDescription: Description: Tracks annual, quarterly, and monthly spending limits\
+    \ for bonus categories - [Full description with 8+ CTEs, window functions, aggregations]\
+    \ Use Case: [Use case description] Business Value: [Business value description]\
+    \ Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity] Expected Output: [Expected\
+    \ output description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\
+    \nDescription: Description: Manages cards across multiple profiles (family, partner)\
+    \ with consolidated recommendations - [Full description with 8+ CTEs, window functions,\
+    \ aggregations] Use Case: [Use case description] Business Value: [Business value\
+    \ description] Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels),\
+    \ window functions, aggregations, joins, [additional complexity] Expected Output:\
+    \ [Expected output description]\n\nBusiness Value: [Business value description]\n\
+    \nPurpose: [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity]\n\n---\n\nUse Case:\
+    \ [Use case description]\n\nDescription: Description: Tracks offer expiration\
+    \ dates and provides activation reminders - [Full description with 8+ CTEs, window\
+    \ functions, aggregations] Use Case: [Use case description] Business Value: [Business\
+    \ value description] Purpose: [Purpose description] Complexity: Multiple CTEs\
+    \ (8+ levels), window functions, aggregations, joins, [additional complexity]\
+    \ Expected Output: [Expected output description]\n\nBusiness Value: [Business\
+    \ value description]\n\nPurpose: [Purpose description]\n\nComplexity: Multiple\
+    \ CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]\n\
+    \n---\n\nUse Case: [Use case description]\n\nDescription: Description: Analyzes\
+    \ statement credit options and calculates optimal redemption timing - [Full description\
+    \ with 8+ CTEs, window functions, aggregations] Use Case: [Use case description]\
+    \ Business Value: [Business value description] Purpose: [Purpose description]\
+    \ Complexity: Multiple CTEs (8+ levels), window functions, aggregations, joins,\
+    \ [additional complexity] Expected Output: [Expected output description]\n\nBusiness\
     \ Value: [Business value description]\n\nPurpose: [Purpose description]\n\nComplexity:\
     \ Multiple CTEs (8+ levels), window functions, aggregations, joins, [additional\
-    \ complexity]\n\nExpected Output: [Expected output description]\n\n---\n\nUse\
-    \ Case: [Use case description]\n\nDescription: Compares card agreements and terms\
-    \ across issuers for best value - [Full description with 8+ CTEs, window functions,\
-    \ aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value: [Business\
-    \ value description]\n\nPurpose: [Purpose description]\n\nComplexity: Multiple\
-    \ CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]\n\
-    \nExpected Output: [Expected output description]\n\n---\n\nUse Case: [Use case\
-    \ description]\n\nDescription: Calculates overall portfolio health score with\
-    \ optimization recommendations - [Full description with 8+ CTEs, window functions,\
-    \ aggregations]\n\nUse Case: [Use case description]\n\nBusiness Value: [Business\
-    \ value description]\n\nPurpose: [Purpose description]\n\nComplexity: Multiple\
-    \ CTEs (8+ levels), window functions, aggregations, joins, [additional complexity]\n\
-    \nExpected Output: [Expected output description]\n\n---\n\n1. Database Access:\
-    \ Ensure you have access to the database instance (PostgreSQL)\n2. Credentials:\
-    \ Obtain database connection credentials\n3. Schema: Ensure all tables are created\
-    \ and populated with data\n\n1. Open Query File: Navigate to `queries/queries.md`\n\
+    \ complexity]\n\n---\n\nUse Case: [Use case description]\n\nDescription: Description:\
+    \ Optimizes card usage across Visa, Mastercard, Amex, and Discover networks -\
+    \ [Full description with 8+ CTEs, window functions, aggregations] Use Case: [Use\
+    \ case description] Business Value: [Business value description] Purpose: [Purpose\
+    \ description] Complexity: Multiple CTEs (8+ levels), window functions, aggregations,\
+    \ joins, [additional complexity] Expected Output: [Expected output description]\n\
+    \nBusiness Value: [Business value description]\n\nPurpose: [Purpose description]\n\
+    \nComplexity: Multiple CTEs (8+ levels), window functions, aggregations, joins,\
+    \ [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\nDescription:\
+    \ Description: Analyzes value proposition of metal cards vs standard cards - [Full\
+    \ description with 8+ CTEs, window functions, aggregations] Use Case: [Use case\
+    \ description] Business Value: [Business value description] Purpose: [Purpose\
+    \ description] Complexity: Multiple CTEs (8+ levels), window functions, aggregations,\
+    \ joins, [additional complexity] Expected Output: [Expected output description]\n\
+    \nBusiness Value: [Business value description]\n\nPurpose: [Purpose description]\n\
+    \nComplexity: Multiple CTEs (8+ levels), window functions, aggregations, joins,\
+    \ [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\nDescription:\
+    \ Description: Optimizes business card usage and tracks business spending separately\
+    \ - [Full description with 8+ CTEs, window functions, aggregations] Use Case:\
+    \ [Use case description] Business Value: [Business value description] Purpose:\
+    \ [Purpose description] Complexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity] Expected Output: [Expected output\
+    \ description]\n\nBusiness Value: [Business value description]\n\nPurpose: [Purpose\
+    \ description]\n\nComplexity: Multiple CTEs (8+ levels), window functions, aggregations,\
+    \ joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\n\
+    Description: Description: Tracks secured card usage and identifies graduation\
+    \ opportunities - [Full description with 8+ CTEs, window functions, aggregations]\
+    \ Use Case: [Use case description] Business Value: [Business value description]\
+    \ Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity] Expected Output: [Expected\
+    \ output description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\
+    \nDescription: Description: Analyzes credit score impact of card applications\
+    \ and account management - [Full description with 8+ CTEs, window functions, aggregations]\
+    \ Use Case: [Use case description] Business Value: [Business value description]\
+    \ Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity] Expected Output: [Expected\
+    \ output description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\
+    \nDescription: Description: Tracks rewards expiration dates and provides redemption\
+    \ recommendations - [Full description with 8+ CTEs, window functions, aggregations]\
+    \ Use Case: [Use case description] Business Value: [Business value description]\
+    \ Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity] Expected Output: [Expected\
+    \ output description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\
+    \nDescription: Description: Compares card agreements and terms across issuers\
+    \ for best value - [Full description with 8+ CTEs, window functions, aggregations]\
+    \ Use Case: [Use case description] Business Value: [Business value description]\
+    \ Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity] Expected Output: [Expected\
+    \ output description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\n---\n\nUse Case: [Use case description]\n\
+    \nDescription: Description: Calculates overall portfolio health score with optimization\
+    \ recommendations - [Full description with 8+ CTEs, window functions, aggregations]\
+    \ Use Case: [Use case description] Business Value: [Business value description]\
+    \ Purpose: [Purpose description] Complexity: Multiple CTEs (8+ levels), window\
+    \ functions, aggregations, joins, [additional complexity] Expected Output: [Expected\
+    \ output description]\n\nBusiness Value: [Business value description]\n\nPurpose:\
+    \ [Purpose description]\n\nComplexity: Multiple CTEs (8+ levels), window functions,\
+    \ aggregations, joins, [additional complexity]\n\n---\n\n1. Database Access: Ensure\
+    \ you have access to the database instance (PostgreSQL)\n2. Credentials: Obtain\
+    \ database connection credentials\n3. Schema: Ensure all tables are created and\
+    \ populated with data\n\n1. Open Query File: Navigate to `queries/queries.md`\n\
     2. Select Query: Choose the query number you want to execute\n3. Review Business\
     \ Case: Understand the use case and expected output\n4. Copy SQL: Copy the SQL\
     \ code from the code block\n5. Execute: Run the query in your database client:\n\
@@ -340,7 +353,7 @@ info:
     \ to work across multiple database platforms:\n\n- PostgreSQL: Full support with\
     \ standard SQL features\n\nQueries use standard SQL syntax and avoid platform-specific\
     \ features to ensure compatibility.\n\n---\n\nDocument Information:\n\n- Generated:\
-    \ 20260214-0148\n- Database: db-12\n- Type: Credit Card and Rewards Optimization\
+    \ 20260214-1523\n- Database: db-12\n- Type: Credit Card and Rewards Optimization\
     \ System\n- Queries: 30 production queries\n- Status: ✅ Complete Comprehensive\
     \ Deliverable"
   version: 1.0.0

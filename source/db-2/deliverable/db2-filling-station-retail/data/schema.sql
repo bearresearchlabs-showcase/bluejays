@@ -1,5 +1,6 @@
 -- Minimal phppos schema for db-2 (PostgreSQL)
 -- Only tables needed for gov-rebuilt data and queries
+-- ACID-compliant: PKs and FKs for referential integrity
 
 CREATE TABLE phppos_people (
     first_name VARCHAR(255),
@@ -17,17 +18,12 @@ CREATE TABLE phppos_people (
 );
 
 CREATE TABLE phppos_employees (
+    person_id INTEGER PRIMARY KEY REFERENCES phppos_people(person_id),
     username VARCHAR(255),
     password VARCHAR(255),
-    person_id INTEGER,
     balance NUMERIC(15,2) DEFAULT 0,
     deleted INTEGER DEFAULT 0,
     hide_from_switch_user INTEGER DEFAULT 0
-);
-
-CREATE TABLE phppos_employees_locations (
-    employee_id INTEGER,
-    location_id INTEGER
 );
 
 CREATE TABLE phppos_items (
@@ -72,17 +68,24 @@ CREATE TABLE phppos_locations (
     deleted INTEGER DEFAULT 0
 );
 
+CREATE TABLE phppos_employees_locations (
+    employee_id INTEGER REFERENCES phppos_employees(person_id),
+    location_id INTEGER REFERENCES phppos_locations(location_id),
+    PRIMARY KEY (employee_id, location_id)
+);
+
 CREATE TABLE phppos_location_items (
-    location_id INTEGER,
-    item_id INTEGER,
-    quantity NUMERIC(15,2) DEFAULT 0
+    location_id INTEGER REFERENCES phppos_locations(location_id),
+    item_id INTEGER REFERENCES phppos_items(item_id),
+    quantity NUMERIC(15,2) DEFAULT 0,
+    PRIMARY KEY (location_id, item_id)
 );
 
 CREATE TABLE phppos_sales (
     sale_id INTEGER PRIMARY KEY,
-    employee_id INTEGER,
+    employee_id INTEGER REFERENCES phppos_employees(person_id),
     sale_time TIMESTAMP,
     customer_id INTEGER,
     payment_type VARCHAR(50),
-    location_id INTEGER
+    location_id INTEGER REFERENCES phppos_locations(location_id)
 );

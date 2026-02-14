@@ -1,5 +1,6 @@
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
+import { loadPrivilegesConfig, isPathAllowedForRole } from '@/lib/privileges'
 
 const SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || 'annotator-dev-secret-change-in-production'
@@ -72,11 +73,6 @@ export async function setViewModeCookie(mode: string) {
 }
 
 export function isPathAllowed(path: string, user: string, viewMode: string): boolean {
-  if (user === 'staff' && viewMode === 'admin') return true
-  if (user === 'customer') {
-    return path === '/customer' || path === '/suite' || path.startsWith('/api/')
-  }
-  if (path === '/customer' || path.startsWith('/api/export')) return false
-  if (path === '/dashboard' || path === '/suite') return false
-  return true
+  const config = loadPrivilegesConfig()
+  return isPathAllowedForRole(path, user, viewMode, config)
 }

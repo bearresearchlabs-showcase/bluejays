@@ -30,181 +30,181 @@ This document provides comprehensive documentation for database db-1, including 
 
 1. [Query 1: Multi-Window Time-Series Analysis with Rolling Aggregates](#query-1)
     - **Use Case:** Business analytics for multi-window time-series analysis with rolling aggregates
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for multi-window time-series an...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for multi-window time-s...
     - *Business Value:* Actionable insights from multi-window time-series analysis with rolling aggregates
     - *Purpose:* Production multi-window time-series analysis with rolling aggregates analysis
 
 2. [Query 2: Segmentation Analysis with Decile Ranking](#query-2)
     - **Use Case:** Business analytics for segmentation analysis with decile ranking
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.  **Use Case:** Business analytics for segmentation analysis with...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for segmentation analy...
     - *Business Value:* Actionable insights from segmentation analysis with decile ranking
     - *Purpose:* Production segmentation analysis with decile ranking analysis
 
 3. [Query 3: Performance Quartile Distribution](#query-3)
     - **Use Case:** Business analytics for performance quartile distribution
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.  **Use Case:** Business analytics for performance quartile dist...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for performance quart...
     - *Business Value:* Actionable insights from performance quartile distribution
     - *Purpose:* Production performance quartile distribution analysis
 
 4. [Query 4: Category Revenue Distribution Analysis](#query-4)
     - **Use Case:** Business analytics for category revenue distribution analysis
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for category revenue distributi...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for category revenue di...
     - *Business Value:* Actionable insights from category revenue distribution analysis
     - *Purpose:* Production category revenue distribution analysis analysis
 
 5. [Query 5: Velocity and Acceleration Metrics](#query-5)
     - **Use Case:** Business analytics for velocity and acceleration metrics
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.  **Use Case:** Business analytics for velocity and acceleration...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for velocity and accel...
     - *Business Value:* Actionable insights from velocity and acceleration metrics
     - *Purpose:* Production velocity and acceleration metrics analysis
 
 6. [Query 6: Hourly Pattern Detection and Clustering](#query-6)
     - **Use Case:** Business analytics for hourly pattern detection and clustering
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for hourly pattern detection an...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for hourly pattern dete...
     - *Business Value:* Actionable insights from hourly pattern detection and clustering
     - *Purpose:* Production hourly pattern detection and clustering analysis
 
 7. [Query 7: Gap Analysis with Sequential Difference](#query-7)
     - **Use Case:** Business analytics for gap analysis with sequential difference
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.  **Use Case:** Business analytics for gap analysis with sequent...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for gap analysis with...
     - *Business Value:* Actionable insights from gap analysis with sequential difference
     - *Purpose:* Production gap analysis with sequential difference analysis
 
 8. [Query 8: Anomaly Detection Using Z-Score Windows](#query-8)
     - **Use Case:** Business analytics for anomaly detection using z-score windows
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for anomaly detection using z-s...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for anomaly detection u...
     - *Business Value:* Actionable insights from anomaly detection using z-score windows
     - *Purpose:* Production anomaly detection using z-score windows analysis
 
 9. [Query 9: Recency-Frequency Scoring Model](#query-9)
     - **Use Case:** Business analytics for recency-frequency scoring model
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.  **Use Case:** Business analytics for recency-frequency scoring...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for recency-frequency...
     - *Business Value:* Actionable insights from recency-frequency scoring model
     - *Purpose:* Production recency-frequency scoring model analysis
 
 10. [Query 10: Multi-Period Cohort Retention Analysis](#query-10)
     - **Use Case:** Business analytics for multi-period cohort retention analysis
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.  **Use Case:** Business analytics for multi-period cohort reten...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for multi-period coho...
     - *Business Value:* Actionable insights from multi-period cohort retention analysis
     - *Purpose:* Production multi-period cohort retention analysis analysis
 
 11. [Query 11: Second-Order Derivative Computation](#query-11)
     - **Use Case:** Business analytics for second-order derivative computation
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for second-order derivative com...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for second-order deriva...
     - *Business Value:* Actionable insights from second-order derivative computation
     - *Purpose:* Production second-order derivative computation analysis
 
 12. [Query 12: Cross-Category Benchmarking with Percentiles](#query-12)
     - **Use Case:** Business analytics for cross-category benchmarking with percentiles
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.  **Use Case:** Business analytics for cross-category benchmarkin...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for cross-category ben...
     - *Business Value:* Actionable insights from cross-category benchmarking with percentiles
     - *Purpose:* Production cross-category benchmarking with percentiles analysis
 
 13. [Query 13: Weighted Moving Average Pipeline](#query-13)
     - **Use Case:** Business analytics for weighted moving average pipeline
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.  **Use Case:** Business analytics for weighted moving average p...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for weighted moving a...
     - *Business Value:* Actionable insights from weighted moving average pipeline
     - *Purpose:* Production weighted moving average pipeline analysis
 
 14. [Query 14: Peak Period Identification and Efficiency](#query-14)
     - **Use Case:** Business analytics for peak period identification and efficiency
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for peak period identification...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for peak period identif...
     - *Business Value:* Actionable insights from peak period identification and efficiency
     - *Purpose:* Production peak period identification and efficiency analysis
 
 15. [Query 15: Lifetime Value Estimation Model](#query-15)
     - **Use Case:** Business analytics for lifetime value estimation model
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.  **Use Case:** Business analytics for lifetime value estimation...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for lifetime value est...
     - *Business Value:* Actionable insights from lifetime value estimation model
     - *Purpose:* Production lifetime value estimation model analysis
 
 16. [Query 16: Year-over-Year Growth Rate Analysis](#query-16)
     - **Use Case:** Business analytics for year-over-year growth rate analysis
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.  **Use Case:** Business analytics for year-over-year growth rat...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for year-over-year gr...
     - *Business Value:* Actionable insights from year-over-year growth rate analysis
     - *Purpose:* Production year-over-year growth rate analysis analysis
 
 17. [Query 17: Heatmap Data Generation by Dimensions](#query-17)
     - **Use Case:** Business analytics for heatmap data generation by dimensions
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for heatmap data generation by...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for heatmap data genera...
     - *Business Value:* Actionable insights from heatmap data generation by dimensions
     - *Purpose:* Production heatmap data generation by dimensions analysis
 
 18. [Query 18: Running Percentile Distribution](#query-18)
     - **Use Case:** Business analytics for running percentile distribution
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.  **Use Case:** Business analytics for running percentile distrib...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for running percentile...
     - *Business Value:* Actionable insights from running percentile distribution
     - *Purpose:* Production running percentile distribution analysis
 
 19. [Query 19: Cross-Correlation Pattern Analysis](#query-19)
     - **Use Case:** Business analytics for cross-correlation pattern analysis
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.  **Use Case:** Business analytics for cross-correlation pattern...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for cross-correlation...
     - *Business Value:* Actionable insights from cross-correlation pattern analysis
     - *Purpose:* Production cross-correlation pattern analysis analysis
 
 20. [Query 20: Status Transition Forensic Analysis](#query-20)
     - **Use Case:** Business analytics for status transition forensic analysis
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for status transition forensic...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for status transition f...
     - *Business Value:* Actionable insights from status transition forensic analysis
     - *Purpose:* Production status transition forensic analysis analysis
 
 21. [Query 21: Multi-Metric Dashboard Aggregation](#query-21)
     - **Use Case:** Business analytics for multi-metric dashboard aggregation
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.  **Use Case:** Business analytics for multi-metric dashboard agg...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for multi-metric dashb...
     - *Business Value:* Actionable insights from multi-metric dashboard aggregation
     - *Purpose:* Production multi-metric dashboard aggregation analysis
 
 22. [Query 22: Sequential Pattern Mining with Windows](#query-22)
     - **Use Case:** Business analytics for sequential pattern mining with windows
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.  **Use Case:** Business analytics for sequential pattern mining...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for sequential patter...
     - *Business Value:* Actionable insights from sequential pattern mining with windows
     - *Purpose:* Production sequential pattern mining with windows analysis
 
 23. [Query 23: Concentration Index Computation](#query-23)
     - **Use Case:** Business analytics for concentration index computation
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for concentration index computa...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for concentration index...
     - *Business Value:* Actionable insights from concentration index computation
     - *Purpose:* Production concentration index computation analysis
 
 24. [Query 24: Statistical Anomaly Score Assignment](#query-24)
     - **Use Case:** Business analytics for statistical anomaly score assignment
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.  **Use Case:** Business analytics for statistical anomaly score...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for statistical anomal...
     - *Business Value:* Actionable insights from statistical anomaly score assignment
     - *Purpose:* Production statistical anomaly score assignment analysis
 
 25. [Query 25: Fiscal Period Comparative Reporting](#query-25)
     - **Use Case:** Business analytics for fiscal period comparative reporting
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.  **Use Case:** Business analytics for fiscal period comparative...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for fiscal period com...
     - *Business Value:* Actionable insights from fiscal period comparative reporting
     - *Purpose:* Production fiscal period comparative reporting analysis
 
 26. [Query 26: Throughput Optimization Metrics](#query-26)
     - **Use Case:** Business analytics for throughput optimization metrics
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for throughput optimization met...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for throughput optimiza...
     - *Business Value:* Actionable insights from throughput optimization metrics
     - *Purpose:* Production throughput optimization metrics analysis
 
 27. [Query 27: Cumulative Trend Analysis Pipeline](#query-27)
     - **Use Case:** Business analytics for cumulative trend analysis pipeline
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.  **Use Case:** Business analytics for cumulative trend analysis...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for cumulative trend a...
     - *Business Value:* Actionable insights from cumulative trend analysis pipeline
     - *Purpose:* Production cumulative trend analysis pipeline analysis
 
 28. [Query 28: Multi-Dimensional Pivot Aggregation](#query-28)
     - **Use Case:** Business analytics for multi-dimensional pivot aggregation
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.  **Use Case:** Business analytics for multi-dimensional pivot a...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for multi-dimensional...
     - *Business Value:* Actionable insights from multi-dimensional pivot aggregation
     - *Purpose:* Production multi-dimensional pivot aggregation analysis
 
 29. [Query 29: Funnel Stage Progression Tracking](#query-29)
     - **Use Case:** Business analytics for funnel stage progression tracking
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.  **Use Case:** Business analytics for funnel stage progression tr...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for funnel stage progre...
     - *Business Value:* Actionable insights from funnel stage progression tracking
     - *Purpose:* Production funnel stage progression tracking analysis
 
 30. [Query 30: Outlier Detection with IQR Method](#query-30)
     - **Use Case:** Business analytics for outlier detection with iqr method
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.  **Use Case:** Business analytics for outlier detection with iqr...
+    - *What it does:* Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for outlier detection...
     - *Business Value:* Actionable insights from outlier detection with iqr method
     - *Purpose:* Production outlier detection with iqr method analysis
 
@@ -259,7 +259,7 @@ This database implements a comprehensive chat/messaging system supporting user p
 
 This section provides a comprehensive data dictionary for all tables in the database, including column names, data types, constraints, and descriptions. Tables are organized by functional category for easier navigation.
 
-The database consists of **11 tables** organized into logical groups:
+The database consists of **12 tables** organized into logical groups:
 
 1. **User Management**: `profiles`
 2. **Chat System**: `chats`, `chat_participants`, `messages`
@@ -268,6 +268,7 @@ The database consists of **11 tables** organized into logical groups:
 5. **File Management**: `file_attachments`
 6. **Anonymous Features**: `anonymous_chats`, `anonymous_chat_users`, `anonymous_messages`
 7. **Invitations**: `chat_invitations`
+8. **Analytics**: `aircraft_position_history` (time-series)
 
 ```
 profiles (id)
@@ -286,133 +287,119 @@ chats (id)
     ├── anonymous_chat_users (chat_id) [via anonymous_chats]
     ├── anonymous_messages (chat_id) [via anonymous_chats]
     └── chat_invitations (chat_id)
-
-messages (id)
-    └── file_attachments (message_id)
 ```
 
 ```mermaid
 erDiagram
     profiles {
-        uuid id PK "Primary key - unique user identifier"
-        varchar username UK "Unique username for login"
-        varchar email UK "Unique email address"
-        varchar display_name "Display name shown in UI"
-        varchar avatar_url "URL to user avatar image"
-        timestamp created_at "Account creation timestamp"
-        timestamp updated_at "Last profile update timestamp"
-        varchar ai_character_id "Associated AI character identifier"
-        varchar user_role "User role (user, admin, moderator)"
-        varchar bio "User biography text"
+        uuid id PK "Primary key"
+        varchar username UK "Unique username"
+        varchar email "Email address"
+        varchar display_name "Display name"
+        timestamp created_at "Account creation"
     }
 
     chats {
-        uuid id PK "Primary key - unique chat identifier"
+        uuid id PK "Primary key"
         uuid created_by FK "Creator user"
-        varchar title "Chat room title"
-        timestamp created_at "Chat creation timestamp"
-        timestamp updated_at "Last update timestamp"
-        varchar current_ai_character_id "Currently active AI character"
+        varchar title "Chat title"
+        timestamp created_at "Creation time"
+    }
+
+    messages {
+        uuid id PK "Primary key"
+        uuid chat_id FK "Chat room"
+        uuid sender_id FK "Sender user"
+        boolean is_ai "AI message flag"
+        text content "Message content"
+        timestamp created_at "Message time"
     }
 
     chat_participants {
         uuid chat_id PK,FK "Chat room"
         uuid user_id PK,FK "Participant user"
-        timestamp joined_at "Timestamp when user joined"
-    }
-
-    messages {
-        uuid id PK "Primary key - unique message identifier"
-        uuid chat_id FK "Chat room"
-        uuid sender_id FK "Sender user (NULL for system messages)"
-        varchar content "Message text content"
-        boolean is_ai "Flag indicating AI-generated message"
-        varchar ai_character_id "AI character identifier if AI message"
-        timestamp created_at "Message creation timestamp"
-        timestamp updated_at "Last update timestamp"
-        timestamp deleted_at "Soft delete timestamp"
-        boolean is_system_message "Flag indicating system-generated message"
+        timestamp joined_at "Join time"
     }
 
     friends {
         uuid id PK "Primary key"
         uuid user_id FK "Requester user"
         uuid friend_id FK "Friend user"
-        varchar status "Relationship status (pending, accepted, declined)"
-        timestamp created_at "Request creation timestamp"
-        timestamp updated_at "Last status update timestamp"
+        varchar status "pending/accepted/declined"
+        timestamp created_at "Request time"
     }
 
     notifications {
         uuid id PK "Primary key"
         uuid user_id FK "User"
-        varchar type "Notification type (message, friend_request, etc.)"
-        varchar title "Notification title"
-        varchar message "Notification message content"
-        timestamp created_at "Creation timestamp"
-        boolean read "Read status flag"
-        timestamp seen_at "Timestamp when notification was seen"
+        varchar type "Notification type"
+        boolean read "Read status"
+        timestamp seen_at "Seen time"
+        timestamp created_at "Creation time"
     }
 
     file_attachments {
         uuid id PK "Primary key"
-        uuid message_id FK "Message (nullable)"
-        uuid chat_id FK "Chat room (nullable)"
-        uuid user_id FK "Uploader user (nullable)"
-        varchar file_name "Original filename"
-        integer file_size "File size in bytes"
+        uuid chat_id FK "Chat room"
+        uuid user_id FK "Uploader user"
+        varchar file_name "Filename"
         varchar file_type "MIME type"
-        varchar file_path "Storage path/URL"
-        timestamp created_at "Upload timestamp"
+        bigint file_size "File size bytes"
+        timestamp created_at "Upload time"
     }
 
     anonymous_chats {
         uuid id PK "Primary key"
-        varchar join_code UK "Unique join code for anonymous access"
-        timestamp created_at "Creation timestamp"
-        timestamp expires_at "Expiration timestamp"
+        varchar join_code "Join code"
+        timestamp created_at "Creation time"
+        timestamp expires_at "Expiration"
     }
 
     anonymous_chat_users {
-        uuid id PK "Primary key"
-        uuid chat_id FK "Anonymous chat room"
-        varchar guest_id "Temporary guest identifier"
-        timestamp created_at "Join timestamp"
+        uuid guest_id PK "Guest identifier"
+        uuid chat_id PK,FK "Anonymous chat"
     }
 
     anonymous_messages {
         uuid id PK "Primary key"
-        uuid chat_id FK "Anonymous chat room"
-        varchar guest_id "Guest identifier of sender"
-        varchar content "Message content"
-        timestamp created_at "Message timestamp"
+        uuid chat_id FK "Anonymous chat"
+        uuid guest_id "Guest sender"
+        text content "Message content"
+        timestamp created_at "Message time"
     }
 
     chat_invitations {
         uuid id PK "Primary key"
+        uuid inviting_user_id FK "Inviter"
+        uuid invited_user_id FK "Invitee"
         uuid chat_id FK "Chat room"
-        uuid inviting_user_id FK "Inviter user"
-        uuid invited_user_id FK "Invitee user"
-        varchar status "Invitation status (pending, accepted, declined)"
-        timestamp created_at "Invitation timestamp"
+        varchar status "pending/accepted/declined"
+        timestamp created_at "Invitation time"
+    }
+
+    aircraft_position_history {
+        serial id PK "Primary key"
+        varchar hex "Aircraft hex code"
+        numeric speed "Speed"
+        numeric altitude "Altitude"
+        timestamp timestamp "Position time"
     }
 
     profiles ||--o{ chats : "creates"
     profiles ||--o{ messages : "sends"
     profiles ||--o{ chat_participants : "participates"
-    profiles ||--o{ friends : "user_requests"
-    profiles ||--o{ friends : "friend_receives"
+    profiles ||--o{ friends : "user"
+    profiles ||--o{ friends : "friend"
     profiles ||--o{ notifications : "receives"
     profiles ||--o{ file_attachments : "uploads"
-    profiles ||--o{ chat_invitations : "invites"
+    profiles ||--o{ chat_invitations : "inviting"
     profiles ||--o{ chat_invitations : "invited"
     chats ||--o{ messages : "contains"
     chats ||--o{ chat_participants : "has"
-    chats ||--o{ file_attachments : "has_files"
-    chats ||--o{ chat_invitations : "has_invitations"
-    messages ||--o{ file_attachments : "has_attachments"
-    anonymous_chats ||--o{ anonymous_chat_users : "has_users"
-    anonymous_chats ||--o{ anonymous_messages : "has_messages"
+    chats ||--o{ file_attachments : "contains"
+    chats ||--o{ chat_invitations : "invited_to"
+    anonymous_chats ||--o{ anonymous_chat_users : "has"
+    anonymous_chats ||--o{ anonymous_messages : "contains"
 ```
 
 ---
@@ -680,17 +667,13 @@ This database includes **30 production SQL queries**, each designed to solve spe
 
 **Use Case:** **Business analytics for multi-window time-series analysis with rolling aggregates**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for multi-window time-series analysis with rolling aggregates
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for multi-window time-series analysis with rolling aggregates Business Value: Actionable insights from multi-window time-series analysis with rolling aggregates Purpose: Production multi-window time-series analysis with rolling aggregates analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by
 
 **Business Value:** Actionable insights from multi-window time-series analysis with rolling aggregates
 
 **Purpose:** Production multi-window time-series analysis with rolling aggregates analysis
 
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -771,17 +754,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for segmentation analysis with decile ranking**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.
-
-**Use Case:** Business analytics for segmentation analysis with decile ranking
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for segmentation analysis with decile ranking Business Value: Actionable insights from segmentation analysis with decile ranking Purpose: Production segmentation analysis with decile ranking analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and speed
 
 **Business Value:** Actionable insights from segmentation analysis with decile ranking
 
 **Purpose:** Production segmentation analysis with decile ranking analysis
 
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -862,17 +841,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for performance quartile distribution**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.
-
-**Use Case:** Business analytics for performance quartile distribution
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for performance quartile distribution Business Value: Actionable insights from performance quartile distribution Purpose: Production performance quartile distribution analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and hex
 
 **Business Value:** Actionable insights from performance quartile distribution
 
 **Purpose:** Production performance quartile distribution analysis
 
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -953,17 +928,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for category revenue distribution analysis**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for category revenue distribution analysis
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for category revenue distribution analysis Business Value: Actionable insights from category revenue distribution analysis Purpose: Production category revenue distribution analysis analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and speed
 
 **Business Value:** Actionable insights from category revenue distribution analysis
 
 **Purpose:** Production category revenue distribution analysis analysis
 
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1044,17 +1015,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for velocity and acceleration metrics**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.
-
-**Use Case:** Business analytics for velocity and acceleration metrics
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for velocity and acceleration metrics Business Value: Actionable insights from velocity and acceleration metrics Purpose: Production velocity and acceleration metrics analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and hex
 
 **Business Value:** Actionable insights from velocity and acceleration metrics
 
 **Purpose:** Production velocity and acceleration metrics analysis
 
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1135,17 +1102,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for hourly pattern detection and clustering**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for hourly pattern detection and clustering
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for hourly pattern detection and clustering Business Value: Actionable insights from hourly pattern detection and clustering Purpose: Production hourly pattern detection and clustering analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and speed
 
 **Business Value:** Actionable insights from hourly pattern detection and clustering
 
 **Purpose:** Production hourly pattern detection and clustering analysis
 
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1226,17 +1189,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for gap analysis with sequential difference**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.
-
-**Use Case:** Business analytics for gap analysis with sequential difference
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for gap analysis with sequential difference Business Value: Actionable insights from gap analysis with sequential difference Purpose: Production gap analysis with sequential difference analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and hex
 
 **Business Value:** Actionable insights from gap analysis with sequential difference
 
 **Purpose:** Production gap analysis with sequential difference analysis
 
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1317,17 +1276,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for anomaly detection using z-score windows**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for anomaly detection using z-score windows
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for anomaly detection using z-score windows Business Value: Actionable insights from anomaly detection using z-score windows Purpose: Production anomaly detection using z-score windows analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and speed
 
 **Business Value:** Actionable insights from anomaly detection using z-score windows
 
 **Purpose:** Production anomaly detection using z-score windows analysis
 
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1408,17 +1363,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for recency-frequency scoring model**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.
-
-**Use Case:** Business analytics for recency-frequency scoring model
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for recency-frequency scoring model Business Value: Actionable insights from recency-frequency scoring model Purpose: Production recency-frequency scoring model analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and hex
 
 **Business Value:** Actionable insights from recency-frequency scoring model
 
 **Purpose:** Production recency-frequency scoring model analysis
 
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1499,17 +1450,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for multi-period cohort retention analysis**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.
-
-**Use Case:** Business analytics for multi-period cohort retention analysis
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for multi-period cohort retention analysis Business Value: Actionable insights from multi-period cohort retention analysis Purpose: Production multi-period cohort retention analysis analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and speed
 
 **Business Value:** Actionable insights from multi-period cohort retention analysis
 
 **Purpose:** Production multi-period cohort retention analysis analysis
 
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1590,17 +1537,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for second-order derivative computation**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for second-order derivative computation
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for second-order derivative computation Business Value: Actionable insights from second-order derivative computation Purpose: Production second-order derivative computation analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and hex
 
 **Business Value:** Actionable insights from second-order derivative computation
 
 **Purpose:** Production second-order derivative computation analysis
 
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1681,17 +1624,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for cross-category benchmarking with percentiles**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.
-
-**Use Case:** Business analytics for cross-category benchmarking with percentiles
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for cross-category benchmarking with percentiles Business Value: Actionable insights from cross-category benchmarking with percentiles Purpose: Production cross-category benchmarking with percentiles analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and speed
 
 **Business Value:** Actionable insights from cross-category benchmarking with percentiles
 
 **Purpose:** Production cross-category benchmarking with percentiles analysis
 
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1772,17 +1711,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for weighted moving average pipeline**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.
-
-**Use Case:** Business analytics for weighted moving average pipeline
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for weighted moving average pipeline Business Value: Actionable insights from weighted moving average pipeline Purpose: Production weighted moving average pipeline analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and hex
 
 **Business Value:** Actionable insights from weighted moving average pipeline
 
 **Purpose:** Production weighted moving average pipeline analysis
 
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1863,17 +1798,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for peak period identification and efficiency**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for peak period identification and efficiency
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for peak period identification and efficiency Business Value: Actionable insights from peak period identification and efficiency Purpose: Production peak period identification and efficiency analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and speed
 
 **Business Value:** Actionable insights from peak period identification and efficiency
 
 **Purpose:** Production peak period identification and efficiency analysis
 
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1954,17 +1885,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for lifetime value estimation model**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.
-
-**Use Case:** Business analytics for lifetime value estimation model
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for lifetime value estimation model Business Value: Actionable insights from lifetime value estimation model Purpose: Production lifetime value estimation model analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and hex
 
 **Business Value:** Actionable insights from lifetime value estimation model
 
 **Purpose:** Production lifetime value estimation model analysis
 
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2045,17 +1972,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for year-over-year growth rate analysis**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.
-
-**Use Case:** Business analytics for year-over-year growth rate analysis
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for year-over-year growth rate analysis Business Value: Actionable insights from year-over-year growth rate analysis Purpose: Production year-over-year growth rate analysis analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and speed
 
 **Business Value:** Actionable insights from year-over-year growth rate analysis
 
 **Purpose:** Production year-over-year growth rate analysis analysis
 
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2136,17 +2059,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for heatmap data generation by dimensions**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for heatmap data generation by dimensions
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for heatmap data generation by dimensions Business Value: Actionable insights from heatmap data generation by dimensions Purpose: Production heatmap data generation by dimensions analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and hex
 
 **Business Value:** Actionable insights from heatmap data generation by dimensions
 
 **Purpose:** Production heatmap data generation by dimensions analysis
 
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2227,17 +2146,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for running percentile distribution**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.
-
-**Use Case:** Business analytics for running percentile distribution
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for running percentile distribution Business Value: Actionable insights from running percentile distribution Purpose: Production running percentile distribution analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and speed
 
 **Business Value:** Actionable insights from running percentile distribution
 
 **Purpose:** Production running percentile distribution analysis
 
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2318,17 +2233,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for cross-correlation pattern analysis**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.
-
-**Use Case:** Business analytics for cross-correlation pattern analysis
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for cross-correlation pattern analysis Business Value: Actionable insights from cross-correlation pattern analysis Purpose: Production cross-correlation pattern analysis analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and hex
 
 **Business Value:** Actionable insights from cross-correlation pattern analysis
 
 **Purpose:** Production cross-correlation pattern analysis analysis
 
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2409,17 +2320,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for status transition forensic analysis**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for status transition forensic analysis
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for status transition forensic analysis Business Value: Actionable insights from status transition forensic analysis Purpose: Production status transition forensic analysis analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and speed
 
 **Business Value:** Actionable insights from status transition forensic analysis
 
 **Purpose:** Production status transition forensic analysis analysis
 
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2500,17 +2407,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for multi-metric dashboard aggregation**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.
-
-**Use Case:** Business analytics for multi-metric dashboard aggregation
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for multi-metric dashboard aggregation Business Value: Actionable insights from multi-metric dashboard aggregation Purpose: Production multi-metric dashboard aggregation analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and hex
 
 **Business Value:** Actionable insights from multi-metric dashboard aggregation
 
 **Purpose:** Production multi-metric dashboard aggregation analysis
 
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2591,17 +2494,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for sequential pattern mining with windows**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.
-
-**Use Case:** Business analytics for sequential pattern mining with windows
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for sequential pattern mining with windows Business Value: Actionable insights from sequential pattern mining with windows Purpose: Production sequential pattern mining with windows analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and speed
 
 **Business Value:** Actionable insights from sequential pattern mining with windows
 
 **Purpose:** Production sequential pattern mining with windows analysis
 
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2682,17 +2581,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for concentration index computation**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for concentration index computation
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for concentration index computation Business Value: Actionable insights from concentration index computation Purpose: Production concentration index computation analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and hex
 
 **Business Value:** Actionable insights from concentration index computation
 
 **Purpose:** Production concentration index computation analysis
 
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2773,17 +2668,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for statistical anomaly score assignment**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.
-
-**Use Case:** Business analytics for statistical anomaly score assignment
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for statistical anomaly score assignment Business Value: Actionable insights from statistical anomaly score assignment Purpose: Production statistical anomaly score assignment analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and speed
 
 **Business Value:** Actionable insights from statistical anomaly score assignment
 
 **Purpose:** Production statistical anomaly score assignment analysis
 
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2864,17 +2755,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for fiscal period comparative reporting**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.
-
-**Use Case:** Business analytics for fiscal period comparative reporting
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for fiscal period comparative reporting Business Value: Actionable insights from fiscal period comparative reporting Purpose: Production fiscal period comparative reporting analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and hex
 
 **Business Value:** Actionable insights from fiscal period comparative reporting
 
 **Purpose:** Production fiscal period comparative reporting analysis
 
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2955,17 +2842,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for throughput optimization metrics**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for throughput optimization metrics
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for throughput optimization metrics Business Value: Actionable insights from throughput optimization metrics Purpose: Production throughput optimization metrics analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and speed
 
 **Business Value:** Actionable insights from throughput optimization metrics
 
 **Purpose:** Production throughput optimization metrics analysis
 
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -3046,17 +2929,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for cumulative trend analysis pipeline**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.
-
-**Use Case:** Business analytics for cumulative trend analysis pipeline
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for cumulative trend analysis pipeline Business Value: Actionable insights from cumulative trend analysis pipeline Purpose: Production cumulative trend analysis pipeline analysis Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and hex
 
 **Business Value:** Actionable insights from cumulative trend analysis pipeline
 
 **Purpose:** Production cumulative trend analysis pipeline analysis
 
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -3137,17 +3016,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for multi-dimensional pivot aggregation**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping.
-
-**Use Case:** Business analytics for multi-dimensional pivot aggregation
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping. Use Case: Business analytics for multi-dimensional pivot aggregation Business Value: Actionable insights from multi-dimensional pivot aggregation Purpose: Production multi-dimensional pivot aggregation analysis Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by month and speed
 
 **Business Value:** Actionable insights from multi-dimensional pivot aggregation
 
 **Purpose:** Production multi-dimensional pivot aggregation analysis
 
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -3228,17 +3103,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for funnel stage progression tracking**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping.
-
-**Use Case:** Business analytics for funnel stage progression tracking
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping. Use Case: Business analytics for funnel stage progression tracking Business Value: Actionable insights from funnel stage progression tracking Purpose: Production funnel stage progression tracking analysis Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by day and hex
 
 **Business Value:** Actionable insights from funnel stage progression tracking
 
 **Purpose:** Production funnel stage progression tracking analysis
 
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and hex
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -3319,17 +3190,13 @@ LIMIT 100
 
 **Use Case:** **Business analytics for outlier detection with iqr method**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping.
-
-**Use Case:** Business analytics for outlier detection with iqr method
+**Description:** Description: Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping. Use Case: Business analytics for outlier detection with iqr method Business Value: Actionable insights from outlier detection with iqr method Purpose: Production outlier detection with iqr method analysis Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic Expected Output: Aggregated metrics grouped by week and speed
 
 **Business Value:** Actionable insights from outlier detection with iqr method
 
 **Purpose:** Production outlier detection with iqr method analysis
 
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and speed
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -3471,7 +3338,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260214-0150
+- **Generated**: 20260214-1759
 - **Database**: db-1
 - **Type**: Chat/Messaging System
 - **Queries**: 30 production queries

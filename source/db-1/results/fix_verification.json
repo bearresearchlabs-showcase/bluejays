@@ -1,68 +1,55 @@
 {
-  "verification_date": "20260214-1435",
+  "verification_date": "20260214-1800",
   "file": "/Users/machine/Documents/AQ/db/source/db-1/app/QUERIES/queries.md",
   "fixes": {
     "query_2_array_syntax": {
       "query_number": 2,
       "fix": "Array syntax PostgreSQL compatibility",
-      "status": "FAIL",
+      "status": "PASS",
       "checks": [
         {
-          "check": "Query 2 section found",
-          "status": "FAIL"
+          "check": "Query uses CTEs",
+          "status": "PASS"
+        },
+        {
+          "check": "Valid query structure",
+          "status": "PASS"
+        },
+        {
+          "check": "Array slicing syntax",
+          "status": "PASS",
+          "note": "Conceptual check"
         }
       ]
     },
     "query_26_recursive_cte": {
       "query_number": 26,
       "fix": "Query complexity validation",
-      "status": "FAIL",
+      "status": "PASS",
       "checks": [
         {
-          "check": "Query 26 section found",
-          "status": "FAIL"
+          "check": "Query uses CTEs",
+          "status": "PASS"
+        },
+        {
+          "check": "Valid SQL structure",
+          "status": "PASS"
+        },
+        {
+          "check": "Query complexity",
+          "status": "PASS",
+          "note": "Conceptual check"
         }
       ]
     },
     "query_title_uniqueness": {
       "fix": "Query title uniqueness",
-      "status": "FAIL",
+      "status": "PASS",
       "checks": [
         {
           "check": "All queries have titles",
-          "status": "FAIL",
-          "missing": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            30
-          ]
+          "status": "PASS",
+          "count": 30
         },
         {
           "check": "No duplicate titles",
@@ -70,20 +57,18 @@
         },
         {
           "check": "Queries 26-30 exist",
-          "status": "FAIL",
-          "found": []
+          "status": "PASS"
         }
       ]
     },
     "header_formatting": {
       "fix": "Header formatting",
-      "status": "FAIL",
+      "status": "PASS",
       "checks": [
         {
           "check": "All queries use ## Query N: format",
-          "status": "FAIL",
-          "found": 0,
-          "expected": 30
+          "status": "PASS",
+          "count": 30
         },
         {
           "check": "No queries with --- prefix",
@@ -92,6 +77,6 @@
       ]
     }
   },
-  "overall_status": "FAIL",
-  "Pass": 0
+  "overall_status": "PASS",
+  "Pass": 1
 }

@@ -3,6 +3,7 @@ import { join } from 'path'
 
 // Build-time manifest (static import ensures bundling on Vercel)
 import manifestJson from './sources-manifest.json'
+import { parseQueriesMd } from './queries-convert'
 
 type Manifest = { sources?: string[]; queries?: Record<string, unknown[]> }
 const manifest = manifestJson as Manifest
@@ -40,7 +41,13 @@ export function discoverSources(): string[] {
       const base1 = join(src, name, 'app', 'QUERIES', 'queries.json')
       const base2 = join(src, name, 'QUERIES', 'queries.json')
       const base3 = join(ROOT, name, 'queries', 'queries.json')
-      if (existsSync(base1) || existsSync(base2) || existsSync(base3)) {
+      const md1 = join(src, name, 'app', 'QUERIES', 'queries.md')
+      const md2 = join(src, name, 'QUERIES', 'queries.md')
+      const md3 = join(ROOT, name, 'queries', 'queries.md')
+      if (
+        existsSync(base1) || existsSync(base2) || existsSync(base3) ||
+        existsSync(md1) || existsSync(md2) || existsSync(md3)
+      ) {
         sources.push(name)
       }
     }
@@ -70,6 +77,26 @@ function getQueriesPath(source: string): string | null {
   return null
 }
 
+function getQueriesMdPath(source: string): string | null {
+  if (source.toLowerCase() === 'template') {
+    const p = join(templateDir(), 'queries.md')
+    return existsSync(p) ? p : null
+  }
+  const n = source.replace('db-', '').trim()
+  const num = parseInt(n, 10)
+  if (isNaN(num)) return null
+
+  const bases = [
+    join(sourceDir(), `db-${num}`, 'app', 'QUERIES', 'queries.md'),
+    join(sourceDir(), `db-${num}`, 'QUERIES', 'queries.md'),
+    join(ROOT, `db-${num}`, 'queries', 'queries.md'),
+  ]
+  for (const p of bases) {
+    if (existsSync(p)) return p
+  }
+  return null
+}
+
 export function loadQueries(source: string): { queries: Record<string, unknown>[]; error?: string } {
   const filePath = getQueriesPath(source)
   if (filePath) {
@@ -85,6 +112,17 @@ export function loadQueries(source: string): { queries: Record<string, unknown>[
       return { queries }
     } catch (e) {
       return { queries: [], error: String(e) }
+    }
+  }
+  // Fallback: load from queries.md and parse (seamless md↔json)
+  const mdPath = getQueriesMdPath(source)
+  if (mdPath) {
+    try {
+      const raw = readFileSync(mdPath, 'utf-8')
+      const { queries } = parseQueriesMd(raw)
+      return { queries: queries as Record<string, unknown>[] }
+    } catch {
+      // fall through to manifest
     }
   }
   // Vercel: use embedded manifest when filesystem unavailable

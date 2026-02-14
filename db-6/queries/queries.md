@@ -12,36 +12,47 @@ This database contains weather data from NOAA sources including GRIB2 gridded fo
 ## Tables
 
 ### `grib2_forecasts`
+
 Stores gridded forecast data from NDFD (National Digital Forecast Database)
 
 ### `shapefile_boundaries`
+
 Stores geographic boundaries (CWA, Fire Zones, Marine Zones, River Basins)
 
 ### `weather_observations`
+
 Stores point observations from NWS API
 
 ### `grib2_transformation_log`
+
 Tracks GRIB2 file processing and transformation operations
 
 ### `shapefile_integration_log`
+
 Tracks shapefile processing and coordinate transformations
 
 ### `spatial_join_results`
+
 Documents spatial join operations between GRIB2 grid cells and shapefile boundaries
 
 ### `crs_transformation_parameters`
+
 Documents coordinate reference system transformations and parameters
 
 ### `data_quality_metrics`
+
 Tracks data quality metrics for weather products
 
 ### `load_status`
+
 Tracks data loading operations to Databricks
 
 ### `weather_forecast_aggregations`
+
 Pre-aggregated forecast data for performance
 
 ### `weather_stations`
+
 Metadata about weather observation stations
 
 ---

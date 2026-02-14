@@ -164,7 +164,7 @@ This database implements a comprehensive chat/messaging system supporting user p
 
 ## Database Schema Documentation
 
-The database consists of **11 tables** organized into logical groups:
+The database consists of **12 tables** organized into logical groups:
 
 1. **User Management**: `profiles`
 2. **Chat System**: `chats`, `chat_participants`, `messages`
@@ -173,6 +173,7 @@ The database consists of **11 tables** organized into logical groups:
 5. **File Management**: `file_attachments`
 6. **Anonymous Features**: `anonymous_chats`, `anonymous_chat_users`, `anonymous_messages`
 7. **Invitations**: `chat_invitations`
+8. **Analytics**: `aircraft_position_history` (time-series)
 
 ```
 profiles (id)
@@ -191,133 +192,119 @@ chats (id)
     ├── anonymous_chat_users (chat_id) [via anonymous_chats]
     ├── anonymous_messages (chat_id) [via anonymous_chats]
     └── chat_invitations (chat_id)
-
-messages (id)
-    └── file_attachments (message_id)
 ```
 
 ```mermaid
 erDiagram
     profiles {
-        uuid id PK "Primary key - unique user identifier"
-        varchar username UK "Unique username for login"
-        varchar email UK "Unique email address"
-        varchar display_name "Display name shown in UI"
-        varchar avatar_url "URL to user avatar image"
-        timestamp created_at "Account creation timestamp"
-        timestamp updated_at "Last profile update timestamp"
-        varchar ai_character_id "Associated AI character identifier"
-        varchar user_role "User role (user, admin, moderator)"
-        varchar bio "User biography text"
+        uuid id PK "Primary key"
+        varchar username UK "Unique username"
+        varchar email "Email address"
+        varchar display_name "Display name"
+        timestamp created_at "Account creation"
     }
 
     chats {
-        uuid id PK "Primary key - unique chat identifier"
+        uuid id PK "Primary key"
         uuid created_by FK "Creator user"
-        varchar title "Chat room title"
-        timestamp created_at "Chat creation timestamp"
-        timestamp updated_at "Last update timestamp"
-        varchar current_ai_character_id "Currently active AI character"
+        varchar title "Chat title"
+        timestamp created_at "Creation time"
+    }
+
+    messages {
+        uuid id PK "Primary key"
+        uuid chat_id FK "Chat room"
+        uuid sender_id FK "Sender user"
+        boolean is_ai "AI message flag"
+        text content "Message content"
+        timestamp created_at "Message time"
     }
 
     chat_participants {
         uuid chat_id PK,FK "Chat room"
         uuid user_id PK,FK "Participant user"
-        timestamp joined_at "Timestamp when user joined"
-    }
-
-    messages {
-        uuid id PK "Primary key - unique message identifier"
-        uuid chat_id FK "Chat room"
-        uuid sender_id FK "Sender user (NULL for system messages)"
-        varchar content "Message text content"
-        boolean is_ai "Flag indicating AI-generated message"
-        varchar ai_character_id "AI character identifier if AI message"
-        timestamp created_at "Message creation timestamp"
-        timestamp updated_at "Last update timestamp"
-        timestamp deleted_at "Soft delete timestamp"
-        boolean is_system_message "Flag indicating system-generated message"
+        timestamp joined_at "Join time"
     }
 
     friends {
         uuid id PK "Primary key"
         uuid user_id FK "Requester user"
         uuid friend_id FK "Friend user"
-        varchar status "Relationship status (pending, accepted, declined)"
-        timestamp created_at "Request creation timestamp"
-        timestamp updated_at "Last status update timestamp"
+        varchar status "pending/accepted/declined"
+        timestamp created_at "Request time"
     }
 
     notifications {
         uuid id PK "Primary key"
         uuid user_id FK "User"
-        varchar type "Notification type (message, friend_request, etc.)"
-        varchar title "Notification title"
-        varchar message "Notification message content"
-        timestamp created_at "Creation timestamp"
-        boolean read "Read status flag"
-        timestamp seen_at "Timestamp when notification was seen"
+        varchar type "Notification type"
+        boolean read "Read status"
+        timestamp seen_at "Seen time"
+        timestamp created_at "Creation time"
     }
 
     file_attachments {
         uuid id PK "Primary key"
-        uuid message_id FK "Message (nullable)"
-        uuid chat_id FK "Chat room (nullable)"
-        uuid user_id FK "Uploader user (nullable)"
-        varchar file_name "Original filename"
-        integer file_size "File size in bytes"
+        uuid chat_id FK "Chat room"
+        uuid user_id FK "Uploader user"
+        varchar file_name "Filename"
         varchar file_type "MIME type"
-        varchar file_path "Storage path/URL"
-        timestamp created_at "Upload timestamp"
+        bigint file_size "File size bytes"
+        timestamp created_at "Upload time"
     }
 
     anonymous_chats {
         uuid id PK "Primary key"
-        varchar join_code UK "Unique join code for anonymous access"
-        timestamp created_at "Creation timestamp"
-        timestamp expires_at "Expiration timestamp"
+        varchar join_code "Join code"
+        timestamp created_at "Creation time"
+        timestamp expires_at "Expiration"
     }
 
     anonymous_chat_users {
-        uuid id PK "Primary key"
-        uuid chat_id FK "Anonymous chat room"
-        varchar guest_id "Temporary guest identifier"
-        timestamp created_at "Join timestamp"
+        uuid guest_id PK "Guest identifier"
+        uuid chat_id PK,FK "Anonymous chat"
     }
 
     anonymous_messages {
         uuid id PK "Primary key"
-        uuid chat_id FK "Anonymous chat room"
-        varchar guest_id "Guest identifier of sender"
-        varchar content "Message content"
-        timestamp created_at "Message timestamp"
+        uuid chat_id FK "Anonymous chat"
+        uuid guest_id "Guest sender"
+        text content "Message content"
+        timestamp created_at "Message time"
     }
 
     chat_invitations {
         uuid id PK "Primary key"
+        uuid inviting_user_id FK "Inviter"
+        uuid invited_user_id FK "Invitee"
         uuid chat_id FK "Chat room"
-        uuid inviting_user_id FK "Inviter user"
-        uuid invited_user_id FK "Invitee user"
-        varchar status "Invitation status (pending, accepted, declined)"
-        timestamp created_at "Invitation timestamp"
+        varchar status "pending/accepted/declined"
+        timestamp created_at "Invitation time"
+    }
+
+    aircraft_position_history {
+        serial id PK "Primary key"
+        varchar hex "Aircraft hex code"
+        numeric speed "Speed"
+        numeric altitude "Altitude"
+        timestamp timestamp "Position time"
     }
 
     profiles ||--o{ chats : "creates"
     profiles ||--o{ messages : "sends"
     profiles ||--o{ chat_participants : "participates"
-    profiles ||--o{ friends : "user_requests"
-    profiles ||--o{ friends : "friend_receives"
+    profiles ||--o{ friends : "user"
+    profiles ||--o{ friends : "friend"
     profiles ||--o{ notifications : "receives"
     profiles ||--o{ file_attachments : "uploads"
-    profiles ||--o{ chat_invitations : "invites"
+    profiles ||--o{ chat_invitations : "inviting"
     profiles ||--o{ chat_invitations : "invited"
     chats ||--o{ messages : "contains"
     chats ||--o{ chat_participants : "has"
-    chats ||--o{ file_attachments : "has_files"
-    chats ||--o{ chat_invitations : "has_invitations"
-    messages ||--o{ file_attachments : "has_attachments"
-    anonymous_chats ||--o{ anonymous_chat_users : "has_users"
-    anonymous_chats ||--o{ anonymous_messages : "has_messages"
+    chats ||--o{ file_attachments : "contains"
+    chats ||--o{ chat_invitations : "invited_to"
+    anonymous_chats ||--o{ anonymous_chat_users : "has"
+    anonymous_chats ||--o{ anonymous_messages : "contains"
 ```
 
 ---

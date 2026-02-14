@@ -14,18 +14,21 @@ export function CustomerPortal({ defaultSource }: { defaultSource?: string }) {
       .then((d) => {
         const s = d.sources || ['template']
         setSources(s)
-        if (!source && s.length) setSource(s.find((x: string) => x.startsWith('db-')) || s[0])
+        setSource((prev) => (prev ? prev : (s.find((x: string) => x.startsWith('db-')) || s[0])))
       })
       .catch(() => setSources(['template']))
   }, [])
 
   useEffect(() => {
-    if (defaultSource && sources.includes(defaultSource)) setSource(defaultSource)
+    if (defaultSource && sources.includes(defaultSource)) {
+      queueMicrotask(() => setSource(defaultSource))
+    }
   }, [defaultSource, sources])
 
-  const load = () => {
+  // Auto-load tasks when source changes (no manual "Load tasks" click needed)
+  useEffect(() => {
     if (!source) return
-    setLoading(true)
+    queueMicrotask(() => setLoading(true))
     fetch(`/api/queries?source=${encodeURIComponent(source)}`)
       .then((r) => r.json())
       .then((d) => {
@@ -36,49 +39,52 @@ export function CustomerPortal({ defaultSource }: { defaultSource?: string }) {
         setTasks([])
         setLoading(false)
       })
-  }
+  }, [source])
 
   const exportUrl = (fmt: string) => `/api/export?source=${encodeURIComponent(source)}&format=${fmt}`
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
-        <div>
-          <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 600, color: 'var(--fg-muted)', marginBottom: '0.25rem', textTransform: 'uppercase' }}>
-            Database
-          </label>
-          <select
-            value={source}
-            onChange={(e) => setSource(e.target.value)}
-            style={{ padding: '0.5rem 0.875rem', background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--fg)', borderRadius: 6, fontSize: '0.875rem' }}
-          >
-            {sources.map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
+      <section style={{ marginBottom: '1.5rem', padding: '1rem', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8 }}>
+        <h2 style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--fg)' }}>
+          Select database for annotation tasks
+        </h2>
+        <p style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)', marginBottom: '1rem' }}>
+          Choose a database to view its query tasks. Tasks load automatically when you change the selection.
+        </p>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
+          <div>
+            <label htmlFor="db-select" style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--fg-muted)', marginBottom: '0.25rem' }}>
+              Database ({sources.length} available)
+            </label>
+            <select
+              id="db-select"
+              value={source}
+              onChange={(e) => setSource(e.target.value)}
+              style={{ padding: '0.5rem 0.875rem', minWidth: 140, background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--fg)', borderRadius: 6, fontSize: '0.875rem' }}
+            >
+              {sources.map((s) => (
+                <option key={s} value={s}>{s === 'template' ? 'template (canonical)' : s}</option>
+              ))}
+            </select>
+          </div>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <a
+              href={exportUrl('csv')}
+              style={{ padding: '0.5rem 0.875rem', background: 'var(--accent)', color: '#fff', borderRadius: 6, fontSize: '0.875rem', textDecoration: 'none', fontWeight: 500 }}
+            >
+              Export CSV
+            </a>
+            <a
+              href={exportUrl('json')}
+              style={{ padding: '0.5rem 0.875rem', background: 'var(--accent)', color: '#fff', borderRadius: 6, fontSize: '0.875rem', textDecoration: 'none', fontWeight: 500 }}
+            >
+              Export JSON
+            </a>
+          </div>
         </div>
-        <button
-          onClick={load}
-          style={{ padding: '0.5rem 0.875rem', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 6, fontSize: '0.875rem', cursor: 'pointer', fontWeight: 500 }}
-        >
-          Load tasks
-        </button>
-      </div>
-      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
-        <a
-          href={exportUrl('csv')}
-          style={{ padding: '0.5rem 0.875rem', background: 'var(--accent)', color: '#fff', borderRadius: 6, fontSize: '0.875rem', textDecoration: 'none', fontWeight: 500 }}
-        >
-          Export CSV
-        </a>
-        <a
-          href={exportUrl('json')}
-          style={{ padding: '0.5rem 0.875rem', background: 'var(--accent)', color: '#fff', borderRadius: 6, fontSize: '0.875rem', textDecoration: 'none', fontWeight: 500 }}
-        >
-          Export JSON
-        </a>
-      </div>
-      {loading && <p style={{ color: 'var(--fg-muted)' }}>Loading...</p>}
+      </section>
+      {loading && <p style={{ color: 'var(--fg-muted)', fontSize: '0.875rem' }}>Loading tasks…</p>}
       {!loading && tasks.length > 0 && (
         <div style={{ overflowX: 'auto', border: '1px solid var(--border)', borderRadius: 8 }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
@@ -104,7 +110,9 @@ export function CustomerPortal({ defaultSource }: { defaultSource?: string }) {
         </div>
       )}
       {!loading && tasks.length === 0 && source && (
-        <p style={{ color: 'var(--fg-muted)' }}>Select database and click Load tasks.</p>
+        <p style={{ color: 'var(--fg-muted)', fontSize: '0.875rem' }}>
+          No tasks found for {source}. Try another database.
+        </p>
       )}
     </div>
   )

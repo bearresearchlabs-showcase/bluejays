@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation'
 import { getSession } from '@/lib/auth'
-import Link from 'next/link'
 
 export default async function LoginPage({
   searchParams,
@@ -14,23 +13,13 @@ export default async function LoginPage({
 
   const params = await searchParams
   const err = params.err
-  const from = params.from
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-      <div
-        style={{
-          background: 'var(--bg-card)',
-          border: '1px solid var(--border)',
-          borderRadius: 8,
-          padding: '2rem',
-          width: '100%',
-          maxWidth: 360,
-        }}
-      >
-        <h1 style={{ fontSize: '1.25rem', margin: '0 0 1.5rem 0' }}>SQL Annotator</h1>
+    <div className="min-h-screen flex items-center justify-center p-8 bg-[var(--bg)]">
+      <div className="w-full max-w-[360px] p-8 rounded-lg border border-[var(--border)] bg-[var(--bg-card)]">
+        <h1 className="text-xl font-semibold mb-6 text-[var(--fg)]">SQL Annotator</h1>
         <form method="post" action="/api/login">
-          <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--fg-muted)', marginBottom: '0.375rem', textTransform: 'uppercase' }}>
+          <label className="block text-xs font-semibold mb-1.5 uppercase text-[var(--fg-muted)]">
             Username
           </label>
           <input
@@ -39,18 +28,9 @@ export default async function LoginPage({
             placeholder="staff, annotator, or customer"
             required
             autoComplete="username"
-            style={{
-              width: '100%',
-              padding: '0.625rem 0.75rem',
-              background: 'var(--bg)',
-              border: '1px solid var(--border)',
-              color: 'var(--fg)',
-              borderRadius: 6,
-              fontSize: '0.9375rem',
-              marginBottom: '1rem',
-            }}
+            className="w-full px-3 py-2.5 mb-4 rounded-md text-[15px] bg-[var(--bg)] border border-[var(--border)] text-[var(--fg)] placeholder:text-[var(--fg-muted)]"
           />
-          <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: 'var(--fg-muted)', marginBottom: '0.375rem', textTransform: 'uppercase' }}>
+          <label className="block text-xs font-semibold mb-1.5 uppercase text-[var(--fg-muted)]">
             Password
           </label>
           <input
@@ -59,41 +39,22 @@ export default async function LoginPage({
             placeholder="••••••••"
             required
             autoComplete="current-password"
-            style={{
-              width: '100%',
-              padding: '0.625rem 0.75rem',
-              background: 'var(--bg)',
-              border: '1px solid var(--border)',
-              color: 'var(--fg)',
-              borderRadius: 6,
-              fontSize: '0.9375rem',
-              marginBottom: '1rem',
-            }}
+            className="w-full px-3 py-2.5 mb-4 rounded-md text-[15px] bg-[var(--bg)] border border-[var(--border)] text-[var(--fg)] placeholder:text-[var(--fg-muted)]"
           />
-          <div style={{ marginBottom: '1rem' }}>
-            <input type="checkbox" name="stay" id="stay" value="1" defaultChecked />
-            <label htmlFor="stay" style={{ marginLeft: '0.5rem', fontSize: '0.875rem', fontWeight: 400 }}>
+          <div className="mb-4 flex items-center gap-2">
+            <input type="checkbox" name="stay" id="stay" value="1" defaultChecked className="rounded" />
+            <label htmlFor="stay" className="text-sm text-[var(--fg)]">
               Stay logged in (30 days)
             </label>
           </div>
           <button
             type="submit"
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              background: 'var(--accent)',
-              color: '#fff',
-              border: 'none',
-              borderRadius: 6,
-              fontSize: '0.9375rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-            }}
+            className="w-full py-3 rounded-md text-[15px] font-semibold cursor-pointer bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)]"
           >
             Log in
           </button>
           {err && (
-            <p style={{ color: 'var(--error)', fontSize: '0.875rem', marginTop: '0.5rem' }}>{err.replace(/\+/g, ' ')}</p>
+            <p className="mt-2 text-sm text-[var(--error)]">{err.replace(/\+/g, ' ')}</p>
           )}
         </form>
       </div>
