@@ -85,7 +85,10 @@ backup_archive/
 # Virtual envs (all variants)
 venv_selenium/
 
-# Large data files tracked via Git LFS (see .gitattributes)
-# source/db-*/data/data.sql, data_large*.sql, deliverable data — in LFS
+# SQL data files (excluded; use LFS or external storage for large datasets)
+source/db-*/**/data.sql
+source/db-*/**/data_large*.sql
+client/db/**/data.sql
+client/db/**/data_large*.sql
 
 # lib/sources-manifest.json — COMMITTED for Vercel (regenerate with: node scripts/generate-sources-manifest.js)

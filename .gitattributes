@@ -1,5 +1,6 @@
 source/db-*/package/data filter=lfs diff=lfs merge=lfs -text
 source/db-*/package/data.sql filter=lfs diff=lfs merge=lfs -text
+# Exclude db-9, db-16 (>2GB, exceeds GitHub LFS limit) — in .gitignore
 source/db-*/**/data_large*.sql filter=lfs diff=lfs merge=lfs -text
 source/db-*/**/data.sql filter=lfs diff=lfs merge=lfs -text
 
