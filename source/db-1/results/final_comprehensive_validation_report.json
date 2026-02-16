@@ -1,5 +1,5 @@
 {
-  "report_date": "20260214-1821",
+  "report_date": "20260214-1911",
   "database": "db-1",
   "file_validated": "queries/queries.md",
   "Pass": 1,
@@ -11,7 +11,7 @@
     "execution_testing_status": "PASS"
   },
   "phase_1_fix_verification": {
-    "verification_date": "20260214-1821",
+    "verification_date": "20260214-1911",
     "file": "/Users/machine/Documents/AQ/db/source/db-1/app/QUERIES/queries.md",
     "fixes": {
       "query_2_array_syntax": {
@@ -252,7 +252,7 @@
   "phase_3_execution_testing": {
     "database": "db-1",
     "database_number": 1,
-    "test_timestamp": "2026-02-14T18:21:22.340473",
+    "test_timestamp": "2026-02-14T19:11:58.017386",
     "postgresql": {
       "available": true,
       "queries": [
@@ -260,7 +260,7 @@
           "query_number": 1,
           "description": "Query 1",
           "success": false,
-          "execution_time_ms": 35.70294380187988,
+          "execution_time_ms": 25.89106559753418,
           "row_count": 0,
           "error": "syntax error at end of input\nLINE 65: -- ...\n               ^\n",
           "error_type": "SyntaxError"

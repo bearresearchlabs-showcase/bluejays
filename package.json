@@ -1,45 +1,35 @@
 {
-  "name": "annotator-app",
+  "name": "db",
   "version": "1.0.0",
   "private": true,
+  "description": "Source → Ingest → Client: ingests source/ and converts to client/",
   "scripts": {
-    "dev": "next dev -p 3006",
-    "dev:test": "next dev -p 3007",
-    "build": "node scripts/generate-sources-manifest.js && next build --webpack",
-    "start": "next start -p 3008",
-    "lint": "eslint . --max-warnings 0",
-    "test": "jest",
-    "test:build": "TEST_BUILD=1 jest __tests__/quality/build-succeeds.test.ts --testTimeout=120000",
-    "test:quality": "jest __tests__/quality --testTimeout=10000",
-    "test:watch": "jest --watch",
-    "test:integration": "BASE_URL=http://localhost:3007 jest __tests__/integration --testTimeout=10000",
+    "dev": "npm run dev --prefix apps/ingest",
+    "dev:test": "npm run dev:test --prefix apps/ingest",
+    "build": "npm run build --prefix apps/ingest",
+    "build:web": "npm run build --prefix apps/web",
+    "dev:web": "npm run dev --prefix apps/web",
+    "start": "npm run start --prefix apps/ingest",
+    "lint": "npm run lint --prefix apps/ingest",
+    "test": "npm run test --prefix apps/ingest",
+    "test:build": "npm run test:build --prefix apps/ingest",
+    "test:quality": "npm run test:quality --prefix apps/ingest",
+    "test:watch": "npm run test:watch --prefix apps/ingest",
+    "test:integration": "npm run test:integration --prefix apps/ingest",
+    "test:e2e": "npm run test:e2e --prefix apps/ingest",
+    "test:e2e:ui": "npm run test:e2e:ui --prefix apps/ingest",
+    "test:e2e:headed": "npm run test:e2e:headed --prefix apps/ingest",
+    "test:all": "npm run test:all --prefix apps/ingest",
+    "test:app": "bash scripts/test-app-running.sh",
     "kill:sessions": "bash scripts/kill-dev-sessions.sh",
-    "queries:convert": "node scripts/queries-convert/cli.js",
-    "queries:md-to-json": "node scripts/queries-convert/cli.js md-to-json",
-    "queries:json-to-md": "node scripts/queries-convert/cli.js json-to-md"
+    "queries:convert": "npm run queries:convert --prefix apps/ingest",
+    "queries:md-to-json": "npm run queries:md-to-json --prefix apps/ingest",
+    "queries:json-to-md": "npm run queries:json-to-md --prefix apps/ingest",
+    "log:session": "node scripts/app-session-logger.js --from-git",
+    "pre-commit:root": "bash scripts/pre-commit-root.sh"
   },
-  "dependencies": {
-    "@vercel/analytics": "^1.1.0",
-    "jose": "^5.2.0",
-    "next": "16.1.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.18",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^22.19.11",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "autoprefixer": "^10.4.24",
-    "eslint": "^9.39.2",
-    "eslint-config-next": "^16.1.6",
-    "jest": "^30.2.0",
-    "jest-environment-jsdom": "^30.2.0",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3"
-  }
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }

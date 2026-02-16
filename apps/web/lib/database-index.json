@@ -1,0 +1,96 @@
+{
+  "generated_at": "2026-02-16T05:42:27.663Z",
+  "totalDatabases": 10,
+  "databases": [
+    {
+      "id": "db6",
+      "name": "Weather Data Pipeline System",
+      "shortDescription": "This database contains weather data from NOAA sources including GRIB2 gridded forecasts, shapefile boundaries (CWA, Fire Zones, Marine Zones), real-time observations, transformation logs, spatial…",
+      "tableCount": 11,
+      "queryCount": 30,
+      "created_date": "2026-02-16",
+      "version": "1.0"
+    },
+    {
+      "id": "db7",
+      "name": "Maritime Shipping Intelligence Database",
+      "shortDescription": "This database implements a comprehensive Maritime Shipping Intelligence System integrating data from government sources (NOAA, US Coast Guard, MARAD, Data.gov) and commercial maritime data providers.",
+      "tableCount": 14,
+      "queryCount": 30,
+      "created_date": "2026-02-16",
+      "version": "1.0"
+    },
+    {
+      "id": "db8",
+      "name": "Job Market Intelligence Database",
+      "shortDescription": "This database implements a comprehensive Job Market Intelligence and Targeted Application System integrating data from .gov sources (USAJobs.gov, BLS, Department of Labor) and aggregated sources.",
+      "tableCount": 12,
+      "queryCount": 30,
+      "created_date": "2026-02-16",
+      "version": "1.0"
+    },
+    {
+      "id": "db9",
+      "name": "Shipping Intelligence Database",
+      "shortDescription": "This database implements a comprehensive shipping intelligence and rate comparison system designed to mirror the functionality of Pirate Ship (https://www.pirateship.com/).",
+      "tableCount": 14,
+      "queryCount": 30,
+      "created_date": "2026-02-16",
+      "version": "1.0"
+    },
+    {
+      "id": "db10",
+      "name": "Marketing Intelligence Database",
+      "shortDescription": "This database implements a comprehensive marketing intelligence system with full Brickseek.com functionality for retail inventory tracking, pricing intelligence, and deal discovery.",
+      "tableCount": 12,
+      "queryCount": 30,
+      "created_date": "2026-02-16",
+      "version": "1.0"
+    },
+    {
+      "id": "db11",
+      "name": "Parking Intelligence Database",
+      "shortDescription": "This database implements a comprehensive parking intelligence system for marketing analysis, mirroring SpotHero's business model.",
+      "tableCount": 14,
+      "queryCount": 30,
+      "created_date": "2026-02-16",
+      "version": "1.0"
+    },
+    {
+      "id": "db12",
+      "name": "Credit Card and Rewards Optimization System",
+      "shortDescription": "This database contains comprehensive credit card data for rewards optimization, card management, and portfolio analysis.",
+      "tableCount": 15,
+      "queryCount": 30,
+      "created_date": "2026-02-16",
+      "version": "1.0"
+    },
+    {
+      "id": "db13",
+      "name": "AI Benchmark Marketing Database",
+      "shortDescription": "This database implements a comprehensive AI benchmark marketing system that mirrors and extends Artificial Analysis (artificialanalysis.ai) functionality for comprehensive AI model benchmark…",
+      "tableCount": 11,
+      "queryCount": 30,
+      "created_date": "2026-02-16",
+      "version": "1.0"
+    },
+    {
+      "id": "db14",
+      "name": "Cloud Instance Cost Database",
+      "shortDescription": "This database provides comprehensive cloud instance cost analysis and optimization across AWS, GCP, and Azure.",
+      "tableCount": 11,
+      "queryCount": 30,
+      "created_date": "2026-02-16",
+      "version": "1.0"
+    },
+    {
+      "id": "db15",
+      "name": "Electricity Cost and Solar Rebate Database",
+      "shortDescription": "The Electricity Cost and Solar Rebate Database (db-15) provides comprehensive data on electricity rates across the United States, organized by rate codes, utilities, and geographic regions.",
+      "tableCount": 17,
+      "queryCount": 30,
+      "created_date": "2026-02-16",
+      "version": "1.0"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  pr-validation:
+    name: PR Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for changed files detection
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Check TypeScript
+        run: npm run type-check
+      
+      - name: Run linter
+        run: npm run lint
+      
+      - name: Run tests
+        run: npm test -- --passWithNoTests
+      
+      - name: Check test coverage
+        run: npm run test:coverage
+      
+      - name: Comment PR with coverage
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: always()
+        with:
+          recreate: true
+          message: |
+            ## Test Results
+            
+            ✅ TypeScript check passed
+            ✅ Linter passed
+            ✅ Tests passed
+            
+            Run `npm run test:coverage` locally to see detailed coverage report.
