@@ -1,5 +1,5 @@
 ---
-description: Comprehensive validation suite for SQL queries in db-{N}/queries/queries.md files
+description: Comprehensive validation suite for SQL queries; TDD/BDD/DDD and distributed architectural patterns
 alwaysApply: true
 ---
 
@@ -8,6 +8,13 @@ alwaysApply: true
 ## Overview
 
 This validation suite provides comprehensive verification, testing, and evaluation of SQL queries in `db-{N}/queries/queries.md` files. The suite ensures queries meet all requirements including cross-database compatibility, complexity standards, and formatting consistency.
+
+## TDD, BDD, DDD, and Distributed Architectural Patterns
+
+- **TDD**: Kent Beck phase-driven TDD. Validation phases (0–5) drive query implementation. Run extraction and validation first; fix queries until all phases pass.
+- **BDD**: Cucumber/Gherkin acceptance criteria. Phase 1–4 checks validate behavior (array syntax, recursive CTE, title uniqueness, complexity). `expected_output` and metadata capture acceptance criteria.
+- **DDD**: Eric Evans bounded contexts. Each db-{N} is a bounded context; validation runs per-database.
+- **Distributed Architectural Patterns**: Syntax and execution validation target PostgreSQL; queries must support redundancy architecture and distributed execution.
 
 ## Timestamp Requirements
 

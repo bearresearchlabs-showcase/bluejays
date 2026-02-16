@@ -5,6 +5,7 @@
 function normalizeQuery(q, dbId) {
   const num = q.question_id ?? q.number ?? 0
   const question = q.question ?? q.title ?? q.use_case ?? `Query ${num}`
+  const normalQuery = q.normal_query ?? q.normalQuery ?? ''
   const sql = q.SQL ?? q.sql ?? ''
   const evidence = q.evidence ?? q.description ?? ''
   const difficulty = ['simple', 'moderate', 'challenging'].includes(String(q.difficulty || '').toLowerCase())
@@ -15,7 +16,7 @@ function normalizeQuery(q, dbId) {
   const schemaCtx = q.schema_context ?? {}
   const expected = q.expected_output ?? '[]'
 
-  return {
+  const out = {
     db_id: dbId,
     question_id: num,
     question,
@@ -27,6 +28,8 @@ function normalizeQuery(q, dbId) {
     schema_context: schemaCtx,
     expected_output: expected,
   }
+  if (normalQuery) out.normal_query = normalQuery
+  return out
 }
 
 function formatQueryBlock(q, dbId) {
@@ -44,6 +47,7 @@ function formatQueryBlock(q, dbId) {
     schema_context: nq.schema_context,
     expected_output: nq.expected_output,
   }
+  if (nq.normal_query) out.normal_query = nq.normal_query
   const jsonStr = JSON.stringify(out, null, 2)
   return `${header}\n\n\`\`\`json\n${jsonStr}\n\`\`\`\n`
 }

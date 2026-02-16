@@ -75,7 +75,7 @@ def convert_query(old: dict, db_id: str, cfg: dict) -> dict:
     num = old.get("number", old.get("question_id", 0))
     ev = (old.get("description") or old.get("evidence") or "")[:1000]
     sql = (old.get("sql") or "").strip()
-    return {
+    out = {
         "db_id": db_id,
         "question_id": num,
         "number": num,
@@ -91,6 +91,10 @@ def convert_query(old: dict, db_id: str, cfg: dict) -> dict:
         "tables_used": old.get("tables_used") or _infer_tables(sql),
         "query_category": old.get("query_category") or _infer_category(sql),
     }
+    normal_query = (old.get("normal_query") or "").strip()
+    if normal_query:
+        out["normal_query"] = normal_query[:500]
+    return out
 
 
 def convert_db(db_num: int, cfg: dict) -> bool:

@@ -1,5 +1,5 @@
 ---
-description: Generalized workflow and patterns for creating new databases (db-1 through db-15)
+description: Generalized workflow and patterns for creating new databases (db-1 through db-15); TDD/BDD/DDD and distributed architectural patterns
 alwaysApply: true
 ---
 
@@ -8,6 +8,13 @@ alwaysApply: true
 ## Overview
 
 This rule provides a generalized workflow for creating new databases following the patterns established in db-6 and other production databases. All databases must follow consistent structure, standards, and validation requirements.
+
+## TDD, BDD, DDD, and Distributed Architectural Patterns
+
+- **TDD**: Kent Beck Red-Green-Refactor. Write validation scripts and tests first; implement schema and queries to pass. Phase 0–5 validation drives implementation.
+- **BDD**: Cucumber/Gherkin-style acceptance criteria. Query metadata (`description`, `use_case`, `expected_output`) captures acceptance criteria; validation phases verify behavior.
+- **DDD**: Eric Evans "Domain-Driven Design". Each database (db-{N}) is a bounded context; schemas and queries stay within domain boundaries.
+- **Distributed Architectural Patterns**: Schemas and queries target PostgreSQL; redundancy architecture supports failover and cross-database linking. Web-deployable deliverables follow microservice-style separation (Vercel, Turborepo).
 
 ## Database Initialization
 

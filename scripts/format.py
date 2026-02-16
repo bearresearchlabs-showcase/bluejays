@@ -77,6 +77,60 @@ def _queries_from_json(queries_data: Dict, db_id: str) -> List[Dict]:
     return sorted(result, key=lambda x: x["number"])
 
 
+def _parse_schema_for_deliverable(db_dir: Path) -> List[Dict]:
+    """Parse schema.sql to extract table definitions for deliverable JSON."""
+    for base in (db_dir / "app" / "DATABASE", db_dir / "data", db_dir / "deliverable" / "data"):
+        if not base.exists():
+            continue
+        for name in ("schema.sql", "schema_postgresql.sql"):
+            p = base / name
+            if p.exists():
+                return _parse_schema_tables(p.read_text(encoding="utf-8"))
+    return []
+
+
+def _parse_schema_tables(sql_content: str) -> List[Dict]:
+    """Extract table definitions from schema SQL."""
+    tables = []
+    current_table = None
+    for line in sql_content.split("\n"):
+        line_stripped = line.strip()
+        if line_stripped.startswith("CREATE TABLE"):
+            match = re.match(r"CREATE TABLE\s+(\w+)", line_stripped, re.IGNORECASE)
+            if match:
+                if current_table:
+                    tables.append(current_table)
+                current_table = {"name": match.group(1), "description": "", "columns": []}
+        elif current_table and re.match(r"^\w+\s+", line_stripped):
+            parts = line_stripped.split(",")[0].strip()
+            if parts:
+                col_match = re.match(r"(\w+)\s+([^,\s]+(?:\s*\([^)]+\))?)", parts)
+                if col_match:
+                    col_name, col_type = col_match.group(1), col_match.group(2)
+                    constraints = []
+                    if "PRIMARY KEY" in line_stripped:
+                        constraints.append("PRIMARY KEY")
+                    if "UNIQUE" in line_stripped:
+                        constraints.append("UNIQUE")
+                    if "NOT NULL" in line_stripped:
+                        constraints.append("NOT NULL")
+                    if "FOREIGN KEY" in line_stripped or "REFERENCES" in line_stripped:
+                        constraints.append("FOREIGN KEY")
+                    desc_match = re.search(r"--\s*(.+)", line_stripped)
+                    description = desc_match.group(1) if desc_match else ""
+                    current_table["columns"].append(
+                        {
+                            "name": col_name,
+                            "data_type": col_type,
+                            "constraints": ", ".join(constraints) if constraints else "",
+                            "description": description,
+                        }
+                    )
+    if current_table:
+        tables.append(current_table)
+    return tables
+
+
 def _load_schema_snippet(db_dir: Path, db_num: int) -> str:
     """Load first 2000 chars of schema.sql."""
     for base in (db_dir / "app" / "DATABASE", db_dir / "data", db_dir / "deliverable" / "data"):
@@ -337,15 +391,42 @@ class DeliverableFormatter:
 
             # Sync queries.md and queries.json across all branches for consistency
             qdests = [db_dir / 'queries', deliverable_dir / 'queries']
+            web_dirs = []
             for web_dir in deliverable_dir.glob(f'db{db_num}-*'):
                 if web_dir.is_dir():
                     qdests.append(web_dir / 'queries')
+                    web_dirs.append(web_dir)
             for qdest in qdests:
                 qdest.mkdir(parents=True, exist_ok=True)
                 for fname in ('queries.md', 'queries.json'):
                     src = queries_dir / fname
                     if src.exists():
                         shutil.copy2(src, qdest / fname)
+
+            # Generate db-N_deliverable.json with full query objects (question, normal_query, evidence)
+            # so apps/web and BIRD-style consumers receive correct data
+            raw_queries = queries_data.get("queries", []) if queries_data else []
+            tables = _parse_schema_for_deliverable(db_dir)
+            db_type = self.extract_field(deliverable_content, r'\*\*Type:\*\*\s*(.+?)(?:\n|$)')
+            db_desc = self.extract_section(deliverable_content, '## Database Overview', '## Database Schema')
+            db_desc_clean = self.clean_description(db_desc or f"Database db-{db_num}")[:500] if db_desc else f"Database db-{db_num}"
+            json_deliverable = {
+                "database": {
+                    "id": f"db-{db_num}",
+                    "name": db_type or f"Database db-{db_num}",
+                    "description": db_desc_clean,
+                    "created_date": datetime.now().strftime("%Y-%m-%d"),
+                    "version": "1.0",
+                },
+                "schema": {"total_tables": len(tables), "tables": tables},
+                "queries": raw_queries,
+            }
+            json_bytes = json.dumps(json_deliverable, indent=2, ensure_ascii=False).encode("utf-8")
+            for web_dir in web_dirs:
+                (web_dir / f'db-{db_num}_deliverable.json').write_bytes(json_bytes)
+            app_doc = db_dir / "app" / "DOCUMENTATION"
+            if app_doc.exists():
+                (app_doc / f'db-{db_num}_deliverable.json').write_bytes(json_bytes)
 
             result = {
                 'status': 'SUCCESS',

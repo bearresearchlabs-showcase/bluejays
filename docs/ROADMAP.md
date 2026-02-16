@@ -197,7 +197,85 @@ Each database: 30+ complex SQL queries, PostgreSQL schema, sample/large data, we
 
 ---
 
-## 10. Future Considerations
+## 10. Epics and Features
+
+See [.cursor/plans/roadmap_rules_skills_and_features_*.plan.md](.cursor/plans/) for implementation details.
+
+### Epic 1: Product Management and Roadmap Rules
+
+| Feature | Description |
+|---------|-------------|
+| 1.1 update-roadmap.mdc | Rule governing ROADMAP.md updates; format, versioning, linking |
+| 1.2 Product Management Skill | Epics, features, user stories, todos |
+| 1.3 qa-workflow-cursor.mdc | Link to update-roadmap and product management |
+
+### Epic 2: Modes to Roles Rename
+
+| Feature | Description |
+|---------|-------------|
+| 2.1 Terminology | `viewMode` → `activeRole`; API `/api/set-mode` → `/api/set-role`; cookie `view_mode` → `active_role` |
+| 2.2 User Stories | US-2.1: Staff sees "Role" selector (Annotator \| Staff \| Customer \| System owner); US-2.2: Tests/docs use "role" terminology |
+
+### Epic 3: SQL Schema Views and Visualization (All Roles)
+
+| Feature | Description |
+|---------|-------------|
+| 3.1 Schema SQL Views | Schema view component in all views (Annotator, Staff, Customer, System owner); source: `source/db-N/app/DATABASE/schema.sql` |
+| 3.2 ChartDB and Liam ERD | ChartDB (chartdb.io), Liam (liambx.com/erd/p/) embeds; Schema/Diagram tab per view |
+| 3.3 DBML Support | DBML from schema for dbdiagram.io compatibility |
+| 3.4 User Stories | US-3.1: Any role sees schema view; US-3.2: ChartDB diagram; US-3.3: Liam ERD; US-3.4: SQL syntax highlighting, copy-to-clipboard |
+
+### Epic 4: PostgreSQL Advanced Features and Data Integrity
+
+| Feature | Description |
+|---------|-------------|
+| 4.1 PG Query Rendering | Window functions, CTEs, recursive CTEs, EXPLAIN, JSON/JSONB highlighting |
+| 4.2 Data Integrity Checkers | Transaction-level (ACID), constraint validation, EXPLAIN ANALYZE |
+| 4.3 User Stories | US-4.1: PostgreSQL syntax highlighting; US-4.2: Integrity checker on Docker load; US-4.3: Transaction integrity in CI |
+
+### Epic 5: LiveSQLBench Integration
+
+| Feature | Description |
+|---------|-------------|
+| 5.1 Data Ingestion | Hugging Face: livesqlbench-base-full-v1, livesqlbench-base-lite |
+| 5.2 Form/Ingestion API | `/api/ingest/livesqlbench`; map to db-N or benchmark/ namespace |
+| 5.3 Interactive Visualizations | Recharts zoom, filter, drill-down; LiveSQLBench eval results |
+| 5.4 User Stories | US-5.1: Staff ingests LiveSQLBench JSON; US-5.2: Interactive charts; US-5.3: Eval runs link to LiveSQLBench format |
+
+### Epic 6: Cloud Architecture and Scaling
+
+| Feature | Description |
+|---------|-------------|
+| 6.1 Well-Architected | docs/CLOUD_ARCHITECTURE.md; scaling beyond Vercel; connection pooling, read replicas |
+| 6.2 User Stories | US-6.1: Architecture doc describes scaling path; US-6.2: Multi-environment DB config |
+
+### Epic 7: Docker and Live DB Validation
+
+| Feature | Description |
+|---------|-------------|
+| 7.1 Docker Hub Base Image | Pull from Hub when DOCKER_HUB_USER set; fallback to local build |
+| 7.2 Live DB Integration Tests | Container health, schema load, sample query per db-N, ports 5436–5451 |
+| 7.3 User Stories | US-7.1: docker_postgres_qa.sh pulls from Hub; US-7.2: Tests validate 16 DBs live; US-7.3: CI runs Docker validation before BIRD export |
+
+### Epic 8: Extraneous Tools (ChartDB, Liam) in All Views
+
+| Feature | Description |
+|---------|-------------|
+| 8.1 Tool Links | ChartDB, Liam ERD, DBML in sidebar/footer "Tools" section |
+| 8.2 User Stories | US-8.1: All roles see ChartDB and Liam; US-8.2: Each db-N has Liam ERD link (db-N ↔ SQL-1:30) |
+
+### Epic 9: SQL Query Validation (Role × View × Query)
+
+| Feature | Description |
+|---------|-------------|
+| 9.1 Validation API | `/api/validate/query`, `/api/validate/batch`; syntax, MV, optional execution |
+| 9.2 Validation UI | `/validate` page with role/view/query matrix, side panel |
+| 9.3 Material View | Execution results panel; materialized view detection and validation |
+| 9.4 User Stories | US-9.1: Staff validates queries per role/view; US-9.2: Side panel shows results and MV status |
+
+---
+
+## 11. Future Considerations
 
 - **Platform**: Unified web UI for labeling, annotation, evaluation, and export
 - **Customer portal**: Self-service export, API keys, usage analytics
@@ -205,3 +283,6 @@ Each database: 30+ complex SQL queries, PostgreSQL schema, sample/large data, we
 - Optional Snowflake/BigQuery support (currently PostgreSQL-only)
 - Label Studio annotation workflow refinement
 - Hardened PostgreSQL Docker images per db-N
+
+---
+**Last Updated**: 2026-02-14

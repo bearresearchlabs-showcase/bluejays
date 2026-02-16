@@ -9,6 +9,7 @@ This directory stores structured logs and telemetry for the DB check infrastruct
 | `db_check.log` | NDJSON | Structured log entries (component, action, status, duration, data) |
 | `telemetry.ndjson` | NDJSON | Telemetry events (passed/failed/skipped counts per run) |
 | `telemetry_summary.json` | JSON | Latest telemetry per component:action |
+| `AppSessions/*.ndjson` | NDJSON | App session logs (mdc_updated, repo_changed events) |
 
 ## Log Format (NDJSON)
 
@@ -25,6 +26,18 @@ Each line is a JSON object:
 - `pre_commit` - run
 - `gdpval` - run
 - `mvc_backend_test` - run
+- `AppSession` - mdc_updated, repo_changed (when .mdc or apps/packages change)
+
+## AppSessions
+
+Log .mdc and repo structure changes:
+
+```bash
+node scripts/app-session-logger.js --from-git
+node scripts/app-session-logger.js --mdc-changes "testing-app-running.mdc" --repo-changes "apps/web/"
+```
+
+Schema: `{"ts", "sessionId", "event", "data": {"files"|"paths", ...}}`
 
 ## Rotation
 

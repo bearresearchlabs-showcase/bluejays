@@ -50,6 +50,7 @@ def _normalize_query(q: Dict[str, Any], db_id: str) -> Dict[str, Any]:
     """Normalize query dict to template format (question_id, question, SQL, evidence, etc.)."""
     num = q.get("question_id", q.get("number", 0))
     question = q.get("question", q.get("title", q.get("use_case", f"Query {num}")))
+    normal_query = q.get("normal_query", "").strip()
     sql = q.get("SQL", q.get("sql", ""))
     evidence = q.get("evidence", q.get("description", ""))
     difficulty = q.get("difficulty", _map_complexity(q.get("complexity", "")))
@@ -61,7 +62,7 @@ def _normalize_query(q: Dict[str, Any], db_id: str) -> Dict[str, Any]:
         tables = _infer_tables(sql)
     if not category and sql:
         category = _infer_category(sql, difficulty)
-    return {
+    out = {
         "db_id": db_id,
         "question_id": num,
         "question": question,
@@ -73,6 +74,9 @@ def _normalize_query(q: Dict[str, Any], db_id: str) -> Dict[str, Any]:
         "schema_context": schema_ctx,
         "expected_output": expected,
     }
+    if normal_query:
+        out["normal_query"] = normal_query
+    return out
 
 
 def _map_complexity(c: str) -> str:
@@ -130,6 +134,8 @@ def _format_query_block(q: Dict[str, Any], db_id: str) -> str:
         "schema_context": nq["schema_context"],
         "expected_output": nq["expected_output"],
     }
+    if nq.get("normal_query"):
+        out["normal_query"] = nq["normal_query"]
     json_str = json.dumps(out, indent=2, default=str)
     return f"{header}\n\n```json\n{json_str}\n```\n"
 

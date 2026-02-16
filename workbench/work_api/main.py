@@ -42,6 +42,11 @@ class WorkSearch(BaseModel):
     filter_source: str | None = None
 
 
+class WebsiteIngestBody(BaseModel):
+    """Website comprehensive-database format for ingest."""
+    databases: list[dict[str, Any]] = []
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Ensure collection exists on startup."""
@@ -150,6 +155,23 @@ def list_collections():
     return {"collections": [{"name": c.name} for c in cols]}
 
 
+def _build_intent_display(q: dict) -> str:
+    """Build intent-focused text for embedding (LiveSQLBench style)."""
+    if q.get("natural_language_query", "").strip():
+        return q["natural_language_query"].strip()
+    if q.get("intent", "").strip():
+        return q["intent"].strip()
+    parts = []
+    for k in ("use_case", "business_value", "purpose"):
+        v = q.get(k, "").strip()
+        if v:
+            parts.append(v)
+    d = q.get("description", "").strip()
+    if d and not any(p in d for p in parts):
+        parts.append(d)
+    return " ".join(parts) if parts else d
+
+
 def _discover_and_load_queries() -> list[tuple[str, dict]]:
     """Discover all queries from source/ and template/. Returns [(source, query_dict), ...]."""
     items: list[tuple[str, dict]] = []
@@ -157,7 +179,7 @@ def _discover_and_load_queries() -> list[tuple[str, dict]]:
     template_path = TEMPLATE_DIR / "queries.json"
     if template_path.exists():
         data = json.loads(template_path.read_text(encoding="utf-8"))
-        queries = [x for x in (data if isinstance(data, list) else data.get("queries", [])) if isinstance(x, dict) and "question_id" in x]
+        queries = [x for x in (data if isinstance(data, list) else data.get("queries", [])) if isinstance(x, dict) and ("question_id" in x or "number" in x)]
         for q in queries:
             items.append(("template", q))
     # source/db-N
@@ -176,7 +198,7 @@ def _discover_and_load_queries() -> list[tuple[str, dict]]:
                 qpath = d / base / "queries.json"
                 if qpath.exists():
                     data = json.loads(qpath.read_text(encoding="utf-8"))
-                    queries = data.get("queries", []) if isinstance(data, dict) else [x for x in data if isinstance(x, dict) and "question_id" in x]
+                    queries = data.get("queries", []) if isinstance(data, dict) else [x for x in data if isinstance(x, dict) and ("question_id" in x or "number" in x)]
                     for q in queries:
                         items.append((d.name, q))
                     break
@@ -197,13 +219,53 @@ def ingest_source_databases():
     client = QdrantClient(url=QDRANT_URL)
     points = []
     for source, q in items:
-        text = q.get("question", "") + " " + q.get("SQL", q.get("sql", "")) + " " + str(q.get("evidence", ""))
+        intent = _build_intent_display(q)
+        sql = q.get("SQL", q.get("sql", ""))
+        text = (intent + " " + sql + " " + str(q.get("evidence", ""))).strip() or (q.get("question", "") + " " + sql)
         vector = _get_embedding(text)
         point_id = uuid.uuid4()
-        payload = {"kind": "query", "source": source, "content": q, "question_id": q.get("question_id")}
+        payload = {"kind": "query", "source": source, "content": q, "question_id": q.get("question_id"), "number": q.get("number")}
         points.append(PointStruct(id=point_id, vector=vector, payload=payload))
     client.upsert(collection_name=COLLECTION_NAME, points=points)
     return {"status": "ok", "ingested": len(points), "sources": list({s for s, _ in items})}
+
+
+@app.post("/ingest/website")
+def ingest_website(body: WebsiteIngestBody):
+    """Ingest website comprehensive-database.json into Qdrant. Uses intent_display for embedding."""
+    try:
+        from qdrant_client import QdrantClient
+        from qdrant_client.models import PointStruct
+    except ImportError:
+        raise HTTPException(500, "qdrant-client not installed")
+    if not body.databases:
+        return {"status": "ok", "ingested": 0, "message": "No databases in body"}
+    client = QdrantClient(url=QDRANT_URL)
+    points = []
+    for db in body.databases:
+        db_id = db.get("id", "unknown")
+        queries = db.get("queries", {})
+        qlist = queries.get("queries", queries.get("preview", []))
+        if not isinstance(qlist, list):
+            continue
+        for q in qlist:
+            intent = q.get("intent_display") or _build_intent_display(q)
+            sql = q.get("sql", q.get("sql_preview", ""))
+            text = (intent + " " + sql).strip() or str(q)
+            vector = _get_embedding(text)
+            point_id = uuid.uuid4()
+            payload = {
+                "kind": "query",
+                "source": db_id,
+                "content": q,
+                "number": q.get("number"),
+                "intent_display": intent,
+            }
+            points.append(PointStruct(id=point_id, vector=vector, payload=payload))
+    if points:
+        client.upsert(collection_name=COLLECTION_NAME, points=points)
+    sources = list({db.get("id", "unknown") for db in body.databases})
+    return {"status": "ok", "ingested": len(points), "sources": sources}
 
 
 @app.get("/ingest/status")

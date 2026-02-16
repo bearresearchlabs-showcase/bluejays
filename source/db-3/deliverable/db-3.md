@@ -28,185 +28,155 @@ This document provides comprehensive documentation for database db-3, including 
 
 ### SQL Queries (30 Production Queries)
 
-1. [Query 1: Multi-Window Time-Series Analysis with Rolling Aggregates](#query-1)
-    - **Use Case:** Business analytics for multi-window time-series analysis with rolling aggregates
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for multi-window time-series analysis with rolling aggregates.  **...
-    - *Business Value:* Actionable insights from multi-window time-series analysis with rolling aggregates
-    - *Purpose:* Production multi-window time-series analysis with rolling aggregates analysis
+1. [Query 1: I want to see how order total amounts vary over the past year, with rolling averages and outlier counts broken down by day and seller code.](#query-1)
+    - **Use Case:** I want to see how order total amounts vary over the past year, with rolling averages and outlier counts broken down by day and seller code.
+    - *What it does:* Situation: Order managers need to monitor how seller total amounts fluctuate over time to identify unusual patterns and flag potential issues that req...
+    - *Business Value:* Aggregated metrics grouped by day and seller_id
 
-2. [Query 2: Segmentation Analysis with Decile Ranking](#query-2)
-    - **Use Case:** Business analytics for segmentation analysis with decile ranking
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for segmentation analysis with decile ranking.  **Use Case:** Bus...
-    - *Business Value:* Actionable insights from segmentation analysis with decile ranking
-    - *Purpose:* Production segmentation analysis with decile ranking analysis
+2. [Query 2: Can you show me weekly order total amount statistics grouped by order status bucket? I need quartiles, outliers, and the count of readings that are trending upward.](#query-2)
+    - **Use Case:** Can you show me weekly order total amount statistics grouped by order status bucket? I need quartiles, outliers, and the count of readings that are trending upward.
+    - *What it does:* Situation: Business analysts want to compare total_amount distribution patterns across different order status buckets to understand how orders behave...
+    - *Business Value:* Aggregated metrics grouped by week and status
 
-3. [Query 3: Performance Quartile Distribution](#query-3)
-    - **Use Case:** Business analytics for performance quartile distribution
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for performance quartile distribution.  **Use Case:** Business a...
-    - *Business Value:* Actionable insights from performance quartile distribution
-    - *Purpose:* Production performance quartile distribution analysis
+3. [Query 3: Give me monthly order total amount summaries by seller — I need quartiles, median, outlier count, and a rolling average.](#query-3)
+    - **Use Case:** Give me monthly order total amount summaries by seller — I need quartiles, median, outlier count, and a rolling average.
+    - *What it does:* Situation: Fleet and operations managers require monthly reporting to track long-term total_amount trends for each seller and identify seasonal patter...
+    - *Business Value:* Aggregated metrics grouped by month and seller_id
 
-4. [Query 4: Revenue Distribution by Category](#query-4)
-    - **Use Case:** Business analytics for revenue distribution by category
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for revenue distribution by category.  **Use Case:** Business anal...
-    - *Business Value:* Actionable insights from revenue distribution by category
-    - *Purpose:* Production revenue distribution by category analysis
+4. [Query 4: I need a daily order total amount breakdown by order status — specifically how many outliers there are, how many readings are increasing, and what the maximum cumulative sum is.](#query-4)
+    - **Use Case:** I need a daily order total amount breakdown by order status — specifically how many outliers there are, how many readings are increasing, and what the maximum cumulative sum is.
+    - *What it does:* Situation: Daily operational dashboards segmented by order status help warehouse and fulfillment teams identify whether certain processing stages (e.g...
+    - *Business Value:* Aggregated metrics grouped by day and status
 
-5. [Query 5: Velocity and Acceleration Metrics](#query-5)
-    - **Use Case:** Business analytics for velocity and acceleration metrics
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for velocity and acceleration metrics.  **Use Case:** Business an...
-    - *Business Value:* Actionable insights from velocity and acceleration metrics
-    - *Purpose:* Production velocity and acceleration metrics analysis
+5. [Query 5: Show me weekly order total amount metrics per seller — I want record count, quartiles, standard deviation, and the count of readings that are increasing.](#query-5)
+    - **Use Case:** Show me weekly order total amount metrics per seller — I want record count, quartiles, standard deviation, and the count of readings that are increasing.
+    - *What it does:* Situation: Weekly performance reviews at the seller level help account managers compare variability (measured by standard deviation) and trend momentu...
+    - *Business Value:* Aggregated metrics grouped by week and seller_id
 
-6. [Query 6: Hourly Pattern Detection and Clustering](#query-6)
-    - **Use Case:** Business analytics for hourly pattern detection and clustering
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for hourly pattern detection and clustering.  **Use Case:** Busine...
-    - *Business Value:* Actionable insights from hourly pattern detection and clustering
-    - *Purpose:* Production hourly pattern detection and clustering analysis
+6. [Query 6: I need daily order total amount statistics broken down by order status bucket, including quartiles, rolling averages, and outlier detection.](#query-6)
+    - **Use Case:** I need daily order total amount statistics broken down by order status bucket, including quartiles, rolling averages, and outlier detection.
+    - *What it does:* Situation: The operations team monitors order processing across different status categories (pending, shipped, delivered, etc.) and needs to identify...
+    - *Business Value:* Aggregated metrics grouped by day and status
 
-7. [Query 7: Gap Analysis with Sequential Difference](#query-7)
-    - **Use Case:** Business analytics for gap analysis with sequential difference
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for gap analysis with sequential difference.  **Use Case:** Busi...
-    - *Business Value:* Actionable insights from gap analysis with sequential difference
-    - *Purpose:* Production gap analysis with sequential difference analysis
+7. [Query 7: I need monthly order total amount analysis by seller, showing quartiles, minimum and maximum values, outlier count, and cumulative sum.](#query-7)
+    - **Use Case:** I need monthly order total amount analysis by seller, showing quartiles, minimum and maximum values, outlier count, and cumulative sum.
+    - *What it does:* Situation: The business intelligence team performs monthly seller performance reviews and needs to compare order value distributions across the entire...
+    - *Business Value:* Aggregated metrics grouped by month and seller_id
 
-8. [Query 8: Anomaly Detection Using Z-Score Windows](#query-8)
-    - **Use Case:** Business analytics for anomaly detection using z-score windows
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for anomaly detection using z-score windows.  **Use Case:** Busine...
-    - *Business Value:* Actionable insights from anomaly detection using z-score windows
-    - *Purpose:* Production anomaly detection using z-score windows analysis
+8. [Query 8: Show me daily order total amounts by seller with gaps between readings and sequential differences, plus quartile distributions.](#query-8)
+    - **Use Case:** Show me daily order total amounts by seller with gaps between readings and sequential differences, plus quartile distributions.
+    - *What it does:* Situation: Financial analysts need to track how individual seller order volumes change day-over-day to detect sudden spikes or drops that might indica...
+    - *Business Value:* Aggregated metrics grouped by day and status
 
-9. [Query 9: Recency-Frequency-Monetary Scoring](#query-9)
-    - **Use Case:** Business analytics for recency-frequency-monetary scoring
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for recency-frequency-monetary scoring.  **Use Case:** Business a...
-    - *Business Value:* Actionable insights from recency-frequency-monetary scoring
-    - *Purpose:* Production recency-frequency-monetary scoring analysis
+9. [Query 9: I need daily order total amounts grouped by order status with anomaly detection using z-scores, quartiles, and trend counts.](#query-9)
+    - **Use Case:** I need daily order total amounts grouped by order status with anomaly detection using z-scores, quartiles, and trend counts.
+    - *What it does:* Situation: The quality assurance team monitors order processing patterns across different status categories to quickly identify unusual total_amount b...
+    - *Business Value:* Aggregated metrics grouped by week and seller_id
 
-10. [Query 10: Multi-Period Cohort Retention Analysis](#query-10)
-    - **Use Case:** Business analytics for multi-period cohort retention analysis
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for multi-period cohort retention analysis.  **Use Case:** Busin...
-    - *Business Value:* Actionable insights from multi-period cohort retention analysis
-    - *Purpose:* Production multi-period cohort retention analysis analysis
+10. [Query 10: I want weekly order total amount statistics by seller with recency and frequency scoring, quartiles, and rolling averages.](#query-10)
+    - **Use Case:** I want weekly order total amount statistics by seller with recency and frequency scoring, quartiles, and rolling averages.
+    - *What it does:* Situation: The seller management team uses recency-frequency-monetary (RFM) style analysis to prioritize which sellers require attention for relations...
+    - *Business Value:* Aggregated metrics grouped by month and status
 
-11. [Query 11: Second-Order Derivative Computation](#query-11)
-    - **Use Case:** Business analytics for second-order derivative computation
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for second-order derivative computation.  **Use Case:** Business a...
-    - *Business Value:* Actionable insights from second-order derivative computation
-    - *Purpose:* Production second-order derivative computation analysis
+11. [Query 11: What are the monthly order total amount statistics by order status, including cohort-style retention metrics and quartile distributions?](#query-11)
+    - **Use Case:** What are the monthly order total amount statistics by order status, including cohort-style retention metrics and quartile distributions?
+    - *What it does:* Situation: The business needs to understand how different order status categories (such as delivered, cancelled, or in-transit) behave over time in te...
+    - *Business Value:* Aggregated metrics grouped by day and seller_id
 
-12. [Query 12: Cross-Category Benchmarking with Percentiles](#query-12)
-    - **Use Case:** Business analytics for cross-category benchmarking with percentiles
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for cross-category benchmarking with percentiles.  **Use Case:**...
-    - *Business Value:* Actionable insights from cross-category benchmarking with percentiles
-    - *Purpose:* Production cross-category benchmarking with percentiles analysis
+12. [Query 12: What are the daily order total amount statistics per seller, including second-order change detection, quartiles, and outlier counts?](#query-12)
+    - **Use Case:** What are the daily order total amount statistics per seller, including second-order change detection, quartiles, and outlier counts?
+    - *What it does:* Situation: Sudden accelerations or decelerations in a seller's daily order total amounts can signal operational issues, fraud, or market opportunities...
+    - *Business Value:* Aggregated metrics grouped by week and status
 
-13. [Query 13: Exponentially Weighted Moving Average](#query-13)
-    - **Use Case:** Business analytics for exponentially weighted moving average
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for exponentially weighted moving average.  **Use Case:** Busine...
-    - *Business Value:* Actionable insights from exponentially weighted moving average
-    - *Purpose:* Production exponentially weighted moving average analysis
+13. [Query 13: What are the weekly order total amount statistics by order status, with cross-category percentile benchmarking and quartile analysis?](#query-13)
+    - **Use Case:** What are the weekly order total amount statistics by order status, with cross-category percentile benchmarking and quartile analysis?
+    - *What it does:* Situation: Different order statuses (such as completed, pending, or cancelled) represent distinct operational states, and understanding how total orde...
+    - *Business Value:* Aggregated metrics grouped by month and seller_id
 
-14. [Query 14: Peak Period Identification and Efficiency](#query-14)
-    - **Use Case:** Business analytics for peak period identification and efficiency
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for peak period identification and efficiency.  **Use Case:** Busi...
-    - *Business Value:* Actionable insights from peak period identification and efficiency
-    - *Purpose:* Production peak period identification and efficiency analysis
+14. [Query 14: What are the monthly order total amount statistics per seller, including weighted moving averages, quartiles, and trend pattern counts?](#query-14)
+    - **Use Case:** What are the monthly order total amount statistics per seller, including weighted moving averages, quartiles, and trend pattern counts?
+    - *What it does:* Situation: Monthly order total amounts for individual sellers often contain noise from seasonal variations, one-time events, or data irregularities th...
+    - *Business Value:* Aggregated metrics grouped by day and status
 
-15. [Query 15: Lifetime Value Estimation Model](#query-15)
-    - **Use Case:** Business analytics for lifetime value estimation model
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for lifetime value estimation model.  **Use Case:** Business anal...
-    - *Business Value:* Actionable insights from lifetime value estimation model
-    - *Purpose:* Production lifetime value estimation model analysis
+15. [Query 15: What are the daily order total amount statistics by order status, including peak period identification, operational efficiency metrics, and quartiles?](#query-15)
+    - **Use Case:** What are the daily order total amount statistics by order status, including peak period identification, operational efficiency metrics, and quartiles?
+    - *What it does:* Situation: Understanding when order total amounts reach peak levels within each order status category is critical for capacity planning, resource allo...
+    - *Business Value:* Aggregated metrics grouped by week and seller_id
 
-16. [Query 16: Year-over-Year Growth Rate Analysis](#query-16)
-    - **Use Case:** Business analytics for year-over-year growth rate analysis
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for year-over-year growth rate analysis.  **Use Case:** Business...
-    - *Business Value:* Actionable insights from year-over-year growth rate analysis
-    - *Purpose:* Production year-over-year growth rate analysis analysis
+16. [Query 16: What are the weekly order totals per seller with lifetime value metrics, quartiles, and cumulative sum?](#query-16)
+    - **Use Case:** What are the weekly order totals per seller with lifetime value metrics, quartiles, and cumulative sum?
+    - *What it does:* Situation: The business needs to prioritize sellers based on their total transaction activity over time to optimize maintenance scheduling and resourc...
+    - *Business Value:* Aggregated metrics grouped by month and status
 
-17. [Query 17: Heatmap Data Generation by Time Dimensions](#query-17)
-    - **Use Case:** Business analytics for heatmap data generation by time dimensions
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for heatmap data generation by time dimensions.  **Use Case:** Bus...
-    - *Business Value:* Actionable insights from heatmap data generation by time dimensions
-    - *Purpose:* Production heatmap data generation by time dimensions analysis
+17. [Query 17: How do monthly order totals by order status compare year-over-year with growth rates and quartiles?](#query-17)
+    - **Use Case:** How do monthly order totals by order status compare year-over-year with growth rates and quartiles?
+    - *What it does:* Situation: The business needs to understand how order volume patterns evolve across different order statuses (e.g., delivered, cancelled, processing)...
+    - *Business Value:* Aggregated metrics grouped by day and seller_id
 
-18. [Query 18: Running Percentile Distribution Computation](#query-18)
-    - **Use Case:** Business analytics for running percentile distribution computation
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for running percentile distribution computation.  **Use Case:** B...
-    - *Business Value:* Actionable insights from running percentile distribution computation
-    - *Purpose:* Production running percentile distribution computation analysis
+18. [Query 18: What are the daily order totals per seller formatted for heatmap visualization with quartiles and outliers?](#query-18)
+    - **Use Case:** What are the daily order totals per seller formatted for heatmap visualization with quartiles and outliers?
+    - *What it does:* Situation: The business requires a visual representation of total_amount patterns across time and sellers to gain quick, fleet-wide operational insigh...
+    - *Business Value:* Aggregated metrics grouped by week and status
 
-19. [Query 19: Cross-Correlation Pattern Analysis](#query-19)
-    - **Use Case:** Business analytics for cross-correlation pattern analysis
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for cross-correlation pattern analysis.  **Use Case:** Business...
-    - *Business Value:* Actionable insights from cross-correlation pattern analysis
-    - *Purpose:* Production cross-correlation pattern analysis analysis
+19. [Query 19: What are the weekly order totals by status showing running percentile distributions, quartiles, and trend patterns?](#query-19)
+    - **Use Case:** What are the weekly order totals by status showing running percentile distributions, quartiles, and trend patterns?
+    - *What it does:* Situation: The business needs to understand how order amounts distribute within each order status category over time. Running percentiles reveal wheth...
+    - *Business Value:* Aggregated metrics grouped by month and seller_id
 
-20. [Query 20: Forensic Analysis of Status Transitions](#query-20)
-    - **Use Case:** Business analytics for forensic analysis of status transitions
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for forensic analysis of status transitions.  **Use Case:** Busine...
-    - *Business Value:* Actionable insights from forensic analysis of status transitions
-    - *Purpose:* Production forensic analysis of status transitions analysis
+20. [Query 20: What are the monthly order totals per seller with sequential correlation patterns, quartiles, and rolling averages?](#query-20)
+    - **Use Case:** What are the monthly order totals per seller with sequential correlation patterns, quartiles, and rolling averages?
+    - *What it does:* Situation: The business needs to understand how current order amounts relate to previous periods across the seller base. Cross-correlation pattern ana...
+    - *Business Value:* Aggregated metrics grouped by day and status
 
-21. [Query 21: Multi-Metric Dashboard Aggregation Pipeline](#query-21)
-    - **Use Case:** Business analytics for multi-metric dashboard aggregation pipeline
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for multi-metric dashboard aggregation pipeline.  **Use Case:** B...
-    - *Business Value:* Actionable insights from multi-metric dashboard aggregation pipeline
-    - *Purpose:* Production multi-metric dashboard aggregation pipeline analysis
+21. [Query 21: What are the daily order total amount statistics by order status, including status transition analysis, quartile distributions, and outlier counts?](#query-21)
+    - **Use Case:** What are the daily order total amount statistics by order status, including status transition analysis, quartile distributions, and outlier counts?
+    - *What it does:* Situation: The finance team needs to perform forensic analysis on how order total amounts transition between different trend states (Increasing, Decre...
+    - *Business Value:* Aggregated metrics grouped by week and seller_id
 
-22. [Query 22: Sequential Pattern Mining with Windows](#query-22)
-    - **Use Case:** Business analytics for sequential pattern mining with windows
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for sequential pattern mining with windows.  **Use Case:** Busin...
-    - *Business Value:* Actionable insights from sequential pattern mining with windows
-    - *Purpose:* Production sequential pattern mining with windows analysis
+22. [Query 22: What are the weekly order total amount statistics per seller with complete dashboard metrics including quartiles and multi-dimensional aggregations?](#query-22)
+    - **Use Case:** What are the weekly order total amount statistics per seller with complete dashboard metrics including quartiles and multi-dimensional aggregations?
+    - *What it does:* Situation: The operations dashboard requires a unified data source that consolidates all key performance metrics for monitoring seller activity across...
+    - *Business Value:* Aggregated metrics grouped by month and status
 
-23. [Query 23: Concentration Index Computation](#query-23)
-    - **Use Case:** Business analytics for concentration index computation
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for concentration index computation.  **Use Case:** Business analy...
-    - *Business Value:* Actionable insights from concentration index computation
-    - *Purpose:* Production concentration index computation analysis
+23. [Query 23: What are the monthly order total amount statistics by order status with sequential pattern analysis and quartile distributions?](#query-23)
+    - **Use Case:** What are the monthly order total amount statistics by order status with sequential pattern analysis and quartile distributions?
+    - *What it does:* Situation: The analytics team needs to understand how order total amounts evolve sequentially over time within each order status category to identify...
+    - *Business Value:* Aggregated metrics grouped by day and seller_id
 
-24. [Query 24: Statistical Anomaly Score Assignment](#query-24)
-    - **Use Case:** Business analytics for statistical anomaly score assignment
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for statistical anomaly score assignment.  **Use Case:** Business...
-    - *Business Value:* Actionable insights from statistical anomaly score assignment
-    - *Purpose:* Production statistical anomaly score assignment analysis
+24. [Query 24: What are the daily order total amount statistics per seller with concentration indices, quartile distributions, and outlier counts?](#query-24)
+    - **Use Case:** What are the daily order total amount statistics per seller with concentration indices, quartile distributions, and outlier counts?
+    - *What it does:* Situation: Management needs to assess market concentration and identify whether order activity is concentrated among a few top sellers or distributed...
+    - *Business Value:* Aggregated metrics grouped by week and status
 
-25. [Query 25: Fiscal Period Comparative Reporting](#query-25)
-    - **Use Case:** Business analytics for fiscal period comparative reporting
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for fiscal period comparative reporting.  **Use Case:** Business...
-    - *Business Value:* Actionable insights from fiscal period comparative reporting
-    - *Purpose:* Production fiscal period comparative reporting analysis
+25. [Query 25: What are the weekly order total amount statistics by order status with statistical anomaly scores, quartile distributions, and trend counts?](#query-25)
+    - **Use Case:** What are the weekly order total amount statistics by order status with statistical anomaly scores, quartile distributions, and trend counts?
+    - *What it does:* Situation: The quality assurance team needs a prioritization system to identify which order status categories exhibit unusual total amount patterns th...
+    - *Business Value:* Aggregated metrics grouped by month and seller_id
 
-26. [Query 26: Throughput Optimization Metrics](#query-26)
-    - **Use Case:** Business analytics for throughput optimization metrics
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for throughput optimization metrics.  **Use Case:** Business analy...
-    - *Business Value:* Actionable insights from throughput optimization metrics
-    - *Purpose:* Production throughput optimization metrics analysis
+26. [Query 26: What are the monthly order totals for each seller, broken down with quartiles for fiscal period comparison?](#query-26)
+    - **Use Case:** What are the monthly order totals for each seller, broken down with quartiles for fiscal period comparison?
+    - *What it does:* Situation: The finance team needs to compare seller performance across fiscal periods (month-over-month and quarter-over-quarter) for budgeting and pl...
+    - *Business Value:* Aggregated metrics grouped by day and status
 
-27. [Query 27: Cumulative Trend Analysis Pipeline](#query-27)
-    - **Use Case:** Business analytics for cumulative trend analysis pipeline
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for cumulative trend analysis pipeline.  **Use Case:** Business a...
-    - *Business Value:* Actionable insights from cumulative trend analysis pipeline
-    - *Purpose:* Production cumulative trend analysis pipeline analysis
+27. [Query 27: What are the daily order totals by order status, including throughput metrics, quartiles, and rolling averages?](#query-27)
+    - **Use Case:** What are the daily order totals by order status, including throughput metrics, quartiles, and rolling averages?
+    - *What it does:* Situation: Operations teams need to monitor order throughput and capacity utilization across different status categories (pending, processing, shipped...
+    - *Business Value:* Aggregated metrics grouped by week and seller_id
 
-28. [Query 28: Multi-Dimensional Pivot Aggregation](#query-28)
-    - **Use Case:** Business analytics for multi-dimensional pivot aggregation
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for multi-dimensional pivot aggregation.  **Use Case:** Business...
-    - *Business Value:* Actionable insights from multi-dimensional pivot aggregation
-    - *Purpose:* Production multi-dimensional pivot aggregation analysis
+28. [Query 28: What are the weekly order totals per seller with cumulative trends, quartiles, and activity rankings?](#query-28)
+    - **Use Case:** What are the weekly order totals per seller with cumulative trends, quartiles, and activity rankings?
+    - *What it does:* Situation: Sales leadership needs to track how each seller's total order value accumulates over time to identify growth trajectories, seasonal pattern...
+    - *Business Value:* Aggregated metrics grouped by month and status
 
-29. [Query 29: Funnel Stage Progression Tracking](#query-29)
-    - **Use Case:** Business analytics for funnel stage progression tracking
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for funnel stage progression tracking.  **Use Case:** Business ana...
-    - *Business Value:* Actionable insights from funnel stage progression tracking
-    - *Purpose:* Production funnel stage progression tracking analysis
+29. [Query 29: What are the monthly order totals by order status with multi-dimensional aggregations and quartiles?](#query-29)
+    - **Use Case:** What are the monthly order totals by order status with multi-dimensional aggregations and quartiles?
+    - *What it does:* Situation: Business analysts require flexible data structures that support dynamic pivoting and slicing across time periods and order statuses for ad-...
+    - *Business Value:* Aggregated metrics grouped by day and seller_id
 
-30. [Query 30: Outlier Detection with IQR Method](#query-30)
-    - **Use Case:** Business analytics for outlier detection with iqr method
-    - *What it does:* Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for outlier detection with iqr method.  **Use Case:** Business an...
-    - *Business Value:* Actionable insights from outlier detection with iqr method
-    - *Purpose:* Production outlier detection with iqr method analysis
+30. [Query 30: What are the weekly order totals by order status with IQR-based outlier detection, quartiles, and trend metrics?](#query-30)
+    - **Use Case:** What are the weekly order totals by order status with IQR-based outlier detection, quartiles, and trend metrics?
+    - *What it does:* Situation: Data quality teams need robust outlier detection methods that complement z-score approaches, particularly for skewed distributions where th...
+    - *Business Value:* Aggregated metrics grouped by week and status
 
 ### Additional Information
 
@@ -276,21 +246,15 @@ This database includes **30 production SQL queries**, each designed to solve spe
 
 ---
 
-## Query 1: Multi-Window Time-Series Analysis with Rolling Aggregates {#query-1}
+## Query 1: I want to see how order total amounts vary over the past year, with rolling averages and outlier counts broken down by day and seller code. {#query-1}
 
-**Use Case:** **Business analytics for multi-window time-series analysis with rolling aggregates**
+**Use Case:** **I want to see how order total amounts vary over the past year, with rolling averages and outlier counts broken down by day and seller code.**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for multi-window time-series analysis with rolling aggregates.
+**Description:** Situation: Order managers need to monitor how seller total amounts fluctuate over time to identify unusual patterns and flag potential issues that require attention. Each seller has a unique seller_id identifier, and the total_amount field captures the order value for analysis. Task: Produce daily aggregated total_amount statistics per seller, including rolling averages, outlier detection, and trend classification. Action: The query constructs four CTEs: first, it retains the 60 most recent order records per seller to focus on recent activity; second, it calculates a 5-row rolling average to smooth short-term fluctuations; third, it flags outliers by computing z-scores and marking any total_amount that exceeds 2 standard deviations from the mean (setting z-score to 0 when standard deviation is zero to prevent division errors); fourth, it classifies each reading as Increasing, Decreasing, or Stable by comparing consecutive values. The final aggregation groups by day and seller_id, requi
 
-**Use Case:** Business analytics for multi-window time-series analysis with rolling aggregates
+**Business Value:** Aggregated metrics grouped by day and seller_id
 
-**Business Value:** Actionable insights from multi-window time-series analysis with rolling aggregates
-
-**Purpose:** Production multi-window time-series analysis with rolling aggregates analysis
-
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -367,21 +331,15 @@ LIMIT 100
 
 ---
 
-## Query 2: Segmentation Analysis with Decile Ranking {#query-2}
+## Query 2: Can you show me weekly order total amount statistics grouped by order status bucket? I need quartiles, outliers, and the count of readings that are trending upward. {#query-2}
 
-**Use Case:** **Business analytics for segmentation analysis with decile ranking**
+**Use Case:** **Can you show me weekly order total amount statistics grouped by order status bucket? I need quartiles, outliers, and the count of readings that are trending upward.**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for segmentation analysis with decile ranking.
+**Description:** Situation: Business analysts want to compare total_amount distribution patterns across different order status buckets to understand how orders behave differently depending on their processing stage or fulfillment state. Task: Produce weekly total_amount statistics segmented by status bucket, including quartiles, outlier identification, and trend direction counts. Action: The query groups orders by week and status, then segments the total_amount into sextiles (six equal groups) within each status bucket to understand distribution shape. It flags statistical outliers by calculating z-scores and marking any value exceeding 2 standard deviations from the bucket mean. Using window functions LAG and LEAD, it compares each reading with its predecessor and successor to classify it as Increasing, Decreasing, or Stable. The query filters out sparse status buckets containing fewer than 3 records to ensure meaningful statistical analysis. Result: Weekly metrics per status bucket showing quartiles,
 
-**Use Case:** Business analytics for segmentation analysis with decile ranking
+**Business Value:** Aggregated metrics grouped by week and status
 
-**Business Value:** Actionable insights from segmentation analysis with decile ranking
-
-**Purpose:** Production segmentation analysis with decile ranking analysis
-
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -458,21 +416,15 @@ LIMIT 100
 
 ---
 
-## Query 3: Performance Quartile Distribution {#query-3}
+## Query 3: Give me monthly order total amount summaries by seller — I need quartiles, median, outlier count, and a rolling average. {#query-3}
 
-**Use Case:** **Business analytics for performance quartile distribution**
+**Use Case:** **Give me monthly order total amount summaries by seller — I need quartiles, median, outlier count, and a rolling average.**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for performance quartile distribution.
+**Description:** Situation: Fleet and operations managers require monthly reporting to track long-term total_amount trends for each seller and identify seasonal patterns or cyclical behavior that may inform inventory planning and demand forecasting. Task: Produce monthly total_amount summaries per seller including quartiles, median, outlier detection, and rolling average. Action: The query groups orders by month and seller_id, then applies PERCENTILE_CONT aggregate functions to calculate the first quartile (Q1), median (Q2), and third quartile (Q3) for distribution analysis. It computes a 6-row rolling average to smooth month-to-month volatility and reveal underlying trends. To manage memory and computational performance, the query limits analysis to the 80 most recent order records per seller. It allows single-record months for sparse sellers to avoid excluding important low-volume accounts. Outliers are identified using z-score methodology, flagging values more than 2 standard deviations from the sel
 
-**Use Case:** Business analytics for performance quartile distribution
+**Business Value:** Aggregated metrics grouped by month and seller_id
 
-**Business Value:** Actionable insights from performance quartile distribution
-
-**Purpose:** Production performance quartile distribution analysis
-
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -549,21 +501,15 @@ LIMIT 100
 
 ---
 
-## Query 4: Revenue Distribution by Category {#query-4}
+## Query 4: I need a daily order total amount breakdown by order status — specifically how many outliers there are, how many readings are increasing, and what the maximum cumulative sum is. {#query-4}
 
-**Use Case:** **Business analytics for revenue distribution by category**
+**Use Case:** **I need a daily order total amount breakdown by order status — specifically how many outliers there are, how many readings are increasing, and what the maximum cumulative sum is.**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for revenue distribution by category.
+**Description:** Situation: Daily operational dashboards segmented by order status help warehouse and fulfillment teams identify whether certain processing stages (e.g., pending review vs. shipped) exhibit more anomalies or volatility that could signal bottlenecks or quality issues. Task: Produce daily total_amount statistics by order status including outlier count, increasing-trend count, and peak cumulative sum. Action: The query groups orders by day and status, then computes a running cumulative sum of total_amount within each status category to track order volume accumulation throughout the day. It applies a 7-row rolling window to calculate moving statistics and smooth noise. Orders are segmented into octiles (eight equal groups) within each status to understand distributional characteristics. Trend direction is derived by calculating the difference between consecutive total_amount readings; when the prior value is missing (first record in a sequence), the reading is classified as Stable by defaul
 
-**Use Case:** Business analytics for revenue distribution by category
+**Business Value:** Aggregated metrics grouped by day and status
 
-**Business Value:** Actionable insights from revenue distribution by category
-
-**Purpose:** Production revenue distribution by category analysis
-
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -640,21 +586,15 @@ LIMIT 100
 
 ---
 
-## Query 5: Velocity and Acceleration Metrics {#query-5}
+## Query 5: Show me weekly order total amount metrics per seller — I want record count, quartiles, standard deviation, and the count of readings that are increasing. {#query-5}
 
-**Use Case:** **Business analytics for velocity and acceleration metrics**
+**Use Case:** **Show me weekly order total amount metrics per seller — I want record count, quartiles, standard deviation, and the count of readings that are increasing.**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for velocity and acceleration metrics.
+**Description:** Situation: Weekly performance reviews at the seller level help account managers compare variability (measured by standard deviation) and trend momentum across the entire seller portfolio to prioritize follow-up and relationship management activities. Task: Produce weekly total_amount metrics per seller including record count, quartiles, standard deviation, and increasing-trend count. Action: The query groups orders by week and seller_id, calculating standard deviation to quantify the dispersion and volatility of total_amount values for each seller. It counts the number of readings classified as Increasing by comparing each value with the previous period using window functions. To optimize performance and focus on recent behavior, the query limits analysis to the 60 most recent order records per seller. Sellers are ranked by cumulative total_amount sum to enable prioritization of high-value accounts in subsequent reporting and review processes. Quartiles (Q1, median, Q3) are computed to
 
-**Use Case:** Business analytics for velocity and acceleration metrics
+**Business Value:** Aggregated metrics grouped by week and seller_id
 
-**Business Value:** Actionable insights from velocity and acceleration metrics
-
-**Purpose:** Production velocity and acceleration metrics analysis
-
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -731,21 +671,15 @@ LIMIT 100
 
 ---
 
-## Query 6: Hourly Pattern Detection and Clustering {#query-6}
+## Query 6: I need daily order total amount statistics broken down by order status bucket, including quartiles, rolling averages, and outlier detection. {#query-6}
 
-**Use Case:** **Business analytics for hourly pattern detection and clustering**
+**Use Case:** **I need daily order total amount statistics broken down by order status bucket, including quartiles, rolling averages, and outlier detection.**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for hourly pattern detection and clustering.
+**Description:** Situation: The operations team monitors order processing across different status categories (pending, shipped, delivered, etc.) and needs to identify anomalies in daily order values within specific status buckets to maintain quality control and detect processing issues early. Task: Generate comprehensive daily total_amount statistics for each order status, including quartile distributions, rolling averages, and outlier detection metrics. Action: The SQL groups orders by calendar day and order status, extracts hour and day-of-week for temporal context, calculates z-scores to identify statistical outliers (handling zero standard deviation cases by substituting zero to prevent division errors), computes a 5-row rolling average to smooth short-term fluctuations, and requires at least 2 records per group to ensure meaningful statistics. Result: A dataset containing daily metrics for each order status—first, second (median), and third quartiles, a 5-day rolling average, and a count of outlie
 
-**Use Case:** Business analytics for hourly pattern detection and clustering
+**Business Value:** Aggregated metrics grouped by day and status
 
-**Business Value:** Actionable insights from hourly pattern detection and clustering
-
-**Purpose:** Production hourly pattern detection and clustering analysis
-
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -822,21 +756,15 @@ LIMIT 100
 
 ---
 
-## Query 7: Gap Analysis with Sequential Difference {#query-7}
+## Query 7: I need monthly order total amount analysis by seller, showing quartiles, minimum and maximum values, outlier count, and cumulative sum. {#query-7}
 
-**Use Case:** **Business analytics for gap analysis with sequential difference**
+**Use Case:** **I need monthly order total amount analysis by seller, showing quartiles, minimum and maximum values, outlier count, and cumulative sum.**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for gap analysis with sequential difference.
+**Description:** Situation: The business intelligence team performs monthly seller performance reviews and needs to compare order value distributions across the entire seller network, identifying both typical ranges and exceptional patterns to support commission calculations and seller tier classifications. Task: Generate monthly total_amount statistics for each seller including quartile distributions, range boundaries, outlier counts, and cumulative activity totals. Action: The SQL groups orders by month and seller_id, captures the minimum and maximum total_amount to define the value range for each seller, flags outliers using z-scores greater than 2 to identify unusually high or low orders, limits analysis to the most recent 80 data points per seller to focus on current patterns, calculates PERCENT_RANK to show relative position within the seller's distribution, and uses LAST_VALUE with proper window framing to ensure accurate retrieval of the final cumulative sum in each partition. Result: A monthly
 
-**Use Case:** Business analytics for gap analysis with sequential difference
+**Business Value:** Aggregated metrics grouped by month and seller_id
 
-**Business Value:** Actionable insights from gap analysis with sequential difference
-
-**Purpose:** Production gap analysis with sequential difference analysis
-
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -913,21 +841,15 @@ LIMIT 100
 
 ---
 
-## Query 8: Anomaly Detection Using Z-Score Windows {#query-8}
+## Query 8: Show me daily order total amounts by seller with gaps between readings and sequential differences, plus quartile distributions. {#query-8}
 
-**Use Case:** **Business analytics for anomaly detection using z-score windows**
+**Use Case:** **Show me daily order total amounts by seller with gaps between readings and sequential differences, plus quartile distributions.**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for anomaly detection using z-score windows.
+**Description:** Situation: Financial analysts need to track how individual seller order volumes change day-over-day to detect sudden spikes or drops that might indicate market opportunities, operational problems, or fraudulent activity patterns. Task: Generate daily total_amount statistics for each seller that highlight sequential changes and distribution characteristics. Action: The SQL groups orders by calendar day and seller_id, uses the LAG window function to compute the difference between consecutive daily readings (with the first row per seller naturally having no prior value), derives trend direction (increasing, decreasing, or stable) from that sequential change, and employs both LAG and LEAD to capture previous and next day values for context. Gap analysis is performed implicitly through timestamp-based ordering of consecutive records. Result: A daily metrics dataset for each seller showing sequential differences from the prior day, trend direction indicators, previous and next day values, an
 
-**Use Case:** Business analytics for anomaly detection using z-score windows
+**Business Value:** Aggregated metrics grouped by day and status
 
-**Business Value:** Actionable insights from anomaly detection using z-score windows
-
-**Purpose:** Production anomaly detection using z-score windows analysis
-
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1004,21 +926,15 @@ LIMIT 100
 
 ---
 
-## Query 9: Recency-Frequency-Monetary Scoring {#query-9}
+## Query 9: I need daily order total amounts grouped by order status with anomaly detection using z-scores, quartiles, and trend counts. {#query-9}
 
-**Use Case:** **Business analytics for recency-frequency-monetary scoring**
+**Use Case:** **I need daily order total amounts grouped by order status with anomaly detection using z-scores, quartiles, and trend counts.**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for recency-frequency-monetary scoring.
+**Description:** Situation: The quality assurance team monitors order processing patterns across different status categories to quickly identify unusual total_amount behaviors that might signal system errors, pricing mistakes, or fraud, with different status buckets (pending, processing, shipped, delivered) having distinct expected value patterns. Task: Generate daily total_amount statistics for each order status incorporating statistical anomaly detection, distribution metrics, and directional trend analysis. Action: The SQL groups orders by calendar day and order status, flags anomalies where total_amount deviates more than 2 standard deviations from the partition mean, safely handles zero standard deviation cases to avoid mathematical errors, segments the distribution into octiles for granular analysis, and computes metrics over a 7-row rolling window to capture weekly patterns. The query also counts records showing increasing trends versus those showing decreasing or stable patterns. Result: A dail
 
-**Use Case:** Business analytics for recency-frequency-monetary scoring
+**Business Value:** Aggregated metrics grouped by week and seller_id
 
-**Business Value:** Actionable insights from recency-frequency-monetary scoring
-
-**Purpose:** Production recency-frequency-monetary scoring analysis
-
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1095,21 +1011,15 @@ LIMIT 100
 
 ---
 
-## Query 10: Multi-Period Cohort Retention Analysis {#query-10}
+## Query 10: I want weekly order total amount statistics by seller with recency and frequency scoring, quartiles, and rolling averages. {#query-10}
 
-**Use Case:** **Business analytics for multi-period cohort retention analysis**
+**Use Case:** **I want weekly order total amount statistics by seller with recency and frequency scoring, quartiles, and rolling averages.**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for multi-period cohort retention analysis.
+**Description:** Situation: The seller management team uses recency-frequency-monetary (RFM) style analysis to prioritize which sellers require attention for relationship management, support allocation, or compliance review, combining how recently and how frequently each seller has been active with their order value patterns. Task: Generate weekly total_amount statistics for each seller incorporating recency and frequency scoring alongside distribution and trend metrics. Action: The SQL groups orders by calendar week and seller_id, assigns ROW_NUMBER in descending date order to create a recency score (where 1 represents the most recent activity), uses the record count within each week as a frequency proxy indicating seller activity level, ranks sellers by cumulative order sum to identify top performers, and computes a 6-row rolling average to smooth weekly volatility. The query requires at least 3 records per group to ensure statistical reliability. Result: A weekly summary for each seller showing tota
 
-**Use Case:** Business analytics for multi-period cohort retention analysis
+**Business Value:** Aggregated metrics grouped by month and status
 
-**Business Value:** Actionable insights from multi-period cohort retention analysis
-
-**Purpose:** Production multi-period cohort retention analysis analysis
-
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1186,21 +1096,15 @@ LIMIT 100
 
 ---
 
-## Query 11: Second-Order Derivative Computation {#query-11}
+## Query 11: What are the monthly order total amount statistics by order status, including cohort-style retention metrics and quartile distributions? {#query-11}
 
-**Use Case:** **Business analytics for second-order derivative computation**
+**Use Case:** **What are the monthly order total amount statistics by order status, including cohort-style retention metrics and quartile distributions?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for second-order derivative computation.
+**Description:** Situation: The business needs to understand how different order status categories (such as delivered, cancelled, or in-transit) behave over time in terms of total order amounts. Treating each status as a cohort enables retention-style analysis to compare lifecycle patterns and identify which statuses show growth or decline month-over-month. Task: Generate monthly statistics of total order amounts segmented by order status, incorporating cohort-style retention metrics and quartile distributions to reveal behavioral patterns. Action: The SQL query treats each order status as a distinct cohort and aggregates total_amount as the key metric. It limits the dataset to 90 data points per status to ensure manageability. The query calculates increasing_count to track how many periods show growth (similar to retention cohorts) and trend_direction to indicate whether amounts are rising or falling. Results are ordered by time period and average value to prioritize recent and prominent cohorts. Quar
 
-**Use Case:** Business analytics for second-order derivative computation
+**Business Value:** Aggregated metrics grouped by day and seller_id
 
-**Business Value:** Actionable insights from second-order derivative computation
-
-**Purpose:** Production second-order derivative computation analysis
-
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1277,21 +1181,15 @@ LIMIT 100
 
 ---
 
-## Query 12: Cross-Category Benchmarking with Percentiles {#query-12}
+## Query 12: What are the daily order total amount statistics per seller, including second-order change detection, quartiles, and outlier counts? {#query-12}
 
-**Use Case:** **Business analytics for cross-category benchmarking with percentiles**
+**Use Case:** **What are the daily order total amount statistics per seller, including second-order change detection, quartiles, and outlier counts?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for cross-category benchmarking with percentiles.
+**Description:** Situation: Sudden accelerations or decelerations in a seller's daily order total amounts can signal operational issues, fraud, or market opportunities that require immediate attention. First-order changes (day-over-day differences) show velocity, but second-order changes (the rate of change of those differences) reveal acceleration patterns that are more actionable for anomaly detection. Task: Produce daily total order amount statistics for each seller, including change acceleration metrics, quartile distributions, and counts of statistical outliers to flag unusual seller behavior. Action: The SQL query computes the first derivative by calculating the difference from the prior day's total_amount using the LAG window function. It then uses trend_direction (Increasing/Decreasing) to represent the sign of this change. By applying LAG and LEAD functions to access previous and next period values, the query enables implicit calculation of second derivatives (acceleration). Z-score calculatio
 
-**Use Case:** Business analytics for cross-category benchmarking with percentiles
+**Business Value:** Aggregated metrics grouped by week and status
 
-**Business Value:** Actionable insights from cross-category benchmarking with percentiles
-
-**Purpose:** Production cross-category benchmarking with percentiles analysis
-
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1368,21 +1266,15 @@ LIMIT 100
 
 ---
 
-## Query 13: Exponentially Weighted Moving Average {#query-13}
+## Query 13: What are the weekly order total amount statistics by order status, with cross-category percentile benchmarking and quartile analysis? {#query-13}
 
-**Use Case:** **Business analytics for exponentially weighted moving average**
+**Use Case:** **What are the weekly order total amount statistics by order status, with cross-category percentile benchmarking and quartile analysis?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for exponentially weighted moving average.
+**Description:** Situation: Different order statuses (such as completed, pending, or cancelled) represent distinct operational states, and understanding how total order amounts are distributed across these statuses helps identify performance outliers and benchmark relative performance. Cross-category percentile analysis reveals which statuses consistently perform above or below others. Task: Generate weekly total order amount statistics segmented by order status, incorporating percentile-based benchmarking across all statuses and quartile distributions within each status to enable comparative performance analysis. Action: The SQL query employs PERCENT_RANK to calculate each status's relative position within the overall weekly distribution, enabling cross-status comparison. PERCENTILE_CONT functions compute precise percentile values for benchmarking. The data is segmented into sextiles (six equal groups) for granular distribution analysis. Statuses are ranked by cumulative sum to identify the largest co
 
-**Use Case:** Business analytics for exponentially weighted moving average
+**Business Value:** Aggregated metrics grouped by month and seller_id
 
-**Business Value:** Actionable insights from exponentially weighted moving average
-
-**Purpose:** Production exponentially weighted moving average analysis
-
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1459,21 +1351,15 @@ LIMIT 100
 
 ---
 
-## Query 14: Peak Period Identification and Efficiency {#query-14}
+## Query 14: What are the monthly order total amount statistics per seller, including weighted moving averages, quartiles, and trend pattern counts? {#query-14}
 
-**Use Case:** **Business analytics for peak period identification and efficiency**
+**Use Case:** **What are the monthly order total amount statistics per seller, including weighted moving averages, quartiles, and trend pattern counts?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for peak period identification and efficiency.
+**Description:** Situation: Monthly order total amounts for individual sellers often contain noise from seasonal variations, one-time events, or data irregularities that obscure underlying trends. Moving averages smooth this volatility to reveal genuine growth or decline patterns, enabling more confident strategic decisions about seller performance and resource allocation. Task: Produce monthly total order amount statistics for each seller, incorporating moving average smoothing to reveal underlying trends, quartile distributions for performance segmentation, and counts of increasing periods and outliers to quantify momentum. Action: The SQL query implements a 6-month rolling window to calculate a simple moving average (avg_rolling) that smooths short-term fluctuations. It counts the number of periods showing increasing trends to measure positive momentum and flags outlier readings using statistical thresholds. The dataset is limited to 80 data points per seller to capture sufficient historical context
 
-**Use Case:** Business analytics for peak period identification and efficiency
+**Business Value:** Aggregated metrics grouped by day and status
 
-**Business Value:** Actionable insights from peak period identification and efficiency
-
-**Purpose:** Production peak period identification and efficiency analysis
-
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1550,21 +1436,15 @@ LIMIT 100
 
 ---
 
-## Query 15: Lifetime Value Estimation Model {#query-15}
+## Query 15: What are the daily order total amount statistics by order status, including peak period identification, operational efficiency metrics, and quartiles? {#query-15}
 
-**Use Case:** **Business analytics for lifetime value estimation model**
+**Use Case:** **What are the daily order total amount statistics by order status, including peak period identification, operational efficiency metrics, and quartiles?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for lifetime value estimation model.
+**Description:** Situation: Understanding when order total amounts reach peak levels within each order status category is critical for capacity planning, resource allocation, and operational readiness. Identifying these peak periods and their temporal patterns (hour of day, day of week) enables proactive staffing and infrastructure scaling decisions. Efficiency metrics help assess whether the system is operating near its theoretical capacity during these peaks. Task: Generate daily total order amount statistics segmented by order status, incorporating peak period identification with temporal context and operational efficiency proxy metrics, along with quartile distributions for performance benchmarking. Action: The SQL query ranks each day's total_amount readings within their respective order status groups to identify peak periods (highest values). It extracts temporal dimensions including hour of day and day of week to reveal cyclical patterns in peak occurrence. The query uses max_cumulative (running
 
-**Use Case:** Business analytics for lifetime value estimation model
+**Business Value:** Aggregated metrics grouped by week and seller_id
 
-**Business Value:** Actionable insights from lifetime value estimation model
-
-**Purpose:** Production lifetime value estimation model analysis
-
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1641,21 +1521,15 @@ LIMIT 100
 
 ---
 
-## Query 16: Year-over-Year Growth Rate Analysis {#query-16}
+## Query 16: What are the weekly order totals per seller with lifetime value metrics, quartiles, and cumulative sum? {#query-16}
 
-**Use Case:** **Business analytics for year-over-year growth rate analysis**
+**Use Case:** **What are the weekly order totals per seller with lifetime value metrics, quartiles, and cumulative sum?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for year-over-year growth rate analysis.
+**Description:** Situation: The business needs to prioritize sellers based on their total transaction activity over time to optimize maintenance scheduling and resource allocation. Lifetime value (LTV) style metrics provide a cumulative view of each seller's contribution, helping identify high-value sellers. Task: Generate weekly total_amount statistics per seller that include LTV-style metrics, distribution quartiles, and cumulative sum analysis. Action: The query computes cumulative_sum of order amounts and tracks max_cumulative as value proxies for lifetime contribution. It ranks sellers by their cumulative sum to identify top performers. PERCENT_RANK is applied to show distribution position within the seller population. The analysis limits results to 60 data points per seller to maintain query performance and requires at least 3 records per seller group to ensure statistical validity. Result: Returns weekly metrics for each seller including LTV-style ranking, quartile distributions (25th, 50th, 75t
 
-**Use Case:** Business analytics for year-over-year growth rate analysis
+**Business Value:** Aggregated metrics grouped by month and status
 
-**Business Value:** Actionable insights from year-over-year growth rate analysis
-
-**Purpose:** Production year-over-year growth rate analysis analysis
-
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1732,21 +1606,15 @@ LIMIT 100
 
 ---
 
-## Query 17: Heatmap Data Generation by Time Dimensions {#query-17}
+## Query 17: How do monthly order totals by order status compare year-over-year with growth rates and quartiles? {#query-17}
 
-**Use Case:** **Business analytics for heatmap data generation by time dimensions**
+**Use Case:** **How do monthly order totals by order status compare year-over-year with growth rates and quartiles?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for heatmap data generation by time dimensions.
+**Description:** Situation: The business needs to understand how order volume patterns evolve across different order statuses (e.g., delivered, cancelled, processing) from one year to the next. Year-over-year (YoY) growth analysis reveals seasonal trends, status-specific patterns, and helps forecast capacity requirements across different operational states. Task: Produce monthly total_amount statistics segmented by order status that include YoY-style growth metrics and quartile distributions. Action: The query calculates trend_direction and delta_value fields to support growth analysis comparisons. It uses the LAG window function to capture prior period values for computing growth rates. Data is filtered to the last 365 days to enable one-year comparison windows. Results are limited to 90 data points per order status to balance detail with performance. Result: Returns monthly metrics for each order status including growth direction indicators (increasing/decreasing trends), delta values showing period-
 
-**Use Case:** Business analytics for heatmap data generation by time dimensions
+**Business Value:** Aggregated metrics grouped by day and seller_id
 
-**Business Value:** Actionable insights from heatmap data generation by time dimensions
-
-**Purpose:** Production heatmap data generation by time dimensions analysis
-
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1823,21 +1691,15 @@ LIMIT 100
 
 ---
 
-## Query 18: Running Percentile Distribution Computation {#query-18}
+## Query 18: What are the daily order totals per seller formatted for heatmap visualization with quartiles and outliers? {#query-18}
 
-**Use Case:** **Business analytics for running percentile distribution computation**
+**Use Case:** **What are the daily order totals per seller formatted for heatmap visualization with quartiles and outliers?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for running percentile distribution computation.
+**Description:** Situation: The business requires a visual representation of total_amount patterns across time and sellers to gain quick, fleet-wide operational insights. Heatmap visualizations allow analysts to spot anomalies, identify peak transaction periods, and compare seller performance at a glance across two dimensions (time and seller). Task: Generate daily total_amount statistics per seller formatted specifically for heatmap visualization requirements. Action: The query uses time period and seller_id as the two primary heatmap dimensions. It computes avg_value and record_count as intensity metrics for heatmap color coding. Additional time attributes are extracted, including hour of day and day of week, enabling flexible 2D heatmap configurations. Z-score calculations flag statistical outliers in the data. Results are ordered by period and avg_value to facilitate heatmap rendering. Result: Returns daily metrics for each seller in heatmap-ready format with dimensional coordinates (time, seller_i
 
-**Use Case:** Business analytics for running percentile distribution computation
+**Business Value:** Aggregated metrics grouped by week and status
 
-**Business Value:** Actionable insights from running percentile distribution computation
-
-**Purpose:** Production running percentile distribution computation analysis
-
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -1914,21 +1776,15 @@ LIMIT 100
 
 ---
 
-## Query 19: Cross-Correlation Pattern Analysis {#query-19}
+## Query 19: What are the weekly order totals by status showing running percentile distributions, quartiles, and trend patterns? {#query-19}
 
-**Use Case:** **Business analytics for cross-correlation pattern analysis**
+**Use Case:** **What are the weekly order totals by status showing running percentile distributions, quartiles, and trend patterns?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for cross-correlation pattern analysis.
+**Description:** Situation: The business needs to understand how order amounts distribute within each order status category over time. Running percentiles reveal whether order values are consistently high, low, or variable within status buckets (e.g., delivered vs. cancelled), helping identify status-specific patterns and anomalies in transaction values. Task: Generate weekly total_amount statistics segmented by order status that include running percentile calculations, quartile distributions, and trend pattern counts. Action: The query applies PERCENT_RANK to assign each order a percentile position within its status group, showing relative standing over time. PERCENTILE_CONT computes continuous percentile values for quartile breakpoints. Results are limited to 70 data points per order status to maintain performance. The query counts records showing increasing trends versus outlier readings to quantify pattern consistency. Result: Returns weekly metrics for each order status including running percentil
 
-**Use Case:** Business analytics for cross-correlation pattern analysis
+**Business Value:** Aggregated metrics grouped by month and seller_id
 
-**Business Value:** Actionable insights from cross-correlation pattern analysis
-
-**Purpose:** Production cross-correlation pattern analysis analysis
-
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2005,21 +1861,15 @@ LIMIT 100
 
 ---
 
-## Query 20: Forensic Analysis of Status Transitions {#query-20}
+## Query 20: What are the monthly order totals per seller with sequential correlation patterns, quartiles, and rolling averages? {#query-20}
 
-**Use Case:** **Business analytics for forensic analysis of status transitions**
+**Use Case:** **What are the monthly order totals per seller with sequential correlation patterns, quartiles, and rolling averages?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for forensic analysis of status transitions.
+**Description:** Situation: The business needs to understand how current order amounts relate to previous periods across the seller base. Cross-correlation pattern analysis reveals whether sellers show consistent month-to-month behavior, seasonal cycles, or trend shifts. These patterns help predict future performance and identify sellers whose transaction patterns deviate from historical norms. Task: Generate monthly total_amount statistics per seller that include correlation-style sequential metrics and quartile distributions. Action: The query uses LAG and LEAD window functions to access preceding and following month values for each seller, enabling sequential correlation analysis. It calculates delta_value to measure period-over-period changes. The trend_direction field captures whether values are increasing, decreasing, or stable. Partition_avg and partition_stddev are computed within each seller group to enable z-score normalization and standardized comparison across sellers with different volume
 
-**Use Case:** Business analytics for forensic analysis of status transitions
+**Business Value:** Aggregated metrics grouped by day and status
 
-**Business Value:** Actionable insights from forensic analysis of status transitions
-
-**Purpose:** Production forensic analysis of status transitions analysis
-
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2096,21 +1946,15 @@ LIMIT 100
 
 ---
 
-## Query 21: Multi-Metric Dashboard Aggregation Pipeline {#query-21}
+## Query 21: What are the daily order total amount statistics by order status, including status transition analysis, quartile distributions, and outlier counts? {#query-21}
 
-**Use Case:** **Business analytics for multi-metric dashboard aggregation pipeline**
+**Use Case:** **What are the daily order total amount statistics by order status, including status transition analysis, quartile distributions, and outlier counts?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for multi-metric dashboard aggregation pipeline.
+**Description:** Situation: The finance team needs to perform forensic analysis on how order total amounts transition between different trend states (Increasing, Decreasing, Stable) over time to identify unusual patterns and potential issues requiring investigation. Task: Generate comprehensive daily total amount statistics grouped by order status, incorporating status transition tracking, quartile breakdowns, and outlier identification. Action: The query treats trend_direction values (Increasing, Decreasing, Stable) as distinct status categories and uses delta_value to drive transition logic. It employs LAG and LEAD window functions to capture sequential status changes for forensic tracing, calculates z-scores to flag statistical outliers, computes quartile distributions (Q1, Q2, Q3) for each status group, and filters to include only groups with at least 2 records to ensure statistical validity. Result: A daily metrics report for each order status showing status transition sequences, quartile boundari
 
-**Use Case:** Business analytics for multi-metric dashboard aggregation pipeline
+**Business Value:** Aggregated metrics grouped by week and seller_id
 
-**Business Value:** Actionable insights from multi-metric dashboard aggregation pipeline
-
-**Purpose:** Production multi-metric dashboard aggregation pipeline analysis
-
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2187,21 +2031,15 @@ LIMIT 100
 
 ---
 
-## Query 22: Sequential Pattern Mining with Windows {#query-22}
+## Query 22: What are the weekly order total amount statistics per seller with complete dashboard metrics including quartiles and multi-dimensional aggregations? {#query-22}
 
-**Use Case:** **Business analytics for sequential pattern mining with windows**
+**Use Case:** **What are the weekly order total amount statistics per seller with complete dashboard metrics including quartiles and multi-dimensional aggregations?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for sequential pattern mining with windows.
+**Description:** Situation: The operations dashboard requires a unified data source that consolidates all key performance metrics for monitoring seller activity across the entire fleet, eliminating the need for multiple separate queries. Task: Generate a complete weekly total amount statistical profile for each seller that includes all critical dashboard metrics in a single result set. Action: The query performs a comprehensive single-pass aggregation that computes record_count (volume), avg_value (mean), quartiles (Q1, Q2/median, Q3), standard deviation (stddev), minimum and maximum values, outlier_count (anomalies), increasing_count (positive trends), avg_rolling (moving average), and max_cumulative (peak cumulative total). It applies a filter requiring at least 3 records per seller-week group to ensure meaningful statistics. Result: A weekly metrics dataset for each seller containing the full dashboard suite of statistics—volume counts, central tendency measures, quartile distributions, dispersion m
 
-**Use Case:** Business analytics for sequential pattern mining with windows
+**Business Value:** Aggregated metrics grouped by month and status
 
-**Business Value:** Actionable insights from sequential pattern mining with windows
-
-**Purpose:** Production sequential pattern mining with windows analysis
-
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2278,21 +2116,15 @@ LIMIT 100
 
 ---
 
-## Query 23: Concentration Index Computation {#query-23}
+## Query 23: What are the monthly order total amount statistics by order status with sequential pattern analysis and quartile distributions? {#query-23}
 
-**Use Case:** **Business analytics for concentration index computation**
+**Use Case:** **What are the monthly order total amount statistics by order status with sequential pattern analysis and quartile distributions?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for concentration index computation.
+**Description:** Situation: The analytics team needs to understand how order total amounts evolve sequentially over time within each order status category to identify temporal patterns and trends that inform forecasting models. Task: Produce monthly total amount statistical summaries for each order status that capture sequential evolution patterns alongside standard quartile distributions. Action: The query employs LAG and LEAD window functions to access previous and next period values, calculates delta_value (period-over-period change) and trend_direction (Increasing/Decreasing/Stable) to characterize sequential patterns, uses ROWS BETWEEN window frames to define sliding analysis windows, applies ROW_NUMBER for maintaining temporal ordering within each status partition, limits output to 90 data points per status to manage result size, and computes quartile distributions (Q1, Q2, Q3) for value spread analysis. Result: A monthly metrics report for each order status showing sequential pattern indicators
 
-**Use Case:** Business analytics for concentration index computation
+**Business Value:** Aggregated metrics grouped by day and seller_id
 
-**Business Value:** Actionable insights from concentration index computation
-
-**Purpose:** Production concentration index computation analysis
-
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2369,21 +2201,15 @@ LIMIT 100
 
 ---
 
-## Query 24: Statistical Anomaly Score Assignment {#query-24}
+## Query 24: What are the daily order total amount statistics per seller with concentration indices, quartile distributions, and outlier counts? {#query-24}
 
-**Use Case:** **Business analytics for statistical anomaly score assignment**
+**Use Case:** **What are the daily order total amount statistics per seller with concentration indices, quartile distributions, and outlier counts?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for statistical anomaly score assignment.
+**Description:** Situation: Management needs to assess market concentration and identify whether order activity is concentrated among a few top sellers or distributed evenly, which informs resource allocation and risk management strategies. Task: Generate daily total amount statistics for each seller that quantify concentration patterns, statistical distributions, and anomalies. Action: The query uses DENSE_RANK to establish seller ranking by total amount, calculates PERCENT_RANK to determine relative position within the distribution, computes cumulative_sum distribution to measure how much total activity accumulates in top-ranked sellers (concentration measurement), segments sellers into quintiles using NTILE(5) for stratified analysis, flags statistical outliers by calculating z-scores and identifying values beyond normal variance thresholds, computes quartile boundaries (Q1, Q2, Q3) for distribution shape, and requires at least 2 records per seller-day group to ensure valid statistical calculations.
 
-**Use Case:** Business analytics for statistical anomaly score assignment
+**Business Value:** Aggregated metrics grouped by week and status
 
-**Business Value:** Actionable insights from statistical anomaly score assignment
-
-**Purpose:** Production statistical anomaly score assignment analysis
-
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2460,21 +2286,15 @@ LIMIT 100
 
 ---
 
-## Query 25: Fiscal Period Comparative Reporting {#query-25}
+## Query 25: What are the weekly order total amount statistics by order status with statistical anomaly scores, quartile distributions, and trend counts? {#query-25}
 
-**Use Case:** **Business analytics for fiscal period comparative reporting**
+**Use Case:** **What are the weekly order total amount statistics by order status with statistical anomaly scores, quartile distributions, and trend counts?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for fiscal period comparative reporting.
+**Description:** Situation: The quality assurance team needs a prioritization system to identify which order status categories exhibit unusual total amount patterns that warrant immediate investigation, based on statistical anomaly scoring. Task: Produce weekly total amount statistical summaries for each order status that assign anomaly scores, characterize distributions, and quantify trend patterns. Action: The query calculates z_score (standard score) as the primary anomaly detection metric by measuring how many standard deviations each value falls from the mean, aggregates outlier_count to quantify the number of anomalous records in each status group, computes partition_avg (mean) and partition_stddev (standard deviation) to establish baseline statistics for each status partition, counts records by trend_direction (Increasing/Decreasing/Stable) to summarize directional patterns, limits output to 70 data points per status to maintain manageable result sizes, computes quartile distributions (Q1, Q2, Q
 
-**Use Case:** Business analytics for fiscal period comparative reporting
+**Business Value:** Aggregated metrics grouped by month and seller_id
 
-**Business Value:** Actionable insights from fiscal period comparative reporting
-
-**Purpose:** Production fiscal period comparative reporting analysis
-
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2551,21 +2371,15 @@ LIMIT 100
 
 ---
 
-## Query 26: Throughput Optimization Metrics {#query-26}
+## Query 26: What are the monthly order totals for each seller, broken down with quartiles for fiscal period comparison? {#query-26}
 
-**Use Case:** **Business analytics for throughput optimization metrics**
+**Use Case:** **What are the monthly order totals for each seller, broken down with quartiles for fiscal period comparison?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for throughput optimization metrics.
+**Description:** Situation: The finance team needs to compare seller performance across fiscal periods (month-over-month and quarter-over-quarter) for budgeting and planning cycles. Task: Generate monthly total_amount statistics for each seller that support fiscal period comparative analysis. Action: The query groups orders by seller and month using DATE_TRUNC('month'), calculates quartiles (25th, 50th, 75th percentiles), average, and standard deviation for each seller-month combination, limits output to 80 data points per seller to keep reporting manageable, and filters to include only groups with at least 1 record. Result: A dataset containing monthly total_amount metrics per seller including quartile breakdowns, averages, and standard deviations suitable for period-over-period fiscal comparison and variance analysis.
 
-**Use Case:** Business analytics for throughput optimization metrics
+**Business Value:** Aggregated metrics grouped by day and status
 
-**Business Value:** Actionable insights from throughput optimization metrics
-
-**Purpose:** Production throughput optimization metrics analysis
-
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2642,21 +2456,15 @@ LIMIT 100
 
 ---
 
-## Query 27: Cumulative Trend Analysis Pipeline {#query-27}
+## Query 27: What are the daily order totals by order status, including throughput metrics, quartiles, and rolling averages? {#query-27}
 
-**Use Case:** **Business analytics for cumulative trend analysis pipeline**
+**Use Case:** **What are the daily order totals by order status, including throughput metrics, quartiles, and rolling averages?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for cumulative trend analysis pipeline.
+**Description:** Situation: Operations teams need to monitor order throughput and capacity utilization across different status categories (pending, processing, shipped, delivered) to optimize workflow and identify bottlenecks in the order fulfillment pipeline. Task: Generate daily total_amount statistics segmented by order status that include throughput indicators, quartiles, and trend smoothing via rolling averages. Action: The query groups orders by status and day, calculates throughput proxy metrics including record_count (volume), avg_rolling (7-row moving average for trend smoothing), and max_cumulative (peak capacity tracking), computes quartile distributions for variability analysis, limits output to 90 data points per status category, and filters to include only groups with at least 2 records to ensure statistical validity. Result: A dataset containing daily metrics per order status with throughput indicators (volume, rolling trends, cumulative peaks), quartile distributions for variability ass
 
-**Use Case:** Business analytics for cumulative trend analysis pipeline
+**Business Value:** Aggregated metrics grouped by week and seller_id
 
-**Business Value:** Actionable insights from cumulative trend analysis pipeline
-
-**Purpose:** Production cumulative trend analysis pipeline analysis
-
-**Complexity:** 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2733,21 +2541,15 @@ LIMIT 100
 
 ---
 
-## Query 28: Multi-Dimensional Pivot Aggregation {#query-28}
+## Query 28: What are the weekly order totals per seller with cumulative trends, quartiles, and activity rankings? {#query-28}
 
-**Use Case:** **Business analytics for multi-dimensional pivot aggregation**
+**Use Case:** **What are the weekly order totals per seller with cumulative trends, quartiles, and activity rankings?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and month-level grouping for multi-dimensional pivot aggregation.
+**Description:** Situation: Sales leadership needs to track how each seller's total order value accumulates over time to identify growth trajectories, seasonal patterns, and top performers for incentive programs and resource allocation decisions. Task: Generate weekly total_amount statistics per seller that reveal cumulative growth patterns, distribution characteristics, and relative seller rankings. Action: The query groups orders by seller and week, calculates cumulative metrics including cumulative_sum (running total) and max_cumulative (peak performance tracking), derives trend indicators such as trend_direction (up/down/stable) and increasing_count (consecutive growth periods), computes quartile distributions to understand value spread, ranks sellers by their cumulative sum to identify top performers, and filters to include only groups with at least 3 records to ensure meaningful trend detection. Result: A dataset containing weekly metrics per seller with cumulative trend indicators (running total
 
-**Use Case:** Business analytics for multi-dimensional pivot aggregation
+**Business Value:** Aggregated metrics grouped by month and status
 
-**Business Value:** Actionable insights from multi-dimensional pivot aggregation
-
-**Purpose:** Production multi-dimensional pivot aggregation analysis
-
-**Complexity:** 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by month and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2824,21 +2626,15 @@ LIMIT 100
 
 ---
 
-## Query 29: Funnel Stage Progression Tracking {#query-29}
+## Query 29: What are the monthly order totals by order status with multi-dimensional aggregations and quartiles? {#query-29}
 
-**Use Case:** **Business analytics for funnel stage progression tracking**
+**Use Case:** **What are the monthly order totals by order status with multi-dimensional aggregations and quartiles?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and day-level grouping for funnel stage progression tracking.
+**Description:** Situation: Business analysts require flexible data structures that support dynamic pivoting and slicing across time periods and order statuses for ad-hoc reporting, executive dashboards, and exploratory analysis of order patterns and status distributions. Task: Generate monthly total_amount statistics segmented by order status with comprehensive multi-dimensional aggregation metrics and quartile breakdowns. Action: The query uses two dimensions—time period (month) and order status—as the grouping structure, then aggregates a comprehensive set of metrics including record count (volume), average (central tendency), quartiles (25th, 50th, 75th percentiles for distribution analysis), standard deviation (variability), min and max (range), outlier_count (anomaly detection), and trend indicators (increasing_count, decreasing_count), requiring at least 1 record per group to maintain data completeness. Result: A multi-dimensional dataset containing monthly metrics per order status with complete
 
-**Use Case:** Business analytics for funnel stage progression tracking
+**Business Value:** Aggregated metrics grouped by day and seller_id
 
-**Business Value:** Actionable insights from funnel stage progression tracking
-
-**Purpose:** Production funnel stage progression tracking analysis
-
-**Complexity:** 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by day and seller_id
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -2915,21 +2711,15 @@ LIMIT 100
 
 ---
 
-## Query 30: Outlier Detection with IQR Method {#query-30}
+## Query 30: What are the weekly order totals by order status with IQR-based outlier detection, quartiles, and trend metrics? {#query-30}
 
-**Use Case:** **Business analytics for outlier detection with iqr method**
+**Use Case:** **What are the weekly order totals by order status with IQR-based outlier detection, quartiles, and trend metrics?**
 
-**Description:** Uses 4 CTEs with window functions, statistical aggregations, and week-level grouping for outlier detection with iqr method.
+**Description:** Situation: Data quality teams need robust outlier detection methods that complement z-score approaches, particularly for skewed distributions where the Interquartile Range (IQR) method—based on quartile spreads—provides more reliable anomaly flagging than standard deviation-based techniques for identifying unusual order patterns by status. Task: Generate weekly total_amount statistics by order status that incorporate IQR-style outlier detection logic alongside quartile distributions and trend indicators. Action: The query groups orders by status and week, calculates precise quartiles using PERCENTILE_CONT for Q1 (25th) and Q3 (75th) percentiles to support IQR calculation, flags potential outliers using z-score > 2 as a threshold approximation for values outside typical ranges, includes stddev_value to enable alternative IQR-based outlier boundary calculations (Q1-1.5×IQR and Q3+1.5×IQR), computes trend counts (increasing_count, decreasing_count) for pattern detection, limits output to
 
-**Use Case:** Business analytics for outlier detection with iqr method
+**Business Value:** Aggregated metrics grouped by week and status
 
-**Business Value:** Actionable insights from outlier detection with iqr method
-
-**Purpose:** Production outlier detection with iqr method analysis
-
-**Complexity:** 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
-
-**Expected Output:** Aggregated metrics grouped by week and status
+**Complexity:** challenging
 
 ```sql
 WITH cte_level_1 AS (
@@ -3024,7 +2814,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260214-1518
+- **Generated**: 20260216-0700
 - **Database**: db-3
 - **Type**: Hierarchical Orders (LinkWay)
 - **Queries**: 30 production queries

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Battlecard: AfterQuery vs Competitors</title>
+<style>
+:root {
+    --bg-primary: #0a0d14;
+    --bg-elevated: #0f131c;
+    --bg-surface: #161b28;
+    --bg-hover: #1e2536;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255,255,255,0.7);
+    --text-muted: rgba(255,255,255,0.5);
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --you-win: #10b981;
+    --they-win: #ef4444;
+    --tie: #f59e0b;
+    --border: rgba(255,255,255,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+header { padding: 32px 40px 24px; border-bottom: 1px solid var(--border); }
+header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+header p { color: var(--text-muted); font-size: 14px; }
+nav.tabs { display: flex; gap: 4px; padding: 16px 40px 0; border-bottom: 1px solid var(--border); overflow-x: auto; }
+.tab { background: none; border: none; color: var(--text-muted); padding: 10px 18px; cursor: pointer; font-size: 14px; font-weight: 500; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+.tab:hover { color: var(--text-secondary); background: var(--bg-hover); border-radius: 8px 8px 0 0; }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; padding: 32px 40px; }
+.tab-content.active { display: block; }
+h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: var(--text-secondary); }
+table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+th { text-align: left; padding: 12px 16px; background: var(--bg-elevated); color: var(--text-muted); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; }
+tr:hover td { background: var(--bg-hover); }
+.win { color: var(--you-win); font-weight: 600; }
+.lose { color: var(--they-win); font-weight: 600; }
+.neutral { color: var(--tie); font-weight: 600; }
+.card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+.card h3 { color: var(--text-primary); margin-bottom: 16px; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-right: 6px; }
+.badge-win { background: rgba(16,185,129,0.15); color: var(--you-win); }
+.badge-lose { background: rgba(239,68,68,0.15); color: var(--they-win); }
+.badge-tie { background: rgba(245,158,11,0.15); color: var(--tie); }
+.section { margin-bottom: 32px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } nav.tabs { padding: 16px 16px 0; } .tab-content { padding: 24px 16px; } header { padding: 24px 16px 20px; } }
+.talk-track { background: var(--bg-elevated); border-left: 3px solid var(--accent); padding: 16px; border-radius: 0 8px 8px 0; margin-bottom: 12px; }
+.talk-track strong { color: var(--accent); font-size: 13px; text-transform: uppercase; letter-spacing: 0.3px; }
+.landmine { background: var(--bg-elevated); border-left: 3px solid var(--tie); padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 8px; font-size: 14px; }
+.objection-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; background: var(--bg-elevated); border-radius: 8px; margin-bottom: 8px; }
+.objection-row .label { color: var(--they-win); font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+.objection-row .response-label { color: var(--you-win); font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+.profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.profile-item { background: var(--bg-elevated); padding: 12px 16px; border-radius: 8px; }
+.profile-item .label { color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.profile-item .value { font-size: 15px; font-weight: 500; margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+<h1>AfterQuery Competitive Battlecard</h1>
+<p>Generated: February 16, 2026 | Competitors: Scale AI, Surge AI, Mercor, Micro1, Labelbox, SuperAnnotate, Snorkel AI</p>
+</header>
+
+<nav class="tabs">
+<button class="tab active" data-tab="matrix">Comparison Matrix</button>
+<button class="tab" data-tab="scale">Scale AI</button>
+<button class="tab" data-tab="surge">Surge AI</button>
+<button class="tab" data-tab="mercor">Mercor</button>
+<button class="tab" data-tab="micro1">Micro1</button>
+<button class="tab" data-tab="labelbox">Labelbox</button>
+<button class="tab" data-tab="superannotate">SuperAnnotate</button>
+<button class="tab" data-tab="snorkel">Snorkel AI</button>
+<button class="tab" data-tab="afterquery">AfterQuery (Us)</button>
+</nav>
+
+<!-- MATRIX TAB -->
+<section id="matrix" class="tab-content active">
+<div class="section">
+<h2>Head-to-Head Comparison</h2>
+<table>
+<thead>
+<tr><th>Dimension</th><th>AfterQuery</th><th>Scale AI</th><th>Surge AI</th><th>Mercor</th><th>Snorkel AI</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Valuation / Scale</strong></td><td>$500K (YC W25)</td><td>$14B</td><td>$1B+ rev</td><td>$2B ($450M ARR)</td><td>$1.3B</td></tr>
+<tr><td><strong>Core Focus</strong></td><td>Expert RL/SFT data</td><td>Full-stack data platform</td><td>Managed crowd ops</td><td>AI talent matching</td><td>Programmatic labeling</td></tr>
+<tr><td><strong>SFT Data Pairs</strong></td><td class="win">Strong</td><td>Strong</td><td>Strong</td><td class="lose">Weak</td><td class="lose">Weak</td></tr>
+<tr><td><strong>RL Environments</strong></td><td class="win">Differentiated</td><td class="neutral">Developing</td><td class="lose">None</td><td class="lose">None</td><td class="lose">None</td></tr>
+<tr><td><strong>MCP-based Eval</strong></td><td class="win">Unique</td><td class="lose">None</td><td class="lose">None</td><td class="lose">None</td><td class="lose">None</td></tr>
+<tr><td><strong>Computer Use Envs</strong></td><td class="win">Unique</td><td class="neutral">Developing</td><td class="lose">None</td><td class="lose">None</td><td class="lose">None</td></tr>
+<tr><td><strong>Expert Reviewer Quality</strong></td><td class="win">Domain experts</td><td class="neutral">Mixed quality</td><td>Managed crowd</td><td class="win">Vetted talent</td><td class="lose">N/A (programmatic)</td></tr>
+<tr><td><strong>Enterprise Maturity</strong></td><td class="lose">Early</td><td class="win">Mature</td><td class="win">Mature</td><td class="neutral">Growing</td><td class="win">Mature</td></tr>
+<tr><td><strong>Pricing Flexibility</strong></td><td class="win">Startup agility</td><td class="lose">Premium pricing</td><td class="neutral">Mid-range</td><td class="neutral">Usage-based</td><td class="lose">Enterprise pricing</td></tr>
+<tr><td><strong>Speed / Agility</strong></td><td class="win">Fast iteration</td><td class="lose">Slower at scale</td><td class="neutral">Moderate</td><td class="win">Fast</td><td class="neutral">Moderate</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>Quick Win/Loss Guide</h2>
+<div class="grid-2">
+<div class="card">
+<h3>Where AfterQuery Wins</h3>
+<p><span class="badge badge-win">RL Environments</span> <span class="badge badge-win">MCP Eval</span> <span class="badge badge-win">Computer Use</span> <span class="badge badge-win">Expert Quality</span> <span class="badge badge-win">Speed</span> <span class="badge badge-win">Price</span></p>
+<ul style="margin-top:12px; padding-left:20px; color:var(--text-secondary); font-size:14px;">
+<li>Unique RL environment tooling nobody else offers</li>
+<li>MCP-based evaluation is a genuine differentiator for frontier labs</li>
+<li>Domain expert reviewers vs. crowd workers</li>
+<li>Startup pricing and agility vs. enterprise overhead</li>
+<li>Computer use environments for agent training</li>
+</ul>
+</div>
+<div class="card">
+<h3>Where AfterQuery Loses</h3>
+<p><span class="badge badge-lose">Scale</span> <span class="badge badge-lose">Enterprise</span> <span class="badge badge-lose">Track Record</span> <span class="badge badge-lose">Brand</span></p>
+<ul style="margin-top:12px; padding-left:20px; color:var(--text-secondary); font-size:14px;">
+<li>Much smaller than established competitors</li>
+<li>Enterprise maturity (SOC2, compliance, SLAs) still developing</li>
+<li>Limited public case studies and brand recognition</li>
+<li>Smaller reviewer pool limits throughput on massive projects</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SCALE AI TAB -->
+<section id="scale" class="tab-content">
+<h2>Scale AI</h2>
+<div class="profile-grid">
+<div class="profile-item"><div class="label">Valuation</div><div class="value">$14B</div></div>
+<div class="profile-item"><div class="label">Employees</div><div class="value">~1,000+</div></div>
+<div class="profile-item"><div class="label">Founded</div><div class="value">2016</div></div>
+<div class="profile-item"><div class="label">HQ</div><div class="value">San Francisco</div></div>
+<div class="profile-item"><div class="label">Funding</div><div class="value">$600M+</div></div>
+<div class="profile-item"><div class="label">Target Market</div><div class="value">Enterprise AI / Government</div></div>
+</div>
+
+<div class="card">
+<h3>What They Sell</h3>
+<p>Full-stack AI data platform: data labeling, model evaluation, RLHF, generative AI data engine. Major government contracts (DoD). Recently expanded into AI applications layer.</p>
+</div>
+
+<div class="grid-2">
+<div class="card">
+<h3>Where They Win</h3>
+<ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;">
+<li>Massive scale and throughput capacity</li>
+<li>Government/defense contracts and clearances</li>
+<li>Brand recognition and enterprise trust</li>
+<li>Full-stack platform (labeling + evaluation + deployment)</li>
+<li>Established relationships with all major AI labs</li>
+</ul>
+</div>
+<div class="card">
+<h3>Where AfterQuery Wins</h3>
+<ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;">
+<li>RL environments and MCP-based eval (unique)</li>
+<li>Higher expert quality per reviewer</li>
+<li>Faster iteration and customization</li>
+<li>No Meta investment complications</li>
+<li>More competitive pricing at smaller scale</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h3>Talk Tracks</h3>
+<div class="talk-track"><strong>If Scale comes up early:</strong><br>"Scale is a great platform for high-volume general labeling. Where we differentiate is in expert-level RL training data and evaluation environments that frontier labs need for their most advanced models. Our domain experts and RL tooling serve a different need than Scale's crowd-based approach."</div>
+<div class="talk-track"><strong>If displacing Scale:</strong><br>"Many teams start with Scale for volume, then realize they need deeper expert quality for frontier model work. We complement Scale for your highest-value training data needs — the RL environments, SFT from domain experts, and MCP-based evaluation that Scale doesn't offer."</div>
+</div>
+
+<div class="section">
+<h3>Landmine Questions</h3>
+<div class="landmine">"How are you currently handling RL environment setup for your model training — is Scale providing that, or is your team building it internally?"</div>
+<div class="landmine">"When you need domain expert reviewers (PhD-level), what's the quality consistency you're seeing from your current provider?"</div>
+<div class="landmine">"Has the Meta investment situation created any complications for your data partnerships?"</div>
+</div>
+
+<div class="section">
+<h3>Objection Handling</h3>
+<div class="objection-row"><div><div class="label">Objection</div>"Scale already handles all our data needs."</div><div><div class="response-label">Response</div>"That makes sense for general labeling. The question is whether you're getting the expert-level RL training data and evaluation environments you need for frontier work. Most teams find that's a specialized need Scale's crowd model wasn't built for."</div></div>
+<div class="objection-row"><div><div class="label">Objection</div>"Scale has more scale and reliability."</div><div><div class="response-label">Response</div>"For volume, absolutely. For expert quality and RL environments, scale of crowd doesn't solve the problem. Our domain experts and purpose-built RL tooling deliver what frontier models actually need to improve."</div></div>
+</div>
+</section>
+
+<!-- SURGE AI TAB -->
+<section id="surge" class="tab-content">
+<h2>Surge AI</h2>
+<div class="profile-grid">
+<div class="profile-item"><div class="label">Revenue</div><div class="value">$1B+</div></div>
+<div class="profile-item"><div class="label">Model</div><div class="value">Managed crowd ops</div></div>
+<div class="profile-item"><div class="label">Focus</div><div class="value">NLP / LLM data</div></div>
+<div class="profile-item"><div class="label">HQ</div><div class="value">San Francisco</div></div>
+</div>
+
+<div class="card">
+<h3>What They Sell</h3>
+<p>Managed data annotation workforce specializing in NLP and LLM training data. Strong in RLHF data production with managed annotator teams. High revenue suggests deep relationships with major AI labs.</p>
+</div>
+
+<div class="grid-2">
+<div class="card"><h3>Where They Win</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>Proven revenue and client relationships</li><li>Managed workforce operations at scale</li><li>RLHF data production experience</li><li>NLP specialization depth</li></ul></div>
+<div class="card"><h3>Where AfterQuery Wins</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>RL environments and computer use tooling</li><li>MCP-based evaluation (unique)</li><li>Broader domain expert coverage</li><li>More technical product (API-first vs. managed service)</li></ul></div>
+</div>
+
+<div class="section">
+<h3>Landmine Questions</h3>
+<div class="landmine">"How much of your RL training pipeline is manual annotation vs. automated environment-based evaluation?"</div>
+<div class="landmine">"Are you able to set up custom RL environments for specific model capabilities, or is it primarily human preference data?"</div>
+</div>
+</section>
+
+<!-- MERCOR TAB -->
+<section id="mercor" class="tab-content">
+<h2>Mercor</h2>
+<div class="profile-grid">
+<div class="profile-item"><div class="label">Valuation</div><div class="value">$2B</div></div>
+<div class="profile-item"><div class="label">ARR</div><div class="value">$450M</div></div>
+<div class="profile-item"><div class="label">Model</div><div class="value">AI talent matching</div></div>
+<div class="profile-item"><div class="label">Focus</div><div class="value">Expert workforce</div></div>
+</div>
+
+<div class="card">
+<h3>What They Sell</h3>
+<p>AI-powered talent matching platform connecting expert workers with AI companies. Functions as a marketplace/broker for AI training talent. Impressive growth trajectory at $450M ARR.</p>
+</div>
+
+<div class="grid-2">
+<div class="card"><h3>Where They Win</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>Massive talent pool and matching algorithms</li><li>Fast-growing with strong revenue</li><li>Platform network effects</li><li>Broad talent categories</li></ul></div>
+<div class="card"><h3>Where AfterQuery Wins</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>Integrated data pipeline (not just talent matching)</li><li>RL environments and eval tooling</li><li>End-to-end training data production</li><li>Technical product differentiation beyond workforce</li></ul></div>
+</div>
+
+<div class="section">
+<h3>Landmine Questions</h3>
+<div class="landmine">"When you get expert reviewers through your current platform, who's managing the data pipeline, quality assurance, and training environment setup?"</div>
+<div class="landmine">"Is your talent provider giving you the RL infrastructure and evaluation tooling, or just the people?"</div>
+</div>
+</section>
+
+<!-- MICRO1 TAB -->
+<section id="micro1" class="tab-content">
+<h2>Micro1</h2>
+<div class="profile-grid">
+<div class="profile-item"><div class="label">Valuation</div><div class="value">$500M</div></div>
+<div class="profile-item"><div class="label">Focus</div><div class="value">Developer vetting</div></div>
+<div class="profile-item"><div class="label">Model</div><div class="value">AI-vetted talent</div></div>
+</div>
+
+<div class="card">
+<h3>What They Sell</h3>
+<p>AI-powered developer vetting and placement platform. Focuses on technical talent with AI-driven assessment. More developer-focused than general AI training data.</p>
+</div>
+
+<div class="grid-2">
+<div class="card"><h3>Where They Win</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>Developer-specific vetting and quality</li><li>AI-native assessment technology</li><li>Growing valuation and market presence</li></ul></div>
+<div class="card"><h3>Where AfterQuery Wins</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>Broader domain coverage beyond developers</li><li>RL/SFT data production (not just placement)</li><li>Integrated training data pipeline</li><li>Evaluation and environment tooling</li></ul></div>
+</div>
+</section>
+
+<!-- LABELBOX TAB -->
+<section id="labelbox" class="tab-content">
+<h2>Labelbox</h2>
+<div class="profile-grid">
+<div class="profile-item"><div class="label">Stage</div><div class="value">Established</div></div>
+<div class="profile-item"><div class="label">Focus</div><div class="value">Data labeling platform</div></div>
+<div class="profile-item"><div class="label">Model</div><div class="value">Platform SaaS</div></div>
+</div>
+
+<div class="card">
+<h3>What They Sell</h3>
+<p>Data labeling and annotation platform with workflow management, model-assisted labeling, and enterprise features. Platform-first approach — customers bring their own annotators or use Labelbox workforce.</p>
+</div>
+
+<div class="grid-2">
+<div class="card"><h3>Where They Win</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>Mature platform with enterprise features</li><li>Strong workflow and project management tooling</li><li>Computer vision strength</li><li>SOC2/compliance certifications</li></ul></div>
+<div class="card"><h3>Where AfterQuery Wins</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>LLM/frontier model specialization</li><li>RL environments (Labelbox is labeling-focused)</li><li>Expert reviewer network (vs. BYOA model)</li><li>SFT and RLHF expertise</li></ul></div>
+</div>
+
+<div class="section">
+<h3>Landmine Questions</h3>
+<div class="landmine">"Are you looking for a labeling platform, or do you need end-to-end training data production including RL environments and expert reviewers?"</div>
+</div>
+</section>
+
+<!-- SUPERANNOTATE TAB -->
+<section id="superannotate" class="tab-content">
+<h2>SuperAnnotate</h2>
+<div class="profile-grid">
+<div class="profile-item"><div class="label">Stage</div><div class="value">Established</div></div>
+<div class="profile-item"><div class="label">Focus</div><div class="value">Quality-focused annotation</div></div>
+<div class="profile-item"><div class="label">Model</div><div class="value">Platform + services</div></div>
+</div>
+
+<div class="card">
+<h3>What They Sell</h3>
+<p>Annotation platform with built-in quality management, project management, and ML-assisted labeling. Differentiates on annotation quality and tooling sophistication.</p>
+</div>
+
+<div class="grid-2">
+<div class="card"><h3>Where They Win</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>Quality management tooling</li><li>Image/video annotation strength</li><li>Platform maturity</li></ul></div>
+<div class="card"><h3>Where AfterQuery Wins</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>LLM/frontier model specialization</li><li>RL environments and MCP eval</li><li>Expert domain reviewers</li><li>SFT pair production</li></ul></div>
+</div>
+</section>
+
+<!-- SNORKEL AI TAB -->
+<section id="snorkel" class="tab-content">
+<h2>Snorkel AI</h2>
+<div class="profile-grid">
+<div class="profile-item"><div class="label">Valuation</div><div class="value">$1.3B</div></div>
+<div class="profile-item"><div class="label">Focus</div><div class="value">Programmatic data labeling</div></div>
+<div class="profile-item"><div class="label">Model</div><div class="value">Data-centric AI platform</div></div>
+<div class="profile-item"><div class="label">Origin</div><div class="value">Stanford AI Lab</div></div>
+</div>
+
+<div class="card">
+<h3>What They Sell</h3>
+<p>Data-centric AI platform using programmatic labeling (labeling functions instead of manual annotation). Founded from Stanford research. Enterprise-focused with $1.3B valuation. Approach: reduce human labeling via weak supervision and programmatic approaches.</p>
+</div>
+
+<div class="grid-2">
+<div class="card"><h3>Where They Win</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>Reduces labeling cost through automation</li><li>Strong academic pedigree (Stanford)</li><li>Enterprise maturity and compliance</li><li>Programmatic approach scales well</li></ul></div>
+<div class="card"><h3>Where AfterQuery Wins</h3><ul style="padding-left:18px; color:var(--text-secondary); font-size:14px;"><li>Human expert judgment (can't be programmed)</li><li>RL environments need human interaction</li><li>SFT quality requires domain expertise</li><li>Frontier model training needs human-in-the-loop</li></ul></div>
+</div>
+
+<div class="section">
+<h3>Landmine Questions</h3>
+<div class="landmine">"For your frontier model training, how much of the data quality can realistically be achieved through programmatic labeling vs. requiring expert human judgment?"</div>
+<div class="landmine">"When you need RL training data with nuanced human preferences, how does your current programmatic approach handle that?"</div>
+</div>
+</section>
+
+<!-- AFTERQUERY TAB -->
+<section id="afterquery" class="tab-content">
+<h2>AfterQuery (Our Position)</h2>
+<div class="profile-grid">
+<div class="profile-item"><div class="label">Stage</div><div class="value">YC W25</div></div>
+<div class="profile-item"><div class="label">Funding</div><div class="value">$500K</div></div>
+<div class="profile-item"><div class="label">Team</div><div class="value">~106</div></div>
+<div class="profile-item"><div class="label">HQ</div><div class="value">San Francisco</div></div>
+<div class="profile-item"><div class="label">Founded</div><div class="value">2024</div></div>
+<div class="profile-item"><div class="label">Founders</div><div class="value">Spencer Mateega, Carlos Georgescu, Danny Tang</div></div>
+</div>
+
+<div class="card">
+<h3>Key Differentiators</h3>
+<ul style="padding-left:18px; color:var(--text-secondary); font-size:14px; line-height:2;">
+<li><strong style="color:var(--you-win)">RL Environments</strong> — Purpose-built reinforcement learning environments for model training (API-based, MCP-based)</li>
+<li><strong style="color:var(--you-win)">MCP-based Evaluation</strong> — Unique evaluation infrastructure using Model Context Protocol</li>
+<li><strong style="color:var(--you-win)">Computer Use Environments</strong> — Training environments for agent/computer use capabilities</li>
+<li><strong style="color:var(--you-win)">Expert Reviewers</strong> — Domain expert network (not crowd workers) for SFT and RLHF data</li>
+<li><strong style="color:var(--you-win)">Startup Speed</strong> — Fast iteration, custom solutions, direct founder access</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Products</h3>
+<ul style="padding-left:18px; color:var(--text-secondary); font-size:14px; line-height:2;">
+<li>SFT (Supervised Fine-Tuning) data pairs</li>
+<li>Rubric-based reinforcement learning pipelines</li>
+<li>API/MCP-based RL environments</li>
+<li>Computer use training environments</li>
+<li>Domain expert reviewer network</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Infrastructure</h3>
+<p style="color:var(--text-secondary); font-size:14px;">Firestore database, Docker/Kubernetes infrastructure, Okta SSO, Google Workspace Enterprise, Slack Enterprise. Enterprise-grade auth and security in active buildout.</p>
+</div>
+</section>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+});
+</script>
+</body>
+</html>

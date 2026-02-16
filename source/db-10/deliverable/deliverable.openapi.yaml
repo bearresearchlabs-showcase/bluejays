@@ -141,306 +141,471 @@ info:
     - Client Deliverable: What output or report this query generates\n- Business Value:\
     \ The business impact and value delivered\n- Complexity: Technical complexity\
     \ indicators\n- SQL Code: Complete, production-ready SQL query\n\n---\n\nUse Case:\
-    \ Competitive pricing analysis for retail intelligence platforms - identify best\
-    \ prices by location and track price trends over time\n\nDescription: Description:\
-    \ Analyzes pricing across multiple retailers for products within geographic markets,\
-    \ incorporating temporal trends, price volatility metrics, and competitive positioning.\
-    \ Uses multiple CTEs to aggregate pricing data, calculate price differences, identify\
-    \ best deals, and track price movements over time with window functions. Use Case:\
-    \ Competitive pricing analysis for retail intelligence platforms - identify best\
-    \ prices by location and track price trends over time Business Value: Enable\n\
-    \nBusiness Value: Enable\n\nComplexity: Deep nested CTEs (6+ levels), multiple\
-    \ joins across products/retailers/stores/pricing tables, window functions with\
-    \ frame clauses, percentile calculations, temporal aggregations, geographic filtering,\
-    \ correlated subqueries\n\n---\n\nUse Case: Inventory forecasting for retail operations\
-    \ - predict when products will be in stock and optimize restocking schedules\n\
-    \nDescription: Description: Predicts inventory availability by analyzing historical\
-    \ stock patterns, restocking frequencies, seasonal trends, and geographic distribution.\
-    \ Uses recursive CTEs for pattern detection, window functions for trend analysis,\
-    \ and complex aggregations to forecast stock levels. Use Case: Inventory forecasting\
-    \ for retail operations - predict when products will be in stock and optimize\
-    \ restocking schedules Business Value: Enables retailers to optimize inventory\
-    \ management, reduce stockouts,\n\nBusiness Value: Enables retailers to optimize\
-    \ inventory management, reduce stockouts,\n\nComplexity: Recursive CTEs for pattern\
-    \ detection, multiple CTEs (7+ levels), window functions with complex frame clauses,\
-    \ temporal aggregations, geographic clustering, statistical forecasting calculations\n\
-    \n---\n\nUse Case: Competitive market analysis for retail intelligence - identify\
-    \ market leaders, track share changes, and analyze competitive dynamics\n\nDescription:\
-    \ Description: Analyzes market share by retailer and product category, incorporating\
-    \ competitive positioning metrics, temporal trends, and geographic distribution.\
-    \ Uses multiple CTEs to calculate market share percentages, competitive rankings,\
-    \ share changes over time, and market concentration metrics with window functions.\
-    \ Use Case: Competitive market analysis for retail intelligence - identify market\
-    \ leaders, track share changes, and analyze competitive dynamics Business Value:\
-    \ Enables retailers\n\nBusiness Value: Enables retailers\n\nComplexity: Multiple\
-    \ CTEs (6+ levels), complex aggregations, window functions with frame clauses,\
-    \ percentile rankings, temporal comparisons, market concentration calculations\n\
-    \n---\n\nUse Case: Automated deal detection for retail intelligence platforms\n\
-    \nDescription: Description: Detects deals and generates alerts by analyzing price\
-    \ changes, discount patterns, and temporal trends. Uses recursive CTEs for pattern\
-    \ detection, window functions for trend analysis, and complex aggregations to\
-    \ identify optimal deals. Use Case: Automated deal detection for retail intelligence\
-    \ platforms Business Value: Enables consumers and retailers to identify best deals\
-    \ automatically, supporting $1M+ ARR deal aggregation platforms Purpose: Provides\
-    \ comprehensive analysis for marke\n\nBusiness Value: Enables consumers and retailers\
-    \ to identify best deals automatically, supporting $1M+ ARR deal aggregation platforms\n\
-    \nPurpose: Provides comprehensive analysis for marke\n\nComplexity: Recursive\
-    \ CTEs, multiple CTEs (7+ levels), window functions with frame clauses, temporal\
-    \ pattern detection, discount analysis\n\n---\n\nUse Case: Category performance\
-    \ analysis for retail strategy\n\nDescription: Description: Analyzes product category\
-    \ trends with seasonal decomposition, identifying cyclical patterns, growth trends,\
-    \ and category performance metrics. Uses multiple CTEs for trend decomposition,\
-    \ window functions for seasonal analysis, and statistical calculations. Use Case:\
-    \ Category performance analysis for retail strategy Business Value: Enables retailers\
-    \ to understand category trends and optimize product mix, supporting $1M+ ARR\
-    \ retail analytics platforms Purpose: Provides comprehensive an\n\nBusiness Value:\
-    \ Enables retailers to understand category trends and optimize product mix, supporting\
-    \ $1M+ ARR retail analytics platforms\n\nPurpose: Provides comprehensive an\n\n\
-    Complexity: Multiple CTEs (8+ levels), seasonal decomposition, window functions\
-    \ with RANGE frames, trend analysis, statistical calculations\n\n---\n\nUse Case:\
-    \ Marketing intelligence for retail operations\n\nDescription: Description: Comprehensive\
-    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
-    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
-    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
-    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
-    \ window functions, complex aggregations Expected Output: Analysis report with\
-    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
-    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
-    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
-    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
-    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
-    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
-    \nDescription: Description: Comprehensive marketing intelligence analysis with\
-    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
-    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
-    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
-    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
-    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
-    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
-    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
-    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
-    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
-    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
-    \ Case: Marketing intelligence for retail operations Business Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
-    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
-    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
-    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
-    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
-    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
-    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
-    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
-    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
-    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
-    \ window functions, complex aggregations Expected Output: Analysis report with\
-    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
-    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
-    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
-    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
-    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
-    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
-    \nDescription: Description: Comprehensive marketing intelligence analysis with\
-    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
-    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
-    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
-    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
-    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
-    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
-    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
-    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
-    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
-    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
-    \ Case: Marketing intelligence for retail operations Business Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
-    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
-    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
-    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
-    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
-    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
-    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
-    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
-    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
-    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
-    \ window functions, complex aggregations Expected Output: Analysis report with\
-    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
-    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
-    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
-    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
-    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
-    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
-    \nDescription: Description: Comprehensive marketing intelligence analysis with\
-    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
-    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
-    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
-    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
-    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
-    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
-    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
-    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
-    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
-    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
-    \ Case: Marketing intelligence for retail operations Business Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
-    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
-    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
-    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
-    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
-    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
-    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
-    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
-    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
-    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
-    \ window functions, complex aggregations Expected Output: Analysis report with\
-    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
-    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
-    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
-    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
-    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
-    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
-    \nDescription: Description: Comprehensive marketing intelligence analysis with\
-    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
-    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
-    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
-    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
-    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
-    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
-    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
-    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
-    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
-    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
-    \ Case: Marketing intelligence for retail operations Business Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
-    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
-    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
-    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
-    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
-    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
-    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
-    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
-    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
-    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
-    \ window functions, complex aggregations Expected Output: Analysis report with\
-    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
-    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
-    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
-    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
-    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
-    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
-    \nDescription: Description: Comprehensive marketing intelligence analysis with\
-    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
-    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
-    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
-    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
-    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
-    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
-    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
-    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
-    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
-    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
-    \ Case: Marketing intelligence for retail operations Business Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
-    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
-    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
-    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
-    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
-    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
-    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
-    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
-    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
-    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
-    \ window functions, complex aggregations Expected Output: Analysis report with\
-    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \n---\n\nUse Case: Marketing intelligence for retail operations\n\nDescription:\
-    \ Description: Comprehensive marketing intelligence analysis with multiple CTEs,\
-    \ window functions, and complex aggregations. Use Case: Marketing intelligence\
-    \ for retail operations Business Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms Purpose: Provides detailed marketing intelligence analysis Complexity:\
-    \ Multiple CTEs (6+ levels), window functions, complex aggregations Expected Output:\
-    \ Analysis report with comprehensive metrics\n\nBusiness Value: Supports $1M+\
-    \ ARR marketing intelligence platforms\n\nPurpose: Provides detailed marketing\
-    \ intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations\n\n---\n\nUse Case: Marketing intelligence for retail operations\n\
-    \nDescription: Description: Comprehensive marketing intelligence analysis with\
-    \ multiple CTEs, window functions, and complex aggregations. Use Case: Marketing\
-    \ intelligence for retail operations Business Value: Supports $1M+ ARR marketing\
-    \ intelligence platforms Purpose: Provides detailed marketing intelligence analysis\
-    \ Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\
-    \ Expected Output: Analysis report with comprehensive metrics\n\nBusiness Value:\
-    \ Supports $1M+ ARR marketing intelligence platforms\n\nPurpose: Provides detailed\
-    \ marketing intelligence analysis\n\nComplexity: Multiple CTEs (6+ levels), window\
-    \ functions, complex aggregations\n\n---\n\nUse Case: Marketing intelligence for\
-    \ retail operations\n\nDescription: Description: Comprehensive marketing intelligence\
-    \ analysis with multiple CTEs, window functions, and complex aggregations. Use\
-    \ Case: Marketing intelligence for retail operations Business Value: Supports\
-    \ $1M+ ARR marketing intelligence platforms Purpose: Provides detailed marketing\
-    \ intelligence analysis Complexity: Multiple CTEs (6+ levels), window functions,\
-    \ complex aggregations Expected Output: Analysis report with comprehensive metrics\n\
-    \nBusiness Value: Supports $1M+ ARR marketing intelligence platforms\n\nPurpose:\
-    \ Provides detailed marketing intelligence analysis\n\nComplexity: Multiple CTEs\
-    \ (6+ levels), window functions, complex aggregations\n\n---\n\nUse Case: Marketing\
-    \ intelligence for retail operations\n\nDescription: Description: Comprehensive\
-    \ marketing intelligence analysis with multiple CTEs, window functions, and complex\
-    \ aggregations. Use Case: Marketing intelligence for retail operations Business\
-    \ Value: Supports $1M+ ARR marketing intelligence platforms Purpose: Provides\
-    \ detailed marketing intelligence analysis Complexity: Multiple CTEs (6+ levels),\
-    \ window functions, complex aggregations Expected Output: Analysis report with\
-    \ comprehensive metrics\n\nBusiness Value: Supports $1M+ ARR marketing intelligence\
-    \ platforms\n\nPurpose: Provides detailed marketing intelligence analysis\n\n\
-    Complexity: Multiple CTEs (6+ levels), window functions, complex aggregations\n\
-    \n---\n\n1. PostgreSQL Setup:\n   \n\n2. , Setup:\n   - Use Delta Lake format\n\
-    \   - Load schema.sql (adapting GEOGRAPHY types as needed)\n   - Use, SQL for\
-    \ query execution\n\n3. , Setup:\n   - Create database and schema\n   - Load schema.sql\
-    \ (GEOGRAPHY types supported)\n   - Use, SQL for query execution\n\nRun the ETL\
-    \ pipeline to extract data from government APIs:\n\nOr use the bulk download script:\n\
-    \nAll queries are located in `queries/queries.md` and can be executed directly\
-    \ on any supported database platform.\n\nRun the validation suite:\n\nOr use the\
+    \ Can you show me a multi-retailer price comparison that includes geographic filtering\
+    \ and temporal trend analysis?\n\nDescription: Situation: The pricing analytics\
+    \ team needs to monitor competitive pricing across multiple retailers and regions\
+    \ to inform pricing strategy decisions. Retailers are adjusting prices dynamically,\
+    \ and the business needs visibility into which competitors offer the best prices\
+    \ in specific markets and how these prices trend over time. Task: Generate a product\
+    \ pricing comparison report that identifies the best prices by retailer and location,\
+    \ reveals price trends over time, and calculates competitive positioning metrics.\
+    \ Action: The query joins product, retailer, and location tables, groups by product,\
+    \ retailer, and geographic dimensions, computes price aggregates (min, max, avg)\
+    \ and quartiles for competitive positioning, applies window functions to calculate\
+    \ rolling averages and period-over-period price changes, filters by specified\
+    \ date ranges and geographic boundaries, and handles NULL values in optional location\
+    \ fields. Result: The output returns a dataset with product-level pricing by r\n\
+    \nBusiness Value: Product pricing comparison report showing best prices by retailer\
+    \ and location, price trends, and competitive positioning metrics\n\nComplexity:\
+    \ moderate\n\n---\n\nUse Case: Can you show me inventory availability predictions\
+    \ based on historical patterns along with geographic distribution?\n\nDescription:\
+    \ Situation: The supply chain team needs to anticipate stockouts and optimize\
+    \ inventory allocation across different warehouse locations. Historical sales\
+    \ patterns and inventory turnover rates vary significantly by region, and the\
+    \ business requires predictive insights to proactively manage restocking decisions.\
+    \ Task: Generate inventory availability predictions with confidence scores, provide\
+    \ restocking recommendations, and analyze geographic distribution patterns. Action:\
+    \ The query aggregates historical inventory and sales data by product and location,\
+    \ calculates inventory turnover rates and average days-to-stockout, applies time-series\
+    \ pattern recognition using window functions to compute moving averages and seasonal\
+    \ trends, groups by geographic regions to identify location-specific patterns,\
+    \ computes prediction confidence scores based on historical variance, generates\
+    \ restocking priority flags based on predicted stockout dates, and handles NULL\
+    \ values for products without sufficient his\n\nBusiness Value: Inventory availability\
+    \ predictions with confidence scores, restocking recommendations, and geographic\
+    \ distribution analysis\n\nComplexity: challenging\n\n---\n\nUse Case: Can you\
+    \ show me a market share analysis with competitive positioning and temporal trends?\n\
+    \nDescription: Situation: The market intelligence team needs to understand how\
+    \ retailers are performing relative to competitors across different product categories\
+    \ over time. Market dynamics are shifting, and leadership requires visibility\
+    \ into which retailers are gaining or losing market share and how competitive\
+    \ positions are evolving. Task: Generate a market share report that displays retailer\
+    \ rankings, calculates share percentages, provides competitive positioning metrics,\
+    \ and reveals temporal trends segmented by product category. Action: The query\
+    \ aggregates sales or revenue data across retailers and product categories, computes\
+    \ total market size by category and time period, calculates each retailer's market\
+    \ share percentage, applies window functions to rank retailers within each category\
+    \ and compute period-over-period share changes, groups by product category and\
+    \ time dimensions to enable trend analysis, identifies market leaders and challengers\
+    \ using quartile-based positioning, and handles edg\n\nBusiness Value: Market\
+    \ share report showing retailer rankings, share percentages, competitive positioning,\
+    \ and temporal trends by product category\n\nComplexity: moderate\n\n---\n\nUse\
+    \ Case: Can you show me deal detection and alert generation based on temporal\
+    \ patterns?\n\nDescription: Situation: The consumer insights team monitors pricing\
+    \ across retailers to identify deals and promotional opportunities that drive\
+    \ purchase decisions. Customers respond to price drops and limited-time offers,\
+    \ and the business needs automated detection of significant deals with alert generation\
+    \ to capitalize on competitive promotions. Task: Generate a deal detection and\
+    \ alert analysis report that identifies significant price drops, recognizes promotional\
+    \ patterns, creates alert triggers, and characterizes temporal deal patterns.\
+    \ Action: The query compares current prices against historical baselines by product\
+    \ and retailer, calculates percentage and absolute price changes using window\
+    \ functions with lag comparisons, applies threshold logic to flag significant\
+    \ price drops as deals (e.g., >15% reduction), groups by temporal dimensions to\
+    \ identify recurring promotional patterns (weekly, monthly cycles), computes deal\
+    \ duration and frequency metrics, generates alert priority scores based on d\n\
+    \nBusiness Value: Detailed analysis report with metrics and insights\n\nComplexity:\
+    \ challenging\n\n---\n\nUse Case: Can you show me product category trend analysis\
+    \ with seasonal decomposition?\n\nDescription: Situation: The merchandising and\
+    \ planning teams need to understand product category performance trends and seasonal\
+    \ demand patterns to optimize inventory buying and promotional calendar planning.\
+    \ Sales exhibit strong seasonality and cyclical patterns that vary by category,\
+    \ requiring decomposition of trends from seasonal effects. Task: Generate a product\
+    \ category trend analysis report that decomposes seasonal patterns, calculates\
+    \ growth metrics, identifies cyclical components, and provides demand forecasts.\
+    \ Action: The query aggregates sales or transaction data by product category and\
+    \ time period, calculates period-over-period growth rates and year-over-year comparisons,\
+    \ applies time-series decomposition logic using window functions to separate trend,\
+    \ seasonal, and residual components, groups by category and temporal dimensions\
+    \ (month, quarter, year) to reveal cyclical patterns, computes seasonal indices\
+    \ for each period to quantify seasonality strength, generates trend-based forward\
+    \ pro\n\nBusiness Value: Detailed analysis report with metrics and insights\n\n\
+    Complexity: moderate\n\n---\n\nUse Case: Can you generate the marketing intelligence\
+    \ analysis report for query 6?\n\nDescription: Situation: The marketing team needs\
+    \ to evaluate campaign effectiveness across multiple segments and time periods.\
+    \ Historical data from campaigns, metrics, and customer segments tables contains\
+    \ performance indicators including click-through rates, conversion rates, and\
+    \ ROI that require analysis to inform strategic decisions. Task: Generate a comprehensive\
+    \ analysis report that aggregates marketing metrics across relevant dimensions\
+    \ and time periods. Action: The query joins campaign, metrics, and segment tables\
+    \ using LEFT JOINs to preserve all campaign records. It groups results by campaign\
+    \ type, segment, and time period (month/quarter), computing aggregate metrics\
+    \ such as total impressions, average click-through rate, and total conversions.\
+    \ Window functions calculate rolling 3-month averages and period-over-period growth\
+    \ rates. Quartile calculations identify top and bottom performing campaigns. The\
+    \ query handles NULL values in optional fields and filters records within the\
+    \ specified date\n\nBusiness Value: Analysis report with comprehensive metrics\n\
+    \nComplexity: moderate\n\n---\n\nUse Case: Can you generate the marketing intelligence\
+    \ analysis report for query 7?\n\nDescription: Situation: Marketing leadership\
+    \ requires insights into customer segment behavior and campaign ROI to optimize\
+    \ budget allocation for the upcoming quarter. The campaigns, metrics, and segments\
+    \ tables store historical performance data spanning multiple channels and audience\
+    \ demographics that need to be synthesized. Task: Produce a comprehensive marketing\
+    \ analysis report showing key performance indicators aggregated by strategic dimensions.\
+    \ Action: The query performs inner joins between campaigns and metrics tables,\
+    \ with a left join to segments to include campaigns without segment assignments.\
+    \ Data is grouped by channel, segment demographic, and fiscal quarter. Aggregate\
+    \ functions calculate total spend, revenue generated, customer acquisition cost,\
+    \ and return on ad spend. Window functions compute cumulative totals and moving\
+    \ averages over 90-day windows. CASE statements handle division-by-zero scenarios\
+    \ and NULL segment values, assigning default labels. Date filtering restricts\
+    \ analysis to\n\nBusiness Value: Analysis report with comprehensive metrics\n\n\
+    Complexity: moderate\n\n---\n\nUse Case: Can you generate the marketing intelligence\
+    \ analysis report for query 8?\n\nDescription: Situation: The digital marketing\
+    \ division is preparing for quarterly business review and needs to demonstrate\
+    \ campaign performance across all digital channels. Data resides in campaigns,\
+    \ metrics, and segments tables, capturing impressions, engagements, conversions,\
+    \ and demographic information that must be analyzed to show trends and identify\
+    \ optimization opportunities. Task: Create a comprehensive metrics analysis report\
+    \ that highlights performance trends and comparative statistics across campaigns.\
+    \ Action: The query establishes a base dataset by joining campaigns to metrics\
+    \ on campaign ID, then left joining to segments to include segmentation attributes.\
+    \ Results are grouped by campaign name, channel type, and month. Aggregate calculations\
+    \ include SUM for impressions and clicks, AVG for engagement rates, and COUNT\
+    \ DISTINCT for unique conversions. Window functions partition by channel to calculate\
+    \ percentile ranks for each campaign's performance and generate year-over-year\
+    \ comparisons u\n\nBusiness Value: Analysis report with comprehensive metrics\n\
+    \nComplexity: moderate\n\n---\n\nUse Case: Can you generate the marketing intelligence\
+    \ analysis report for query 9?\n\nDescription: Situation: The marketing analytics\
+    \ team must deliver insights on customer segment profitability and campaign efficiency\
+    \ to support the annual planning process. Campaign performance data, cost metrics,\
+    \ and customer segment attributes are stored across normalized tables and require\
+    \ integration to provide a holistic view of marketing effectiveness by segment\
+    \ and time period. Task: Build a comprehensive analysis report showing profitability\
+    \ and efficiency metrics segmented by customer demographics and campaign attributes.\
+    \ Action: The query creates a foundation by joining campaigns, metrics, and segments\
+    \ tables using appropriate join types to preserve campaign records even when segment\
+    \ data is incomplete. Data is aggregated by customer segment (age, geography,\
+    \ interests), campaign category, and quarter. Computed metrics include total marketing\
+    \ spend, revenue attributed to campaigns, profit margin percentages, and customer\
+    \ lifetime value estimates. Window functions calculate running totals a\n\nBusiness\
+    \ Value: Analysis report with comprehensive metrics\n\nComplexity: moderate\n\n\
+    ---\n\nUse Case: Can you generate the marketing intelligence analysis report for\
+    \ query 10?\n\nDescription: Situation: Senior management has requested a data-driven\
+    \ assessment of marketing channel effectiveness to guide the reallocation of a\
+    \ multi-million dollar marketing budget. Historical campaign data across channels,\
+    \ detailed performance metrics, and customer segment responses are available in\
+    \ the database and must be analyzed to identify high-performing channels and underperforming\
+    \ segments. Task: Generate a comprehensive marketing intelligence report that\
+    \ evaluates channel performance with detailed metrics across multiple analytical\
+    \ dimensions. Action: The query constructs a unified view by joining campaigns\
+    \ to metrics on campaign identifiers and left joining segments to retain all campaign\
+    \ records. Grouping is applied across multiple dimensions including channel, campaign\
+    \ objective, customer segment, and time period (weekly, monthly, quarterly). Aggregate\
+    \ functions compute total impressions, clicks, conversions, cost per acquisition,\
+    \ and conversion rates. Advanced window functions cal\n\nBusiness Value: Analysis\
+    \ report with comprehensive metrics\n\nComplexity: moderate\n\n---\n\nUse Case:\
+    \ Can you generate the marketing intelligence analysis for query 11?\n\nDescription:\
+    \ Situation: The marketing team needs to evaluate campaign effectiveness across\
+    \ multiple channels and customer segments. Historical data from the campaigns,\
+    \ metrics, and segments tables contains performance indicators including impressions,\
+    \ conversions, revenue, and engagement rates that must be analyzed to inform budget\
+    \ allocation decisions. Task: Generate a comprehensive analysis report that aggregates\
+    \ marketing performance metrics across campaigns and segments with statistical\
+    \ breakdowns. Action: The query joins campaign, metrics, and segments tables using\
+    \ appropriate keys while handling NULL values through LEFT JOINs. It groups results\
+    \ by campaign type, channel, and customer segment dimensions. Aggregate functions\
+    \ calculate totals for spend, revenue, conversions, and engagement. Window functions\
+    \ compute rolling 7-day and 30-day averages for trend analysis. Quartile calculations\
+    \ using NTILE identify top and bottom performing campaigns. Date range filters\
+    \ ensure only active campaign pe\n\nBusiness Value: Analysis report with comprehensive\
+    \ metrics\n\nComplexity: moderate\n\n---\n\nUse Case: Can you generate the marketing\
+    \ intelligence analysis for query 12?\n\nDescription: Situation: Marketing operations\
+    \ requires visibility into cross-channel campaign performance to optimize customer\
+    \ acquisition costs. The campaigns table stores campaign metadata, the metrics\
+    \ table tracks daily performance indicators, and the segments table defines customer\
+    \ demographics. These datasets must be integrated to provide actionable insights\
+    \ on which customer segments respond best to specific campaign types. Task: Produce\
+    \ a comprehensive analysis report aggregating marketing metrics by segment and\
+    \ campaign with trend analysis. Action: The query performs multi-table joins between\
+    \ campaigns, metrics, and segments tables, applying outer joins to preserve campaigns\
+    \ with incomplete metric data. Grouping occurs across campaign ID, segment ID,\
+    \ and date dimensions. Aggregate computations include SUM for cumulative spend\
+    \ and revenue, AVG for engagement rates, and COUNT DISTINCT for unique customer\
+    \ reach. Window functions with PARTITION BY clauses calculate running totals and\
+    \ period comp\n\nBusiness Value: Analysis report with comprehensive metrics\n\n\
+    Complexity: moderate\n\n---\n\nUse Case: Can you generate the marketing intelligence\
+    \ analysis for query 13?\n\nDescription: Situation: The CMO needs to present quarterly\
+    \ marketing performance to the executive board, requiring an integrated view of\
+    \ all campaign activities. Data resides in separate tables: campaigns contains\
+    \ strategy and budget information, metrics holds daily KPIs including impressions\
+    \ and conversions, and segments categorizes audiences by behavior and demographics.\
+    \ Historical patterns and comparative analysis are essential for strategic planning.\
+    \ Task: Create a comprehensive analytical report that synthesizes campaign performance\
+    \ metrics with segment-level insights and temporal trends. Action: The query establishes\
+    \ relationships between campaigns, metrics, and segments tables through JOIN operations,\
+    \ using COALESCE to handle missing segment associations. GROUP BY clauses aggregate\
+    \ data across campaign hierarchy levels (channel, type, objective) and time periods\
+    \ (daily, weekly, monthly). Aggregate functions compute totals and averages for\
+    \ financial metrics (spend, CPA, ROAS) and engagement m\n\nBusiness Value: Analysis\
+    \ report with comprehensive metrics\n\nComplexity: moderate\n\n---\n\nUse Case:\
+    \ Can you generate the marketing intelligence analysis for query 14?\n\nDescription:\
+    \ Situation: The marketing analytics team must deliver weekly performance reviews\
+    \ to campaign managers who need granular insights into which tactics are driving\
+    \ results. The data infrastructure includes campaigns (strategic details and budgets),\
+    \ metrics (time-series performance data captured daily), and segments (customer\
+    \ groupings based on value and behavior). Analysis must identify underperforming\
+    \ campaigns early while highlighting successes for scaling. Task: Build a comprehensive\
+    \ analytical report that evaluates campaign effectiveness across segments with\
+    \ statistical measures and trending indicators. Action: The query integrates data\
+    \ from campaigns, metrics, and segments tables using LEFT JOIN operations to retain\
+    \ all campaigns regardless of metric availability. The WHERE clause restricts\
+    \ analysis to the current and previous fiscal quarters. GROUP BY statements organize\
+    \ data by campaign attributes (channel, objective, creative type) and segment\
+    \ characteristics (demographic, behaviora\n\nBusiness Value: Analysis report with\
+    \ comprehensive metrics\n\nComplexity: moderate\n\n---\n\nUse Case: Can you generate\
+    \ the marketing intelligence analysis for query 15?\n\nDescription: Situation:\
+    \ Leadership is conducting annual planning and requires a data-driven assessment\
+    \ of marketing channel effectiveness and customer segment profitability. The organization\
+    \ maintains separate tables for campaigns (containing budget allocations and strategic\
+    \ goals), metrics (tracking daily performance across channels), and segments (defining\
+    \ customer cohorts by value tier and engagement level). Multi-dimensional analysis\
+    \ is needed to inform next year's marketing investment strategy and channel mix.\
+    \ Task: Generate a comprehensive analysis report that synthesizes performance\
+    \ metrics across campaigns and segments with advanced statistical breakdowns.\
+    \ Action: The query connects campaigns, metrics, and segments tables through a\
+    \ series of JOIN operations, applying LEFT JOINS to preserve full campaign inventory\
+    \ even when metrics are incomplete or segments are undefined. Complex grouping\
+    \ occurs across multiple dimensions including channel hierarchy, campaign objective\
+    \ categories, segment t\n\nBusiness Value: Analysis report with comprehensive\
+    \ metrics\n\nComplexity: moderate\n\n---\n\nUse Case: Can you generate the comprehensive\
+    \ marketing intelligence analysis report for query 16?\n\nDescription: Situation:\
+    \ The marketing intelligence team manages campaign performance data across multiple\
+    \ channels, storing campaign metadata, performance metrics, and customer segment\
+    \ information in separate tables. Stakeholders need regular analytical reports\
+    \ to evaluate campaign effectiveness and optimize marketing spend. Task: Generate\
+    \ a comprehensive analysis report that aggregates key marketing performance metrics\
+    \ across campaigns and segments, including comparative and trend-based calculations.\
+    \ Action: The query joins campaign, metrics, and segment tables using appropriate\
+    \ join conditions with NULL handling for incomplete data. It groups results by\
+    \ campaign type, segment, and time period dimensions. Window functions calculate\
+    \ rolling averages and period-over-period comparisons. Statistical aggregates\
+    \ including quartile distributions are computed for metric dispersion analysis.\
+    \ Date range filters ensure only relevant campaign periods are included. Result:\
+    \ The query returns a multi-dimensional\n\nBusiness Value: Analysis report with\
+    \ comprehensive metrics\n\nComplexity: moderate\n\n---\n\nUse Case: Can you generate\
+    \ the comprehensive marketing intelligence analysis report for query 17?\n\nDescription:\
+    \ Situation: The marketing operations team tracks campaign performance across\
+    \ digital and traditional channels, with data distributed across campaigns, metrics,\
+    \ and customer segments tables. Monthly business reviews require detailed analytical\
+    \ reports showing campaign ROI, engagement rates, and segment-level performance\
+    \ to inform budget allocation decisions. Task: Produce a comprehensive marketing\
+    \ analysis report aggregating performance metrics with statistical measures and\
+    \ temporal comparisons across all active campaigns. Action: The query performs\
+    \ multi-table joins between campaigns, metrics, and segments tables, implementing\
+    \ LEFT JOINs to preserve campaigns with incomplete metric data. Grouping is applied\
+    \ across campaign dimensions including channel, region, and customer segment.\
+    \ Aggregate functions compute total spend, conversion rates, and engagement metrics.\
+    \ Window functions generate month-over-month growth rates and 30-day rolling averages.\
+    \ Quartile calculations identify performan\n\nBusiness Value: Analysis report\
+    \ with comprehensive metrics\n\nComplexity: moderate\n\n---\n\nUse Case: Can you\
+    \ generate the comprehensive marketing intelligence analysis report for query\
+    \ 18?\n\nDescription: Situation: The marketing analytics department maintains\
+    \ a data warehouse containing campaign execution data, performance metrics, and\
+    \ audience segmentation across all marketing initiatives. Leadership requires\
+    \ ongoing visibility into campaign effectiveness, ROI trends, and segment response\
+    \ rates to make data-driven decisions about marketing strategy and resource allocation.\
+    \ Task: Create a comprehensive analytical report that synthesizes marketing performance\
+    \ metrics across multiple dimensions with statistical analysis and comparative\
+    \ trend calculations. Action: The query constructs a complex join structure across\
+    \ campaigns, metrics, and segments tables, using COALESCE to handle NULL values\
+    \ in optional metric fields. Results are grouped by strategic dimensions including\
+    \ campaign type, target segment, geographic region, and time period. Core aggregations\
+    \ calculate total impressions, click-through rates, conversion volumes, and cost\
+    \ per acquisition. Window functions compute running totals\n\nBusiness Value:\
+    \ Analysis report with comprehensive metrics\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: Can you generate the comprehensive marketing intelligence analysis report\
+    \ for query 19?\n\nDescription: Situation: The enterprise marketing team executes\
+    \ hundreds of campaigns quarterly across multiple channels and customer segments,\
+    \ with performance data captured in normalized tables for campaigns, metrics,\
+    \ and segments. The CMO and marketing directors need consolidated analytical reports\
+    \ that reveal campaign performance patterns, identify high-performing segments,\
+    \ and quantify ROI trends to optimize the marketing mix and justify budget requests.\
+    \ Task: Generate a comprehensive marketing intelligence report aggregating campaign\
+    \ performance metrics with advanced statistical measures and multi-period trend\
+    \ analysis across all dimensions. Action: The query begins with CTEs that pre-filter\
+    \ and prepare base datasets from campaigns, metrics, and segments tables. The\
+    \ main query joins these datasets using LEFT OUTER JOINs to retain campaigns with\
+    \ partial metric coverage, implementing ISNULL or COALESCE for default values.\
+    \ Grouping occurs across hierarchical dimensions including campaign category\n\
+    \nBusiness Value: Analysis report with comprehensive metrics\n\nComplexity: moderate\n\
+    \n---\n\nUse Case: Can you generate the comprehensive marketing intelligence analysis\
+    \ report for query 20?\n\nDescription: Situation: The global marketing organization\
+    \ manages diverse campaigns across regions, channels, and customer lifecycle stages,\
+    \ with granular performance data stored in relational tables for campaigns, metrics,\
+    \ and audience segments. Quarterly business planning cycles require comprehensive\
+    \ analytical reports that synthesize campaign effectiveness, benchmark performance\
+    \ across segments and regions, identify optimization opportunities, and quantify\
+    \ marketing contribution to revenue goals. Task: Produce an enterprise-level marketing\
+    \ intelligence report that aggregates comprehensive performance metrics with sophisticated\
+    \ statistical analysis, temporal trend calculations, and multi-dimensional comparative\
+    \ analytics. Action: The query architecture utilizes multiple CTEs to stage and\
+    \ transform data from campaigns, metrics, and segments tables, applying business\
+    \ logic for metric standardization and outlier handling. The primary analytical\
+    \ query implements complex join logic with explicit NULL\n\nBusiness Value: Analysis\
+    \ report with comprehensive metrics\n\nComplexity: moderate\n\n---\n\nUse Case:\
+    \ Can you generate the marketing intelligence analysis report for query 21?\n\n\
+    Description: Situation: The marketing team needs to evaluate campaign effectiveness\
+    \ across multiple customer segments and channels. Historical data from campaigns,\
+    \ metrics, and segments tables contains critical performance indicators including\
+    \ conversion rates, customer engagement, and ROI that inform strategic decisions.\
+    \ Task: Generate a comprehensive analysis report consolidating campaign performance\
+    \ metrics across all relevant dimensions. Action: The query joins campaign, metrics,\
+    \ and segments tables, groups results by campaign type, channel, and time period,\
+    \ calculates aggregated metrics such as total spend, impressions, conversions,\
+    \ and ROI, applies window functions to compute rolling 30-day averages and period-over-period\
+    \ growth rates, uses quartile functions to identify top and bottom performing\
+    \ segments, and implements proper NULL handling for outer joins and missing date\
+    \ ranges. Result: A detailed analytical dataset containing campaign-level performance\
+    \ metrics, trend indicators, and compa\n\nBusiness Value: Analysis report with\
+    \ comprehensive metrics\n\nComplexity: moderate\n\n---\n\nUse Case: Can you generate\
+    \ the marketing intelligence analysis report for query 22?\n\nDescription: Situation:\
+    \ Marketing leadership requires visibility into customer acquisition costs and\
+    \ lifetime value across different market segments to optimize budget allocation.\
+    \ The campaigns, metrics, and segments tables track granular performance data\
+    \ that needs to be aggregated for high-level decision making. Task: Produce a\
+    \ comprehensive analysis report showing customer acquisition and retention metrics\
+    \ by segment. Action: The query performs inner and left joins between campaigns,\
+    \ metrics, and segments tables to capture all relevant relationships, groups data\
+    \ by customer segment, geographic region, and acquisition channel, computes key\
+    \ aggregates including total customers acquired, average customer acquisition\
+    \ cost (CAC), customer lifetime value (CLV), and CAC/CLV ratios, employs window\
+    \ functions to calculate cumulative metrics and moving averages over quarterly\
+    \ periods, uses CASE statements to handle NULL values in optional fields, and\
+    \ filters date ranges to focus on the most recent fiscal y\n\nBusiness Value:\
+    \ Analysis report with comprehensive metrics\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: Can you generate the marketing intelligence analysis report for query\
+    \ 23?\n\nDescription: Situation: The digital marketing team is conducting a quarterly\
+    \ business review and needs to assess the performance of all active campaigns\
+    \ against established KPIs. Data scattered across campaigns, metrics, and segments\
+    \ tables must be consolidated to provide a unified view of campaign health. Task:\
+    \ Create a comprehensive performance report evaluating all campaigns against target\
+    \ benchmarks and historical performance. Action: The query combines data from\
+    \ campaigns, metrics, and segments using LEFT OUTER joins to include campaigns\
+    \ even without complete metric data, groups results by campaign ID, campaign name,\
+    \ and target audience segment, calculates performance metrics including click-through\
+    \ rates (CTR), conversion rates, cost per acquisition (CPA), and return on ad\
+    \ spend (ROAS), applies window functions with PARTITION BY clauses to rank campaigns\
+    \ within each segment and compute percentile rankings, uses LAG and LEAD functions\
+    \ to compare current period metrics against previous periods,\n\nBusiness Value:\
+    \ Analysis report with comprehensive metrics\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: Can you generate the marketing intelligence analysis report for query\
+    \ 24?\n\nDescription: Situation: The analytics team has been tasked with identifying\
+    \ high-value customer segments and underperforming channels to inform the next\
+    \ fiscal year's marketing strategy. Historical campaign data contains patterns\
+    \ that can reveal which segment-channel combinations drive the most business value.\
+    \ Task: Generate a comprehensive segmentation analysis report identifying the\
+    \ most and least effective marketing channels by customer segment. Action: The\
+    \ query establishes relationships between campaigns, metrics, and segments tables\
+    \ through appropriate join conditions, groups data using multiple dimensions including\
+    \ customer segment attributes, marketing channel types, and time periods, computes\
+    \ aggregated performance metrics such as total revenue generated, number of conversions,\
+    \ average order value, and engagement rates, applies window functions including\
+    \ NTILE to divide segments into performance quartiles, ROW_NUMBER to identify\
+    \ top performers, and running totals to track cumulative impact\n\nBusiness Value:\
+    \ Analysis report with comprehensive metrics\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: Can you generate the marketing intelligence analysis report for query\
+    \ 25?\n\nDescription: Situation: Executive leadership is preparing for the annual\
+    \ strategic planning session and requires a holistic view of marketing effectiveness\
+    \ across all initiatives, segments, and channels over the past year. The organization\
+    \ needs to understand which investments delivered returns and where opportunities\
+    \ exist for improvement. Task: Deliver a comprehensive executive-level marketing\
+    \ intelligence report synthesizing performance across all campaigns, segments,\
+    \ and time periods. Action: The query constructs a complex analytical view by\
+    \ joining campaigns, metrics, and segments tables with proper NULL handling to\
+    \ ensure completeness, groups data hierarchically by year, quarter, month, campaign\
+    \ type, channel, and customer segment, computes extensive aggregate metrics including\
+    \ total marketing spend, revenue attribution, customer acquisition counts, retention\
+    \ rates, and profitability measures, implements sophisticated window functions\
+    \ to calculate year-over-year growth rates, market share by\n\nBusiness Value:\
+    \ Analysis report with comprehensive metrics\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: Can you generate the marketing intelligence analysis report for query\
+    \ 26?\n\nDescription: Situation: The Marketing Intelligence team maintains a database\
+    \ tracking campaigns, performance metrics, and customer segments to evaluate campaign\
+    \ effectiveness and ROI. Marketing managers need to assess current campaign performance\
+    \ against historical trends to optimize budget allocation and targeting strategies.\
+    \ Task: Generate a comprehensive analysis report that includes key marketing metrics\
+    \ aggregated by relevant business dimensions such as campaign type, customer segment,\
+    \ and time period. Action: The SQL query joins campaign, metrics, and segments\
+    \ tables using LEFT JOINs to preserve all campaigns even without complete metric\
+    \ data. It groups results by campaign dimensions (e.g., campaign_id, segment_name,\
+    \ date), calculates aggregate metrics including total spend, impressions, clicks,\
+    \ conversions, and ROI. Window functions compute rolling 7-day and 30-day averages\
+    \ for trend analysis, calculate percentile rankings (quartiles) for performance\
+    \ comparison across campaigns, and generate\n\nBusiness Value: Analysis report\
+    \ with comprehensive metrics\n\nComplexity: moderate\n\n---\n\nUse Case: Can you\
+    \ generate the marketing intelligence analysis report for query 27?\n\nDescription:\
+    \ Situation: The Marketing Intelligence division stores detailed data on digital\
+    \ advertising campaigns, click-through rates, conversion metrics, and audience\
+    \ segmentation to support data-driven decision making. The CMO requires monthly\
+    \ performance reports to identify top-performing campaigns and underperforming\
+    \ segments that need strategy adjustments. Task: Produce a comprehensive analytical\
+    \ report with key performance indicators broken down by campaign attributes, customer\
+    \ segments, and temporal dimensions. Action: The SQL query constructs multiple\
+    \ Common Table Expressions (CTEs) to organize complex calculations. The first\
+    \ CTE aggregates raw event data from campaigns and metrics tables, joining on\
+    \ campaign_id with appropriate NULL handling. Subsequent CTEs calculate derived\
+    \ metrics such as cost-per-acquisition, click-through rates, and conversion rates.\
+    \ The main query groups data by strategic dimensions including campaign type,\
+    \ geographic region, and customer segment, computes summary s\n\nBusiness Value:\
+    \ Analysis report with comprehensive metrics\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: Can you generate the marketing intelligence analysis report for query\
+    \ 28?\n\nDescription: Situation: The Marketing Analytics platform aggregates multi-channel\
+    \ campaign data including email, social media, and paid search campaigns along\
+    \ with associated performance metrics and customer demographic segments. Business\
+    \ analysts need quarterly reports to evaluate channel effectiveness and segment\
+    \ profitability to inform the next quarter's marketing mix strategy. Task: Create\
+    \ a comprehensive analytical report that delivers aggregated metrics across all\
+    \ marketing dimensions with trend analysis and comparative performance indicators.\
+    \ Action: The SQL query begins with CTEs to clean and standardize data from the\
+    \ campaigns, metrics, and segments tables, applying business logic for metric\
+    \ calculations and handling edge cases such as division by zero and NULL values\
+    \ using NULLIF and COALESCE. The query performs multi-level grouping using GROUP\
+    \ BY with ROLLUP to provide subtotals at campaign, segment, and overall levels.\
+    \ It calculates core metrics including total impressions, clicks, conv\n\nBusiness\
+    \ Value: Analysis report with comprehensive metrics\n\nComplexity: moderate\n\n\
+    ---\n\nUse Case: Can you generate the marketing intelligence analysis report for\
+    \ query 29?\n\nDescription: Situation: The Marketing Operations team manages an\
+    \ enterprise data warehouse containing granular records of campaign launches,\
+    \ daily metric snapshots, and evolving customer segment definitions used to track\
+    \ marketing effectiveness across the organization. Senior leadership requires\
+    \ standardized analytical reports to monitor campaign portfolio health and identify\
+    \ optimization opportunities before quarterly business reviews. Task: Develop\
+    \ a comprehensive metrics report that aggregates performance data across campaigns\
+    \ and segments, incorporates trend analysis, and provides comparative benchmarks\
+    \ for strategic evaluation. Action: The SQL implementation uses a series of Common\
+    \ Table Expressions to modularize complex logic. An initial CTE joins the campaigns\
+    \ table with metrics using INNER JOIN to focus on active campaigns with recorded\
+    \ performance, and LEFT JOINs the segments table to include segment attributes\
+    \ while retaining campaigns without segment assignment. A subsequent CTE applies\n\
+    \nBusiness Value: Analysis report with comprehensive metrics\n\nComplexity: moderate\n\
+    \n---\n\nUse Case: Can you generate the marketing intelligence analysis report\
+    \ for query 30?\n\nDescription: Situation: The Marketing Intelligence function\
+    \ maintains integrated datasets capturing campaign metadata, time-series performance\
+    \ metrics, and dynamic customer segmentation across all marketing channels including\
+    \ digital, traditional, and partner programs. The Director of Marketing Analytics\
+    \ needs recurring analytical reports to assess campaign ROI, segment responsiveness,\
+    \ and channel efficiency to support evidence-based budget reallocation and strategic\
+    \ pivots. Task: Generate a comprehensive performance analysis report with multi-dimensional\
+    \ aggregations, statistical distributions, and temporal trend indicators across\
+    \ all active marketing campaigns and customer segments. Action: The SQL query\
+    \ architecture employs multiple layered CTEs for clarity and performance optimization.\
+    \ The base CTE performs complex joins between campaigns, metrics, and segments\
+    \ tables using appropriate join types—INNER JOIN for required relationships and\
+    \ LEFT JOIN to preserve campaigns with incomplete data. Fil\n\nBusiness Value:\
+    \ Analysis report with comprehensive metrics\n\nComplexity: moderate\n\n---\n\n\
+    1. PostgreSQL Setup:\n   \n\n2. , Setup:\n   - Use Delta Lake format\n   - Load\
+    \ schema.sql (adapting GEOGRAPHY types as needed)\n   - Use, SQL for query execution\n\
+    \n3. , Setup:\n   - Create database and schema\n   - Load schema.sql (GEOGRAPHY\
+    \ types supported)\n   - Use, SQL for query execution\n\nRun the ETL pipeline\
+    \ to extract data from government APIs:\n\nOr use the bulk download script:\n\n\
+    All queries are located in `queries/queries.md` and can be executed directly on\
+    \ any supported database platform.\n\nRun the validation suite:\n\nOr use the\
     \ validate command:\n\n---\n\nLast Updated: 2026-02-04\n\n---\n\nAll queries in\
     \ this database are designed to work across multiple database platforms:\n\n-\
     \ PostgreSQL: Full support with standard SQL features\n\nQueries use standard\
     \ SQL syntax and avoid platform-specific features to ensure compatibility.\n\n\
-    ---\n\nDocument Information:\n\n- Generated: 20260214-1523\n- Database: db-10\n\
+    ---\n\nDocument Information:\n\n- Generated: 20260216-0700\n- Database: db-10\n\
     - Type: Marketing Intelligence Database\n- Queries: 30 production queries\n- Status:\
     \ ✅ Complete Comprehensive Deliverable"
   version: 1.0.0

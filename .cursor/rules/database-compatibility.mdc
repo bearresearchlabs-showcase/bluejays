@@ -1,9 +1,16 @@
 ---
-description: Complex queries must be compatible with PostgreSQL
+description: Complex queries must be compatible with PostgreSQL; TDD/BDD/DDD and distributed architectural patterns
 alwaysApply: true
 ---
 
 # Database Query Compatibility
+
+## TDD, BDD, DDD, and Distributed Architectural Patterns
+
+- **TDD**: Kent Beck Red-Green-Refactor. Validation scripts and query tests drive schema/query implementation. Write failing validation first, then fix queries to pass.
+- **BDD**: Cucumber/Gherkin-style acceptance criteria. Query validation phases (0–5) describe expected behavior; `expected_output` and `complexity` fields capture acceptance criteria.
+- **DDD**: Eric Evans "Domain-Driven Design". Database domains (db-1 through db-16) are bounded contexts; queries and schemas stay within domain boundaries; ubiquitous language in query metadata.
+- **Distributed Architectural Patterns**: Queries optimized for distributed systems (PostgreSQL); redundancy architecture supports failover and cross-database linking. Vercel/Turborepo patterns for app layer.
 
 ## Standard Directory Structure
 

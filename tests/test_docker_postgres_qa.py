@@ -113,3 +113,36 @@ class TestDockerPostgresQAScriptExecution:
         )
         # Script may exit 0 (success) or non-zero (Docker down, etc.) but must not hang
         assert proc.returncode is not None
+
+    def test_script_references_transaction_integrity(self):
+        content = (SCRIPTS / "docker_postgres_qa.sh").read_text(encoding="utf-8")
+        assert "transaction_integrity_check" in content, "docker_postgres_qa.sh must run transaction integrity check"
+
+    def test_script_pulls_from_docker_hub_when_configured(self):
+        content = (SCRIPTS / "docker_postgres_qa.sh").read_text(encoding="utf-8")
+        assert "DOCKER_HUB_USER" in content
+        assert "docker pull" in content or "pull" in content
+
+
+class TestTransactionIntegrityCheck:
+    """transaction_integrity_check.py must exist and run EXPLAIN/CHECK validation."""
+
+    def test_transaction_integrity_script_exists(self):
+        p = SCRIPTS / "transaction_integrity_check.py"
+        assert p.exists(), "transaction_integrity_check.py must exist"
+
+    def test_transaction_integrity_script_content(self):
+        content = (SCRIPTS / "transaction_integrity_check.py").read_text(encoding="utf-8")
+        assert "EXPLAIN" in content or "explain" in content
+        assert "CHECK" in content or "check_constraint" in content
+
+    def test_transaction_integrity_script_invocation(self):
+        proc = subprocess.run(
+            [sys.executable, str(SCRIPTS / "transaction_integrity_check.py"), "db-1"],
+            cwd=str(ROOT),
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        # May exit 0 (pass) or 1 (fail/no DB) but must not hang
+        assert proc.returncode is not None

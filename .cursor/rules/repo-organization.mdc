@@ -11,12 +11,14 @@ This rule enforces clean repository organization, discourages one-off scripts an
 
 ## Directory Structure (Top Level)
 
+Turborepo-style monorepo: `apps/` for deployable apps, `packages/` for shared code. See `microservice-nextjs-vercel-gcp.mdc` for deployment.
+
 ```
 db/
-├── app/              # Next.js annotator (root app)
-├── apps/              # All applications (annotator, website, backend_test, sources_api)
-├── components/       # Shared React components
-├── lib/              # Shared libraries
+├── apps/             # Deployable applications (web, ingest, annotator)
+├── packages/        # Shared packages (ui, config-eslint, config-typescript, db-utils)
+├── components/      # Shared React components (legacy; migrate to packages/ui)
+├── lib/              # Shared libraries (legacy; migrate to packages/db-utils)
 ├── source/           # Database sources (db-1..db-16) — canonical
 ├── template/         # Templates for new databases
 ├── scripts/          # Reusable tools and orchestration only
@@ -32,6 +34,7 @@ db/
 ├── k8s/              # Kubernetes configs
 ├── bird_export/      # BIRD workbench exports (generated)
 ├── logs/             # Telemetry and logs (generated)
+│   └── AppSessions/  # App session logs (mdc_updated, repo_changed)
 ├── results/          # Validation and test results (generated)
 ├── notebooks/        # Jupyter notebooks
 ├── research/         # Research and experimentation
@@ -88,7 +91,7 @@ git ls-files | wc -l
 ## Output Directories
 
 - **bird_export/** — BIRD workbench exports (generated)
-- **logs/** — Telemetry and logs (generated)
+- **logs/** — Telemetry and logs (generated); `logs/AppSessions/` for AppSession NDJSON
 - **results/** — Validation and test results (generated)
 - **public/** — Build output for static DB sites (generated)
 
@@ -101,11 +104,16 @@ These are generated; do not commit large generated files. Use `.gitignore` patte
 3. **Config over code** — Use YAML/JSON config (e.g., `scrub_keywords.py`) instead of hardcoded logic
 4. **Archive obsolete** — Move superseded scripts to `scripts/archive/`; update ARCHITECTURE.md
 
+## AppSession Logging
+
+When `.cursor/rules/*.mdc` or `apps/` or `packages/` change, run `npm run log:session` to log to `logs/AppSessions/` and `logs/telemetry.ndjson`. Use `npm run pre-commit:root` before commits.
+
 ## Related Rules
 
 - `scripts/ARCHITECTURE.md` — Scripts layout and entry points
 - `database-creation-workflow.mdc` — Database structure
 - `qa-workflow-cursor.mdc` — QA and test workflow
+- `microservice-nextjs-vercel-gcp.mdc` — Next.js/Vercel/GCP deployment
 
 ---
 **Last Updated**: 2026-02-14

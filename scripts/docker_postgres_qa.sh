@@ -34,10 +34,21 @@ echo "=========================================="
 echo "PostgreSQL QA: hardened images, load schema, ${PUSH:+push to Docker Hub}"
 echo "=========================================="
 
-# 1. Build hardened base and start PostgreSQL
+# 1. Build or pull hardened base and start PostgreSQL
 echo ""
-echo "[1/4] Building hardened base and starting PostgreSQL..."
-docker compose -f "$COMPOSE_FILE" build --quiet 2>/dev/null || true
+echo "[1/4] Building or pulling hardened base and starting PostgreSQL..."
+if [ -n "$DOCKER_HUB_USER" ]; then
+    HUB_IMAGE="${DOCKER_HUB_USER}/db-postgres-hardened:base"
+    if docker pull "$HUB_IMAGE" 2>/dev/null; then
+        docker tag "$HUB_IMAGE" db-postgres-hardened:base 2>/dev/null || true
+        echo "  Pulled base image from Docker Hub: $HUB_IMAGE"
+    else
+        echo "  Pull failed, falling back to local build"
+        docker compose -f "$COMPOSE_FILE" build --quiet 2>/dev/null || true
+    fi
+else
+    docker compose -f "$COMPOSE_FILE" build --quiet 2>/dev/null || true
+fi
 docker compose -f "$COMPOSE_FILE" up -d
 
 # 2. Wait for healthy
@@ -97,6 +108,21 @@ for n in $DB_NUMS; do
         fi
     fi
 done
+
+# 3b. Transaction integrity check (EXPLAIN, CHECK constraints) when psycopg2 available
+echo ""
+echo "[3b/4] Transaction integrity check..."
+if command -v python3 >/dev/null 2>&1; then
+    if python3 -c "import psycopg2" 2>/dev/null; then
+        for n in $DB_NUMS; do
+            python3 "$BASE_DIR/scripts/transaction_integrity_check.py" "db-${n}" 2>/dev/null || true
+        done
+    else
+        echo "  SKIP: psycopg2 not installed (pip install psycopg2-binary)"
+    fi
+else
+    echo "  SKIP: python3 not found"
+fi
 
 # 4. Push hardened image for each DB to Docker Hub (if --push and DOCKER_HUB_USER set)
 if [ "$PUSH" = true ]; then

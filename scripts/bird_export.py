@@ -66,13 +66,20 @@ def export_db(db_num: int) -> list:
         if not sql:
             continue
         question = get_question(q)
-        out.append({
+        entry = {
             "question": question,
             "sql": sql,
             "db_id": db_id,
             "query_number": q.get("number"),
             "title": q.get("title"),
-        })
+        }
+        normal_query = q.get("normal_query", "").strip()
+        if normal_query:
+            entry["normal_query"] = normal_query
+        evidence = q.get("evidence", "").strip()
+        if evidence:
+            entry["evidence"] = evidence
+        out.append(entry)
     return out
 
 

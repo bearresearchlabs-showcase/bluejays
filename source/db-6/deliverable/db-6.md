@@ -28,176 +28,155 @@ This document provides comprehensive documentation for database db-6, including 
 
 ### SQL Queries (30 Production Queries)
 
-1. [Query 1: Production-Grade Spatial Weather Forecast Analysis with Multi-Level CTE Nesting and Geospatial Aggregations](#query-1)
-    - **Use Case:** Custom Weather Impact Modeling - Regional Forecast Accuracy Assessment for Insurance Risk Modeling Description: Enterprise-level spatial weather forecast analysis with multi-level CTE nesting, spatial aggregations within boundaries, forecast accuracy metrics, temporal analysis, and advanced window functions. Demonstrates production patterns used by NOAA and weather forecasting platforms.
-    - *What it does:* Use Case: Custom Weather Impact Modeling - Regional Forecast Accuracy Assessment for Insurance Risk Modeling Description: Enterprise-level spatial wea...
-    - *Business Value:* Forecast accuracy report by geographic boundary (CWA, Fire Zones) showing forecast
-
-2. [Query 2: Recursive Spatial Boundary Hierarchy Analysis with Multi-Hop Geospatial Traversal](#query-2)
-    - **Use Case:** Custom Map Development - Multi-Level Geographic Hierarchy Visualization for Agriculture Insurance Description: Enterprise-level recursive spatial analysis using recursive CTE for multi-level boundary relationships, spatial hierarchy traversal, boundary intersection detection, and geospatial path discovery. Implements production patterns for analyzing nested geographic boundaries (e.g., counties within states, fire zones within CWAs).
-    - *What it does:* Use Case: Custom Map Development - Multi-Level Geographic Hierarchy Visualization for Agriculture Insurance Description: Enterprise-level recursive sp...
-    - *Business Value:* Spatial hierarchy relationships show
-
-3. [Query 3: Multi-Parameter Weather Correlation Analysis with Cross-Parameter Temporal Patterns](#query-3)
-    - **Use Case:** Physical Climate Risk Assessment - Multi-Parameter Risk Correlation for Renewable Energy Planning Description: Enterprise-level multi-parameter weather correlation analysis with cross-parameter temporal pattern detection, correlation matrices, lag analysis, and predictive indicators. Implements production patterns for analyzing relationships between temperature, precipitation, wind speed, and other meteorological parameters.
-    - *What it does:* Use Case: Physical Climate Risk Assessment - Multi-Parameter Risk Correlation for Renewable Energy Planning Description: Enterprise-level multi-parame...
-    - *Business Value:* Correlation analysis between temperature, pre
-
-4. [Query 4: Spatial Join Optimization Analysis with Boundary-Forecast Matching Efficiency Metrics](#query-4)
-    - **Use Case:** Custom Weather Impact Modeling - Boundary-Forecast Matching Efficiency for Logistics Optimization Description: Enterprise-level spatial join optimization analysis evaluating boundary-forecast matching efficiency, spatial index utilization, join performance metrics, and optimization opportunities. Implements production patterns for optimizing geospatial data joins.
-    - *What it does:* Use Case: Custom Weather Impact Modeling - Boundary-Forecast Matching Efficiency for Logistics Optimization Description: Enterprise-level spatial join...
-    - *Business Value:* Query results
-    - *Purpose:* Analysis of how efficiently forecasts match to client-defined boundaries with optimization recommend...
-
-5. [Query 5: Weather Station Network Coverage Analysis with Spatial Gap Detection and Coverage Optimization](#query-5)
-    - **Use Case:** Supply Chain and Fleet Management - Station Coverage Gap Analysis for Route Planning Description: Enterprise-level weather station network analysis identifying coverage gaps, station density metrics, spatial interpolation opportunities, and network optimization recommendations. Implements production patterns for analyzing observation network coverage.
-    - *What it does:* Use Case: Supply Chain and Fleet Management - Station Coverage Gap Analysis for Route Planning Description: Enterprise-level weather station network a...
-    - *Business Value:* Map showing gaps in weather station coverage along routes with coverage density metrics. Fleet manag...
-
-6. [Query 6: Forecast Accuracy Trend Analysis with Temporal Error Pattern Detection](#query-6)
-    - **Use Case:** Forensic Meteorology - Historical Forecast Accuracy Assessment for Legal Cases Description: Enterprise-level forecast accuracy trend analysis identifying temporal error patterns, accuracy degradation over time, seasonal variations, and forecast model performance trends. Implements production patterns for monitoring forecast model accuracy.
-    - *What it does:* Use Case: Forensic Meteorology - Historical Forecast Accuracy Assessment for Legal Cases Description: Enterprise-level forecast accuracy trend analysi...
-    - *Business Value:* Query results
-    - *Purpose:* Trend analysis showing forecast accuracy over time with error pattern detection. Provides evidence o...
-
-7. [Query 7: Boundary Forecast Aggregation Analysis with Multi-Level Spatial Summarization](#query-7)
-    - **Use Case:** Custom Weather Impact Modeling - Aggregated Forecasts by Boundary for Retail Operations Description: Enterprise-level boundary forecast aggregation analysis with multi-level spatial summarization, hierarchical aggregations, and comprehensive statistical summaries. Implements production patterns for aggregating gridded forecasts to geographic boundaries.
-    - *What it does:* Use Case: Custom Weather Impact Modeling - Aggregated Forecasts by Boundary for Retail Operations Description: Enterprise-level boundary forecast aggr...
-    - *Business Value:* Summary forecasts aggregated by client-defined boundaries (counties, zones). Retail chains can get a...
-
-8. [Query 8: Observation Forecast Validation Analysis with Accuracy Scoring](#query-8)
-    - **Use Case:** Forensic Meteorology - Forecast vs. Observation Validation for Legal Evidence Description: Enterprise-level observation-forecast validation analysis comparing actual observations with forecasts, calculating accuracy scores, identifying systematic biases, and providing validation metrics. Implements production patterns for forecast validation and model evaluation.
-    - *What it does:* Use Case: Forensic Meteorology - Forecast vs. Observation Validation for Legal Evidence Description: Enterprise-level observation-forecast validation...
-    - *Business Value:* Query results
-    - *Purpose:* Validation report comparing forecasts to actual observations with accuracy scoring. Legal cases requ...
-
-9. [Query 9: Multi-Boundary Spatial Intersection Analysis with Overlap Detection](#query-9)
-    - **Use Case:** Custom Map Development - Boundary Overlap Detection for Real Estate Development Description: Enterprise-level multi-boundary spatial intersection analysis identifying overlapping boundaries, intersection areas, coverage gaps, and spatial relationships between different boundary types. Implements production patterns for analyzing complex geospatial boundary relationships.
-    - *What it does:* Use Case: Custom Map Development - Boundary Overlap Detection for Real Estate Development Description: Enterprise-level multi-boundary spatial interse...
-    - *Business Value:* Analysis of overlapping boundaries (e.g., fire zones overlapping counties) with intersection metrics
-
-10. [Query 10: Parameter Forecast Distribution Analysis with Statistical Profiling](#query-10)
-    - **Use Case:** Physical Climate Risk Assessment - Statistical Weather Profiling for Insurance Underwriting Description: Enterprise-level parameter forecast distribution analysis with statistical profiling, distribution shape analysis, outlier detection, and distribution comparisons. Implements production patterns for statistical analysis of forecast distributions.
-    - *What it does:* Use Case: Physical Climate Risk Assessment - Statistical Weather Profiling for Insurance Underwriting Description: Enterprise-level parameter forecast...
-    - *Business Value:* Query results
-    - *Purpose:* Statistical distribution analysis of forecast parameters with percentile rankings. Insurance compani...
-
-11. [Query 11: Geospatial Forecast Interpolation Analysis with Spatial Gradient Detection](#query-11)
-    - **Use Case:** Custom Weather Impact Modeling - Spatial Gradient Detection for Precision Agriculture Description: Enterprise-level geospatial forecast interpolation analysis identifying spatial gradients, interpolation opportunities, spatial patterns, and interpolation quality metrics. Implements production patterns for spatial interpolation and gradient analysis.
-    - *What it does:* Use Case: Custom Weather Impact Modeling - Spatial Gradient Detection for Precision Agriculture Description: Enterprise-level geospatial forecast inte...
-    - *Business Value:* Analysis of how weather parameters change across space with gradient calculations. Agriculture compa...
-
-12. [Query 12: Weather Pattern Clustering Analysis with Spatial-Temporal Pattern Detection](#query-12)
-    - **Use Case:** Physical Climate Risk Assessment - Pattern-Based Risk Identification for Renewable Energy Description: Enterprise-level weather pattern clustering analysis identifying spatial-temporal patterns, clustering similar weather conditions, and detecting pattern anomalies. Implements production patterns for weather pattern recognition and clustering.
-    - *What it does:* Use Case: Physical Climate Risk Assessment - Pattern-Based Risk Identification for Renewable Energy Description: Enterprise-level weather pattern clus...
-    - *Business Value:* Query results
-    - *Purpose:* Identification of recurring weather patterns with clustering metrics. Energy companies can identify...
-
-13. [Query 13: Forecast Model Performance Comparison with Multi-Model Analysis](#query-13)
-    - **Use Case:** Forensic Meteorology - Multi-Model Analysis for Comprehensive Legal Evidence Description: This SQL query performs comprehensive forecast model performance comparison for a weather consulting firm. It identifies forecast models (NDFD, GFS, NAM, RAP) from source file patterns, spatially matches forecasts with weather observations within 25km and temporally within 1 hour, calculates accuracy metrics (mean absolute error, root mean squared error, bias, success rates), ranks models by perfo
-    - *What it does:* Use Case: Forensic Meteorology - Multi-Model Analysis for Comprehensive Legal Evidence Description: This SQL query performs comprehensive forecast mod...
+1. [Query 1: Can you show me a production-grade spatial analysis of weather forecasts that uses nested CTEs and geospatial aggregations?](#query-1)
+    - **Use Case:** Can you show me a production-grade spatial analysis of weather forecasts that uses nested CTEs and geospatial aggregations?
+    - *What it does:* Situation: A weather consulting firm needs to analyze forecast accuracy and spatial distribution patterns across multiple geographic regions to suppor...
     - *Business Value:* Query results
 
-14. [Query 14: Boundary Forecast Anomaly Detection with Statistical Outlier Identification](#query-14)
-    - **Use Case:** Physical Climate Risk Assessment - Extreme Event Detection for Emergency Management Description: Enterprise-level boundary forecast anomaly detection identifying statistical outliers, anomalies in boundary aggregations, and unusual forecast patterns. Implements production patterns for anomaly detection in geospatial forecast data.
-    - *What it does:* Use Case: Physical Climate Risk Assessment - Extreme Event Detection for Emergency Management Description: Enterprise-level boundary forecast anomaly...
+2. [Query 2: Can you show me a recursive analysis of spatial boundary hierarchies with multi-hop geospatial traversal?](#query-2)
+    - **Use Case:** Can you show me a recursive analysis of spatial boundary hierarchies with multi-hop geospatial traversal?
+    - *What it does:* Situation: The insurance division needs to understand hierarchical relationships between administrative boundaries (country, state, county, district)...
     - *Business Value:* Query results
-    - *Purpose:* Identification of anomalous weather patterns within boundaries with outlier metrics. Emergency manag...
 
-15. [Query 15: Insurance Risk Factor Calculation from 7-14 Day Forecasts](#query-15)
-    - **Use Case:** Insurance Underwriting - Multi-Day Forecast Risk Assessment for Rate Determination Description: Calculates comprehensive risk factors for insurance policy areas based on 7-14 day forecasts from December 3-17, 2025. Analyzes multiple weather parameters to determine extreme event probabilities, precipitation risk, temperature extremes, wind damage risk, freeze risk, and flood risk.
-    - *What it does:* Use Case: Insurance Underwriting - Multi-Day Forecast Risk Assessment for Rate Determination Description: Calculates comprehensive risk factors for in...
-    - *Business Value:* Risk factor analysis report showing forecast-based risk scores for each policy area and for
-
-16. [Query 16: Insurance Rate Table Generation from Forecast Risk Factors](#query-16)
-    - **Use Case:** Insurance Underwriting - Dynamic Rate Table Calculation Based on 7-14 Day Forecasts Description: Generates insurance rate tables for December 3-17, 2025 period using risk factors calculated from 7-14 day forecasts. Calculates base rates, risk-adjusted rates, rate components, and rate tiers based on forecast-based risk scores.
-    - *What it does:* Use Case: Insurance Underwriting - Dynamic Rate Table Calculation Based on 7-14 Day Forecasts Description: Generates insurance rate tables for Decembe...
-    - *Business Value:* Enables d
-    - *Purpose:* Complete rate table showing rates for each policy area, forecast day (7-14 days), and coverage type...
-
-17. [Query 17: Rate Table Comparison Across 7-14 Day Forecasts](#query-17)
-    - **Use Case:** Insurance Underwriting - Multi-Day Forecast Rate Comparison for Optimal Rate Selection Description: Compares insurance rates across all forecast days (7-14 days ahead) for December 3-17, 2025 period. Calculates rate statistics, volatility, trends, and recommends optimal forecast day for rate determination.
-    - *What it does:* Use Case: Insurance Underwriting - Multi-Day Forecast Rate Comparison for Optimal Rate Selection Description: Compares insurance rates across all fore...
-    - *Business Value:* Rate comparison report showing rates by forecast day with volatility metrics and recommended rates.
-    - *Purpose:* Enables insurance companies to select optimal forecast da
-
-18. [Query 18: Historical Claims Validation Against Forecast Risk Factors](#query-18)
-    - **Use Case:** Insurance Underwriting - Forecast Accuracy Validation Using Historical Claims Data Description: Validates forecast-based risk factors against historical claims data for December 3-17, 2025 period. Compares forecast risk scores with actual claims to assess forecast accuracy and improve rate modeling.
-    - *What it does:* Use Case: Insurance Underwriting - Forecast Accuracy Validation Using Historical Claims Data Description: Validates forecast-based risk factors agains...
-    - *Business Value:* Enables insurance companies to validate and improve
-    - *Purpose:* Validation report showing forecast risk vs actual claims with accuracy metrics and improvement recom...
-
-19. [Query 19: Rate Volatility and Stability Analysis](#query-19)
-    - **Use Case:** Insurance Underwriting - Rate Stability Assessment for Pricing Consistency Description: Analyzes rate volatility and stability across 7-14 day forecasts for December 3-17, 2025. Identifies areas with high rate volatility and recommends stable pricing strategies.
-    - *What it does:* Use Case: Insurance Underwriting - Rate Stability Assessment for Pricing Consistency Description: Analyzes rate volatility and stability across 7-14 d...
-    - *Business Value:* Rate volatility analysis report with stability metrics and recommendations for consistent pricing.
-    - *Purpose:* Helps insurance companies identify pricing inconsistencies and implement stable pricing strategies,...
-
-20. [Query 20: Policy Area Risk Ranking and Comparison](#query-20)
-    - **Use Case:** Insurance Underwriting - Geographic Risk Ranking for Portfolio Management Description: Ranks policy areas by forecast-based risk scores for December 3-17, 2025 period. Provides comparative risk analysis across geographic areas to support portfolio management and resource allocation.
-    - *What it does:* Use Case: Insurance Underwriting - Geographic Risk Ranking for Portfolio Management Description: Ranks policy areas by forecast-based risk scores for...
-    - *Business Value:* Enables insurance companies to identify high-risk areas, allocate underwriting resources eff
-    - *Purpose:* Risk ranking report showing policy areas ordered by risk level with comparative metrics. Business Va...
-
-21. [Query 21: Forecast-to-Rate Impact Analysis](#query-21)
-    - **Use Case:** Insurance Underwriting - Forecast Parameter Impact on Rate Determination Description: Analyzes how individual forecast parameters (temperature, precipitation, wind) impact insurance rates for December 3-17, 2025. Quantifies the contribution of each weather parameter to final rate calculations.
-    - *What it does:* Use Case: Insurance Underwriting - Forecast Parameter Impact on Rate Determination Description: Analyzes how individual forecast parameters (temperatu...
-    - *Business Value:* Parameter impact analysis showing which forecast parameters drive rate changes and their relative co...
-    - *Purpose:* Enables insurance companies to understand which weather p
-
-22. [Query 22: Multi-Day Forecast Ensemble Rate Analysis](#query-22)
-    - **Use Case:** Insurance Underwriting - Ensemble Forecast Rate Analysis for Robust Pricing Description: Analyzes rates across multiple forecast days (7-14 days) as an ensemble to determine robust, consensus rates. Uses ensemble statistics to reduce forecast uncertainty and provide more stable pricing.
-    - *What it does:* Use Case: Insurance Underwriting - Ensemble Forecast Rate Analysis for Robust Pricing Description: Analyzes rates across multiple forecast days (7-14...
-    - *Business Value:* Provides more robust rate determination by combining multiple forecast days, reduc
-    - *Purpose:* Ensemble rate analysis showing consensus rates across forecast days with confidence intervals. Busin...
-
-23. [Query 23: Forecast Day Selection Optimization](#query-23)
-    - **Use Case:** Insurance Underwriting - Optimal Forecast Day Selection for Rate Determination Description: Determines optimal forecast day (7-14 days) for rate determination based on accuracy, confidence, and business requirements. Balances forecast accuracy (shorter forecast) with planning horizon (longer forecast).
-    - *What it does:* Use Case: Insurance Underwriting - Optimal Forecast Day Selection for Rate Determination Description: Determines optimal forecast day (7-14 days) for...
-    - *Business Value:* Forecast day optimization report recommending optimal forecast day for each policy area with justifi...
-    - *Purpose:* Enables insurance companies to select optimal forecas
-
-24. [Query 24: Comprehensive Insurance Rate Modeling Summary](#query-24)
-    - **Use Case:** Insurance Underwriting - Comprehensive Rate Modeling Summary Dashboard Description: Provides comprehensive summary of insurance rate modeling for December 3-17, 2025 period. Aggregates risk factors, rates, comparisons, validations, and recommendations into a single dashboard view.
-    - *What it does:* Use Case: Insurance Underwriting - Comprehensive Rate Modeling Summary Dashboard Description: Provides comprehensive summary of insurance rate modelin...
-    - *Business Value:* Provides insurance companies with single-source-of-truth dashboard for rate modeling decisions,
-    - *Purpose:* Comprehensive rate modeling summary dashboard with all key metrics and recommendations. Business Val...
-
-25. [Query 25: US-Wide NEXRAD Reflectivity Composite Generation](#query-25)
-    - **Use Case:** Real-Time Weather Monitoring - Nationwide Radar Composite for Severe Weather Detection Description: Generates US-wide composite reflectivity from all NEXRAD radar sites. Combines Level II radar data from multiple sites to create seamless nationwide coverage, handling overlapping coverage areas and data quality issues.
-    - *What it does:* Use Case: Real-Time Weather Monitoring - Nationwide Radar Composite for Severe Weather Detection Description: Generates US-wide composite reflectivity...
-    - *Business Value:* US-wide reflectivity composite showing precipitation intensity across entire United States with seam...
-    - *Purpose:* Provides comprehensive real-ti
-
-26. [Query 26: NEXRAD Storm Cell Tracking and Movement Analysis](#query-26)
-    - **Use Case:** Severe Weather Forecasting - Multi-Site Storm Cell Tracking for Tornado and Severe Thunderstorm Prediction Description: Tracks storm cells across multiple NEXRAD radar sites and analyzes their movement, intensity changes, and development patterns. Handles storm cell merging, splitting, and dissipation across the entire US.
-    - *What it does:* Use Case: Severe Weather Forecasting - Multi-Site Storm Cell Tracking for Tornado and Severe Thunderstorm Prediction Description: Tracks storm cells a...
-    - *Business Value:* Enables severe weather
-    - *Purpose:* Storm cell tracking report showing storm movement, intensity trends, and predicted paths across mult...
-
-27. [Query 27: US-Wide Satellite Imagery Cloud Composite Generation](#query-27)
-    - **Use Case:** Cloud Monitoring - Nationwide Cloud Coverage Analysis from GOES Satellite Imagery Description: Generates US-wide cloud composite from decompressed GOES satellite imagery. Combines multiple satellite bands and products to create seamless cloud coverage maps across the entire United States.
-    - *What it does:* Use Case: Cloud Monitoring - Nationwide Cloud Coverage Analysis from GOES Satellite Imagery Description: Generates US-wide cloud composite from decomp...
-    - *Business Value:* US-wide cloud composite showing cloud coverage, cloud top heights, and cloud properties across entir...
-    - *Purpose:* Provides comprehensive cloud monitoring for solar energy f
-
-28. [Query 28: NEXRAD-Satellite Data Fusion for Precipitation Estimation](#query-28)
-    - **Use Case:** Precipitation Monitoring - Multi-Source Precipitation Estimation Combining Radar and Satellite Data Description: Fuses NEXRAD radar reflectivity and satellite precipitation estimates to create improved US-wide precipitation maps. Combines strengths of both data sources for more accurate precipitation estimation.
-    - *What it does:* Use Case: Precipitation Monitoring - Multi-Source Precipitation Estimation Combining Radar and Satellite Data Description: Fuses NEXRAD radar reflecti...
-    - *Business Value:* Provides more accurate and comprehensive precipita
-    - *Purpose:* Fused precipitation product combining NEXRAD and satellite data with improved accuracy and coverage....
-
-29. [Query 29: Satellite Fire Detection and Monitoring Across US](#query-29)
-    - **Use Case:** Wildfire Monitoring - Nationwide Fire Detection from GOES Satellite Imagery Description: Detects and monitors fires across the entire United States using decompressed GOES satellite imagery. Analyzes fire radiative power, temperature, and development patterns for wildfire management.
-    - *What it does:* Use Case: Wildfire Monitoring - Nationwide Fire Detection from GOES Satellite Imagery Description: Detects and monitors fires across the entire United...
-    - *Business Value:* US-wide fire detection report showing fire locations, intensity, and development trends from satelli...
-    - *Purpose:* Enables early wildfire detection and monitoring at national scale, s
-
-30. [Query 30: US-Wide Composite Product Generation (NEXRAD + Satellite)](#query-30)
-    - **Use Case:** Comprehensive Weather Monitoring - Multi-Source Composite Products for National Weather Analysis Description: Generates US-wide composite products combining NEXRAD radar and satellite imagery data. Creates seamless nationwide weather products with improved coverage and accuracy.
-    - *What it does:* Use Case: Comprehensive Weather Monitoring - Multi-Source Composite Products for National Weather Analysis Description: Generates US-wide composite pr...
+3. [Query 3: Can you show me a correlation analysis between multiple weather parameters with cross-parameter temporal patterns?](#query-3)
+    - **Use Case:** Can you show me a correlation analysis between multiple weather parameters with cross-parameter temporal patterns?
+    - *What it does:* Situation: Actuaries require understanding of how different weather parameters (temperature, humidity, wind speed, precipitation) correlate with each...
     - *Business Value:* Query results
-    - *Purpose:* US-wide composite products combining radar and satellite data for comprehensive weather monitoring....
+
+4. [Query 4: Can you show me an optimization analysis of spatial joins with boundary-forecast matching efficiency metrics?](#query-4)
+    - **Use Case:** Can you show me an optimization analysis of spatial joins with boundary-forecast matching efficiency metrics?
+    - *What it does:* Situation: The data engineering team needs to optimize the spatial ETL pipeline that matches millions of forecast grid points to thousands of administ...
+    - *Business Value:* Query results
+
+5. [Query 5: Can you show me a coverage analysis of the weather station network with spatial gap detection and optimization recommendations?](#query-5)
+    - **Use Case:** Can you show me a coverage analysis of the weather station network with spatial gap detection and optimization recommendations?
+    - *What it does:* Situation: The operations team is responsible for maintaining an adequate weather observation network to validate forecasts and trigger parametric ins...
+    - *Business Value:* Query results
+
+6. [Query 6: Can you show me how our forecast accuracy has been trending over time, including any recurring error patterns?](#query-6)
+    - **Use Case:** Can you show me how our forecast accuracy has been trending over time, including any recurring error patterns?
+    - *What it does:* Situation: A weather consulting insurance company needs to evaluate the performance of their weather forecasting models over time. The grib2_forecasts...
+    - *Business Value:* Query results
+
+7. [Query 7: Can you aggregate forecast data across different boundary levels and show me the spatial summarization?](#query-7)
+    - **Use Case:** Can you aggregate forecast data across different boundary levels and show me the spatial summarization?
+    - *What it does:* Situation: The weather consulting insurance company serves clients across different geographic scales—individual properties, municipalities, counties,...
+    - *Business Value:* Query results
+
+8. [Query 8: Can you validate our forecasts against actual observations and provide accuracy scores?](#query-8)
+    - **Use Case:** Can you validate our forecasts against actual observations and provide accuracy scores?
+    - *What it does:* Situation: The insurance company must validate the reliability of weather forecasts used in policy pricing by comparing predicted values from grib2_fo...
+    - *Business Value:* Query results
+
+9. [Query 9: Can you analyze where different spatial boundaries overlap and detect intersection patterns?](#query-9)
+    - **Use Case:** Can you analyze where different spatial boundaries overlap and detect intersection patterns?
+    - *What it does:* Situation: Insurance policies often cover areas that span multiple administrative or natural boundaries stored in shapefile_boundaries, such as flood...
+    - *Business Value:* Query results
+
+10. [Query 10: Can you show me the statistical distribution of forecast parameters and provide detailed profiling?](#query-10)
+    - **Use Case:** Can you show me the statistical distribution of forecast parameters and provide detailed profiling?
+    - *What it does:* Situation: The insurance company uses various weather parameters from grib2_forecasts (temperature, precipitation, wind speed, humidity) to assess ris...
+    - *Business Value:* Query results
+
+11. [Query 11: Can you show me the geospatial forecast interpolation analysis that includes spatial gradient detection across our coverage areas?](#query-11)
+    - **Use Case:** Can you show me the geospatial forecast interpolation analysis that includes spatial gradient detection across our coverage areas?
+    - *What it does:* Situation: A weather consulting firm provides insurance companies with precise weather forecasts for risk assessment. The firm needs to interpolate fo...
+    - *Business Value:* Query results
+
+12. [Query 12: Can you provide a weather pattern clustering analysis that detects spatial-temporal patterns in our forecast data?](#query-12)
+    - **Use Case:** Can you provide a weather pattern clustering analysis that detects spatial-temporal patterns in our forecast data?
+    - *What it does:* Situation: Insurance underwriters need to identify recurring weather patterns across different regions and time periods to better predict claim freque...
+    - *Business Value:* Query results
+
+13. [Query 13: Can you compare the performance of different forecast models using multi-model analysis?](#query-13)
+    - **Use Case:** Can you compare the performance of different forecast models using multi-model analysis?
+    - *What it does:* Situation: The weather consulting firm integrates forecasts from multiple numerical weather prediction models (GFS, ECMWF, NAM) stored in the grib2_fo...
+    - *Business Value:* Query results
+
+14. [Query 14: Can you detect forecast anomalies at boundary regions using statistical outlier identification?](#query-14)
+    - **Use Case:** Can you detect forecast anomalies at boundary regions using statistical outlier identification?
+    - *What it does:* Situation: Insurance policies often cover specific geographic boundaries such as counties, municipalities, or custom-defined regions stored in shapefi...
+    - *Business Value:* Query results
+
+15. [Query 15: Can you calculate insurance risk factors based on the 7-14 day forecast range?](#query-15)
+    - **Use Case:** Can you calculate insurance risk factors based on the 7-14 day forecast range?
+    - *What it does:* Situation: Insurance companies need quantitative risk factors for medium-range weather exposure (7-14 days ahead) to adjust premiums, trigger parametr...
+    - *Business Value:* Query results
+
+16. [Query 16: Can you generate an insurance rate table based on forecast risk factors from our weather data?](#query-16)
+    - **Use Case:** Can you generate an insurance rate table based on forecast risk factors from our weather data?
+    - *What it does:* Situation: Our weather consulting insurance team needs to price policies based on predicted weather risk. We have historical forecast data in grib2_fo...
+    - *Business Value:* Query results
+
+17. [Query 17: Can you compare rate tables between 7-day and 14-day weather forecast horizons?](#query-17)
+    - **Use Case:** Can you compare rate tables between 7-day and 14-day weather forecast horizons?
+    - *What it does:* Situation: Our underwriting team has noticed that insurance rates may vary significantly depending on whether we use 7-day or 14-day weather forecasts...
+    - *Business Value:* Query results
+
+18. [Query 18: Can you validate our historical insurance claims against the forecast risk factors that were predicted at the time?](#query-18)
+    - **Use Case:** Can you validate our historical insurance claims against the forecast risk factors that were predicted at the time?
+    - *What it does:* Situation: Our insurance company needs to assess the accuracy of our weather-based risk models by comparing actual claims payouts with the forecast ri...
+    - *Business Value:* Query results
+
+19. [Query 19: Can you analyze the volatility and stability of our insurance rates over time?](#query-19)
+    - **Use Case:** Can you analyze the volatility and stability of our insurance rates over time?
+    - *What it does:* Situation: Our actuarial team is concerned about rate instability causing customer retention issues and regulatory scrutiny. We need to understand how...
+    - *Business Value:* Query results
+
+20. [Query 20: Can you rank and compare policy areas by their weather-related risk levels?](#query-20)
+    - **Use Case:** Can you rank and compare policy areas by their weather-related risk levels?
+    - *What it does:* Situation: Our business development team is expanding into new geographic markets and needs to prioritize areas for policy offerings based on weather...
+    - *Business Value:* Query results
+
+21. [Query 21: Can you show me how weather forecast accuracy affects our insurance premium rates?](#query-21)
+    - **Use Case:** Can you show me how weather forecast accuracy affects our insurance premium rates?
+    - *What it does:* Situation: The weather consulting team needs to understand how forecast prediction errors impact insurance rate calculations. Actuaries require insigh...
+    - *Business Value:* Query results
+
+22. [Query 22: Can you provide a multi-day ensemble forecast analysis for our rate modeling?](#query-22)
+    - **Use Case:** Can you provide a multi-day ensemble forecast analysis for our rate modeling?
+    - *What it does:* Situation: Insurance underwriters need to assess how ensemble forecast spreads across 3-day, 5-day, and 7-day horizons correlate with claim rate volat...
+    - *Business Value:* Query results
+
+23. [Query 23: Which forecast day should we use to optimize our rate predictions?](#query-23)
+    - **Use Case:** Which forecast day should we use to optimize our rate predictions?
+    - *What it does:* Situation: The pricing team faces a tradeoff between forecast lead time and accuracy when setting insurance rates. Day 1 forecasts are most accurate b...
+    - *Business Value:* Query results
+
+24. [Query 24: Can you give me a complete summary of our weather-based insurance rate modeling?](#query-24)
+    - **Use Case:** Can you give me a complete summary of our weather-based insurance rate modeling?
+    - *What it does:* Situation: Executive leadership requires a holistic view of the weather-based insurance program's analytical foundation for quarterly business reviews...
+    - *Business Value:* Query results
+
+25. [Query 25: Can you generate a nationwide composite of NEXRAD radar reflectivity data?](#query-25)
+    - **Use Case:** Can you generate a nationwide composite of NEXRAD radar reflectivity data?
+    - *What it does:* Situation: The claims response team needs real-time situational awareness of severe weather across the entire United States to proactively allocate ad...
+    - *Business Value:* Query results
+
+26. [Query 26: Can you show me the storm cell tracking and movement analysis from NEXRAD radar data?](#query-26)
+    - **Use Case:** Can you show me the storm cell tracking and movement analysis from NEXRAD radar data?
+    - *What it does:* Situation: A weather consulting firm providing insurance risk assessment needs to analyze severe weather events. NEXRAD radar systems track storm cell...
+    - *Business Value:* Query results
+
+27. [Query 27: Can you generate a US-wide cloud composite image from satellite imagery data?](#query-27)
+    - **Use Case:** Can you generate a US-wide cloud composite image from satellite imagery data?
+    - *What it does:* Situation: A national weather service provider needs to create synoptic-scale cloud coverage products for media broadcast and public dissemination. Sa...
+    - *Business Value:* Query results
+
+28. [Query 28: Can you show me precipitation estimates that combine NEXRAD radar and satellite data?](#query-28)
+    - **Use Case:** Can you show me precipitation estimates that combine NEXRAD radar and satellite data?
+    - *What it does:* Situation: A hydrological forecasting agency requires accurate precipitation estimates for flood prediction and water resource management. NEXRAD rada...
+    - *Business Value:* Query results
+
+29. [Query 29: Can you show me fire detection and monitoring results from satellite data across the United States?](#query-29)
+    - **Use Case:** Can you show me fire detection and monitoring results from satellite data across the United States?
+    - *What it does:* Situation: A wildfire management agency and insurance risk assessment team must monitor active fires across the continental US to coordinate suppressi...
+    - *Business Value:* Query results
+
+30. [Query 30: Can you generate a US-wide composite weather product combining NEXRAD radar and satellite data?](#query-30)
+    - **Use Case:** Can you generate a US-wide composite weather product combining NEXRAD radar and satellite data?
+    - *What it does:* Situation: A national weather forecasting center needs to produce comprehensive weather analysis products that leverage both ground-based radar and sp...
+    - *Business Value:* Query results
 
 ### Additional Information
 
@@ -757,15 +736,15 @@ This database includes **30 production SQL queries**, each designed to solve spe
 
 ---
 
-## Query 1: Production-Grade Spatial Weather Forecast Analysis with Multi-Level CTE Nesting and Geospatial Aggregations {#query-1}
+## Query 1: Can you show me a production-grade spatial analysis of weather forecasts that uses nested CTEs and geospatial aggregations? {#query-1}
 
-**Use Case:** **Custom Weather Impact Modeling - Regional Forecast Accuracy Assessment for Insurance Risk Modeling Description: Enterprise-level spatial weather forecast analysis with multi-level CTE nesting, spatial aggregations within boundaries, forecast accuracy metrics, temporal analysis, and advanced window functions. Demonstrates production patterns used by NOAA and weather forecasting platforms.**
+**Use Case:** **Can you show me a production-grade spatial analysis of weather forecasts that uses nested CTEs and geospatial aggregations?**
 
-**Description:** Use Case: Custom Weather Impact Modeling - Regional Forecast Accuracy Assessment for Insurance Risk Modeling Description: Enterprise-level spatial weather forecast analysis with multi-level CTE nesting, spatial aggregations within boundaries, forecast accuracy metrics, temporal analysis, and advanced window functions. Demonstrates production patterns used by NOAA and weather forecasting platforms. Business Value: Forecast accuracy report by geographic boundary (CWA, Fire Zones) showing forecast
+**Description:** Situation: A weather consulting firm needs to analyze forecast accuracy and spatial distribution patterns across multiple geographic regions to support insurance risk assessment. The analysis requires combining GRIB2 forecast data with shapefile boundaries and weather station observations to identify regional weather patterns and validate forecast performance. Task: Produce a production-grade spatial weather forecast analysis with multi-level CTE nesting and geospatial aggregations to evaluate forecast parameters across boundary regions. Action: The query uses multiple nested CTEs to first extract and filter forecast parameters from grib2_forecasts, then spatially joins these with shapefile_boundaries using geospatial functions (ST_Contains, ST_Intersects), aggregates weather metrics by region and time period, computes statistical measures (mean, median, quartiles) for temperature, precipitation, and wind parameters, applies window functions to calculate rolling averages and comparativ
 
-**Business Value:** Forecast accuracy report by geographic boundary (CWA, Fire Zones) showing forecast
+**Business Value:** Query results
 
-**Complexity:** Deep nested CTEs (7+ levels), spatial operations (ST_WITHIN, ST_DISTANCE), complex aggregations, window functions with multiple frame clauses, percentile calculations, time-series analysis, correlated subqueries
+**Complexity:** moderate
 
 ```sql
 WITH forecast_parameter_cohorts AS (
@@ -1136,15 +1115,15 @@ ORDER BY forecast_time DESC, boundary_id, parameter_name;
 
 ---
 
-## Query 2: Recursive Spatial Boundary Hierarchy Analysis with Multi-Hop Geospatial Traversal {#query-2}
+## Query 2: Can you show me a recursive analysis of spatial boundary hierarchies with multi-hop geospatial traversal? {#query-2}
 
-**Use Case:** **Custom Map Development - Multi-Level Geographic Hierarchy Visualization for Agriculture Insurance Description: Enterprise-level recursive spatial analysis using recursive CTE for multi-level boundary relationships, spatial hierarchy traversal, boundary intersection detection, and geospatial path discovery. Implements production patterns for analyzing nested geographic boundaries (e.g., counties within states, fire zones within CWAs).**
+**Use Case:** **Can you show me a recursive analysis of spatial boundary hierarchies with multi-hop geospatial traversal?**
 
-**Description:** Use Case: Custom Map Development - Multi-Level Geographic Hierarchy Visualization for Agriculture Insurance Description: Enterprise-level recursive spatial analysis using recursive CTE for multi-level boundary relationships, spatial hierarchy traversal, boundary intersection detection, and geospatial path discovery. Implements production patterns for analyzing nested geographic boundaries (e.g., counties within states, fire zones within CWAs). Business Value: Spatial hierarchy relationships show
+**Description:** Situation: The insurance division needs to understand hierarchical relationships between administrative boundaries (country, state, county, district) to aggregate weather risk across different organizational reporting levels and determine premium calculations at various geographic scales. Task: Perform a recursive spatial boundary hierarchy analysis with multi-hop geospatial traversal to map parent-child relationships across administrative levels. Action: The query employs a recursive CTE starting with top-level boundaries (countries or states) as the anchor, recursively joins shapefile_boundaries to itself using spatial containment predicates (ST_Contains or ST_Within) to identify child boundaries, tracks the hierarchy depth and path through each iteration, accumulates boundary metadata (area, perimeter, administrative level) at each level, applies window functions to calculate cumulative statistics rolling up from lowest to highest administrative units, aggregates weather station cou
 
-**Business Value:** Spatial hierarchy relationships show
+**Business Value:** Query results
 
-**Complexity:** Advanced recursive CTE with spatial operations, multi-hop traversal, cycle detection, path weight calculations, spatial intersection analysis, multiple CTE nesting levels (6+)
+**Complexity:** challenging
 
 ```sql
 WITH RECURSIVE boundary_spatial_hierarchy AS (
@@ -1410,15 +1389,15 @@ LIMIT 200;
 
 ---
 
-## Query 3: Multi-Parameter Weather Correlation Analysis with Cross-Parameter Temporal Patterns {#query-3}
+## Query 3: Can you show me a correlation analysis between multiple weather parameters with cross-parameter temporal patterns? {#query-3}
 
-**Use Case:** **Physical Climate Risk Assessment - Multi-Parameter Risk Correlation for Renewable Energy Planning Description: Enterprise-level multi-parameter weather correlation analysis with cross-parameter temporal pattern detection, correlation matrices, lag analysis, and predictive indicators. Implements production patterns for analyzing relationships between temperature, precipitation, wind speed, and other meteorological parameters.**
+**Use Case:** **Can you show me a correlation analysis between multiple weather parameters with cross-parameter temporal patterns?**
 
-**Description:** Use Case: Physical Climate Risk Assessment - Multi-Parameter Risk Correlation for Renewable Energy Planning Description: Enterprise-level multi-parameter weather correlation analysis with cross-parameter temporal pattern detection, correlation matrices, lag analysis, and predictive indicators. Implements production patterns for analyzing relationships between temperature, precipitation, wind speed, and other meteorological parameters. Business Value: Correlation analysis between temperature, pre
+**Description:** Situation: Actuaries require understanding of how different weather parameters (temperature, humidity, wind speed, precipitation) correlate with each other over time to model compound weather events that trigger insurance claims, such as heat waves combined with low humidity increasing wildfire risk. Task: Generate a multi-parameter weather correlation analysis with cross-parameter temporal patterns to identify compound weather event signatures. Action: The query creates CTEs to pivot weather parameters from grib2_forecasts and weather_stations into separate columns by parameter type (temperature, precipitation, wind_speed, humidity, pressure), performs temporal alignment by standardizing timestamps and creating common time windows (hourly, daily, weekly), computes correlation coefficients between parameter pairs using aggregated statistical functions across rolling time windows, applies window functions with LAG and LEAD to detect temporal sequences and phase relationships (e.g., temp
 
-**Business Value:** Correlation analysis between temperature, pre
+**Business Value:** Query results
 
-**Complexity:** Multiple CTEs (8+ levels), cross-parameter joins, correlation calculations, lag/lead analysis, window functions with multiple frame clauses, temporal pattern detection, UNION operations
+**Complexity:** moderate
 
 ```sql
 WITH parameter_time_series AS (
@@ -1697,17 +1676,15 @@ LIMIT 1000;
 
 ---
 
-## Query 4: Spatial Join Optimization Analysis with Boundary-Forecast Matching Efficiency Metrics {#query-4}
+## Query 4: Can you show me an optimization analysis of spatial joins with boundary-forecast matching efficiency metrics? {#query-4}
 
-**Use Case:** **Custom Weather Impact Modeling - Boundary-Forecast Matching Efficiency for Logistics Optimization Description: Enterprise-level spatial join optimization analysis evaluating boundary-forecast matching efficiency, spatial index utilization, join performance metrics, and optimization opportunities. Implements production patterns for optimizing geospatial data joins.**
+**Use Case:** **Can you show me an optimization analysis of spatial joins with boundary-forecast matching efficiency metrics?**
 
-**Description:** Use Case: Custom Weather Impact Modeling - Boundary-Forecast Matching Efficiency for Logistics Optimization Description: Enterprise-level spatial join optimization analysis evaluating boundary-forecast matching efficiency, spatial index utilization, join performance metrics, and optimization opportunities. Implements production patterns for optimizing geospatial data joins. Purpose: Analysis of how efficiently forecasts match to client-defined boundaries with optimization recommendations. Helps
+**Description:** Situation: The data engineering team needs to optimize the spatial ETL pipeline that matches millions of forecast grid points to thousands of administrative boundaries, as current queries are timing out and impacting real-time weather alert delivery to policyholders. Task: Conduct a spatial join optimization analysis with boundary-forecast matching efficiency metrics to identify performance bottlenecks and optimization opportunities. Action: The query creates CTEs to analyze spatial join cardinality by counting forecast points per boundary and boundaries per forecast grid cell, measures join selectivity by computing the ratio of matched records to total Cartesian product, evaluates spatial index effectiveness by comparing indexed versus sequential scan performance using EXPLAIN ANALYZE metadata, groups by boundary complexity (vertex count, area size) and forecast resolution to identify join cost patterns, applies window functions to rank boundaries by join processing time and identify
 
 **Business Value:** Query results
 
-**Purpose:** Analysis of how efficiently forecasts match to client-defined boundaries with optimization recommendations. Helps
-
-**Complexity:** Multiple CTEs (7+ levels), spatial join analysis, performance metrics, optimization scoring, window functions, correlated subqueries, UNION operations
+**Complexity:** moderate
 
 ```sql
 WITH spatial_join_base_metrics AS (
@@ -1890,15 +1867,15 @@ LIMIT 200;
 
 ---
 
-## Query 5: Weather Station Network Coverage Analysis with Spatial Gap Detection and Coverage Optimization {#query-5}
+## Query 5: Can you show me a coverage analysis of the weather station network with spatial gap detection and optimization recommendations? {#query-5}
 
-**Use Case:** **Supply Chain and Fleet Management - Station Coverage Gap Analysis for Route Planning Description: Enterprise-level weather station network analysis identifying coverage gaps, station density metrics, spatial interpolation opportunities, and network optimization recommendations. Implements production patterns for analyzing observation network coverage.**
+**Use Case:** **Can you show me a coverage analysis of the weather station network with spatial gap detection and optimization recommendations?**
 
-**Description:** Use Case: Supply Chain and Fleet Management - Station Coverage Gap Analysis for Route Planning Description: Enterprise-level weather station network analysis identifying coverage gaps, station density metrics, spatial interpolation opportunities, and network optimization recommendations. Implements production patterns for analyzing observation network coverage. Business Value: Map showing gaps in weather station coverage along routes with coverage density metrics. Fleet management companies can
+**Description:** Situation: The operations team is responsible for maintaining an adequate weather observation network to validate forecasts and trigger parametric insurance payouts, but recent coverage audits revealed potential gaps in rural and high-risk areas where station density may be insufficient for accurate local weather monitoring. Task: Produce a weather station network coverage analysis with spatial gap detection and coverage optimization to ensure adequate observation density across all insured regions. Action: The query creates CTEs to calculate Voronoi polygons or buffer zones around each weather_station location to define coverage areas, spatially joins these coverage areas with shapefile_boundaries to identify regions with insufficient station density (areas beyond threshold distance from nearest station), computes coverage statistics including percentage of each boundary covered by station buffers, station density per square kilometer, and average distance to nearest station, applies
 
-**Business Value:** Map showing gaps in weather station coverage along routes with coverage density metrics. Fleet management companies can
+**Business Value:** Query results
 
-**Complexity:** Multiple CTEs (8+ levels), spatial coverage analysis, gap detection algorithms, density calculations, interpolation analysis, window functions, spatial operations
+**Complexity:** moderate
 
 ```sql
 WITH station_coverage_base AS (
@@ -2137,17 +2114,15 @@ LIMIT 200;
 
 ---
 
-## Query 6: Forecast Accuracy Trend Analysis with Temporal Error Pattern Detection {#query-6}
+## Query 6: Can you show me how our forecast accuracy has been trending over time, including any recurring error patterns? {#query-6}
 
-**Use Case:** **Forensic Meteorology - Historical Forecast Accuracy Assessment for Legal Cases Description: Enterprise-level forecast accuracy trend analysis identifying temporal error patterns, accuracy degradation over time, seasonal variations, and forecast model performance trends. Implements production patterns for monitoring forecast model accuracy.**
+**Use Case:** **Can you show me how our forecast accuracy has been trending over time, including any recurring error patterns?**
 
-**Description:** Use Case: Forensic Meteorology - Historical Forecast Accuracy Assessment for Legal Cases Description: Enterprise-level forecast accuracy trend analysis identifying temporal error patterns, accuracy degradation over time, seasonal variations, and forecast model performance trends. Implements production patterns for monitoring forecast model accuracy. Purpose: Trend analysis showing forecast accuracy over time with error pattern detection. Provides evidence of forecast reliability for insurance cl
+**Description:** Situation: A weather consulting insurance company needs to evaluate the performance of their weather forecasting models over time. The grib2_forecasts table contains predicted weather parameters, shapefile_boundaries defines coverage regions, and weather_stations holds actual observed weather data. Historical forecast errors show seasonal patterns that impact insurance risk assessments and client confidence. Task: Analyze forecast accuracy trends over time and identify recurring temporal error patterns to improve model calibration and understand systematic biases. Action: The query joins grib2_forecasts with weather_stations observations, groups data by time periods (daily, weekly, or monthly) and forecast parameters, calculates error metrics (MAE, RMSE, bias) as aggregates, applies window functions to compute rolling accuracy averages and period-over-period comparisons, handles NULL values in observation data through LEFT JOINs, and filters by relevant date ranges to capture seasonal
 
 **Business Value:** Query results
 
-**Purpose:** Trend analysis showing forecast accuracy over time with error pattern detection. Provides evidence of forecast reliability for insurance cl
-
-**Complexity:** Multiple CTEs (7+ levels), temporal trend analysis, error pattern detection, seasonal analysis, window functions with multiple frame clauses, time-series decomposition
+**Complexity:** moderate
 
 ```sql
 WITH forecast_observation_pairs AS (
@@ -2388,15 +2363,15 @@ LIMIT 500;
 
 ---
 
-## Query 7: Boundary Forecast Aggregation Analysis with Multi-Level Spatial Summarization {#query-7}
+## Query 7: Can you aggregate forecast data across different boundary levels and show me the spatial summarization? {#query-7}
 
-**Use Case:** **Custom Weather Impact Modeling - Aggregated Forecasts by Boundary for Retail Operations Description: Enterprise-level boundary forecast aggregation analysis with multi-level spatial summarization, hierarchical aggregations, and comprehensive statistical summaries. Implements production patterns for aggregating gridded forecasts to geographic boundaries.**
+**Use Case:** **Can you aggregate forecast data across different boundary levels and show me the spatial summarization?**
 
-**Description:** Use Case: Custom Weather Impact Modeling - Aggregated Forecasts by Boundary for Retail Operations Description: Enterprise-level boundary forecast aggregation analysis with multi-level spatial summarization, hierarchical aggregations, and comprehensive statistical summaries. Implements production patterns for aggregating gridded forecasts to geographic boundaries. Business Value: Summary forecasts aggregated by client-defined boundaries (counties, zones). Retail chains can get aggregated temperat
+**Description:** Situation: The weather consulting insurance company serves clients across different geographic scales—individual properties, municipalities, counties, and states. The shapefile_boundaries table contains hierarchical spatial boundaries, and grib2_forecasts provides weather predictions at various grid resolutions. Clients need aggregated forecasts at their specific boundary level for policy pricing and risk assessment. Task: Aggregate forecast data across multiple spatial boundary levels and provide comprehensive spatial summarization for different administrative regions. Action: The query performs spatial joins between grib2_forecasts and shapefile_boundaries using geographic intersection conditions, groups results by boundary hierarchy levels (property, municipality, county, state), computes aggregate statistics (mean, min, max, standard deviation) for each forecast parameter within each boundary, applies quartile calculations to identify extreme weather areas, uses window functions to
 
-**Business Value:** Summary forecasts aggregated by client-defined boundaries (counties, zones). Retail chains can get aggregated temperat
+**Business Value:** Query results
 
-**Complexity:** Multiple CTEs (7+ levels), spatial aggregations, hierarchical summarization, statistical calculations, window functions, UNION operations
+**Complexity:** moderate
 
 ```sql
 WITH forecast_boundary_matching AS (
@@ -2600,17 +2575,15 @@ LIMIT 500;
 
 ---
 
-## Query 8: Observation Forecast Validation Analysis with Accuracy Scoring {#query-8}
+## Query 8: Can you validate our forecasts against actual observations and provide accuracy scores? {#query-8}
 
-**Use Case:** **Forensic Meteorology - Forecast vs. Observation Validation for Legal Evidence Description: Enterprise-level observation-forecast validation analysis comparing actual observations with forecasts, calculating accuracy scores, identifying systematic biases, and providing validation metrics. Implements production patterns for forecast validation and model evaluation.**
+**Use Case:** **Can you validate our forecasts against actual observations and provide accuracy scores?**
 
-**Description:** Use Case: Forensic Meteorology - Forecast vs. Observation Validation for Legal Evidence Description: Enterprise-level observation-forecast validation analysis comparing actual observations with forecasts, calculating accuracy scores, identifying systematic biases, and providing validation metrics. Implements production patterns for forecast validation and model evaluation. Purpose: Validation report comparing forecasts to actual observations with accuracy scoring. Legal cases require documentati
+**Description:** Situation: The insurance company must validate the reliability of weather forecasts used in policy pricing by comparing predicted values from grib2_forecasts against actual measurements from weather_stations. Forecast accuracy directly impacts claim accuracy, pricing models, and regulatory compliance. Systematic forecast errors could lead to underpricing risk or customer dissatisfaction. Task: Validate forecast predictions against observed weather station data and generate comprehensive accuracy scores for each forecast parameter and location. Action: The query joins grib2_forecasts with weather_stations observations by matching forecast grid points to nearest station locations and forecast times to observation timestamps, groups data by weather station, forecast parameter, and time period, calculates accuracy metrics including absolute error, percentage error, hit rates for threshold events, and skill scores, applies window functions to compute station-specific baseline accuracies and
 
 **Business Value:** Query results
 
-**Purpose:** Validation report comparing forecasts to actual observations with accuracy scoring. Legal cases require documentati
-
-**Complexity:** Multiple CTEs (8+ levels), observation-forecast matching, accuracy calculations, bias detection, validation scoring, window functions, statistical analysis
+**Complexity:** moderate
 
 ```sql
 WITH observation_forecast_matching AS (
@@ -2825,15 +2798,15 @@ LIMIT 300;
 
 ---
 
-## Query 9: Multi-Boundary Spatial Intersection Analysis with Overlap Detection {#query-9}
+## Query 9: Can you analyze where different spatial boundaries overlap and detect intersection patterns? {#query-9}
 
-**Use Case:** **Custom Map Development - Boundary Overlap Detection for Real Estate Development Description: Enterprise-level multi-boundary spatial intersection analysis identifying overlapping boundaries, intersection areas, coverage gaps, and spatial relationships between different boundary types. Implements production patterns for analyzing complex geospatial boundary relationships.**
+**Use Case:** **Can you analyze where different spatial boundaries overlap and detect intersection patterns?**
 
-**Description:** Use Case: Custom Map Development - Boundary Overlap Detection for Real Estate Development Description: Enterprise-level multi-boundary spatial intersection analysis identifying overlapping boundaries, intersection areas, coverage gaps, and spatial relationships between different boundary types. Implements production patterns for analyzing complex geospatial boundary relationships. Business Value: Analysis of overlapping boundaries (e.g., fire zones overlapping counties) with intersection metrics
+**Description:** Situation: Insurance policies often cover areas that span multiple administrative or natural boundaries stored in shapefile_boundaries, such as flood zones crossing county lines, agricultural regions spanning municipalities, or coastal properties in multiple jurisdictions. Understanding boundary overlaps is critical for determining coverage responsibility, coordinating multi-jurisdiction policies, and avoiding gaps or double-coverage in risk assessment. Task: Perform spatial intersection analysis across multiple boundary types and detect overlap patterns to identify multi-jurisdictional coverage areas. Action: The query performs self-joins on shapefile_boundaries to identify overlapping polygons using spatial intersection functions, groups results by boundary type pairs and geographic regions, calculates overlap areas and percentages for each intersection, applies aggregation to count the number of boundaries intersecting each location, uses window functions to rank boundaries by cover
 
-**Business Value:** Analysis of overlapping boundaries (e.g., fire zones overlapping counties) with intersection metrics
+**Business Value:** Query results
 
-**Complexity:** Multiple CTEs (7+ levels), spatial intersection operations, overlap calculations, area computations, relationship detection, window functions
+**Complexity:** moderate
 
 ```sql
 WITH boundary_pairs AS (
@@ -3024,17 +2997,15 @@ LIMIT 200;
 
 ---
 
-## Query 10: Parameter Forecast Distribution Analysis with Statistical Profiling {#query-10}
+## Query 10: Can you show me the statistical distribution of forecast parameters and provide detailed profiling? {#query-10}
 
-**Use Case:** **Physical Climate Risk Assessment - Statistical Weather Profiling for Insurance Underwriting Description: Enterprise-level parameter forecast distribution analysis with statistical profiling, distribution shape analysis, outlier detection, and distribution comparisons. Implements production patterns for statistical analysis of forecast distributions.**
+**Use Case:** **Can you show me the statistical distribution of forecast parameters and provide detailed profiling?**
 
-**Description:** Use Case: Physical Climate Risk Assessment - Statistical Weather Profiling for Insurance Underwriting Description: Enterprise-level parameter forecast distribution analysis with statistical profiling, distribution shape analysis, outlier detection, and distribution comparisons. Implements production patterns for statistical analysis of forecast distributions. Purpose: Statistical distribution analysis of forecast parameters with percentile rankings. Insurance companies need statistical profiles
+**Description:** Situation: The insurance company uses various weather parameters from grib2_forecasts (temperature, precipitation, wind speed, humidity) to assess risk and price policies. Understanding the statistical distribution of these parameters—including central tendency, variability, skewness, and extreme values—across different spatial boundaries and time periods is essential for actuarial modeling, risk classification, and identifying anomalous forecast patterns that could indicate data quality issues. Task: Analyze the statistical distribution of each forecast parameter and generate comprehensive statistical profiles across spatial and temporal dimensions. Action: The query groups grib2_forecasts by forecast parameter, spatial boundary (joined from shapefile_boundaries), and time period (daily, monthly, seasonal), computes descriptive statistics including mean, median, standard deviation, minimum, maximum, and coefficient of variation, calculates quartiles and percentiles to identify distrib
 
 **Business Value:** Query results
 
-**Purpose:** Statistical distribution analysis of forecast parameters with percentile rankings. Insurance companies need statistical profiles
-
-**Complexity:** Multiple CTEs (6+ levels), statistical distribution analysis, percentile calculations, outlier detection, distribution comparisons, window functions
+**Complexity:** moderate
 
 ```sql
 WITH parameter_distribution_base AS (
@@ -3246,15 +3217,15 @@ LIMIT 500;
 
 ---
 
-## Query 11: Geospatial Forecast Interpolation Analysis with Spatial Gradient Detection {#query-11}
+## Query 11: Can you show me the geospatial forecast interpolation analysis that includes spatial gradient detection across our coverage areas? {#query-11}
 
-**Use Case:** **Custom Weather Impact Modeling - Spatial Gradient Detection for Precision Agriculture Description: Enterprise-level geospatial forecast interpolation analysis identifying spatial gradients, interpolation opportunities, spatial patterns, and interpolation quality metrics. Implements production patterns for spatial interpolation and gradient analysis.**
+**Use Case:** **Can you show me the geospatial forecast interpolation analysis that includes spatial gradient detection across our coverage areas?**
 
-**Description:** Use Case: Custom Weather Impact Modeling - Spatial Gradient Detection for Precision Agriculture Description: Enterprise-level geospatial forecast interpolation analysis identifying spatial gradients, interpolation opportunities, spatial patterns, and interpolation quality metrics. Implements production patterns for spatial interpolation and gradient analysis. Business Value: Analysis of how weather parameters change across space with gradient calculations. Agriculture companies can understand te
+**Description:** Situation: A weather consulting firm provides insurance companies with precise weather forecasts for risk assessment. The firm needs to interpolate forecast data between weather stations and identify areas with sharp weather gradients that could indicate high-risk zones. The grib2_forecasts table contains gridded forecast parameters, shapefile_boundaries defines geographic regions of interest, and weather_stations provides ground truth observation points. Task: Generate a geospatial forecast interpolation analysis that detects spatial gradients to identify transition zones between different weather conditions. Action: The query joins forecast grid data with spatial boundaries and station observations, groups results by geographic region and forecast parameter, computes spatial interpolation metrics using neighboring points, calculates gradient magnitudes using window functions to compare adjacent grid cells, applies quartile analysis to identify high-gradient areas, and handles NULL va
 
-**Business Value:** Analysis of how weather parameters change across space with gradient calculations. Agriculture companies can understand te
+**Business Value:** Query results
 
-**Complexity:** Multiple CTEs (7+ levels), spatial interpolation analysis, gradient calculations, spatial pattern detection, distance-based analysis, window functions
+**Complexity:** moderate
 
 ```sql
 WITH spatial_forecast_grid AS (
@@ -3492,17 +3463,15 @@ LIMIT 1000;
 
 ---
 
-## Query 12: Weather Pattern Clustering Analysis with Spatial-Temporal Pattern Detection {#query-12}
+## Query 12: Can you provide a weather pattern clustering analysis that detects spatial-temporal patterns in our forecast data? {#query-12}
 
-**Use Case:** **Physical Climate Risk Assessment - Pattern-Based Risk Identification for Renewable Energy Description: Enterprise-level weather pattern clustering analysis identifying spatial-temporal patterns, clustering similar weather conditions, and detecting pattern anomalies. Implements production patterns for weather pattern recognition and clustering.**
+**Use Case:** **Can you provide a weather pattern clustering analysis that detects spatial-temporal patterns in our forecast data?**
 
-**Description:** Use Case: Physical Climate Risk Assessment - Pattern-Based Risk Identification for Renewable Energy Description: Enterprise-level weather pattern clustering analysis identifying spatial-temporal patterns, clustering similar weather conditions, and detecting pattern anomalies. Implements production patterns for weather pattern recognition and clustering. Purpose: Identification of recurring weather patterns with clustering metrics. Energy companies can identify patterns that affect renewable ener
+**Description:** Situation: Insurance underwriters need to identify recurring weather patterns across different regions and time periods to better predict claim frequencies. Historical forecast data contains patterns such as cold fronts, heat waves, and storm systems that exhibit both spatial coherence (affecting multiple adjacent regions) and temporal persistence (lasting several days). The grib2_forecasts table stores time-series forecast data, shapefile_boundaries defines geographic clusters, and weather_stations provides validation points. Task: Perform weather pattern clustering analysis that identifies spatial-temporal patterns for predictive modeling. Action: The query aggregates forecast parameters by region and time period, groups data using multi-dimensional clustering based on temperature, precipitation, and pressure patterns, employs window functions to detect temporal persistence through rolling averages and lag comparisons, identifies spatial coherence by analyzing correlation between adj
 
 **Business Value:** Query results
 
-**Purpose:** Identification of recurring weather patterns with clustering metrics. Energy companies can identify patterns that affect renewable ener
-
-**Complexity:** Multiple CTEs (8+ levels), clustering analysis, pattern detection, spatial-temporal analysis, similarity calculations, window functions
+**Complexity:** moderate
 
 ```sql
 WITH multi_parameter_forecast AS (
@@ -3738,15 +3707,15 @@ LIMIT 1000;
 
 ---
 
-## Query 13: Forecast Model Performance Comparison with Multi-Model Analysis {#query-13}
+## Query 13: Can you compare the performance of different forecast models using multi-model analysis? {#query-13}
 
-**Use Case:** **Forensic Meteorology - Multi-Model Analysis for Comprehensive Legal Evidence Description: This SQL query performs comprehensive forecast model performance comparison for a weather consulting firm. It identifies forecast models (NDFD, GFS, NAM, RAP) from source file patterns, spatially matches forecasts with weather observations within 25km and temporally within 1 hour, calculates accuracy metrics (mean absolute error, root mean squared error, bias, success rates), ranks models by perfo**
+**Use Case:** **Can you compare the performance of different forecast models using multi-model analysis?**
 
-**Description:** Use Case: Forensic Meteorology - Multi-Model Analysis for Comprehensive Legal Evidence Description: This SQL query performs comprehensive forecast model performance comparison for a weather consulting firm. It identifies forecast models (NDFD, GFS, NAM, RAP) from source file patterns, spatially matches forecasts with weather observations within 25km and temporally within 1 hour, calculates accuracy metrics (mean absolute error, root mean squared error, bias, success rates), ranks models by perfo
+**Description:** Situation: The weather consulting firm integrates forecasts from multiple numerical weather prediction models (GFS, ECMWF, NAM) stored in the grib2_forecasts table. Each model has different strengths and weaknesses for various forecast parameters and lead times. To provide clients with the most reliable forecasts, the firm must continuously evaluate model performance against actual observations from weather_stations across different shapefile_boundaries. Task: Compare forecast model performance using multi-model analysis to identify the most accurate model for each parameter and region. Action: The query joins forecast data from multiple models with actual observations, groups results by model identifier, forecast parameter, region, and lead time, computes performance metrics including bias, mean absolute error, and root mean square error for each model, uses window functions to calculate rolling accuracy scores and rank models by performance, applies quartile analysis to identify cons
 
 **Business Value:** Query results
 
-**Complexity:** Multiple CTEs (7+ levels), model comparison, performance metrics, accuracy calculations, ranking analysis, window functions
+**Complexity:** moderate
 
 ```sql
 WITH forecast_model_identification AS (
@@ -3962,17 +3931,15 @@ LIMIT 500;
 
 ---
 
-## Query 14: Boundary Forecast Anomaly Detection with Statistical Outlier Identification {#query-14}
+## Query 14: Can you detect forecast anomalies at boundary regions using statistical outlier identification? {#query-14}
 
-**Use Case:** **Physical Climate Risk Assessment - Extreme Event Detection for Emergency Management Description: Enterprise-level boundary forecast anomaly detection identifying statistical outliers, anomalies in boundary aggregations, and unusual forecast patterns. Implements production patterns for anomaly detection in geospatial forecast data.**
+**Use Case:** **Can you detect forecast anomalies at boundary regions using statistical outlier identification?**
 
-**Description:** Use Case: Physical Climate Risk Assessment - Extreme Event Detection for Emergency Management Description: Enterprise-level boundary forecast anomaly detection identifying statistical outliers, anomalies in boundary aggregations, and unusual forecast patterns. Implements production patterns for anomaly detection in geospatial forecast data. Purpose: Identification of anomalous weather patterns within boundaries with outlier metrics. Emergency management needs anomaly detection for early warning
+**Description:** Situation: Insurance policies often cover specific geographic boundaries such as counties, municipalities, or custom-defined regions stored in shapefile_boundaries. Weather forecasts at boundary edges sometimes exhibit anomalies due to interpolation artifacts, terrain discontinuities, or actual meteorological phenomena. Identifying statistical outliers in boundary forecasts from grib2_forecasts helps distinguish between data quality issues and genuine extreme weather events that require immediate attention for claims preparation. Task: Detect forecast anomalies at boundary regions using statistical outlier identification methods. Action: The query spatially joins forecast grid points with boundary polygons to identify edge regions, groups forecast values by boundary and parameter type, computes statistical baselines including mean, standard deviation, and interquartile ranges for each boundary, applies window functions to calculate z-scores and modified z-scores for anomaly detection,
 
 **Business Value:** Query results
 
-**Purpose:** Identification of anomalous weather patterns within boundaries with outlier metrics. Emergency management needs anomaly detection for early warning
-
-**Complexity:** Multiple CTEs (8+ levels), anomaly detection algorithms, statistical outlier identification, pattern analysis, window functions, UNION operations
+**Complexity:** moderate
 
 ```sql
 WITH boundary_forecast_aggregation AS (
@@ -4241,15 +4208,15 @@ LIMIT 500;
 
 ---
 
-## Query 15: Insurance Risk Factor Calculation from 7-14 Day Forecasts {#query-15}
+## Query 15: Can you calculate insurance risk factors based on the 7-14 day forecast range? {#query-15}
 
-**Use Case:** **Insurance Underwriting - Multi-Day Forecast Risk Assessment for Rate Determination Description: Calculates comprehensive risk factors for insurance policy areas based on 7-14 day forecasts from December 3-17, 2025. Analyzes multiple weather parameters to determine extreme event probabilities, precipitation risk, temperature extremes, wind damage risk, freeze risk, and flood risk.**
+**Use Case:** **Can you calculate insurance risk factors based on the 7-14 day forecast range?**
 
-**Description:** Use Case: Insurance Underwriting - Multi-Day Forecast Risk Assessment for Rate Determination Description: Calculates comprehensive risk factors for insurance policy areas based on 7-14 day forecasts from December 3-17, 2025. Analyzes multiple weather parameters to determine extreme event probabilities, precipitation risk, temperature extremes, wind damage risk, freeze risk, and flood risk. Business Value: Risk factor analysis report showing forecast-based risk scores for each policy area and for
+**Description:** Situation: Insurance companies need quantitative risk factors for medium-range weather exposure (7-14 days ahead) to adjust premiums, trigger parametric policies, and allocate claims reserves. The grib2_forecasts table contains ensemble forecasts for this lead time range, covering parameters like temperature extremes, precipitation accumulation, and wind speeds across insured regions defined in shapefile_boundaries. Weather_stations provide climatological context for normalizing risk relative to historical conditions. Task: Calculate insurance risk factors from 7-14 day forecasts for underwriting and claims management. Action: The query filters forecast data to the 7-14 day lead time window using date arithmetic, joins forecasts with insured boundary regions and relevant weather stations, groups results by insurance region, forecast date, and risk parameter, computes risk-relevant aggregates including maximum values, accumulation totals, and probability of threshold exceedance, applies
 
-**Business Value:** Risk factor analysis report showing forecast-based risk scores for each policy area and for
+**Business Value:** Query results
 
-**Complexity:** Multiple CTEs (8+ levels), forecast period filtering, risk calculations, percentile analysis, window functions, spatial joins
+**Complexity:** moderate
 
 ```sql
 WITH forecast_period AS (
@@ -4536,17 +4503,15 @@ LIMIT 5000;
 
 ---
 
-## Query 16: Insurance Rate Table Generation from Forecast Risk Factors {#query-16}
+## Query 16: Can you generate an insurance rate table based on forecast risk factors from our weather data? {#query-16}
 
-**Use Case:** **Insurance Underwriting - Dynamic Rate Table Calculation Based on 7-14 Day Forecasts Description: Generates insurance rate tables for December 3-17, 2025 period using risk factors calculated from 7-14 day forecasts. Calculates base rates, risk-adjusted rates, rate components, and rate tiers based on forecast-based risk scores.**
+**Use Case:** **Can you generate an insurance rate table based on forecast risk factors from our weather data?**
 
-**Description:** Use Case: Insurance Underwriting - Dynamic Rate Table Calculation Based on 7-14 Day Forecasts Description: Generates insurance rate tables for December 3-17, 2025 period using risk factors calculated from 7-14 day forecasts. Calculates base rates, risk-adjusted rates, rate components, and rate tiers based on forecast-based risk scores. Purpose: Complete rate table showing rates for each policy area, forecast day (7-14 days), and coverage type with risk-adjusted pricing. Business Value: Enables d
+**Description:** Situation: Our weather consulting insurance team needs to price policies based on predicted weather risk. We have historical forecast data in grib2_forecasts with parameters like precipitation, temperature, and wind speed across different geographic boundaries defined in shapefile_boundaries, validated against actual observations from weather_stations. Task: Generate an insurance rate table that translates forecast risk factors into pricing tiers for policy underwriting. Action: The query joins forecast data with geographic boundaries and historical observations, groups results by region and risk parameters, calculates aggregate risk scores using quartile distributions of key weather variables, and applies window functions to compute rolling average risk trends and comparative metrics across time periods while handling NULL values in spatial joins and forecast horizons. Result: The output provides a comprehensive rate table with risk scores, pricing tiers, and confidence intervals by g
 
-**Business Value:** Enables d
+**Business Value:** Query results
 
-**Purpose:** Complete rate table showing rates for each policy area, forecast day (7-14 days), and coverage type with risk-adjusted pricing. Business Value: Enables d
-
-**Complexity:** Multiple CTEs (9+ levels), rate calculations, risk factor integration, tier assignments, window functions, complex aggregations
+**Complexity:** moderate
 
 ```sql
 WITH forecast_period AS (
@@ -4824,17 +4789,15 @@ LIMIT 10000;
 
 ---
 
-## Query 17: Rate Table Comparison Across 7-14 Day Forecasts {#query-17}
+## Query 17: Can you compare rate tables between 7-day and 14-day weather forecast horizons? {#query-17}
 
-**Use Case:** **Insurance Underwriting - Multi-Day Forecast Rate Comparison for Optimal Rate Selection Description: Compares insurance rates across all forecast days (7-14 days ahead) for December 3-17, 2025 period. Calculates rate statistics, volatility, trends, and recommends optimal forecast day for rate determination.**
+**Use Case:** **Can you compare rate tables between 7-day and 14-day weather forecast horizons?**
 
-**Description:** Use Case: Insurance Underwriting - Multi-Day Forecast Rate Comparison for Optimal Rate Selection Description: Compares insurance rates across all forecast days (7-14 days ahead) for December 3-17, 2025 period. Calculates rate statistics, volatility, trends, and recommends optimal forecast day for rate determination. Business Value: Rate comparison report showing rates by forecast day with volatility metrics and recommended rates. Purpose: Enables insurance companies to select optimal forecast da
+**Description:** Situation: Our underwriting team has noticed that insurance rates may vary significantly depending on whether we use 7-day or 14-day weather forecasts, and we need to understand these differences to optimize our pricing strategy. The grib2_forecasts table contains predictions at multiple time horizons, shapefile_boundaries defines our coverage areas, and weather_stations provides ground truth for validation. Task: Compare rate tables generated from 7-day forecasts against those from 14-day forecasts to identify pricing discrepancies and forecast reliability patterns. Action: The query filters forecast data by 7-day and 14-day lead times, joins with geographic boundaries to segment by policy region, computes risk-based rates for each forecast horizon using aggregated weather parameters, applies window functions to calculate rate differentials and percentage changes between the two horizons, groups results by region and risk category, and handles cases where forecasts may be missing for
 
-**Business Value:** Rate comparison report showing rates by forecast day with volatility metrics and recommended rates.
+**Business Value:** Query results
 
-**Purpose:** Enables insurance companies to select optimal forecast da
-
-**Complexity:** Multiple CTEs (7+ levels), rate aggregation, volatility calculations, trend analysis, window functions, statistical analysis
+**Complexity:** moderate
 
 ```sql
 WITH forecast_period AS (
@@ -5075,17 +5038,15 @@ LIMIT 5000;
 
 ---
 
-## Query 18: Historical Claims Validation Against Forecast Risk Factors {#query-18}
+## Query 18: Can you validate our historical insurance claims against the forecast risk factors that were predicted at the time? {#query-18}
 
-**Use Case:** **Insurance Underwriting - Forecast Accuracy Validation Using Historical Claims Data Description: Validates forecast-based risk factors against historical claims data for December 3-17, 2025 period. Compares forecast risk scores with actual claims to assess forecast accuracy and improve rate modeling.**
+**Use Case:** **Can you validate our historical insurance claims against the forecast risk factors that were predicted at the time?**
 
-**Description:** Use Case: Insurance Underwriting - Forecast Accuracy Validation Using Historical Claims Data Description: Validates forecast-based risk factors against historical claims data for December 3-17, 2025 period. Compares forecast risk scores with actual claims to assess forecast accuracy and improve rate modeling. Purpose: Validation report showing forecast risk vs actual claims with accuracy metrics and improvement recommendations. Business Value: Enables insurance companies to validate and improve
+**Description:** Situation: Our insurance company needs to assess the accuracy of our weather-based risk models by comparing actual claims payouts with the forecast risk factors that informed our original rate calculations. We maintain historical claims data alongside archived forecasts in grib2_forecasts, geographic policy boundaries in shapefile_boundaries, and observed weather conditions from weather_stations. Task: Validate historical insurance claims against the forecast risk factors that were active when policies were written to measure predictive accuracy and identify model weaknesses. Action: The query joins historical claims records with corresponding forecast data based on policy dates and locations, matches claims with the relevant geographic boundaries, aggregates actual claim amounts by region and weather event type, computes predicted risk scores from the archived forecast parameters using the same methodology as current rating, applies window functions to calculate rolling claim-to-predi
 
-**Business Value:** Enables insurance companies to validate and improve
+**Business Value:** Query results
 
-**Purpose:** Validation report showing forecast risk vs actual claims with accuracy metrics and improvement recommendations. Business Value: Enables insurance companies to validate and improve
-
-**Complexity:** Multiple CTEs (8+ levels), historical data joins, forecast accuracy calculations, error analysis, window functions, statistical comparisons
+**Complexity:** moderate
 
 ```sql
 WITH forecast_period AS (
@@ -5342,17 +5303,15 @@ LIMIT 2000;
 
 ---
 
-## Query 19: Rate Volatility and Stability Analysis {#query-19}
+## Query 19: Can you analyze the volatility and stability of our insurance rates over time? {#query-19}
 
-**Use Case:** **Insurance Underwriting - Rate Stability Assessment for Pricing Consistency Description: Analyzes rate volatility and stability across 7-14 day forecasts for December 3-17, 2025. Identifies areas with high rate volatility and recommends stable pricing strategies.**
+**Use Case:** **Can you analyze the volatility and stability of our insurance rates over time?**
 
-**Description:** Use Case: Insurance Underwriting - Rate Stability Assessment for Pricing Consistency Description: Analyzes rate volatility and stability across 7-14 day forecasts for December 3-17, 2025. Identifies areas with high rate volatility and recommends stable pricing strategies. Business Value: Rate volatility analysis report with stability metrics and recommendations for consistent pricing. Purpose: Helps insurance companies identify pricing inconsistencies and implement stable pricing strategies, imp
+**Description:** Situation: Our actuarial team is concerned about rate instability causing customer retention issues and regulatory scrutiny. We need to understand how much our weather-based insurance rates fluctuate over time as new forecast data becomes available. Our data sources include grib2_forecasts with daily updated predictions, shapefile_boundaries defining rate territories, and weather_stations providing observed conditions for model refinement. Task: Analyze rate volatility and stability patterns to identify regions or time periods with excessive rate fluctuations and assess the predictability of our pricing model. Action: The query extracts historical rate calculations across multiple time periods, joins forecast data with geographic boundaries to compute rates by territory and date, calculates statistical volatility measures including standard deviation and coefficient of variation using window functions over rolling time windows, computes rate change frequencies and magnitudes, groups re
 
-**Business Value:** Rate volatility analysis report with stability metrics and recommendations for consistent pricing.
+**Business Value:** Query results
 
-**Purpose:** Helps insurance companies identify pricing inconsistencies and implement stable pricing strategies, imp
-
-**Complexity:** Multiple CTEs (6+ levels), volatility calculations, stability metrics, trend analysis, window functions, statistical analysis
+**Complexity:** moderate
 
 ```sql
 WITH forecast_period AS (
@@ -5543,17 +5502,15 @@ LIMIT 3000;
 
 ---
 
-## Query 20: Policy Area Risk Ranking and Comparison {#query-20}
+## Query 20: Can you rank and compare policy areas by their weather-related risk levels? {#query-20}
 
-**Use Case:** **Insurance Underwriting - Geographic Risk Ranking for Portfolio Management Description: Ranks policy areas by forecast-based risk scores for December 3-17, 2025 period. Provides comparative risk analysis across geographic areas to support portfolio management and resource allocation.**
+**Use Case:** **Can you rank and compare policy areas by their weather-related risk levels?**
 
-**Description:** Use Case: Insurance Underwriting - Geographic Risk Ranking for Portfolio Management Description: Ranks policy areas by forecast-based risk scores for December 3-17, 2025 period. Provides comparative risk analysis across geographic areas to support portfolio management and resource allocation. Purpose: Risk ranking report showing policy areas ordered by risk level with comparative metrics. Business Value: Enables insurance companies to identify high-risk areas, allocate underwriting resources eff
+**Description:** Situation: Our business development team is expanding into new geographic markets and needs to prioritize areas for policy offerings based on weather risk profiles. We have comprehensive forecast data in grib2_forecasts, detailed geographic boundaries in shapefile_boundaries representing potential and existing policy territories, and validation data from weather_stations to ensure risk assessments are grounded in observed conditions. Task: Rank all policy areas by overall weather risk exposure and provide comparative analysis to guide market entry decisions and portfolio balancing. Action: The query joins forecast data with all geographic boundaries to ensure complete territorial coverage, calculates composite risk scores by aggregating multiple weather parameters weighted by their claim correlation, groups results by policy area and time period, applies window functions to compute percentile rankings and comparative risk ratios across territories, identifies clusters of similar risk p
 
-**Business Value:** Enables insurance companies to identify high-risk areas, allocate underwriting resources eff
+**Business Value:** Query results
 
-**Purpose:** Risk ranking report showing policy areas ordered by risk level with comparative metrics. Business Value: Enables insurance companies to identify high-risk areas, allocate underwriting resources eff
-
-**Complexity:** Multiple CTEs (7+ levels), risk aggregation, ranking calculations, percentile analysis, window functions, comparative analysis
+**Complexity:** moderate
 
 ```sql
 WITH forecast_period AS (
@@ -5774,17 +5731,15 @@ LIMIT 1000;
 
 ---
 
-## Query 21: Forecast-to-Rate Impact Analysis {#query-21}
+## Query 21: Can you show me how weather forecast accuracy affects our insurance premium rates? {#query-21}
 
-**Use Case:** **Insurance Underwriting - Forecast Parameter Impact on Rate Determination Description: Analyzes how individual forecast parameters (temperature, precipitation, wind) impact insurance rates for December 3-17, 2025. Quantifies the contribution of each weather parameter to final rate calculations.**
+**Use Case:** **Can you show me how weather forecast accuracy affects our insurance premium rates?**
 
-**Description:** Use Case: Insurance Underwriting - Forecast Parameter Impact on Rate Determination Description: Analyzes how individual forecast parameters (temperature, precipitation, wind) impact insurance rates for December 3-17, 2025. Quantifies the contribution of each weather parameter to final rate calculations. Business Value: Parameter impact analysis showing which forecast parameters drive rate changes and their relative contributions. Purpose: Enables insurance companies to understand which weather p
+**Description:** Situation: The weather consulting team needs to understand how forecast prediction errors impact insurance rate calculations. Actuaries require insights into whether improving forecast accuracy in specific regions would justify rate adjustments for weather-dependent insurance products. Task: Analyze the correlation between forecast accuracy metrics and insurance rate variations across different geographical boundaries and time periods. Action: The query joins grib2_forecasts with actual weather_stations observations to compute forecast error rates, then correlates these errors with rate changes by grouping data by region (using shapefile_boundaries), forecast horizon, and weather parameter type. Window functions calculate rolling 30-day forecast accuracy trends, and quartile analysis identifies regions with the highest forecast-to-rate sensitivity. NULL values in station data are handled using COALESCE to ensure complete temporal coverage. Result: Returns a dataset showing forecast err
 
-**Business Value:** Parameter impact analysis showing which forecast parameters drive rate changes and their relative contributions.
+**Business Value:** Query results
 
-**Purpose:** Enables insurance companies to understand which weather p
-
-**Complexity:** Multiple CTEs (6+ levels), parameter contribution analysis, impact calculations, correlation analysis, window functions
+**Complexity:** moderate
 
 ```sql
 WITH forecast_period AS (
@@ -5949,17 +5904,15 @@ LIMIT 5000;
 
 ---
 
-## Query 22: Multi-Day Forecast Ensemble Rate Analysis {#query-22}
+## Query 22: Can you provide a multi-day ensemble forecast analysis for our rate modeling? {#query-22}
 
-**Use Case:** **Insurance Underwriting - Ensemble Forecast Rate Analysis for Robust Pricing Description: Analyzes rates across multiple forecast days (7-14 days) as an ensemble to determine robust, consensus rates. Uses ensemble statistics to reduce forecast uncertainty and provide more stable pricing.**
+**Use Case:** **Can you provide a multi-day ensemble forecast analysis for our rate modeling?**
 
-**Description:** Use Case: Insurance Underwriting - Ensemble Forecast Rate Analysis for Robust Pricing Description: Analyzes rates across multiple forecast days (7-14 days) as an ensemble to determine robust, consensus rates. Uses ensemble statistics to reduce forecast uncertainty and provide more stable pricing. Purpose: Ensemble rate analysis showing consensus rates across forecast days with confidence intervals. Business Value: Provides more robust rate determination by combining multiple forecast days, reduc
+**Description:** Situation: Insurance underwriters need to assess how ensemble forecast spreads across 3-day, 5-day, and 7-day horizons correlate with claim rate volatility. When ensemble member predictions diverge significantly, it indicates higher uncertainty that should be reflected in premium adjustments. Task: Generate a comprehensive analysis of ensemble forecast variability across multiple forecast days and correlate this uncertainty with historical insurance claim rates. Action: The query aggregates grib2_forecasts ensemble members by forecast day and valid time, computing standard deviation, interquartile range, and spread metrics for each parameter. These uncertainty measures are then joined with historical claim rates grouped by shapefile_boundaries regions. Window functions calculate day-over-day ensemble spread changes and 7-day rolling averages of both forecast uncertainty and claim frequencies. Quartile analysis segments regions by forecast reliability. Date range filters ensure alignmen
 
-**Business Value:** Provides more robust rate determination by combining multiple forecast days, reduc
+**Business Value:** Query results
 
-**Purpose:** Ensemble rate analysis showing consensus rates across forecast days with confidence intervals. Business Value: Provides more robust rate determination by combining multiple forecast days, reduc
-
-**Complexity:** Multiple CTEs (7+ levels), ensemble statistics, consensus calculations, confidence intervals, window functions, statistical aggregation
+**Complexity:** moderate
 
 ```sql
 WITH forecast_period AS (
@@ -6141,17 +6094,15 @@ LIMIT 2000;
 
 ---
 
-## Query 23: Forecast Day Selection Optimization {#query-23}
+## Query 23: Which forecast day should we use to optimize our rate predictions? {#query-23}
 
-**Use Case:** **Insurance Underwriting - Optimal Forecast Day Selection for Rate Determination Description: Determines optimal forecast day (7-14 days) for rate determination based on accuracy, confidence, and business requirements. Balances forecast accuracy (shorter forecast) with planning horizon (longer forecast).**
+**Use Case:** **Which forecast day should we use to optimize our rate predictions?**
 
-**Description:** Use Case: Insurance Underwriting - Optimal Forecast Day Selection for Rate Determination Description: Determines optimal forecast day (7-14 days) for rate determination based on accuracy, confidence, and business requirements. Balances forecast accuracy (shorter forecast) with planning horizon (longer forecast). Business Value: Forecast day optimization report recommending optimal forecast day for each policy area with justification. Purpose: Enables insurance companies to select optimal forecas
+**Description:** Situation: The pricing team faces a tradeoff between forecast lead time and accuracy when setting insurance rates. Day 1 forecasts are most accurate but provide little advance notice for rate adjustments, while Day 7 forecasts allow operational planning but have higher error rates. The team needs data-driven guidance on which forecast day optimally balances accuracy and business utility. Task: Identify the optimal forecast day horizon that maximizes rate prediction accuracy while maintaining sufficient lead time for underwriting operations. Action: The query analyzes grib2_forecasts across forecast days 1 through 7, joining each with actual weather_stations observations and insurance rate changes. For each forecast day, it computes prediction accuracy metrics (RMSE, MAE, bias), rate prediction error, and business value scores. Grouping by forecast day, region from shapefile_boundaries, and season captures performance variations. Window functions compare each forecast day's performance
 
-**Business Value:** Forecast day optimization report recommending optimal forecast day for each policy area with justification.
+**Business Value:** Query results
 
-**Purpose:** Enables insurance companies to select optimal forecas
-
-**Complexity:** Multiple CTEs (8+ levels), optimization scoring, multi-criteria analysis, window functions, ranking calculations
+**Complexity:** moderate
 
 ```sql
 WITH forecast_period AS (
@@ -6361,17 +6312,15 @@ LIMIT 3000;
 
 ---
 
-## Query 24: Comprehensive Insurance Rate Modeling Summary {#query-24}
+## Query 24: Can you give me a complete summary of our weather-based insurance rate modeling? {#query-24}
 
-**Use Case:** **Insurance Underwriting - Comprehensive Rate Modeling Summary Dashboard Description: Provides comprehensive summary of insurance rate modeling for December 3-17, 2025 period. Aggregates risk factors, rates, comparisons, validations, and recommendations into a single dashboard view.**
+**Use Case:** **Can you give me a complete summary of our weather-based insurance rate modeling?**
 
-**Description:** Use Case: Insurance Underwriting - Comprehensive Rate Modeling Summary Dashboard Description: Provides comprehensive summary of insurance rate modeling for December 3-17, 2025 period. Aggregates risk factors, rates, comparisons, validations, and recommendations into a single dashboard view. Purpose: Comprehensive rate modeling summary dashboard with all key metrics and recommendations. Business Value: Provides insurance companies with single-source-of-truth dashboard for rate modeling decisions,
+**Description:** Situation: Executive leadership requires a holistic view of the weather-based insurance program's analytical foundation for quarterly business reviews. They need to understand forecast data quality, geographical coverage, rate model performance, and identify opportunities for model refinement across all regions and product lines. Task: Produce a comprehensive summary that synthesizes forecast accuracy, rate model performance, geographical coverage, temporal trends, and data quality metrics into a unified executive dashboard. Action: The query performs a complex multi-table join across grib2_forecasts, weather_stations, and shapefile_boundaries to create an integrated view. It groups data by region, forecast type, weather parameter, and time period to compute aggregate statistics including forecast accuracy rates, rate prediction errors, claim frequency alignment, and data completeness percentages. Window functions calculate year-over-year performance changes, market share by region, an
 
-**Business Value:** Provides insurance companies with single-source-of-truth dashboard for rate modeling decisions,
+**Business Value:** Query results
 
-**Purpose:** Comprehensive rate modeling summary dashboard with all key metrics and recommendations. Business Value: Provides insurance companies with single-source-of-truth dashboard for rate modeling decisions,
-
-**Complexity:** Multiple CTEs (9+ levels), comprehensive aggregation, summary statistics, dashboard metrics, window functions, multi-table joins
+**Complexity:** moderate
 
 ```sql
 WITH forecast_period AS (
@@ -6606,17 +6555,15 @@ LIMIT 500;
 
 ---
 
-## Query 25: US-Wide NEXRAD Reflectivity Composite Generation {#query-25}
+## Query 25: Can you generate a nationwide composite of NEXRAD radar reflectivity data? {#query-25}
 
-**Use Case:** **Real-Time Weather Monitoring - Nationwide Radar Composite for Severe Weather Detection Description: Generates US-wide composite reflectivity from all NEXRAD radar sites. Combines Level II radar data from multiple sites to create seamless nationwide coverage, handling overlapping coverage areas and data quality issues.**
+**Use Case:** **Can you generate a nationwide composite of NEXRAD radar reflectivity data?**
 
-**Description:** Use Case: Real-Time Weather Monitoring - Nationwide Radar Composite for Severe Weather Detection Description: Generates US-wide composite reflectivity from all NEXRAD radar sites. Combines Level II radar data from multiple sites to create seamless nationwide coverage, handling overlapping coverage areas and data quality issues. Business Value: US-wide reflectivity composite showing precipitation intensity across entire United States with seamless coverage. Purpose: Provides comprehensive real-ti
+**Description:** Situation: The claims response team needs real-time situational awareness of severe weather across the entire United States to proactively allocate adjusters and predict claim surges. Individual NEXRAD radar sites provide limited coverage, so a composite view synthesizing all sites is essential for national-scale monitoring and triggering rate adjustments in affected regions. Task: Create a unified, gap-free composite of NEXRAD radar reflectivity data covering the continental United States by integrating data from all available radar sites. Action: The query extracts the most recent reflectivity data from all weather_stations equipped with NEXRAD capability, joining with shapefile_boundaries to map radar coverage to insurance rating territories. For overlapping coverage areas, it applies a maximum value composite technique where the highest reflectivity reading from any radar is selected. Spatial grouping aggregates data into a grid structure aligned with rating boundaries. Window func
 
-**Business Value:** US-wide reflectivity composite showing precipitation intensity across entire United States with seamless coverage.
+**Business Value:** Query results
 
-**Purpose:** Provides comprehensive real-ti
-
-**Complexity:** Multiple CTEs (8+ levels), multi-site data fusion, spatial interpolation, coverage optimization, quality weighting, window functions
+**Complexity:** moderate
 
 ```sql
 WITH us_spatial_bounds AS (
@@ -6835,17 +6782,15 @@ LIMIT 100000;
 
 ---
 
-## Query 26: NEXRAD Storm Cell Tracking and Movement Analysis {#query-26}
+## Query 26: Can you show me the storm cell tracking and movement analysis from NEXRAD radar data? {#query-26}
 
-**Use Case:** **Severe Weather Forecasting - Multi-Site Storm Cell Tracking for Tornado and Severe Thunderstorm Prediction Description: Tracks storm cells across multiple NEXRAD radar sites and analyzes their movement, intensity changes, and development patterns. Handles storm cell merging, splitting, and dissipation across the entire US.**
+**Use Case:** **Can you show me the storm cell tracking and movement analysis from NEXRAD radar data?**
 
-**Description:** Use Case: Severe Weather Forecasting - Multi-Site Storm Cell Tracking for Tornado and Severe Thunderstorm Prediction Description: Tracks storm cells across multiple NEXRAD radar sites and analyzes their movement, intensity changes, and development patterns. Handles storm cell merging, splitting, and dissipation across the entire US. Purpose: Storm cell tracking report showing storm movement, intensity trends, and predicted paths across multiple radar sites. Business Value: Enables severe weather
+**Description:** Situation: A weather consulting firm providing insurance risk assessment needs to analyze severe weather events. NEXRAD radar systems track storm cells in real-time, and the firm must monitor storm movement patterns, intensity changes, and trajectories to assess potential property damage and issue timely warnings to insured clients. Task: Generate a comprehensive storm cell tracking and movement analysis report showing cell positions, velocities, intensity metrics, and trajectory forecasts. Action: The query joins NEXRAD radar observations with spatial boundaries to identify affected regions, groups storm cells by unique identifiers and time intervals, calculates aggregate metrics including maximum reflectivity and cell velocity vectors, applies window functions to compute movement trends and acceleration patterns over rolling time windows, and handles cases where radar coverage gaps or data quality flags exist. Result: The output provides a time-series dataset of tracked storm cells w
 
-**Business Value:** Enables severe weather
+**Business Value:** Query results
 
-**Purpose:** Storm cell tracking report showing storm movement, intensity trends, and predicted paths across multiple radar sites. Business Value: Enables severe weather
-
-**Complexity:** Multiple CTEs (9+ levels), temporal tracking, spatial matching, storm cell association, movement calculation, window functions, recursive patterns
+**Complexity:** challenging
 
 ```sql
 WITH time_window AS (
@@ -7086,17 +7031,15 @@ LIMIT 1000;
 
 ---
 
-## Query 27: US-Wide Satellite Imagery Cloud Composite Generation {#query-27}
+## Query 27: Can you generate a US-wide cloud composite image from satellite imagery data? {#query-27}
 
-**Use Case:** **Cloud Monitoring - Nationwide Cloud Coverage Analysis from GOES Satellite Imagery Description: Generates US-wide cloud composite from decompressed GOES satellite imagery. Combines multiple satellite bands and products to create seamless cloud coverage maps across the entire United States.**
+**Use Case:** **Can you generate a US-wide cloud composite image from satellite imagery data?**
 
-**Description:** Use Case: Cloud Monitoring - Nationwide Cloud Coverage Analysis from GOES Satellite Imagery Description: Generates US-wide cloud composite from decompressed GOES satellite imagery. Combines multiple satellite bands and products to create seamless cloud coverage maps across the entire United States. Business Value: US-wide cloud composite showing cloud coverage, cloud top heights, and cloud properties across entire United States. Purpose: Provides comprehensive cloud monitoring for solar energy f
+**Description:** Situation: A national weather service provider needs to create synoptic-scale cloud coverage products for media broadcast and public dissemination. Satellite imagery from multiple sensors captures cloud formations across different spectral bands, and these need to be merged into a seamless US-wide composite that shows current cloud conditions for weather forecasting and public awareness. Task: Generate a comprehensive cloud composite product that integrates multi-satellite imagery across all US states and territories. Action: The query retrieves satellite observations from multiple geostationary and polar-orbiting platforms, joins imagery data with shapefile boundaries to ensure complete US coverage, groups pixels by geographical coordinates and time stamps, computes cloud detection metrics using infrared and visible channel thresholds, applies window functions to blend overlapping satellite swaths and create seamless mosaics, and handles missing data regions through spatial interpolat
 
-**Business Value:** US-wide cloud composite showing cloud coverage, cloud top heights, and cloud properties across entire United States.
+**Business Value:** Query results
 
-**Purpose:** Provides comprehensive cloud monitoring for solar energy f
-
-**Complexity:** Multiple CTEs (7+ levels), multi-band satellite data fusion, cloud property extraction, spatial interpolation, temporal alignment
+**Complexity:** moderate
 
 ```sql
 WITH us_spatial_bounds AS (
@@ -7326,17 +7269,15 @@ LIMIT 50000;
 
 ---
 
-## Query 28: NEXRAD-Satellite Data Fusion for Precipitation Estimation {#query-28}
+## Query 28: Can you show me precipitation estimates that combine NEXRAD radar and satellite data? {#query-28}
 
-**Use Case:** **Precipitation Monitoring - Multi-Source Precipitation Estimation Combining Radar and Satellite Data Description: Fuses NEXRAD radar reflectivity and satellite precipitation estimates to create improved US-wide precipitation maps. Combines strengths of both data sources for more accurate precipitation estimation.**
+**Use Case:** **Can you show me precipitation estimates that combine NEXRAD radar and satellite data?**
 
-**Description:** Use Case: Precipitation Monitoring - Multi-Source Precipitation Estimation Combining Radar and Satellite Data Description: Fuses NEXRAD radar reflectivity and satellite precipitation estimates to create improved US-wide precipitation maps. Combines strengths of both data sources for more accurate precipitation estimation. Purpose: Fused precipitation product combining NEXRAD and satellite data with improved accuracy and coverage. Business Value: Provides more accurate and comprehensive precipita
+**Description:** Situation: A hydrological forecasting agency requires accurate precipitation estimates for flood prediction and water resource management. NEXRAD radar provides high-resolution ground-based measurements but can be affected by beam blockage and range limitations, while satellite observations offer broader coverage but lower spatial resolution. Fusing both data sources improves precipitation estimation accuracy for critical decision-making. Task: Generate precise precipitation estimates by integrating NEXRAD radar reflectivity with satellite-derived rainfall products. Action: The query joins NEXRAD radar measurements with satellite precipitation retrievals using spatial and temporal matching criteria, groups observations by geographical grid cells and time periods, computes weighted precipitation estimates by combining radar quantitative precipitation estimates (QPE) with satellite microwave and infrared algorithms, applies window functions to calculate rolling accumulations and identify
 
-**Business Value:** Provides more accurate and comprehensive precipita
+**Business Value:** Query results
 
-**Purpose:** Fused precipitation product combining NEXRAD and satellite data with improved accuracy and coverage. Business Value: Provides more accurate and comprehensive precipita
-
-**Complexity:** Multiple CTEs (8+ levels), multi-source data fusion, weighted combination, quality assessment, spatial matching, temporal alignment
+**Complexity:** moderate
 
 ```sql
 WITH us_spatial_bounds AS (
@@ -7615,17 +7556,15 @@ LIMIT 100000;
 
 ---
 
-## Query 29: Satellite Fire Detection and Monitoring Across US {#query-29}
+## Query 29: Can you show me fire detection and monitoring results from satellite data across the United States? {#query-29}
 
-**Use Case:** **Wildfire Monitoring - Nationwide Fire Detection from GOES Satellite Imagery Description: Detects and monitors fires across the entire United States using decompressed GOES satellite imagery. Analyzes fire radiative power, temperature, and development patterns for wildfire management.**
+**Use Case:** **Can you show me fire detection and monitoring results from satellite data across the United States?**
 
-**Description:** Use Case: Wildfire Monitoring - Nationwide Fire Detection from GOES Satellite Imagery Description: Detects and monitors fires across the entire United States using decompressed GOES satellite imagery. Analyzes fire radiative power, temperature, and development patterns for wildfire management. Business Value: US-wide fire detection report showing fire locations, intensity, and development trends from satellite imagery. Purpose: Enables early wildfire detection and monitoring at national scale, s
+**Description:** Situation: A wildfire management agency and insurance risk assessment team must monitor active fires across the continental US to coordinate suppression efforts and evaluate property exposure. Satellite thermal sensors detect fire hotspots through infrared anomalies, providing critical early warning and situational awareness for fires in remote areas where ground observations are limited. Task: Generate a comprehensive fire detection and monitoring report identifying active fire locations, intensity metrics, and temporal progression across US territories. Action: The query retrieves thermal anomaly data from satellite observations across multiple platforms, joins fire detections with shapefile boundaries to assign fires to administrative regions and land ownership categories, groups hotspots by fire event clusters using spatial proximity algorithms, computes aggregate metrics including fire radiative power totals and burned area estimates, applies window functions to track fire growth
 
-**Business Value:** US-wide fire detection report showing fire locations, intensity, and development trends from satellite imagery.
+**Business Value:** Query results
 
-**Purpose:** Enables early wildfire detection and monitoring at national scale, s
-
-**Complexity:** Multiple CTEs (6+ levels), fire detection algorithms, temporal tracking, spatial clustering, intensity analysis
+**Complexity:** moderate
 
 ```sql
 WITH us_spatial_bounds AS (
@@ -7770,17 +7709,15 @@ LIMIT 5000;
 
 ---
 
-## Query 30: US-Wide Composite Product Generation (NEXRAD + Satellite) {#query-30}
+## Query 30: Can you generate a US-wide composite weather product combining NEXRAD radar and satellite data? {#query-30}
 
-**Use Case:** **Comprehensive Weather Monitoring - Multi-Source Composite Products for National Weather Analysis Description: Generates US-wide composite products combining NEXRAD radar and satellite imagery data. Creates seamless nationwide weather products with improved coverage and accuracy.**
+**Use Case:** **Can you generate a US-wide composite weather product combining NEXRAD radar and satellite data?**
 
-**Description:** Use Case: Comprehensive Weather Monitoring - Multi-Source Composite Products for National Weather Analysis Description: Generates US-wide composite products combining NEXRAD radar and satellite imagery data. Creates seamless nationwide weather products with improved coverage and accuracy. Purpose: US-wide composite products combining radar and satellite data for comprehensive weather monitoring. Purpose: Provides comprehensive weather monitoring by combining strengths of radar (high resolution)
+**Description:** Situation: A national weather forecasting center needs to produce comprehensive weather analysis products that leverage both ground-based radar and space-based satellite observations. NEXRAD radars excel at detecting precipitation structure and storm features but have limited coverage in mountainous terrain and gaps between radar sites, while satellites provide continuous spatial coverage but less detail on precipitation intensity. Combining both sources creates superior weather products for forecasting operations. Task: Generate a seamless US-wide composite weather product that integrates NEXRAD radar reflectivity with satellite cloud and precipitation imagery. Action: The query retrieves observations from the NEXRAD radar network and multiple satellite platforms, performs spatial and temporal alignment using weather station coordinates as ground truth references, joins radar and satellite data with shapefile boundaries to establish consistent geographical grids, groups observations b
 
 **Business Value:** Query results
 
-**Purpose:** US-wide composite products combining radar and satellite data for comprehensive weather monitoring. Purpose: Provides comprehensive weather monitoring by combining strengths of radar (high resolution)
-
-**Complexity:** Multiple CTEs (7+ levels), multi-source data fusion, composite generation, quality weighting, spatial interpolation
+**Complexity:** moderate
 
 ```sql
 WITH us_spatial_bounds AS (
@@ -7958,7 +7895,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260214-1523
+- **Generated**: 20260216-0700
 - **Database**: db-6
 - **Type**: Weather Data Pipeline System
 - **Queries**: 30 production queries

@@ -71,823 +71,839 @@ info:
     ---
 
 
-    Use Case: M&A Due Diligence - Pre-Acquisition Property-Level Flood Risk Assessment
-    for Acquisition Target Evaluation
+    Use Case: Show me a comprehensive pre-acquisition flood risk assessment that combines
+    multiple data sources and projects future risk scenarios.
 
 
-    Description: Description: Enterprise-level flood risk assessment combining FEMA
-    flood zones, NOAA sea level rise projections, USGS streamflow data, and NASA flood
-    models. Performs spatial joins, temporal analysis, risk scoring, and financial
-    impact estimation. Use Case: M&A Due Diligence - Pre-Acquisition Property-Level
-    Flood Risk Assessment for Acquisition Target Evaluation Business Value: Comprehensive
-    pre-acquisition flood risk assessment report for individual properties showing
-    current risk, short-term,
+    Description: Situation: A real estate investment firm is conducting due diligence
+    on potential property acquisitions and needs to understand comprehensive flood
+    risk exposure. The Flood Risk Assessment system integrates data from flood_zones
+    (FEMA designations), properties (location and characteristics), and risk_scores
+    (multi-model risk assessments) to provide operational and analytical insights
+    for investment decisions. Task: Generate property-level flood risk scores that
+    synthesize FEMA flood zone classifications, sea level rise projections, streamflow
+    analysis, and NASA climate model outputs, then categorize overall risk levels
+    and estimate potential financial impacts for each property. Action: The query
+    joins flood_zones, properties, and risk_scores tables on property identifiers,
+    aggregates risk components by property, calculates composite risk scores using
+    weighted averages, applies risk category thresholds (low/medium/high/extreme),
+    computes financial impact estimates based on property valu
 
 
-    Business Value: Comprehensive pre-acquisition flood risk assessment report for
-    individual properties showing current risk, short-term,
+    Business Value: Property-level flood risk scores with FEMA, sea level rise, streamflow,
+    and NASA model components, plus composite risk category and financial impact estimates.
 
 
-    Complexity: Deep nested CTEs (8+ levels), spatial operations (ST_WITHIN, ST_DISTANCE,
-    ST_INTERSECTS), complex aggregations, window functions with multiple frame clauses,
-    percentile calculations, temporal projections, multi-factor risk scoring, financial
-    impact modeling
+    Complexity: moderate
 
 
     ---
 
 
-    Use Case: M&A Due Diligence - Acquisition Target Portfolio-Wide Flood Risk Analysis
-    with Geographic Risk Clustering for M&A Deal Evaluation Description: Enterprise-level
-    portfolio risk aggregation combining property-level assessments with geographic
-    clustering, spatial hotspot detection, risk concentration analysis, and portfolio
-    diversification metrics. Performs multi-level aggregations, spatial clustering
-    algorithms, and risk concentration calculations. Designed specifically for M&A
-    teams to**
+    Use Case: Can you identify geographic risk hotspots and cluster patterns across
+    our potential acquisition portfolio?
 
 
-    Description: Use Case: M&A Due Diligence - Acquisition Target Portfolio-Wide Flood
-    Risk Analysis with Geographic Risk Clustering for M&A Deal Evaluation** Description:
-    Enterprise-level portfolio risk aggregation combining property-level assessments
-    with geographic clustering, spatial hotspot detection, risk concentration analysis,
-    and portfolio diversification metrics. Performs multi-level aggregations, spatial
-    clustering algorithms, and risk concentration calculations. Designed specifically
-    for M&A teams to
+    Description: Situation: A real estate acquisition team has identified multiple
+    properties across different geographic regions and needs to understand spatial
+    risk patterns before finalizing purchase decisions. The Flood Risk Assessment
+    domain maintains flood_zones (regulatory designations), properties (geographic
+    coordinates and attributes), and risk_scores (quantitative risk metrics) to support
+    portfolio-level spatial analysis. Task: Perform acquisition target portfolio risk
+    analysis that identifies geographic clustering of high-risk properties, detects
+    regional risk hotspots, calculates concentration metrics, and highlights areas
+    where multiple properties face elevated flood exposure. Action: The query spatially
+    joins properties with flood_zones using geographic coordinates, groups properties
+    by region and sub-region, calculates aggregate risk metrics (average, maximum,
+    standard deviation) for each geographic cluster, identifies hotspots where risk
+    scores exceed regional thresholds, uses window f
 
 
     Business Value: Query results
 
 
-    Complexity: Deep nested CTEs (9+ levels), spatial clustering algorithms (K-means-like),
-    geographic aggregation, risk concentration metrics, window functions with multiple
-    frame clauses, percentile calculations, spatial hotspot detection, portfolio diversification
-    scoring
+    Complexity: moderate
 
 
     ---
 
 
-    Use Case: M&A Due Diligence - Historical Flood Event Analysis for Acquisition
-    Target Risk Assessment Description: Enterprise-level historical flood event analysis
-    identifying frequency patterns, temporal clustering, severity trends, geographic
-    recurrence patterns, and flood event correlations for properties under consideration
-    for acquisition. Performs temporal analysis, spatial clustering, frequency calculations,
-    and recurrence interval analysis. Designed specifically for M&A due diligence
-    wo**
+    Use Case: What are the historical flood event patterns and frequency trends for
+    properties we''re considering acquiring?
 
 
-    Description: Use Case: M&A Due Diligence - Historical Flood Event Analysis for
-    Acquisition Target Risk Assessment** Description: Enterprise-level historical
-    flood event analysis identifying frequency patterns, temporal clustering, severity
-    trends, geographic recurrence patterns, and flood event correlations for properties
-    under consideration for acquisition. Performs temporal analysis, spatial clustering,
-    frequency calculations, and recurrence interval analysis. Designed specifically
-    for M&A due diligence wo
+    Description: Situation: During the due diligence process for property acquisitions,
+    the investment team needs to understand the actual historical flood experience
+    of target properties, not just theoretical risk scores. The Flood Risk Assessment
+    system tracks flood_zones (historical event boundaries), properties (location
+    and damage history), and risk_scores (event-adjusted assessments) to provide empirical
+    evidence of flood frequency and patterns. Task: Conduct historical flood event
+    due diligence analysis that identifies frequency patterns, detects temporal clustering
+    of events, calculates recurrence intervals, reveals seasonal trends, and compares
+    historical experience to predicted risk levels for each acquisition target. Action:
+    The query joins properties with historical flood event records, groups events
+    by property and time dimensions (year, season, decade), calculates event frequencies
+    and time intervals between occurrences, uses window functions to compute rolling
+    averages of event frequency
 
 
     Business Value: Query results
 
 
-    Complexity: Deep nested CTEs (8+ levels), temporal pattern analysis, spatial clustering,
-    frequency calculations, recurrence interval analysis, window functions with multiple
-    frame clauses, temporal clustering algorithms, severity trend analysis
+    Complexity: moderate
 
 
     ---
 
 
-    Use Case: M&A Due Diligence - Coastal Acquisition Target Risk Assessment - Multi-Horizon
-    Sea Level Rise Impact Analysis Description: Enterprise-level sea level rise impact
-    analysis projecting impacts across 5, 10, 20, 30, 50, and 100-year horizons comparing
-    Low, Intermediate-Low, Intermediate, Intermediate-High, High, and Extreme scenarios
-    for coastal properties under consideration for acquisition. Performs temporal
-    projections, scenario comparisons, impact calculations, and property vulnerabi**
+    Use Case: How will sea level rise impact our coastal properties over the next
+    30, 50, and 100 years under different climate scenarios?
 
 
-    Description: Use Case: M&A Due Diligence - Coastal Acquisition Target Risk Assessment
-    - Multi-Horizon Sea Level Rise Impact Analysis** Description: Enterprise-level
-    sea level rise impact analysis projecting impacts across 5, 10, 20, 30, 50, and
-    100-year horizons comparing Low, Intermediate-Low, Intermediate, Intermediate-High,
-    High, and Extreme scenarios for coastal properties under consideration for acquisition.
-    Performs temporal projections, scenario comparisons, impact calculations, and
-    property vulnerabi
+    Description: Situation: An institutional investor is building a long-term coastal
+    real estate portfolio and must understand how climate change and sea level rise
+    will affect property values and flood risk over multiple decades. The Flood Risk
+    Assessment domain integrates flood_zones (current and projected boundaries), properties
+    (elevation and coastal proximity), and risk_scores (scenario-based projections)
+    to model future flood exposure under various climate pathways. Task: Generate
+    sea level rise impact projections for coastal acquisition targets across multiple
+    time horizons (2050, 2070, 2100) comparing different climate scenarios (RCP 2.6
+    optimistic, RCP 4.5 moderate, RCP 8.5 pessimistic), showing flood zone migration,
+    property exposure changes, and risk score evolution over time. Action: The query
+    filters properties within coastal proximity thresholds, joins with sea level rise
+    projection models for each time horizon and scenario, calculates flood zone changes
+    as properties migrate from lower
 
 
     Business Value: Query results
 
 
-    Complexity: Deep nested CTEs (9+ levels), temporal projections, scenario comparisons,
-    impact calculations, window functions with multiple frame clauses, percentile
-    calculations, vulnerability scoring
+    Complexity: moderate
 
 
     ---
 
 
-    Use Case: M&A Due Diligence - Streamflow Risk Analysis - Streamflow Flood Frequency
-    Analysis for Acquisition Target Risk Assessment Description: Enterprise-level
-    streamflow flood frequency analysis identifying flood patterns, gauge network
-    coverage, historical flood recurrence intervals, and flood stage exceedance probabilities.
-    Performs temporal analysis, frequency calculations, and gauge network optimization.**
+    Use Case: What do streamflow patterns and gauge data tell us about flood frequency
+    and intensity near our target properties?
 
 
-    Description: Use Case: M&A Due Diligence - Streamflow Risk Analysis - Streamflow
-    Flood Frequency Analysis for Acquisition Target Risk Assessment** Description:
-    Enterprise-level streamflow flood frequency analysis identifying flood patterns,
-    gauge network coverage, historical flood recurrence intervals, and flood stage
-    exceedance probabilities. Performs temporal analysis, frequency calculations,
-    and gauge network optimization. Business Value: Streamflow Flood Frequency Analysis
-    with Gauge Network Coverage and
-
-
-    Business Value: Streamflow Flood Frequency Analysis with Gauge Network Coverage
-    and
-
-
-    Complexity: Deep nested CTEs (8+ levels), temporal pattern analysis, frequency
-    calculations, recurrence interval analysis, window functions with multiple frame
-    clauses, gauge network analysis
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Model Validation - NASA Flood Model Performance
-    Evaluation for Acquisition Target Risk Assessment Description: Enterprise-level
-    NASA model performance analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Model Validation - NASA Flood Model
-    Performance Evaluation for Acquisition Target Risk Assessment** Description: Enterprise-level
-    NASA model performance analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis. Business Value: NASA Flood Model Performance Evaluation
-    with Advanced Analytics showing NASA flood model performance and accuracy metrics
-    for acq
-
-
-    Business Value: NASA Flood Model Performance Evaluation with Advanced Analytics
-    showing NASA flood model performance and accuracy metrics for acq
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Spatial Risk Analysis - Property-Flood Zone Intersection
-    Analysis for Acquisition Target Evaluation Description: Enterprise-level property-flood
-    zone intersections analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Spatial Risk Analysis - Property-Flood
-    Zone Intersection Analysis for Acquisition Target Evaluation** Description: Enterprise-level
-    property-flood zone intersections analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis. Business Value: Property-Flood Zone Intersection
-    Analysis with Advanced Analytics showing spatial relationships between properties
-    a
-
-
-    Business Value: Property-Flood Zone Intersection Analysis with Advanced Analytics
-    showing spatial relationships between properties a
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Risk Trend Analysis - Risk Trend Analysis Over Time
-    for Acquisition Target Risk Assessment Description: Enterprise-level risk trends
-    over time analysis with advanced analytics, spatial operations, temporal analysis,
-    and risk scoring. Performs complex aggregations, window functions, and multi-dimensional
-    analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Risk Trend Analysis - Risk Trend Analysis
-    Over Time for Acquisition Target Risk Assessment** Description: Enterprise-level
-    risk trends over time analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis. Business Value: Risk Trend Analysis Over Time with
-    Advanced Analytics showing flood risk trends over time for acquisition targets.
-    Enables M&A teams to a
-
-
-    Business Value: Risk Trend Analysis Over Time with Advanced Analytics showing
-    flood risk trends over time for acquisition targets. Enables M&A teams to a
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Geographic Risk Analysis - Geographic Risk Clustering
-    for Acquisition Target Portfolio Evaluation Description: Enterprise-level geographic
-    risk clusters analysis with advanced analytics, spatial operations, temporal analysis,
-    and risk scoring. Performs complex aggregations, window functions, and multi-dimensional
-    analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Geographic Risk Analysis - Geographic
-    Risk Clustering for Acquisition Target Portfolio Evaluation** Description: Enterprise-level
-    geographic risk clusters analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis. Business Value: Geographic Risk Clustering with
-    Advanced Analytics showing geographic risk clusters and hotspots for acquisition
-    target portfol
-
-
-    Business Value: Geographic Risk Clustering with Advanced Analytics showing geographic
-    risk clusters and hotspots for acquisition target portfol
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Vulnerability Assessment - Property Vulnerability
-    Scoring for Acquisition Target Risk Assessment Description: Enterprise-level property
-    vulnerability scores analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Vulnerability Assessment - Property
-    Vulnerability Scoring for Acquisition Target Risk Assessment** Description: Enterprise-level
-    property vulnerability scores analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis. Business Value: Property Vulnerability Scoring
-    with Advanced Analytics showing property vulnerability scores for acquisition
-    targets. Enabl
-
-
-    Business Value: Property Vulnerability Scoring with Advanced Analytics showing
-    property vulnerability scores for acquisition targets. Enabl
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Financial Risk Analysis - Flood Risk Financial Impact
-    Modeling for Acquisition Pricing and Deal Structuring Description: Enterprise-level
-    financial impact modeling analysis calculating estimated flood damage costs, insurance
-    premiums, annual loss projections, and total cost of ownership for properties
-    under consideration for acquisition. Performs complex aggregations, window functions,
-    and multi-dimensional financial analysis. Designed specifically for M&A teams
-    t**
-
-
-    Description: Use Case: M&A Due Diligence - Financial Risk Analysis - Flood Risk
-    Financial Impact Modeling for Acquisition Pricing and Deal Structuring** Description:
-    Enterprise-level financial impact modeling analysis calculating estimated flood
-    damage costs, insurance premiums, annual loss projections, and total cost of ownership
-    for properties under consideration for acquisition. Performs complex aggregations,
-    window functions, and multi-dimensional financial analysis. Designed specifically
-    for M&A teams t
+    Description: Situation: A property acquisition team is evaluating sites near rivers
+    and streams where riverine flooding is the primary risk driver, requiring analysis
+    of actual streamflow measurements rather than coastal or precipitation-based models.
+    The Flood Risk Assessment system incorporates flood_zones (floodplain boundaries),
+    properties (proximity to gauged waterways), and risk_scores (streamflow-derived
+    metrics) along with gauge network coverage data to assess riverine flood risk
+    based on empirical hydrological measurements. Task: Perform streamflow flood frequency
+    analysis leveraging gauge network coverage data to assess historical flood patterns,
+    identify recurrence intervals for various flood magnitudes, evaluate gauge network
+    adequacy for each property, and recognize historical peak flow patterns that indicate
+    elevated risk. Action: The query identifies properties within catchment areas
+    of stream gauges, joins properties with the nearest upstream and downstream gauge
+    stations, retrieves
 
 
     Business Value: Query results
 
 
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
+    Complexity: moderate
 
 
     ---
 
 
-    Use Case: M&A Due Diligence - FEMA Zone Analysis - FEMA Flood Zone Risk Classification
-    for Acquisition Target Evaluation Description: Enterprise-level FEMA flood zone
-    classification analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis.**
+    Use Case: Can you show me a comprehensive performance evaluation of NASA''s flood
+    prediction models using advanced analytics?
 
 
-    Description: Use Case: M&A Due Diligence - FEMA Zone Analysis - FEMA Flood Zone
-    Risk Classification for Acquisition Target Evaluation** Description: Enterprise-level
-    FEMA flood zone classification analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis. Business Value: FEMA Flood Zone Risk Classification
-    with Advanced Analytics showing FEMA flood zone risk classifications for acquisition
-    targets
-
-
-    Business Value: FEMA Flood Zone Risk Classification with Advanced Analytics showing
-    FEMA flood zone risk classifications for acquisition targets
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Sea Level Rise Analysis - NOAA Sea Level Rise Scenario
-    Comparison for Coastal Acquisition Targets Description: Enterprise-level sea level
-    rise scenarios analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Sea Level Rise Analysis - NOAA Sea
-    Level Rise Scenario Comparison for Coastal Acquisition Targets** Description:
-    Enterprise-level sea level rise scenarios analysis with advanced analytics, spatial
-    operations, temporal analysis, and risk scoring. Performs complex aggregations,
-    window functions, and multi-dimensional analysis. Business Value: NOAA Sea Level
-    Rise Scenario Comparison with Advanced Analytics showing sea level rise scenario
-    comparisons for coastal acquisi
-
-
-    Business Value: NOAA Sea Level Rise Scenario Comparison with Advanced Analytics
-    showing sea level rise scenario comparisons for coastal acquisi
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Historical Pattern Analysis - USGS Streamflow Historical
-    Pattern Recognition for Acquisition Target Risk Assessment Description: Enterprise-level
-    streamflow patterns analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Historical Pattern Analysis - USGS
-    Streamflow Historical Pattern Recognition for Acquisition Target Risk Assessment**
-    Description: Enterprise-level streamflow patterns analysis with advanced analytics,
-    spatial operations, temporal analysis, and risk scoring. Performs complex aggregations,
-    window functions, and multi-dimensional analysis. Business Value: USGS Streamflow
-    Historical Pattern Recognition with Advanced Analytics showing historical streamflow
-    patterns for
-
-
-    Business Value: USGS Streamflow Historical Pattern Recognition with Advanced Analytics
-    showing historical streamflow patterns for
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Model Accuracy Assessment - NASA Model Prediction
-    Accuracy Assessment for Acquisition Target Risk Evaluation Description: Enterprise-level
-    NASA model accuracy analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Model Accuracy Assessment - NASA Model
-    Prediction Accuracy Assessment for Acquisition Target Risk Evaluation** Description:
-    Enterprise-level NASA model accuracy analysis with advanced analytics, spatial
-    operations, temporal analysis, and risk scoring. Performs complex aggregations,
-    window functions, and multi-dimensional analysis. Business Value: NASA Model Prediction
-    Accuracy Assessment with Advanced Analytics showing NASA model prediction accuracy
-    for acquisition
-
-
-    Business Value: NASA Model Prediction Accuracy Assessment with Advanced Analytics
-    showing NASA model prediction accuracy for acquisition
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Acquisition Target Portfolio Analysis - Portfolio
-    Risk Summary Generation for M&A Deal Evaluation Description: Enterprise-level
-    portfolio risk summaries analysis generating aggregated risk metrics, risk concentration
-    analysis, and portfolio-level risk scores for acquisition target portfolios. Performs
-    complex aggregations, window functions, and multi-dimensional analysis. Designed
-    specifically for M&A teams to assess overall flood risk exposure of acquisition
-    targ**
-
-
-    Description: Use Case: M&A Due Diligence - Acquisition Target Portfolio Analysis
-    - Portfolio Risk Summary Generation for M&A Deal Evaluation** Description: Enterprise-level
-    portfolio risk summaries analysis generating aggregated risk metrics, risk concentration
-    analysis, and portfolio-level risk scores for acquisition target portfolios. Performs
-    complex aggregations, window functions, and multi-dimensional analysis. Designed
-    specifically for M&A teams to assess overall flood risk exposure of acquisition
-    targ
+    Description: Situation: The Flood Risk Assessment team needs to evaluate the accuracy
+    and reliability of NASA''s flood prediction models against actual flood events.
+    Historical data from flood_zones, properties, and risk_scores tables contains
+    model predictions, observed outcomes, and risk assessments that enable model validation.
+    This evaluation is critical for determining whether to continue using NASA models
+    or adjust calibration parameters. Task: Generate a comprehensive performance evaluation
+    of NASA flood models including accuracy metrics, error analysis, and predictive
+    power indicators. Action: The query joins flood model predictions with actual
+    flood observations, groups results by model version and time period, calculates
+    performance metrics such as precision, recall, and RMSE, uses window functions
+    to compute rolling accuracy trends and comparative benchmarks across model versions,
+    applies quartile analysis to segment prediction errors, and handles NULL values
+    for incomplete observation da
 
 
     Business Value: Query results
 
 
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
+    Complexity: moderate
 
 
     ---
 
 
-    Use Case: M&A Due Diligence - Data Quality Assessment - Data Quality Metrics Analysis
-    for Acquisition Target Risk Assessment Description: Enterprise-level data quality
-    metrics analysis with advanced analytics, spatial operations, temporal analysis,
-    and risk scoring. Performs complex aggregations, window functions, and multi-dimensional
-    analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Data Quality Assessment - Data Quality
-    Metrics Analysis for Acquisition Target Risk Assessment** Description: Enterprise-level
-    data quality metrics analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis. Business Value: Data Quality Metrics Analysis with
-    Advanced Analytics showing data quality metrics for flood risk data sources used
-    in acquisition tar
-
-
-    Business Value: Data Quality Metrics Analysis with Advanced Analytics showing
-    data quality metrics for flood risk data sources used in acquisition tar
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Spatial Analysis Optimization - Spatial Join Optimization
-    for Acquisition Target Risk Assessment Description: Enterprise-level spatial join
-    optimization analysis with advanced analytics, spatial operations, temporal analysis,
-    and risk scoring. Performs complex aggregations, window functions, and multi-dimensional
-    analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Spatial Analysis Optimization - Spatial
-    Join Optimization for Acquisition Target Risk Assessment** Description: Enterprise-level
-    spatial join optimization analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis. Business Value: Spatial Join Optimization with
-    Advanced Analytics showing optimized spatial join analysis for acquisition target
-    risk assessmen
-
-
-    Business Value: Spatial Join Optimization with Advanced Analytics showing optimized
-    spatial join analysis for acquisition target risk assessmen
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Risk Score Fusion - Multi-Source Risk Score Fusion
-    for Acquisition Target Risk Assessment Description: Enterprise-level multi-source
-    risk fusion analysis with advanced analytics, spatial operations, temporal analysis,
-    and risk scoring. Performs complex aggregations, window functions, and multi-dimensional
-    analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Risk Score Fusion - Multi-Source Risk
-    Score Fusion for Acquisition Target Risk Assessment** Description: Enterprise-level
-    multi-source risk fusion analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis. Business Value: Multi-Source Risk Score Fusion
-    with Advanced Analytics showing fused multi-source risk scores for acquisition
-    targets. Enables M&A team
-
-
-    Business Value: Multi-Source Risk Score Fusion with Advanced Analytics showing
-    fused multi-source risk scores for acquisition targets. Enables M&A team
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Temporal Risk Analysis - Temporal Risk Projection
-    Analysis for Acquisition Target Risk Assessment Description: Enterprise-level
-    temporal risk projections analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Temporal Risk Analysis - Temporal Risk
-    Projection Analysis for Acquisition Target Risk Assessment** Description: Enterprise-level
-    temporal risk projections analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis. Business Value: Temporal Risk Projection Analysis
-    with Advanced Analytics showing temporal risk projections for acquisition targets
-    across mul
-
-
-    Business Value: Temporal Risk Projection Analysis with Advanced Analytics showing
-    temporal risk projections for acquisition targets across mul
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Elevation Risk Analysis - Property Elevation vs
-    Flood Risk Correlation for Acquisition Target Evaluation Description: Enterprise-level
-    elevation-risk correlation analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Elevation Risk Analysis - Property
-    Elevation vs Flood Risk Correlation for Acquisition Target Evaluation** Description:
-    Enterprise-level elevation-risk correlation analysis with advanced analytics,
-    spatial operations, temporal analysis, and risk scoring. Performs complex aggregations,
-    window functions, and multi-dimensional analysis. Business Value: Property Elevation
-    vs Flood Risk Correlation with Advanced Analytics showing correlation between
-    property elevation an
-
-
-    Business Value: Property Elevation vs Flood Risk Correlation with Advanced Analytics
-    showing correlation between property elevation an
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Historical Impact Assessment - Historical Flood
-    Event Impact Assessment for Acquisition Target Risk Evaluation Description: Enterprise-level
-    historical flood impacts analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Historical Impact Assessment - Historical
-    Flood Event Impact Assessment for Acquisition Target Risk Evaluation** Description:
-    Enterprise-level historical flood impacts analysis with advanced analytics, spatial
-    operations, temporal analysis, and risk scoring. Performs complex aggregations,
-    window functions, and multi-dimensional analysis. Business Value: Historical Flood
-    Event Impact Assessment with Advanced Analytics showing historical flood event
-    impact assessment
-
-
-    Business Value: Historical Flood Event Impact Assessment with Advanced Analytics
-    showing historical flood event impact assessment
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Model Comparison - Model Performance Comparison
-    for Acquisition Target Risk Assessment Description: Enterprise-level model performance
-    comparison analysis with advanced analytics, spatial operations, temporal analysis,
-    and risk scoring. Performs complex aggregations, window functions, and multi-dimensional
-    analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Model Comparison - Model Performance
-    Comparison for Acquisition Target Risk Assessment** Description: Enterprise-level
-    model performance comparison analysis with advanced analytics, spatial operations,
-    temporal analysis, and risk scoring. Performs complex aggregations, window functions,
-    and multi-dimensional analysis. Business Value: Model Performance Comparison with
-    Advanced Analytics showing comparison of multiple flood model performance for
-    acquisition target ris
-
-
-    Business Value: Model Performance Comparison with Advanced Analytics showing comparison
-    of multiple flood model performance for acquisition target ris
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Geographic Distribution Analysis - Geographic Risk
-    Distribution Analysis for Acquisition Target Portfolio Evaluation Description:
-    Enterprise-level geographic risk distribution analysis with advanced analytics,
-    spatial operations, temporal analysis, and risk scoring. Performs complex aggregations,
-    window functions, and multi-dimensional analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Geographic Distribution Analysis -
-    Geographic Risk Distribution Analysis for Acquisition Target Portfolio Evaluation**
-    Description: Enterprise-level geographic risk distribution analysis with advanced
-    analytics, spatial operations, temporal analysis, and risk scoring. Performs complex
-    aggregations, window functions, and multi-dimensional analysis. Business Value:
-    Geographic Risk Distribution Analysis with Advanced Analytics showing geographic
-    risk distribution analy
-
-
-    Business Value: Geographic Risk Distribution Analysis with Advanced Analytics
-    showing geographic risk distribution analy
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Property Type Analysis - Property Type Risk Analysis
-    for Acquisition Target Risk Assessment Description: Enterprise-level property
-    type risk analysis with advanced analytics, spatial operations, temporal analysis,
-    and risk scoring. Performs complex aggregations, window functions, and multi-dimensional
-    analysis.**
-
-
-    Description: Use Case: M&A Due Diligence - Property Type Analysis - Property Type
-    Risk Analysis for Acquisition Target Risk Assessment** Description: Enterprise-level
-    property type risk analysis with advanced analytics, spatial operations, temporal
-    analysis, and risk scoring. Performs complex aggregations, window functions, and
-    multi-dimensional analysis. Business Value: Property Type Risk Analysis with Advanced
-    Analytics showing property type-specific flood risk analysis for acquisition targets.
-    Enables M&A
-
-
-    Business Value: Property Type Risk Analysis with Advanced Analytics showing property
-    type-specific flood risk analysis for acquisition targets. Enables M&A
-
-
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
-
-
-    ---
-
-
-    Use Case: M&A Due Diligence - Recursive Risk Analysis - Recursive Flood Risk Propagation
-    for Acquisition Target Risk Assessment Description: Enterprise-level recursive
-    flood risk propagation analysis modeling cascading flood risk effects across adjacent
-    properties and flood zones. Uses recursive CTEs to traverse spatial relationships,
-    propagate risk scores through connected properties, and calculate cumulative risk
-    impacts. Performs complex spatial joins, recursive graph traversal, risk propag**
-
-
-    Description: Use Case: M&A Due Diligence - Recursive Risk Analysis - Recursive
-    Flood Risk Propagation for Acquisition Target Risk Assessment** Description: Enterprise-level
-    recursive flood risk propagation analysis modeling cascading flood risk effects
-    across adjacent properties and flood zones. Uses recursive CTEs to traverse spatial
-    relationships, propagate risk scores through connected properties, and calculate
-    cumulative risk impacts. Performs complex spatial joins, recursive graph traversal,
-    risk propag
+    Use Case: Can you provide a detailed analysis of how properties intersect with
+    flood zones using advanced spatial analytics?
+
+
+    Description: Situation: Urban planners and insurance underwriters require detailed
+    understanding of which properties fall within designated flood zones to assess
+    exposure and inform zoning decisions. The flood_zones table contains geographic
+    boundaries of high-risk areas, while the properties table holds property locations
+    and characteristics. Analyzing these intersections helps prioritize mitigation
+    efforts and refine insurance pricing models. Task: Produce a comprehensive property-flood
+    zone intersection analysis showing exposure levels, property counts, and risk
+    distribution across different zone types. Action: The query performs spatial joins
+    between properties and flood_zones tables to identify intersections, groups results
+    by flood zone classification and property type, calculates aggregate metrics including
+    total property count, assessed value exposure, and average risk scores per zone,
+    uses window functions to rank zones by exposure level and compute percentile distributions
+    of properties a
 
 
     Business Value: Query results
 
 
-    Complexity: Recursive CTE (WITH RECURSIVE), deep nested CTEs (8+ levels), spatial
-    operations (ST_DISTANCE, ST_WITHIN, ST_INTERSECTS), recursive graph traversal,
-    risk propagation algorithms, complex aggregations, window functions with multiple
-    frame clauses, spatial clustering
+    Complexity: moderate
 
 
     ---
 
 
-    Use Case: M&A Due Diligence - Risk Identification - High-Risk Property Identification
-    for Acquisition Target Screening and Deal-Breaker Analysis Description: Enterprise-level
-    high-risk property identification analysis identifying properties with extreme
-    flood risk that may be deal-breakers for acquisition transactions. Performs complex
-    aggregations, window functions, and multi-dimensional risk analysis. Designed
-    specifically for M&A teams to screen acquisition targets and identify properties
-    w**
+    Use Case: Can you show me how flood risk levels have changed over time with detailed
+    trend analysis and forecasting insights?
 
 
-    Description: Use Case: M&A Due Diligence - Risk Identification - High-Risk Property
-    Identification for Acquisition Target Screening and Deal-Breaker Analysis** Description:
-    Enterprise-level high-risk property identification analysis identifying properties
-    with extreme flood risk that may be deal-breakers for acquisition transactions.
-    Performs complex aggregations, window functions, and multi-dimensional risk analysis.
-    Designed specifically for M&A teams to screen acquisition targets and identify
-    properties w
+    Description: Situation: Climate change and urban development are altering flood
+    risk profiles across regions, making historical trend analysis essential for long-term
+    planning. The risk_scores table contains timestamped risk assessments for properties
+    and flood zones, enabling temporal analysis of how risk levels evolve. Emergency
+    management agencies need these trends to allocate resources and update preparedness
+    plans. Task: Generate a comprehensive time-series analysis of flood risk trends
+    showing historical patterns, seasonal variations, and rate of change indicators.
+    Action: The query extracts risk scores with associated timestamps, groups data
+    by time periods (monthly, quarterly, yearly) and geographic dimensions, calculates
+    aggregate risk metrics and growth rates for each period, uses window functions
+    to compute rolling averages, year-over-year comparisons, and moving trend indicators,
+    applies quartile analysis to identify accelerating risk areas, and handles NULL
+    values in historical records
 
 
     Business Value: Query results
 
 
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
+    Complexity: moderate
 
 
     ---
 
 
-    Use Case: M&A Post-Acquisition - Risk Mitigation Planning - Post-Acquisition Flood
-    Risk Mitigation Cost-Benefit Analysis for Acquired Properties Description: Enterprise-level
-    mitigation cost-benefit analysis calculating costs and benefits of flood risk
-    mitigation measures for properties after acquisition. Performs complex aggregations,
-    window functions, and multi-dimensional cost-benefit analysis. Designed specifically
-    for M&A teams to evaluate post-acquisition risk mitigation strategies and o**
+    Use Case: Can you identify geographic clusters of high flood risk areas and analyze
+    their characteristics using spatial analytics?
 
 
-    Description: Use Case: M&A Post-Acquisition - Risk Mitigation Planning - Post-Acquisition
-    Flood Risk Mitigation Cost-Benefit Analysis for Acquired Properties** Description:
-    Enterprise-level mitigation cost-benefit analysis calculating costs and benefits
-    of flood risk mitigation measures for properties after acquisition. Performs complex
-    aggregations, window functions, and multi-dimensional cost-benefit analysis. Designed
-    specifically for M&A teams to evaluate post-acquisition risk mitigation strategies
-    and o
+    Description: Situation: Flood risk is not uniformly distributed but tends to cluster
+    in specific geographic areas due to topography, drainage patterns, and development
+    density. Understanding these clusters helps emergency services position resources
+    strategically and guides infrastructure investment decisions. The flood_zones,
+    properties, and risk_scores tables contain geographic coordinates and risk metrics
+    that enable spatial clustering analysis. Task: Perform geographic clustering analysis
+    to identify high-risk concentration areas and characterize their properties, exposure
+    levels, and common risk factors. Action: The query groups data by geographic coordinates
+    and administrative boundaries, calculates density metrics and aggregate risk scores
+    for each area, identifies clusters using spatial proximity and risk threshold
+    criteria, uses window functions to compute cluster rankings, comparative metrics
+    between clusters, and spatial correlation indicators, applies quartile analysis
+    to segment cluste
 
 
     Business Value: Query results
 
 
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
+    Complexity: moderate
 
 
     ---
 
 
-    Use Case: M&A Due Diligence - Diversification Analysis - Acquisition Target Portfolio
-    Diversification Risk Analysis for M&A Deal Evaluation Description: Enterprise-level
-    portfolio diversification analysis evaluating geographic risk distribution, risk
-    concentration, and diversification benefits of acquisition target portfolios.
-    Performs complex aggregations, window functions, and multi-dimensional diversification
-    analysis. Designed specifically for M&A teams to assess whether acquisition target**
+    Use Case: Can you generate comprehensive vulnerability scores for properties incorporating
+    multiple risk factors and exposure indicators?
 
 
-    Description: Use Case: M&A Due Diligence - Diversification Analysis - Acquisition
-    Target Portfolio Diversification Risk Analysis for M&A Deal Evaluation** Description:
-    Enterprise-level portfolio diversification analysis evaluating geographic risk
-    distribution, risk concentration, and diversification benefits of acquisition
-    target portfolios. Performs complex aggregations, window functions, and multi-dimensional
-    diversification analysis. Designed specifically for M&A teams to assess whether
-    acquisition target
+    Description: Situation: Property-level vulnerability assessment requires integrating
+    multiple risk dimensions including flood zone classification, structural characteristics,
+    historical flood events, and socioeconomic factors. Insurance companies and government
+    agencies need standardized vulnerability scores to prioritize interventions and
+    set appropriate coverage terms. The properties and risk_scores tables contain
+    individual property attributes, while flood_zones provides contextual hazard information.
+    Task: Calculate comprehensive vulnerability scores for each property by combining
+    multiple risk factors, exposure indicators, and historical patterns into a unified
+    metric. Action: The query joins properties with flood_zones and risk_scores tables,
+    aggregates multiple risk dimensions including location-based hazard levels, property
+    characteristics like elevation and construction type, historical loss data, and
+    proximity to water bodies, applies weighting factors to different risk components,
+    uses w
 
 
     Business Value: Query results
 
 
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
+    Complexity: moderate
 
 
     ---
 
 
-    Use Case: M&A Due Diligence - Comprehensive Due Diligence Report - Comprehensive
-    Flood Risk Assessment Report for M&A Transaction Decision-Making Description:
-    Enterprise-level comprehensive flood risk assessment report combining all risk
-    factors (FEMA zones, sea level rise, streamflow, NASA models), financial impact
-    analysis, historical flood patterns, and portfolio-level risk metrics for acquisition
-    targets. Performs complex aggregations, window functions, and multi-dimensional
-    analysis. Desi**
+    Use Case: Show me the financial impact modeling for M&A acquisition pricing using
+    advanced analytics.
 
 
-    Description: Use Case: M&A Due Diligence - Comprehensive Due Diligence Report
-    - Comprehensive Flood Risk Assessment Report for M&A Transaction Decision-Making**
-    Description: Enterprise-level comprehensive flood risk assessment report combining
-    all risk factors (FEMA zones, sea level rise, streamflow, NASA models), financial
-    impact analysis, historical flood patterns, and portfolio-level risk metrics for
-    acquisition targets. Performs complex aggregations, window functions, and multi-dimensional
-    analysis. Desi
+    Description: Situation: Our investment team is evaluating multiple acquisition
+    targets in flood-prone areas and needs to quantify the financial risk exposure.
+    The Flood Risk Assessment database contains flood_zones, properties, and risk_scores
+    tables that link geographic flood hazards to property valuations, enabling us
+    to model how flood risk affects acquisition pricing and long-term asset value.
+    Task: Generate a comprehensive financial impact model for M&A acquisition pricing
+    that incorporates flood risk as a material factor in valuation adjustments. Action:
+    The query performs multi-dimensional aggregation by grouping properties by flood
+    zone classification and risk tier, calculates summary statistics including total
+    property values at risk, average risk scores, and value quartiles to identify
+    concentration risk. Window functions compute rolling averages of historical flood
+    events and year-over-year risk score changes to capture trending exposure. LEFT
+    JOINs ensure all properties are included eve
 
 
     Business Value: Query results
 
 
-    Complexity: Deep nested CTEs (7+ levels), spatial operations, temporal analysis,
-    complex aggregations, window functions with multiple frame clauses, risk scoring
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Show me the FEMA flood zone risk classification with advanced analytics.
+
+
+    Description: Situation: Our insurance underwriting department must align premium
+    pricing with the latest FEMA flood zone designations, which range from high-risk
+    Special Flood Hazard Areas (SFHA) to moderate and low-risk zones. The flood_zones
+    table contains official FEMA classifications, while properties and risk_scores
+    tables provide granular exposure data across our insured portfolio. Regulatory
+    compliance requires annual reviews of zone classifications and corresponding risk
+    tiers. Task: Produce a comprehensive FEMA flood zone risk classification report
+    with advanced analytical breakdowns to support underwriting decisions and regulatory
+    filings. Action: The query groups properties by FEMA flood zone designations (A,
+    AE, V, VE, X, etc.) and calculates aggregate metrics including property counts
+    per zone, total insured values, and average risk scores. Statistical functions
+    compute quartile distributions of risk scores within each zone to identify outliers
+    and concentration. Window functions gener
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Show me the NOAA sea level rise scenario comparison with advanced analytics.
+
+
+    Description: Situation: Our coastal property development division is planning
+    infrastructure investments with 30-50 year horizons and must account for climate-driven
+    sea level rise. NOAA provides multiple probabilistic scenarios (low, intermediate-low,
+    intermediate, intermediate-high, high, and extreme) that project different rates
+    of sea level increase. Our flood_zones table includes elevation data and projected
+    inundation boundaries, while properties and risk_scores capture current coastal
+    assets and their vulnerability profiles. Task: Generate a comparative analysis
+    across NOAA sea level rise scenarios showing differential impacts on property
+    exposure and risk trajectories to inform capital allocation and adaptation planning.
+    Action: The query creates scenario-based groupings by categorizing properties
+    according to their elevation relative to each NOAA projection threshold (0.5m,
+    1.0m, 1.5m, 2.0m sea level rise by 2100). Aggregation functions calculate properties
+    at risk, total asset values expo
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Show me the USGS streamflow historical pattern recognition with advanced
+    analytics.
+
+
+    Description: Situation: Our flood forecasting and emergency management team monitors
+    riverine flood risk for properties adjacent to major waterways. The USGS maintains
+    extensive streamflow gauge data capturing decades of discharge measurements at
+    key monitoring stations. This historical data, when linked to our flood_zones
+    and properties tables through watershed associations, reveals recurring flood
+    patterns, seasonal peaks, and long-term trend shifts that inform risk scoring
+    and early warning systems. Task: Develop a historical pattern recognition analysis
+    of USGS streamflow data that identifies recurring flood cycles, detects trend
+    anomalies, and correlates streamflow patterns with property-level flood risk scores
+    to enhance predictive accuracy. Action: The query aggregates USGS streamflow measurements
+    by time periods (monthly, seasonal, annual) and gauge locations, calculating statistical
+    measures including mean discharge, peak flows, base flows, and flow variability
+    coefficients. Window functio
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Show me the NASA model prediction accuracy assessment with advanced
+    analytics.
+
+
+    Description: Situation: Our climate risk analytics team integrates NASA''s flood
+    prediction models, which use satellite data, atmospheric modeling, and machine
+    learning to forecast flood events. These predictions must be validated against
+    actual flood occurrences recorded in our properties and risk_scores tables to
+    assess model reliability before incorporating them into operational risk management
+    workflows. Model accuracy varies by geography, flood type (coastal vs. riverine
+    vs. flash flooding), and forecast lead time, requiring granular validation across
+    multiple dimensions. Task: Conduct a comprehensive accuracy assessment of NASA
+    flood prediction models by comparing forecasted flood events against observed
+    outcomes, calculating performance metrics across different geographies, flood
+    types, and time horizons to establish model confidence intervals and identify
+    improvement opportunities. Action: The query joins NASA model predictions (which
+    may be stored as forecasted flood zones or risk probabili
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Can you generate a comprehensive risk summary for potential acquisition
+    target portfolios using advanced analytics?
+
+
+    Description: Situation: Our real estate investment team is evaluating multiple
+    property portfolios for potential acquisition in flood-prone regions. We need
+    to assess the aggregate flood risk exposure across these portfolios to inform
+    our acquisition decisions and pricing strategies. The flood_zones table contains
+    official flood zone classifications, the properties table holds property characteristics
+    and locations, and the risk_scores table maintains historical and current risk
+    assessments. Task: Generate a comprehensive risk summary for each acquisition
+    target portfolio that aggregates risk metrics, compares portfolios against each
+    other, and identifies risk concentration patterns. Action: The query joins properties
+    with their corresponding flood zones and risk scores, groups properties by portfolio
+    identifier and flood zone category, computes aggregate metrics including total
+    exposure value, average risk scores, and property counts, calculates quartile
+    distributions of risk scores within each po
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Can you provide a detailed analysis of data quality metrics across our
+    flood risk assessment database?
+
+
+    Description: Situation: Our flood risk assessment operations rely on accurate
+    and complete data from multiple sources including government flood zone maps,
+    property records, and third-party risk scoring services. Data quality issues such
+    as missing risk scores, outdated assessments, or mismatched property-to-flood-zone
+    linkages can lead to incorrect risk evaluations and poor business decisions. The
+    flood_zones, properties, and risk_scores tables form the core of our analytical
+    database, and we need to monitor data quality continuously. Task: Analyze and
+    report on data quality metrics across all critical data elements in the flood
+    risk assessment system, identifying gaps, inconsistencies, and timeliness issues.
+    Action: The query performs completeness checks by counting NULL and missing values
+    in critical fields across all three tables, calculates consistency metrics by
+    identifying properties without matching flood zone assignments or risk scores,
+    groups quality metrics by data source, property type,
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Can you optimize the spatial join performance for matching properties
+    to their corresponding flood zones?
+
+
+    Description: Situation: Our flood risk assessment platform processes millions
+    of property records that must be spatially matched to flood zone boundaries to
+    determine risk exposure. The properties table contains geographic coordinates
+    or boundaries for each property, while the flood_zones table defines polygonal
+    flood zone areas with different risk classifications. Traditional spatial joins
+    using full geometric intersection operations are computationally expensive and
+    cause query timeouts on large datasets, impacting both batch risk assessment processes
+    and real-time property lookup services. Task: Implement an optimized spatial join
+    strategy that efficiently matches properties to their corresponding flood zones
+    while maintaining spatial accuracy and supporting advanced analytics on the joined
+    dataset. Action: The query employs spatial indexing hints to leverage pre-built
+    spatial indexes on property locations and flood zone geometries, uses bounding
+    box pre-filtering to quickly eliminate non-overla
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Can you create a unified risk score by fusing data from multiple independent
+    risk assessment sources?
+
+
+    Description: Situation: Our flood risk assessment practice utilizes risk scores
+    from multiple independent sources including government FEMA flood maps, private
+    insurance risk models, climate change projection services, and historical flood
+    claim databases. Each source provides risk scores on different scales, with varying
+    levels of reliability, coverage, and update frequency. Properties in the risk_scores
+    table may have assessments from one, several, or all sources, and relying on a
+    single source can lead to incomplete or biased risk evaluation. Investment decisions
+    require a comprehensive, weighted risk score that synthesizes all available data
+    sources while accounting for their relative reliability and recency. Task: Develop
+    a multi-source risk score fusion algorithm that combines risk assessments from
+    all available sources into a unified, normalized risk score for each property
+    with appropriate confidence indicators. Action: The query pivots risk scores from
+    different sources stored in the risk_
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Can you project how flood risk will evolve over time for our property
+    portfolio using temporal analysis?
+
+
+    Description: Situation: Climate change, infrastructure development, and environmental
+    factors are causing flood risk profiles to change dynamically over time. Our property
+    portfolio includes assets with 20-30 year holding periods, and investment decisions
+    require understanding not just current flood risk but projected risk evolution
+    over the asset lifecycle. The risk_scores table contains historical risk assessments
+    with timestamps, flood_zones may have historical boundary changes, and properties
+    have acquisition dates and planned hold periods. Static risk analysis using current
+    conditions is insufficient for long-term investment planning and asset management
+    strategies. Task: Perform temporal risk projection analysis that models how flood
+    risk is expected to change over time for each property in the portfolio, identifying
+    properties with increasing risk exposure and estimating future risk levels at
+    key decision points. Action: The query extracts historical risk score time series
+    for each property
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Show me how property elevation correlates with flood risk scores using
+    statistical analysis.
+
+
+    Description: Situation: The flood risk management team needs to understand whether
+    property elevation is a reliable predictor of flood risk to improve risk assessment
+    models and inform insurance underwriting decisions. Historical data from flood_zones,
+    properties, and risk_scores tables contains property characteristics including
+    elevation measurements and calculated flood risk scores. Task: Analyze the correlation
+    between property elevation and flood risk scores using advanced statistical methods.
+    Action: The query joins properties with their associated flood zones and risk
+    scores, groups properties by elevation ranges or quartiles, calculates aggregate
+    risk metrics (mean, median, standard deviation) for each elevation band, applies
+    window functions to compute rolling averages and percentile rankings, and uses
+    correlation coefficients to measure the strength of the relationship. The query
+    handles NULL values in elevation data through COALESCE and filters out incomplete
+    records. Result: The output
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Provide a comprehensive impact assessment of historical flood events
+    across affected properties.
+
+
+    Description: Situation: Following several major flood events, the risk assessment
+    department needs to evaluate the actual impact of past floods on properties to
+    validate risk models, calculate insurance payouts, and update future risk predictions.
+    The flood_zones table tracks historical flood boundaries and severity, properties
+    contains ownership and valuation data, and risk_scores maintains temporal risk
+    assessments. Task: Generate a comprehensive impact assessment of historical flood
+    events showing property damage patterns and outcomes. Action: The query retrieves
+    historical flood events with their occurrence dates and severity levels, joins
+    with affected properties within flood zone boundaries, groups results by flood
+    event and property characteristics, calculates aggregated impact metrics including
+    number of properties affected, total estimated damages, and average risk score
+    changes before and after events. Window functions compute running totals of damage
+    over time and rank events by severity
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Compare the accuracy and performance of different flood risk prediction
+    models.
+
+
+    Description: Situation: The analytics team has deployed multiple flood risk prediction
+    models and needs to evaluate which model provides the most accurate risk assessments
+    to determine which should be used for production risk scoring. The risk_scores
+    table contains predictions from different models along with actual observed outcomes
+    from flood events, while properties and flood_zones provide the underlying feature
+    data. Task: Compare the performance of competing flood risk models using statistical
+    accuracy metrics. Action: The query extracts predicted risk scores from multiple
+    models alongside actual flood outcomes for each property, groups results by model
+    identifier and time period, calculates performance metrics including prediction
+    accuracy, mean absolute error, root mean squared error, and confusion matrix statistics
+    (true positives, false positives, etc.). Window functions compute percentile rankings
+    of model performance and rolling accuracy trends over time. The query handles
+    cases where ce
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Analyze how flood risk is distributed across different geographic regions
+    and zones.
+
+
+    Description: Situation: Urban planners and insurance underwriters need to understand
+    the geographic distribution of flood risk to prioritize infrastructure investments,
+    set regional insurance rates, and identify areas requiring enhanced flood mitigation
+    measures. The flood_zones table contains geographic boundaries and risk classifications,
+    properties links to specific locations, and risk_scores provides quantitative
+    risk assessments by area. Task: Perform a geographic analysis showing how flood
+    risk varies across different regions, zones, and neighborhoods. Action: The query
+    groups properties by geographic dimensions such as flood zone designation, county,
+    zip code, or grid coordinates, calculates aggregate risk metrics for each geographic
+    unit including average risk score, property count, high-risk property percentage,
+    and risk score quartiles. Window functions compute regional rankings and compare
+    each area''s risk to neighboring regions. The query uses spatial joins to associate
+    properties with
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Break down flood risk patterns by property type to identify which building
+    types face the highest risk.
+
+
+    Description: Situation: Insurance underwriters need to understand how flood risk
+    varies by property type (residential, commercial, industrial, etc.) to establish
+    accurate premium rates, coverage limits, and risk-based underwriting guidelines
+    for different building categories. The properties table categorizes buildings
+    by type and use, flood_zones identifies exposure areas, and risk_scores contains
+    assessed risk levels for each property. Task: Analyze flood risk by property type
+    to identify which categories have the highest exposure and vulnerability. Action:
+    The query groups properties by type classification (single-family residential,
+    multi-family, commercial, industrial, etc.), joins with associated flood zones
+    and risk scores, calculates aggregate statistics for each property type including
+    average risk score, median risk score, risk score distribution quartiles, count
+    of high-risk properties, and percentage of properties in flood zones. Window functions
+    rank property types by risk level and com
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Show me how flood risk propagates recursively across connected zones
+    with advanced analytics.
+
+
+    Description: Situation: The Flood Risk Assessment team needs to understand how
+    flood events cascade through connected geographical zones. Properties in adjacent
+    flood zones may experience compounding risk as water flows through interconnected
+    areas, affecting insurance underwriting and emergency planning decisions. Task:
+    Analyze recursive flood risk propagation patterns across connected zones to identify
+    cascading risk exposure. Action: The query uses recursive CTEs to traverse zone
+    connectivity relationships, joins flood_zones with properties and risk_scores
+    tables, groups results by zone hierarchy levels, computes aggregate risk scores
+    at each propagation level using window functions for cumulative impact analysis,
+    calculates rolling averages to identify risk acceleration patterns, and handles
+    NULL values in zone connectivity data. Result: Returns a hierarchical dataset
+    showing risk propagation depth, cumulative exposure by level, affected property
+    counts at each cascade stage, and comparative me
+
+
+    Business Value: Query results
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: Identify high-risk properties that could be deal-breakers in our M&A
+    transaction with advanced analytics.
+
+
+    Description: Situation: During M&A due diligence for a real estate portfolio acquisition,
+    the investment team must identify properties with flood risk severe enough to
+    terminate negotiations or significantly reduce valuation. Properties in high-risk
+    zones with poor risk scores represent potential liabilities that could exceed
+    acceptable acquisition thresholds. Task: Identify and quantify high-risk properties
+    that pose deal-breaker level exposure for M&A decision-making. Action: The query
+    joins properties with flood_zones and risk_scores tables using LEFT JOINs to capture
+    properties with missing risk data, filters for properties exceeding critical risk
+    thresholds (top quartile), groups results by zone and property characteristics,
+    computes aggregate exposure metrics including total property value at risk and
+    count of critically exposed assets, uses window functions to rank properties by
+    risk severity within each zone, and calculates comparative metrics against portfolio
+    averages. Result: Returns a p
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Analyze the cost-benefit economics of flood risk mitigation strategies
+    after acquisition with advanced analytics.
+
+
+    Description: Situation: After acquiring a property portfolio with flood exposure,
+    the asset management team needs to prioritize capital allocation for risk mitigation
+    measures such as elevation, flood barriers, or drainage improvements. Each mitigation
+    strategy has different costs and effectiveness levels, requiring systematic cost-benefit
+    analysis to optimize post-acquisition investment decisions. Task: Perform cost-benefit
+    analysis of flood risk mitigation options to optimize post-acquisition capital
+    deployment strategy. Action: The query joins properties with risk_scores and flood_zones
+    tables, groups properties by current risk level and mitigation scenario, computes
+    baseline risk exposure values and potential losses, calculates mitigation costs
+    by property type and zone characteristics using CASE statements, uses window functions
+    to calculate risk reduction percentages and payback periods across different mitigation
+    strategies, applies quartile analysis to segment properties by cost-effectivene
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Assess portfolio diversification risk across acquisition targets from
+    a flood exposure perspective with advanced analytics.
+
+
+    Description: Situation: The acquisitions team is evaluating multiple property
+    portfolios as potential targets and needs to understand concentration risk from
+    flood exposure. A poorly diversified portfolio with properties clustered in similar
+    flood zones creates correlated risk that could result in simultaneous losses during
+    flood events, while geographic and risk-level diversification provides natural
+    hedging. Task: Analyze flood risk diversification characteristics across acquisition
+    target portfolios to assess concentration risk and portfolio resilience. Action:
+    The query aggregates properties from target portfolios joining flood_zones and
+    risk_scores tables, groups by target portfolio identifier, zone type, and risk
+    tier, computes concentration metrics including Herfindahl index for geographic
+    and risk dispersion, uses window functions to calculate portfolio-level statistics
+    and compare each target against benchmark diversification ratios, analyzes correlation
+    of risk exposures across zones usin
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
+
+
+    ---
+
+
+    Use Case: Generate a comprehensive flood risk assessment report for M&A due diligence
+    with advanced analytics.
+
+
+    Description: Situation: The M&A team requires a comprehensive flood risk assessment
+    report covering all material aspects of environmental exposure for a target property
+    portfolio. This due diligence report must integrate zone classifications, individual
+    property risk scores, aggregate exposure metrics, temporal risk trends, and comparative
+    benchmarks to support the investment committee''s acquisition decision and inform
+    valuation adjustments, risk reserves, and post-acquisition integration planning.
+    Task: Generate a comprehensive, multi-dimensional flood risk assessment report
+    for M&A due diligence incorporating all relevant risk metrics and analytics. Action:
+    The query performs complex joins across flood_zones, properties, and risk_scores
+    tables using LEFT JOINs to ensure complete coverage including properties with
+    incomplete data, groups results by multiple dimensions including zone type, property
+    characteristics, and risk categories, computes extensive aggregate metrics including
+    total exposure v
+
+
+    Business Value: Query results
+
+
+    Complexity: moderate
 
 
     ---
@@ -915,7 +931,7 @@ info:
     Document Information:
 
 
-    - Generated: 20260214-1524
+    - Generated: 20260216-0700
 
     - Database: db-16
 

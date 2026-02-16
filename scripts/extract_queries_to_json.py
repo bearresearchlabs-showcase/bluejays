@@ -48,13 +48,30 @@ def extract_queries(md_path: Path) -> List[Dict]:
         complexity = ""
         expected = "Query results"
 
+        question = title or f"Query {qnum}"
+        normal_query = ""
+        evidence = ""
+        extra = {}  # purpose, use_case, business_value from JSON block
+
         # Try ```sql block first (legacy)
         sql_m = re.search(r"```(?:sql)?\n(.*?)```", section, re.DOTALL)
         if sql_m:
             sql_text = sql_m.group(1).strip()
             desc_text = section[: sql_m.start()]
+            # Parse **Question:**, **Normal Query:**, **Evidence:** (LiveSQLBench/BIRD format)
+            qm = re.search(r"\*\*Question:\*\*\s*(.+?)(?=\*\*|\n\n|$)", desc_text, re.DOTALL | re.I)
+            nqm = re.search(r"\*\*Normal Query:\*\*\s*(.+?)(?=\*\*|\n\n|$)", desc_text, re.DOTALL | re.I)
+            em_m = re.search(r"\*\*Evidence:\*\*\s*(.+?)(?=\*\*|\n\n|```|$)", desc_text, re.DOTALL | re.I)
+            if qm:
+                question = qm.group(1).strip()[:500]
+            if nqm:
+                normal_query = nqm.group(1).strip()[:500]
+            if em_m:
+                evidence = em_m.group(1).strip()[:1000]
             desc_lines = [re.sub(r"\*\*([^*]+)\*\*", r"\1", re.sub(r"`([^`]+)`", r"\1", L.strip())) for L in desc_text.split("\n") if L.strip() and not L.startswith("#")]
             desc = " ".join(desc_lines).strip() or title
+            if not evidence:
+                evidence = desc
             cm = re.search(r"\*\*Complexity:\*\*\s*(.+?)(?:\n|$)", desc_text, re.I)
             em = re.search(r"\*\*Expected Output:\*\*\s*(.+?)(?:\n|$)", desc_text, re.I)
             complexity = (cm.group(1).strip() if cm else "")[:500]
@@ -67,24 +84,36 @@ def extract_queries(md_path: Path) -> List[Dict]:
                     obj = json.loads(json_m.group(1))
                     sql_text = obj.get("SQL", obj.get("sql", ""))
                     if isinstance(sql_text, str) and sql_text.strip():
-                        title = (obj.get("question", "") or title or f"Query {qnum}").strip()
-                        desc = (obj.get("evidence", title) or title)[:500]
+                        question = (obj.get("question", "") or title or f"Query {qnum}").strip()
+                        normal_query = (obj.get("normal_query", "") or "")[:500]
+                        evidence = (obj.get("evidence", title) or title)[:1000]
+                        desc = (obj.get("description") or evidence)[:500]
                         expected = (obj.get("expected_output", "Query results") or "Query results")[:200]
                         complexity = (obj.get("difficulty", "") or "")[:500]
+                        for key in ("purpose", "use_case", "business_value"):
+                            if obj.get(key):
+                                extra[key] = (obj[key] or "")[:800]
                 except json.JSONDecodeError:
                     pass
 
         if not sql_text or not sql_text.strip():
             continue
-        out.append({
+        entry = {
             "number": qnum,
             "title": title or f"Query {qnum}",
+            "question": question,
             "description": (desc[:500] if desc else title[:200]),
+            "evidence": evidence[:1000] if evidence else (desc[:500] if desc else ""),
             "complexity": complexity,
             "expected_output": expected[:200] if expected else "Query results",
             "sql": sql_text.strip(),
             "line_number": content[:start].count("\n") + 1,
-        })
+        }
+        if normal_query:
+            entry["normal_query"] = normal_query
+        if extra:
+            entry.update(extra)
+        out.append(entry)
     return sorted(out, key=lambda x: x["number"])
 
 

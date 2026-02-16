@@ -1,7 +1,442 @@
 {
-  "check_date": "20260214-1759",
+  "check_date": "20260216-0700",
   "databases": {
     "db-1": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-2": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-3": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-4": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-5": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-6": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-7": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-8": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-9": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-10": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-11": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-12": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-13": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-14": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-15": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-16": {
       "checks": [
         [
           "queries.json 30 queries",
@@ -32,7 +467,7 @@
     }
   },
   "summary": {
-    "passed": 1,
+    "passed": 16,
     "failed": 0
   }
 }

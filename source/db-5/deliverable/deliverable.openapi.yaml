@@ -64,681 +64,841 @@ info:
     ---
 
 
-    Use Case: Daily sales performance dashboard with rolling 7-day trends
+    Use Case: Can you show me each employee''s daily sales performance over the past
+    year, including their 7-day rolling average and how many of their transactions
+    exceeded their personal average?
 
 
-    Description: Uses 4 CTEs with ROW_NUMBER, LAG, LEAD, and multiple rolling window
-    aggregations across daily sales partitions.
+    Description: Situation: Store managers need visibility into daily employee performance
+    to identify top performers, coach underperformers, and understand whether individual
+    sales representatives are consistently beating their own benchmarks. Task: Calculate
+    daily sales metrics per employee including a smoothed 7-day rolling average and
+    a count of transactions that exceed each employee''s personal average. Action:
+    The query groups transactions by date and employee_id, computes each employee''s
+    overall average transaction value, uses a window function with a 7-row frame to
+    calculate rolling averages for trend smoothing, counts how many daily transactions
+    exceed the employee''s mean, retains the 100 most recent transactions per employee
+    to focus on current performance, and excludes days with only a single transaction
+    to avoid skewed metrics. Result: A dataset showing daily metrics for each employee—total
+    sales, 7-day rolling average, and the number of transactions above their personal
+    average—enabling man
 
-    Use Case: Daily sales performance dashboard with rolling 7-day trends
 
-
-    Business Value: Real-time sales KPI monitoring for store managers
-
-
-    Purpose: Identify sales velocity trends and anomalies across time periods
-
-
-    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Daily aggregated sales metrics with rolling averages and trend
+    Business Value: Daily aggregated sales metrics with rolling averages and trend
     indicators
 
 
-    ---
-
-
-    Use Case: Business analytics for customer purchase frequency segmentation
-
-
-    Description: Segments customers by purchase frequency using decile analysis and
-    cohort comparison
-
-    Use Case: Business analytics for customer purchase frequency segmentation
-
-
-    Business Value: Actionable insights from customer purchase frequency segmentation
-
-
-    Purpose: Production customer purchase frequency segmentation analysis
-
-
-    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for customer purchase frequency segmentation
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for employee performance quartile ranking
+    Use Case: Can you show me monthly purchase patterns for each customer, including
+    quartiles, the count of statistical outliers, and how many transactions show an
+    upward trend?
 
 
-    Description: Ranks employees into performance quartiles with trailing 30-day trend
-    analysis
-
-    Use Case: Business analytics for employee performance quartile ranking
-
-
-    Business Value: Actionable insights from employee performance quartile ranking
-
-
-    Purpose: Production employee performance quartile ranking analysis
-
-
-    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for employee performance quartile ranking
+    Description: Situation: Marketing and customer success teams need to segment customers
+    by spending behavior, identify high-value or erratic spenders, and detect customers
+    whose engagement is rising or falling to tailor retention and upsell campaigns.
+    Task: Calculate monthly sales statistics for each customer including quartile
+    breakdowns, identification of statistical outliers, and detection of upward spending
+    trends. Action: The query groups transactions by month and customer_id, computes
+    quartile boundaries to segment spending into sextiles (six equal groups), flags
+    outliers using z-scores greater than 2 standard deviations from the mean, derives
+    trend direction by comparing consecutive month-over-month changes, limits analysis
+    to the most recent 70 data points per customer to balance history with relevance,
+    and requires at least 3 monthly records per customer to ensure statistical validity.
+    Result: A dataset showing monthly metrics for each customer—quartile positions,
+    total outlier count, and t
 
 
-    ---
+    Business Value: Aggregated metrics for customer purchase frequency segmentation
 
 
-    Use Case: Business analytics for payment type revenue distribution
-
-
-    Description: Analyzes revenue distribution across payment methods with month-over-month
-    growth
-
-    Use Case: Business analytics for payment type revenue distribution
-
-
-    Business Value: Actionable insights from payment type revenue distribution
-
-
-    Purpose: Production payment type revenue distribution analysis
-
-
-    Complexity: 4 CTEs, 4 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for payment type revenue distribution
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for location-based sales velocity
+    Use Case: Can you give me daily performance statistics for each employee, including
+    transaction count, quartiles, median, outlier count, and a rolling average?
 
 
-    Description: Computes sales velocity per location with moving average and acceleration
-    metrics
-
-    Use Case: Business analytics for location-based sales velocity
-
-
-    Business Value: Actionable insights from location-based sales velocity
-
-
-    Purpose: Production location-based sales velocity analysis
-
-
-    Complexity: 4 CTEs, 5 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for location-based sales velocity
+    Description: Situation: Operations managers need daily performance quartiles to
+    benchmark employees against each other, identify consistent high performers for
+    recognition, and flag statistical outliers who may need coaching, additional training,
+    or investigation for compliance issues. Task: Calculate comprehensive daily sales
+    statistics for each employee including transaction volume, quartile distribution,
+    median value, outlier detection, and smoothed rolling averages. Action: The query
+    groups transactions by date and employee_id, uses PERCENTILE_CONT to calculate
+    the first quartile (Q1), median (Q2), and third quartile (Q3) for robust distribution
+    analysis, computes a 7-row rolling window average to smooth daily volatility,
+    segments performance into septiles (seven equal groups) for fine-grained ranking,
+    and intentionally includes single-transaction days to accommodate new hires or
+    part-time staff who may have limited activity. Result: A dataset showing daily
+    metrics for each employee—transaction
 
 
-    ---
+    Business Value: Aggregated metrics for employee performance quartile ranking
 
 
-    Use Case: Business analytics for hourly sales pattern detection
-
-
-    Description: Detects hourly sales patterns using date_part extraction and cyclic
-    aggregation
-
-    Use Case: Business analytics for hourly sales pattern detection
-
-
-    Business Value: Actionable insights from hourly sales pattern detection
-
-
-    Purpose: Production hourly sales pattern detection analysis
-
-
-    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for hourly sales pattern detection
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for invoice gap analysis
+    Use Case: Can you give me a weekly breakdown of sales by payment type, including
+    quartiles, outlier count, and the number of transactions showing an increasing
+    trend?
 
 
-    Description: Identifies gaps in invoice numbering sequences using LAG-based difference
-    calculations
-
-    Use Case: Business analytics for invoice gap analysis
-
-
-    Business Value: Actionable insights from invoice gap analysis
-
-
-    Purpose: Production invoice gap analysis analysis
-
-
-    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for invoice gap analysis
+    Description: Situation: Finance and fraud prevention teams monitor payment method
+    performance over time to reconcile accounts, detect unusual transaction patterns
+    that may indicate fraud or system errors, and understand customer payment preferences
+    for strategic planning. Task: Calculate weekly sales statistics segmented by payment
+    type (cash, credit card, digital wallet, etc.) including quartile breakdowns,
+    outlier identification, and trend detection. Action: The query groups transactions
+    by week and payment_type, uses an 8-row rolling window to capture approximately
+    two months of weekly trends, segments transaction values into octiles (eight equal
+    groups) for detailed distribution analysis, and requires at least 2 weekly records
+    per payment type to ensure meaningful comparisons while accommodating newly introduced
+    payment methods. Result: A dataset showing weekly metrics for each payment type—quartile
+    boundaries, count of statistical outliers, and the number of weeks with increasing
+    transaction v
 
 
-    ---
+    Business Value: Aggregated metrics for payment type revenue distribution
 
 
-    Use Case: Business analytics for suspended transaction anomaly detection
-
-
-    Description: Flags anomalous suspension patterns using z-score calculations on
-    rolling windows
-
-    Use Case: Business analytics for suspended transaction anomaly detection
-
-
-    Business Value: Actionable insights from suspended transaction anomaly detection
-
-
-    Purpose: Production suspended transaction anomaly detection analysis
-
-
-    Complexity: 4 CTEs, 4 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for suspended transaction anomaly detection
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for customer recency-frequency analysis
+    Use Case: Can you show me monthly sales velocity by store location, including
+    quartiles, standard deviation, outlier count, and cumulative sum?
 
 
-    Description: Computes RFM scores using recency windows and frequency distributions
-
-    Use Case: Business analytics for customer recency-frequency analysis
-
-
-    Business Value: Actionable insights from customer recency-frequency analysis
-
-
-    Purpose: Production customer recency-frequency analysis analysis
-
-
-    Complexity: 4 CTEs, 5 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for customer recency-frequency analysis
-
-
-    ---
+    Description: Situation: Regional managers and real estate teams compare store
+    performance across locations to allocate marketing budgets, decide on lease renewals,
+    plan new site openings, and identify underperforming locations that may require
+    operational changes or closure. Task: Calculate comprehensive monthly sales statistics
+    for each location including distribution metrics, variability measures, outlier
+    detection, and cumulative performance tracking. Action: The query groups transactions
+    by month and location_id, computes standard deviation to measure sales volatility
+    and risk, uses a 9-row rolling window to capture seasonal patterns while smoothing
+    short-term noise, segments performance into noniles (nine equal groups) for granular
+    ranking, limits analysis to the most recent 100 monthly data points per location
+    to balance historical context with current relevance, and requires at least 3
+    monthly records per location to ensure statistical robustness and exclude newly
+    opened stores with insuffic
 
 
-    Use Case: Business analytics for multi-period cohort retention
+    Business Value: Aggregated metrics for location-based sales velocity
 
 
-    Description: Tracks cohort retention across multiple time periods with survival
-    analysis patterns
-
-    Use Case: Business analytics for multi-period cohort retention
-
-
-    Business Value: Actionable insights from multi-period cohort retention
-
-
-    Purpose: Production multi-period cohort retention analysis
-
-
-    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for multi-period cohort retention
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for sales acceleration rate computation
+    Use Case: Show me daily sales metrics for each employee including quartiles, rolling
+    averages, and any anomalies that stand out.
 
 
-    Description: Calculates second-order derivatives of sales velocity using nested
-    window functions
-
-    Use Case: Business analytics for sales acceleration rate computation
-
-
-    Business Value: Actionable insights from sales acceleration rate computation
-
-
-    Purpose: Production sales acceleration rate computation analysis
-
-
-    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for sales acceleration rate computation
+    Description: Situation: The sales operations team needs to monitor employee performance
+    on a daily basis to identify unusual patterns that may indicate data entry errors,
+    fraudulent activity, or exceptional performance requiring investigation. Task:
+    Produce comprehensive daily sales statistics for each employee that include distribution
+    metrics, smoothed trends, and automated anomaly flagging. Action: The query aggregates
+    sales data by date and employee ID, extracts temporal features such as hour of
+    day and day of week for contextual analysis, computes a 10-row rolling window
+    average to smooth short-term fluctuations, calculates z-scores to statistically
+    identify outliers beyond normal variance, and handles edge cases where an employee
+    has only a single transaction in a day. Result: A dataset containing one row per
+    employee per day with quartile distributions (25th, 50th, 75th percentiles), rolling
+    average values, anomaly counts flagged by z-score thresholds, and temporal context
+    fields.
 
 
-    ---
+    Business Value: Aggregated metrics for hourly sales pattern detection
 
 
-    Use Case: Business analytics for cross-location revenue benchmarking
-
-
-    Description: Benchmarks each location against aggregate performance with percentile
-    rankings
-
-    Use Case: Business analytics for cross-location revenue benchmarking
-
-
-    Business Value: Actionable insights from cross-location revenue benchmarking
-
-
-    Purpose: Production cross-location revenue benchmarking analysis
-
-
-    Complexity: 4 CTEs, 4 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for cross-location revenue benchmarking
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for time-weighted moving average
+    Use Case: Give me monthly sales by customer with invoice gap analysis, quartiles,
+    and trend indicators.
 
 
-    Description: Implements exponentially weighted moving averages using recursive-style
-    CTEs
-
-    Use Case: Business analytics for time-weighted moving average
-
-
-    Business Value: Actionable insights from time-weighted moving average
-
-
-    Purpose: Production time-weighted moving average analysis
-
-
-    Complexity: 4 CTEs, 5 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for time-weighted moving average
+    Description: Situation: The customer success team wants to understand how customer
+    purchasing behavior changes month-over-month to predict churn risk and identify
+    upsell opportunities. Analyzing gaps in purchase frequency and spending amounts
+    between consecutive months reveals engagement patterns. Task: Generate monthly
+    sales statistics for each customer incorporating gap analysis between consecutive
+    periods, distribution quartiles, and trend direction indicators. Action: The query
+    groups transactions by calendar month and customer, employs LAG and LEAD window
+    functions to access previous and next month values for computing month-over-month
+    changes in both frequency and amount, derives trend direction by comparing current
+    values against historical patterns, and filters to include only customers with
+    at least 3 months of purchase history to ensure statistical relevance. Result:
+    A monthly dataset per customer showing gap metrics (difference from prior month),
+    quartile breakdowns (25th, 50th, 75th per
 
 
-    ---
+    Business Value: Aggregated metrics for invoice gap analysis
 
 
-    Use Case: Business analytics for peak hour identification and staffing
-
-
-    Description: Identifies peak transaction hours with staffing efficiency ratios
-
-    Use Case: Business analytics for peak hour identification and staffing
-
-
-    Business Value: Actionable insights from peak hour identification and staffing
-
-
-    Purpose: Production peak hour identification and staffing analysis
-
-
-    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for peak hour identification and staffing
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for customer lifetime value estimation
+    Use Case: Show me daily sales by payment method with anomaly detection and quartile
+    breakdowns.
 
 
-    Description: Estimates CLV using purchase frequency, recency, and monetary value
-    metrics
-
-    Use Case: Business analytics for customer lifetime value estimation
-
-
-    Business Value: Actionable insights from customer lifetime value estimation
-
-
-    Purpose: Production customer lifetime value estimation analysis
-
-
-    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for customer lifetime value estimation
+    Description: Situation: The finance and fraud prevention teams need to monitor
+    payment method usage patterns daily because anomalous behavior—such as sudden
+    spikes in a particular payment type or unusual transaction amounts—may signal
+    technical problems with payment processors, fraudulent activity, or shifts in
+    customer preferences that require immediate attention. Task: Produce daily sales
+    statistics segmented by payment type with automated anomaly detection, statistical
+    distribution metrics, and trend identification. Action: The query aggregates transaction
+    data by calendar date and payment type (credit card, debit, cash, digital wallet,
+    etc.), calculates z-scores to statistically flag outliers that deviate significantly
+    from normal patterns, computes quartile distributions to understand typical ranges,
+    and requires at least 2 transactions per payment type per day to avoid false positives
+    from insufficient data. Result: A daily summary per payment type containing anomaly
+    counts (transactions flag
 
 
-    ---
+    Business Value: Aggregated metrics for suspended transaction anomaly detection
 
 
-    Use Case: Business analytics for yoy growth rate with seasonal adjustment
-
-
-    Description: Computes year-over-year growth rates with seasonal decomposition
-
-    Use Case: Business analytics for yoy growth rate with seasonal adjustment
-
-
-    Business Value: Actionable insights from yoy growth rate with seasonal adjustment
-
-
-    Purpose: Production yoy growth rate with seasonal adjustment analysis
-
-
-    Complexity: 4 CTEs, 4 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for yoy growth rate with seasonal adjustment
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for transaction velocity heatmap data
+    Use Case: Give me weekly sales by customer with recency-frequency analysis, quartiles,
+    and rolling averages.
 
 
-    Description: Generates heatmap data for transaction velocity by hour and day of
-    week
-
-    Use Case: Business analytics for transaction velocity heatmap data
-
-
-    Business Value: Actionable insights from transaction velocity heatmap data
-
-
-    Purpose: Production transaction velocity heatmap data analysis
-
-
-    Complexity: 4 CTEs, 5 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for transaction velocity heatmap data
+    Description: Situation: The marketing team needs to segment customers based on
+    their recent purchasing activity and frequency to design targeted retention campaigns,
+    loyalty rewards, and personalized upsell offers. Recency-frequency analysis is
+    a proven method for identifying high-value customers who purchase often versus
+    at-risk customers showing declining engagement. Task: Generate weekly sales statistics
+    for each customer incorporating recency-frequency metrics, distribution quartiles,
+    and smoothed trend indicators. Action: The query groups transaction data by ISO
+    week and customer ID, applies ROW_NUMBER window functions partitioned by customer
+    to establish recency ordering (how recently each week occurred in the customer''s
+    history), ranks customers by cumulative spend to identify top spenders, computes
+    quartile distributions for understanding typical purchase amounts, and requires
+    a minimum of 3 weeks of activity per customer to ensure meaningful analysis. Result:
+    A weekly dataset per customer
 
 
-    ---
+    Business Value: Aggregated metrics for customer recency-frequency analysis
 
 
-    Use Case: Business analytics for running percentile sales distribution
-
-
-    Description: Computes running percentile distributions using cumulative window
-    functions
-
-    Use Case: Business analytics for running percentile sales distribution
-
-
-    Business Value: Actionable insights from running percentile sales distribution
-
-
-    Purpose: Production running percentile sales distribution analysis
-
-
-    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for running percentile sales distribution
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for employee cross-sell effectiveness
+    Use Case: Show me monthly sales by employee with cohort-style retention metrics
+    and quartiles.
 
 
-    Description: Measures cross-selling effectiveness using correlated transaction
-    patterns
-
-    Use Case: Business analytics for employee cross-sell effectiveness
-
-
-    Business Value: Actionable insights from employee cross-sell effectiveness
-
-
-    Purpose: Production employee cross-sell effectiveness analysis
-
-
-    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for employee cross-sell effectiveness
+    Description: Situation: The human resources and sales management teams want to
+    track how employee sales performance evolves over time, similar to customer cohort
+    retention analysis, to identify which employees improve with tenure, which plateau,
+    and which decline—informing training programs, mentorship assignments, and retention
+    strategies. Task: Produce monthly sales statistics for each employee using cohort-style
+    analysis techniques that track performance progression, distribution metrics,
+    and trend directions. Action: The query aggregates sales by calendar month and
+    employee ID, calculates increasing_count metrics to show how many consecutive
+    months an employee has maintained or improved performance (analogous to retention
+    cohorts), derives trend_direction indicators to classify whether performance is
+    improving or declining, computes quartile distributions to benchmark against peers,
+    and accommodates single-record months for newly hired employees who lack historical
+    data. Result: A monthly summa
 
 
-    ---
+    Business Value: Aggregated metrics for multi-period cohort retention
 
 
-    Use Case: Business analytics for deleted transaction forensic analysis
-
-
-    Description: Forensically analyzes deleted transaction patterns for loss prevention
-
-    Use Case: Business analytics for deleted transaction forensic analysis
-
-
-    Business Value: Actionable insights from deleted transaction forensic analysis
-
-
-    Purpose: Production deleted transaction forensic analysis analysis
-
-
-    Complexity: 4 CTEs, 4 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for deleted transaction forensic analysis
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for multi-metric dashboard aggregation
+    Use Case: What are the daily sales statistics by location, including acceleration
+    rate, quartiles, and outlier count?
 
 
-    Description: Aggregates multiple KPIs into a single dashboard-ready result set
-
-    Use Case: Business analytics for multi-metric dashboard aggregation
-
-
-    Business Value: Actionable insights from multi-metric dashboard aggregation
-
-
-    Purpose: Production multi-metric dashboard aggregation analysis
-
-
-    Complexity: 4 CTEs, 5 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for multi-metric dashboard aggregation
-
-
-    ---
+    Description: Situation: The retail operations team needs to understand sales acceleration
+    patterns at each location to identify high-growth stores for potential expansion
+    and resource allocation. Rapid revenue growth signals market opportunity, while
+    stagnation may indicate competitive pressure or operational issues. Task: Calculate
+    daily sales statistics for each location, including acceleration metrics (day-over-day
+    growth rate), quartile distribution of sales amounts, and the count of transactions
+    that fall outside normal ranges. Action: The query groups transaction data by
+    calendar day and location, computes the delta_value to capture the change in sales
+    between consecutive days as an acceleration indicator, calculates Q1, median,
+    and Q3 quartiles for the distribution, counts outliers beyond 1.5×IQR thresholds,
+    and filters to include only location-days with at least 2 transactions to ensure
+    statistical validity. Result: A dataset containing one row per location per day
+    with acceleration rate, q
 
 
-    Use Case: Business analytics for sequential purchase pattern mining
+    Business Value: Aggregated metrics for sales acceleration rate computation
 
 
-    Description: Mines sequential purchase patterns using window-based sequence analysis
-
-    Use Case: Business analytics for sequential purchase pattern mining
-
-
-    Business Value: Actionable insights from sequential purchase pattern mining
-
-
-    Purpose: Production sequential purchase pattern mining analysis
-
-
-    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for sequential purchase pattern mining
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for revenue concentration index
+    Use Case: What are the weekly sales statistics by employee, including cross-location
+    revenue benchmarking and quartiles?
 
 
-    Description: Computes Herfindahl-Hirschman style concentration indices for revenue
-
-    Use Case: Business analytics for revenue concentration index
-
-
-    Business Value: Actionable insights from revenue concentration index
-
-
-    Purpose: Production revenue concentration index analysis
-
-
-    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for revenue concentration index
-
-
-    ---
+    Description: Situation: The sales management team wants to benchmark employee
+    performance across all locations to identify top performers, establish fair compensation
+    targets, and provide coaching to underperformers. Cross-location comparison ensures
+    that targets account for market differences rather than penalizing employees in
+    challenging territories. Task: Calculate weekly sales statistics for each employee,
+    including benchmarking metrics that rank employees relative to their peers and
+    quartile distribution of their sales amounts. Action: The query groups transaction
+    data by ISO week and employee identifier, computes PERCENT_RANK to show each employee''s
+    percentile position among all peers that week, applies DENSE_RANK to create tier
+    classifications without gaps, calculates Q1, median, and Q3 quartiles of individual
+    transaction amounts, and filters to include only employee-weeks with at least
+    3 transactions to ensure the statistics are meaningful for comparison. Result:
+    A dataset containing one r
 
 
-    Use Case: Business analytics for anomaly score computation
+    Business Value: Aggregated metrics for cross-location revenue benchmarking
 
 
-    Description: Assigns anomaly scores using statistical deviation from rolling baselines
-
-    Use Case: Business analytics for anomaly score computation
-
-
-    Business Value: Actionable insights from anomaly score computation
-
-
-    Purpose: Production anomaly score computation analysis
-
-
-    Complexity: 4 CTEs, 4 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for anomaly score computation
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for fiscal period comparative analysis
+    Use Case: What are the monthly sales statistics by payment type, including time-weighted
+    moving average and quartiles?
 
 
-    Description: Compares performance across fiscal periods with pro-rata adjustments
-
-    Use Case: Business analytics for fiscal period comparative analysis
-
-
-    Business Value: Actionable insights from fiscal period comparative analysis
-
-
-    Purpose: Production fiscal period comparative analysis analysis
-
-
-    Complexity: 4 CTEs, 5 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for fiscal period comparative analysis
-
-
-    ---
+    Description: Situation: The finance and strategy teams need to understand long-term
+    trends in payment method preferences, filtering out seasonal spikes and promotional
+    effects that create short-term noise. For example, holiday shopping may temporarily
+    increase credit card usage, but the moving average reveals whether digital wallets
+    are genuinely gaining market share over time. Task: Calculate monthly sales statistics
+    for each payment type, including a time-weighted moving average that smooths volatility
+    and quartile distribution of transaction amounts. Action: The query groups transaction
+    data by calendar month and payment type (credit card, debit, cash, digital wallet,
+    etc.), computes a rolling average using a window function with ROWS BETWEEN to
+    average the current month with preceding months, calculates Q1, median, and Q3
+    quartiles to show the distribution of transaction sizes for each payment method,
+    and filters to include only payment-type months with at least 2 transactions to
+    avoid spurious
 
 
-    Use Case: Business analytics for transaction throughput optimization
+    Business Value: Aggregated metrics for time-weighted moving average
 
 
-    Description: Identifies throughput bottlenecks using queuing theory metrics
-
-    Use Case: Business analytics for transaction throughput optimization
-
-
-    Business Value: Actionable insights from transaction throughput optimization
-
-
-    Purpose: Production transaction throughput optimization analysis
-
-
-    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for transaction throughput optimization
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for store account payment trend analysis
+    Use Case: What are the daily sales statistics by customer, including peak hour
+    identification for staffing and quartiles?
 
 
-    Description: Analyzes store account payment trends with cumulative and rolling
-    metrics
-
-    Use Case: Business analytics for store account payment trend analysis
-
-
-    Business Value: Actionable insights from store account payment trend analysis
-
-
-    Purpose: Production store account payment trend analysis analysis
-
-
-    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for store account payment trend analysis
+    Description: Situation: The operations team needs to optimize staff scheduling
+    and promotional timing by understanding when different customer segments make
+    purchases throughout the day. Peak hour patterns differ by customer type—business
+    customers may shop during lunch, families in evenings, and bargain hunters early
+    morning—so aggregate analysis masks actionable insights. Task: Calculate daily
+    sales statistics for each customer, including metrics that identify their typical
+    shopping hours to support staffing decisions and targeted promotions, along with
+    quartile distribution of their spending. Action: The query groups transaction
+    data by calendar day and customer identifier, extracts the hour component from
+    transaction timestamps (0-23) to identify peak shopping times, calculates the
+    mode hour or hour with maximum transaction value as the peak indicator, computes
+    Q1, median, and Q3 quartiles of transaction amounts to understand spending patterns,
+    and includes all customer-days even with a single
 
 
-    ---
+    Business Value: Aggregated metrics for peak hour identification and staffing
 
 
-    Use Case: Business analytics for multi-dimensional pivot analysis
-
-
-    Description: Creates multi-dimensional pivot-style analysis using CASE-based aggregation
-
-    Use Case: Business analytics for multi-dimensional pivot analysis
-
-
-    Business Value: Actionable insights from multi-dimensional pivot analysis
-
-
-    Purpose: Production multi-dimensional pivot analysis analysis
-
-
-    Complexity: 4 CTEs, 4 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for multi-dimensional pivot analysis
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for sales funnel stage progression
+    Use Case: What are the weekly sales statistics by location, including customer
+    lifetime value estimation style metrics and quartiles?
 
 
-    Description: Tracks progression through sales funnel stages using state transition
-    analysis
+    Description: Situation: The corporate strategy and real estate teams need to prioritize
+    locations for capital investment (renovations, expansions, new equipment) and
+    concentrated marketing spend. Customer lifetime value (LTV) principles apply to
+    locations—stores that generate cumulative value over time and show sustained growth
+    deserve more investment than those with volatile or declining returns. Task: Calculate
+    weekly sales statistics for each location, including LTV-style metrics that estimate
+    long-term value potential using cumulative revenue patterns and quartile distribution.
+    Action: The query groups transaction data by ISO week and location, computes a
+    running cumulative sum of revenue to show total value generated since tracking
+    began, calculates the maximum cumulative value reached to date as a high-water
+    mark indicating potential, uses these cumulative metrics as proxies for location
+    ''lifetime value'' that can be ranked against peers, determines Q1, median, and
+    Q3 quartiles of individual t
 
-    Use Case: Business analytics for sales funnel stage progression
+
+    Business Value: Aggregated metrics for customer lifetime value estimation
 
 
-    Business Value: Actionable insights from sales funnel stage progression
-
-
-    Purpose: Production sales funnel stage progression analysis
-
-
-    Complexity: 4 CTEs, 5 window functions, GROUP BY with HAVING, date arithmetic
-
-    Expected Output: Aggregated metrics for sales funnel stage progression
+    Complexity: challenging
 
 
     ---
 
 
-    Use Case: Business analytics for outlier detection with iqr method
+    Use Case: What are the monthly sales statistics for each employee, including year-over-year
+    growth rates adjusted for seasonal trends and quartile distributions?
 
 
-    Description: Detects outliers using interquartile range method across multiple
-    dimensions
+    Description: Situation: The sales management team needs to evaluate employee performance
+    across different seasons and plan staffing and training budgets for the upcoming
+    fiscal year. Year-over-year comparisons help isolate genuine performance improvements
+    from seasonal fluctuations in customer demand. Task: Generate comprehensive monthly
+    sales statistics for each employee that include year-over-year growth metrics,
+    seasonal trend indicators, and quartile distributions to identify top and bottom
+    performers. Action: The query aggregates sales data by grouping records by calendar
+    month and employee identifier. It calculates trend direction and delta values
+    to measure growth compared to the same month in the previous year, filtering the
+    dataset to include only the last 365 days to ensure a full year-over-year comparison.
+    The query handles edge cases where an employee may have only a single transaction
+    in a month. Window functions compute quartiles to segment employees into performance
+    bands. Result: A
 
-    Use Case: Business analytics for outlier detection with iqr method
+
+    Business Value: Aggregated metrics for yoy growth rate with seasonal adjustment
 
 
-    Business Value: Actionable insights from outlier detection with iqr method
+    Complexity: challenging
 
 
-    Purpose: Production outlier detection with iqr method analysis
+    ---
 
 
-    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
+    Use Case: What are the daily sales breakdowns by payment type that can be used
+    to create a transaction velocity heatmap with quartile distributions?
 
-    Expected Output: Aggregated metrics for outlier detection with iqr method
+
+    Description: Situation: The finance and operations teams want to visualize payment
+    method adoption and transaction velocity patterns throughout the week and month
+    to optimize payment processing infrastructure and identify operational bottlenecks.
+    Heatmaps provide an intuitive way to spot patterns such as credit card usage spikes
+    on weekends or cash concentration at specific locations. Task: Produce daily sales
+    statistics segmented by payment type that include all necessary dimensions and
+    metrics for generating an interactive heatmap, including quartile distributions
+    and trend counts. Action: The query groups transaction records by calendar day
+    and payment type (cash, credit card, debit card, mobile payment, etc.). It uses
+    the time period (day) and payment type as the two axes for heatmap visualization.
+    The query calculates quartiles to color-code transaction volumes and counts trend
+    directions (increasing/decreasing velocity). A minimum threshold of at least 2
+    records per day-payment group ensures
+
+
+    Business Value: Aggregated metrics for transaction velocity heatmap data
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the weekly sales statistics for each customer showing their
+    running percentile distribution within each week and quartile classifications?
+
+
+    Description: Situation: The marketing and customer success teams need to segment
+    customers based on their weekly spending behavior to personalize engagement strategies,
+    identify high-value customers for VIP programs, and detect at-risk customers whose
+    spending percentile is declining. Understanding where each customer falls in the
+    weekly spending distribution enables dynamic segmentation that adapts to changing
+    purchase patterns. Task: Generate weekly sales statistics for each customer that
+    include their running percentile position within that week''s customer base and
+    quartile classifications for targeted marketing campaigns. Action: The query aggregates
+    sales transactions by grouping records by ISO week number and customer identifier.
+    It employs the PERCENT_RANK window function to calculate each customer''s percentile
+    position within their weekly cohort (0.0 to 1.0 scale) and uses PERCENTILE_CONT
+    to compute the overall quartile boundaries (25th, 50th, 75th percentiles). The
+    query requires a minimum
+
+
+    Business Value: Aggregated metrics for running percentile sales distribution
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the monthly sales statistics by location that measure employee
+    cross-selling effectiveness along with quartile performance distributions?
+
+
+    Description: Situation: The regional sales management team wants to identify which
+    locations have the most effective cross-selling techniques so they can replicate
+    best practices across underperforming stores. Cross-sell effectiveness—measured
+    by average items per transaction, product category diversity, and attachment rates—varies
+    significantly by location and may indicate differences in employee training, store
+    layout, or customer demographics. Task: Produce monthly sales statistics for each
+    location that quantify cross-selling performance, rank locations against each
+    other, and provide quartile distributions to identify top and bottom performers
+    for targeted training interventions. Action: The query groups sales transactions
+    by calendar month and location (store or branch identifier). It calculates cross-sell
+    metrics such as average line items per transaction, distinct product categories
+    per customer, and attachment rates. The query uses DENSE_RANK to create a comparative
+    ranking of locations wi
+
+
+    Business Value: Aggregated metrics for employee cross-sell effectiveness
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the daily sales statistics by employee that include forensic
+    analysis of deleted transactions, transaction sequencing, and quartile distributions?
+
+
+    Description: Situation: The internal audit and loss prevention teams need to investigate
+    patterns in voided, refunded, or soft-deleted transactions that might indicate
+    employee fraud, system errors, or training issues. By analyzing transaction sequences—particularly
+    transactions that were entered and then quickly deleted or voided—the team can
+    identify anomalous behavior such as scanning items and removing them to manipulate
+    discounts, or abnormally high void rates that suggest poor training or potential
+    theft. Task: Produce daily sales statistics for each employee that include forensic
+    metrics for deleted or voided transactions, sequential transaction analysis to
+    detect suspicious patterns, and quartile distributions to flag statistical outliers.
+    Action: The query groups transaction records by calendar day and employee identifier.
+    It uses the LAG and LEAD window functions ordered by transaction timestamp to
+    analyze the sequence of transactions, calculating time gaps between consecutive
+    transaction
+
+
+    Business Value: Aggregated metrics for deleted transaction forensic analysis
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the weekly sales statistics broken down by payment type, including
+    quartiles and multi-metric aggregations for our executive dashboard?
+
+
+    Description: Situation: The executive team requires a unified dashboard view that
+    consolidates all critical payment-related metrics across different payment types
+    to monitor business performance and identify trends during weekly review meetings.
+    Task: Generate a complete set of weekly sales statistics segmented by payment
+    type that includes all necessary dashboard metrics in a single query execution.
+    Action: The SQL groups transactions by calendar week and payment type, then computes
+    a comprehensive suite of aggregations in one pass: record count, average transaction
+    value, first through third quartiles for distribution analysis, standard deviation
+    for variance measurement, minimum and maximum values for range, outlier count
+    to flag unusual transactions, count of increasing transactions to detect growth
+    patterns, rolling average for trend smoothing, and cumulative maximum to track
+    peak performance. The query filters to include only groups with at least 2 records
+    to ensure statistical validity. Resu
+
+
+    Business Value: Aggregated metrics for multi-metric dashboard aggregation
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the monthly sales statistics for each customer that reveal
+    sequential purchase patterns and include quartile distributions?
+
+
+    Description: Situation: The marketing team needs to understand how individual
+    customer purchasing behavior evolves month-over-month to build effective personalization
+    strategies and targeted campaigns based on sequential buying patterns. Task: Generate
+    monthly sales statistics for each customer that capture sequential pattern metrics
+    alongside quartile distributions to reveal behavioral trends. Action: The SQL
+    groups all transactions by calendar month and customer identifier, then employs
+    window functions to perform sequential analysis: LAG to retrieve the previous
+    month''s value, LEAD to look ahead to the next month''s value, delta_value to
+    calculate month-over-month change magnitude, and trend_direction to classify whether
+    purchases are increasing, decreasing, or stable. The query also computes quartiles
+    for distribution analysis and requires at least 3 records per customer-month group
+    to establish meaningful sequential patterns. Result: A dataset of monthly metrics
+    for each customer showing sequen
+
+
+    Business Value: Aggregated metrics for sequential purchase pattern mining
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the daily sales statistics by location that show revenue concentration
+    indices and quartile distributions?
+
+
+    Description: Situation: Operations management needs to understand how revenue
+    is distributed across locations on a daily basis to make informed decisions about
+    resource allocation, staffing levels, and identifying which locations drive the
+    majority of sales versus those that underperform. Task: Produce daily sales statistics
+    for each location that include concentration indices and quartile distributions
+    to quantify revenue concentration patterns. Action: The SQL groups transactions
+    by calendar day and location, then calculates concentration metrics using ranking
+    window functions: DENSE_RANK to assign unique ranks without gaps for tied values,
+    PERCENT_RANK to show each location''s relative standing as a percentile (0 to
+    1), and cumulative_sum to track running totals that reveal what percentage of
+    revenue is captured by top-performing locations. The query also computes quartiles
+    for distribution analysis and requires at least 2 records per location-day group
+    to ensure meaningful comparisons. Result: A
+
+
+    Business Value: Aggregated metrics for revenue concentration index
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the weekly sales statistics for each employee that include
+    anomaly scores and quartiles to identify unusual performance patterns?
+
+
+    Description: Situation: Human resources and sales management need to systematically
+    identify employees with unusual sales patterns—either exceptionally high performance
+    worthy of recognition or concerning deviations that may indicate training needs,
+    compliance issues, or data quality problems. Task: Generate weekly sales statistics
+    for each employee that include computed anomaly scores and quartile distributions
+    to flag unusual patterns for review. Action: The SQL groups transactions by calendar
+    week and employee identifier, then calculates anomaly detection metrics with z_score
+    serving as the primary anomaly indicator (measuring how many standard deviations
+    a value is from the mean), along with quartiles for distribution context and trend
+    counts to identify whether anomalies represent consistent patterns or isolated
+    events. The query requires at least 3 records per employee-week group to establish
+    a baseline for meaningful anomaly calculation. Result: A dataset of weekly metrics
+    per employee featu
+
+
+    Business Value: Aggregated metrics for anomaly score computation
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the monthly sales statistics by payment type formatted for
+    fiscal period comparative analysis with quartiles?
+
+
+    Description: Situation: The finance department requires standardized monthly reporting
+    that aligns with fiscal periods to perform accurate month-over-month and quarter-over-quarter
+    comparisons of payment type performance for board presentations, financial forecasting,
+    and strategic planning. Task: Generate monthly sales statistics segmented by payment
+    type that are structured for fiscal period comparative analysis and include quartile
+    distributions. Action: The SQL groups transactions by calendar month using DATE_TRUNC(''month'')
+    to ensure consistent fiscal period alignment and by payment type, then computes
+    comprehensive statistics including quartiles for distribution analysis, averages
+    for baseline performance, and other key metrics that enable time-series comparison.
+    The query requires at least 2 records per payment-type-month group to support
+    valid statistical comparison across periods. Result: A dataset of monthly metrics
+    per payment type formatted with fiscal-period consistency and quartile dis
+
+
+    Business Value: Aggregated metrics for fiscal period comparative analysis
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the daily sales statistics for each customer, including transaction
+    throughput metrics and quartile distributions?
+
+
+    Description: Situation: The business needs to assess transaction volume patterns
+    per customer to optimize system capacity planning and design tiered loyalty programs
+    based on customer activity levels. Task: Generate comprehensive daily sales statistics
+    for each customer that include transaction throughput metrics and quartile distributions.
+    Action: The query aggregates sales data by grouping records by day and customer
+    identifier, calculating throughput proxy metrics such as record count, rolling
+    average transaction values, and cumulative maximum values, while preserving data
+    for customers with even single-transaction days to ensure complete coverage. Result:
+    The query returns a dataset containing daily metrics for each customer with throughput
+    indicators (transaction counts and velocity measures), statistical quartiles for
+    distribution analysis, and overall activity level classifications.
+
+
+    Business Value: Aggregated metrics for transaction throughput optimization
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the weekly sales statistics by store location, showing payment
+    method trend analysis and quartile distributions?
+
+
+    Description: Situation: Retail operations management requires analysis of payment
+    method trends across different store locations to identify shifts in payment mix
+    such as increases in card versus cash transactions, enabling better planning for
+    payment terminal deployment and maintenance. Task: Generate weekly sales statistics
+    for each store location that incorporate payment trend metrics and quartile distributions.
+    Action: The query aggregates sales data by grouping records by week and location,
+    computing trend direction indicators and counts of periods showing increasing
+    payment method usage to capture trend dynamics, while filtering to include only
+    location-week combinations with at least 3 transaction records to ensure statistical
+    reliability. Result: The query returns a dataset containing weekly metrics for
+    each location showing payment method trend directions, counts of increasing trend
+    periods, statistical quartiles for amount distributions, and overall activity
+    classifications.
+
+
+    Business Value: Aggregated metrics for store account payment trend analysis
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the monthly sales statistics for each employee, structured
+    for multi-dimensional pivot analysis with quartile distributions?
+
+
+    Description: Situation: The business intelligence team requires flexible, multi-dimensional
+    sales data aggregated by time period and employee to support ad-hoc reporting,
+    dynamic pivot tables, and cross-functional analysis for performance management
+    and workforce planning. Task: Generate monthly sales statistics for each employee
+    with a multi-dimensional structure that supports pivot analysis and includes quartile
+    distributions. Action: The query aggregates sales data by grouping records by
+    month and employee, utilizing period and employee_id as dimensional axes for pivoting
+    capabilities, while retaining data for employees with even single-record months
+    to maintain complete historical coverage and enable longitudinal analysis. Result:
+    The query returns a dataset containing monthly metrics for each employee structured
+    with multi-dimensional attributes and statistical quartiles, optimized for pivot
+    table analysis and flexible reporting.
+
+
+    Business Value: Aggregated metrics for multi-dimensional pivot analysis
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the daily sales statistics by payment type, showing sales funnel
+    stage progression and quartile distributions?
+
+
+    Description: Situation: The sales and conversion optimization team needs to track
+    how the mix of payment methods evolves throughout each day to understand customer
+    payment preferences at different times and stages of the sales funnel, enabling
+    better conversion rate optimization and checkout process improvements. Task: Generate
+    daily sales statistics grouped by payment type that capture sales funnel stage
+    progression and include quartile distributions. Action: The query aggregates sales
+    data by grouping records by day and payment type, calculating trend direction
+    indicators to represent movement through funnel stages as payment preferences
+    shift during the day, while filtering to include only day-payment type combinations
+    with at least 2 transaction records to ensure meaningful trend calculation. Result:
+    The query returns a dataset containing daily metrics for each payment type showing
+    funnel stage progression indicators, trend directions, statistical quartiles for
+    transaction amounts, and activity
+
+
+    Business Value: Aggregated metrics for sales funnel stage progression
+
+
+    Complexity: challenging
+
+
+    ---
+
+
+    Use Case: What are the weekly sales statistics for each customer, using IQR-based
+    outlier detection methods and quartile distributions?
+
+
+    Description: Situation: The fraud detection and customer relationship management
+    teams need to identify customers with unusual spending patterns by using statistical
+    outlier detection based on the interquartile range method, which helps flag potential
+    fraudulent activity or identify high-value VIP customers deserving special treatment.
+    Task: Generate weekly sales statistics for each customer incorporating IQR-style
+    outlier detection methodology and quartile distributions. Action: The query aggregates
+    sales data by grouping records by week and customer, calculating the first and
+    third quartiles using PERCENTILE_CONT functions to establish the interquartile
+    range, applying z-score thresholds above 2 standard deviations as a proxy for
+    IQR-based outlier detection, and filtering to include only customer-week combinations
+    with at least 3 transaction records to ensure statistical validity. Result: The
+    query returns a dataset containing weekly metrics for each customer with calculated
+    quartile values, IQR-
+
+
+    Business Value: Aggregated metrics for outlier detection with iqr method
+
+
+    Complexity: challenging
 
 
     ---
@@ -767,7 +927,7 @@ info:
     Document Information:
 
 
-    - Generated: 20260214-1518
+    - Generated: 20260216-0700
 
     - Database: db-5
 

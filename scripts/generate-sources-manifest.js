@@ -9,7 +9,8 @@ const path = require('path')
 const ROOT = path.join(__dirname, '..')
 const SOURCE = path.join(ROOT, 'source')
 const TEMPLATE = path.join(ROOT, 'template')
-const OUT = path.join(ROOT, 'lib', 'sources-manifest.json')
+const outArg = process.argv.find((a) => a.startsWith('--out='))
+const OUT = outArg ? path.resolve(ROOT, outArg.slice(6)) : path.join(ROOT, 'lib', 'sources-manifest.json')
 
 function loadQueriesForSource(name) {
   if (name === 'template') {

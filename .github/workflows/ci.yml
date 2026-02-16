@@ -62,6 +62,58 @@ jobs:
           path: logs/telemetry_summary.json
           if-no-files-found: ignore
 
+  node-app:
+    name: Node App (Jest + quality)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Jest (unit)
+        run: npm test -- --testPathIgnorePatterns=integration
+
+      - name: Quality (build, tsc, lint)
+        run: npm run test:quality
+
+  integration-e2e:
+    name: Integration + E2E (app running)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run integration + E2E
+        run: npm run test:app
+        env:
+          BASE_URL: http://localhost:3007
+
   pre-commit:
     name: Pre-commit (structure + integrity)
     runs-on: ubuntu-latest

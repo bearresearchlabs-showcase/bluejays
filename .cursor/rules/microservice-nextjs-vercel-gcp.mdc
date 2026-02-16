@@ -1,0 +1,77 @@
+---
+description: Next.js, Vercel, and GCP microservice architecture compliance
+alwaysApply: true
+---
+
+# Microservice Architecture: Next.js, Vercel, GCP
+
+## Overview
+
+This rule defines microservice boundaries and deployment patterns for Next.js apps on Vercel with GCP compatibility. All apps must comply with these conventions for consistent deployment and scaling.
+
+## Microservice Boundaries
+
+| Service | Path | Port | Deployment |
+|---------|------|------|------------|
+| **web** | `apps/web/` | 3000 | Vercel (Next.js) |
+| **ingest** | `apps/ingest/` | 3006/3007 | Vercel or GCP Cloud Run |
+| **annotator** | `apps/annotator/` | 3001 | Docker (workbench) or Cloud Run |
+| **work-api** | `workbench/work_api/` | 8010 | Docker or Cloud Run |
+| **qdrant** | Docker | 6333 | Docker or GCP (vector DB) |
+
+## Next.js Conventions
+
+- **App Router**: Use `app/` directory; `page.tsx`, `layout.tsx`, `route.ts` for API routes
+- **Server Components**: Default; use `"use client"` only when needed (interactivity, hooks)
+- **API Routes**: `app/api/**/route.ts` for serverless API endpoints
+- **Output**: `output: 'standalone'` for Docker/Cloud Run; omit for Vercel (default)
+- **Monorepo**: Use `outputFileTracingRoot` and `transpilePackages` when consuming `packages/`
+
+## Vercel Deployment
+
+- **Serverless**: Next.js API routes run as serverless functions
+- **Edge**: Use `export const runtime = 'edge'` for edge functions when appropriate
+- **ISR**: `revalidate` for incremental static regeneration
+- **Regions**: `regions: ["iad1"]` (or target region) in `vercel.json`
+- **Headers**: Security headers (X-Content-Type-Options, X-Frame-Options, etc.) in `vercel.json`
+
+## GCP Compatibility
+
+- **Cloud Run**: Deploy Next.js with `output: 'standalone'`; containerize and push to Artifact Registry
+- **Cloud Storage**: Use for static assets, uploads; Vercel Blob or GCS
+- **BigQuery**: Use for analytics; server-side only; never expose credentials to client
+- **Secret Manager**: Store secrets in GCP Secret Manager; inject at runtime; never commit
+
+## Environment Variables and Secrets
+
+- **Vercel**: Set in Project Settings → Environment Variables; use for Vercel deployments
+- **GCP**: Use Secret Manager; reference via `projects/*/secrets/*/versions/latest`
+- **Local**: `.env.local` (gitignored); `.env.example` for documentation
+- **Never**: Commit API keys, passwords, or tokens to version control
+
+## Shared Packages
+
+Apps consume shared code from `packages/`:
+
+- `packages/ui` — Shared React components
+- `packages/db-utils` — Query helpers, build-intent, schema utilities
+- `packages/config-eslint` — Shared ESLint config
+- `packages/config-typescript` — Shared tsconfig
+
+Use `transpilePackages: ['@db/ui', '@db/db-utils']` in `next.config.js` when consuming.
+
+## Docker and Workbench
+
+- **docker/docker-compose.work-microservices.yml**: Qdrant + Work API + Annotator
+- **Ports**: Qdrant 6333, Work API 8010, Annotator 8768
+- **Networks**: `work-network` for inter-service communication
+- **Health checks**: Work API has `/health` endpoint for readiness
+
+## Related Rules
+
+- `repo-organization.mdc` — Directory structure
+- `testing-app-running.mdc` — Integration and E2E test patterns
+- `qa-workflow-cursor.mdc` — QA and deployment workflow
+
+---
+**Last Updated**: 2026-02-14

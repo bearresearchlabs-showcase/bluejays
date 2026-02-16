@@ -6,3 +6,6 @@ pytest>=8.0.0
 
 # LangGraph (required for gdpval-langgraph harness)
 langgraph>=0.2.0
+
+# Anthropic (required for qa_claude, claude_rewrite_evidence)
+anthropic>=0.39.0

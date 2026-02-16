@@ -4,6 +4,15 @@
 
 Acquire real-world databases and accompanying query notebooks to support downstream evaluation and training. All assets must reflect authentic, real-world usage (no synthetic datasets, no synthetic queries).
 
+## TDD, BDD, DDD, and Distributed Architectural Patterns
+
+**Industry guides**: Kent Beck "Test-Driven Development: By Example" (2002); Martin Fowler [TDD bliki](https://martinfowler.com/bliki/TestDrivenDevelopment.html), [Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html); Dan North BDD; Eric Evans "Domain-Driven Design"; Vercel microfrontends, Turborepo monorepos.
+
+- **TDD**: Red-Green-Refactor. Validation and tests drive implementation. Write failing validation first; implement schema and queries to pass.
+- **BDD**: Cucumber/Gherkin acceptance criteria. Query metadata and validation phases capture acceptance criteria; user-story and E2E tests validate behavior.
+- **DDD**: Bounded contexts, aggregates, ubiquitous language. Each database (db-{N}) is a bounded context; domains stay within boundaries.
+- **Distributed Architectural Patterns**: Next.js/Vercel/GCP compliant. Queries target PostgreSQL; redundancy architecture supports failover. Microservice separation (ingest, Work API, Qdrant) follows distributed patterns.
+
 ## Hard Requirements
 
 1. **All databases and queries must originate from real world usage. Absolutely zero synthetically generated data.**

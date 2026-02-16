@@ -64,6 +64,24 @@ python scripts/db_check.py bird-workbench db-1 --no-execute  # Gates only, no DB
 
 ## Test Suites
 
+### TDD, BDD, DDD, and Distributed Architectural Patterns
+
+We use **TDD** (Kent Beck Red-Green-Refactor; Martin Fowler bliki), **BDD** (Cucumber/Gherkin, Dan North; user-story and E2E specs for acceptance criteria), **DDD** (Eric Evans; bounded contexts—staff, annotator, customer), and **distributed architectural patterns** (Vercel microfrontends, Turborepo monorepos; microservice separation: ingest app, Work API, Qdrant). Add tests incrementally: unit tests for logic, BDD user-story tests for role behavior, E2E for flows. **Error paths**: Add integration tests for login errors, redirect validation, auth failures; see `testing-app-running.mdc`. **Deployment**: Vercel serverless/edge; GCP Cloud Run compatibility.
+
+### Jest / Node App (Annotator)
+
+- **Jest (unit)**: `npm test` — API routes, lib, components; no app required
+- **Integration (app running)**: `npm run dev:test` then `npm run test:integration`
+- **E2E (Playwright)**: `npm run test:e2e` — starts app automatically
+- **Full app test**: `npm run test:app` — start app, run integration + E2E, stop app
+
+See `.cursor/rules/testing-app-running.mdc` for details.
+
+### Debugging Tests
+
+- **cursor-ide-browser MCP**: `browser_navigate`, `browser_snapshot`, `browser_click` to reproduce failures
+- **Playwright trace**: `npx playwright show-trace trace.zip` after `trace: 'on-first-retry'`
+
 ### Pytest (Run Before/After Changes)
 
 ```bash
@@ -99,6 +117,7 @@ Use @-references to scope context and commands without switching workspaces:
 
 - **Always-applied rules**: `.cursor/rules/*.mdc` with `alwaysApply: true`
 - **Domain context**: database-creation-workflow, query-validation-suite, deliverable-formatting, qa-workflow-cursor
+- **Roadmap maintenance**: See `.cursor/rules/update-roadmap.mdc` for ROADMAP.md updates; use `.cursor/skills/product-management-roadmap/` for epics, features, user stories
 - **Generate rules**: Use `/Generate Cursor Rules` after long conversations to capture workflows
 - **Rules over docs**: Prefer rules for conventions; rules persist across sessions
 

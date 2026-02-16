@@ -1,0 +1,75 @@
+---
+description: When and how to run integration and E2E tests that require the app
+globs: ["**/__tests__/integration/**", "**/e2e/**", "**/playwright.config.*"]
+alwaysApply: false
+---
+
+# Testing with Running App
+
+## TDD, BDD, DDD, and Distributed Architectural Patterns
+
+We use **TDD**, **BDD**, **DDD**, and **distributed architectural patterns**:
+
+- **TDD (Test-Driven Development)**: Unit tests (`__tests__/lib/`, `__tests__/api/`, `__tests__/flows/`) drive implementation. Red-Green-Refactor cycle (Kent Beck, "Test-Driven Development: By Example" 2002). Martin Fowler [bliki](https://martinfowler.com/bliki/TestDrivenDevelopment.html). Write failing tests first, then implement to pass.
+- **BDD (Behavior-Driven Development)**: User-story tests (`__tests__/user-stories/`) and E2E specs (`e2e/*.spec.ts`) describe behavior from the user's perspective. Cucumber/Gherkin-style acceptance criteria; Dan North origins. Scenarios like "staff in customer mode sees customer views only" validate acceptance criteria.
+- **DDD (Domain-Driven Design)**: Eric Evans "Domain-Driven Design"; bounded contexts, aggregates, ubiquitous language. Domain boundaries align with test boundaries. User stories (staff, annotator, customer) map to bounded contexts; integration tests validate cross-boundary flows.
+- **Distributed Architectural Patterns**: Vercel microfrontends, Turborepo monorepos, serverless/edge. Tests assume microservice-style separation (ingest app, Work API, Qdrant). E2E and integration tests validate distributed flows; unit tests focus on isolated components.
+
+**Test Pyramid** (Martin Fowler): More low-level unit tests than high-level E2E; practical balance for speed and coverage.
+
+Incremental testing: add unit tests for new logic (privileges, modes), BDD user-story tests for role behavior, and E2E specs for mode switching and flows.
+
+## When to Run App
+
+Integration and E2E tests require the Next.js app running on port 3007.
+
+- **Integration tests** (`apps/ingest/__tests__/integration/*.e2e.test.ts`): Fetch-based, target `BASE_URL` (default `http://localhost:3007`). Skip when app not running. Includes `views-and-access`, `authenticated-flows`, `login-errors`.
+- **E2E tests** (`apps/ingest/e2e/*.spec.ts`): Playwright browser tests. WebServer in `playwright.config.ts` starts the app automatically unless `CI=true` and a server is already running.
+
+## Commands
+
+| Command | Purpose |
+|---------|---------|
+| `npm run dev:test` | Start app on port 3007 (run in separate terminal for manual testing) |
+| `npm run test:integration` | Run Jest integration tests (app must be running) |
+| `npm run test:e2e` | Run Playwright E2E (starts app automatically) |
+| `npm run test:e2e:ui` | Playwright UI mode for debugging |
+| `npm run test:e2e:headed` | Playwright headed (visible browser) |
+| `npm run test:app` | Start app, run integration + E2E, then stop app |
+
+CI runs `test:app` on every push/PR (required, not optional).
+
+## Playwright
+
+- Specs: `e2e/*.spec.ts` (e.g. `mode-switching.spec.ts`, `staff-flow.spec.ts`, `customer-flow.spec.ts`)
+- Run with `--project=chromium` for speed: `npm run test:e2e -- --project=chromium`
+- Auth fixture: `e2e/fixtures/auth.ts` provides `loginAs(page, user)` for staff/annotator/customer
+
+## Error Handling and Skip Behavior
+
+Integration tests that hit the running app **skip gracefully** when the app is not running (ECONNREFUSED):
+
+- **Pattern**: Wrap fetch in try/catch; if error includes `fetch` or `ECONNREFUSED`, `console.warn` and `return` (skip).
+- **Files**: `views-and-access.e2e.test.ts`, `authenticated-flows.e2e.test.ts`, `login-errors.e2e.test.ts`
+- **Helper**: Use a `skipIfAppNotRunning(e)` helper to reduce duplication when adding new integration tests.
+
+### Login and Redirect Assertions
+
+- **GET /login**: Accept 200 or 307. When 307, assert `Location` stays on login (e.g. `/login` or `/login?err=...`), not `/` or `/customer`.
+- **POST /api/login**: Invalid credentials or empty body → 307 to `/login?err=...`. Valid credentials → 307 to `/` or `/customer` with `Set-Cookie`.
+- **GET /**: Unauthenticated → 307 to `/login`.
+- **GET /api/sources**: Unauthenticated → 401.
+
+Add tests for new error paths (invalid input, auth failures, redirect targets) as they appear. See `login-errors.e2e.test.ts` for examples.
+
+## Debugging
+
+- **Playwright**: Use `test:e2e:ui` or `test:e2e:headed`; leverage cursor-ide-browser MCP for live inspection.
+- **Integration**: Verify app is running; check `BASE_URL`; add `console.log` or increase timeout.
+
+## Auth Credentials
+
+From `apps/ingest/lib/auth.ts` (`USER_CREDENTIALS`):
+
+- `staff` / `annotator` / `customer` — password: `123123`
+- Override via `TEST_PASSWORD` env var

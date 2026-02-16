@@ -1,0 +1,45 @@
+---
+description: Govern how docs/ROADMAP.md is updated and maintained; epics, features, user stories
+globs: ["docs/ROADMAP.md", "**/.cursor/plans/*.plan.md"]
+alwaysApply: false
+---
+
+# Update Roadmap Rule
+
+## Purpose
+
+Govern how [docs/ROADMAP.md](docs/ROADMAP.md) is updated and maintained. Ensures consistency between product roadmap, epics, features, user stories, and implementation plans.
+
+## When to Update ROADMAP
+
+- **New epic or feature**: Add to ROADMAP before or during implementation
+- **Completed milestone**: Mark as done, add completion date
+- **Scope change**: Update pillars, sections, or tables when product direction changes
+- **Plan alignment**: Sync `.cursor/plans/*.plan.md` with ROADMAP epics/features
+
+## Format
+
+### Structure
+
+- **Product Pillars**: High-level categories (Data Labeling, Annotation, Evaluation, Customer-Facing Export)
+- **Sections**: Numbered (1. Database Portfolio, 2. Deliverable Pipeline, etc.)
+- **Tables**: Use markdown tables for databases, commands, deliverables
+- **Epics**: Group related features; use `## Epic N: Title` when adding new work
+- **Features**: Sub-items under epics; use `### N.M Feature Name`
+- **User Stories**: Format `US-N.M`: As a [role], I want [action] so that [benefit]
+
+### Versioning
+
+- Add `Last Updated: YYYY-MM-DD` at bottom when making substantive changes
+- Link plan files: `See .cursor/plans/roadmap_*.plan.md for implementation details`
+
+## Linking to Epics and Plans
+
+- Each epic in ROADMAP should have a corresponding plan or todo list
+- Reference plan files: `[.cursor/plans/roadmap_rules_skills_and_features_*.plan.md](.cursor/plans/)`
+- User stories (US-N.M) map to implementation todos
+
+## Integration
+
+- **qa-workflow-cursor.mdc**: References this rule for roadmap maintenance
+- **Product management skill**: Use when creating epics, features, user stories, todos

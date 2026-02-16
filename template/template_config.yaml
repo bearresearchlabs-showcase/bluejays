@@ -59,3 +59,4 @@ backward_compat_fields:
   - title
   - description
   - complexity
+  - normal_query  # LiveSQLBench: concise, direct version of question

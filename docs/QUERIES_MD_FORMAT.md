@@ -53,6 +53,28 @@ Keep these for extraction (optional but recommended):
 - `**Complexity:**` – Complexity description
 - `**Expected Output:**` – Expected results
 
+### 4. LiveSQLBench/BIRD format (recommended for text-to-SQL benchmarks)
+
+For BIRD and [LiveSQLBench](https://huggingface.co/datasets/birdsql/livesqlbench-base-full-v1) compatibility:
+
+- `**Question:**` – Long, natural, colloquial user query (agent input at inference)
+- `**Normal Query:**` – Concise, direct version (reference)
+- `**Evidence:**` – Chain-of-thought (COT) from data architect: business context, schema reasoning, why this SQL solves the question
+
+Example:
+
+```markdown
+## Query 1: [Short Title]
+
+**Question:** I want to see how aircraft altitude varies over the past year, with rolling averages and outlier counts per day and hex code.
+**Normal Query:** Compute daily altitude statistics with rolling averages and outlier counts for each aircraft hex over the last 365 days.
+**Evidence:** Hex is the aircraft transponder code. aircraft_position_history stores timestamp, hex, altitude. Rolling averages use ROWS BETWEEN 4 PRECEDING. Z-score > 2 flags outliers.
+**Description:** Uses 4 CTEs with window functions.
+```sql
+...
+```
+```
+
 ## Format Requirements
 
 - **Query headers**: `## Query N: Title` (required for extraction)

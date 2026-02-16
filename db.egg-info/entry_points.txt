@@ -1,0 +1,2 @@
+[console_scripts]
+scrub-keywords = scripts.scrub_keywords:main

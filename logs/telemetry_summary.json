@@ -5,16 +5,16 @@
     "passed": 1,
     "failed": 0,
     "skipped": 0,
-    "ts": 1771114318.159555,
+    "ts": 1771196627.886657,
     "overall": "PASS"
   },
   "db_check:compliance": {
     "component": "db_check",
     "action": "compliance",
-    "passed": 1,
+    "passed": 16,
     "failed": 0,
     "skipped": 0,
-    "ts": 1771109958.1157608
+    "ts": 1771243249.488904
   },
   "db_check:qa": {
     "component": "db_check",
@@ -22,6 +22,15 @@
     "passed": 16,
     "failed": 0,
     "skipped": 0,
-    "ts": 1771109958.1147368
+    "ts": 1771243249.4392
+  },
+  "bird_export:run": {
+    "component": "bird_export",
+    "action": "run",
+    "passed": 480,
+    "failed": 0,
+    "skipped": 0,
+    "ts": 1771212808.373204,
+    "db_count": 16
   }
 }
