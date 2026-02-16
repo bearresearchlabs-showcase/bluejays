@@ -90,5 +90,10 @@ source/db-*/**/data.sql
 source/db-*/**/data_large*.sql
 client/db/**/data.sql
 client/db/**/data_large*.sql
+# Large data directories
+source/db-8/data/internet_pulled/
+source/db-8/data/internet_transformed/
+source/db-9/data/raw_datasets/
+source/db-9/data/transformed_datasets/
 
 # lib/sources-manifest.json — COMMITTED for Vercel (regenerate with: node scripts/generate-sources-manifest.js)
