@@ -79,7 +79,6 @@ results/snowflake_credentials.json
 
 # Large archives and client mirror
 *.zip
-client/
 archive/
 backup_archive/
 

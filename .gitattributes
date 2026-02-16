@@ -2,3 +2,7 @@ source/db-*/package/data filter=lfs diff=lfs merge=lfs -text
 source/db-*/package/data.sql filter=lfs diff=lfs merge=lfs -text
 source/db-*/**/data_large*.sql filter=lfs diff=lfs merge=lfs -text
 source/db-*/**/data.sql filter=lfs diff=lfs merge=lfs -text
+
+# Client mirror (synced from source)
+client/db/**/data.sql filter=lfs diff=lfs merge=lfs -text
+client/db/**/data_large*.sql filter=lfs diff=lfs merge=lfs -text
