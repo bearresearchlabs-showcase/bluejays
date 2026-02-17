@@ -1,0 +1,25 @@
+# Override for db-6: load all schema files
+installation_guide:
+  steps:
+    - title: Prerequisites
+      description: |
+        Ensure PostgreSQL is installed. See specifications for version requirements.
+      commands: []
+    - title: Create Database
+      description: |
+        Create a new database for this schema.
+      commands:
+        - "createdb -U postgres db_name"
+    - title: Load Schema
+      description: |
+        Load schema files in order: schema.sql, schema_extensions.sql, nexrad_satellite_schema.sql, insurance_schema.sql.
+      commands:
+        - "psql -U postgres -d db_name -f schema.sql"
+        - "psql -U postgres -d db_name -f schema_extensions.sql"
+        - "psql -U postgres -d db_name -f nexrad_satellite_schema.sql"
+        - "psql -U postgres -d db_name -f insurance_schema.sql"
+    - title: Load Data (Optional)
+      description: |
+        Load sample data from data.sql if available.
+      commands:
+        - "psql -U postgres -d db_name -f data.sql"

@@ -1,0 +1,28 @@
+{
+  "validation_date": "20260217-0526",
+  "mode": "langgraph",
+  "databases": {
+    "db-12": {
+      "steps": [
+        {
+          "step": "reference",
+          "status": "SKIP",
+          "message": "DB unavailable: connection to server at \"localhost\" (::1), port 5433 failed: Connection refused\n\tIs the server runni"
+        },
+        {
+          "step": "deliverable",
+          "status": "PASS",
+          "message": "queries.md exists, 305388 chars"
+        }
+      ],
+      "overall": "PASS",
+      "prompt": "Validate db-12: ensure schema, queries.json, and deliverable (queries.md) meet requirements. Reference attachment is the gold SQL query. Deliverable is queries.md.",
+      "reference_query_num": 1,
+      "deliverable": "/Users/machine/Documents/AQ/db/source/db-12/app/QUERIES/queries.md"
+    }
+  },
+  "summary": {
+    "passed": 1,
+    "failed": 0
+  }
+}
