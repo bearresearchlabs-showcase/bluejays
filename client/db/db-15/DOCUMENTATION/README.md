@@ -105,9 +105,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `county_fips_code` VARCHAR(5)  — 5-digit FIPS code
 - `county_seat` VARCHAR(100) 
 - `population` INTEGER 
-- `area_sq_miles` NUMERIC(10 
+- `area_sq_miles` NUMERIC(10, 2) 
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (state_id) FOREIGN KEY
 
 ### `zip_codes`
 
@@ -115,12 +114,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `state_id` VARCHAR(2) NOT NULL
 - `county_id` VARCHAR(255) 
 - `city` VARCHAR(100) 
-- `latitude` NUMERIC(10  — WGS84
-- `longitude` NUMERIC(10  — WGS84
+- `latitude` NUMERIC(10, 7)  — WGS84
+- `longitude` NUMERIC(10, 7)  — WGS84
 - `timezone` VARCHAR(50) 
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (state_id) FOREIGN KEY
-- `FOREIGN` KEY (county_id) FOREIGN KEY
 
 ### `utility_companies`
 
@@ -135,10 +132,9 @@ Standard PostgreSQL. No extensions required unless noted.
 - `website_url` VARCHAR(500) 
 - `customer_service_phone` VARCHAR(50) 
 - `total_customers` INTEGER 
-- `total_mwh_sold` NUMERIC(15 
+- `total_mwh_sold` NUMERIC(15, 2) 
 - `is_active` BOOLEAN 
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (state_id) FOREIGN KEY
 
 ### `rate_codes`
 
@@ -165,8 +161,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `tariff_filing_number` VARCHAR(100) 
 - `is_current` BOOLEAN 
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (utility_id) FOREIGN KEY
-- `FOREIGN` KEY (rate_code_id) FOREIGN KEY
 
 ### `electricity_rates`
 
@@ -177,21 +171,17 @@ Standard PostgreSQL. No extensions required unless noted.
 - `state_id` VARCHAR(2) NOT NULL
 - `rate_type` VARCHAR(50)  — 'Residential', 'Commercial', 'Industrial', 'Lighting'
 - `billing_period` VARCHAR(50)  — 'Monthly', 'Daily', 'Hourly'
-- `fixed_charge_usd` NUMERIC(10  — Monthly fixed charge
+- `fixed_charge_usd` NUMERIC(10, 4)  — Monthly fixed charge
 - `fixed_charge_unit` VARCHAR(50)  — 'per_month', 'per_day', 'per_customer'
-- `energy_charge_usd_per_kwh` NUMERIC(10  — Base energy charge per kWh
-- `demand_charge_usd_per_kw` NUMERIC(10  — Demand charge per kW
-- `minimum_charge_usd` NUMERIC(10 
+- `energy_charge_usd_per_kwh` NUMERIC(10, 6)  — Base energy charge per kWh
+- `demand_charge_usd_per_kw` NUMERIC(10, 4)  — Demand charge per kW
+- `minimum_charge_usd` NUMERIC(10, 4) 
 - `currency` VARCHAR(10) 
 - `effective_date` DATE NOT NULL
 - `expiration_date` DATE 
 - `is_current` BOOLEAN 
 - `data_source` VARCHAR(100)  — 'openei', 'eia', 'state_commission', 'poweroutage_us'
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (rate_structure_id) FOREIGN KEY
-- `FOREIGN` KEY (utility_id) FOREIGN KEY
-- `FOREIGN` KEY (rate_code_id) FOREIGN KEY
-- `FOREIGN` KEY (state_id) FOREIGN KEY
 
 ### `tiered_rate_tiers`
 
@@ -199,13 +189,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `rate_structure_id` VARCHAR(255) NOT NULL
 - `tier_number` INTEGER NOT NULL
 - `tier_name` VARCHAR(100) 
-- `tier_start_kwh` NUMERIC(10 
-- `tier_end_kwh` NUMERIC(10  — NULL for unlimited tier
-- `energy_charge_usd_per_kwh` NUMERIC(10 NOT NULL
+- `tier_start_kwh` NUMERIC(10, 2) 
+- `tier_end_kwh` NUMERIC(10, 2)  — NULL for unlimited tier
+- `energy_charge_usd_per_kwh` NUMERIC(10, 6) NOT NULL
 - `effective_date` DATE NOT NULL
 - `expiration_date` DATE 
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (rate_structure_id) FOREIGN KEY
 
 ### `time_of_use_periods`
 
@@ -216,11 +205,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `period_end_time` TIME NOT NULL
 - `day_of_week` VARCHAR(20)  — 'Monday', 'Weekday', 'Weekend', 'All'
 - `season` VARCHAR(50)  — 'Summer', 'Winter', 'Spring', 'Fall', 'All'
-- `energy_charge_usd_per_kwh` NUMERIC(10 NOT NULL
+- `energy_charge_usd_per_kwh` NUMERIC(10, 6) NOT NULL
 - `effective_date` DATE NOT NULL
 - `expiration_date` DATE 
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (rate_structure_id) FOREIGN KEY
 
 ### `geographic_rate_areas`
 
@@ -231,17 +219,13 @@ Standard PostgreSQL. No extensions required unless noted.
 - `zip_code` VARCHAR(10) 
 - `service_area_name` VARCHAR(255) 
 - `service_area_description` TEXT 
-- `latitude_min` NUMERIC(10  — Bounding box
-- `latitude_max` NUMERIC(10 
-- `longitude_min` NUMERIC(10 
-- `longitude_max` NUMERIC(10 
+- `latitude_min` NUMERIC(10, 7)  — Bounding box
+- `latitude_max` NUMERIC(10, 7) 
+- `longitude_min` NUMERIC(10, 7) 
+- `longitude_max` NUMERIC(10, 7) 
 - `effective_date` DATE NOT NULL
 - `expiration_date` DATE 
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (rate_structure_id) FOREIGN KEY
-- `FOREIGN` KEY (state_id) FOREIGN KEY
-- `FOREIGN` KEY (county_id) FOREIGN KEY
-- `FOREIGN` KEY (zip_code) FOREIGN KEY
 
 ### `historical_electricity_rates`
 
@@ -250,19 +234,15 @@ Standard PostgreSQL. No extensions required unless noted.
 - `utility_id` VARCHAR(255) NOT NULL
 - `rate_code_id` VARCHAR(255) NOT NULL
 - `state_id` VARCHAR(2) NOT NULL
-- `fixed_charge_usd` NUMERIC(10 
-- `energy_charge_usd_per_kwh` NUMERIC(10 
-- `demand_charge_usd_per_kw` NUMERIC(10 
+- `fixed_charge_usd` NUMERIC(10, 4) 
+- `energy_charge_usd_per_kwh` NUMERIC(10, 6) 
+- `demand_charge_usd_per_kw` NUMERIC(10, 4) 
 - `effective_date` DATE NOT NULL
 - `change_type` VARCHAR(50)  — 'rate_increase', 'rate_decrease', 'new_rate', 'rate_expired'
-- `change_percentage` NUMERIC(8 
-- `change_amount` NUMERIC(10 
+- `change_percentage` NUMERIC(8, 4) 
+- `change_amount` NUMERIC(10, 6) 
 - `change_reason` TEXT 
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (rate_id) FOREIGN KEY
-- `FOREIGN` KEY (utility_id) FOREIGN KEY
-- `FOREIGN` KEY (rate_code_id) FOREIGN KEY
-- `FOREIGN` KEY (state_id) FOREIGN KEY
 
 ### `federal_incentives`
 
@@ -270,14 +250,14 @@ Standard PostgreSQL. No extensions required unless noted.
 - `incentive_name` VARCHAR(255) NOT NULL
 - `incentive_type` VARCHAR(50)  — 'Tax Credit', 'Rebate', 'Grant', 'Loan', 'Performance-Based'
 - `incentive_description` TEXT 
-- `eligible_technologies` TEXT[]  — Array of eligible technologies
-- `eligible_sectors` TEXT[]  — Array of eligible sectors
-- `incentive_amount_usd` NUMERIC(15 
-- `incentive_percentage` NUMERIC(5  — Percentage-based incentives
+- `eligible_technologies` TEXT  — Array of eligible technologies
+- `eligible_sectors` TEXT  — Array of eligible sectors
+- `incentive_amount_usd` NUMERIC(15, 2) 
+- `incentive_percentage` NUMERIC(5, 2)  — Percentage-based incentives
 - `incentive_unit` VARCHAR(50)  — 'per_watt', 'per_system', 'percentage', 'fixed_amount'
-- `maximum_incentive_usd` NUMERIC(15 
-- `minimum_system_size_kw` NUMERIC(10 
-- `maximum_system_size_kw` NUMERIC(10 
+- `maximum_incentive_usd` NUMERIC(15, 2) 
+- `minimum_system_size_kw` NUMERIC(10, 2) 
+- `maximum_system_size_kw` NUMERIC(10, 2) 
 - `effective_date` DATE NOT NULL
 - `expiration_date` DATE 
 - `is_active` BOOLEAN 
@@ -293,14 +273,14 @@ Standard PostgreSQL. No extensions required unless noted.
 - `incentive_name` VARCHAR(255) NOT NULL
 - `incentive_type` VARCHAR(50)  — 'Tax Credit', 'Rebate', 'Grant', 'Loan', 'Performance-Based', 'Property Tax Exemption'
 - `incentive_description` TEXT 
-- `eligible_technologies` TEXT[] 
-- `eligible_sectors` TEXT[] 
-- `incentive_amount_usd` NUMERIC(15 
-- `incentive_percentage` NUMERIC(5 
+- `eligible_technologies` TEXT 
+- `eligible_sectors` TEXT 
+- `incentive_amount_usd` NUMERIC(15, 2) 
+- `incentive_percentage` NUMERIC(5, 2) 
 - `incentive_unit` VARCHAR(50) 
-- `maximum_incentive_usd` NUMERIC(15 
-- `minimum_system_size_kw` NUMERIC(10 
-- `maximum_system_size_kw` NUMERIC(10 
+- `maximum_incentive_usd` NUMERIC(15, 2) 
+- `minimum_system_size_kw` NUMERIC(10, 2) 
+- `maximum_system_size_kw` NUMERIC(10, 2) 
 - `effective_date` DATE NOT NULL
 - `expiration_date` DATE 
 - `is_active` BOOLEAN 
@@ -309,7 +289,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `regulatory_authority` VARCHAR(255)  — State agency administering program
 - `data_source` VARCHAR(100)  — 'dsire', 'state_commission', 'state_energy_office'
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (state_id) FOREIGN KEY
 
 ### `utility_incentives`
 
@@ -319,16 +298,16 @@ Standard PostgreSQL. No extensions required unless noted.
 - `incentive_name` VARCHAR(255) NOT NULL
 - `incentive_type` VARCHAR(50)  — 'Rebate', 'Performance-Based', 'Net Metering', 'Feed-in Tariff', 'Buy-Back Program'
 - `incentive_description` TEXT 
-- `eligible_technologies` TEXT[] 
-- `eligible_sectors` TEXT[] 
-- `incentive_amount_usd` NUMERIC(15 
-- `incentive_percentage` NUMERIC(5 
+- `eligible_technologies` TEXT 
+- `eligible_sectors` TEXT 
+- `incentive_amount_usd` NUMERIC(15, 2) 
+- `incentive_percentage` NUMERIC(5, 2) 
 - `incentive_unit` VARCHAR(50)  — 'per_watt', 'per_kwh', 'percentage', 'fixed_amount'
-- `maximum_incentive_usd` NUMERIC(15 
-- `minimum_system_size_kw` NUMERIC(10 
-- `maximum_system_size_kw` NUMERIC(10 
-- `net_metering_capacity_limit_kw` NUMERIC(10  — For net metering programs
-- `feed_in_tariff_rate_usd_per_kwh` NUMERIC(10  — For feed-in tariff programs
+- `maximum_incentive_usd` NUMERIC(15, 2) 
+- `minimum_system_size_kw` NUMERIC(10, 2) 
+- `maximum_system_size_kw` NUMERIC(10, 2) 
+- `net_metering_capacity_limit_kw` NUMERIC(10, 2)  — For net metering programs
+- `feed_in_tariff_rate_usd_per_kwh` NUMERIC(10, 6)  — For feed-in tariff programs
 - `effective_date` DATE NOT NULL
 - `expiration_date` DATE 
 - `is_active` BOOLEAN 
@@ -336,8 +315,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `program_contact_info` TEXT 
 - `data_source` VARCHAR(100)  — 'dsire', 'utility_website', 'state_commission'
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (utility_id) FOREIGN KEY
-- `FOREIGN` KEY (state_id) FOREIGN KEY
 
 ### `solar_rebate_aggregations`
 
@@ -345,19 +322,16 @@ Standard PostgreSQL. No extensions required unless noted.
 - `state_id` VARCHAR(2) NOT NULL
 - `utility_id` VARCHAR(255) 
 - `zip_code` VARCHAR(10) 
-- `total_federal_incentives_usd` NUMERIC(15 
-- `total_state_incentives_usd` NUMERIC(15 
-- `total_utility_incentives_usd` NUMERIC(15 
-- `total_combined_incentives_usd` NUMERIC(15 
+- `total_federal_incentives_usd` NUMERIC(15, 2) 
+- `total_state_incentives_usd` NUMERIC(15, 2) 
+- `total_utility_incentives_usd` NUMERIC(15, 2) 
+- `total_combined_incentives_usd` NUMERIC(15, 2) 
 - `federal_incentive_count` INTEGER 
 - `state_incentive_count` INTEGER 
 - `utility_incentive_count` INTEGER 
 - `total_incentive_count` INTEGER 
 - `calculation_date` DATE NOT NULL
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (state_id) FOREIGN KEY
-- `FOREIGN` KEY (utility_id) FOREIGN KEY
-- `FOREIGN` KEY (zip_code) FOREIGN KEY
 
 ### `rate_comparison_matrix`
 
@@ -365,15 +339,13 @@ Standard PostgreSQL. No extensions required unless noted.
 - `rate_id_1` VARCHAR(255) NOT NULL
 - `rate_id_2` VARCHAR(255) NOT NULL
 - `comparison_metric` VARCHAR(100)  — 'price_per_kwh', 'total_monthly_cost', 'cost_efficiency'
-- `usage_kwh_per_month` NUMERIC(10  — Usage level for comparison
-- `rate_1_cost_usd` NUMERIC(15 
-- `rate_2_cost_usd` NUMERIC(15 
-- `cost_difference_usd` NUMERIC(15 
-- `cost_difference_percentage` NUMERIC(8 
+- `usage_kwh_per_month` NUMERIC(10, 2)  — Usage level for comparison
+- `rate_1_cost_usd` NUMERIC(15, 2) 
+- `rate_2_cost_usd` NUMERIC(15, 2) 
+- `cost_difference_usd` NUMERIC(15, 2) 
+- `cost_difference_percentage` NUMERIC(8, 4) 
 - `comparison_date` DATE NOT NULL
 - `last_updated` TIMESTAMP 
-- `FOREIGN` KEY (rate_id_1) FOREIGN KEY
-- `FOREIGN` KEY (rate_id_2) FOREIGN KEY
 
 ### `data_extraction_log`
 
@@ -391,35 +363,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `error_message` TEXT 
 - `extraction_metadata` JSON  — Additional extraction metadata
 - `last_updated` TIMESTAMP 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
 
 ---
 

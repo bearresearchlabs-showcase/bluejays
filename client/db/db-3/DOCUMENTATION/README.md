@@ -64,55 +64,42 @@ Standard PostgreSQL. No extensions required unless noted.
 
 **Total tables:** 3
 
-- `IF` — (see data dictionary)
-- `IF` — (see data dictionary)
-- `IF` — (see data dictionary)
+- `table1` — (see data dictionary)
+- `table2` — (see data dictionary)
+- `table3` — (see data dictionary)
 
 ---
 
 ## Data Dictionary
 
-### `IF`
+### `table1`
 
 - `id` BIGINT PRIMARY KEY
 - `parent_id` BIGINT 
 - `name` VARCHAR(255) NOT NULL
-- `value` NUMERIC(15 
+- `value` NUMERIC(15,2) 
 - `category` VARCHAR(100) 
 - `date_col` DATE 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `CONSTRAINT` fk_table1_parent FOREIGN KEY
 
-### `IF`
+### `table2`
 
 - `id` BIGINT PRIMARY KEY
 - `table1_id` BIGINT NOT NULL
-- `related_value` NUMERIC(15 
+- `related_value` NUMERIC(15,2) 
 - `description` TEXT 
 - `date_col` DATE 
 - `created_at` TIMESTAMP 
-- `CONSTRAINT` fk_table2_table1 FOREIGN KEY
 
-### `IF`
+### `table3`
 
 - `id` BIGINT PRIMARY KEY
 - `table1_id` BIGINT NOT NULL
 - `table2_id` BIGINT NOT NULL
-- `metric_value` NUMERIC(15 
+- `metric_value` NUMERIC(15,2) 
 - `status` VARCHAR(50) 
 - `created_at` TIMESTAMP 
-- `CONSTRAINT` fk_table3_table1 FOREIGN KEY
-- `CONSTRAINT` fk_table3_table2 FOREIGN KEY
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` OR 
-- `SELECT` id 
-- `FROM` table1; 
 
 ---
 

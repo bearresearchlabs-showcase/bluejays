@@ -108,13 +108,13 @@ Standard PostgreSQL. No extensions required unless noted.
 - `parent_location_id` VARCHAR(255) 
 - `country_code` VARCHAR(3)  — ISO 3166-1 alpha-3
 - `region_code` VARCHAR(10) 
-- `latitude` NUMERIC(10 
-- `longitude` NUMERIC(10 
+- `latitude` NUMERIC(10, 7) 
+- `longitude` NUMERIC(10, 7) 
 - `location_geom` GEOGRAPHY  — Point geometry for location center
-- `spatial_extent_west` NUMERIC(10 
-- `spatial_extent_south` NUMERIC(10 
-- `spatial_extent_east` NUMERIC(10 
-- `spatial_extent_north` NUMERIC(10 
+- `spatial_extent_west` NUMERIC(10, 6) 
+- `spatial_extent_south` NUMERIC(10, 6) 
+- `spatial_extent_east` NUMERIC(10, 6) 
+- `spatial_extent_north` NUMERIC(10, 6) 
 - `created_at` TIMESTAMP 
 
 ### `ports`
@@ -126,14 +126,14 @@ Standard PostgreSQL. No extensions required unless noted.
 - `location_id` VARCHAR(255) 
 - `country` VARCHAR(100) 
 - `country_code` VARCHAR(3) 
-- `latitude` NUMERIC(10 NOT NULL
-- `longitude` NUMERIC(10 NOT NULL
+- `latitude` NUMERIC(10, 7) NOT NULL
+- `longitude` NUMERIC(10, 7) NOT NULL
 - `port_geom` GEOGRAPHY  — Point geometry for port location
 - `port_type` VARCHAR(50)  — 'Container', 'Bulk', 'RoRo', 'Tanker', 'General', 'Multi-purpose'
 - `timezone` VARCHAR(50) 
-- `depth_meters` NUMERIC(8 
-- `max_vessel_length_meters` NUMERIC(8 
-- `max_vessel_draft_meters` NUMERIC(8 
+- `depth_meters` NUMERIC(8, 2) 
+- `max_vessel_length_meters` NUMERIC(8, 2) 
+- `max_vessel_draft_meters` NUMERIC(8, 2) 
 - `container_capacity_teu` INTEGER 
 - `berth_count` INTEGER 
 - `crane_count` INTEGER 
@@ -157,10 +157,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `gross_tonnage` INTEGER 
 - `net_tonnage` INTEGER 
 - `deadweight_tonnage` INTEGER 
-- `length_meters` NUMERIC(8 
-- `beam_meters` NUMERIC(8 
-- `draft_meters` NUMERIC(8 
-- `max_speed_knots` NUMERIC(6 
+- `length_meters` NUMERIC(8, 2) 
+- `beam_meters` NUMERIC(8, 2) 
+- `draft_meters` NUMERIC(8, 2) 
+- `max_speed_knots` NUMERIC(6, 2) 
 - `container_capacity_teu` INTEGER 
 - `container_capacity_twenty_foot` INTEGER 
 - `container_capacity_forty_foot` INTEGER 
@@ -230,7 +230,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `containers_discharged` INTEGER 
 - `containers_transshipped` INTEGER 
 - `status` VARCHAR(50)  — 'Scheduled', 'In Progress', 'Completed', 'Cancelled'
-- `delay_hours` NUMERIC(8 
+- `delay_hours` NUMERIC(8, 2) 
 - `data_source` VARCHAR(100)  — 'AIS', 'NOAD', 'MARAD', 'Linescape', etc.
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
@@ -248,12 +248,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `scheduled_arrival` TIMESTAMP 
 - `actual_arrival` TIMESTAMP 
 - `transit_days` INTEGER 
-- `distance_nautical_miles` NUMERIC(10 
-- `average_speed_knots` NUMERIC(6 
+- `distance_nautical_miles` NUMERIC(10, 2) 
+- `average_speed_knots` NUMERIC(6, 2) 
 - `cargo_type` VARCHAR(100) 
 - `total_containers` INTEGER 
-- `total_teu` NUMERIC(10 
-- `capacity_utilization_percent` NUMERIC(5 
+- `total_teu` NUMERIC(10, 2) 
+- `capacity_utilization_percent` NUMERIC(5, 2) 
 - `transshipment_count` INTEGER 
 - `status` VARCHAR(50)  — 'Scheduled', 'In Transit', 'Completed', 'Cancelled'
 - `data_source` VARCHAR(100) 
@@ -270,12 +270,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `end_port_id` VARCHAR(255) NOT NULL
 - `start_date` TIMESTAMP NOT NULL
 - `end_date` TIMESTAMP 
-- `total_distance_nautical_miles` NUMERIC(10 
+- `total_distance_nautical_miles` NUMERIC(10, 2) 
 - `total_transit_days` INTEGER 
 - `port_call_count` INTEGER 
 - `transshipment_count` INTEGER 
 - `total_containers` INTEGER 
-- `total_teu` NUMERIC(10 
+- `total_teu` NUMERIC(10, 2) 
 - `status` VARCHAR(50)  — 'Scheduled', 'In Progress', 'Completed', 'Cancelled'
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
@@ -294,16 +294,16 @@ Standard PostgreSQL. No extensions required unless noted.
 - `vessel_id` VARCHAR(255) NOT NULL
 - `mmsi` VARCHAR(9) 
 - `timestamp` TIMESTAMP NOT NULL
-- `latitude` NUMERIC(10 NOT NULL
-- `longitude` NUMERIC(10 NOT NULL
+- `latitude` NUMERIC(10, 7) NOT NULL
+- `longitude` NUMERIC(10, 7) NOT NULL
 - `position_geom` GEOGRAPHY  — Point geometry for vessel position
-- `speed_knots` NUMERIC(6 
-- `course_degrees` NUMERIC(6 
-- `heading_degrees` NUMERIC(6 
+- `speed_knots` NUMERIC(6, 2) 
+- `course_degrees` NUMERIC(6, 2) 
+- `heading_degrees` NUMERIC(6, 2) 
 - `navigation_status` VARCHAR(50)  — 'Under way', 'At anchor', 'Moored', etc.
 - `destination` VARCHAR(255) 
 - `eta` TIMESTAMP  — Estimated time of arrival
-- `draught_meters` NUMERIC(6 
+- `draught_meters` NUMERIC(6, 2) 
 - `cargo_type` VARCHAR(100) 
 - `data_source` VARCHAR(100)  — 'AIS', 'USCG', 'NOAA', etc.
 - `data_quality` VARCHAR(50)  — 'High', 'Medium', 'Low'
@@ -316,14 +316,14 @@ Standard PostgreSQL. No extensions required unless noted.
 - `statistic_date` DATE NOT NULL
 - `statistic_period` VARCHAR(50)  — 'Daily', 'Weekly', 'Monthly', 'Yearly'
 - `total_vessel_calls` INTEGER 
-- `total_container_teu` NUMERIC(12 
+- `total_container_teu` NUMERIC(12, 2) 
 - `containers_loaded` INTEGER 
 - `containers_discharged` INTEGER 
 - `containers_transshipped` INTEGER 
-- `average_vessel_size_teu` NUMERIC(10 
-- `average_dwell_time_hours` NUMERIC(8 
-- `berth_utilization_percent` NUMERIC(5 
-- `crane_utilization_percent` NUMERIC(5 
+- `average_vessel_size_teu` NUMERIC(10, 2) 
+- `average_dwell_time_hours` NUMERIC(8, 2) 
+- `berth_utilization_percent` NUMERIC(5, 2) 
+- `crane_utilization_percent` NUMERIC(5, 2) 
 - `data_source` VARCHAR(100)  — 'MARAD', 'Port Authority', 'Linescape', etc.
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
@@ -337,47 +337,15 @@ Standard PostgreSQL. No extensions required unless noted.
 - `total_voyages` INTEGER 
 - `on_time_departures` INTEGER 
 - `on_time_arrivals` INTEGER 
-- `on_time_performance_percent` NUMERIC(5 
-- `average_transit_time_days` NUMERIC(8 
-- `vessel_utilization_percent` NUMERIC(5 
-- `capacity_utilization_percent` NUMERIC(5 
-- `total_teu_carried` NUMERIC(12 
+- `on_time_performance_percent` NUMERIC(5, 2) 
+- `average_transit_time_days` NUMERIC(8, 2) 
+- `vessel_utilization_percent` NUMERIC(5, 2) 
+- `capacity_utilization_percent` NUMERIC(5, 2) 
+- `total_teu_carried` NUMERIC(12, 2) 
 - `port_calls_count` INTEGER 
 - `route_coverage_count` INTEGER 
-- `customer_satisfaction_score` NUMERIC(5 
+- `customer_satisfaction_score` NUMERIC(5, 2) 
 - `created_at` TIMESTAMP 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
 
 ---
 

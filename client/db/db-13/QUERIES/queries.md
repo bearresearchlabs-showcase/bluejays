@@ -39,7 +39,7 @@ Business value for db-13.
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:12
 -- Database: db-13
---
+-- 
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -74,7 +74,7 @@ CREATE TABLE ai_models (
     supports_streaming BOOLEAN DEFAULT TRUE,
     supports_function_calling BOOLEAN DEFAULT FALSE,
     supports_vision BOOLEAN DEFAULT FALSE,
-    supports_audio BOOLEAN
+    supports_audio BOOLEAN 
 -- ...
 ```
 

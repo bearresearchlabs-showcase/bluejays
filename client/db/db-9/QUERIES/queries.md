@@ -39,7 +39,7 @@ Business value for db-9.
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:05
 -- Database: db-9
---
+-- 
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --

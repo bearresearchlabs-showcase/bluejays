@@ -94,10 +94,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `subcategory` VARCHAR(100) 
 - `product_description` VARCHAR(16777216) 
 - `product_image_url` VARCHAR(1000) 
-- `weight_lbs` NUMERIC(8 
-- `dimensions_length` NUMERIC(8 
-- `dimensions_width` NUMERIC(8 
-- `dimensions_height` NUMERIC(8 
+- `weight_lbs` NUMERIC(8, 2) 
+- `dimensions_length` NUMERIC(8, 2) 
+- `dimensions_width` NUMERIC(8, 2) 
+- `dimensions_height` NUMERIC(8, 2) 
 - `color` VARCHAR(100) 
 - `size` VARCHAR(100) 
 - `created_at` TIMESTAMP 
@@ -116,13 +116,13 @@ Standard PostgreSQL. No extensions required unless noted.
 - `headquarters_state` VARCHAR(2) 
 - `headquarters_zip` VARCHAR(20) 
 - `headquarters_country` VARCHAR(2) 
-- `headquarters_latitude` NUMERIC(10 
-- `headquarters_longitude` NUMERIC(10 
+- `headquarters_latitude` NUMERIC(10, 7) 
+- `headquarters_longitude` NUMERIC(10, 7) 
 - `market_coverage` VARCHAR(50)  — 'national', 'regional', 'local', 'international'
 - `retailer_status` VARCHAR(50)  — 'active', 'inactive', 'bankrupt'
 - `founded_year` INTEGER 
 - `employee_count` INTEGER 
-- `annual_revenue_usd` NUMERIC(15 
+- `annual_revenue_usd` NUMERIC(15, 2) 
 - `data_source` VARCHAR(50) 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
@@ -139,8 +139,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `store_zip` VARCHAR(20) 
 - `store_county` VARCHAR(100) 
 - `store_country` VARCHAR(2) 
-- `store_latitude` NUMERIC(10 NOT NULL
-- `store_longitude` NUMERIC(10 NOT NULL
+- `store_latitude` NUMERIC(10, 7) NOT NULL
+- `store_longitude` NUMERIC(10, 7) NOT NULL
 - `store_geom` GEOGRAPHY  — Point geometry for store location
 - `store_type` VARCHAR(50)  — 'supercenter', 'neighborhood', 'express', 'warehouse'
 - `store_size_sqft` INTEGER 
@@ -151,7 +151,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `data_source` VARCHAR(50) 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `FOREIGN` KEY (retailer_id) FOREIGN KEY
 
 ### `product_inventory`
 
@@ -166,11 +165,9 @@ Standard PostgreSQL. No extensions required unless noted.
 - `last_checked_at` TIMESTAMP NOT NULL
 - `last_restocked_at` TIMESTAMP 
 - `data_source` VARCHAR(50) NOT NULL — 'api', 'scraper', 'manual', 'census'
-- `confidence_score` NUMERIC(5  — Data quality confidence (0-100)
+- `confidence_score` NUMERIC(5, 2)  — Data quality confidence (0-100)
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `FOREIGN` KEY (product_id) FOREIGN KEY
-- `FOREIGN` KEY (store_id) FOREIGN KEY
 
 ### `product_pricing`
 
@@ -178,23 +175,20 @@ Standard PostgreSQL. No extensions required unless noted.
 - `product_id` VARCHAR(255) NOT NULL
 - `retailer_id` VARCHAR(255) NOT NULL
 - `store_id` VARCHAR(255)  — NULL for online-only pricing
-- `current_price` NUMERIC(10 NOT NULL
-- `original_price` NUMERIC(10 
-- `sale_price` NUMERIC(10 
-- `discount_percentage` NUMERIC(5 
+- `current_price` NUMERIC(10, 2) NOT NULL
+- `original_price` NUMERIC(10, 2) 
+- `sale_price` NUMERIC(10, 2) 
+- `discount_percentage` NUMERIC(5, 2) 
 - `price_effective_date` TIMESTAMP NOT NULL
 - `price_expiry_date` TIMESTAMP 
 - `price_type` VARCHAR(50)  — 'regular', 'sale', 'clearance', 'promotional'
 - `price_source` VARCHAR(50) NOT NULL — 'api', 'scraper', 'manual', 'census'
-- `price_confidence_score` NUMERIC(5  — Data quality confidence (0-100)
+- `price_confidence_score` NUMERIC(5, 2)  — Data quality confidence (0-100)
 - `currency` VARCHAR(3) 
 - `is_online_price` BOOLEAN 
-- `shipping_cost` NUMERIC(8 
+- `shipping_cost` NUMERIC(8, 2) 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `FOREIGN` KEY (product_id) FOREIGN KEY
-- `FOREIGN` KEY (retailer_id) FOREIGN KEY
-- `FOREIGN` KEY (store_id) FOREIGN KEY
 
 ### `market_intelligence`
 
@@ -202,21 +196,20 @@ Standard PostgreSQL. No extensions required unless noted.
 - `product_id` VARCHAR(255) NOT NULL
 - `market_area` VARCHAR(100)  — ZIP code, city, state, or 'national'
 - `market_type` VARCHAR(50)  — 'zip', 'city', 'state', 'msa', 'national'
-- `average_price` NUMERIC(10 
-- `price_range_min` NUMERIC(10 
-- `price_range_max` NUMERIC(10 
-- `median_price` NUMERIC(10 
-- `price_std_dev` NUMERIC(10 
-- `availability_rate` NUMERIC(5  — Percentage of stores with product in stock
-- `market_share` NUMERIC(5  — Market share percentage
+- `average_price` NUMERIC(10, 2) 
+- `price_range_min` NUMERIC(10, 2) 
+- `price_range_max` NUMERIC(10, 2) 
+- `median_price` NUMERIC(10, 2) 
+- `price_std_dev` NUMERIC(10, 2) 
+- `availability_rate` NUMERIC(5, 2)  — Percentage of stores with product in stock
+- `market_share` NUMERIC(5, 2)  — Market share percentage
 - `competitor_count` INTEGER  — Number of retailers selling this product
 - `total_stores_with_product` INTEGER 
 - `total_stores_checked` INTEGER 
 - `intelligence_date` DATE NOT NULL
-- `data_quality_score` NUMERIC(5  — Overall data quality score (0-100)
+- `data_quality_score` NUMERIC(5, 2)  — Overall data quality score (0-100)
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `FOREIGN` KEY (product_id) FOREIGN KEY
 
 ### `deal_alerts`
 
@@ -225,10 +218,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `retailer_id` VARCHAR(255) NOT NULL
 - `store_id` VARCHAR(255)  — NULL for online-only deals
 - `deal_type` VARCHAR(50) NOT NULL — 'clearance', 'sale', 'promotion', 'flash_sale', 'bogo'
-- `discount_percentage` NUMERIC(5 
-- `discount_amount` NUMERIC(10 
-- `deal_price` NUMERIC(10 NOT NULL
-- `original_price` NUMERIC(10 NOT NULL
+- `discount_percentage` NUMERIC(5, 2) 
+- `discount_amount` NUMERIC(10, 2) 
+- `deal_price` NUMERIC(10, 2) NOT NULL
+- `original_price` NUMERIC(10, 2) NOT NULL
 - `deal_start_date` TIMESTAMP NOT NULL
 - `deal_end_date` TIMESTAMP 
 - `deal_status` VARCHAR(50)  — 'active', 'expired', 'cancelled'
@@ -238,9 +231,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `quantity_limit` INTEGER 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `FOREIGN` KEY (product_id) FOREIGN KEY
-- `FOREIGN` KEY (retailer_id) FOREIGN KEY
-- `FOREIGN` KEY (store_id) FOREIGN KEY
 
 ### `census_retail_data`
 
@@ -249,12 +239,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `industry_category` VARCHAR(255) NOT NULL
 - `month` INTEGER NOT NULL — 1-12
 - `year` INTEGER NOT NULL
-- `retail_sales_amount` NUMERIC(15  — In millions of dollars
-- `inventory_amount` NUMERIC(15  — In millions of dollars
+- `retail_sales_amount` NUMERIC(15, 2)  — In millions of dollars
+- `inventory_amount` NUMERIC(15, 2)  — In millions of dollars
 - `store_count` INTEGER 
 - `employment_count` INTEGER 
-- `sales_change_percent` NUMERIC(6  — Month-over-month percentage change
-- `inventory_change_percent` NUMERIC(6 
+- `sales_change_percent` NUMERIC(6, 2)  — Month-over-month percentage change
+- `inventory_change_percent` NUMERIC(6, 2) 
 - `data_source` VARCHAR(50) 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
@@ -266,9 +256,9 @@ Standard PostgreSQL. No extensions required unless noted.
 - `product_category` VARCHAR(255) NOT NULL
 - `period` VARCHAR(10) NOT NULL — 'M01' through 'M12' for monthly, 'Q01' through 'Q04' for quarterly
 - `year` INTEGER NOT NULL
-- `price_index_value` NUMERIC(10 
-- `percent_change` NUMERIC(6  — Period-over-period percentage change
-- `percent_change_year_ago` NUMERIC(6  — Year-over-year percentage change
+- `price_index_value` NUMERIC(10, 2) 
+- `percent_change` NUMERIC(6, 2)  — Period-over-period percentage change
+- `percent_change_year_ago` NUMERIC(6, 2)  — Year-over-year percentage change
 - `base_period` VARCHAR(20)  — Base period for index (e.g., '1982-84=100')
 - `index_type` VARCHAR(50)  — 'CPI', 'PPI', 'CPI_U', 'CPI_W'
 - `data_source` VARCHAR(50) 
@@ -284,8 +274,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `market_geom` GEOGRAPHY  — Polygon geometry for market boundaries
 - `market_boundaries` VARCHAR(16777216)  — JSON or text representation of boundaries
 - `population` INTEGER 
-- `median_income` NUMERIC(10 
-- `market_size` NUMERIC(15  — Market size in square miles or km²
+- `median_income` NUMERIC(10, 2) 
+- `market_size` NUMERIC(15, 2)  — Market size in square miles or km²
 - `state_code` VARCHAR(2) 
 - `county_name` VARCHAR(100) 
 - `msa_code` VARCHAR(10)  — Metropolitan Statistical Area code
@@ -304,7 +294,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `rate_limit_per_day` INTEGER 
 - `last_sync_at` TIMESTAMP 
 - `sync_frequency` VARCHAR(50)  — 'hourly', 'daily', 'weekly', 'monthly', 'manual'
-- `data_quality_score` NUMERIC(5  — Overall data quality score (0-100)
+- `data_quality_score` NUMERIC(5, 2)  — Overall data quality score (0-100)
 - `is_active` BOOLEAN 
 - `notes` VARCHAR(2000) 
 - `created_at` TIMESTAMP 
@@ -325,36 +315,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `start_time` TIMESTAMP NOT NULL
 - `end_time` TIMESTAMP 
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (source_id) FOREIGN KEY
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
 
 ---
 

@@ -91,15 +91,15 @@ Standard PostgreSQL. No extensions required unless noted.
 - `state_codes` VARCHAR(100)  — Comma-separated state codes
 - `principal_city` VARCHAR(255) 
 - `population_estimate` INTEGER 
-- `land_area_sq_miles` NUMERIC(12 
-- `population_density` NUMERIC(10 
-- `median_household_income` NUMERIC(12 
-- `gdp_billions` NUMERIC(12 
+- `land_area_sq_miles` NUMERIC(12, 2) 
+- `population_density` NUMERIC(10, 2) 
+- `median_household_income` NUMERIC(12, 2) 
+- `gdp_billions` NUMERIC(12, 2) 
 - `msa_geom` GEOGRAPHY  — Polygon geometry for MSA boundary
-- `spatial_extent_west` NUMERIC(10 
-- `spatial_extent_south` NUMERIC(10 
-- `spatial_extent_east` NUMERIC(10 
-- `spatial_extent_north` NUMERIC(10 
+- `spatial_extent_west` NUMERIC(10, 6) 
+- `spatial_extent_south` NUMERIC(10, 6) 
+- `spatial_extent_east` NUMERIC(10, 6) 
+- `spatial_extent_north` NUMERIC(10, 6) 
 - `data_year` INTEGER 
 - `load_timestamp` TIMESTAMP 
 
@@ -111,19 +111,18 @@ Standard PostgreSQL. No extensions required unless noted.
 - `county_name` VARCHAR(255) 
 - `msa_id` VARCHAR(50) 
 - `population` INTEGER 
-- `land_area_sq_miles` NUMERIC(10 
-- `population_density` NUMERIC(10 
-- `median_household_income` NUMERIC(12 
-- `median_age` NUMERIC(5 
+- `land_area_sq_miles` NUMERIC(10, 2) 
+- `population_density` NUMERIC(10, 2) 
+- `median_household_income` NUMERIC(12, 2) 
+- `median_age` NUMERIC(5, 2) 
 - `employment_total` INTEGER 
-- `unemployment_rate` NUMERIC(5 
+- `unemployment_rate` NUMERIC(5, 2) 
 - `city_geom` GEOGRAPHY  — Point geometry for city center
-- `city_latitude` NUMERIC(10 
-- `city_longitude` NUMERIC(10 
+- `city_latitude` NUMERIC(10, 7) 
+- `city_longitude` NUMERIC(10, 7) 
 - `timezone` VARCHAR(50) 
 - `data_year` INTEGER 
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (msa_id) FOREIGN KEY
 
 ### `airports`
 
@@ -132,8 +131,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `city_id` VARCHAR(50) 
 - `state_code` VARCHAR(2) 
 - `airport_type` VARCHAR(50)  — 'Commercial', 'Cargo', 'General Aviation'
-- `latitude` NUMERIC(10 NOT NULL
-- `longitude` NUMERIC(10 NOT NULL
+- `latitude` NUMERIC(10, 7) NOT NULL
+- `longitude` NUMERIC(10, 7) NOT NULL
 - `airport_geom` GEOGRAPHY  — Point geometry
 - `annual_passengers` INTEGER 
 - `annual_cargo_tons` INTEGER 
@@ -144,7 +143,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `short_term_parking` BOOLEAN 
 - `data_year` INTEGER 
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (city_id) FOREIGN KEY
 
 ### `stadiums_venues`
 
@@ -152,8 +150,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `venue_name` VARCHAR(255) NOT NULL
 - `venue_type` VARCHAR(50)  — 'Stadium', 'Arena', 'Convention Center', 'Amphitheater'
 - `city_id` VARCHAR(50) 
-- `latitude` NUMERIC(10 NOT NULL
-- `longitude` NUMERIC(10 NOT NULL
+- `latitude` NUMERIC(10, 7) NOT NULL
+- `longitude` NUMERIC(10, 7) NOT NULL
 - `venue_geom` GEOGRAPHY  — Point geometry
 - `capacity` INTEGER 
 - `parking_spaces_total` INTEGER 
@@ -164,7 +162,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `peak_attendance` INTEGER 
 - `data_year` INTEGER 
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (city_id) FOREIGN KEY
 
 ### `parking_facilities`
 
@@ -172,15 +169,15 @@ Standard PostgreSQL. No extensions required unless noted.
 - `facility_name` VARCHAR(255) 
 - `facility_type` VARCHAR(50)  — 'Surface Lot', 'Garage', 'Structure', 'Valet', 'Street'
 - `city_id` VARCHAR(50) 
-- `latitude` NUMERIC(10 NOT NULL
-- `longitude` NUMERIC(10 NOT NULL
+- `latitude` NUMERIC(10, 7) NOT NULL
+- `longitude` NUMERIC(10, 7) NOT NULL
 - `facility_geom` GEOGRAPHY  — Point geometry
 - `total_spaces` INTEGER 
 - `accessible_spaces` INTEGER 
 - `ev_charging_stations` INTEGER 
 - `covered_spaces` INTEGER 
 - `uncovered_spaces` INTEGER 
-- `height_restriction_feet` NUMERIC(5 
+- `height_restriction_feet` NUMERIC(5, 2) 
 - `operator_name` VARCHAR(255) 
 - `operator_type` VARCHAR(50)  — 'Public', 'Private', 'Municipal', 'Airport', 'Venue'
 - `airport_id` VARCHAR(10) 
@@ -192,20 +189,17 @@ Standard PostgreSQL. No extensions required unless noted.
 - `payment_methods` VARCHAR(255)  — Comma-separated: 'Cash', 'Credit', 'Mobile', 'App'
 - `amenities` VARCHAR(500)  — Comma-separated amenities
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (city_id) FOREIGN KEY
-- `FOREIGN` KEY (airport_id) FOREIGN KEY
-- `FOREIGN` KEY (venue_id) FOREIGN KEY
 
 ### `parking_pricing`
 
 - `pricing_id` VARCHAR(100) PRIMARY KEY
 - `facility_id` VARCHAR(100) NOT NULL
 - `pricing_type` VARCHAR(50)  — 'Hourly', 'Daily', 'Monthly', 'Event', 'Early Bird'
-- `base_rate_hourly` NUMERIC(8 
-- `base_rate_daily` NUMERIC(8 
-- `base_rate_monthly` NUMERIC(8 
-- `event_rate` NUMERIC(8 
-- `max_daily_rate` NUMERIC(8 
+- `base_rate_hourly` NUMERIC(8, 2) 
+- `base_rate_daily` NUMERIC(8, 2) 
+- `base_rate_monthly` NUMERIC(8, 2) 
+- `event_rate` NUMERIC(8, 2) 
+- `max_daily_rate` NUMERIC(8, 2) 
 - `currency` VARCHAR(3) 
 - `effective_date` DATE 
 - `expiration_date` DATE 
@@ -214,15 +208,14 @@ Standard PostgreSQL. No extensions required unless noted.
 - `time_range_end` TIME 
 - `is_active` BOOLEAN 
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (facility_id) FOREIGN KEY
 
 ### `traffic_volume_data`
 
 - `traffic_id` VARCHAR(100) PRIMARY KEY
 - `location_id` VARCHAR(100) 
 - `city_id` VARCHAR(50) 
-- `latitude` NUMERIC(10 
-- `longitude` NUMERIC(10 
+- `latitude` NUMERIC(10, 7) 
+- `longitude` NUMERIC(10, 7) 
 - `location_geom` GEOGRAPHY  — Point geometry
 - `road_name` VARCHAR(255) 
 - `road_type` VARCHAR(50)  — 'Highway', 'Arterial', 'Collector', 'Local'
@@ -232,7 +225,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `data_year` INTEGER 
 - `data_month` INTEGER 
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (city_id) FOREIGN KEY
 
 ### `events`
 
@@ -244,12 +236,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `event_date` DATE NOT NULL
 - `event_time` TIME 
 - `attendance` INTEGER 
-- `parking_demand_multiplier` NUMERIC(5  — Multiplier for parking demand
+- `parking_demand_multiplier` NUMERIC(5, 2)  — Multiplier for parking demand
 - `is_recurring` BOOLEAN 
 - `recurrence_pattern` VARCHAR(100)  — 'Weekly', 'Monthly', 'Seasonal'
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (venue_id) FOREIGN KEY
-- `FOREIGN` KEY (city_id) FOREIGN KEY
 
 ### `market_intelligence_metrics`
 
@@ -258,15 +248,13 @@ Standard PostgreSQL. No extensions required unless noted.
 - `msa_id` VARCHAR(50) 
 - `metric_type` VARCHAR(50)  — 'Demand', 'Supply', 'Utilization', 'Revenue', 'Competition'
 - `metric_name` VARCHAR(100) 
-- `metric_value` NUMERIC(15 
+- `metric_value` NUMERIC(15, 2) 
 - `metric_unit` VARCHAR(50) 
 - `calculation_date` DATE 
 - `time_period` VARCHAR(50)  — 'Daily', 'Weekly', 'Monthly', 'Quarterly', 'Annual'
 - `data_year` INTEGER 
 - `data_month` INTEGER 
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (city_id) FOREIGN KEY
-- `FOREIGN` KEY (msa_id) FOREIGN KEY
 
 ### `parking_utilization`
 
@@ -274,15 +262,14 @@ Standard PostgreSQL. No extensions required unless noted.
 - `facility_id` VARCHAR(100) NOT NULL
 - `utilization_date` DATE NOT NULL
 - `utilization_hour` INTEGER  — 0-23
-- `occupancy_rate` NUMERIC(5  — Percentage 0-100
+- `occupancy_rate` NUMERIC(5, 2)  — Percentage 0-100
 - `spaces_occupied` INTEGER 
 - `spaces_available` INTEGER 
-- `revenue_generated` NUMERIC(10 
+- `revenue_generated` NUMERIC(10, 2) 
 - `reservation_count` INTEGER 
 - `walk_in_count` INTEGER 
 - `data_source` VARCHAR(50)  — 'Sensor', 'Manual', 'App', 'Estimated'
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (facility_id) FOREIGN KEY
 
 ### `competitive_analysis`
 
@@ -290,14 +277,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `facility_id` VARCHAR(100) NOT NULL
 - `competitor_facility_id` VARCHAR(100) 
 - `analysis_date` DATE 
-- `price_difference_pct` NUMERIC(5 
-- `distance_miles` NUMERIC(8 
-- `utilization_difference_pct` NUMERIC(5 
+- `price_difference_pct` NUMERIC(5, 2) 
+- `distance_miles` NUMERIC(8, 2) 
+- `utilization_difference_pct` NUMERIC(5, 2) 
 - `amenity_comparison` VARCHAR(500) 
-- `competitive_score` NUMERIC(5  — 0-100
+- `competitive_score` NUMERIC(5, 2)  — 0-100
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (facility_id) FOREIGN KEY
-- `FOREIGN` KEY (competitor_facility_id) FOREIGN KEY
 
 ### `business_districts`
 
@@ -305,30 +290,27 @@ Standard PostgreSQL. No extensions required unless noted.
 - `district_name` VARCHAR(255) NOT NULL
 - `city_id` VARCHAR(50) 
 - `district_type` VARCHAR(50)  — 'Downtown', 'Financial', 'Retail', 'Entertainment', 'Airport', 'Medical'
-- `latitude` NUMERIC(10 
-- `longitude` NUMERIC(10 
+- `latitude` NUMERIC(10, 7) 
+- `longitude` NUMERIC(10, 7) 
 - `district_geom` GEOGRAPHY  — Polygon geometry
 - `employment_total` INTEGER 
 - `businesses_count` INTEGER 
-- `parking_demand_score` NUMERIC(5  — 0-100
-- `spatial_extent_west` NUMERIC(10 
-- `spatial_extent_south` NUMERIC(10 
-- `spatial_extent_east` NUMERIC(10 
-- `spatial_extent_north` NUMERIC(10 
+- `parking_demand_score` NUMERIC(5, 2)  — 0-100
+- `spatial_extent_west` NUMERIC(10, 6) 
+- `spatial_extent_south` NUMERIC(10, 6) 
+- `spatial_extent_east` NUMERIC(10, 6) 
+- `spatial_extent_north` NUMERIC(10, 6) 
 - `data_year` INTEGER 
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (city_id) FOREIGN KEY
 
 ### `facility_district_mapping`
 
 - `mapping_id` VARCHAR(100) PRIMARY KEY
 - `facility_id` VARCHAR(100) NOT NULL
 - `district_id` VARCHAR(50) NOT NULL
-- `distance_miles` NUMERIC(8 
+- `distance_miles` NUMERIC(8, 2) 
 - `is_primary_district` BOOLEAN 
 - `load_timestamp` TIMESTAMP 
-- `FOREIGN` KEY (facility_id) FOREIGN KEY
-- `FOREIGN` KEY (district_id) FOREIGN KEY
 
 ### `data_source_metadata`
 
@@ -340,22 +322,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `extraction_date` DATE 
 - `extraction_timestamp` TIMESTAMP 
 - `records_extracted` INTEGER 
-- `data_quality_score` NUMERIC(5  — 0-100
-- `completeness_pct` NUMERIC(5 
+- `data_quality_score` NUMERIC(5, 2)  — 0-100
+- `completeness_pct` NUMERIC(5, 2) 
 - `error_count` INTEGER 
 - `load_timestamp` TIMESTAMP 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
 
 ---
 

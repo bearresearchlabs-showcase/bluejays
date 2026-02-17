@@ -110,7 +110,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `chat_id` UUID NOT NULL, FOREIGN KEY
 - `user_id` UUID NOT NULL, FOREIGN KEY
 - `joined_at` TIMESTAMP 
-- `PRIMARY` KEY PRIMARY KEY
 
 ### `friends`
 
@@ -150,7 +149,6 @@ Standard PostgreSQL. No extensions required unless noted.
 
 - `guest_id` UUID NOT NULL
 - `chat_id` UUID NOT NULL, FOREIGN KEY
-- `PRIMARY` KEY PRIMARY KEY
 
 ### `anonymous_messages`
 
@@ -173,19 +171,9 @@ Standard PostgreSQL. No extensions required unless noted.
 
 - `id` SERIAL PRIMARY KEY
 - `hex` VARCHAR(20) NOT NULL
-- `speed` NUMERIC(10 
-- `altitude` NUMERIC(10 
+- `speed` NUMERIC(10, 2) 
+- `altitude` NUMERIC(10, 2) 
 - `timestamp` TIMESTAMP NOT NULL
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
 
 ---
 

@@ -96,7 +96,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `person_id` INTEGER PRIMARY KEY, FOREIGN KEY
 - `username` VARCHAR(255) 
 - `password` VARCHAR(255) 
-- `balance` NUMERIC(15 
+- `balance` NUMERIC(15,2) 
 - `deleted` INTEGER 
 - `hide_from_switch_user` INTEGER 
 
@@ -105,8 +105,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `name` VARCHAR(255) 
 - `category` VARCHAR(255) 
 - `description` TEXT 
-- `cost_price` NUMERIC(15 
-- `unit_price` NUMERIC(15 
+- `cost_price` NUMERIC(15,2) 
+- `unit_price` NUMERIC(15,2) 
 - `item_id` INTEGER PRIMARY KEY
 - `allow_alt_description` INTEGER 
 - `is_serialized` INTEGER 
@@ -129,16 +129,16 @@ Standard PostgreSQL. No extensions required unless noted.
 - `enable_credit_card_processing` VARCHAR(10) 
 - `merchant_id` VARCHAR(255) 
 - `merchant_password` VARCHAR(255) 
-- `default_tax_1_rate` NUMERIC(10 
+- `default_tax_1_rate` NUMERIC(10,2) 
 - `default_tax_1_name` VARCHAR(255) 
-- `default_tax_2_rate` NUMERIC(10 
+- `default_tax_2_rate` NUMERIC(10,2) 
 - `default_tax_2_name` VARCHAR(255) 
 - `default_tax_2_cumulative` VARCHAR(10) 
-- `default_tax_3_rate` NUMERIC(10 
+- `default_tax_3_rate` NUMERIC(10,2) 
 - `default_tax_3_name` VARCHAR(255) 
-- `default_tax_4_rate` NUMERIC(10 
+- `default_tax_4_rate` NUMERIC(10,2) 
 - `default_tax_4_name` VARCHAR(255) 
-- `default_tax_5_rate` NUMERIC(10 
+- `default_tax_5_rate` NUMERIC(10,2) 
 - `default_tax_5_name` VARCHAR(255) 
 - `deleted` INTEGER 
 
@@ -146,14 +146,12 @@ Standard PostgreSQL. No extensions required unless noted.
 
 - `employee_id` INTEGER FOREIGN KEY
 - `location_id` INTEGER FOREIGN KEY
-- `PRIMARY` KEY PRIMARY KEY
 
 ### `phppos_location_items`
 
 - `location_id` INTEGER FOREIGN KEY
 - `item_id` INTEGER FOREIGN KEY
-- `quantity` NUMERIC(15 
-- `PRIMARY` KEY PRIMARY KEY
+- `quantity` NUMERIC(15,2) 
 
 ### `phppos_sales`
 

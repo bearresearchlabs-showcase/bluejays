@@ -106,13 +106,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `destination_zip_code` VARCHAR(10) NOT NULL
 - `zone_number` INTEGER NOT NULL
 - `zone_type` VARCHAR(50)  — 'Domestic', 'International', 'Alaska', 'Hawaii'
-- `distance_miles` NUMERIC(10 
+- `distance_miles` NUMERIC(10, 2) 
 - `transit_days_min` INTEGER 
 - `transit_days_max` INTEGER 
 - `effective_date` DATE NOT NULL
 - `expiration_date` DATE 
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (carrier_id) FOREIGN KEY
 
 ### `shipping_service_types`
 
@@ -123,16 +122,15 @@ Standard PostgreSQL. No extensions required unless noted.
 - `service_category` VARCHAR(100)  — 'Express', 'Ground', 'Priority', 'Economy'
 - `domestic_available` BOOLEAN 
 - `international_available` BOOLEAN 
-- `max_weight_lbs` NUMERIC(10 
-- `max_dimensions_length` NUMERIC(10 
-- `max_dimensions_width` NUMERIC(10 
-- `max_dimensions_height` NUMERIC(10 
+- `max_weight_lbs` NUMERIC(10, 2) 
+- `max_dimensions_length` NUMERIC(10, 2) 
+- `max_dimensions_width` NUMERIC(10, 2) 
+- `max_dimensions_height` NUMERIC(10, 2) 
 - `tracking_included` BOOLEAN 
 - `insurance_available` BOOLEAN 
 - `signature_required` BOOLEAN 
 - `active_status` BOOLEAN 
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (carrier_id) FOREIGN KEY
 
 ### `shipping_rates`
 
@@ -140,39 +138,36 @@ Standard PostgreSQL. No extensions required unless noted.
 - `carrier_id` VARCHAR(50) NOT NULL
 - `service_id` VARCHAR(255) NOT NULL
 - `zone_id` VARCHAR(255) 
-- `weight_lbs` NUMERIC(10 NOT NULL
-- `weight_oz` NUMERIC(10 
-- `length_inches` NUMERIC(10 
-- `width_inches` NUMERIC(10 
-- `height_inches` NUMERIC(10 
-- `dimensional_weight_lbs` NUMERIC(10 
-- `cubic_volume_cubic_inches` NUMERIC(12 
-- `rate_amount` NUMERIC(10 NOT NULL
+- `weight_lbs` NUMERIC(10, 4) NOT NULL
+- `weight_oz` NUMERIC(10, 4) 
+- `length_inches` NUMERIC(10, 2) 
+- `width_inches` NUMERIC(10, 2) 
+- `height_inches` NUMERIC(10, 2) 
+- `dimensional_weight_lbs` NUMERIC(10, 4) 
+- `cubic_volume_cubic_inches` NUMERIC(12, 4) 
+- `rate_amount` NUMERIC(10, 2) NOT NULL
 - `rate_type` VARCHAR(50)  — 'Retail', 'Commercial', 'Daily', 'Cubic'
-- `surcharge_amount` NUMERIC(10 
-- `total_rate` NUMERIC(10 NOT NULL
+- `surcharge_amount` NUMERIC(10, 2) 
+- `total_rate` NUMERIC(10, 2) NOT NULL
 - `effective_date` DATE NOT NULL
 - `expiration_date` DATE 
 - `rate_source` VARCHAR(100)  — 'API', 'Manual', 'Bulk Import'
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (carrier_id) FOREIGN KEY
-- `FOREIGN` KEY (service_id) FOREIGN KEY
-- `FOREIGN` KEY (zone_id) FOREIGN KEY
 
 ### `packages`
 
 - `package_id` VARCHAR(255) PRIMARY KEY
 - `user_id` VARCHAR(255) 
 - `package_reference` VARCHAR(255) 
-- `weight_lbs` NUMERIC(10 NOT NULL
-- `weight_oz` NUMERIC(10 
-- `length_inches` NUMERIC(10 NOT NULL
-- `width_inches` NUMERIC(10 NOT NULL
-- `height_inches` NUMERIC(10 NOT NULL
-- `dimensional_weight_lbs` NUMERIC(10 
-- `cubic_volume_cubic_inches` NUMERIC(12 
+- `weight_lbs` NUMERIC(10, 4) NOT NULL
+- `weight_oz` NUMERIC(10, 4) 
+- `length_inches` NUMERIC(10, 2) NOT NULL
+- `width_inches` NUMERIC(10, 2) NOT NULL
+- `height_inches` NUMERIC(10, 2) NOT NULL
+- `dimensional_weight_lbs` NUMERIC(10, 4) 
+- `cubic_volume_cubic_inches` NUMERIC(12, 4) 
 - `package_type` VARCHAR(50)  — 'Envelope', 'Box', 'Tube', 'Flat'
-- `package_value` NUMERIC(10 
+- `package_value` NUMERIC(10, 2) 
 - `contents_description` VARCHAR(500) 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
@@ -200,21 +195,16 @@ Standard PostgreSQL. No extensions required unless noted.
 - `destination_country` VARCHAR(2) 
 - `zone_id` VARCHAR(255) 
 - `rate_id` VARCHAR(255) 
-- `label_cost` NUMERIC(10 
-- `insurance_cost` NUMERIC(10 
-- `signature_cost` NUMERIC(10 
-- `total_cost` NUMERIC(10 NOT NULL
+- `label_cost` NUMERIC(10, 2) 
+- `insurance_cost` NUMERIC(10, 2) 
+- `signature_cost` NUMERIC(10, 2) 
+- `total_cost` NUMERIC(10, 2) NOT NULL
 - `shipment_status` VARCHAR(50)  — 'Pending', 'Label Created', 'In Transit', 'Delivered', 'Exception'
 - `label_created_at` TIMESTAMP 
 - `estimated_delivery_date` DATE 
 - `actual_delivery_date` DATE 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `FOREIGN` KEY (package_id) FOREIGN KEY
-- `FOREIGN` KEY (carrier_id) FOREIGN KEY
-- `FOREIGN` KEY (service_id) FOREIGN KEY
-- `FOREIGN` KEY (zone_id) FOREIGN KEY
-- `FOREIGN` KEY (rate_id) FOREIGN KEY
 
 ### `tracking_events`
 
@@ -233,7 +223,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `carrier_status_code` VARCHAR(50) 
 - `raw_event_data` VARIANT  — JSON data from carrier API
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (shipment_id) FOREIGN KEY
 
 ### `rate_comparison_results`
 
@@ -244,16 +233,13 @@ Standard PostgreSQL. No extensions required unless noted.
 - `comparison_timestamp` TIMESTAMP 
 - `cheapest_carrier_id` VARCHAR(50) 
 - `cheapest_service_id` VARCHAR(255) 
-- `cheapest_rate` NUMERIC(10 
+- `cheapest_rate` NUMERIC(10, 2) 
 - `fastest_carrier_id` VARCHAR(50) 
 - `fastest_service_id` VARCHAR(255) 
 - `fastest_transit_days` INTEGER 
 - `total_options_count` INTEGER 
 - `comparison_metadata` VARIANT  — JSON with all rate options
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (package_id) FOREIGN KEY
-- `FOREIGN` KEY (cheapest_carrier_id) FOREIGN KEY
-- `FOREIGN` KEY (fastest_carrier_id) FOREIGN KEY
 
 ### `address_validation_results`
 
@@ -285,14 +271,13 @@ Standard PostgreSQL. No extensions required unless noted.
 - `shipment_id` VARCHAR(255) 
 - `tracking_number` VARCHAR(255) NOT NULL
 - `adjustment_type` VARCHAR(100)  — 'Weight', 'Dimensions', 'Zone', 'Packaging'
-- `original_amount` NUMERIC(10 
-- `adjusted_amount` NUMERIC(10 
-- `adjustment_amount` NUMERIC(10 
+- `original_amount` NUMERIC(10, 2) 
+- `adjusted_amount` NUMERIC(10, 2) 
+- `adjustment_amount` NUMERIC(10, 2) 
 - `adjustment_reason` VARCHAR(500) 
 - `adjustment_status` VARCHAR(50)  — 'Pending', 'Applied', 'Disputed', 'Resolved'
 - `adjustment_date` DATE 
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (shipment_id) FOREIGN KEY
 
 ### `bulk_shipping_presets`
 
@@ -300,18 +285,16 @@ Standard PostgreSQL. No extensions required unless noted.
 - `user_id` VARCHAR(255) 
 - `preset_name` VARCHAR(255) NOT NULL
 - `package_type` VARCHAR(50) 
-- `default_weight_lbs` NUMERIC(10 
-- `default_length_inches` NUMERIC(10 
-- `default_width_inches` NUMERIC(10 
-- `default_height_inches` NUMERIC(10 
+- `default_weight_lbs` NUMERIC(10, 4) 
+- `default_length_inches` NUMERIC(10, 2) 
+- `default_width_inches` NUMERIC(10, 2) 
+- `default_height_inches` NUMERIC(10, 2) 
 - `default_service_id` VARCHAR(255) 
 - `default_carrier_id` VARCHAR(50) 
-- `default_insurance_amount` NUMERIC(10 
+- `default_insurance_amount` NUMERIC(10, 2) 
 - `default_signature_required` BOOLEAN 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `FOREIGN` KEY (default_service_id) FOREIGN KEY
-- `FOREIGN` KEY (default_carrier_id) FOREIGN KEY
 
 ### `shipping_analytics`
 
@@ -320,36 +303,33 @@ Standard PostgreSQL. No extensions required unless noted.
 - `carrier_id` VARCHAR(50) 
 - `service_id` VARCHAR(255) 
 - `total_shipments` INTEGER 
-- `total_revenue` NUMERIC(12 
-- `average_rate` NUMERIC(10 
+- `total_revenue` NUMERIC(12, 2) 
+- `average_rate` NUMERIC(10, 2) 
 - `total_packages` INTEGER 
-- `total_weight_lbs` NUMERIC(12 
-- `average_transit_days` NUMERIC(6 
-- `on_time_delivery_rate` NUMERIC(5 
-- `exception_rate` NUMERIC(5 
-- `average_package_value` NUMERIC(10 
+- `total_weight_lbs` NUMERIC(12, 4) 
+- `average_transit_days` NUMERIC(6, 2) 
+- `on_time_delivery_rate` NUMERIC(5, 2) 
+- `exception_rate` NUMERIC(5, 2) 
+- `average_package_value` NUMERIC(10, 2) 
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (carrier_id) FOREIGN KEY
-- `FOREIGN` KEY (service_id) FOREIGN KEY
 
 ### `international_customs`
 
 - `customs_id` VARCHAR(255) PRIMARY KEY
 - `shipment_id` VARCHAR(255) NOT NULL
 - `customs_declaration_number` VARCHAR(255) 
-- `customs_value` NUMERIC(10 NOT NULL
+- `customs_value` NUMERIC(10, 2) NOT NULL
 - `currency_code` VARCHAR(3) 
 - `contents_description` VARCHAR(1000) 
 - `hs_tariff_code` VARCHAR(20) 
 - `country_of_origin` VARCHAR(2) 
-- `customs_duty_amount` NUMERIC(10 
-- `customs_tax_amount` NUMERIC(10 
-- `customs_fees_amount` NUMERIC(10 
-- `total_customs_amount` NUMERIC(10 
+- `customs_duty_amount` NUMERIC(10, 2) 
+- `customs_tax_amount` NUMERIC(10, 2) 
+- `customs_fees_amount` NUMERIC(10, 2) 
+- `total_customs_amount` NUMERIC(10, 2) 
 - `customs_status` VARCHAR(50)  — 'Pending', 'Cleared', 'Held', 'Returned'
 - `customs_cleared_date` DATE 
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (shipment_id) FOREIGN KEY
 
 ### `api_rate_request_log`
 
@@ -358,28 +338,14 @@ Standard PostgreSQL. No extensions required unless noted.
 - `request_type` VARCHAR(50)  — 'Rate', 'Tracking', 'Address Validation'
 - `origin_zip_code` VARCHAR(10) 
 - `destination_zip_code` VARCHAR(10) 
-- `weight_lbs` NUMERIC(10 
+- `weight_lbs` NUMERIC(10, 4) 
 - `request_timestamp` TIMESTAMP 
 - `response_time_ms` INTEGER 
 - `response_status_code` INTEGER 
-- `rate_returned` NUMERIC(10 
+- `rate_returned` NUMERIC(10, 2) 
 - `error_message` VARCHAR(1000) 
 - `api_endpoint` VARCHAR(500) 
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (carrier_id) FOREIGN KEY
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
 
 ---
 

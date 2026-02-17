@@ -86,7 +86,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `zone_id` VARCHAR(255) PRIMARY KEY
 - `zone_code` VARCHAR(10) NOT NULL — 'A', 'AE', 'AH', 'AO', 'V', 'VE', 'X', 'D', etc.
 - `zone_description` VARCHAR(255) 
-- `base_flood_elevation` NUMERIC(10  — BFE in feet above sea level
+- `base_flood_elevation` NUMERIC(10, 2)  — BFE in feet above sea level
 - `zone_geom` geography  — Polygon geometry for flood zone boundary
 - `community_id` VARCHAR(50) 
 - `community_name` VARCHAR(255) 
@@ -97,10 +97,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `source_file` VARCHAR(500) 
 - `source_crs` VARCHAR(50) 
 - `target_crs` VARCHAR(50) 
-- `spatial_extent_west` NUMERIC(10 
-- `spatial_extent_south` NUMERIC(10 
-- `spatial_extent_east` NUMERIC(10 
-- `spatial_extent_north` NUMERIC(10 
+- `spatial_extent_west` NUMERIC(10, 6) 
+- `spatial_extent_south` NUMERIC(10, 6) 
+- `spatial_extent_east` NUMERIC(10, 6) 
+- `spatial_extent_north` NUMERIC(10, 6) 
 - `load_timestamp` TIMESTAMP 
 - `transformation_status` VARCHAR(50) 
 
@@ -108,17 +108,17 @@ Standard PostgreSQL. No extensions required unless noted.
 
 - `property_id` VARCHAR(255) PRIMARY KEY
 - `property_address` VARCHAR(500) 
-- `property_latitude` NUMERIC(10 NOT NULL
-- `property_longitude` NUMERIC(10 NOT NULL
+- `property_latitude` NUMERIC(10, 7) NOT NULL
+- `property_longitude` NUMERIC(10, 7) NOT NULL
 - `property_geom` geography  — Point geometry for property location
 - `property_type` VARCHAR(100)  — 'Residential', 'Commercial', 'Industrial', 'Mixed-Use'
-- `building_value` NUMERIC(15 
-- `land_value` NUMERIC(15 
-- `total_value` NUMERIC(15 
-- `square_footage` NUMERIC(12 
+- `building_value` NUMERIC(15, 2) 
+- `land_value` NUMERIC(15, 2) 
+- `total_value` NUMERIC(15, 2) 
+- `square_footage` NUMERIC(12, 2) 
 - `year_built` INTEGER 
 - `number_of_floors` INTEGER 
-- `elevation_feet` NUMERIC(10  — Ground elevation above sea level
+- `elevation_feet` NUMERIC(10, 2)  — Ground elevation above sea level
 - `state_code` VARCHAR(2) 
 - `county_fips` VARCHAR(5) 
 - `city_name` VARCHAR(255) 
@@ -133,12 +133,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `projection_id` VARCHAR(255) PRIMARY KEY
 - `station_id` VARCHAR(50) 
 - `station_name` VARCHAR(255) 
-- `station_latitude` NUMERIC(10 NOT NULL
-- `station_longitude` NUMERIC(10 NOT NULL
+- `station_latitude` NUMERIC(10, 7) NOT NULL
+- `station_longitude` NUMERIC(10, 7) NOT NULL
 - `station_geom` geography  — Point geometry
 - `projection_year` INTEGER NOT NULL
 - `scenario` VARCHAR(50)  — 'Low', 'Intermediate-Low', 'Intermediate', 'Intermediate-High', 'High', 'Extreme'
-- `sea_level_rise_feet` NUMERIC(8  — Projected sea level rise in feet
+- `sea_level_rise_feet` NUMERIC(8, 3)  — Projected sea level rise in feet
 - `confidence_level` VARCHAR(50)  — 'Low', 'Medium', 'High'
 - `high_tide_flooding_days` INTEGER  — Projected annual high tide flooding days
 - `data_source` VARCHAR(100) 
@@ -148,13 +148,13 @@ Standard PostgreSQL. No extensions required unless noted.
 
 - `gauge_id` VARCHAR(50) PRIMARY KEY
 - `gauge_name` VARCHAR(255) 
-- `gauge_latitude` NUMERIC(10 NOT NULL
-- `gauge_longitude` NUMERIC(10 NOT NULL
+- `gauge_latitude` NUMERIC(10, 7) NOT NULL
+- `gauge_longitude` NUMERIC(10, 7) NOT NULL
 - `gauge_geom` geography  — Point geometry
-- `drainage_area_sq_miles` NUMERIC(12 
-- `flood_stage_feet` NUMERIC(8 
-- `moderate_flood_stage_feet` NUMERIC(8 
-- `major_flood_stage_feet` NUMERIC(8 
+- `drainage_area_sq_miles` NUMERIC(12, 2) 
+- `flood_stage_feet` NUMERIC(8, 2) 
+- `moderate_flood_stage_feet` NUMERIC(8, 2) 
+- `major_flood_stage_feet` NUMERIC(8, 2) 
 - `state_code` VARCHAR(2) 
 - `county_name` VARCHAR(100) 
 - `river_name` VARCHAR(255) 
@@ -169,11 +169,11 @@ Standard PostgreSQL. No extensions required unless noted.
 - `observation_id` VARCHAR(255) PRIMARY KEY
 - `gauge_id` VARCHAR(50) NOT NULL
 - `observation_time` TIMESTAMP NOT NULL
-- `gage_height_feet` NUMERIC(8 
-- `discharge_cfs` NUMERIC(12  — Discharge in cubic feet per second
-- `stage_feet` NUMERIC(8 
+- `gage_height_feet` NUMERIC(8, 2) 
+- `discharge_cfs` NUMERIC(12, 2)  — Discharge in cubic feet per second
+- `stage_feet` NUMERIC(8, 2) 
 - `flood_category` VARCHAR(50)  — 'None', 'Action', 'Minor', 'Moderate', 'Major'
-- `percentile_rank` NUMERIC(5  — Percentile relative to historical records
+- `percentile_rank` NUMERIC(5, 2)  — Percentile relative to historical records
 - `data_quality_code` VARCHAR(10) 
 - `load_timestamp` TIMESTAMP 
 
@@ -182,17 +182,17 @@ Standard PostgreSQL. No extensions required unless noted.
 - `model_id` VARCHAR(255) PRIMARY KEY
 - `model_name` VARCHAR(100)  — 'GFMS', 'LIS', 'VIIRS', 'MODIS', 'FloodPlanet'
 - `forecast_time` TIMESTAMP NOT NULL
-- `grid_cell_latitude` NUMERIC(10 NOT NULL
-- `grid_cell_longitude` NUMERIC(10 NOT NULL
+- `grid_cell_latitude` NUMERIC(10, 7) NOT NULL
+- `grid_cell_longitude` NUMERIC(10, 7) NOT NULL
 - `grid_cell_geom` geography  — Point geometry for grid cell center
-- `inundation_depth_feet` NUMERIC(8 
-- `flood_probability` NUMERIC(5  — Probability percentage (0-100)
+- `inundation_depth_feet` NUMERIC(8, 2) 
+- `flood_probability` NUMERIC(5, 2)  — Probability percentage (0-100)
 - `flood_severity` VARCHAR(50)  — 'Low', 'Moderate', 'High', 'Extreme'
 - `model_resolution_meters` INTEGER 
-- `spatial_extent_west` NUMERIC(10 
-- `spatial_extent_south` NUMERIC(10 
-- `spatial_extent_east` NUMERIC(10 
-- `spatial_extent_north` NUMERIC(10 
+- `spatial_extent_west` NUMERIC(10, 6) 
+- `spatial_extent_south` NUMERIC(10, 6) 
+- `spatial_extent_east` NUMERIC(10, 6) 
+- `spatial_extent_north` NUMERIC(10, 6) 
 - `source_file` VARCHAR(500) 
 - `load_timestamp` TIMESTAMP 
 
@@ -205,26 +205,26 @@ Standard PostgreSQL. No extensions required unless noted.
 - `time_horizon_years` INTEGER  — 5, 10, 20, 30, 50, 100
 - `fema_zone_code` VARCHAR(10) 
 - `fema_zone_id` VARCHAR(255) 
-- `base_flood_elevation_feet` NUMERIC(10 
-- `flood_zone_risk_score` NUMERIC(5  — 0-100 risk score
-- `sea_level_rise_feet` NUMERIC(8 
+- `base_flood_elevation_feet` NUMERIC(10, 2) 
+- `flood_zone_risk_score` NUMERIC(5, 2)  — 0-100 risk score
+- `sea_level_rise_feet` NUMERIC(8, 3) 
 - `sea_level_rise_scenario` VARCHAR(50) 
 - `high_tide_flooding_days` INTEGER 
-- `sea_level_risk_score` NUMERIC(5  — 0-100 risk score
+- `sea_level_risk_score` NUMERIC(5, 2)  — 0-100 risk score
 - `nearest_gauge_id` VARCHAR(50) 
 - `historical_flood_frequency` INTEGER  — Number of floods in historical record
-- `flood_probability_percent` NUMERIC(5 
-- `streamflow_risk_score` NUMERIC(5  — 0-100 risk score
-- `nasa_model_flood_probability` NUMERIC(5 
+- `flood_probability_percent` NUMERIC(5, 2) 
+- `streamflow_risk_score` NUMERIC(5, 2)  — 0-100 risk score
+- `nasa_model_flood_probability` NUMERIC(5, 2) 
 - `nasa_model_severity` VARCHAR(50) 
-- `nasa_model_risk_score` NUMERIC(5  — 0-100 risk score
-- `overall_risk_score` NUMERIC(5  — Weighted composite risk score (0-100)
+- `nasa_model_risk_score` NUMERIC(5, 2)  — 0-100 risk score
+- `overall_risk_score` NUMERIC(5, 2)  — Weighted composite risk score (0-100)
 - `risk_category` VARCHAR(50)  — 'Low', 'Moderate', 'High', 'Extreme'
-- `vulnerability_score` NUMERIC(5  — Property vulnerability to flooding
-- `exposure_score` NUMERIC(5  — Exposure to flood hazards
-- `estimated_damage_dollars` NUMERIC(15 
-- `estimated_annual_loss` NUMERIC(15  — Expected annual loss
-- `insurance_premium_estimate` NUMERIC(12 
+- `vulnerability_score` NUMERIC(5, 2)  — Property vulnerability to flooding
+- `exposure_score` NUMERIC(5, 2)  — Exposure to flood hazards
+- `estimated_damage_dollars` NUMERIC(15, 2) 
+- `estimated_annual_loss` NUMERIC(15, 2)  — Expected annual loss
+- `insurance_premium_estimate` NUMERIC(12, 2) 
 - `assessment_methodology` VARCHAR(255) 
 - `data_sources_used` VARCHAR(500) 
 - `confidence_level` VARCHAR(50) 
@@ -238,8 +238,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `property_id` VARCHAR(255) NOT NULL
 - `zone_id` VARCHAR(255) NOT NULL
 - `intersection_type` VARCHAR(50)  — 'Within', 'Adjacent', 'Near'
-- `distance_to_zone_feet` NUMERIC(10 
-- `elevation_difference_feet` NUMERIC(10  — Property elevation - BFE
+- `distance_to_zone_feet` NUMERIC(10, 2) 
+- `elevation_difference_feet` NUMERIC(10, 2)  — Property elevation - BFE
 - `intersection_geom` geography  — Intersection geometry if applicable
 - `load_timestamp` TIMESTAMP 
 
@@ -251,9 +251,9 @@ Standard PostgreSQL. No extensions required unless noted.
 - `start_date` DATE NOT NULL
 - `end_date` DATE 
 - `affected_area_geom` geography  — Polygon geometry of affected area
-- `peak_discharge_cfs` NUMERIC(12 
-- `peak_stage_feet` NUMERIC(8 
-- `total_damage_dollars` NUMERIC(15 
+- `peak_discharge_cfs` NUMERIC(12, 2) 
+- `peak_stage_feet` NUMERIC(8, 2) 
+- `total_damage_dollars` NUMERIC(15, 2) 
 - `fatalities` INTEGER 
 - `properties_affected` INTEGER 
 - `state_code` VARCHAR(2) 
@@ -273,13 +273,13 @@ Standard PostgreSQL. No extensions required unless noted.
 - `true_negatives` INTEGER 
 - `false_positives` INTEGER 
 - `false_negatives` INTEGER 
-- `accuracy` NUMERIC(5  — 0-1 accuracy score
-- `precision_score` NUMERIC(5 
-- `recall_score` NUMERIC(5 
-- `f1_score` NUMERIC(5 
-- `roc_auc` NUMERIC(5 
-- `mean_absolute_error` NUMERIC(10 
-- `root_mean_squared_error` NUMERIC(10 
+- `accuracy` NUMERIC(5, 4)  — 0-1 accuracy score
+- `precision_score` NUMERIC(5, 4) 
+- `recall_score` NUMERIC(5, 4) 
+- `f1_score` NUMERIC(5, 4) 
+- `roc_auc` NUMERIC(5, 4) 
+- `mean_absolute_error` NUMERIC(10, 4) 
+- `root_mean_squared_error` NUMERIC(10, 4) 
 - `spatial_resolution_meters` INTEGER 
 - `temporal_resolution_hours` INTEGER 
 - `evaluation_notes` TEXT 
@@ -296,10 +296,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `high_risk_properties` INTEGER  — Risk score > 70
 - `moderate_risk_properties` INTEGER  — Risk score 40-70
 - `low_risk_properties` INTEGER  — Risk score < 40
-- `average_risk_score` NUMERIC(5 
-- `total_property_value` NUMERIC(18 
-- `at_risk_property_value` NUMERIC(18 
-- `estimated_annual_loss` NUMERIC(15 
+- `average_risk_score` NUMERIC(5, 2) 
+- `total_property_value` NUMERIC(18, 2) 
+- `at_risk_property_value` NUMERIC(18, 2) 
+- `estimated_annual_loss` NUMERIC(15, 2) 
 - `portfolio_risk_category` VARCHAR(50) 
 - `load_timestamp` TIMESTAMP 
 
@@ -311,37 +311,14 @@ Standard PostgreSQL. No extensions required unless noted.
 - `files_processed` INTEGER 
 - `files_successful` INTEGER 
 - `files_failed` INTEGER 
-- `success_rate` NUMERIC(5 
+- `success_rate` NUMERIC(5, 2) 
 - `total_records` INTEGER 
 - `records_with_errors` INTEGER 
-- `error_rate` NUMERIC(5 
-- `spatial_coverage_km2` NUMERIC(15 
+- `error_rate` NUMERIC(5, 2) 
+- `spatial_coverage_km2` NUMERIC(15, 2) 
 - `temporal_coverage_days` INTEGER 
 - `data_freshness_hours` INTEGER 
 - `calculation_timestamp` TIMESTAMP 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
 
 ---
 

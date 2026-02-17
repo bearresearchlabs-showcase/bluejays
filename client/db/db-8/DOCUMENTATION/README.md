@@ -89,8 +89,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `location_city` VARCHAR(100) 
 - `location_state` VARCHAR(2) 
 - `location_country` VARCHAR(2) 
-- `location_latitude` NUMERIC(10 
-- `location_longitude` NUMERIC(10 
+- `location_latitude` NUMERIC(10, 7) 
+- `location_longitude` NUMERIC(10, 7) 
 - `current_job_title` VARCHAR(255) 
 - `current_company` VARCHAR(255) 
 - `years_experience` INTEGER 
@@ -106,7 +106,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
 - `last_active_at` TIMESTAMP 
-- `profile_completeness_score` NUMERIC(5 
+- `profile_completeness_score` NUMERIC(5, 2) 
 - `is_active` BOOLEAN 
 
 ### `companies`
@@ -130,7 +130,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `data_source` VARCHAR(50)  — 'usajobs', 'bls', 'state_board', 'aggregated'
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `company_rating` NUMERIC(3  — Average rating from reviews
+- `company_rating` NUMERIC(3, 2)  — Average rating from reviews
 - `total_reviews` INTEGER 
 
 ### `job_postings`
@@ -145,8 +145,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `location_city` VARCHAR(100) 
 - `location_state` VARCHAR(2) 
 - `location_country` VARCHAR(2) 
-- `location_latitude` NUMERIC(10 
-- `location_longitude` NUMERIC(10 
+- `location_latitude` NUMERIC(10, 7) 
+- `location_longitude` NUMERIC(10, 7) 
 - `salary_min` INTEGER 
 - `salary_max` INTEGER 
 - `salary_currency` VARCHAR(3) 
@@ -167,8 +167,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `updated_at` TIMESTAMP 
 - `view_count` INTEGER 
 - `application_count` INTEGER 
-- `match_score_avg` NUMERIC(5  — Average match score from recommendations
-- `FOREIGN` KEY (company_id) FOREIGN KEY
+- `match_score_avg` NUMERIC(5, 2)  — Average match score from recommendations
 
 ### `skills`
 
@@ -178,9 +177,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `skill_type` VARCHAR(50)  — 'technical', 'soft', 'certification', 'language'
 - `parent_skill_id` VARCHAR(255)  — For skill hierarchies
 - `description` VARCHAR(16777216) 
-- `popularity_score` NUMERIC(10  — Based on job posting frequency
+- `popularity_score` NUMERIC(10, 2)  — Based on job posting frequency
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (parent_skill_id) FOREIGN KEY
 
 ### `job_skills_requirements`
 
@@ -188,12 +186,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `job_id` VARCHAR(255) NOT NULL
 - `skill_id` VARCHAR(255) NOT NULL
 - `requirement_type` VARCHAR(50)  — 'required', 'preferred', 'nice_to_have'
-- `importance_score` NUMERIC(5  — 1-10 importance score
-- `years_experience_required` NUMERIC(4 
+- `importance_score` NUMERIC(5, 2)  — 1-10 importance score
+- `years_experience_required` NUMERIC(4, 1) 
 - `extracted_from_description` BOOLEAN 
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (job_id) FOREIGN KEY
-- `FOREIGN` KEY (skill_id) FOREIGN KEY
 
 ### `user_skills`
 
@@ -201,14 +197,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `user_id` VARCHAR(255) NOT NULL
 - `skill_id` VARCHAR(255) NOT NULL
 - `proficiency_level` VARCHAR(50)  — 'beginner', 'intermediate', 'advanced', 'expert'
-- `proficiency_score` NUMERIC(5  — 1-10 proficiency score
-- `years_experience` NUMERIC(4 
+- `proficiency_score` NUMERIC(5, 2)  — 1-10 proficiency score
+- `years_experience` NUMERIC(4, 1) 
 - `last_used_date` DATE 
 - `verified` BOOLEAN  — Skills verified through assessments/certifications
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `FOREIGN` KEY (user_id) FOREIGN KEY
-- `FOREIGN` KEY (skill_id) FOREIGN KEY
 
 ### `job_applications`
 
@@ -221,26 +215,24 @@ Standard PostgreSQL. No extensions required unless noted.
 - `status_updated_at` TIMESTAMP 
 - `cover_letter_text` VARCHAR(16777216) 
 - `resume_version` VARCHAR(255) 
-- `match_score` NUMERIC(5  — Calculated match score at time of application
+- `match_score` NUMERIC(5, 2)  — Calculated match score at time of application
 - `application_method` VARCHAR(50)  — 'direct', 'ats', 'email', 'usajobs'
 - `application_reference_id` VARCHAR(255)  — External application ID
 - `notes` VARCHAR(16777216) 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `FOREIGN` KEY (user_id) FOREIGN KEY
-- `FOREIGN` KEY (job_id) FOREIGN KEY
 
 ### `job_recommendations`
 
 - `recommendation_id` VARCHAR(255) PRIMARY KEY
 - `user_id` VARCHAR(255) NOT NULL
 - `job_id` VARCHAR(255) NOT NULL
-- `match_score` NUMERIC(5 NOT NULL — Overall match score (0-100)
-- `skill_match_score` NUMERIC(5  — Skill alignment score
-- `location_match_score` NUMERIC(5  — Location preference match
-- `salary_match_score` NUMERIC(5  — Salary expectation match
-- `experience_match_score` NUMERIC(5  — Experience level match
-- `work_model_match_score` NUMERIC(5  — Work model preference match
+- `match_score` NUMERIC(5, 2) NOT NULL — Overall match score (0-100)
+- `skill_match_score` NUMERIC(5, 2)  — Skill alignment score
+- `location_match_score` NUMERIC(5, 2)  — Location preference match
+- `salary_match_score` NUMERIC(5, 2)  — Salary expectation match
+- `experience_match_score` NUMERIC(5, 2)  — Experience level match
+- `work_model_match_score` NUMERIC(5, 2)  — Work model preference match
 - `recommendation_reason` VARCHAR(16777216)  — Explanation for recommendation
 - `recommendation_rank` INTEGER  — Rank within user's recommendations
 - `is_liked` BOOLEAN 
@@ -249,8 +241,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `recommendation_date` TIMESTAMP 
 - `expires_at` TIMESTAMP  — Recommendation expiration
 - `created_at` TIMESTAMP 
-- `FOREIGN` KEY (user_id) FOREIGN KEY
-- `FOREIGN` KEY (job_id) FOREIGN KEY
 
 ### `market_trends`
 
@@ -270,8 +260,8 @@ Standard PostgreSQL. No extensions required unless noted.
 - `median_salary` INTEGER 
 - `top_skills` VARCHAR(16777216)  — JSON array of top skills
 - `skill_demand_trend` VARCHAR(16777216)  — JSON object of skill demand changes
-- `competition_index` NUMERIC(5  — Applications per job ratio
-- `growth_rate` NUMERIC(10  — Percentage growth in postings
+- `competition_index` NUMERIC(5, 2)  — Applications per job ratio
+- `growth_rate` NUMERIC(10, 4)  — Percentage growth in postings
 - `data_source` VARCHAR(50)  — 'bls', 'aggregated', 'usajobs'
 - `created_at` TIMESTAMP 
 
@@ -286,10 +276,10 @@ Standard PostgreSQL. No extensions required unless noted.
 - `industry` VARCHAR(100) 
 - `total_companies` INTEGER 
 - `total_active_jobs` INTEGER 
-- `remote_job_percentage` NUMERIC(5 
-- `hybrid_job_percentage` NUMERIC(5 
+- `remote_job_percentage` NUMERIC(5, 2) 
+- `hybrid_job_percentage` NUMERIC(5, 2) 
 - `average_time_to_fill_days` INTEGER 
-- `average_applications_per_job` NUMERIC(10 
+- `average_applications_per_job` NUMERIC(10, 2) 
 - `top_employers` VARCHAR(16777216)  — JSON array
 - `emerging_skills` VARCHAR(16777216)  — JSON array of trending skills
 - `declining_skills` VARCHAR(16777216)  — JSON array of declining skills
@@ -330,37 +320,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `industry_filter` VARCHAR(100) 
 - `results_count` INTEGER 
 - `search_date` TIMESTAMP 
-- `FOREIGN` KEY (user_id) FOREIGN KEY
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
 
 ---
 

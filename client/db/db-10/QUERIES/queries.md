@@ -39,7 +39,7 @@ Business value for db-10.
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:09
 -- Database: db-10
---
+-- 
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --

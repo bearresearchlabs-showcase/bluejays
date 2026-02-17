@@ -2,14 +2,17 @@
 """
 Resync main db deliverables to client/db using DATABASE/DOCUMENTATION/QUERIES structure.
 Faithful to source: db-N/data is primary for *.sql; db-N/queries for queries; deliverable/dbN-*/ for docs.
+Uses shutil.copy2 (byte-preserving) and verifies bit-for-bit after sync when --verify is set.
 
 Usage:
     python3 scripts/resync_client_db.py              # Sync all db-1 through db-16
     python3 scripts/resync_client_db.py --dbs 1 6 10  # Sync specific dbs
     python3 scripts/resync_client_db.py --dry-run    # Show what would be copied
+    python3 scripts/resync_client_db.py --verify    # Sync then verify byte-for-byte
 """
 
 import argparse
+import hashlib
 import shutil
 import sys
 from pathlib import Path
@@ -46,6 +49,94 @@ def find_web_deliverable(db_dir: Path, db_num: int) -> Path | None:
         if item.is_dir() and item.name.startswith(prefix):
             return item
     return None
+
+
+def _file_sha256(path: Path) -> str | None:
+    """SHA-256 hash of file contents (bit-for-bit)."""
+    if not path.exists() or not path.is_file():
+        return None
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _verify_synced(db_num: int, db_root: Path, client_root: Path) -> list[tuple[str, bool]]:
+    """Verify client files are byte-for-byte identical to source. Returns [(rel_path, match), ...]."""
+    db_dir = db_root / f"db-{db_num}"
+    app_dir = db_dir / "app"
+    client_db_dir = client_root / f"db-{db_num}"
+    results = []
+
+    def compare(src: Path, dest: Path) -> bool:
+        if not src.exists() or not dest.exists():
+            return False
+        return _file_sha256(src) == _file_sha256(dest)
+
+    # Iron-triangle path: source is app/
+    if app_dir.exists() and (app_dir / "DATABASE").exists():
+        for subdir, name in [("DATABASE", "DATABASE"), ("DOCUMENTATION", "DOCUMENTATION"), ("QUERIES", "QUERIES")]:
+            src_dir = app_dir / subdir
+            dest_dir = client_db_dir / name
+            if not src_dir.exists() or not dest_dir.exists():
+                continue
+            for f in dest_dir.iterdir():
+                if f.is_file():
+                    if subdir == "DOCUMENTATION" and f.name != "README.md":
+                        continue  # we remove non-README in sync
+                    src = src_dir / f.name
+                    if src.exists():
+                        ok = compare(src, f)
+                        results.append((f"{name}/{f.name}", ok))
+        # vercel.json
+        web_d = app_dir.parent / "deliverable"
+        for item in (web_d.iterdir() if web_d.exists() else []):
+            if item.is_dir() and item.name.startswith(f"db{db_num}-"):
+                v_src = item / "vercel.json"
+                v_dest = client_db_dir / "vercel.json"
+                if v_src.exists() and v_dest.exists():
+                    results.append(("vercel.json", compare(v_src, v_dest)))
+                break
+        return results
+
+    # Legacy path: compare client files to their sources
+    for subdir in ("DATABASE", "DOCUMENTATION", "QUERIES"):
+        dest_dir = client_db_dir / subdir
+        if not dest_dir.exists():
+            continue
+        for f in dest_dir.iterdir():
+            if not f.is_file():
+                continue
+            src = None
+            if subdir == "DATABASE":
+                db_data = db_dir / "data"
+                deliv = find_deliverable_data(db_dir, db_num)
+                for d in (db_data, deliv) if deliv else (db_data,):
+                    if d and (d / f.name).exists():
+                        src = d / f.name
+                        break
+                web_d = find_web_deliverable(db_dir, db_num)
+                if not src and web_d and (web_d / "data" / f.name).exists():
+                    src = web_d / "data" / f.name
+            elif subdir == "DOCUMENTATION":
+                web_d = find_web_deliverable(db_dir, db_num) or db_dir / "deliverable"
+                if (web_d / f.name).exists():
+                    src = web_d / f.name
+            elif subdir == "QUERIES":
+                qsrc = db_dir / "queries"
+                if not qsrc.exists():
+                    qsrc = db_dir / "deliverable" / "queries"
+                if qsrc.exists() and (qsrc / f.name).exists():
+                    src = qsrc / f.name
+            if src:
+                results.append((f"{subdir}/{f.name}", compare(src, f)))
+    # vercel.json
+    web_d = find_web_deliverable(db_dir, db_num)
+    v_dest = client_db_dir / "vercel.json"
+    if web_d and (web_d / "vercel.json").exists() and v_dest.exists():
+        results.append(("vercel.json", compare(web_d / "vercel.json", v_dest)))
+    return results
 
 
 def _sync_from_app(app_dir: Path, client_db_dir: Path, db_num: int, dry_run: bool) -> dict:
@@ -303,6 +394,8 @@ def main():
     parser.add_argument("--dbs", type=int, nargs="*", default=list(range(1, 17)),
                         help="Database numbers to sync (default: 1-16)")
     parser.add_argument("--dry-run", action="store_true", help="Show what would be copied")
+    parser.add_argument("--verify", action="store_true",
+                        help="After sync, verify all files are byte-for-byte identical (SHA-256)")
     parser.add_argument("--db-root", type=Path, default=SOURCE_DB, help="Source db root (default: source/)")
     parser.add_argument("--client-root", type=Path, default=CLIENT_DB, help="Root of client/db")
     args = parser.parse_args()
@@ -331,6 +424,23 @@ def main():
     errors = sum(1 for r in all_results if r["errors"])
     if errors:
         sys.exit(1)
+
+    # Bit-for-bit verification (skipped in dry-run)
+    if args.verify and not args.dry_run:
+        print("\nVerifying byte-for-byte (SHA-256)...")
+        any_mismatch = False
+        for db_num in sorted(args.dbs):
+            verified = _verify_synced(db_num, db_root, client_root)
+            mismatches = [rel for rel, ok in verified if not ok]
+            if mismatches:
+                any_mismatch = True
+                print(f"  db-{db_num}: MISMATCH - {mismatches}")
+            else:
+                print(f"  db-{db_num}: OK ({len(verified)} files)")
+        if any_mismatch:
+            print("\nERROR: Byte-for-byte verification failed. Source and client differ.")
+            sys.exit(1)
+        print("All files byte-for-byte identical (source = client).")
 
 
 if __name__ == "__main__":

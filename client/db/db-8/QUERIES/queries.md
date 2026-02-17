@@ -39,7 +39,7 @@ Business value for db-8.
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:05
 -- Database: db-8
---
+-- 
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -87,7 +87,7 @@ CREATE TABLE companies (
     company_name_normalized VARCHAR(255), -- Normalized name for matching
     industry VARCHAR(100),
     company_size VARCHAR(50), -- 'startup', 'small', 'medium', 'large', 'enterprise'
-
+   
 -- ...
 ```
 

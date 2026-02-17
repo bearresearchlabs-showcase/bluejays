@@ -64,21 +64,18 @@ Standard PostgreSQL. No extensions required unless noted.
 
 **Total tables:** 1
 
-- `IF` — (see data dictionary)
+- `models` — (see data dictionary)
 
 ---
 
 ## Data Dictionary
 
-### `IF`
+### `models`
 
 - `id` BIGINT PRIMARY KEY
 - `name` VARCHAR(255) 
 - `user_id` BIGINT 
 - `created_at` TIMESTAMP 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
-- `CREATE` INDEX 
 
 ---
 

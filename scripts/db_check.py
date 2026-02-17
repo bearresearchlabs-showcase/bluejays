@@ -312,10 +312,10 @@ def cmd_qa_suite(args: List[str]) -> int:
     if ec_format != 0:
         print("  WARNING: format had errors")
 
-    print("\n[2/6] Resync source/ → client/db...")
+    print("\n[2/6] Resync source/ → client/db (with byte-for-byte verify)...")
     try:
         proc = subprocess.run(
-            [sys.executable, str(scripts_dir / "resync_client_db.py")],
+            [sys.executable, str(scripts_dir / "resync_client_db.py"), "--verify"],
             cwd=str(root_dir),
             capture_output=True,
             text=True,
