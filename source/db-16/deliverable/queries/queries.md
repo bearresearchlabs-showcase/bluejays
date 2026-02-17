@@ -166,7 +166,7 @@ Target distribution across 30 queries:
     "final_portfolio_summary"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Portfolio-wide risk analysis showing geographic clustering of high-risk properties, regional risk concentration metrics, and hotspot identification across acquisition targets.",
   "normal_query": "Portfolio-wide risk analysis showing geographic clustering of high-risk properties, regional risk concentration metrics, and hotspot identification across acquisition targets."
 }
 ```
@@ -194,7 +194,7 @@ Target distribution across 30 queries:
     "flood_frequency_classification"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Historical flood event analysis showing occurrence frequency, temporal patterns, seasonal clustering, and recurrence intervals for properties under consideration.",
   "normal_query": "Historical flood event analysis showing occurrence frequency, temporal patterns, seasonal clustering, and recurrence intervals for properties under consideration."
 }
 ```
@@ -223,7 +223,7 @@ Target distribution across 30 queries:
     "impact_assessment"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Sea level rise impact projections for coastal properties across 2050, 2070, and 2100 time horizons, comparing optimistic, moderate, and pessimistic climate scenarios with flood zone migration and prop",
   "normal_query": "Sea level rise impact projections for coastal properties across 2050, 2070, and 2100 time horizons, comparing optimistic, moderate, and pessimistic climate scenarios with flood zone migration and property exposure changes."
 }
 ```
@@ -250,7 +250,7 @@ Target distribution across 30 queries:
     "gauge_network_coverage"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Streamflow-based flood frequency analysis using gauge network data, showing coverage quality, historical flood patterns, peak flow statistics, and recurrence probability for properties near monitored ",
   "normal_query": "Streamflow-based flood frequency analysis using gauge network data, showing coverage quality, historical flood patterns, peak flow statistics, and recurrence probability for properties near monitored waterways."
 }
 ```
@@ -275,7 +275,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Performance evaluation results for NASA flood models with statistical metrics",
   "normal_query": "Performance evaluation results for NASA flood models with statistical metrics"
 }
 ```
@@ -300,7 +300,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Property and flood zone intersection analysis with spatial relationship metrics",
   "normal_query": "Property and flood zone intersection analysis with spatial relationship metrics"
 }
 ```
@@ -325,7 +325,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Temporal risk trend analysis with historical patterns and projections",
   "normal_query": "Temporal risk trend analysis with historical patterns and projections"
 }
 ```
@@ -350,7 +350,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Geographic risk clustering analysis with spatial pattern identification",
   "normal_query": "Geographic risk clustering analysis with spatial pattern identification"
 }
 ```
@@ -375,7 +375,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Multi-factor property vulnerability assessment with composite scoring",
   "normal_query": "Multi-factor property vulnerability assessment with composite scoring"
 }
 ```
@@ -400,7 +400,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Display financial impact analysis results for mergers and acquisitions pricing models.",
   "normal_query": "Display financial impact analysis results for mergers and acquisitions pricing models."
 }
 ```
@@ -425,7 +425,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Display FEMA flood zone risk classification analysis results.",
   "normal_query": "Display FEMA flood zone risk classification analysis results."
 }
 ```
@@ -450,7 +450,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Display NOAA sea level rise scenario comparison analysis results.",
   "normal_query": "Display NOAA sea level rise scenario comparison analysis results."
 }
 ```
@@ -475,7 +475,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Display USGS streamflow historical pattern recognition analysis results.",
   "normal_query": "Display USGS streamflow historical pattern recognition analysis results."
 }
 ```
@@ -500,7 +500,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Display NASA model prediction accuracy assessment analysis results.",
   "normal_query": "Display NASA model prediction accuracy assessment analysis results."
 }
 ```
@@ -525,7 +525,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "A detailed risk summary report for properties under consideration for acquisition, including aggregated risk metrics and comparative analysis",
   "normal_query": "A detailed risk summary report for properties under consideration for acquisition, including aggregated risk metrics and comparative analysis"
 }
 ```
@@ -550,7 +550,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "A comprehensive data quality report showing completeness, consistency, and timeliness metrics for flood risk data",
   "normal_query": "A comprehensive data quality report showing completeness, consistency, and timeliness metrics for flood risk data"
 }
 ```
@@ -575,7 +575,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "An optimized query result showing properties accurately matched to flood zones using efficient spatial join techniques",
   "normal_query": "An optimized query result showing properties accurately matched to flood zones using efficient spatial join techniques"
 }
 ```
@@ -600,7 +600,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "A consolidated risk score for each property that combines and weights multiple risk assessment sources into a single comprehensive metric",
   "normal_query": "A consolidated risk score for each property that combines and weights multiple risk assessment sources into a single comprehensive metric"
 }
 ```
@@ -625,7 +625,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "A time-series projection of flood risk metrics showing expected risk evolution over future time periods for the property portfolio",
   "normal_query": "A time-series projection of flood risk metrics showing expected risk evolution over future time periods for the property portfolio"
 }
 ```
@@ -650,7 +650,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Statistical analysis results showing the relationship between property elevation levels and their corresponding flood risk scores.",
   "normal_query": "Statistical analysis results showing the relationship between property elevation levels and their corresponding flood risk scores."
 }
 ```
@@ -675,7 +675,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Historical flood event analysis showing property damage, affected areas, and risk score changes over time.",
   "normal_query": "Historical flood event analysis showing property damage, affected areas, and risk score changes over time."
 }
 ```
@@ -700,7 +700,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Model performance metrics comparing predicted vs. actual flood risk across different modeling approaches.",
   "normal_query": "Model performance metrics comparing predicted vs. actual flood risk across different modeling approaches."
 }
 ```
@@ -725,7 +725,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Geographic distribution analysis showing flood risk concentration, high-risk areas, and regional risk patterns.",
   "normal_query": "Geographic distribution analysis showing flood risk concentration, high-risk areas, and regional risk patterns."
 }
 ```
@@ -750,7 +750,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Property type risk analysis showing risk scores, exposure levels, and vulnerability patterns across residential, commercial, and other property categories.",
   "normal_query": "Property type risk analysis showing risk scores, exposure levels, and vulnerability patterns across residential, commercial, and other property categories."
 }
 ```
@@ -778,7 +778,7 @@ Target distribution across 30 queries:
     "spatial_clustering"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Display the recursive propagation of flood risk across interconnected zones with detailed analytical metrics.",
   "normal_query": "Display the recursive propagation of flood risk across interconnected zones with detailed analytical metrics."
 }
 ```
@@ -803,7 +803,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Identify properties with critical flood risk levels that may constitute material deal-breakers during acquisition due diligence.",
   "normal_query": "Identify properties with critical flood risk levels that may constitute material deal-breakers during acquisition due diligence."
 }
 ```
@@ -828,7 +828,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Evaluate the financial trade-offs between mitigation investment costs and risk reduction benefits for properties post-acquisition.",
   "normal_query": "Evaluate the financial trade-offs between mitigation investment costs and risk reduction benefits for properties post-acquisition."
 }
 ```
@@ -853,7 +853,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Evaluate geographic and risk concentration patterns across potential acquisition targets to assess portfolio diversification quality.",
   "normal_query": "Evaluate geographic and risk concentration patterns across potential acquisition targets to assess portfolio diversification quality."
 }
 ```
@@ -878,7 +878,7 @@ Target distribution across 30 queries:
     "window_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Query results",
+  "expected_output": "Produce a complete due diligence report covering all flood risk dimensions for the target property portfolio.",
   "normal_query": "Produce a complete due diligence report covering all flood risk dimensions for the target property portfolio."
 }
 ```
