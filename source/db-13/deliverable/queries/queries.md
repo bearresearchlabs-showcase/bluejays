@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-13
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
+domain: AI, marketing, benchmarks
+source: synthetic
+license_type: Open
+license_cost: $0
+tables: 11
+total_rows: ~50K
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,19 +17,19 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for db-13.
+This database supports analytics for AI-driven marketing benchmarks: model performance, campaign metrics, and AI attribution.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-13: analytics, reporting, dashboards.
+Target use cases: AI model benchmarks, campaign performance, attribution analytics, AI dashboards.
 ```
 
 ## Business Value
 
 ```text
-Business value for db-13.
+Enables marketing teams to benchmark AI models and measure AI-driven campaign impact ($1M+ ARR).
 ```
 
 ## Schema
@@ -81,7 +81,7 @@ CREATE TABLE ai_models (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+AI models, campaigns, benchmarks. Model performance metrics, attribution.
 ```
 
 ## Query Difficulty Distribution

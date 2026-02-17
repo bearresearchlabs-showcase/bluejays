@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AQ Contractor Receivables & Risk Analysis</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #181b24;
+    --border: #2a2d38;
+    --text: #e0e2ea;
+    --muted: #8b8fa3;
+    --accent: #6c8cff;
+    --green: #34d399;
+    --red: #f87171;
+    --yellow: #fbbf24;
+    --orange: #fb923c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; background: var(--bg); color: var(--text); padding: 24px; line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; color: var(--accent); margin-bottom: 4px; }
+  .subtitle { color: var(--muted); font-size: 0.85rem; margin-bottom: 28px; }
+  .section { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+  .section-title { font-size: 1.05rem; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th { text-align: left; color: var(--muted); font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 10px; border-bottom: 1px solid #1e2130; }
+  .right { text-align: right; }
+  .paid { color: var(--green); }
+  .unpaid { color: var(--red); }
+  .unconfirmed { color: var(--yellow); }
+  .total-row td { border-top: 2px solid var(--border); font-weight: 700; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 18px; }
+  .kpi { background: #1e2130; border-radius: 8px; padding: 16px; text-align: center; }
+  .kpi-value { font-size: 1.6rem; font-weight: 700; }
+  .kpi-label { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+  .risk-flag { padding: 8px 12px; border-radius: 6px; margin-bottom: 8px; font-size: 0.82rem; }
+  .risk-critical { background: rgba(248,113,113,0.12); border-left: 3px solid var(--red); }
+  .risk-warning { background: rgba(251,191,36,0.12); border-left: 3px solid var(--yellow); }
+  .income-table td, .income-table th { padding: 6px 12px; }
+  .income-table .header-row { color: var(--accent); font-weight: 700; border-bottom: 2px solid var(--border); }
+  .bar-container { display: flex; height: 22px; border-radius: 4px; overflow: hidden; margin: 10px 0; }
+  .bar-paid { background: var(--green); }
+  .bar-unpaid { background: var(--red); }
+  .bar-unconfirmed { background: var(--yellow); }
+  .legend { display: flex; gap: 18px; font-size: 0.75rem; color: var(--muted); margin-top: 6px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin-right: 4px; vertical-align: middle; }
+  .pattern-box { background: #1e2130; border-radius: 8px; padding: 16px; margin-top: 14px; font-size: 0.82rem; line-height: 1.7; }
+  .allowance-table td { font-size: 0.8rem; }
+  .disclaimer { color: var(--muted); font-size: 0.7rem; margin-top: 24px; text-align: center; padding-top: 16px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>AFTERQUERY (AQ) — CONTRACTOR RECEIVABLES & RISK ANALYSIS</h1>
+<div class="subtitle">Prepared: February 17, 2026 &nbsp;|&nbsp; Contractor: Betty Tai &nbsp;|&nbsp; Period: Sep 2025 – Feb 2026</div>
+
+<!-- KPI CARDS -->
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-value" style="color:var(--text)">$70,289</div>
+    <div class="kpi-label">Total Billed</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value paid">$14,189</div>
+    <div class="kpi-label">Total Paid</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value unpaid">$56,100</div>
+    <div class="kpi-label">Outstanding Receivables</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value unpaid">100%</div>
+    <div class="kpi-label">Feb 1-17 Arrears Rate</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value" style="color:var(--orange)">3.9x</div>
+    <div class="kpi-label">Feb Billing / Historical Paid</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value" style="color:var(--orange)">79.7%</div>
+    <div class="kpi-label">Single-Item Concentration</div>
+  </div>
+</div>
+
+<!-- VISUAL BAR -->
+<div class="section" style="padding:16px 24px">
+  <div style="font-size:0.8rem;color:var(--muted);margin-bottom:6px">Revenue Distribution: Paid vs Outstanding</div>
+  <div class="bar-container">
+    <div class="bar-paid" style="width:20.2%"></div>
+    <div class="bar-unpaid" style="width:79.7%"></div>
+    <div class="bar-unconfirmed" style="width:0.1%"></div>
+  </div>
+  <div class="legend">
+    <span><span class="legend-dot" style="background:var(--green)"></span> Paid $14,189 (20.2%)</span>
+    <span><span class="legend-dot" style="background:var(--red)"></span> Unpaid $56,000 (79.7%)</span>
+    <span><span class="legend-dot" style="background:var(--yellow)"></span> Unconfirmed $100 (0.1%)</span>
+  </div>
+</div>
+
+<!-- RISK INDICATORS -->
+<div class="section">
+  <div class="section-title">RISK INDICATORS</div>
+  <div class="risk-flag risk-critical">🔴 CRITICAL: 100% of Feb 1–17 billings ($56,000) remain in arrears — zero cash received</div>
+  <div class="risk-flag risk-critical">🔴 CRITICAL: Feb billing ($56,000) is 3.9× all historical payments ($14,189)</div>
+  <div class="risk-flag risk-critical">🔴 HIGH: Single-item concentration at 79.7% of total billings (db/Alan $56K)</div>
+  <div class="risk-flag risk-warning">🟡 WARNING: Total unpaid ($56,100) exceeds total paid ($14,189)</div>
+  <div class="risk-flag risk-warning">🟡 WARNING: Projects with no payment history: db, Learn, Red</div>
+</div>
+
+<!-- COMPLETE PAYMENT HISTORY -->
+<div class="section">
+  <div class="section-title">SECTION 1: COMPLETE PAYMENT HISTORY</div>
+  <table>
+    <thead>
+      <tr><th>Project</th><th>Period</th><th>Deliverable</th><th>Stakeholder</th><th class="right">Total</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Pluto</td><td>09/21 – 09/27/25</td><td>Code Review</td><td>Tiana</td><td class="right">$270</td><td class="paid">PAID</td></tr>
+      <tr><td>Pluto</td><td>09/28 – 10/04/25</td><td>Code Review</td><td>Tiana</td><td class="right">$1,275</td><td class="paid">PAID</td></tr>
+      <tr><td>Pluto</td><td>10/05 – 10/11/25</td><td>Code Review</td><td>Tiana</td><td class="right">$1,200</td><td class="paid">PAID</td></tr>
+      <tr><td>Pluto</td><td>10/12 – 10/18/25</td><td>Code Review</td><td>Tiana</td><td class="right">$1,968</td><td class="paid">PAID</td></tr>
+      <tr><td>Pluto</td><td>10/19 – 10/25/25</td><td>Code Review</td><td>Tiana</td><td class="right">$3,368</td><td class="paid">PAID</td></tr>
+      <tr><td>Pluto</td><td>10/26 – 11/22/25</td><td>Code Review</td><td>Tiana</td><td class="right">$4,168</td><td class="paid">PAID</td></tr>
+      <tr><td>Pluto</td><td>10/19 – 10/25/25</td><td>Instructions</td><td>Tiana</td><td class="right">$0</td><td class="unconfirmed">UNCONFIRMED</td></tr>
+      <tr><td>Galaxy</td><td>11/09 – 11/14/25</td><td>Rubrics</td><td>Raymond</td><td class="right">$140</td><td class="paid">PAID</td></tr>
+      <tr><td>Galaxy</td><td>11/15 – 12/06/25</td><td>Rubrics</td><td>Raymond</td><td class="right">$0</td><td class="unconfirmed">UNCONFIRMED</td></tr>
+      <tr><td>Learn</td><td>11/15 – 12/06/25</td><td>Referral</td><td>—</td><td class="right">$100</td><td class="unconfirmed">UNCONFIRMED</td></tr>
+      <tr><td>Green</td><td>01/10 – 01/23/26</td><td>Submission (Easy)</td><td>Ry, Kishan</td><td class="right">$0</td><td class="unconfirmed">UNCONFIRMED</td></tr>
+      <tr><td>Green</td><td>01/10 – 01/23/26</td><td>Submission (Med)</td><td>Ry, Kishan</td><td class="right">$0</td><td class="unconfirmed">UNCONFIRMED</td></tr>
+      <tr><td>Green</td><td>01/10 – 01/23/26</td><td>Submission (Hard)</td><td>Ry, Kishan</td><td class="right">$0</td><td class="unconfirmed">UNCONFIRMED</td></tr>
+      <tr><td>Green</td><td>01/10 – 01/23/26</td><td>Review</td><td>Ry, Kishan</td><td class="right">$1,400</td><td class="paid">PAID</td></tr>
+      <tr><td>Hobby</td><td>01/30 – 01/31/26</td><td>Submission</td><td>Jean</td><td class="right">$400</td><td class="paid">PAID</td></tr>
+      <tr><td>Pluto</td><td>01/21 – 01/31/26</td><td>Submission (TB3)</td><td>Tiana</td><td class="right">$0</td><td class="unpaid">UNPAID</td></tr>
+      <tr><td>Red</td><td>02/06 – 02/13/26</td><td>Submission</td><td>Raymond</td><td class="right">$0</td><td class="unconfirmed">UNCONFIRMED</td></tr>
+      <tr><td>Red</td><td>02/06 – 02/13/26</td><td>Rubrics</td><td>Raymond</td><td class="right">$0</td><td class="unconfirmed">UNCONFIRMED</td></tr>
+      <tr class="total-row" style="background:rgba(248,113,113,0.08)"><td>db</td><td>02/01 – 02/17/26</td><td>Database Tasks</td><td>Alan</td><td class="right unpaid">$56,000</td><td class="unpaid">UNPAID</td></tr>
+      <tr class="total-row"><td colspan="4"><strong>TOTALS</strong></td><td class="right"><strong>$70,289</strong></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PROJECT SUMMARY -->
+<div class="section">
+  <div class="section-title">SECTION 2: PAYMENT HISTORY BY PROJECT</div>
+  <table>
+    <thead>
+      <tr><th>Project</th><th>Stakeholder</th><th class="right">Billed</th><th class="right">Paid</th><th class="right">Outstanding</th><th class="right">Paid %</th><th class="right">Items</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Pluto</td><td>Tiana</td><td class="right">$12,249</td><td class="right paid">$12,249</td><td class="right">$0</td><td class="right paid">100%</td><td class="right">8</td></tr>
+      <tr><td>Green</td><td>Ry, Kishan</td><td class="right">$1,400</td><td class="right paid">$1,400</td><td class="right">$0</td><td class="right paid">100%</td><td class="right">4</td></tr>
+      <tr><td>Hobby</td><td>Jean</td><td class="right">$400</td><td class="right paid">$400</td><td class="right">$0</td><td class="right paid">100%</td><td class="right">1</td></tr>
+      <tr><td>Galaxy</td><td>Raymond</td><td class="right">$140</td><td class="right paid">$140</td><td class="right">$0</td><td class="right paid">100%</td><td class="right">2</td></tr>
+      <tr><td>Learn</td><td>—</td><td class="right">$100</td><td class="right">$0</td><td class="right unconfirmed">$100</td><td class="right unconfirmed">0%</td><td class="right">1</td></tr>
+      <tr><td>Red</td><td>Raymond</td><td class="right">$0</td><td class="right">$0</td><td class="right">$0</td><td class="right muted">—</td><td class="right">2</td></tr>
+      <tr style="background:rgba(248,113,113,0.08)"><td>db</td><td>Alan</td><td class="right">$56,000</td><td class="right">$0</td><td class="right unpaid">$56,000</td><td class="right unpaid">0%</td><td class="right">1</td></tr>
+      <tr class="total-row"><td colspan="2"><strong>TOTAL</strong></td><td class="right"><strong>$70,289</strong></td><td class="right"><strong>$14,189</strong></td><td class="right"><strong>$56,100</strong></td><td class="right"><strong>20.2%</strong></td><td class="right"><strong>19</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MONTHLY TREND -->
+<div class="section">
+  <div class="section-title">SECTION 3: PERIOD-OVER-PERIOD ANALYSIS (MONTHLY)</div>
+  <table>
+    <thead>
+      <tr><th>Month</th><th class="right">Billed</th><th class="right">Paid</th><th class="right">Unpaid</th><th class="right">Arrears %</th><th class="right">Items</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Sep 2025</td><td class="right">$270</td><td class="right paid">$270</td><td class="right">$0</td><td class="right paid">0%</td><td class="right">1</td></tr>
+      <tr><td>Oct 2025</td><td class="right">$7,811</td><td class="right paid">$7,811</td><td class="right">$0</td><td class="right paid">0%</td><td class="right">5</td></tr>
+      <tr><td>Nov 2025</td><td class="right">$4,308</td><td class="right paid">$4,308</td><td class="right">$0</td><td class="right paid">0%</td><td class="right">2</td></tr>
+      <tr><td>Dec 2025</td><td class="right">$100</td><td class="right">$0</td><td class="right unconfirmed">$100</td><td class="right unconfirmed">100%</td><td class="right">2</td></tr>
+      <tr><td>Jan 2026</td><td class="right">$1,800</td><td class="right paid">$1,800</td><td class="right">$0</td><td class="right paid">0%</td><td class="right">6</td></tr>
+      <tr style="background:rgba(248,113,113,0.08)"><td>Feb 2026</td><td class="right">$56,000</td><td class="right">$0</td><td class="right unpaid">$56,000</td><td class="right unpaid">100%</td><td class="right">3</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- INCOME STATEMENT -->
+<div class="section">
+  <div class="section-title">SECTION 4: INCOME STATEMENT (Betty's Perspective)</div>
+  <table class="income-table">
+    <thead>
+      <tr class="header-row"><th></th><th class="right">Pre-Feb 2026</th><th class="right">Feb 1–17, 2026</th><th class="right">Total</th></tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="4" style="color:var(--muted);padding-top:12px;font-weight:600">REVENUE RECOGNIZED</td></tr>
+      <tr><td>&nbsp;&nbsp;Service Revenue (Billed)</td><td class="right">$14,289</td><td class="right">$56,000</td><td class="right"><strong>$70,289</strong></td></tr>
+      <tr><td colspan="4" style="color:var(--muted);padding-top:12px;font-weight:600">CASH RECEIPTS</td></tr>
+      <tr><td>&nbsp;&nbsp;Payments Received</td><td class="right paid">$14,189</td><td class="right">$0</td><td class="right paid"><strong>$14,189</strong></td></tr>
+      <tr><td colspan="4" style="color:var(--muted);padding-top:12px;font-weight:600">ACCOUNTS RECEIVABLE</td></tr>
+      <tr><td>&nbsp;&nbsp;Net Receivable (Unpaid)</td><td class="right unconfirmed">$100</td><td class="right unpaid">$56,000</td><td class="right unpaid"><strong>$56,100</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CREDIT RISK MODEL -->
+<div class="section">
+  <div class="section-title">SECTION 5: COUNTERPARTY & CREDIT RISK MODEL</div>
+
+  <div class="kpi-grid" style="margin-bottom:20px">
+    <div class="kpi">
+      <div class="kpi-value" style="color:var(--green)">99.3%</div>
+      <div class="kpi-label">Pre-Feb Collection Rate</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value" style="color:var(--red)">0.0%</div>
+      <div class="kpi-label">Feb Collection Rate</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value" style="color:var(--red)">17 days</div>
+      <div class="kpi-label">Current Float (No Cash)</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value" style="color:var(--text)">$1,577</div>
+      <div class="kpi-label">Pre-Feb Avg. Payment</div>
+    </div>
+  </div>
+
+  <div class="pattern-box">
+    <strong style="color:var(--accent)">Payment Pattern Analysis</strong><br><br>
+    <span style="color:var(--green)">✓ AQ historically paid for:</span> Pluto code reviews ($12,249), Galaxy rubrics ($140), Green reviews ($1,400), Hobby samples ($400)<br>
+    <span style="color:var(--red)">✗ AQ has NOT paid for:</span> db/Alan database tasks ($56,000), Red (pending $0), Learn referral ($100), Pluto TB3 ($0)<br><br>
+    <strong>Pattern:</strong> AQ pays small-to-medium invoices (&lt;$5K) reliably with near-100% collection. The $56K db invoice represents an order-of-magnitude escalation with <strong>zero prior payment precedent at this scale</strong>.
+  </div>
+</div>
+
+<!-- ALLOWANCE -->
+<div class="section">
+  <div class="section-title">ALLOWANCE FOR DOUBTFUL ACCOUNTS (ESTIMATED)</div>
+  <table class="allowance-table">
+    <thead>
+      <tr><th>Category</th><th class="right">Amount</th><th class="right">Est. Loss %</th><th class="right">Allowance</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Paid-history projects</td><td class="right">$14,189</td><td class="right">0%</td><td class="right">$0</td></tr>
+      <tr style="background:rgba(248,113,113,0.08)"><td>db/Alan (no precedent)</td><td class="right">$56,000</td><td class="right unpaid">25%</td><td class="right unpaid">$14,000</td></tr>
+      <tr><td>Red/Raymond (pending)</td><td class="right">$0</td><td class="right">—</td><td class="right">$0</td></tr>
+      <tr><td>Learn referral</td><td class="right">$100</td><td class="right unconfirmed">50%</td><td class="right unconfirmed">$50</td></tr>
+      <tr><td>Pluto TB3 (marked No)</td><td class="right">$0</td><td class="right">—</td><td class="right">$0</td></tr>
+      <tr class="total-row"><td><strong>TOTAL ESTIMATED ALLOWANCE</strong></td><td class="right"></td><td class="right"></td><td class="right"><strong style="color:var(--orange)">$14,050</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="disclaimer">
+  This analysis is based on spreadsheet data as of Feb 17, 2026. It is for informational purposes only and does not constitute financial or legal advice. All statements should be reviewed by qualified financial professionals.
+</div>
+
+</div>
+</body>
+</html>

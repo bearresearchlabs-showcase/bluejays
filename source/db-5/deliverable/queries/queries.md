@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-5
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
+domain: retail, POS, point-of-sale
+source: synthetic
+license_type: Open
+license_cost: $0
+tables: 7
+total_rows: ~20K
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,26 +17,26 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for db-5.
+This database supports analytics for POS retail: transactions, products, stores, and sales performance.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-5: analytics, reporting, dashboards.
+Target use cases: sales analytics, product performance, store comparisons, transaction reporting.
 ```
 
 ## Business Value
 
 ```text
-Business value for db-5.
+Enables retailers to optimize product mix, store operations, and sales strategies ($1M+ ARR).
 ```
 
 ## Schema
 
 ```sql
--- Minimal phppos schema for db-5 (PostgreSQL)
--- Same as db-2 - only tables needed for gov-rebuilt data and queries
+-- db-5 Lucasa POS Retail schema (PostgreSQL)
+-- Production schema for POS retail analytics
 -- ACID: Foreign keys and constraints for referential integrity
 
 CREATE TABLE phppos_people (
@@ -106,7 +106,7 @@ CREATE TABLE phppos_locations (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Transactions, products, stores, categories. POS schema for retail analytics.
 ```
 
 ## Query Difficulty Distribution

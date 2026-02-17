@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AQ Collection Playbook — Relationship-Informed Strategy</title>
+<style>
+  :root {
+    --bg: #0d1117; --surface: #161b22; --border: #30363d;
+    --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff;
+    --red: #f85149; --orange: #d29922; --green: #3fb950; --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; padding: 2rem; max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
+  h2 { font-size: 1.3rem; color: var(--accent); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+  h3 { font-size: 1.1rem; color: var(--purple); margin: 1.2rem 0 0.6rem; }
+  .subtitle { color: var(--muted); margin-bottom: 2rem; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; }
+  .card-red { border-left: 4px solid var(--red); }
+  .card-orange { border-left: 4px solid var(--orange); }
+  .card-green { border-left: 4px solid var(--green); }
+  .card-purple { border-left: 4px solid var(--purple); }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-right: 6px; }
+  .tag-red { background: rgba(248,81,73,0.15); color: var(--red); }
+  .tag-orange { background: rgba(210,153,34,0.15); color: var(--orange); }
+  .tag-green { background: rgba(63,185,80,0.15); color: var(--green); }
+  .tag-purple { background: rgba(188,140,255,0.15); color: var(--purple); }
+  table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.9rem; }
+  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; }
+  .amount { font-family: 'SF Mono', monospace; text-align: right; }
+  .step { display: flex; gap: 1rem; margin-bottom: 1rem; }
+  .step-num { background: var(--accent); color: var(--bg); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px; }
+  .step-content { flex: 1; }
+  .quote { border-left: 3px solid var(--purple); padding-left: 1rem; color: var(--muted); font-style: italic; margin: 0.5rem 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 768px) { .grid2 { grid-template-columns: 1fr; } }
+  .leverage-meter { height: 8px; background: var(--border); border-radius: 4px; margin-top: 4px; }
+  .leverage-fill { height: 100%; border-radius: 4px; }
+  .summary-box { background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.3); border-radius: 8px; padding: 1.2rem; margin: 1rem 0; }
+  strong { color: var(--text); }
+  p { margin-bottom: 0.6rem; }
+  ul { padding-left: 1.2rem; margin-bottom: 0.6rem; }
+  li { margin-bottom: 0.3rem; }
+</style>
+</head>
+<body>
+
+<h1>AQ Collection Playbook</h1>
+<p class="subtitle">Relationship-Informed Strategy for $56,100 Outstanding &bull; Prepared Feb 17, 2026 &bull; CONFIDENTIAL</p>
+
+<div class="summary-box">
+<strong>Executive Summary:</strong> Betty has $56,100 outstanding from AQ across two primary receivables: the <strong>db project ($56,000)</strong> with Alan Chen and <strong>Pluto TB3 samples ($0 billed, work performed)</strong>. Analysis of ~3,500 lines of Slack DM history between Betty and Carlos Georgescu (CTO) reveals a deep trust relationship, significant leverage points, and a clear collection pathway. AQ has a reliable payment history for invoices under $5K but zero precedent at the $56K scale. This playbook provides a sequenced, relationship-aware approach to maximize collection probability.
+</div>
+
+<h2>1. Organizational Intelligence Map</h2>
+
+<div class="card card-purple">
+<h3>Key Decision Makers & Roles</h3>
+<table>
+<tr><th>Person</th><th>Role</th><th>Relevance to Collection</th><th>Leverage</th></tr>
+<tr><td><strong>Carlos Georgescu</strong></td><td>CTO / Co-founder</td><td>Primary relationship holder. Engages 2-5 AM. Deep personal trust with Betty. Controls engineering budget.</td><td><span class="tag tag-green">HIGH</span></td></tr>
+<tr><td><strong>Spencer Mateega</strong></td><td>Co-founder / Sales</td><td>Handles external relationships. Betty deflated him re: AQ UI copying Mercor. Escalation target.</td><td><span class="tag tag-orange">MEDIUM</span></td></tr>
+<tr><td><strong>Danny Tang</strong></td><td>COO</td><td>Operations. Carlos redirected Betty's SWE application to Danny for ops. Payment approvals may route through him.</td><td><span class="tag tag-orange">MEDIUM</span></td></tr>
+<tr><td><strong>Alan Chen</strong></td><td>Engineering / db Project Lead</td><td>Direct stakeholder for $56K db invoice. Betty built db-documentation site for his project.</td><td><span class="tag tag-red">CRITICAL</span></td></tr>
+<tr><td><strong>Tiana</strong></td><td>Project Lead, Pluto</td><td>Stakeholder for Pluto code reviews (all paid) and TB3 samples (unpaid). Long relationship.</td><td><span class="tag tag-orange">MEDIUM</span></td></tr>
+<tr><td><strong>Naren</strong></td><td>Founding Engineer</td><td>In project-carrot with Betty. Potential internal advocate.</td><td><span class="tag tag-orange">MEDIUM</span></td></tr>
+</table>
+</div>
+
+<div class="card card-purple">
+<h3>Company Profile (from Slack Intelligence)</h3>
+<ul>
+<li><strong>Carlos background:</strong> Citadel Securities (2x), Meta VR, Google, YC-backed, Forbes featured, UBC CS, age ~23-25</li>
+<li><strong>AQ receives ~1-2K applications/day</strong> — high-volume data labeling platform</li>
+<li><strong>Competitors:</strong> Scale AI, Outlier, Mercor — Betty describes AQ as "basic/least software-heavy" vs Outlier</li>
+<li><strong>Engineering:</strong> Carlos works ~94 hrs/week, team is small (~2K commits threshold for SWE hires)</li>
+<li><strong>Revenue model:</strong> Data labeling contracts; Betty mentioned DoD/govCon leverage with "$1-5bn data supplier contracts, 7 year terms"</li>
+<li><strong>Fraud problem:</strong> Significant — Betty identified multiple fraud rings (Abhay, Indian PhD triad, Chandni Sharma/Mannam Veera Narayana duplicates), AQ uses GPTZero which Betty considers inadequate</li>
+</ul>
+</div>
+
+<h2>2. Relationship Dynamics & Trust Capital</h2>
+
+<div class="grid2">
+<div class="card card-green">
+<h3>Trust Assets (Use These)</h3>
+<ul>
+<li>Carlos engages Betty at 2-5 AM — unusual depth of trust for a contractor</li>
+<li>Betty provides $375-475/hr enterprise consulting value at contractor pay</li>
+<li>Betty identified $20K+ fraud rings, saving AQ significant losses</li>
+<li>Betty replicated AQ's GCP infrastructure, found prompt injection vulnerabilities</li>
+<li>Carlos shared Terminal-Bench proprietary prompt with Betty</li>
+<li>Betty's SAST/DAST security report impressed Carlos</li>
+<li>Betty built db documentation site in 30 minutes</li>
+<li>Betty has connections to Cursor enterprise PM (Kevin Niparko)</li>
+<li>Betty's integrity: refuses to sign off on fraudulent work, charges $0 for non-work</li>
+</ul>
+</div>
+
+<div class="card card-red">
+<h3>Friction Points (Navigate Carefully)</h3>
+<ul>
+<li><strong>"95% overengineering"</strong> — Carlos said 20 recommendations, 1 implemented. Betty called architecture "a cost center"</li>
+<li><strong>Screenshot boundary:</strong> Carlos asked Betty to stop sharing DMs — privacy concern</li>
+<li><strong>SWE role rejection:</strong> Betty repeatedly applied for SWE roles, redirected each time</li>
+<li><strong>Rate negotiation:</strong> $100/task rate took a week to agree; Galaxy lowball at $10/pop</li>
+<li><strong>Betty told Spencer AQ UI copies Mercor</strong> — "deflated him accidentally"</li>
+<li><strong>Betty claims can build AQ in 8 hours</strong> — potentially dismissive of their work</li>
+<li><strong>Betty left AQ temporarily</strong> and returned ("there's worse things than AQ")</li>
+</ul>
+</div>
+</div>
+
+<h2>3. Receivables Breakdown & Collection Priority</h2>
+
+<div class="card card-red">
+<h3>Priority 1: db Project — $56,000 <span class="tag tag-red">CRITICAL</span></h3>
+<table>
+<tr><th>Detail</th><th>Value</th></tr>
+<tr><td>Stakeholder</td><td>Alan Chen</td></tr>
+<tr><td>Period</td><td>Feb 1 – Feb 17, 2026</td></tr>
+<tr><td>Deliverable</td><td>Database Tasks (15+ YOE difficulty)</td></tr>
+<tr><td>Structure</td><td>16 tasks × $3,500/task</td></tr>
+<tr><td>Amount</td><td class="amount"><strong>$56,000.00</strong></td></tr>
+<tr><td>Payment Status</td><td><span class="tag tag-red">UNPAID — No</span></td></tr>
+<tr><td>Precedent</td><td>⚠️ ZERO prior payments at this scale. Largest historical paid item: $4,168</td></tr>
+<tr><td>Risk Factor</td><td>13.4x larger than any previous single payment. 79.7% of total billings.</td></tr>
+</table>
+
+<p style="margin-top:0.8rem"><strong>Why this is collectible despite the scale jump:</strong></p>
+<ul>
+<li>Betty built the db-documentation-f51u.vercel.app site (deliverable exists and is verifiable)</li>
+<li>16 discrete tasks at $3,500 each — can be individually verified</li>
+<li>Difficulty rating "15+ YOE" aligns with Betty's actual background (NASA, NSA, JHU)</li>
+<li>Alan Chen is a named stakeholder who can confirm work completion</li>
+</ul>
+</div>
+
+<div class="card card-orange">
+<h3>Priority 2: Pluto TB3 Samples — $0 Billed (Work Performed) <span class="tag tag-orange">AT RISK</span></h3>
+<table>
+<tr><td>Stakeholder</td><td>Tiana</td></tr>
+<tr><td>Period</td><td>Jan 21 – Jan 31, 2026</td></tr>
+<tr><td>Deliverable</td><td>TB3 Samples (5 submissions)</td></tr>
+<tr><td>Amount Billed</td><td class="amount">$0.00</td></tr>
+<tr><td>Status</td><td><span class="tag tag-red">UNPAID — No</span></td></tr>
+<tr><td>Notes</td><td>Work performed but billed at $0. Need to negotiate retroactive billing.</td></tr>
+</table>
+</div>
+
+<div class="card card-orange">
+<h3>Secondary: Galaxy Rubrics — $0 Outstanding <span class="tag tag-orange">CONFIRM TERMS</span></h3>
+<p>Nov 15 – Dec 6 rubrics show $0 billed with 100 cost and no total. Confirm whether this was completed and what's owed.</p>
+</div>
+
+<div class="card card-green">
+<h3>Minor: Learn Referral — $100 <span class="tag tag-green">LOW PRIORITY</span></h3>
+<p>Referral for "Le Li." Small amount, low effort to collect but low priority.</p>
+</div>
+
+<h2>4. The Collection Playbook — Sequenced Steps</h2>
+
+<div class="card card-green">
+<h3>Phase 1: Anchor the Conversation (Day 1-2)</h3>
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-content">
+<strong>Open with Carlos directly via Slack DM</strong><br>
+Frame as a routine check-in, not a collections call. Carlos responds best to direct, technical conversation — not formal invoicing language.
+<div class="quote">"Hey Carlos — quick sync on the db project. Alan's 16 tasks are all delivered (the documentation site is live at db-documentation-f51u.vercel.app). What's the payment timeline looking like for those? Also want to close out the TB3 samples from January."</div>
+<p><strong>Why this works:</strong> References verifiable deliverables. Doesn't escalate emotionally. Bundles the TB3 ask with the larger item so it feels like housekeeping, not a demand.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-content">
+<strong>Establish the $56K as 16 discrete $3,500 payments</strong><br>
+If Carlos shows sticker shock at $56K, immediately reframe:
+<div class="quote">"It's 16 individual tasks at $3,500 each — same structure as the Pluto task-based billing you've been paying. Happy to send the task-by-task breakdown with completion timestamps."</div>
+<p><strong>Why this works:</strong> AQ already paid $3,368 and $4,168 task-based Pluto invoices. Each $3,500 db task is within established precedent individually. The framing shifts from "one scary $56K invoice" to "16 routine task payments."</p>
+</div>
+</div>
+</div>
+
+<div class="card card-orange">
+<h3>Phase 2: Structured Payment Proposal (Day 3-7)</h3>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-content">
+<strong>Propose milestone-based payment schedule</strong><br>
+If immediate full payment isn't feasible:
+<table>
+<tr><th>Milestone</th><th>Amount</th><th>Target Date</th></tr>
+<tr><td>Good faith payment (Tasks 1-4)</td><td class="amount">$14,000</td><td>Feb 21, 2026</td></tr>
+<tr><td>Second tranche (Tasks 5-8)</td><td class="amount">$14,000</td><td>Mar 1, 2026</td></tr>
+<tr><td>Third tranche (Tasks 9-12)</td><td class="amount">$14,000</td><td>Mar 10, 2026</td></tr>
+<tr><td>Final payment (Tasks 13-16 + TB3)</td><td class="amount">$14,000</td><td>Mar 20, 2026</td></tr>
+<tr><th>Total</th><th class="amount">$56,000</th><th></th></tr>
+</table>
+<p><strong>Why $14K tranches:</strong> This is roughly the size of historical total paid ($14,189), so each tranche matches AQ's demonstrated payment capacity.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">4</div>
+<div class="step-content">
+<strong>Get written confirmation</strong><br>
+After verbal agreement, send a simple summary in Slack or email:
+<div class="quote">"Confirming: db project — 16 tasks × $3,500 = $56,000 total. Payment schedule: [dates]. TB3 samples: [agreed amount]. Please confirm."</div>
+<p>This creates a paper trail without being legalistic. Carlos has shown sensitivity to formality — keep it conversational but documented.</p>
+</div>
+</div>
+</div>
+
+<div class="card card-red">
+<h3>Phase 3: Escalation Levers (Day 8-14, if needed)</h3>
+<div class="step">
+<div class="step-num">5</div>
+<div class="step-content">
+<strong>Lever A: Value Demonstration</strong><br>
+If payment stalls, remind Carlos of the value asymmetry:
+<ul>
+<li>Betty's fraud detection saved AQ from $20K+ in fraudulent payouts (Abhay ring alone)</li>
+<li>Infrastructure security audit revealed prompt injection vulnerabilities — free</li>
+<li>AWS cost reduction expertise ($400K → $84K/year at previous role)</li>
+<li>Enterprise consulting value ($375-475/hr market rate) delivered at contractor pricing</li>
+</ul>
+<p><strong>Tone:</strong> Not threatening. Frame as "I want to keep working together, but the economics need to work."</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">6</div>
+<div class="step-content">
+<strong>Lever B: Spencer/Danny Escalation</strong><br>
+If Carlos is non-responsive for 5+ days:
+<ul>
+<li>Contact Danny Tang (COO) — he handles ops and likely payment processing</li>
+<li>Frame to Danny: "Following up on outstanding invoices. Carlos and I discussed but I want to make sure this is in your queue."</li>
+<li>Only escalate to Spencer as last resort — the relationship is more fragile there</li>
+</ul>
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">7</div>
+<div class="step-content">
+<strong>Lever C: Future Work Leverage</strong><br>
+Betty has unique leverage that most contractors don't:
+<ul>
+<li><strong>Competitor platform:</strong> Betty is building a Scale AI/Outlier competitor (25% done). AQ knows this.</li>
+<li><strong>DoD network:</strong> "$1-5bn data supplier contracts, 7 year terms" — Betty has connections AQ needs</li>
+<li><strong>Cursor enterprise:</strong> Connection to Kevin Niparko (Cursor PM) is valuable to AQ</li>
+<li><strong>Fraud detection:</strong> AQ's GPTZero approach is inadequate — Betty's methodology is superior</li>
+</ul>
+<p><strong>Implicit message:</strong> Paying Betty keeps the relationship open for high-value future collaboration. Not paying burns a bridge to someone with rare capabilities.</p>
+</div>
+</div>
+</div>
+
+<h2>5. What NOT to Do (Based on Relationship Intelligence)</h2>
+
+<div class="card card-red">
+<ul>
+<li><strong>Don't invoke the "95% overengineering" tension.</strong> Carlos is sensitive about this. Betty's architecture critique hit a nerve. Keep the focus on delivered work, not AQ's technical debt.</li>
+<li><strong>Don't mention building AQ in 8 hours.</strong> This dismisses Carlos's ~94 hrs/week effort. It undermines trust capital.</li>
+<li><strong>Don't share screenshots of conversations.</strong> Carlos already set this boundary once. Violating it would destroy trust.</li>
+<li><strong>Don't CC Spencer on initial outreach.</strong> The Mercor UI comment already strained that relationship. Bring Spencer in only if Carlos is completely non-responsive.</li>
+<li><strong>Don't frame this as adversarial.</strong> Carlos shared proprietary Terminal-Bench prompts with Betty — that's deep trust. A legal threat would nuclear the relationship for $56K when the long-term value is much higher.</li>
+<li><strong>Don't bring up Betty's SWE applications.</strong> The repeated redirections are a sore point. Keep the framing on contractor deliverables.</li>
+</ul>
+</div>
+
+<h2>6. Risk-Adjusted Expected Collection</h2>
+
+<div class="card card-purple">
+<table>
+<tr><th>Receivable</th><th>Amount</th><th>Collection Probability</th><th>Expected Value</th><th>Rationale</th></tr>
+<tr><td>db/Alan (with payment plan)</td><td class="amount">$56,000</td><td>70-75%</td><td class="amount">$39,200 – $42,000</td><td>Verifiable deliverables, milestone plan matches AQ's payment capacity</td></tr>
+<tr><td>db/Alan (lump sum demand)</td><td class="amount">$56,000</td><td>40-50%</td><td class="amount">$22,400 – $28,000</td><td>Unprecedented scale; likely triggers delay/dispute</td></tr>
+<tr><td>Pluto TB3 (retroactive)</td><td class="amount">~$500-2,000</td><td>60%</td><td class="amount">$300 – $1,200</td><td>Work done, but billed at $0. Tiana relationship is solid.</td></tr>
+<tr><td>Learn referral</td><td class="amount">$100</td><td>50%</td><td class="amount">$50</td><td>Small, easy to overlook. Bundle with larger ask.</td></tr>
+<tr><th>Best-case total</th><th class="amount">$56,100+</th><th></th><th class="amount">$39,550 – $43,250</th><th></th></tr>
+</table>
+</div>
+
+<h2>7. Recommended Opening Message (Ready to Send)</h2>
+
+<div class="card card-green" style="font-family: 'SF Mono', Consolas, monospace; font-size: 0.9rem; white-space: pre-wrap;">Hey Carlos — hope the week's off to a good start.
+
+Wanted to do a quick accounting sync. The db project tasks are all complete (16 tasks, documentation site is live). That's $56K total at the $3,500/task rate.
+
+I know that's a bigger number than our usual invoices, so happy to structure it as 4 payments of $14K over the next month if that's easier on your end. First one ideally by end of this week.
+
+Also want to close out the TB3 samples from January with Tiana — I did 5 submissions that got billed at $0. Can we figure out the right rate for those?
+
+Let me know what works.</div>
+
+<h2>8. Decision Tree — If/Then Responses</h2>
+
+<div class="card">
+<table>
+<tr><th>If Carlos says...</th><th>Then respond...</th></tr>
+<tr><td>"We need to verify the tasks first"</td><td>"Absolutely. Here's the task-by-task breakdown with timestamps. Alan can confirm completion on his end. Happy to jump on a 15-min call to walk through it."</td></tr>
+<tr><td>"We can't pay $56K right now"</td><td>"Understood. The 4×$14K schedule I mentioned would work. What timeline is realistic for the first tranche?" (Don't negotiate the total, only the timing.)</td></tr>
+<tr><td>"The rate seems high"</td><td>"The $3,500/task rate was agreed before work started. These are 15+ YOE difficulty tasks — the market rate for this work is $200-400/hr. Happy to show the scope of each task."</td></tr>
+<tr><td>"Let me check with Spencer/Danny"</td><td>"Sure, no rush. I'll follow up Friday if I haven't heard back." (Set a concrete follow-up date. Don't let it drift.)</td></tr>
+<tr><td>No response for 5+ days</td><td>Send to Danny Tang: "Hi Danny — following up on outstanding invoices for the db project. Carlos and I have been discussing. Want to make sure this is tracked on your end."</td></tr>
+<tr><td>Disputes the work quality</td><td>"I understand. Let's review the specific tasks you have concerns about. The documentation site (db-documentation-f51u.vercel.app) is live and working. Which tasks need discussion?"</td></tr>
+</table>
+</div>
+
+<p style="color: var(--muted); margin-top: 2rem; font-size: 0.85rem; text-align: center;">
+  AQ Collection Playbook — Generated Feb 17, 2026 — Confidential<br>
+  Based on financial analysis of 19 line items and ~3,500 lines of Slack DM intelligence
+</p>
+
+</body>
+</html>
