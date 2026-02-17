@@ -123,19 +123,19 @@ info:
     and positions?
 
 
-    Description: Situation: A job marketplace platform needs to connect candidates
-    with relevant opportunities by analyzing user profiles, job postings, required
-    skills, and historical application data. The matching engine must consider multiple
-    dimensions including skills, location preferences, salary expectations, and career
-    goals to improve placement success rates. Task: Generate a ranked list of job
-    recommendations for each user profile with comprehensive match scores, skill alignment
-    details, location compatibility assessments, salary match indicators, and personalized
-    recommendation reasons. Action: The query joins user_profiles with job_postings
-    and skills tables, groups results by user and job to calculate multi-dimensional
-    match scores, computes skill overlap percentages and gap analysis, evaluates location
-    and salary compatibility using threshold comparisons, applies window functions
-    to rank recommendations per user based on composite scores, and handles NULL values
-    in optional profile fields
+    Description: A job marketplace platform needs to connect candidates with relevant
+    opportunities by analyzing user profiles, job postings, required skills, and historical
+    application data. The matching engine must consider multiple dimensions including
+    skills, location preferences, salary expectations, and career goals to improve
+    placement success rates. Generate a ranked list of job recommendations for each
+    user profile with comprehensive match scores, skill alignment details, location
+    compatibility assessments, salary match indicators, and personalized recommendation
+    reasons. The query joins user_profiles with job_postings and skills tables, groups
+    results by user and job to calculate multi-dimensional match scores, computes
+    skill overlap percentages and gap analysis, evaluates location and salary compatibility
+    using threshold comparisons, applies window functions to rank recommendations
+    per user based on composite scores, and handles NULL values in optional profile
+    fields
 
 
     Business Value: Ranked list of job recommendations with match scores, skill alignment
@@ -153,19 +153,18 @@ info:
     paths?
 
 
-    Description: Situation: Job seekers need to understand their skill gaps relative
-    to desired positions and receive actionable learning recommendations. The skills
-    database contains hierarchical relationships where advanced skills have prerequisite
-    dependencies that must be learned first. Understanding these dependency chains
-    is critical for creating realistic upskilling roadmaps. Task: Perform skill gap
-    analysis identifying missing skills relative to target job postings, trace prerequisite
-    skill chains through hierarchical dependencies, generate prioritized learning
-    path recommendations respecting skill prerequisites, and estimate time required
-    to acquire each skill based on complexity levels. Action: The query uses a recursive
-    CTE to traverse the skills hierarchy and identify prerequisite chains, joins user_profiles
-    with job_postings to identify required versus possessed skills, groups by user
-    and skill category to aggregate gap metrics, applies window functions to sequence
-    learning recommendations
+    Description: Job seekers need to understand their skill gaps relative to desired
+    positions and receive actionable learning recommendations. The skills database
+    contains hierarchical relationships where advanced skills have prerequisite dependencies
+    that must be learned first. Understanding these dependency chains is critical
+    for creating realistic upskilling roadmaps. Perform skill gap analysis identifying
+    missing skills relative to target job postings, trace prerequisite skill chains
+    through hierarchical dependencies, generate prioritized learning path recommendations
+    respecting skill prerequisites, and estimate time required to acquire each skill
+    based on complexity levels. The query uses a recursive CTE to traverse the skills
+    hierarchy and identify prerequisite chains, joins user_profiles with job_postings
+    to identify required versus possessed skills, groups by user and skill category
+    to aggregate gap metrics, applies window functions to sequence learning recommendations
 
 
     Business Value: Skill gap analysis with missing skills, prerequisite skill chains,
@@ -182,19 +181,18 @@ info:
     skill demand and projections of salary trends and geographic market shifts?
 
 
-    Description: Situation: The job market intelligence team needs to identify emerging
-    trends, forecast skill demand, and track salary movements to advise both job seekers
-    and employers on market dynamics. Historical data from job postings, applications,
+    Description: The job market intelligence team needs to identify emerging trends,
+    forecast skill demand, and track salary movements to advise both job seekers and
+    employers on market dynamics. Historical data from job postings, applications,
     and skills provides the foundation for trend analysis and predictive insights
-    across time periods and geographic regions. Task: Conduct market trend analysis
-    computing growth rates for job postings and applications, project future skill
-    demand based on historical patterns, analyze salary trends across roles and locations,
-    identify geographic shifts in job market concentration, and calculate competitive
-    intensity metrics. Action: The query aggregates job_postings and applications
-    data by month, location, and skill category using GROUP BY with date functions,
-    calculates period-over-period growth rates using LAG window functions for comparison
-    metrics, computes rolling averages and quartile distributions for salary trends,
-    applies time-series aggregation
+    across time periods and geographic regions. Conduct market trend analysis computing
+    growth rates for job postings and applications, project future skill demand based
+    on historical patterns, analyze salary trends across roles and locations, identify
+    geographic shifts in job market concentration, and calculate competitive intensity
+    metrics. The query aggregates job_postings and applications data by month, location,
+    and skill category using GROUP BY with date functions, calculates period-over-period
+    growth rates using LAG window functions for comparison metrics, computes rolling
+    averages and quartile distributions for salary trends, applies time-series aggregation
 
 
     Business Value: Market trend analysis with growth rates, skill demand projections,
@@ -211,18 +209,18 @@ info:
     conversion funnel analytics, and identification of success factors?
 
 
-    Description: Situation: The platform analytics team needs to understand application
-    conversion patterns to optimize the candidate-employer matching process. By analyzing
-    the applications table with user_profiles and job_postings data, they can identify
+    Description: The platform analytics team needs to understand application conversion
+    patterns to optimize the candidate-employer matching process. By analyzing the
+    applications table with user_profiles and job_postings data, they can identify
     bottlenecks in the hiring funnel, measure success rates across different cohorts,
     and determine which candidate or job attributes correlate with successful outcomes.
-    Task: Calculate application success rates segmented by user cohorts and job categories,
+    Calculate application success rates segmented by user cohorts and job categories,
     measure conversion funnel metrics tracking applications through stages from submission
     to offer, compute time-to-response statistics between application events, and
     identify success factor correlations examining which attributes predict positive
-    outcomes. Action: The query joins applications with user_profiles and job_postings
-    to create cohort segments based on attributes like experience level, location,
-    and industry, groups by cohort and application stage to calculate conversion rates
+    outcomes. The query joins applications with user_profiles and job_postings to
+    create cohort segments based on attributes like experience level, location, and
+    industry, groups by cohort and application stage to calculate conversion rates
     at each funnel
 
 
@@ -240,16 +238,16 @@ info:
     analysis, employer branding metrics, and competitive rankings in the job marketplace?
 
 
-    Description: Situation: Employers and market analysts need visibility into competitive
-    dynamics among companies in the job marketplace. By analyzing job_postings and
-    applications data across companies, stakeholders can assess market positioning,
-    track employer brand strength, identify competitive threats, and benchmark performance
-    against industry peers to inform talent acquisition and employer branding strategies.
-    Task: Conduct company competitive analysis calculating market share based on job
-    posting volume and application volume, analyze job posting trends and growth patterns
+    Description: Employers and market analysts need visibility into competitive dynamics
+    among companies in the job marketplace. By analyzing job_postings and applications
+    data across companies, stakeholders can assess market positioning, track employer
+    brand strength, identify competitive threats, and benchmark performance against
+    industry peers to inform talent acquisition and employer branding strategies.
+    Conduct company competitive analysis calculating market share based on job posting
+    volume and application volume, analyze job posting trends and growth patterns
     by company, measure application rates and candidate attraction metrics, assess
     employer brand strength through engagement indicators, and generate competitive
-    rankings across key performance dimensions. Action: The query aggregates job_postings
+    rankings across key performance dimensions. The query aggregates job_postings
     by company to calculate posting volumes and market share percentages, groups applications
     by company to measure candidate interest and application rates, applies time-series
     grouping
@@ -269,19 +267,18 @@ info:
     location-based opportunities and remote work patterns?
 
 
-    Description: Situation: As a job market analyst, I need to understand regional
-    employment dynamics across different locations. The job market intelligence system
-    contains user_profiles showing candidate locations, job_postings with geographic
-    and remote work data, skills indicating regional demand, and applications revealing
-    competition patterns. This analysis helps identify high-opportunity markets and
-    emerging remote work trends for strategic workforce planning. Task: Produce a
-    comprehensive geographic market analysis that includes job density per location,
-    salary range distributions, remote work adoption rates, competition metrics (applications
-    per job), and calculated location attractiveness scores. Action: The query joins
-    user_profiles, job_postings, skills, and applications tables, then groups results
-    by geographic dimensions (city, state, region). It computes aggregate metrics
-    including job counts, average salaries, percentiles for compensation, remote work
-    percentages, and application-to-jo
+    Description: As a job market analyst, I need to understand regional employment
+    dynamics across different locations. The job market intelligence system contains
+    user_profiles showing candidate locations, job_postings with geographic and remote
+    work data, skills indicating regional demand, and applications revealing competition
+    patterns. This analysis helps identify high-opportunity markets and emerging remote
+    work trends for strategic workforce planning. Produce a comprehensive geographic
+    market analysis that includes job density per location, salary range distributions,
+    remote work adoption rates, competition metrics (applications per job), and calculated
+    location attractiveness scores. The query joins user_profiles, job_postings, skills,
+    and applications tables, then groups results by geographic dimensions (city, state,
+    region). It computes aggregate metrics including job counts, average salaries,
+    percentiles for compensation, remote work percentages, and application-to-jo
 
 
     Business Value: Geographic market analysis with job density, salary ranges, remote
@@ -298,18 +295,18 @@ info:
     compares across the market with percentile rankings?
 
 
-    Description: Situation: As a compensation analyst or hiring manager, I need to
-    understand how salaries compare across different roles, experience levels, and
-    industries to ensure competitive offers. The job market intelligence database
-    contains job_postings with salary information, user_profiles with experience data,
-    skills associated with compensation premiums, and applications reflecting market
-    responsiveness to salary levels. This benchmarking enables data-driven compensation
-    decisions and competitive positioning. Task: Generate a comprehensive salary benchmarking
-    analysis that includes percentile rankings (25th, 50th, 75th, 90th), market positioning
+    Description: As a compensation analyst or hiring manager, I need to understand
+    how salaries compare across different roles, experience levels, and industries
+    to ensure competitive offers. The job market intelligence database contains job_postings
+    with salary information, user_profiles with experience data, skills associated
+    with compensation premiums, and applications reflecting market responsiveness
+    to salary levels. This benchmarking enables data-driven compensation decisions
+    and competitive positioning. Generate a comprehensive salary benchmarking analysis
+    that includes percentile rankings (25th, 50th, 75th, 90th), market positioning
     scores relative to competitors, salary ranges segmented by job title and industry,
-    and compensation trend indicators over time. Action: The query joins job_postings
-    with skills and related tables, then groups by relevant dimensions such as job
-    title, industry, experience level, and company size. It calculates aggregate statistics
+    and compensation trend indicators over time. The query joins job_postings with
+    skills and related tables, then groups by relevant dimensions such as job title,
+    industry, experience level, and company size. It calculates aggregate statistics
     including mean, med
 
 
@@ -327,19 +324,19 @@ info:
     patterns over time?
 
 
-    Description: Situation: As a platform product manager or workforce analyst, I
-    need to understand how different user cohorts behave over time—specifically their
-    engagement, retention, and career advancement. The system tracks user_profiles
-    with registration dates and career information, applications showing ongoing engagement,
-    job_postings indicating career level changes, and skills reflecting professional
-    development. This cohort analysis reveals user lifecycle patterns and helps optimize
-    platform features and career services. Task: Produce a user cohort analysis that
-    segments users by registration period (monthly or quarterly cohorts), calculates
-    retention rates at various time intervals, analyzes application patterns and frequency,
-    and tracks career progression indicators such as job level changes and skill acquisitions.
-    Action: The query creates cohorts by extracting registration date periods from
-    user_profiles, then uses self-joins or window functions to track user activity
-    over subsequent peri
+    Description: As a platform product manager or workforce analyst, I need to understand
+    how different user cohorts behave over time—specifically their engagement, retention,
+    and career advancement. The system tracks user_profiles with registration dates
+    and career information, applications showing ongoing engagement, job_postings
+    indicating career level changes, and skills reflecting professional development.
+    This cohort analysis reveals user lifecycle patterns and helps optimize platform
+    features and career services. Produce a user cohort analysis that segments users
+    by registration period (monthly or quarterly cohorts), calculates retention rates
+    at various time intervals, analyzes application patterns and frequency, and tracks
+    career progression indicators such as job level changes and skill acquisitions.
+    The query creates cohorts by extracting registration date periods from user_profiles,
+    then uses self-joins or window functions to track user activity over subsequent
+    peri
 
 
     Business Value: User cohort analysis with registration cohorts, retention metrics,
@@ -356,19 +353,18 @@ info:
     to identify gaps and opportunities?
 
 
-    Description: Situation: As a talent strategist or training program director, I
-    need to identify where skill demand from employers exceeds candidate supply, creating
-    market opportunities. The database contains skills data linked to job_postings
-    (showing demand), user_profiles (showing supply), and applications (revealing
-    competition intensity). Understanding these imbalances helps prioritize training
-    programs, guide career transitions, and inform workforce development initiatives.
-    Task: Generate a skill demand versus supply analysis that quantifies market imbalances
-    by comparing job postings requiring each skill against users possessing that skill,
-    identifies significant skill gaps representing opportunities, highlights high-demand
-    skills with low supply, and provides market trend indicators showing momentum.
-    Action: The query aggregates skills from job_postings to measure demand (count
-    of postings per skill) and from user_profiles to measure supply (count of users
-    per skill). It joins these aggrega
+    Description: As a talent strategist or training program director, I need to identify
+    where skill demand from employers exceeds candidate supply, creating market opportunities.
+    The database contains skills data linked to job_postings (showing demand), user_profiles
+    (showing supply), and applications (revealing competition intensity). Understanding
+    these imbalances helps prioritize training programs, guide career transitions,
+    and inform workforce development initiatives. Generate a skill demand versus supply
+    analysis that quantifies market imbalances by comparing job postings requiring
+    each skill against users possessing that skill, identifies significant skill gaps
+    representing opportunities, highlights high-demand skills with low supply, and
+    provides market trend indicators showing momentum. The query aggregates skills
+    from job_postings to measure demand (count of postings per skill) and from user_profiles
+    to measure supply (count of users per skill). It joins these aggrega
 
 
     Business Value: Skill demand vs supply analysis with market imbalances, skill
@@ -385,19 +381,19 @@ info:
     agency patterns and usajobs.gov data insights?
 
 
-    Description: Situation: As a federal employment analyst or career counselor specializing
+    Description: As a federal employment analyst or career counselor specializing
     in government positions, I need to understand hiring patterns across federal agencies.
     The job market intelligence system integrates data from usajobs.gov, capturing
     job_postings with federal-specific attributes (agency, pay plan, grade level,
     security clearance), user_profiles of candidates interested in government work,
     applications to federal positions, and skills mapped to federal competency frameworks.
     This analysis supports candidates seeking federal careers and agencies benchmarking
-    their hiring practices. Task: Produce a comprehensive federal job opportunities
-    analysis that includes hiring patterns by agency and department, distributions
-    of pay plans (GS, FP, SES, etc.) and grade levels, geographic distribution of
-    federal positions, trend analysis over time, and competitive intelligence on agency
-    hiring volumes. Action: The query filters job_postings for federal positions (using
-    agency identifiers or so
+    their hiring practices. Produce a comprehensive federal job opportunities analysis
+    that includes hiring patterns by agency and department, distributions of pay plans
+    (GS, FP, SES, etc.) and grade levels, geographic distribution of federal positions,
+    trend analysis over time, and competitive intelligence on agency hiring volumes.
+    The query filters job_postings for federal positions (using agency identifiers
+    or so
 
 
     Business Value: Federal job opportunities analysis with agency patterns, pay plan
@@ -414,19 +410,19 @@ info:
     their search patterns and how well our recommendations are working?
 
 
-    Description: Situation: Our job platform needs to understand how users search
-    for jobs to improve the recommendation engine. The platform stores user profiles,
-    job postings, skills, and application data, but we''re seeing suboptimal engagement
-    with our recommendation features and want to identify where users are struggling
-    in their search process. Task: Analyze job search behavior patterns, filter usage
-    preferences, recommendation engagement rates, and identify actionable optimization
-    opportunities to improve user experience and job matching success. Action: The
-    query joins user_profiles with applications and job_postings to track search sessions,
-    groups results by search criteria and user segments, computes engagement metrics
-    and conversion rates using aggregates, applies window functions to calculate rolling
-    search trends and comparative performance across recommendation types, uses quartiles
-    to segment user behavior patterns, and handles NULL values in optional filters
-    and date ranges for incompl
+    Description: Our job platform needs to understand how users search for jobs to
+    improve the recommendation engine. The platform stores user profiles, job postings,
+    skills, and application data, but we''re seeing suboptimal engagement with our
+    recommendation features and want to identify where users are struggling in their
+    search process. Analyze job search behavior patterns, filter usage preferences,
+    recommendation engagement rates, and identify actionable optimization opportunities
+    to improve user experience and job matching success. The query joins user_profiles
+    with applications and job_postings to track search sessions, groups results by
+    search criteria and user segments, computes engagement metrics and conversion
+    rates using aggregates, applies window functions to calculate rolling search trends
+    and comparative performance across recommendation types, uses quartiles to segment
+    user behavior patterns, and handles NULL values in optional filters and date ranges
+    for incompl
 
 
     Business Value: Job search behavior analysis with search patterns, filter usage,
@@ -443,19 +439,18 @@ info:
     dropping off and how we can improve conversion rates?
 
 
-    Description: Situation: Our talent acquisition team has noticed declining application
-    completion rates across job postings, but we don''t have visibility into which
-    specific funnel stages are causing the most friction. The applications table tracks
-    each stage from initial view through final submission, along with timestamps,
-    allowing us to diagnose conversion bottlenecks. Task: Perform application funnel
-    analysis to calculate conversion rates between each stage, identify the highest
-    drop-off points, measure time-to-conversion metrics at each step, and generate
-    optimization recommendations to improve overall completion rates. Action: The
-    query joins applications with job_postings and user_profiles to construct the
-    complete funnel journey, groups by funnel stage and job characteristics, computes
-    stage-by-stage conversion rates and drop-off percentages using aggregates and
-    LAG window functions, calculates time-to-conversion metrics including median and
-    quartile durations between stages, applies cohort
+    Description: Our talent acquisition team has noticed declining application completion
+    rates across job postings, but we don''t have visibility into which specific funnel
+    stages are causing the most friction. The applications table tracks each stage
+    from initial view through final submission, along with timestamps, allowing us
+    to diagnose conversion bottlenecks. Perform application funnel analysis to calculate
+    conversion rates between each stage, identify the highest drop-off points, measure
+    time-to-conversion metrics at each step, and generate optimization recommendations
+    to improve overall completion rates. The query joins applications with job_postings
+    and user_profiles to construct the complete funnel journey, groups by funnel stage
+    and job characteristics, computes stage-by-stage conversion rates and drop-off
+    percentages using aggregates and LAG window functions, calculates time-to-conversion
+    metrics including median and quartile durations between stages, applies cohort
 
 
     Business Value: Application funnel analysis with conversion rates, drop-off points,
@@ -472,19 +467,18 @@ info:
     portfolios command the highest market value?
 
 
-    Description: Situation: Job seekers frequently ask which additional skills they
-    should learn to maximize their career opportunities and earning potential. Our
-    skills and applications tables contain rich data about which skill combinations
-    appear together in job postings and successful applications, but this insight
-    isn''t currently accessible to users or career advisors. Task: Analyze skill combination
-    patterns to identify frequently co-occurring skills, determine which skill pairs
-    correlate with higher salaries and application success rates, and generate evidence-based
-    skill portfolio recommendations for different career paths. Action: The query
-    performs self-joins on the skills table to identify skill pairs within the same
-    job posting or user profile, groups by skill combination and job category, computes
-    co-occurrence frequencies and lift metrics using aggregates, calculates average
-    salary premiums for each skill combination by joining with job_postings compensation
-    data, applies window functions
+    Description: Job seekers frequently ask which additional skills they should learn
+    to maximize their career opportunities and earning potential. Our skills and applications
+    tables contain rich data about which skill combinations appear together in job
+    postings and successful applications, but this insight isn''t currently accessible
+    to users or career advisors. Analyze skill combination patterns to identify frequently
+    co-occurring skills, determine which skill pairs correlate with higher salaries
+    and application success rates, and generate evidence-based skill portfolio recommendations
+    for different career paths. The query performs self-joins on the skills table
+    to identify skill pairs within the same job posting or user profile, groups by
+    skill combination and job category, computes co-occurrence frequencies and lift
+    metrics using aggregates, calculates average salary premiums for each skill combination
+    by joining with job_postings compensation data, applies window functions
 
 
     Business Value: Skill combination analysis with co-occurrence patterns, high-value
@@ -501,19 +495,19 @@ info:
     factors are affecting hiring velocity?
 
 
-    Description: Situation: Hiring managers are reporting inconsistent time-to-fill
-    across different roles and departments, impacting business operations and recruitment
-    costs. Our job_postings and applications tables track posting dates, application
-    timestamps, and hire dates, enabling us to measure hiring velocity and identify
-    inefficiencies in the recruitment process. Task: Perform time-to-fill analysis
-    to calculate hiring velocity metrics, establish market efficiency indicators and
-    benchmarks by job category and company size, identify factors that accelerate
-    or delay hiring, and provide optimization insights to reduce time-to-hire. Action:
-    The query joins job_postings with applications to calculate time-to-fill (days
-    from posting to acceptance), groups by job category, seniority level, location,
-    and company attributes, computes velocity metrics including median, quartile distributions,
-    and trend direction using aggregates, applies window functions to calculate rolling
-    averages and compare current p
+    Description: Hiring managers are reporting inconsistent time-to-fill across different
+    roles and departments, impacting business operations and recruitment costs. Our
+    job_postings and applications tables track posting dates, application timestamps,
+    and hire dates, enabling us to measure hiring velocity and identify inefficiencies
+    in the recruitment process. Perform time-to-fill analysis to calculate hiring
+    velocity metrics, establish market efficiency indicators and benchmarks by job
+    category and company size, identify factors that accelerate or delay hiring, and
+    provide optimization insights to reduce time-to-hire. The query joins job_postings
+    with applications to calculate time-to-fill (days from posting to acceptance),
+    groups by job category, seniority level, location, and company attributes, computes
+    velocity metrics including median, quartile distributions, and trend direction
+    using aggregates, applies window functions to calculate rolling averages and compare
+    current p
 
 
     Business Value: Time-to-fill analysis with hiring velocity metrics, market efficiency
@@ -530,19 +524,19 @@ info:
     and industries, and what trends should we expect?
 
 
-    Description: Situation: The shift to remote and hybrid work models has fundamentally
-    changed the job market, but our platform lacks clear visibility into adoption
-    patterns across different sectors and regions. Employers need benchmarking data
-    to set competitive work policies, while job seekers want to understand remote
-    opportunity availability. The job_postings table includes work location type (remote,
-    hybrid, on-site) and geographic data that can reveal these trends. Task: Analyze
-    remote work trends to calculate adoption rates over time, map geographic distribution
-    of remote opportunities, track work model evolution patterns across industries,
-    and project future trends based on historical data and current trajectories. Action:
-    The query groups job_postings by work location type, industry, geography, and
-    time period, computes adoption rates and year-over-year growth using aggregates,
-    applies window functions to calculate moving averages and trend acceleration/deceleration,
-    performs geographic clus
+    Description: The shift to remote and hybrid work models has fundamentally changed
+    the job market, but our platform lacks clear visibility into adoption patterns
+    across different sectors and regions. Employers need benchmarking data to set
+    competitive work policies, while job seekers want to understand remote opportunity
+    availability. The job_postings table includes work location type (remote, hybrid,
+    on-site) and geographic data that can reveal these trends. Analyze remote work
+    trends to calculate adoption rates over time, map geographic distribution of remote
+    opportunities, track work model evolution patterns across industries, and project
+    future trends based on historical data and current trajectories. The query groups
+    job_postings by work location type, industry, geography, and time period, computes
+    adoption rates and year-over-year growth using aggregates, applies window functions
+    to calculate moving averages and trend acceleration/deceleration, performs geographic
+    clus
 
 
     Business Value: Remote work trends analysis with adoption rates, geographic distribution,
@@ -559,19 +553,18 @@ info:
     well we''re extracting data and how fresh it is?
 
 
-    Description: Situation: Our Job Market Intelligence platform ingests data from
-    multiple sources into user_profiles, job_postings, skills, and applications tables.
-    Data quality engineers need to monitor source reliability to identify failing
-    extractions and stale data that could impact analytics accuracy. Task: Generate
-    a comprehensive data source quality report showing extraction metrics, freshness
-    tracking, and reliability scores for each data source. Action: The query groups
-    records by data source and time period, computing aggregation metrics such as
-    extraction success rates, record counts, and data age. Window functions calculate
-    rolling averages for trend detection and comparative metrics across sources. The
-    query handles NULL values in extraction timestamps and applies date range filters
-    to focus on recent activity. Result: Returns a dataset with per-source quality
-    metrics including extraction success percentage, average data freshness in hours,
-    staleness flags, and reliability scores, enabli
+    Description: Our Job Market Intelligence platform ingests data from multiple sources
+    into user_profiles, job_postings, skills, and applications tables. Data quality
+    engineers need to monitor source reliability to identify failing extractions and
+    stale data that could impact analytics accuracy. Generate a comprehensive data
+    source quality report showing extraction metrics, freshness tracking, and reliability
+    scores for each data source. The query groups records by data source and time
+    period, computing aggregation metrics such as extraction success rates, record
+    counts, and data age. Window functions calculate rolling averages for trend detection
+    and comparative metrics across sources. The query handles NULL values in extraction
+    timestamps and applies date range filters to focus on recent activity. Returns
+    a dataset with per-source quality metrics including extraction success percentage,
+    average data freshness in hours, staleness flags, and reliability scores, enabli
 
 
     Business Value: Data source quality analysis with extraction metrics, freshness
@@ -588,19 +581,18 @@ info:
     ones are essentially the same role?
 
 
-    Description: Situation: The job_postings table contains thousands of job titles
-    with inconsistent naming conventions (e.g., ''Software Engineer'', ''Software
-    Developer'', ''SWE''). Product analysts need to cluster similar titles to improve
-    job recommendation algorithms and provide cleaner reporting categories. Task:
-    Perform job title normalization analysis to identify title clusters, calculate
-    similarity scores between variants, and map raw titles to standardized canonical
-    forms. Action: The query groups job postings by title variations and computes
-    string similarity metrics using fuzzy matching or text distance functions. It
-    aggregates posting counts per title variant, applies clustering logic to group
-    similar titles, and uses window functions to rank titles within clusters by frequency.
-    The query handles NULL or empty titles and filters out low-frequency outliers.
-    Result: Returns a mapping table showing original job titles, their assigned cluster
-    ID, similarity scores to the cluster centroid, standardi
+    Description: The job_postings table contains thousands of job titles with inconsistent
+    naming conventions (e.g., ''Software Engineer'', ''Software Developer'', ''SWE'').
+    Product analysts need to cluster similar titles to improve job recommendation
+    algorithms and provide cleaner reporting categories. Perform job title normalization
+    analysis to identify title clusters, calculate similarity scores between variants,
+    and map raw titles to standardized canonical forms. The query groups job postings
+    by title variations and computes string similarity metrics using fuzzy matching
+    or text distance functions. It aggregates posting counts per title variant, applies
+    clustering logic to group similar titles, and uses window functions to rank titles
+    within clusters by frequency. The query handles NULL or empty titles and filters
+    out low-frequency outliers. Returns a mapping table showing original job titles,
+    their assigned cluster ID, similarity scores to the cluster centroid, standardi
 
 
     Business Value: Job title normalization analysis with clusters, similarity scores,
@@ -617,19 +609,18 @@ info:
     should applicants optimize to improve their odds?
 
 
-    Description: Situation: The applications table tracks outcomes (rejected, interviewed,
-    hired) for job applications linked to user_profiles and job_postings. Career coaches
+    Description: The applications table tracks outcomes (rejected, interviewed, hired)
+    for job applications linked to user_profiles and job_postings. Career coaches
     and applicants need predictive insights to understand what increases application
-    success rates. Task: Build an application success prediction model that outputs
-    probability scores, identifies key success factors, and provides optimization
-    recommendations for applicants. Action: The query joins applications with user_profiles,
-    job_postings, and skills to create feature vectors including skill match rate,
-    experience level, application timing, and company fit. It computes aggregates
-    like historical success rates grouped by applicant characteristics and job attributes.
-    Window functions calculate percentile rankings and comparative metrics against
-    successful applications. The query handles NULL values in optional profile fields
-    and filters to completed applications with known outcomes. Result: Returns each
-    application with a success p
+    success rates. Build an application success prediction model that outputs probability
+    scores, identifies key success factors, and provides optimization recommendations
+    for applicants. The query joins applications with user_profiles, job_postings,
+    and skills to create feature vectors including skill match rate, experience level,
+    application timing, and company fit. It computes aggregates like historical success
+    rates grouped by applicant characteristics and job attributes. Window functions
+    calculate percentile rankings and comparative metrics against successful applications.
+    The query handles NULL values in optional profile fields and filters to completed
+    applications with known outcomes. Returns each application with a success p
 
 
     Business Value: Application success prediction with probability scores, success
@@ -646,19 +637,18 @@ info:
     and expansion patterns look like?
 
 
-    Description: Situation: The job_postings table contains employer information and
-    posting dates that reveal company hiring activity over time. Investment analysts
-    and job seekers want to identify fast-growing companies by analyzing their hiring
-    velocity and expansion strategies. Task: Conduct company growth analysis showing
-    hiring trends over time, expansion patterns across locations and departments,
-    and quantitative growth indicators. Action: The query groups job postings by company
-    and time windows (month, quarter) to calculate hiring velocity metrics such as
-    new posting counts and growth rates. Window functions compute period-over-period
-    changes, rolling averages for trend smoothing, and year-over-year comparisons.
-    The query aggregates across additional dimensions like location and department
-    to detect geographic expansion and organizational growth patterns. It handles
-    companies with sparse posting history and filters out inactive employers. Result:
-    Returns a company-level dataset showing monthly
+    Description: The job_postings table contains employer information and posting
+    dates that reveal company hiring activity over time. Investment analysts and job
+    seekers want to identify fast-growing companies by analyzing their hiring velocity
+    and expansion strategies. Conduct company growth analysis showing hiring trends
+    over time, expansion patterns across locations and departments, and quantitative
+    growth indicators. The query groups job postings by company and time windows (month,
+    quarter) to calculate hiring velocity metrics such as new posting counts and growth
+    rates. Window functions compute period-over-period changes, rolling averages for
+    trend smoothing, and year-over-year comparisons. The query aggregates across additional
+    dimensions like location and department to detect geographic expansion and organizational
+    growth patterns. It handles companies with sparse posting history and filters
+    out inactive employers. Returns a company-level dataset showing monthly
 
 
     Business Value: Company growth analysis with hiring trends, expansion patterns,
@@ -675,19 +665,19 @@ info:
     skills should professionals focus on learning?
 
 
-    Description: Situation: The skills table and its relationships to job_postings
-    capture which skills employers demand over time. Training providers and career
-    professionals need to identify emerging skills gaining traction and declining
-    skills losing relevance to guide curriculum development and career planning. Task:
-    Analyze skill evolution patterns to detect emerging skills, calculate trend indicators
-    showing demand trajectories, and classify skills by lifecycle stage (emerging,
-    growing, mature, declining). Action: The query groups skills by time periods to
-    compute demand metrics such as mention frequency in job postings and growth rates.
-    Window functions calculate moving averages to smooth volatility, period-over-period
-    percentage changes for trend detection, and cumulative growth metrics. The query
-    compares current demand against historical baselines to identify acceleration
-    patterns and applies thresholds to classify lifecycle stages. It handles skills
-    with limited historical data and filters o
+    Description: The skills table and its relationships to job_postings capture which
+    skills employers demand over time. Training providers and career professionals
+    need to identify emerging skills gaining traction and declining skills losing
+    relevance to guide curriculum development and career planning. Analyze skill evolution
+    patterns to detect emerging skills, calculate trend indicators showing demand
+    trajectories, and classify skills by lifecycle stage (emerging, growing, mature,
+    declining). The query groups skills by time periods to compute demand metrics
+    such as mention frequency in job postings and growth rates. Window functions calculate
+    moving averages to smooth volatility, period-over-period percentage changes for
+    trend detection, and cumulative growth metrics. The query compares current demand
+    against historical baselines to identify acceleration patterns and applies thresholds
+    to classify lifecycle stages. It handles skills with limited historical data and
+    filters o
 
 
     Business Value: Skill evolution analysis with emerging skills, trend indicators,
@@ -704,19 +694,18 @@ info:
     the best times for candidates to submit applications?
 
 
-    Description: Situation: Job seekers in the Job Market Intelligence platform need
-    to understand when to submit applications for maximum success. Historical data
-    from user_profiles, job_postings, skills, and applications tables contains timestamps
-    and outcomes that can reveal timing patterns affecting application success rates.
-    Task: Perform application timing analysis to identify optimal submission times,
-    calculate time-to-response patterns across different periods, and generate success
-    rate optimizations based on temporal factors. Action: The query joins applications
-    with job_postings and user_profiles, groups by time dimensions (hour of day, day
-    of week, time since posting), computes success rate aggregates and response time
-    quartiles, uses window functions to calculate rolling averages and comparative
-    metrics across time periods, and handles NULL values in timestamp fields and incomplete
-    application records. Result: The output returns optimal application timing recommendations,
-    average response t
+    Description: Job seekers in the Job Market Intelligence platform need to understand
+    when to submit applications for maximum success. Historical data from user_profiles,
+    job_postings, skills, and applications tables contains timestamps and outcomes
+    that can reveal timing patterns affecting application success rates. Perform application
+    timing analysis to identify optimal submission times, calculate time-to-response
+    patterns across different periods, and generate success rate optimizations based
+    on temporal factors. The query joins applications with job_postings and user_profiles,
+    groups by time dimensions (hour of day, day of week, time since posting), computes
+    success rate aggregates and response time quartiles, uses window functions to
+    calculate rolling averages and comparative metrics across time periods, and handles
+    NULL values in timestamp fields and incomplete application records. The output
+    returns optimal application timing recommendations, average response t
 
 
     Business Value: Application timing analysis with optimal timing recommendations,
@@ -733,19 +722,19 @@ info:
     between industries and their success rates?
 
 
-    Description: Situation: Professionals considering industry changes need insights
-    into successful transition patterns. The Job Market Intelligence platform contains
-    historical career progression data in user_profiles, job_postings, skills, and
-    applications that can reveal which industry transitions are most viable and what
-    factors contribute to successful moves. Task: Conduct industry transition analysis
-    to map career paths between industries, calculate transition success rates for
-    different industry pairs, and identify optimal transition strategies based on
-    skills and experience patterns. Action: The query joins user_profiles with applications
-    and job_postings to track industry changes over time, groups by source and target
-    industry pairs, computes success rate aggregates and transition frequency counts,
-    uses window functions to identify sequential career moves and calculate rolling
-    success metrics, applies quartile analysis to segment transitions by difficulty,
-    and handles NULL values in industry
+    Description: Professionals considering industry changes need insights into successful
+    transition patterns. The Job Market Intelligence platform contains historical
+    career progression data in user_profiles, job_postings, skills, and applications
+    that can reveal which industry transitions are most viable and what factors contribute
+    to successful moves. Conduct industry transition analysis to map career paths
+    between industries, calculate transition success rates for different industry
+    pairs, and identify optimal transition strategies based on skills and experience
+    patterns. The query joins user_profiles with applications and job_postings to
+    track industry changes over time, groups by source and target industry pairs,
+    computes success rate aggregates and transition frequency counts, uses window
+    functions to identify sequential career moves and calculate rolling success metrics,
+    applies quartile analysis to segment transitions by difficulty, and handles NULL
+    values in industry
 
 
     Business Value: Industry transition analysis with career paths, transition success
@@ -762,19 +751,19 @@ info:
     and factors that provide negotiation leverage?
 
 
-    Description: Situation: Job candidates and hiring managers need objective salary
-    data to support effective negotiations. The Job Market Intelligence platform aggregates
+    Description: Job candidates and hiring managers need objective salary data to
+    support effective negotiations. The Job Market Intelligence platform aggregates
     salary information from job_postings along with user_profiles, skills, and applications
     data that can reveal market rates, positioning factors, and leverage points for
-    negotiation scenarios. Task: Generate salary negotiation intelligence by analyzing
-    market positioning relative to industry benchmarks, identifying leverage factors
-    such as rare skills or high demand, and producing data-driven negotiation recommendations.
-    Action: The query joins job_postings with applications, user_profiles, and skills
-    to correlate salary offers with candidate attributes, groups by role, industry,
-    location, and experience level, computes salary percentiles and quartiles for
-    market positioning, uses window functions to calculate comparative metrics against
-    peer groups and market trends, aggregates leverage factors like skill scarcity
-    and application com
+    negotiation scenarios. Generate salary negotiation intelligence by analyzing market
+    positioning relative to industry benchmarks, identifying leverage factors such
+    as rare skills or high demand, and producing data-driven negotiation recommendations.
+    The query joins job_postings with applications, user_profiles, and skills to correlate
+    salary offers with candidate attributes, groups by role, industry, location, and
+    experience level, computes salary percentiles and quartiles for market positioning,
+    uses window functions to calculate comparative metrics against peer groups and
+    market trends, aggregates leverage factors like skill scarcity and application
+    com
 
 
     Business Value: Salary negotiation intelligence with market positioning, leverage
@@ -791,19 +780,19 @@ info:
     intensity and opportunity density across different segments?
 
 
-    Description: Situation: Job seekers and employers need to understand supply-demand
-    dynamics in different market segments to make strategic decisions. The Job Market
-    Intelligence platform contains comprehensive data in user_profiles, job_postings,
-    skills, and applications that can quantify competition levels and opportunity
-    availability across roles, locations, and industries. Task: Perform market saturation
-    analysis to measure competition intensity through applicant-to-job ratios, calculate
-    opportunity density by counting available positions relative to candidate pools,
-    and generate saturation indicators for different market segments. Action: The
-    query joins applications with job_postings and user_profiles to match candidates
-    with opportunities, groups by relevant dimensions including role, industry, location,
-    and skill categories, computes competition metrics as aggregates of applicants
-    per posting, calculates opportunity density through position counts relative to
-    candidate populations, uses wind
+    Description: Job seekers and employers need to understand supply-demand dynamics
+    in different market segments to make strategic decisions. The Job Market Intelligence
+    platform contains comprehensive data in user_profiles, job_postings, skills, and
+    applications that can quantify competition levels and opportunity availability
+    across roles, locations, and industries. Perform market saturation analysis to
+    measure competition intensity through applicant-to-job ratios, calculate opportunity
+    density by counting available positions relative to candidate pools, and generate
+    saturation indicators for different market segments. The query joins applications
+    with job_postings and user_profiles to match candidates with opportunities, groups
+    by relevant dimensions including role, industry, location, and skill categories,
+    computes competition metrics as aggregates of applicants per posting, calculates
+    opportunity density through position counts relative to candidate populations,
+    uses wind
 
 
     Business Value: Market saturation analysis with competition intensity, opportunity
@@ -820,19 +809,18 @@ info:
     insights for conversion optimization?
 
 
-    Description: Situation: Platform operators need to understand how users progress
-    through the job search and application process to optimize the experience and
-    increase successful placements. The Job Market Intelligence platform tracks user
-    interactions across user_profiles, job_postings, skills, and applications tables,
-    capturing the complete journey from registration to application outcomes. Task:
-    Conduct user journey analysis to map engagement funnels showing progression through
-    platform stages, trace conversion paths from profile creation to successful applications,
-    and generate optimization recommendations to improve conversion rates at each
-    funnel stage. Action: The query joins user_profiles with applications and job_postings
-    to reconstruct user journeys, sequences interactions chronologically to build
-    funnel stages, groups by cohort and entry point to compare paths, computes conversion
-    rate aggregates at each funnel step, uses window functions to calculate drop-off
-    rates and time-to-conversio
+    Description: Platform operators need to understand how users progress through
+    the job search and application process to optimize the experience and increase
+    successful placements. The Job Market Intelligence platform tracks user interactions
+    across user_profiles, job_postings, skills, and applications tables, capturing
+    the complete journey from registration to application outcomes. Conduct user journey
+    analysis to map engagement funnels showing progression through platform stages,
+    trace conversion paths from profile creation to successful applications, and generate
+    optimization recommendations to improve conversion rates at each funnel stage.
+    The query joins user_profiles with applications and job_postings to reconstruct
+    user journeys, sequences interactions chronologically to build funnel stages,
+    groups by cohort and entry point to compare paths, computes conversion rate aggregates
+    at each funnel step, uses window functions to calculate drop-off rates and time-to-conversio
 
 
     Business Value: User journey analysis with engagement funnels, conversion paths,
@@ -850,19 +838,19 @@ info:
     career trajectories?
 
 
-    Description: Situation: As a career services analyst in the Job Market Intelligence
-    domain, I need to help job seekers understand potential career progression paths.
-    The platform contains historical data in user_profiles tracking career histories,
+    Description: As a career services analyst in the Job Market Intelligence domain,
+    I need to help job seekers understand potential career progression paths. The
+    platform contains historical data in user_profiles tracking career histories,
     job_postings showing available positions at different seniority levels, skills
     data indicating requirements for advancement, and applications revealing successful
-    transition patterns. Task: Build a recursive career path analysis that traces
-    hierarchical job progression sequences, identifies common advancement paths between
-    roles, and provides optimization recommendations for the most effective career
-    trajectories. Action: The query uses recursive CTEs to trace multi-level career
-    progressions from entry to senior positions, groups results by job title sequences
-    and industry verticals, computes aggregate metrics like average time-to-promotion
-    and success rates, applies window functions to rank optimal paths by transition
-    probability and salary growth, calcu
+    transition patterns. Build a recursive career path analysis that traces hierarchical
+    job progression sequences, identifies common advancement paths between roles,
+    and provides optimization recommendations for the most effective career trajectories.
+    The query uses recursive CTEs to trace multi-level career progressions from entry
+    to senior positions, groups results by job title sequences and industry verticals,
+    computes aggregate metrics like average time-to-promotion and success rates, applies
+    window functions to rank optimal paths by transition probability and salary growth,
+    calcu
 
 
     Business Value: Career path analysis with progression sequences, advancement paths,
@@ -880,19 +868,19 @@ info:
     the job market?
 
 
-    Description: Situation: As a market research analyst in the Job Market Intelligence
-    domain, I need to segment the job market into distinct clusters to enable targeted
-    strategies. The database contains user_profiles with demographic and behavioral
-    attributes, job_postings with employer characteristics and requirements, skills
-    data showing competency distributions, and applications revealing engagement patterns
-    across different market segments. Task: Perform multi-dimensional market segmentation
-    analysis that identifies meaningful clusters of candidates and employers, profiles
-    each segment with defining characteristics, and generates segment-specific insights
-    for strategic decision-making. Action: The query groups data by multiple dimensions
-    including geography, industry, seniority level, skill categories, and company
-    size, computes aggregate metrics like segment size and growth rates, calculates
-    quartiles to identify segment boundaries and outliers, uses window functions to
-    compare each segment''s pe
+    Description: As a market research analyst in the Job Market Intelligence domain,
+    I need to segment the job market into distinct clusters to enable targeted strategies.
+    The database contains user_profiles with demographic and behavioral attributes,
+    job_postings with employer characteristics and requirements, skills data showing
+    competency distributions, and applications revealing engagement patterns across
+    different market segments. Perform multi-dimensional market segmentation analysis
+    that identifies meaningful clusters of candidates and employers, profiles each
+    segment with defining characteristics, and generates segment-specific insights
+    for strategic decision-making. The query groups data by multiple dimensions including
+    geography, industry, seniority level, skill categories, and company size, computes
+    aggregate metrics like segment size and growth rates, calculates quartiles to
+    identify segment boundaries and outliers, uses window functions to compare each
+    segment''s pe
 
 
     Business Value: Market segmentation analysis with segment profiles, characteristics,
@@ -910,18 +898,18 @@ info:
     patterns?
 
 
-    Description: Situation: As a strategic planning analyst in the Job Market Intelligence
-    domain, I need to forecast future market conditions to support proactive business
-    decisions. The platform maintains historical time-series data in user_profiles
-    showing candidate supply trends, job_postings capturing employer demand patterns
-    over time, skills data revealing evolving competency requirements, and applications
-    indicating matching efficiency trends across multiple quarters. Task: Create predictive
-    market forecasts that project future trends using time-series analysis, extrapolate
-    patterns for key market indicators, generate forward-looking predictions for the
-    next 12-18 months, and calculate confidence intervals to quantify forecast reliability.
-    Action: The query groups historical data by time periods (monthly/quarterly) and
-    relevant dimensions like industry and geography, computes rolling aggregates using
-    window functions to smooth volatility and identify trends, calculates year-over-year
+    Description: As a strategic planning analyst in the Job Market Intelligence domain,
+    I need to forecast future market conditions to support proactive business decisions.
+    The platform maintains historical time-series data in user_profiles showing candidate
+    supply trends, job_postings capturing employer demand patterns over time, skills
+    data revealing evolving competency requirements, and applications indicating matching
+    efficiency trends across multiple quarters. Create predictive market forecasts
+    that project future trends using time-series analysis, extrapolate patterns for
+    key market indicators, generate forward-looking predictions for the next 12-18
+    months, and calculate confidence intervals to quantify forecast reliability. The
+    query groups historical data by time periods (monthly/quarterly) and relevant
+    dimensions like industry and geography, computes rolling aggregates using window
+    functions to smooth volatility and identify trends, calculates year-over-year
     and quarte
 
 
@@ -939,19 +927,18 @@ info:
     data sources with redundancy handling and unified result attribution?
 
 
-    Description: Situation: As a data integration specialist in the Job Market Intelligence
-    domain, I need to match job seekers with opportunities across multiple databases
-    to maximize coverage and accuracy. The organization maintains data in multiple
-    systems: primary user_profiles and job_postings tables, supplementary skills databases
-    with extended taxonomies, a legacy applications system, and external partner feeds,
-    all containing overlapping but not identical information requiring deduplication
-    and source tracking. Task: Build a cross-database job matching system that queries
-    multiple data sources simultaneously, unifies matching results into a coherent
-    set, attributes each match to its originating source(s), and handles redundancy
-    when the same job or candidate appears in multiple databases. Action: The query
-    uses UNION or UNION ALL operations to combine results from multiple database sources,
-    applies standardization logic to normalize job titles, skill names, and location
-    formats across systems,
+    Description: As a data integration specialist in the Job Market Intelligence domain,
+    I need to match job seekers with opportunities across multiple databases to maximize
+    coverage and accuracy. The organization maintains data in multiple systems: primary
+    user_profiles and job_postings tables, supplementary skills databases with extended
+    taxonomies, a legacy applications system, and external partner feeds, all containing
+    overlapping but not identical information requiring deduplication and source tracking.
+    Build a cross-database job matching system that queries multiple data sources
+    simultaneously, unifies matching results into a coherent set, attributes each
+    match to its originating source(s), and handles redundancy when the same job or
+    candidate appears in multiple databases. The query uses UNION or UNION ALL operations
+    to combine results from multiple database sources, applies standardization logic
+    to normalize job titles, skill names, and location formats across systems,
 
 
     Business Value: Cross-database job matching with unified results, source attribution,
@@ -969,19 +956,19 @@ info:
     business dimensions?
 
 
-    Description: Situation: As a business intelligence director in the Job Market
-    Intelligence domain, I need to deliver a comprehensive executive dashboard that
-    synthesizes market performance across all dimensions. The platform contains complete
-    operational data in user_profiles (candidate pipeline metrics), job_postings (employer
-    demand signals), skills (competency market dynamics), and applications (matching
-    efficiency indicators), all requiring integration into unified executive-level
-    insights for C-suite decision-making and board reporting. Task: Construct a comprehensive
-    market intelligence dashboard that presents an executive summary with top-line
-    KPIs, breaks down performance across multiple business dimensions (geography,
-    industry, time periods, customer segments), highlights key metrics for strategic
-    monitoring, and provides drill-down capability into underlying trends and patterns.
-    Action: The query builds multiple CTEs to compute different metric categories
-    (volume metrics, efficiency ratio
+    Description: As a business intelligence director in the Job Market Intelligence
+    domain, I need to deliver a comprehensive executive dashboard that synthesizes
+    market performance across all dimensions. The platform contains complete operational
+    data in user_profiles (candidate pipeline metrics), job_postings (employer demand
+    signals), skills (competency market dynamics), and applications (matching efficiency
+    indicators), all requiring integration into unified executive-level insights for
+    C-suite decision-making and board reporting. Construct a comprehensive market
+    intelligence dashboard that presents an executive summary with top-line KPIs,
+    breaks down performance across multiple business dimensions (geography, industry,
+    time periods, customer segments), highlights key metrics for strategic monitoring,
+    and provides drill-down capability into underlying trends and patterns. The query
+    builds multiple CTEs to compute different metric categories (volume metrics, efficiency
+    ratio
 
 
     Business Value: Comprehensive market intelligence dashboard with executive summary,
@@ -1019,7 +1006,7 @@ info:
     Document Information:
 
 
-    - Generated: 20260216-1856
+    - Generated: 20260216-2243
 
     - Database: db-8
 

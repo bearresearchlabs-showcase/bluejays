@@ -9,3 +9,6 @@ langgraph>=0.2.0
 
 # Anthropic (required for qa_claude, claude_rewrite_evidence)
 anthropic>=0.39.0
+
+# JSON Schema (required for validate_queries_json)
+jsonschema>=4.20.0

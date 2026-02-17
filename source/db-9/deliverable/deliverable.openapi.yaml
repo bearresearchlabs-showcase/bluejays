@@ -402,19 +402,19 @@ info:
     and identifies cost optimization opportunities?
 
 
-    Description: Situation: Our shipping operations team in the Shipping Intelligence
-    domain needs to optimize carrier selection and reduce costs. We have historical
-    data from shipments, carriers, and routes that captures shipment tracking and
-    carrier performance metrics. Currently, we manually compare rates across carriers,
-    which is time-consuming and prone to missing cost-saving opportunities. Task:
-    Generate a comprehensive rate comparison analysis that identifies the cheapest
-    carrier, fastest carrier, calculates potential cost savings, and provides detailed
-    rate breakdowns for all available shipping options to support data-driven carrier
-    selection decisions. Action: The SQL query joins shipment, carrier, and route
-    tables, groups results by carrier and shipping zone dimensions, computes aggregate
-    metrics including average rates and transit times, calculates cost differentials
-    using window functions to rank carriers by price and speed, determines quartile
-    distributions for rate analysis, and handles N
+    Description: Our shipping operations team in the Shipping Intelligence domain
+    needs to optimize carrier selection and reduce costs. We have historical data
+    from shipments, carriers, and routes that captures shipment tracking and carrier
+    performance metrics. Currently, we manually compare rates across carriers, which
+    is time-consuming and prone to missing cost-saving opportunities. Generate a comprehensive
+    rate comparison analysis that identifies the cheapest carrier, fastest carrier,
+    calculates potential cost savings, and provides detailed rate breakdowns for all
+    available shipping options to support data-driven carrier selection decisions.
+    The SQL query joins shipment, carrier, and route tables, groups results by carrier
+    and shipping zone dimensions, computes aggregate metrics including average rates
+    and transit times, calculates cost differentials using window functions to rank
+    carriers by price and speed, determines quartile distributions for rate analysis,
+    and handles N
 
 
     Business Value: Rate comparison results showing cheapest carrier, fastest carrier,
@@ -431,19 +431,19 @@ info:
     patterns and transit time optimization opportunities?
 
 
-    Description: Situation: Our logistics planning team in the Shipping Intelligence
-    domain needs to understand geographic shipping patterns and optimize delivery
-    times across different zones. We maintain comprehensive data from shipments, carriers,
-    and routes that tracks delivery performance across various geographic zones. Currently,
+    Description: Our logistics planning team in the Shipping Intelligence domain needs
+    to understand geographic shipping patterns and optimize delivery times across
+    different zones. We maintain comprehensive data from shipments, carriers, and
+    routes that tracks delivery performance across various geographic zones. Currently,
     zone-based performance insights are fragmented across multiple reports, making
-    it difficult to identify regional inefficiencies. Task: Produce a detailed zone
-    analysis report showing the distribution of shipments across zones, average transit
-    times for each zone, geographic shipping pattern identification, and specific
-    optimization recommendations to improve zone-based delivery performance. Action:
-    The SQL query aggregates shipment data by geographic zone dimensions, computes
-    average and median transit times using aggregate functions, calculates shipment
-    volume distributions across zones, applies window functions to identify trend
-    patterns and compare zone performance ag
+    it difficult to identify regional inefficiencies. Produce a detailed zone analysis
+    report showing the distribution of shipments across zones, average transit times
+    for each zone, geographic shipping pattern identification, and specific optimization
+    recommendations to improve zone-based delivery performance. The SQL query aggregates
+    shipment data by geographic zone dimensions, computes average and median transit
+    times using aggregate functions, calculates shipment volume distributions across
+    zones, applies window functions to identify trend patterns and compare zone performance
+    ag
 
 
     Business Value: Zone analysis results showing zone distributions, average transit
@@ -460,19 +460,19 @@ info:
     and delivery time predictions?
 
 
-    Description: Situation: Our customer service and operations teams in the Shipping
-    Intelligence domain need proactive visibility into shipment status and potential
-    delivery issues. We collect detailed tracking event data from shipments, carriers,
-    and routes that captures every milestone in the delivery lifecycle. Currently,
-    we reactively respond to delivery problems rather than predicting and preventing
-    them, leading to customer dissatisfaction and expedited shipping costs. Task:
-    Create a comprehensive tracking analytics report that predicts delivery times,
-    identifies event patterns indicating potential delays, detects anomalies in shipping
-    behavior, and evaluates carrier performance metrics to enable proactive shipment
-    management. Action: The SQL query analyzes tracking event sequences across shipments,
-    groups events by shipment and carrier dimensions, computes aggregate metrics for
-    event timing and frequency, applies window functions to calculate rolling averages
-    and identify deviation patterns fr
+    Description: Our customer service and operations teams in the Shipping Intelligence
+    domain need proactive visibility into shipment status and potential delivery issues.
+    We collect detailed tracking event data from shipments, carriers, and routes that
+    captures every milestone in the delivery lifecycle. Currently, we reactively respond
+    to delivery problems rather than predicting and preventing them, leading to customer
+    dissatisfaction and expedited shipping costs. Create a comprehensive tracking
+    analytics report that predicts delivery times, identifies event patterns indicating
+    potential delays, detects anomalies in shipping behavior, and evaluates carrier
+    performance metrics to enable proactive shipment management. The SQL query analyzes
+    tracking event sequences across shipments, groups events by shipment and carrier
+    dimensions, computes aggregate metrics for event timing and frequency, applies
+    window functions to calculate rolling averages and identify deviation patterns
+    fr
 
 
     Business Value: Tracking analytics showing delivery predictions, event patterns,
@@ -489,19 +489,19 @@ info:
     rate metrics and accuracy trends?
 
 
-    Description: Situation: Our data quality team in the Shipping Intelligence domain
-    is experiencing increasing delivery failures and returns due to invalid or incomplete
-    shipping addresses. We maintain records from shipments, carriers, and routes that
-    include both original entered addresses and validated/corrected versions. Poor
-    address quality leads to failed deliveries, increased costs from address correction
-    services, and negative customer experiences, but we lack systematic visibility
-    into where and why address issues occur. Task: Generate a comprehensive address
-    validation quality analysis showing validation success rates, common correction
-    patterns, overall data quality metrics by source and region, and actionable recommendations
-    for improving address capture accuracy to reduce delivery failures. Action: The
-    SQL query joins shipment address data with validation results, groups records
-    by relevant dimensions such as address source, geographic region, and entry channel,
-    computes aggregate validat
+    Description: Our data quality team in the Shipping Intelligence domain is experiencing
+    increasing delivery failures and returns due to invalid or incomplete shipping
+    addresses. We maintain records from shipments, carriers, and routes that include
+    both original entered addresses and validated/corrected versions. Poor address
+    quality leads to failed deliveries, increased costs from address correction services,
+    and negative customer experiences, but we lack systematic visibility into where
+    and why address issues occur. Generate a comprehensive address validation quality
+    analysis showing validation success rates, common correction patterns, overall
+    data quality metrics by source and region, and actionable recommendations for
+    improving address capture accuracy to reduce delivery failures. The SQL query
+    joins shipment address data with validation results, groups records by relevant
+    dimensions such as address source, geographic region, and entry channel, computes
+    aggregate validat
 
 
     Business Value: Address validation analytics showing validation rates, correction
@@ -518,19 +518,19 @@ info:
     and carrier performance comparisons?
 
 
-    Description: Situation: Our finance and operations leadership in the Shipping
-    Intelligence domain needs to control rising shipping costs while maintaining service
-    quality. We track comprehensive data from shipments, carriers, and routes that
-    captures actual costs, billed amounts, service levels, and performance metrics.
-    Shipping costs represent a significant operational expense, but we lack integrated
-    visibility into cost drivers, carrier efficiency, and optimization opportunities,
-    making it difficult to negotiate better rates or select cost-effective carriers.
-    Task: Deliver a comprehensive shipping cost analytics report showing revenue and
-    cost metrics, detailed breakdowns of cost components (base rates, fuel surcharges,
-    accessorial fees), comparative carrier performance analysis, and specific optimization
-    recommendations to reduce total shipping spend while maintaining or improving
-    delivery performance. Action: The SQL query integrates shipment cost data with
-    carrier performance metrics, groups r
+    Description: Our finance and operations leadership in the Shipping Intelligence
+    domain needs to control rising shipping costs while maintaining service quality.
+    We track comprehensive data from shipments, carriers, and routes that captures
+    actual costs, billed amounts, service levels, and performance metrics. Shipping
+    costs represent a significant operational expense, but we lack integrated visibility
+    into cost drivers, carrier efficiency, and optimization opportunities, making
+    it difficult to negotiate better rates or select cost-effective carriers. Deliver
+    a comprehensive shipping cost analytics report showing revenue and cost metrics,
+    detailed breakdowns of cost components (base rates, fuel surcharges, accessorial
+    fees), comparative carrier performance analysis, and specific optimization recommendations
+    to reduce total shipping spend while maintaining or improving delivery performance.
+    The SQL query integrates shipment cost data with carrier performance metrics,
+    groups r
 
 
     Business Value: Shipping cost analytics showing revenue metrics, cost breakdowns,
@@ -547,19 +547,19 @@ info:
     analysis.
 
 
-    Description: Situation: The logistics operations team manages high-volume shipping
-    and needs to optimize preset configurations to reduce costs. Historical shipment
-    data across carriers and routes contains weight distributions and configuration
-    patterns that can reveal cost-saving opportunities. Task: Analyze bulk shipping
-    presets to identify optimal configurations based on weight distribution patterns,
-    calculate potential cost savings, and determine usage patterns across different
-    shipment types. Action: The query joins shipments with preset configurations and
-    carrier rate tables, groups by preset type and weight brackets, computes aggregate
-    metrics including average weights and costs, calculates quartiles for weight distribution
-    analysis, uses window functions to compare actual versus optimal preset usage,
-    and handles NULL values in optional preset fields. Result: Returns a dataset containing
-    preset recommendations, estimated cost savings per configuration, weight distribution
-    quartiles, usage fre
+    Description: The logistics operations team manages high-volume shipping and needs
+    to optimize preset configurations to reduce costs. Historical shipment data across
+    carriers and routes contains weight distributions and configuration patterns that
+    can reveal cost-saving opportunities. Analyze bulk shipping presets to identify
+    optimal configurations based on weight distribution patterns, calculate potential
+    cost savings, and determine usage patterns across different shipment types. The
+    query joins shipments with preset configurations and carrier rate tables, groups
+    by preset type and weight brackets, computes aggregate metrics including average
+    weights and costs, calculates quartiles for weight distribution analysis, uses
+    window functions to compare actual versus optimal preset usage, and handles NULL
+    values in optional preset fields. Returns a dataset containing preset recommendations,
+    estimated cost savings per configuration, weight distribution quartiles, usage
+    fre
 
 
     Business Value: Bulk shipping preset optimization results showing recommended
@@ -576,19 +576,18 @@ info:
     opportunities.
 
 
-    Description: Situation: The international shipping department faces increasing
-    customs duties and taxes on cross-border shipments, impacting profitability. Customs
-    clearance data including duty assessments, tax calculations, and clearance outcomes
-    needs analysis to identify optimization opportunities and improve success rates.
-    Task: Analyze international customs data to calculate total duty and tax amounts,
-    identify patterns in clearance delays or failures, detect optimization opportunities
-    through tariff classification or routing changes, and measure clearance success
-    rates by destination country. Action: The query joins international shipments
-    with customs declarations, duty assessments, and clearance status tables, groups
-    by destination country and product category, computes aggregate duty and tax amounts,
-    calculates clearance success rates and average processing times, uses window functions
-    to identify trends over rolling time periods and compare against historical baselines,
-    and handles cases
+    Description: The international shipping department faces increasing customs duties
+    and taxes on cross-border shipments, impacting profitability. Customs clearance
+    data including duty assessments, tax calculations, and clearance outcomes needs
+    analysis to identify optimization opportunities and improve success rates. Analyze
+    international customs data to calculate total duty and tax amounts, identify patterns
+    in clearance delays or failures, detect optimization opportunities through tariff
+    classification or routing changes, and measure clearance success rates by destination
+    country. The query joins international shipments with customs declarations, duty
+    assessments, and clearance status tables, groups by destination country and product
+    category, computes aggregate duty and tax amounts, calculates clearance success
+    rates and average processing times, uses window functions to identify trends over
+    rolling time periods and compare against historical baselines, and handles cases
 
 
     Business Value: International customs analysis showing duty amounts, tax calculations,
@@ -605,19 +604,19 @@ info:
     cost recovery opportunities.
 
 
-    Description: Situation: The finance team has noticed an increase in shipping adjustments
+    Description: The finance team has noticed an increase in shipping adjustments
     and billing discrepancies that result in revenue leakage. Adjustment records across
     shipments capture discrepancy types, amounts, and reasons, which need systematic
-    analysis to recover costs and prevent future issues. Task: Analyze shipping adjustments
+    analysis to recover costs and prevent future issues. Analyze shipping adjustments
     to categorize adjustment types, detect patterns in discrepancies, quantify cost
     recovery opportunities, identify root causes, and generate prevention recommendations.
-    Action: The query joins shipment records with adjustment transactions and billing
-    data, groups by adjustment type, carrier, and time period, computes aggregate
-    adjustment amounts and frequencies, calculates quartiles to identify outlier adjustments,
+    The query joins shipment records with adjustment transactions and billing data,
+    groups by adjustment type, carrier, and time period, computes aggregate adjustment
+    amounts and frequencies, calculates quartiles to identify outlier adjustments,
     uses window functions to track adjustment trends over time and compare carrier
     performance, detects patterns through correlation analysis, and handles edge cases
-    including reversed adjustments and NULL reason codes. Result: Returns a detailed
-    dataset con
+    including reversed adjustments and NULL reason codes. Returns a detailed dataset
+    con
 
 
     Business Value: Shipping adjustment analysis showing adjustment types, discrepancy
@@ -633,19 +632,18 @@ info:
     Use Case: Show me API rate request performance analysis with optimization recommendations.
 
 
-    Description: Situation: The engineering team supports shipping rate APIs that
-    serve real-time quotes to customers and internal systems. Recent performance degradation
-    has impacted user experience, and API request logs contain response times, error
-    codes, and usage patterns that need analysis to identify bottlenecks and optimization
-    opportunities. Task: Analyze API rate request performance to measure response
-    times, calculate error rates, identify performance bottlenecks, detect usage patterns,
-    and generate optimization recommendations to improve reliability and speed. Action:
-    The query aggregates API request logs, groups by endpoint, carrier integration,
-    and time intervals, computes percentile metrics for response times (p50, p95,
-    p99), calculates error rates by error type and endpoint, uses window functions
-    to track performance trends over rolling windows and identify degradation patterns,
-    correlates slow responses with carrier APIs or data volume, and handles NULL values
-    in optional request param
+    Description: The engineering team supports shipping rate APIs that serve real-time
+    quotes to customers and internal systems. Recent performance degradation has impacted
+    user experience, and API request logs contain response times, error codes, and
+    usage patterns that need analysis to identify bottlenecks and optimization opportunities.
+    Analyze API rate request performance to measure response times, calculate error
+    rates, identify performance bottlenecks, detect usage patterns, and generate optimization
+    recommendations to improve reliability and speed. The query aggregates API request
+    logs, groups by endpoint, carrier integration, and time intervals, computes percentile
+    metrics for response times (p50, p95, p99), calculates error rates by error type
+    and endpoint, uses window functions to track performance trends over rolling windows
+    and identify degradation patterns, correlates slow responses with carrier APIs
+    or data volume, and handles NULL values in optional request param
 
 
     Business Value: API performance analysis showing response times, error rates,
@@ -662,19 +660,18 @@ info:
     and performance metrics.
 
 
-    Description: Situation: Executive leadership requires a comprehensive view of
-    shipping operations to make strategic decisions about carrier partnerships, pricing
-    strategies, and operational investments. Data across shipments, carriers, routes,
-    and financial transactions contains the metrics needed to assess business performance
-    and identify growth opportunities. Task: Build a comprehensive analytics dashboard
-    showing revenue trends over time, shipment volume patterns, carrier performance
-    comparisons, cost efficiency metrics, profitability analysis, and key business
-    intelligence insights to support strategic decision-making. Action: The query
-    joins shipments with carrier performance data, financial transactions, and route
-    information, groups by time period, carrier, service level, and region, computes
-    aggregate metrics including revenue, shipment volumes, average costs, and profit
-    margins, calculates growth rates and year-over-year comparisons, uses window functions
-    for trend analysis including movi
+    Description: Executive leadership requires a comprehensive view of shipping operations
+    to make strategic decisions about carrier partnerships, pricing strategies, and
+    operational investments. Data across shipments, carriers, routes, and financial
+    transactions contains the metrics needed to assess business performance and identify
+    growth opportunities. Build a comprehensive analytics dashboard showing revenue
+    trends over time, shipment volume patterns, carrier performance comparisons, cost
+    efficiency metrics, profitability analysis, and key business intelligence insights
+    to support strategic decision-making. The query joins shipments with carrier performance
+    data, financial transactions, and route information, groups by time period, carrier,
+    service level, and region, computes aggregate metrics including revenue, shipment
+    volumes, average costs, and profit margins, calculates growth rates and year-over-year
+    comparisons, uses window functions for trend analysis including movi
 
 
     Business Value: Shipping analytics dashboard showing revenue trends, shipment
@@ -691,19 +688,18 @@ info:
     recommended package configurations?
 
 
-    Description: Situation: The logistics team is evaluating packaging efficiency
-    to reduce shipping costs. Current packages may not be optimized for dimensional
-    weight pricing used by carriers, leading to unnecessary surcharges. The shipments
-    table contains package dimensions and weights, while carriers table has dimensional
-    weight divisors and pricing rules. Task: Analyze dimensional weight optimization
-    opportunities and recommend optimal package configurations that minimize costs.
-    Action: The query calculates actual weight versus dimensional weight (length ×
-    width × height / divisor) for each package type, groups shipments by package configuration,
-    computes cost differences between actual and optimized scenarios, uses window
-    functions to rank package configurations by savings potential, and identifies
-    quartiles of cost savings across different package types. Result: Returns a dataset
-    showing current package configurations, recommended optimized dimensions, projected
-    cost savings per configuration, a
+    Description: The logistics team is evaluating packaging efficiency to reduce shipping
+    costs. Current packages may not be optimized for dimensional weight pricing used
+    by carriers, leading to unnecessary surcharges. The shipments table contains package
+    dimensions and weights, while carriers table has dimensional weight divisors and
+    pricing rules. Analyze dimensional weight optimization opportunities and recommend
+    optimal package configurations that minimize costs. The query calculates actual
+    weight versus dimensional weight (length × width × height / divisor) for each
+    package type, groups shipments by package configuration, computes cost differences
+    between actual and optimized scenarios, uses window functions to rank package
+    configurations by savings potential, and identifies quartiles of cost savings
+    across different package types. Returns a dataset showing current package configurations,
+    recommended optimized dimensions, projected cost savings per configuration, a
 
 
     Business Value: Dimensional weight optimization results showing recommended package
@@ -720,19 +716,19 @@ info:
     gaps in our service areas?
 
 
-    Description: Situation: The operations team needs to assess current shipping zone
-    coverage to identify underserved geographic areas and expansion opportunities.
-    The routes table contains zone definitions and service areas, shipments table
-    has destination data, and carriers table shows service capabilities. Some zones
-    may have poor coverage leading to higher costs or longer delivery times. Task:
-    Analyze zone coverage patterns to identify geographic gaps, underutilized routes,
-    and opportunities for service optimization. Action: The query groups shipments
-    by geographic zone and carrier, calculates coverage metrics including shipment
-    density per zone, identifies zones with sparse coverage or no service, uses window
-    functions to compare zone performance against regional averages, computes distance
-    and cost metrics for underserved areas, and handles NULL values for zones without
-    historical shipment data. Result: Returns coverage metrics per zone including
-    shipment volume, average delivery time, cost per
+    Description: The operations team needs to assess current shipping zone coverage
+    to identify underserved geographic areas and expansion opportunities. The routes
+    table contains zone definitions and service areas, shipments table has destination
+    data, and carriers table shows service capabilities. Some zones may have poor
+    coverage leading to higher costs or longer delivery times. Analyze zone coverage
+    patterns to identify geographic gaps, underutilized routes, and opportunities
+    for service optimization. The query groups shipments by geographic zone and carrier,
+    calculates coverage metrics including shipment density per zone, identifies zones
+    with sparse coverage or no service, uses window functions to compare zone performance
+    against regional averages, computes distance and cost metrics for underserved
+    areas, and handles NULL values for zones without historical shipment data. Returns
+    coverage metrics per zone including shipment volume, average delivery time, cost
+    per
 
 
     Business Value: Zone coverage analysis showing coverage gaps, optimization opportunities,
@@ -749,19 +745,18 @@ info:
     predictions?
 
 
-    Description: Situation: Finance and procurement teams are concerned about shipping
-    cost fluctuations affecting budget predictability. The carriers table contains
-    historical rate data, shipments table has actual costs paid over time, and routes
-    table includes lane-specific pricing. Rate volatility varies by carrier, season,
-    and route, making cost forecasting challenging. Task: Analyze shipping rate volatility
-    patterns and generate price trend predictions to support budgeting and carrier
-    negotiation strategies. Action: The query aggregates shipping costs by carrier
-    and route over time, calculates volatility metrics including standard deviation
-    and coefficient of variation, uses window functions to compute rolling averages
-    and period-over-period rate changes, identifies seasonal patterns and anomalies
-    in pricing, performs quartile analysis to categorize rate stability, and handles
-    NULL values in historical rate data using appropriate imputation. Result: Returns
-    volatility metrics per carrier and route
+    Description: Finance and procurement teams are concerned about shipping cost fluctuations
+    affecting budget predictability. The carriers table contains historical rate data,
+    shipments table has actual costs paid over time, and routes table includes lane-specific
+    pricing. Rate volatility varies by carrier, season, and route, making cost forecasting
+    challenging. Analyze shipping rate volatility patterns and generate price trend
+    predictions to support budgeting and carrier negotiation strategies. The query
+    aggregates shipping costs by carrier and route over time, calculates volatility
+    metrics including standard deviation and coefficient of variation, uses window
+    functions to compute rolling averages and period-over-period rate changes, identifies
+    seasonal patterns and anomalies in pricing, performs quartile analysis to categorize
+    rate stability, and handles NULL values in historical rate data using appropriate
+    imputation. Returns volatility metrics per carrier and route
 
 
     Business Value: Rate volatility analysis showing price trends, volatility metrics,
@@ -778,19 +773,19 @@ info:
     analysis?
 
 
-    Description: Situation: The logistics manager needs to evaluate carrier performance
-    to inform contract renewals and carrier selection decisions. The shipments table
-    tracks actual delivery times and outcomes, carriers table contains service level
-    agreements (SLAs), and routes table has expected transit times. Performance varies
-    significantly across carriers and service types, impacting customer satisfaction.
-    Task: Compare carrier performance across key metrics including delivery times,
-    on-time rates, and service reliability to identify top performers and underperformers.
-    Action: The query joins shipments with carriers and routes data, groups by carrier
-    and service level, calculates delivery time metrics including average, median,
-    and percentile distributions, computes on-time delivery rates against SLA commitments,
-    uses window functions to rank carriers by performance metrics and calculate rolling
-    performance trends, identifies patterns in delays by carrier and route, and handles
-    NULL values for inc
+    Description: The logistics manager needs to evaluate carrier performance to inform
+    contract renewals and carrier selection decisions. The shipments table tracks
+    actual delivery times and outcomes, carriers table contains service level agreements
+    (SLAs), and routes table has expected transit times. Performance varies significantly
+    across carriers and service types, impacting customer satisfaction. Compare carrier
+    performance across key metrics including delivery times, on-time rates, and service
+    reliability to identify top performers and underperformers. The query joins shipments
+    with carriers and routes data, groups by carrier and service level, calculates
+    delivery time metrics including average, median, and percentile distributions,
+    computes on-time delivery rates against SLA commitments, uses window functions
+    to rank carriers by performance metrics and calculate rolling performance trends,
+    identifies patterns in delays by carrier and route, and handles NULL values for
+    inc
 
 
     Business Value: Carrier service performance comparison showing delivery times,
@@ -807,19 +802,19 @@ info:
     trade-offs?
 
 
-    Description: Situation: The supply chain team is seeking to optimize shipping
-    routes to balance cost efficiency with delivery speed requirements. The routes
-    table contains available paths between origins and destinations with associated
-    costs and transit times, shipments table has historical routing decisions and
-    outcomes, and carriers table shows service options. Current routing may not be
-    optimal due to changing conditions and priorities. Task: Analyze route alternatives
-    to identify optimal routing strategies that balance cost minimization with acceptable
-    delivery timeframes. Action: The query evaluates alternative routes between origin-destination
-    pairs, groups shipments by route and calculates total costs and average transit
-    times, computes cost-per-day metrics to quantify trade-offs, uses window functions
-    to rank routes by efficiency scores combining cost and time factors, identifies
-    Pareto-optimal routes where neither cost nor time can be improved without sacrificing
-    the other, calculates qua
+    Description: The supply chain team is seeking to optimize shipping routes to balance
+    cost efficiency with delivery speed requirements. The routes table contains available
+    paths between origins and destinations with associated costs and transit times,
+    shipments table has historical routing decisions and outcomes, and carriers table
+    shows service options. Current routing may not be optimal due to changing conditions
+    and priorities. Analyze route alternatives to identify optimal routing strategies
+    that balance cost minimization with acceptable delivery timeframes. The query
+    evaluates alternative routes between origin-destination pairs, groups shipments
+    by route and calculates total costs and average transit times, computes cost-per-day
+    metrics to quantify trade-offs, uses window functions to rank routes by efficiency
+    scores combining cost and time factors, identifies Pareto-optimal routes where
+    neither cost nor time can be improved without sacrificing the other, calculates
+    qua
 
 
     Business Value: Route optimization results showing optimal routes, cost-time trade-offs,
@@ -836,19 +831,19 @@ info:
     much each component contributes to the total?
 
 
-    Description: Situation: Our shipping operations team needs to understand the composition
+    Description: Our shipping operations team needs to understand the composition
     of shipping costs to identify savings opportunities. The Shipping Intelligence
     system tracks costs across shipments, carriers, and routes, capturing detailed
     cost components including base rates, fuel surcharges, accessorial fees, and handling
     charges. Management has requested visibility into which cost elements drive overall
-    expenses. Task: Generate a cost breakdown analysis that displays individual cost
-    components, calculates each component''s percentage contribution to total costs,
-    and provides actionable optimization recommendations based on cost patterns. Action:
-    The SQL query joins shipment and cost tables, groups results by cost component
-    type and carrier, computes aggregate totals and percentages for each component,
-    uses window functions to calculate running totals and compare costs across time
-    periods, applies quartile analysis to identify outlier expenses, and handles NULL
-    values in optional cost field
+    expenses. Generate a cost breakdown analysis that displays individual cost components,
+    calculates each component''s percentage contribution to total costs, and provides
+    actionable optimization recommendations based on cost patterns. The SQL query
+    joins shipment and cost tables, groups results by cost component type and carrier,
+    computes aggregate totals and percentages for each component, uses window functions
+    to calculate running totals and compare costs across time periods, applies quartile
+    analysis to identify outlier expenses, and handles NULL values in optional cost
+    field
 
 
     Business Value: Cost breakdown analysis showing component costs, cost attribution,
@@ -865,19 +860,19 @@ info:
     or anomalies that might indicate problems?
 
 
-    Description: Situation: Our logistics operations center monitors thousands of
-    tracking events daily across shipments. Recent delivery delays and customer complaints
-    suggest potential systemic issues that aren''t immediately visible in standard
-    reports. The Shipping Intelligence platform captures granular tracking events
-    including scans, location updates, status changes, and timestamps across all carriers
-    and routes. The operations team needs to distinguish between normal variance and
-    genuine problems requiring intervention. Task: Perform tracking pattern analysis
-    that establishes normal event sequences and timing baselines, identifies statistically
-    significant anomalies and deviations, and generates predictive alerts for shipments
-    at risk. Action: The SQL query aggregates tracking events by shipment and route,
-    calculates baseline metrics for event frequency and timing intervals using statistical
-    measures, employs window functions to compute rolling averages and standard deviations
-    for comparison, fl
+    Description: Our logistics operations center monitors thousands of tracking events
+    daily across shipments. Recent delivery delays and customer complaints suggest
+    potential systemic issues that aren''t immediately visible in standard reports.
+    The Shipping Intelligence platform captures granular tracking events including
+    scans, location updates, status changes, and timestamps across all carriers and
+    routes. The operations team needs to distinguish between normal variance and genuine
+    problems requiring intervention. Perform tracking pattern analysis that establishes
+    normal event sequences and timing baselines, identifies statistically significant
+    anomalies and deviations, and generates predictive alerts for shipments at risk.
+    The SQL query aggregates tracking events by shipment and route, calculates baseline
+    metrics for event frequency and timing intervals using statistical measures, employs
+    window functions to compute rolling averages and standard deviations for comparison,
+    fl
 
 
     Business Value: Tracking pattern analysis showing normal patterns, detected anomalies,
@@ -894,19 +889,19 @@ info:
     corrections have on delivery performance?
 
 
-    Description: Situation: Our shipping department has invested in address validation
-    technology to reduce failed deliveries and returns caused by incorrect addresses.
-    However, we lack visibility into how well the system performs and whether address
-    corrections actually improve delivery outcomes. The Shipping Intelligence database
-    contains original addresses entered by customers, validated/corrected addresses
-    from the validation service, delivery attempt results, and final delivery status
-    across all shipments. Stakeholders need metrics to assess ROI and identify opportunities
-    for system improvement. Task: Generate address validation quality metrics that
-    measure validation accuracy rates, quantify the impact of corrections on successful
-    delivery rates, and reveal quality trends across different address types and geographic
-    regions. Action: The SQL query joins shipment, address validation, and delivery
-    outcome tables, groups data by address type, region, and time period, calculates
-    validation accuracy b
+    Description: Our shipping department has invested in address validation technology
+    to reduce failed deliveries and returns caused by incorrect addresses. However,
+    we lack visibility into how well the system performs and whether address corrections
+    actually improve delivery outcomes. The Shipping Intelligence database contains
+    original addresses entered by customers, validated/corrected addresses from the
+    validation service, delivery attempt results, and final delivery status across
+    all shipments. Stakeholders need metrics to assess ROI and identify opportunities
+    for system improvement. Generate address validation quality metrics that measure
+    validation accuracy rates, quantify the impact of corrections on successful delivery
+    rates, and reveal quality trends across different address types and geographic
+    regions. The SQL query joins shipment, address validation, and delivery outcome
+    tables, groups data by address type, region, and time period, calculates validation
+    accuracy b
 
 
     Business Value: Address validation quality metrics showing accuracy rates, correction
@@ -923,19 +918,19 @@ info:
     both cost and delivery time, and how do customs procedures affect them?
 
 
-    Description: Situation: Our international shipping volume has grown 40% this year,
-    but profit margins are under pressure due to varying costs and unpredictable delivery
-    times across different routes and countries. The Shipping Intelligence system
-    tracks international shipments across multiple carriers and routes, capturing
-    detailed data on shipping costs, transit times, customs clearance durations, duties
-    and taxes, and final delivery performance. The supply chain team needs to optimize
+    Description: Our international shipping volume has grown 40% this year, but profit
+    margins are under pressure due to varying costs and unpredictable delivery times
+    across different routes and countries. The Shipping Intelligence system tracks
+    international shipments across multiple carriers and routes, capturing detailed
+    data on shipping costs, transit times, customs clearance durations, duties and
+    taxes, and final delivery performance. The supply chain team needs to optimize
     route selection to balance customer expectations for speed with financial constraints.
-    Task: Conduct international route analysis that identifies optimal shipping routes
-    based on cost-time trade-offs, evaluates customs clearance efficiency by destination
+    Conduct international route analysis that identifies optimal shipping routes based
+    on cost-time trade-offs, evaluates customs clearance efficiency by destination
     country, and provides data-driven route recommendations for different shipment
-    profiles. Action: The SQL query joins shipments, routes, carriers, and customs
-    clearance tables filtered for international destinations, groups by origin-destination
-    pairs, carrier, and r
+    profiles. The SQL query joins shipments, routes, carriers, and customs clearance
+    tables filtered for international destinations, groups by origin-destination pairs,
+    carrier, and r
 
 
     Business Value: International route analysis showing optimal routes, customs considerations,
@@ -952,19 +947,18 @@ info:
     rates vary across package weights, zones, and service levels?
 
 
-    Description: Situation: Our shipping department works with multiple carriers and
-    faces complex rate structures that vary by package weight, dimensional weight,
-    destination zone, service level, and additional surcharges. Current carrier selection
-    is often based on outdated assumptions rather than current rates, potentially
-    costing thousands in unnecessary expenses. The Shipping Intelligence platform
-    maintains comprehensive rate tables for all contracted carriers, including base
-    rates, zone pricing, weight breaks, dimensional factors, and accessorial charges,
-    along with historical shipment data showing actual charges paid. Procurement needs
-    detailed comparisons to renegotiate contracts and operations needs guidance for
-    daily carrier selection decisions. Task: Create a carrier rate comparison matrix
-    that displays pricing across multiple dimensions—weight bands, destination zones,
-    service levels, and package types—calculates total delivered costs including all
-    surcharges, and identifies the optimal car
+    Description: Our shipping department works with multiple carriers and faces complex
+    rate structures that vary by package weight, dimensional weight, destination zone,
+    service level, and additional surcharges. Current carrier selection is often based
+    on outdated assumptions rather than current rates, potentially costing thousands
+    in unnecessary expenses. The Shipping Intelligence platform maintains comprehensive
+    rate tables for all contracted carriers, including base rates, zone pricing, weight
+    breaks, dimensional factors, and accessorial charges, along with historical shipment
+    data showing actual charges paid. Procurement needs detailed comparisons to renegotiate
+    contracts and operations needs guidance for daily carrier selection decisions.
+    Create a carrier rate comparison matrix that displays pricing across multiple
+    dimensions—weight bands, destination zones, service levels, and package types—calculates
+    total delivered costs including all surcharges, and identifies the optimal car
 
 
     Business Value: Rate comparison matrix showing carrier rates across multiple dimensions
@@ -981,19 +975,19 @@ info:
     efficiency analysis?
 
 
-    Description: Situation: Our shipping operations team needs to optimize packaging
-    costs and reduce wasted space. The Shipping Intelligence database contains historical
-    shipment data including package dimensions, weights, and actual shipping costs
-    across multiple carriers and routes. We''ve noticed significant variation in package
-    sizes for similar products, suggesting optimization opportunities. Task: Analyze
-    package dimensions to identify optimization opportunities and quantify potential
-    cost savings from right-sizing packages. Action: The query joins shipment and
-    package dimension tables, then groups by product categories and current package
-    size ranges. It calculates volume efficiency ratios (product volume vs package
-    volume), computes quartiles to identify outliers, and uses window functions to
-    compare current dimensions against optimal benchmarks. The analysis aggregates
-    potential savings by calculating the difference between actual costs and projected
-    costs with optimized dimensions, while hand
+    Description: Our shipping operations team needs to optimize packaging costs and
+    reduce wasted space. The Shipping Intelligence database contains historical shipment
+    data including package dimensions, weights, and actual shipping costs across multiple
+    carriers and routes. We''ve noticed significant variation in package sizes for
+    similar products, suggesting optimization opportunities. Analyze package dimensions
+    to identify optimization opportunities and quantify potential cost savings from
+    right-sizing packages. The query joins shipment and package dimension tables,
+    then groups by product categories and current package size ranges. It calculates
+    volume efficiency ratios (product volume vs package volume), computes quartiles
+    to identify outliers, and uses window functions to compare current dimensions
+    against optimal benchmarks. The analysis aggregates potential savings by calculating
+    the difference between actual costs and projected costs with optimized dimensions,
+    while hand
 
 
     Business Value: Package dimension optimization results showing recommended dimensions
@@ -1010,19 +1004,19 @@ info:
     metrics?
 
 
-    Description: Situation: The logistics operations team is experiencing customer
-    complaints about delivery delays and needs to evaluate carrier performance across
-    different shipping zones. The Shipping Intelligence system tracks shipment timestamps,
-    carrier assignments, origin-destination pairs, and promised delivery dates. Understanding
+    Description: The logistics operations team is experiencing customer complaints
+    about delivery delays and needs to evaluate carrier performance across different
+    shipping zones. The Shipping Intelligence system tracks shipment timestamps, carrier
+    assignments, origin-destination pairs, and promised delivery dates. Understanding
     transit time reliability by zone is critical for setting accurate customer expectations
-    and renegotiating carrier contracts. Task: Analyze transit times across shipping
-    zones to compare actual performance against expected delivery windows and rank
-    carrier reliability. Action: The query joins shipments with carriers and routes
-    tables, filtering for completed deliveries within the analysis period. It groups
-    data by shipping zone and carrier, calculating average actual transit times, expected
-    transit times based on service level agreements, and variance metrics. Window
-    functions compute rolling 30-day averages for trend analysis and rank carriers
-    within each zone by on-
+    and renegotiating carrier contracts. Analyze transit times across shipping zones
+    to compare actual performance against expected delivery windows and rank carrier
+    reliability. The query joins shipments with carriers and routes tables, filtering
+    for completed deliveries within the analysis period. It groups data by shipping
+    zone and carrier, calculating average actual transit times, expected transit times
+    based on service level agreements, and variance metrics. Window functions compute
+    rolling 30-day averages for trend analysis and rank carriers within each zone
+    by on-
 
 
     Business Value: Zone transit time analysis showing actual vs expected times, reliability
@@ -1039,19 +1033,19 @@ info:
     breakdown?
 
 
-    Description: Situation: The international shipping division is seeking to reduce
-    customs duty expenses for cross-border shipments. The Shipping Intelligence database
-    contains historical customs data including tariff codes (HS codes), duty amounts
-    paid, product classifications, and destination countries. Recent audits suggest
-    that some products may be misclassified or that alternative tariff codes could
-    result in lower duty rates. Our finance team needs actionable insights to optimize
-    duty payments while maintaining compliance. Task: Analyze customs duty payments
-    by tariff code to identify misclassification issues and quantify potential savings
-    from tariff optimization. Action: The query joins shipment data with customs declarations
-    and tariff code reference tables, grouping by product type, current tariff code,
-    and destination country. It calculates aggregate duty amounts paid, average duty
-    rates, and compares against alternative valid tariff codes for similar products.
-    Window functions rank produc
+    Description: The international shipping division is seeking to reduce customs
+    duty expenses for cross-border shipments. The Shipping Intelligence database contains
+    historical customs data including tariff codes (HS codes), duty amounts paid,
+    product classifications, and destination countries. Recent audits suggest that
+    some products may be misclassified or that alternative tariff codes could result
+    in lower duty rates. Our finance team needs actionable insights to optimize duty
+    payments while maintaining compliance. Analyze customs duty payments by tariff
+    code to identify misclassification issues and quantify potential savings from
+    tariff optimization. The query joins shipment data with customs declarations and
+    tariff code reference tables, grouping by product type, current tariff code, and
+    destination country. It calculates aggregate duty amounts paid, average duty rates,
+    and compares against alternative valid tariff codes for similar products. Window
+    functions rank produc
 
 
     Business Value: Customs duty optimization results showing tariff code analysis
@@ -1067,19 +1061,19 @@ info:
     Use Case: Can you show me API rate cache optimization with hit rate analysis?
 
 
-    Description: Situation: Our shipping platform''s API serves rate quotes to customers
-    and internal systems, generating millions of requests daily. The engineering team
+    Description: Our shipping platform''s API serves rate quotes to customers and
+    internal systems, generating millions of requests daily. The engineering team
     has implemented caching to reduce load on carrier API endpoints and improve response
     times, but cache effectiveness varies significantly across different request types
     and routes. The system logs capture API request metadata, cache hit/miss events,
     response times, and carrier API costs. We need to optimize caching strategy to
-    reduce both latency and carrier API charges. Task: Analyze API cache performance
-    to identify hit rate patterns, quantify cost savings, and find opportunities to
-    improve cache effectiveness. Action: The query joins API request logs with cache
-    performance metrics and carrier cost data, grouping by request type (e.g., rate
-    quotes, tracking, address validation), route popularity, and time windows. It
-    calculates cache hit rates, miss rates, and partial hit percentages where rate
-    data is partially cached. Window functio
+    reduce both latency and carrier API charges. Analyze API cache performance to
+    identify hit rate patterns, quantify cost savings, and find opportunities to improve
+    cache effectiveness. The query joins API request logs with cache performance metrics
+    and carrier cost data, grouping by request type (e.g., rate quotes, tracking,
+    address validation), route popularity, and time windows. It calculates cache hit
+    rates, miss rates, and partial hit percentages where rate data is partially cached.
+    Window functio
 
 
     Business Value: API cache optimization results showing hit rates, caching opportunities,
@@ -1095,19 +1089,19 @@ info:
     Use Case: Can you provide shipping revenue forecasting with trend analysis?
 
 
-    Description: Situation: The finance and sales teams require accurate revenue forecasts
-    for quarterly planning and investor reporting. The Shipping Intelligence platform
+    Description: The finance and sales teams require accurate revenue forecasts for
+    quarterly planning and investor reporting. The Shipping Intelligence platform
     contains historical revenue data segmented by carrier, service level, customer
     segment, and geographic region, spanning multiple years with seasonal patterns.
     Recent market changes including fuel price volatility and new competitor entries
     make reliable forecasting critical. Leadership needs probabilistic forecasts with
     confidence bounds to support strategic decisions around capacity planning and
-    pricing strategies. Task: Generate revenue forecasts for upcoming quarters with
-    confidence intervals and identify underlying trends driving revenue changes. Action:
-    The query extracts historical revenue data from shipments and billing tables,
-    grouping by month, carrier, service level, and customer segment. It calculates
-    year-over-year and month-over-month growth rates, applies time-series aggregations
-    to identify seasonal patterns, and uses
+    pricing strategies. Generate revenue forecasts for upcoming quarters with confidence
+    intervals and identify underlying trends driving revenue changes. The query extracts
+    historical revenue data from shipments and billing tables, grouping by month,
+    carrier, service level, and customer segment. It calculates year-over-year and
+    month-over-month growth rates, applies time-series aggregations to identify seasonal
+    patterns, and uses
 
 
     Business Value: Revenue forecasts showing predicted revenue, confidence intervals,
@@ -1124,19 +1118,19 @@ info:
     standards and best practices?
 
 
-    Description: Situation: As a logistics manager in the Shipping Intelligence domain,
-    I need to evaluate whether our contracted carriers are meeting industry benchmarks.
-    Our shipments, carriers, and routes data contains historical performance metrics
-    including on-time delivery rates, damage rates, and cost efficiency. We want to
-    identify underperforming carriers and negotiate better contracts based on data-driven
-    comparisons to industry standards. Task: Generate carrier performance benchmarks
-    that compare each carrier''s key performance indicators against industry standards
-    and identify gaps from best practices. Action: The query joins shipment data with
-    carrier information and industry benchmark tables. It groups results by carrier
-    and service type, computing aggregate metrics such as average delivery time, on-time
-    percentage, and cost per shipment. Window functions calculate percentile rankings
-    to show where each carrier stands relative to industry quartiles. The query handles
-    NULL values for incomp
+    Description: As a logistics manager in the Shipping Intelligence domain, I need
+    to evaluate whether our contracted carriers are meeting industry benchmarks. Our
+    shipments, carriers, and routes data contains historical performance metrics including
+    on-time delivery rates, damage rates, and cost efficiency. We want to identify
+    underperforming carriers and negotiate better contracts based on data-driven comparisons
+    to industry standards. Generate carrier performance benchmarks that compare each
+    carrier''s key performance indicators against industry standards and identify
+    gaps from best practices. The query joins shipment data with carrier information
+    and industry benchmark tables. It groups results by carrier and service type,
+    computing aggregate metrics such as average delivery time, on-time percentage,
+    and cost per shipment. Window functions calculate percentile rankings to show
+    where each carrier stands relative to industry quartiles. The query handles NULL
+    values for incomp
 
 
     Business Value: Carrier performance benchmarks showing performance relative to
@@ -1153,19 +1147,18 @@ info:
     optimize packaging?
 
 
-    Description: Situation: As a supply chain analyst in the Shipping Intelligence
-    domain, I''m concerned about rising shipping costs due to dimensional weight (DIM
-    weight) pricing, where carriers charge based on package volume rather than actual
-    weight. Our shipments table contains both actual weight and package dimensions,
-    while carriers apply varying DIM divisors. Many shipments are being charged at
-    dimensional weight instead of actual weight, inflating costs. I need to quantify
-    this cost impact and identify optimization opportunities through better packaging.
-    Task: Perform a dimensional weight cost analysis that calculates the cost difference
-    between actual weight and dimensional weight billing, and provide specific optimization
-    recommendations for reducing DIM weight charges. Action: The query calculates
-    dimensional weight for each shipment using carrier-specific DIM divisors (length
-    × width × height / divisor) and compares it to actual weight. It groups shipments
-    by product category, package type,
+    Description: As a supply chain analyst in the Shipping Intelligence domain, I''m
+    concerned about rising shipping costs due to dimensional weight (DIM weight) pricing,
+    where carriers charge based on package volume rather than actual weight. Our shipments
+    table contains both actual weight and package dimensions, while carriers apply
+    varying DIM divisors. Many shipments are being charged at dimensional weight instead
+    of actual weight, inflating costs. I need to quantify this cost impact and identify
+    optimization opportunities through better packaging. Perform a dimensional weight
+    cost analysis that calculates the cost difference between actual weight and dimensional
+    weight billing, and provide specific optimization recommendations for reducing
+    DIM weight charges. The query calculates dimensional weight for each shipment
+    using carrier-specific DIM divisors (length × width × height / divisor) and compares
+    it to actual weight. It groups shipments by product category, package type,
 
 
     Business Value: Dimensional weight cost analysis showing cost impact and optimization
@@ -1182,19 +1175,19 @@ info:
     need optimization?
 
 
-    Description: Situation: As a transportation manager in the Shipping Intelligence
-    domain, I oversee a network of shipping routes connecting our distribution centers
-    to customer locations. Our routes table contains transit times, distances, fuel
-    costs, and capacity utilization data, while the shipments table tracks actual
-    deliveries. Some routes consistently underperform with longer transit times, lower
-    fill rates, or higher per-mile costs than others. I need comprehensive efficiency
-    metrics to identify which routes require optimization through rerouting, carrier
-    changes, or consolidation strategies. Task: Calculate route efficiency metrics
-    that score each route''s performance, rank routes by efficiency, and highlight
-    specific optimization opportunities based on transit time, cost efficiency, and
-    capacity utilization. Action: The query joins routes with shipment performance
-    data and groups by origin-destination pairs and carrier. It computes efficiency
-    scores using weighted factors including average t
+    Description: As a transportation manager in the Shipping Intelligence domain,
+    I oversee a network of shipping routes connecting our distribution centers to
+    customer locations. Our routes table contains transit times, distances, fuel costs,
+    and capacity utilization data, while the shipments table tracks actual deliveries.
+    Some routes consistently underperform with longer transit times, lower fill rates,
+    or higher per-mile costs than others. I need comprehensive efficiency metrics
+    to identify which routes require optimization through rerouting, carrier changes,
+    or consolidation strategies. Calculate route efficiency metrics that score each
+    route''s performance, rank routes by efficiency, and highlight specific optimization
+    opportunities based on transit time, cost efficiency, and capacity utilization.
+    The query joins routes with shipment performance data and groups by origin-destination
+    pairs and carrier. It computes efficiency scores using weighted factors including
+    average t
 
 
     Business Value: Route efficiency metrics showing efficiency scores, performance
@@ -1211,19 +1204,19 @@ info:
     rate for each shipment scenario?
 
 
-    Description: Situation: As a shipping operations manager in the Shipping Intelligence
-    domain, we work with multiple carriers (UPS, FedEx, USPS, regional carriers) each
-    offering different rates based on weight, dimensions, destination zone, and service
-    level. Rate tables are stored separately by carrier with complex pricing rules
-    including base rates, surcharges, and volume discounts. When processing shipments,
-    we manually compare rates across carriers, which is time-consuming and error-prone,
-    often missing cost-saving opportunities. We need an automated system to aggregate
-    all carrier rates and select the optimal rate for each shipment. Task: Create
-    a multi-carrier rate aggregation that retrieves all applicable rates from each
-    carrier for given shipment parameters and automatically identifies the best (lowest
-    cost) rate selection while considering service level requirements. Action: The
-    query unions rate tables from all carrier databases, applying carrier-specific
-    pricing logic including base rates
+    Description: As a shipping operations manager in the Shipping Intelligence domain,
+    we work with multiple carriers (UPS, FedEx, USPS, regional carriers) each offering
+    different rates based on weight, dimensions, destination zone, and service level.
+    Rate tables are stored separately by carrier with complex pricing rules including
+    base rates, surcharges, and volume discounts. When processing shipments, we manually
+    compare rates across carriers, which is time-consuming and error-prone, often
+    missing cost-saving opportunities. We need an automated system to aggregate all
+    carrier rates and select the optimal rate for each shipment. Create a multi-carrier
+    rate aggregation that retrieves all applicable rates from each carrier for given
+    shipment parameters and automatically identifies the best (lowest cost) rate selection
+    while considering service level requirements. The query unions rate tables from
+    all carrier databases, applying carrier-specific pricing logic including base
+    rates
 
 
     Business Value: Multi-carrier rate aggregation showing all available rates and
@@ -1240,19 +1233,18 @@ info:
     with all key metrics and trends?
 
 
-    Description: Situation: As the Director of Logistics in the Shipping Intelligence
-    domain, I need a unified view of our entire shipping operation spanning multiple
-    carriers, routes, and distribution centers. Our data is fragmented across shipment
-    tracking systems, carrier performance databases, and cost accounting tables. Executive
+    Description: As the Director of Logistics in the Shipping Intelligence domain,
+    I need a unified view of our entire shipping operation spanning multiple carriers,
+    routes, and distribution centers. Our data is fragmented across shipment tracking
+    systems, carrier performance databases, and cost accounting tables. Executive
     leadership requires real-time visibility into shipping costs, carrier performance,
     route efficiency, and emerging issues. Currently, we compile reports manually
     from multiple sources, resulting in delayed insights and missed optimization opportunities.
     We need a comprehensive dashboard that consolidates all shipping intelligence
-    into actionable metrics updated in real-time. Task: Build a comprehensive shipping
-    intelligence dashboard that aggregates all key metrics including shipping costs,
-    carrier performance scores, route efficiency, on-time delivery rates, cost trends,
-    and identifies actionable insights for operational improvement. Action: The query
-    performs complex joi
+    into actionable metrics updated in real-time. Build a comprehensive shipping intelligence
+    dashboard that aggregates all key metrics including shipping costs, carrier performance
+    scores, route efficiency, on-time delivery rates, cost trends, and identifies
+    actionable insights for operational improvement. The query performs complex joi
 
 
     Business Value: Comprehensive dashboard showing all key shipping intelligence
@@ -1314,7 +1306,7 @@ info:
     Document Information:
 
 
-    - Generated: 20260216-1856
+    - Generated: 20260216-2243
 
     - Database: db-9
 

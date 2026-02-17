@@ -11,10 +11,10 @@
   "db_check:compliance": {
     "component": "db_check",
     "action": "compliance",
-    "passed": 16,
+    "passed": 1,
     "failed": 0,
     "skipped": 0,
-    "ts": 1771243249.488904
+    "ts": 1771297140.325352
   },
   "db_check:qa": {
     "component": "db_check",
@@ -22,7 +22,7 @@
     "passed": 16,
     "failed": 0,
     "skipped": 0,
-    "ts": 1771243249.4392
+    "ts": 1771296282.2387881
   },
   "bird_export:run": {
     "component": "bird_export",

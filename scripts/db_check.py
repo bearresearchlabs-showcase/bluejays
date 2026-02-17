@@ -98,6 +98,22 @@ def cmd_validate(args: List[str]) -> int:
         raise
 
 
+def cmd_validate_queries(args: List[str]) -> int:
+    """Run JSON Schema validation on queries.json (db_check validate-queries [db-1] [db-5] | -a)."""
+    start = time.perf_counter()
+    log("db_check", "validate-queries", status="start", data={"args": args})
+    try:
+        sys.argv = ["validate_queries_json.py"] + args
+        from validate_queries_json import main as validate_main
+        ec = validate_main()
+        status = "ok" if ec == 0 else "fail"
+        log("db_check", "validate-queries", status=status, duration_ms=(time.perf_counter() - start) * 1000, data={"exit_code": ec})
+        return ec
+    except Exception as e:
+        log("db_check", "validate-queries", status="fail", message=str(e)[:200])
+        raise
+
+
 def cmd_format(args: List[str]) -> int:
     """Run format (package deliverables)."""
     start = time.perf_counter()
@@ -207,15 +223,11 @@ def cmd_compliance(args: List[str]) -> int:
         data_sql = (data_dir / "data.sql").exists()
         result["checks"].append(("data.sql exists", data_sql))
 
-        # client DOCUMENTATION/
+        # client DOCUMENTATION/ — README.md only
         doc_ok = (client_db_dir / "DOCUMENTATION").exists()
         if doc_ok:
-            db_str = str(db_num)
-            doc_ok = (
-                (client_db_dir / "DOCUMENTATION" / f"db-{db_str}_documentation.html").exists()
-                and (client_db_dir / "DOCUMENTATION" / f"db-{db_str}_deliverable.json").exists()
-            )
-        result["checks"].append(("client DOCUMENTATION/", doc_ok))
+            doc_ok = (client_db_dir / "DOCUMENTATION" / "README.md").exists()
+        result["checks"].append(("client DOCUMENTATION/ (README.md only)", doc_ok))
         if not doc_ok and client_db_dir.exists():
             result["Pass"] = 0
 
@@ -278,6 +290,23 @@ def cmd_qa_suite(args: List[str]) -> int:
     except Exception as e:
         print(f"  WARNING: populate_app failed: {e}")
 
+    print("\n[0b/6] Validate documentation config (YAML vs JSON schema)...")
+    try:
+        gen_args = ["-a"] if len(pop_nums) >= 16 else [f"db-{n}" for n in pop_nums]
+        proc = subprocess.run(
+            [sys.executable, str(scripts_dir / "generate_documentation_readme.py"), "--validate"] + gen_args,
+            cwd=str(root_dir),
+            capture_output=True,
+            text=True,
+            timeout=60,
+        )
+        if proc.returncode != 0:
+            print(f"  WARNING: doc validation had errors")
+        else:
+            print("  OK")
+    except Exception as e:
+        print(f"  WARNING: doc validation failed: {e}")
+
     print("\n[1/6] Format deliverables (queries, schema, docs)...")
     ec_format = cmd_format(db_args)
     if ec_format != 0:
@@ -285,7 +314,6 @@ def cmd_qa_suite(args: List[str]) -> int:
 
     print("\n[2/6] Resync source/ → client/db...")
     try:
-        import subprocess
         proc = subprocess.run(
             [sys.executable, str(scripts_dir / "resync_client_db.py")],
             cwd=str(root_dir),
@@ -502,7 +530,7 @@ def cmd_full(args: List[str]) -> int:
 def main() -> int:
     if len(sys.argv) < 2:
         print(__doc__)
-        print("\nSubcommands: validate, format, qa, qa-suite, integrity, compliance, full, rotate, check-commit, bird-workbench")
+        print("\nSubcommands: validate, validate-queries, format, qa, qa-suite, integrity, compliance, full, rotate, check-commit, bird-workbench")
         return 1
 
     subcmd = sys.argv[1].lower()
@@ -519,6 +547,8 @@ def main() -> int:
 
     if subcmd == "validate":
         return cmd_validate(subargs)
+    elif subcmd == "validate-queries":
+        return cmd_validate_queries(subargs)
     elif subcmd == "format":
         return cmd_format(subargs)
     elif subcmd == "qa":
@@ -553,7 +583,7 @@ def main() -> int:
     else:
         log("db_check", "main", status="fail", message=f"Unknown subcommand: {subcmd}")
         print(f"Unknown subcommand: {subcmd}")
-        print("Subcommands: validate, format, qa, qa-suite, integrity, compliance, full, rotate, check-commit, debug, qa-claude, bird-workbench, gdpval-langgraph, export, label-studio")
+        print("Subcommands: validate, validate-queries, format, qa, qa-suite, integrity, compliance, full, rotate, check-commit, debug, qa-claude, bird-workbench, gdpval-langgraph, export, label-studio")
         return 1
 
 

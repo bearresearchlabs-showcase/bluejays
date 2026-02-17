@@ -1,0 +1,59 @@
+# Database Documentation Template — correlates to scripts/schemas/db_documentation.schema.json
+# Single source of truth: this config + deliverable JSON (schema/data dictionary from deliverable only).
+# Covers: installation guide, specifications, schema, data dictionary.
+# Output format: MDX-compatible markdown (https://mdxjs.com/) with YAML frontmatter.
+# Per-DB override: source/db-N/_doc_config.yaml
+# Skeleton for comparison: template/DOCUMENTATION_README_SKELETON.md
+
+database:
+  id: db-N
+  name: Database Name
+  type: Database Type
+  status: Complete
+  description: |
+    Database description (markdown supported).
+
+installation_guide:
+  steps:
+    - title: Prerequisites
+      description: |
+        Ensure PostgreSQL is installed. See specifications for version requirements.
+      commands: []
+    - title: Create Database
+      description: |
+        Create a new database for this schema.
+      commands:
+        - "createdb -U postgres db_name"
+    - title: Load Schema
+      description: |
+        Load schema.sql to create tables, indexes, and constraints.
+      commands:
+        - "psql -U postgres -d db_name -f schema.sql"
+    - title: Load Data (Optional)
+      description: |
+        Load sample data from data.sql if available.
+      commands:
+        - "psql -U postgres -d db_name -f data.sql"
+
+specifications:
+  postgresql_version: "14+"
+  extensions: []
+  disk_space_mb: 100
+  memory_mb: 256
+  platforms:
+    - PostgreSQL
+  notes: |
+    Standard PostgreSQL. No extensions required unless noted.
+
+schema:
+  overview: |
+    Schema overview text. Populated from docs/SCHEMA.md or deliverable JSON.
+  table_groups:
+    - name: Core Tables
+      tables: []
+  er_diagram: |
+    See docs/SCHEMA.md for Mermaid ER diagram.
+
+data_dictionary:
+  source: docs/DATA_DICTIONARY.md
+  # tables populated from deliverable JSON or DATA_DICTIONARY.md

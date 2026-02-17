@@ -49,8 +49,24 @@ def find_web_deliverable(db_dir: Path, db_num: int) -> Path | None:
 
 
 def _sync_from_app(app_dir: Path, client_db_dir: Path, db_num: int, dry_run: bool) -> dict:
-    """Sync from source/db-N/app/ (iron triangle) to client/db/db-N/."""
+    """Sync from source/db-N/app/ (iron triangle) to client/db/db-N/.
+    Strict alignment: only DATABASE/, DOCUMENTATION/, QUERIES/, vercel.json.
+    Removes extraneous dbN-* folders (legacy web-deployable structure)."""
     result = {"db": f"db-{db_num}", "synced": [], "errors": []}
+
+    # Prune extraneous dbN-* folders (legacy web-deployable) for strict alignment
+    prefix = f"db{db_num}-"
+    if client_db_dir.exists():
+        for item in list(client_db_dir.iterdir()):
+            if item.is_dir() and item.name.startswith(prefix):
+                if dry_run:
+                    result["synced"].append(f"Would remove extraneous: {item.name}/")
+                else:
+                    try:
+                        shutil.rmtree(item)
+                        result["synced"].append(f"Removed extraneous: {item.name}/")
+                    except Exception as e:
+                        result["errors"].append(f"Remove {item.name}: {e}")
 
     def copy_dir(src_dir: Path, dest_dir: Path, name: str) -> None:
         if not src_dir.exists():
@@ -78,7 +94,14 @@ def _sync_from_app(app_dir: Path, client_db_dir: Path, db_num: int, dry_run: boo
         return True
 
     copy_dir(app_dir / "DATABASE", client_db_dir / "DATABASE", "DATABASE")
+    # DOCUMENTATION — README.md only
     copy_dir(app_dir / "DOCUMENTATION", client_db_dir / "DOCUMENTATION", "DOCUMENTATION")
+    if not dry_run:
+        doc_dest = client_db_dir / "DOCUMENTATION"
+        for f in list(doc_dest.iterdir()):
+            if f.is_file() and f.name != "README.md":
+                f.unlink()
+                result["synced"].append(f"Removed DOCUMENTATION/{f.name}")
     copy_dir(app_dir / "QUERIES", client_db_dir / "QUERIES", "QUERIES")
 
     # vercel.json - from app/DOCUMENTATION parent or create minimal
@@ -92,7 +115,7 @@ def _sync_from_app(app_dir: Path, client_db_dir: Path, db_num: int, dry_run: boo
                 break
     if not dry_run and not (client_db_dir / "vercel.json").exists():
         (client_db_dir / "vercel.json").write_text(
-            f'{{"rewrites":[{{"source":"/","destination":"/DOCUMENTATION/db-{db_num}_documentation.html"}}]}}',
+            f'{{"rewrites":[{{"source":"/","destination":"/DOCUMENTATION/README.md"}}]}}',
             encoding="utf-8",
         )
         result["synced"].append("vercel.json (created)")

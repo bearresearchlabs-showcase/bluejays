@@ -8,6 +8,7 @@ Usage:
 """
 
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -104,16 +105,24 @@ def populate_app(db_num: int) -> bool:
     for name, src_path in collected_sql.items():
         shutil.copy2(src_path, db_dest / name)
 
-    # 2. DOCUMENTATION/
+    # 2. DOCUMENTATION/ — README.md only (no html, json, .gitignore)
     doc_dest = app_dir / "DOCUMENTATION"
     doc_dest.mkdir(parents=True, exist_ok=True)
-    for fname in (f"db-{db_num}_documentation.html", f"db-{db_num}_deliverable.json", f"db-{db_num}.md"):
-        for src in (web_d / fname, db_dir / "deliverable" / fname):
-            if src.exists():
-                shutil.copy2(src, doc_dest / fname)
-                break
-    if (web_d / ".gitignore").exists():
-        shutil.copy2(web_d / ".gitignore", doc_dest / ".gitignore")
+    # Remove any non-README files to enforce README-only
+    for f in list(doc_dest.iterdir()):
+        if f.is_file() and f.name != "README.md":
+            f.unlink()
+    # README.md — always regenerate from single source (config + deliverable JSON)
+    scripts_dir = Path(__file__).parent
+    subprocess.run(
+        [sys.executable, str(scripts_dir / "generate_documentation_readme.py"), str(db_num)],
+        cwd=ROOT,
+        capture_output=True,
+        check=False,
+    )
+    readme_src = db_dir / "docs" / "README.md"
+    if readme_src.exists():
+        shutil.copy2(readme_src, doc_dest / "README.md")
 
     # 3. QUERIES/ - from queries_src, else @template/ as fallback
     qdest = app_dir / "QUERIES"

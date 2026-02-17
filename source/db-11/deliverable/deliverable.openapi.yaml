@@ -51,44 +51,43 @@ info:
     \ delivered\n- Complexity: Technical complexity indicators\n- SQL Code: Complete,\
     \ production-ready SQL query\n\n---\n\nUse Case: Can you show me a multi-dimensional\
     \ analysis of parking demand broken down by geographic region and time patterns?\n\
-    \nDescription: Situation: Our parking intelligence platform collects data from\
-    \ parking_events, lots, and zones tables to track real-time utilization and occupancy\
-    \ across multiple metropolitan areas. Management needs to identify high-potential\
-    \ markets for facility expansion and understand demand patterns geographically\
-    \ and temporally. Task: Calculate market demand scores for each metropolitan area\
-    \ with competitive rankings, growth indicators, and data-driven expansion recommendations.\
-    \ Action: The query joins parking events with lot and zone data, groups results\
-    \ by metropolitan area and time period, computes aggregate metrics like average\
-    \ occupancy and revenue per space, applies window functions to rank markets and\
-    \ calculate period-over-period growth rates, uses quartile analysis to identify\
-    \ top-performing regions, and handles NULL values in optional geographic fields.\
-    \ Result: A ranked list of metropolitan areas with demand scores, growth percentages,\
-    \ quartile classifications, and actionable expansion\n\nBusiness Value: Market\
-    \ demand scores by metropolitan area with rankings, growth indicators, and expansion\
-    \ recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can you provide\
-    \ a competitive intelligence report that analyzes pricing strategies and calculates\
-    \ our market share?\n\nDescription: Situation: Our parking operations compete\
-    \ with multiple facilities in each geographic cluster, and we need to understand\
-    \ our competitive positioning to optimize pricing and maximize revenue. The parking_events,\
-    \ lots, and zones tables contain pricing, utilization, and revenue data for our\
-    \ facilities and competitors. Task: Generate a competitive analysis report by\
-    \ facility cluster showing pricing recommendations, market share calculations,\
-    \ and revenue optimization opportunities. Action: The query aggregates parking\
-    \ events by facility cluster, calculates total market capacity and our share within\
-    \ each cluster, compares average pricing across competitors using window functions,\
-    \ computes revenue per available space metrics, identifies pricing gaps and opportunities\
-    \ through comparative analysis, handles edge cases where competitor data may be\
-    \ incomplete, and applies date range filters to focus on recent competitive dynamics.\
-    \ Result: A comprehensive competitive intelligence report displaying\n\nBusiness\
-    \ Value: Competitive analysis by facility cluster with pricing recommendations,\
-    \ market share calculations, and revenue optimization opportunities.\n\nComplexity:\
-    \ moderate\n\n---\n\nUse Case: Can you forecast parking demand for upcoming events\
-    \ and suggest pricing to maximize revenue?\n\nDescription: Situation: Major events\
-    \ like concerts, sports games, and conferences create significant parking demand\
-    \ spikes that require proactive capacity and pricing management. Historical parking_events\
-    \ data combined with lot and zone characteristics enables predictive modeling\
-    \ of event-driven demand. Task: Generate event-based parking demand forecasts\
-    \ with pricing recommendations and revenue optimization opportunities. Action:\
+    \nDescription: Our parking intelligence platform collects data from parking_events,\
+    \ lots, and zones tables to track real-time utilization and occupancy across multiple\
+    \ metropolitan areas. Management needs to identify high-potential markets for\
+    \ facility expansion and understand demand patterns geographically and temporally.\
+    \ Calculate market demand scores for each metropolitan area with competitive rankings,\
+    \ growth indicators, and data-driven expansion recommendations. The query joins\
+    \ parking events with lot and zone data, groups results by metropolitan area and\
+    \ time period, computes aggregate metrics like average occupancy and revenue per\
+    \ space, applies window functions to rank markets and calculate period-over-period\
+    \ growth rates, uses quartile analysis to identify top-performing regions, and\
+    \ handles NULL values in optional geographic fields. A ranked list of metropolitan\
+    \ areas with demand scores, growth percentages, quartile classifications, and\
+    \ actionable expansion\n\nBusiness Value: Market demand scores by metropolitan\
+    \ area with rankings, growth indicators, and expansion recommendations.\n\nComplexity:\
+    \ moderate\n\n---\n\nUse Case: Can you provide a competitive intelligence report\
+    \ that analyzes pricing strategies and calculates our market share?\n\nDescription:\
+    \ Our parking operations compete with multiple facilities in each geographic cluster,\
+    \ and we need to understand our competitive positioning to optimize pricing and\
+    \ maximize revenue. The parking_events, lots, and zones tables contain pricing,\
+    \ utilization, and revenue data for our facilities and competitors. Generate a\
+    \ competitive analysis report by facility cluster showing pricing recommendations,\
+    \ market share calculations, and revenue optimization opportunities. The query\
+    \ aggregates parking events by facility cluster, calculates total market capacity\
+    \ and our share within each cluster, compares average pricing across competitors\
+    \ using window functions, computes revenue per available space metrics, identifies\
+    \ pricing gaps and opportunities through comparative analysis, handles edge cases\
+    \ where competitor data may be incomplete, and applies date range filters to focus\
+    \ on recent competitive dynamics. A comprehensive competitive intelligence report\
+    \ displaying\n\nBusiness Value: Competitive analysis by facility cluster with\
+    \ pricing recommendations, market share calculations, and revenue optimization\
+    \ opportunities.\n\nComplexity: moderate\n\n---\n\nUse Case: Can you forecast\
+    \ parking demand for upcoming events and suggest pricing to maximize revenue?\n\
+    \nDescription: Major events like concerts, sports games, and conferences create\
+    \ significant parking demand spikes that require proactive capacity and pricing\
+    \ management. Historical parking_events data combined with lot and zone characteristics\
+    \ enables predictive modeling of event-driven demand. Generate event-based parking\
+    \ demand forecasts with pricing recommendations and revenue optimization opportunities.\
     \ The query correlates historical parking events with event metadata to identify\
     \ demand patterns, groups by event type and venue proximity, calculates average\
     \ utilization and peak occupancy during similar past events, applies window functions\
@@ -96,32 +95,31 @@ info:
     \ identify compound demand from overlapping events, generates demand forecasts\
     \ with confidence intervals, recommends dynamic pricing based on predicted demand\
     \ levels, and handles edge cases like first-time events with limited historical\
-    \ data. Result: Event-specif\n\nBusiness Value: Event parking demand forecasts\
-    \ with pricing recommendations and revenue optimization opportunities.\n\nComplexity:\
-    \ moderate\n\n---\n\nUse Case: How can we optimize airport parking revenue by\
-    \ analyzing passenger volumes and seasonal patterns?\n\nDescription: Situation:\
-    \ Airport parking facilities experience highly seasonal demand correlated with\
-    \ passenger flight volumes, holidays, and travel patterns. The parking_events,\
-    \ lots, and zones data tracks utilization across short-term, long-term, and economy\
-    \ lots, while passenger volume provides external demand signals. Task: Develop\
-    \ airport parking revenue optimization recommendations with seasonal pricing strategies\
-    \ and capacity utilization insights. Action: The query joins parking event data\
-    \ with passenger volume metrics by time period, segments analysis by lot type\
-    \ and zone, calculates utilization rates and revenue per space across seasons,\
-    \ applies window functions to identify seasonal trends and year-over-year patterns,\
-    \ computes correlation coefficients between passenger volumes and parking demand,\
-    \ identifies capacity constraints during peak seasons, generates pricing elasticity\
-    \ estimates, and handles data gaps in passenger reporting periods. Result: Seasonal\
-    \ revenue optimization recommendati\n\nBusiness Value: Airport parking revenue\
-    \ optimization recommendations with seasonal pricing strategies and capacity utilization\
-    \ insights.\n\nComplexity: moderate\n\n---\n\nUse Case: How does traffic volume\
-    \ affect parking demand, and where should we build new facilities?\n\nDescription:\
-    \ Situation: Urban traffic volume serves as a leading indicator of parking demand,\
-    \ and understanding this relationship enables strategic facility placement and\
-    \ demand forecasting. The parking_events, lots, and zones data combined with traffic\
-    \ volume measurements provides the foundation for correlation analysis and site\
-    \ selection. Task: Analyze traffic-parking correlation with demand forecasts and\
-    \ facility placement recommendations. Action: The query joins parking utilization\
+    \ data. Event-specif\n\nBusiness Value: Event parking demand forecasts with pricing\
+    \ recommendations and revenue optimization opportunities.\n\nComplexity: moderate\n\
+    \n---\n\nUse Case: How can we optimize airport parking revenue by analyzing passenger\
+    \ volumes and seasonal patterns?\n\nDescription: Airport parking facilities experience\
+    \ highly seasonal demand correlated with passenger flight volumes, holidays, and\
+    \ travel patterns. The parking_events, lots, and zones data tracks utilization\
+    \ across short-term, long-term, and economy lots, while passenger volume provides\
+    \ external demand signals. Develop airport parking revenue optimization recommendations\
+    \ with seasonal pricing strategies and capacity utilization insights. The query\
+    \ joins parking event data with passenger volume metrics by time period, segments\
+    \ analysis by lot type and zone, calculates utilization rates and revenue per\
+    \ space across seasons, applies window functions to identify seasonal trends and\
+    \ year-over-year patterns, computes correlation coefficients between passenger\
+    \ volumes and parking demand, identifies capacity constraints during peak seasons,\
+    \ generates pricing elasticity estimates, and handles data gaps in passenger reporting\
+    \ periods. Seasonal revenue optimization recommendati\n\nBusiness Value: Airport\
+    \ parking revenue optimization recommendations with seasonal pricing strategies\
+    \ and capacity utilization insights.\n\nComplexity: moderate\n\n---\n\nUse Case:\
+    \ How does traffic volume affect parking demand, and where should we build new\
+    \ facilities?\n\nDescription: Urban traffic volume serves as a leading indicator\
+    \ of parking demand, and understanding this relationship enables strategic facility\
+    \ placement and demand forecasting. The parking_events, lots, and zones data combined\
+    \ with traffic volume measurements provides the foundation for correlation analysis\
+    \ and site selection. Analyze traffic-parking correlation with demand forecasts\
+    \ and facility placement recommendations. The query joins parking utilization\
     \ data with traffic volume metrics by geographic zone and time period, calculates\
     \ correlation coefficients between traffic density and parking occupancy, groups\
     \ by location characteristics like commercial districts or residential areas,\
@@ -132,14 +130,14 @@ info:
     \ correlation analysis with demand forecasts and facility placement recommendations.\n\
     \nComplexity: moderate\n\n---\n\nUse Case: Can you show me a demographic targeting\
     \ analysis that includes income-based pricing optimization and market penetration\
-    \ modeling?\n\nDescription: Situation: The parking operations team needs to optimize\
-    \ pricing strategies across different demographic segments to increase revenue\
-    \ while maintaining competitive market penetration. Currently, pricing is uniform\
-    \ across all customer segments, leading to potential revenue loss from price-insensitive\
-    \ customers and market share loss from price-sensitive segments. Task: Generate\
-    \ a demographic targeting analysis that provides segment-specific pricing recommendations\
-    \ and marketing strategies based on customer behavior and income patterns. Action:\
-    \ The query joins parking_events with lots and zones tables, groups data by demographic\
+    \ modeling?\n\nDescription: The parking operations team needs to optimize pricing\
+    \ strategies across different demographic segments to increase revenue while maintaining\
+    \ competitive market penetration. Currently, pricing is uniform across all customer\
+    \ segments, leading to potential revenue loss from price-insensitive customers\
+    \ and market share loss from price-sensitive segments. Generate a demographic\
+    \ targeting analysis that provides segment-specific pricing recommendations and\
+    \ marketing strategies based on customer behavior and income patterns. The query\
+    \ joins parking_events with lots and zones tables, groups data by demographic\
     \ dimensions (age groups, income brackets, geographic zones), computes aggregate\
     \ metrics including average transaction value, visit frequency, and revenue per\
     \ segment. Window functions calculate quartile rankings for income-based segmentation\
@@ -148,77 +146,76 @@ info:
     \ analysis with segment-specific pricing and marketing recommendations.\n\nComplexity:\
     \ moderate\n\n---\n\nUse Case: Can you provide a market segmentation analysis\
     \ with multi-dimensional clustering and revenue optimization insights?\n\nDescription:\
-    \ Situation: The business development team requires a comprehensive understanding\
-    \ of distinct market segments to allocate resources effectively and maximize revenue\
-    \ across different customer clusters. Current undifferentiated marketing approaches\
-    \ are resulting in suboptimal customer acquisition costs and revenue performance.\
-    \ Task: Perform multi-dimensional market segmentation analysis that identifies\
-    \ distinct customer clusters, quantifies their revenue potential, and provides\
-    \ optimization recommendations for each segment. Action: The query aggregates\
-    \ parking_events data across multiple dimensions including temporal patterns (day\
-    \ of week, time of day), spatial characteristics (lot location, zone type), and\
-    \ behavioral metrics (duration, frequency, payment method). It uses grouping to\
-    \ create market segments, calculates revenue metrics and growth rates for each\
-    \ cluster, applies window functions to rank segments by profitability and compute\
-    \ comparative performance metrics. NULL handling ensur\n\nBusiness Value: Market\
-    \ segments with characteristics, revenue potential, and optimization recommendations.\n\
-    \nComplexity: moderate\n\n---\n\nUse Case: Can you show me utilization pattern\
-    \ analysis with temporal decomposition and anomaly detection capabilities?\n\n\
-    Description: Situation: The operations team is experiencing unpredictable parking\
-    \ capacity issues, with some lots consistently overutilized while others remain\
-    \ underused. Without systematic pattern analysis and anomaly detection, the team\
-    \ cannot proactively manage capacity or optimize resource allocation across the\
-    \ parking network. Task: Conduct a comprehensive utilization pattern analysis\
-    \ that decomposes temporal trends, identifies anomalous usage patterns, and provides\
-    \ data-driven capacity planning recommendations. Action: The query analyzes parking_events\
-    \ across time dimensions, grouping by hour, day, week, and month to extract utilization\
-    \ patterns. It calculates occupancy rates, duration statistics, and turnover metrics\
-    \ for each lot and zone. Window functions compute rolling averages (7-day, 30-day)\
-    \ to establish baseline utilization, calculate standard deviations to detect anomalies\
-    \ (values exceeding 2 standard deviations from the mean), and generate trend indicators\
-    \ using LAG/LEAD functions. T\n\nBusiness Value: Utilization patterns with trend\
-    \ analysis, anomaly flags, and capacity planning recommendations.\n\nComplexity:\
-    \ moderate\n\n---\n\nUse Case: Can you generate a geographic expansion analysis\
-    \ with market opportunity scoring and risk assessment?\n\nDescription: Situation:\
-    \ The strategic planning team is evaluating potential geographic markets for expansion\
-    \ but lacks a systematic framework to assess opportunity size, competitive dynamics,\
-    \ and associated risks across different zones and regions. Ad-hoc decision-making\
-    \ has previously led to underperforming expansion investments. Task: Create a\
-    \ geographic expansion analysis that scores market opportunities, assesses entry\
-    \ risks, and prioritizes expansion targets based on data-driven metrics. Action:\
-    \ The query analyzes parking_events data aggregated by geographic dimensions (zones,\
-    \ lots, regions), calculating market size indicators such as total transaction\
-    \ volume, revenue density, and growth rates. It joins with lots and zones tables\
-    \ to incorporate location attributes and competitive metrics. Window functions\
-    \ rank geographic areas by opportunity score (weighted composite of revenue potential,\
-    \ growth trajectory, and market saturation). The query computes risk factors including\
-    \ revenue volatility (s\n\nBusiness Value: Market expansion opportunities with\
-    \ opportunity scores, risk assessments, and expansion priorities.\n\nComplexity:\
-    \ moderate\n\n---\n\nUse Case: Can you provide revenue forecasting models with\
-    \ time-series analysis and statistical confidence intervals?\n\nDescription: Situation:\
-    \ The finance team requires accurate revenue forecasts for budgeting and resource\
-    \ planning, but current projections lack statistical rigor and confidence measures,\
-    \ leading to unreliable financial planning and missed performance targets. Historical\
-    \ parking revenue data shows seasonal patterns and trends that need to be systematically\
-    \ modeled. Task: Develop revenue forecasting models that project future revenue\
-    \ using time-series analysis techniques and provide confidence intervals to quantify\
-    \ forecast uncertainty. Action: The query aggregates historical revenue data from\
-    \ parking_events by time periods (daily, weekly, monthly), calculating revenue\
-    \ totals and growth rates. It employs window functions to compute moving averages\
-    \ (smoothing short-term volatility), exponential smoothing weights for trend projection,\
-    \ and year-over-year comparisons to capture seasonality. The query calculates\
-    \ standard errors and constructs confidence intervals (typically 95%) using historical\
-    \ variance i\n\nBusiness Value: Query results with analysis and recommendations.\n\
-    \nComplexity: moderate\n\n---\n\nUse Case: Can you provide a competitive positioning\
-    \ analysis that shows our market share dynamics compared to competitors and includes\
-    \ strategic recommendations?\n\nDescription: Situation: Our parking management\
-    \ company operates multiple lots across the city and needs to understand our competitive\
-    \ position relative to other parking providers in overlapping zones. Market share\
-    \ dynamics are shifting due to new entrants and changing customer preferences,\
-    \ requiring data-driven strategic decisions. Task: Analyze competitive positioning\
-    \ by calculating market share metrics, identifying trends in customer preferences\
-    \ across competing lots, and generating strategic recommendations for pricing\
-    \ and capacity optimization. Action: The query joins parking_events with lots\
+    \ The business development team requires a comprehensive understanding of distinct\
+    \ market segments to allocate resources effectively and maximize revenue across\
+    \ different customer clusters. Current undifferentiated marketing approaches are\
+    \ resulting in suboptimal customer acquisition costs and revenue performance.\
+    \ Perform multi-dimensional market segmentation analysis that identifies distinct\
+    \ customer clusters, quantifies their revenue potential, and provides optimization\
+    \ recommendations for each segment. The query aggregates parking_events data across\
+    \ multiple dimensions including temporal patterns (day of week, time of day),\
+    \ spatial characteristics (lot location, zone type), and behavioral metrics (duration,\
+    \ frequency, payment method). It uses grouping to create market segments, calculates\
+    \ revenue metrics and growth rates for each cluster, applies window functions\
+    \ to rank segments by profitability and compute comparative performance metrics.\
+    \ NULL handling ensur\n\nBusiness Value: Market segments with characteristics,\
+    \ revenue potential, and optimization recommendations.\n\nComplexity: moderate\n\
+    \n---\n\nUse Case: Can you show me utilization pattern analysis with temporal\
+    \ decomposition and anomaly detection capabilities?\n\nDescription: The operations\
+    \ team is experiencing unpredictable parking capacity issues, with some lots consistently\
+    \ overutilized while others remain underused. Without systematic pattern analysis\
+    \ and anomaly detection, the team cannot proactively manage capacity or optimize\
+    \ resource allocation across the parking network. Conduct a comprehensive utilization\
+    \ pattern analysis that decomposes temporal trends, identifies anomalous usage\
+    \ patterns, and provides data-driven capacity planning recommendations. The query\
+    \ analyzes parking_events across time dimensions, grouping by hour, day, week,\
+    \ and month to extract utilization patterns. It calculates occupancy rates, duration\
+    \ statistics, and turnover metrics for each lot and zone. Window functions compute\
+    \ rolling averages (7-day, 30-day) to establish baseline utilization, calculate\
+    \ standard deviations to detect anomalies (values exceeding 2 standard deviations\
+    \ from the mean), and generate trend indicators using LAG/LEAD functions. T\n\n\
+    Business Value: Utilization patterns with trend analysis, anomaly flags, and capacity\
+    \ planning recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can you\
+    \ generate a geographic expansion analysis with market opportunity scoring and\
+    \ risk assessment?\n\nDescription: The strategic planning team is evaluating potential\
+    \ geographic markets for expansion but lacks a systematic framework to assess\
+    \ opportunity size, competitive dynamics, and associated risks across different\
+    \ zones and regions. Ad-hoc decision-making has previously led to underperforming\
+    \ expansion investments. Create a geographic expansion analysis that scores market\
+    \ opportunities, assesses entry risks, and prioritizes expansion targets based\
+    \ on data-driven metrics. The query analyzes parking_events data aggregated by\
+    \ geographic dimensions (zones, lots, regions), calculating market size indicators\
+    \ such as total transaction volume, revenue density, and growth rates. It joins\
+    \ with lots and zones tables to incorporate location attributes and competitive\
+    \ metrics. Window functions rank geographic areas by opportunity score (weighted\
+    \ composite of revenue potential, growth trajectory, and market saturation). The\
+    \ query computes risk factors including revenue volatility (s\n\nBusiness Value:\
+    \ Market expansion opportunities with opportunity scores, risk assessments, and\
+    \ expansion priorities.\n\nComplexity: moderate\n\n---\n\nUse Case: Can you provide\
+    \ revenue forecasting models with time-series analysis and statistical confidence\
+    \ intervals?\n\nDescription: The finance team requires accurate revenue forecasts\
+    \ for budgeting and resource planning, but current projections lack statistical\
+    \ rigor and confidence measures, leading to unreliable financial planning and\
+    \ missed performance targets. Historical parking revenue data shows seasonal patterns\
+    \ and trends that need to be systematically modeled. Develop revenue forecasting\
+    \ models that project future revenue using time-series analysis techniques and\
+    \ provide confidence intervals to quantify forecast uncertainty. The query aggregates\
+    \ historical revenue data from parking_events by time periods (daily, weekly,\
+    \ monthly), calculating revenue totals and growth rates. It employs window functions\
+    \ to compute moving averages (smoothing short-term volatility), exponential smoothing\
+    \ weights for trend projection, and year-over-year comparisons to capture seasonality.\
+    \ The query calculates standard errors and constructs confidence intervals (typically\
+    \ 95%) using historical variance i\n\nBusiness Value: Query results with analysis\
+    \ and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can you provide\
+    \ a competitive positioning analysis that shows our market share dynamics compared\
+    \ to competitors and includes strategic recommendations?\n\nDescription: Our parking\
+    \ management company operates multiple lots across the city and needs to understand\
+    \ our competitive position relative to other parking providers in overlapping\
+    \ zones. Market share dynamics are shifting due to new entrants and changing customer\
+    \ preferences, requiring data-driven strategic decisions. Analyze competitive\
+    \ positioning by calculating market share metrics, identifying trends in customer\
+    \ preferences across competing lots, and generating strategic recommendations\
+    \ for pricing and capacity optimization. The query joins parking_events with lots\
     \ and zones tables to aggregate utilization rates by provider and zone. It computes\
     \ market share percentages using window functions to compare our lots against\
     \ competitors, calculates rolling 3-month averages to identify trends, applies\
@@ -227,47 +224,46 @@ info:
     \ functions. Result:\n\nBusiness Value: Query results with analysis and recommendations.\n\
     \nComplexity: moderate\n\n---\n\nUse Case: What does the parking demand look like\
     \ across different business districts, and how can we optimize revenue based on\
-    \ these patterns?\n\nDescription: Situation: The city's business districts experience\
-    \ varying levels of parking demand throughout the week, influenced by office schedules,\
+    \ these patterns?\n\nDescription: The city's business districts experience varying\
+    \ levels of parking demand throughout the week, influenced by office schedules,\
     \ retail activity, and entertainment venues. Understanding the correlation between\
     \ district characteristics and parking demand is crucial for maximizing revenue\
-    \ across our lot portfolio. Task: Perform a comprehensive business district analysis\
+    \ across our lot portfolio. Perform a comprehensive business district analysis\
     \ that correlates parking demand patterns with district attributes, identifies\
     \ peak demand periods, and recommends revenue optimization strategies including\
-    \ dynamic pricing opportunities. Action: The query segments parking_events by\
-    \ business district zones, calculating hourly and daily demand patterns through\
-    \ temporal grouping. It uses window functions to compute moving averages for demand\
-    \ forecasting, correlates occupancy rates with zone characteristics (commercial,\
-    \ retail, mixed-use), performs comparative analysis across districts using RANK()\
-    \ and PERCENT_RANK() functions, and applies statistical aggregates to id\n\nBusiness\
-    \ Value: Query results with analysis and recommendations.\n\nComplexity: moderate\n\
-    \n---\n\nUse Case: How can we optimize our monthly parking operations while understanding\
-    \ customer lifetime value and improving retention rates?\n\nDescription: Situation:\
-    \ Our parking business offers both monthly subscription passes and transient parking\
-    \ options. Understanding customer lifetime value (CLV) and retention patterns\
-    \ is essential for resource allocation, marketing spend optimization, and long-term\
-    \ revenue forecasting. Monthly passholders represent stable revenue but we're\
-    \ seeing concerning churn trends that need investigation. Task: Conduct a monthly\
-    \ parking optimization analysis that calculates customer lifetime value, tracks\
-    \ retention cohorts over time, identifies churn risk factors, and provides actionable\
-    \ recommendations to improve customer retention and maximize long-term profitability.\
-    \ Action: The query aggregates parking_events by customer and month, calculating\
-    \ subscription tenure, total revenue per customer, and average monthly spend.\
-    \ It employs window functions with PARTITION BY customer_id to track retention\
-    \ across monthly cohorts, computes CLV using cumulative revenue calculations,\
-    \ applies LAG() and LEAD() functions to\n\nBusiness Value: Query results with\
-    \ analysis and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: What's\
-    \ the current state of EV charging facility utilization, and how should we forecast\
-    \ demand and model the revenue impact of expanding this service?\n\nDescription:\
-    \ Situation: Electric vehicle adoption is accelerating rapidly, and our parking\
-    \ lots with EV charging capabilities are experiencing increased demand. We need\
-    \ to evaluate current charging station utilization, forecast future demand based\
-    \ on EV adoption trends, and model the financial impact of adding more charging\
-    \ infrastructure across our lot portfolio. Task: Analyze existing EV charging\
-    \ facility performance, develop demand forecasts using historical growth patterns,\
-    \ model revenue scenarios for infrastructure expansion, and provide data-driven\
-    \ recommendations on where and when to invest in additional charging capacity.\
-    \ Action: The query filters parking_events to EV charging spots, joining with\
+    \ dynamic pricing opportunities. The query segments parking_events by business\
+    \ district zones, calculating hourly and daily demand patterns through temporal\
+    \ grouping. It uses window functions to compute moving averages for demand forecasting,\
+    \ correlates occupancy rates with zone characteristics (commercial, retail, mixed-use),\
+    \ performs comparative analysis across districts using RANK() and PERCENT_RANK()\
+    \ functions, and applies statistical aggregates to id\n\nBusiness Value: Query\
+    \ results with analysis and recommendations.\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: How can we optimize our monthly parking operations while understanding\
+    \ customer lifetime value and improving retention rates?\n\nDescription: Our parking\
+    \ business offers both monthly subscription passes and transient parking options.\
+    \ Understanding customer lifetime value (CLV) and retention patterns is essential\
+    \ for resource allocation, marketing spend optimization, and long-term revenue\
+    \ forecasting. Monthly passholders represent stable revenue but we're seeing concerning\
+    \ churn trends that need investigation. Conduct a monthly parking optimization\
+    \ analysis that calculates customer lifetime value, tracks retention cohorts over\
+    \ time, identifies churn risk factors, and provides actionable recommendations\
+    \ to improve customer retention and maximize long-term profitability. The query\
+    \ aggregates parking_events by customer and month, calculating subscription tenure,\
+    \ total revenue per customer, and average monthly spend. It employs window functions\
+    \ with PARTITION BY customer_id to track retention across monthly cohorts, computes\
+    \ CLV using cumulative revenue calculations, applies LAG() and LEAD() functions\
+    \ to\n\nBusiness Value: Query results with analysis and recommendations.\n\nComplexity:\
+    \ moderate\n\n---\n\nUse Case: What's the current state of EV charging facility\
+    \ utilization, and how should we forecast demand and model the revenue impact\
+    \ of expanding this service?\n\nDescription: Electric vehicle adoption is accelerating\
+    \ rapidly, and our parking lots with EV charging capabilities are experiencing\
+    \ increased demand. We need to evaluate current charging station utilization,\
+    \ forecast future demand based on EV adoption trends, and model the financial\
+    \ impact of adding more charging infrastructure across our lot portfolio. Analyze\
+    \ existing EV charging facility performance, develop demand forecasts using historical\
+    \ growth patterns, model revenue scenarios for infrastructure expansion, and provide\
+    \ data-driven recommendations on where and when to invest in additional charging\
+    \ capacity. The query filters parking_events to EV charging spots, joining with\
     \ lots table to identify facilities with charging infrastructure. It calculates\
     \ current utilization rates and revenue per charging space, applies window functions\
     \ to compute month-over-month growth rates in EV parking frequency, uses rolling\
@@ -275,263 +271,258 @@ info:
     \ Query results with analysis and recommendations.\n\nComplexity: moderate\n\n\
     ---\n\nUse Case: How do reservation customers compare to walk-in customers in\
     \ terms of revenue generation, and how can we use this to optimize capacity planning?\n\
-    \nDescription: Situation: Our parking lots accept both advance reservations and\
-    \ walk-in customers, creating a complex capacity management challenge. Reserved\
-    \ spaces guarantee revenue but may leave capacity unused if customers don't show,\
-    \ while walk-in customers provide flexibility but introduce revenue uncertainty.\
-    \ We need to optimize the reservation-to-walk-in ratio to maximize both revenue\
-    \ and utilization. Task: Conduct a comprehensive analysis comparing reservation\
-    \ and walk-in customer behavior, calculate revenue metrics for each segment, assess\
-    \ capacity utilization efficiency, identify optimal reservation allocation strategies,\
-    \ and provide recommendations for dynamic capacity planning that maximizes total\
-    \ revenue. Action: The query segments parking_events by reservation status (pre-booked\
-    \ versus walk-in), joining with lots and zones tables for location context. It\
-    \ calculates revenue per customer type, average duration, and no-show rates for\
-    \ reservations using window functions to track expected ve\n\nBusiness Value:\
-    \ Query results with analysis and recommendations.\n\nComplexity: moderate\n\n\
-    ---\n\nUse Case: Can you show me peak hour parking patterns with dynamic pricing\
-    \ recommendations and capacity utilization insights?\n\nDescription: Situation:\
-    \ Our parking management system needs to optimize revenue during high-demand periods\
-    \ while preventing capacity bottlenecks. Historical data from parking_events,\
-    \ lots, and zones tables contains timestamped entry/exit records, lot capacities,\
-    \ and zone classifications that can reveal hourly demand patterns. Task: Identify\
-    \ peak usage hours across different facility types and generate dynamic pricing\
-    \ recommendations to balance demand with available capacity. Action: The query\
-    \ segments parking events by hour of day and day of week, joining parking_events\
-    \ with lots and zones tables to aggregate occupancy rates, duration metrics, and\
-    \ revenue per hour. Window functions calculate rolling 3-hour average occupancy\
-    \ rates to identify sustained peak periods. The analysis computes occupancy quartiles\
-    \ by facility type and compares actual vs. capacity utilization ratios, flagging\
-    \ hours exceeding 85% capacity as requiring premium pricing. NULL values in optional\
-    \ zone attributes are handled with\n\nBusiness Value: Query results with analysis\
-    \ and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can you compare\
-    \ weekend versus weekday parking patterns and suggest optimal pricing strategies\
-    \ for each period?\n\nDescription: Situation: Parking demand characteristics differ\
-    \ significantly between weekdays (commuter-driven) and weekends (leisure-driven),\
-    \ requiring distinct pricing and operational strategies. The parking_events table\
-    \ contains timestamped transactions that can be segmented by day type, while lots\
-    \ and zones tables provide facility characteristics and current pricing structures.\
-    \ Task: Quantify the differences in parking behavior between weekends and weekdays,\
-    \ and develop pricing strategies optimized for each period's demand profile. Action:\
-    \ The query categorizes parking_events into weekend (Saturday/Sunday) and weekday\
-    \ (Monday-Friday) segments using date functions, then groups by this dimension\
-    \ along with lot and zone attributes. Aggregate functions compute average duration,\
-    \ turnover rate (events per space per day), peak occupancy, and revenue per space\
-    \ for each segment. Window functions calculate percentage differences between\
-    \ weekend and weekday metrics for the same facilities. The analysis inc\n\nBusiness\
-    \ Value: Query results with analysis and recommendations.\n\nComplexity: moderate\n\
-    \n---\n\nUse Case: Can you analyze performance by facility type and provide revenue\
-    \ maximization recommendations with competitive benchmarking?\n\nDescription:\
-    \ Situation: Our parking portfolio includes diverse facility types (garages, surface\
-    \ lots, street parking) with varying operational costs, capacity constraints,\
+    \nDescription: Our parking lots accept both advance reservations and walk-in customers,\
+    \ creating a complex capacity management challenge. Reserved spaces guarantee\
+    \ revenue but may leave capacity unused if customers don't show, while walk-in\
+    \ customers provide flexibility but introduce revenue uncertainty. We need to\
+    \ optimize the reservation-to-walk-in ratio to maximize both revenue and utilization.\
+    \ Conduct a comprehensive analysis comparing reservation and walk-in customer\
+    \ behavior, calculate revenue metrics for each segment, assess capacity utilization\
+    \ efficiency, identify optimal reservation allocation strategies, and provide\
+    \ recommendations for dynamic capacity planning that maximizes total revenue.\
+    \ The query segments parking_events by reservation status (pre-booked versus walk-in),\
+    \ joining with lots and zones tables for location context. It calculates revenue\
+    \ per customer type, average duration, and no-show rates for reservations using\
+    \ window functions to track expected ve\n\nBusiness Value: Query results with\
+    \ analysis and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can\
+    \ you show me peak hour parking patterns with dynamic pricing recommendations\
+    \ and capacity utilization insights?\n\nDescription: Our parking management system\
+    \ needs to optimize revenue during high-demand periods while preventing capacity\
+    \ bottlenecks. Historical data from parking_events, lots, and zones tables contains\
+    \ timestamped entry/exit records, lot capacities, and zone classifications that\
+    \ can reveal hourly demand patterns. Identify peak usage hours across different\
+    \ facility types and generate dynamic pricing recommendations to balance demand\
+    \ with available capacity. The query segments parking events by hour of day and\
+    \ day of week, joining parking_events with lots and zones tables to aggregate\
+    \ occupancy rates, duration metrics, and revenue per hour. Window functions calculate\
+    \ rolling 3-hour average occupancy rates to identify sustained peak periods. The\
+    \ analysis computes occupancy quartiles by facility type and compares actual vs.\
+    \ capacity utilization ratios, flagging hours exceeding 85% capacity as requiring\
+    \ premium pricing. NULL values in optional zone attributes are handled with\n\n\
+    Business Value: Query results with analysis and recommendations.\n\nComplexity:\
+    \ moderate\n\n---\n\nUse Case: Can you compare weekend versus weekday parking\
+    \ patterns and suggest optimal pricing strategies for each period?\n\nDescription:\
+    \ Parking demand characteristics differ significantly between weekdays (commuter-driven)\
+    \ and weekends (leisure-driven), requiring distinct pricing and operational strategies.\
+    \ The parking_events table contains timestamped transactions that can be segmented\
+    \ by day type, while lots and zones tables provide facility characteristics and\
+    \ current pricing structures. Quantify the differences in parking behavior between\
+    \ weekends and weekdays, and develop pricing strategies optimized for each period's\
+    \ demand profile. The query categorizes parking_events into weekend (Saturday/Sunday)\
+    \ and weekday (Monday-Friday) segments using date functions, then groups by this\
+    \ dimension along with lot and zone attributes. Aggregate functions compute average\
+    \ duration, turnover rate (events per space per day), peak occupancy, and revenue\
+    \ per space for each segment. Window functions calculate percentage differences\
+    \ between weekend and weekday metrics for the same facilities. The analysis inc\n\
+    \nBusiness Value: Query results with analysis and recommendations.\n\nComplexity:\
+    \ moderate\n\n---\n\nUse Case: Can you analyze performance by facility type and\
+    \ provide revenue maximization recommendations with competitive benchmarking?\n\
+    \nDescription: Our parking portfolio includes diverse facility types (garages,\
+    \ surface lots, street parking) with varying operational costs, capacity constraints,\
     \ and revenue potential. Data in parking_events, lots, and zones tables captures\
     \ utilization and revenue across these facility types, enabling performance comparison\
-    \ and optimization opportunity identification. Task: Benchmark performance across\
-    \ facility types, identify underperforming assets, and generate actionable recommendations\
-    \ to maximize revenue while maintaining competitive occupancy rates. Action: The\
-    \ query groups parking_events by facility type (from lots table) and calculates\
-    \ key performance indicators including revenue per space per month, average occupancy\
+    \ and optimization opportunity identification. Benchmark performance across facility\
+    \ types, identify underperforming assets, and generate actionable recommendations\
+    \ to maximize revenue while maintaining competitive occupancy rates. The query\
+    \ groups parking_events by facility type (from lots table) and calculates key\
+    \ performance indicators including revenue per space per month, average occupancy\
     \ rate, utilization efficiency (actual hours used / available hours), and average\
     \ transaction value. Window functions compute percentile rankings for each facility\
     \ within its type category, identifying top and bottom quartile performers. The\
     \ analysis uses CTEs to first\n\nBusiness Value: Query results with analysis and\
     \ recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can you break down\
     \ parking performance by operator type and assess market share with competitive\
-    \ positioning insights?\n\nDescription: Situation: The parking market includes\
-    \ multiple operator types (municipal, private commercial, institutional) competing\
-    \ for customers, each with different business models and objectives. Data from\
-    \ parking_events linked to lots and zones tables contains operator classifications\
-    \ and transaction history that reveals market dynamics and competitive positioning.\
-    \ Task: Analyze market share and operational performance by operator type to identify\
-    \ competitive advantages, market trends, and strategic positioning opportunities.\
-    \ Action: The query aggregates parking_events by operator type (extracted from\
-    \ lots table), computing total transactions, unique customer counts, market share\
-    \ percentages, revenue totals, and average pricing. Window functions calculate\
-    \ year-over-year growth rates and market share changes for each operator type.\
-    \ The analysis uses self-joins to compare each operator's metrics against category\
-    \ averages and market leaders. CTEs first establish market totals, then calculate\
-    \ each\n\nBusiness Value: Query results with analysis and recommendations.\n\n\
-    Complexity: moderate\n\n---\n\nUse Case: Can you provide a multi-city parking\
-    \ performance comparison with benchmarking analysis and best practice recommendations?\n\
-    \nDescription: Situation: Our organization operates parking facilities across\
-    \ multiple cities with varying demographics, regulations, and competitive landscapes.\
-    \ The parking_events, lots, and zones tables contain city identifiers and standardized\
-    \ metrics that enable cross-market performance comparison and best practice identification.\
-    \ Task: Compare parking operations performance across cities to identify top-performing\
-    \ markets, understand what drives their success, and extract transferable best\
-    \ practices for underperforming locations. Action: The query groups parking_events\
-    \ by city (from zones or lots table), calculating standardized KPIs including\
-    \ revenue per capita (using city population data), average occupancy rates, pricing\
-    \ levels, utilization efficiency, and customer satisfaction proxies (repeat usage\
-    \ rates). Window functions rank cities by each performance dimension and compute\
-    \ z-scores to identify statistical outliers. The analysis uses CTEs to normalize\
-    \ metrics for city size and market matur\n\nBusiness Value: Query results with\
-    \ analysis and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can\
-    \ you provide an MSA-level aggregation analysis that identifies regional market\
-    \ intelligence and potential expansion opportunities?\n\nDescription: Situation:\
-    \ The Parking Intelligence business operates across multiple Metropolitan Statistical\
-    \ Areas (MSAs) and needs to evaluate regional performance to identify high-potential\
-    \ markets for expansion. Data from parking_events, lots, and zones tables contains\
-    \ transactional and operational information including parking utilization rates,\
-    \ lot occupancy levels, and zone-specific metrics that can reveal market dynamics\
-    \ and growth opportunities. Task: Aggregate parking metrics at the MSA level to\
-    \ identify regional market intelligence and pinpoint expansion opportunities based\
-    \ on utilization trends, revenue potential, and competitive positioning. Action:\
-    \ The query joins parking_events with lots and zones tables to connect events\
-    \ to their geographic MSA regions. It groups data by MSA to compute aggregate\
+    \ positioning insights?\n\nDescription: The parking market includes multiple operator\
+    \ types (municipal, private commercial, institutional) competing for customers,\
+    \ each with different business models and objectives. Data from parking_events\
+    \ linked to lots and zones tables contains operator classifications and transaction\
+    \ history that reveals market dynamics and competitive positioning. Analyze market\
+    \ share and operational performance by operator type to identify competitive advantages,\
+    \ market trends, and strategic positioning opportunities. The query aggregates\
+    \ parking_events by operator type (extracted from lots table), computing total\
+    \ transactions, unique customer counts, market share percentages, revenue totals,\
+    \ and average pricing. Window functions calculate year-over-year growth rates\
+    \ and market share changes for each operator type. The analysis uses self-joins\
+    \ to compare each operator's metrics against category averages and market leaders.\
+    \ CTEs first establish market totals, then calculate each\n\nBusiness Value: Query\
+    \ results with analysis and recommendations.\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: Can you provide a multi-city parking performance comparison with benchmarking\
+    \ analysis and best practice recommendations?\n\nDescription: Our organization\
+    \ operates parking facilities across multiple cities with varying demographics,\
+    \ regulations, and competitive landscapes. The parking_events, lots, and zones\
+    \ tables contain city identifiers and standardized metrics that enable cross-market\
+    \ performance comparison and best practice identification. Compare parking operations\
+    \ performance across cities to identify top-performing markets, understand what\
+    \ drives their success, and extract transferable best practices for underperforming\
+    \ locations. The query groups parking_events by city (from zones or lots table),\
+    \ calculating standardized KPIs including revenue per capita (using city population\
+    \ data), average occupancy rates, pricing levels, utilization efficiency, and\
+    \ customer satisfaction proxies (repeat usage rates). Window functions rank cities\
+    \ by each performance dimension and compute z-scores to identify statistical outliers.\
+    \ The analysis uses CTEs to normalize metrics for city size and market matur\n\
+    \nBusiness Value: Query results with analysis and recommendations.\n\nComplexity:\
+    \ moderate\n\n---\n\nUse Case: Can you provide an MSA-level aggregation analysis\
+    \ that identifies regional market intelligence and potential expansion opportunities?\n\
+    \nDescription: The Parking Intelligence business operates across multiple Metropolitan\
+    \ Statistical Areas (MSAs) and needs to evaluate regional performance to identify\
+    \ high-potential markets for expansion. Data from parking_events, lots, and zones\
+    \ tables contains transactional and operational information including parking\
+    \ utilization rates, lot occupancy levels, and zone-specific metrics that can\
+    \ reveal market dynamics and growth opportunities. Aggregate parking metrics at\
+    \ the MSA level to identify regional market intelligence and pinpoint expansion\
+    \ opportunities based on utilization trends, revenue potential, and competitive\
+    \ positioning. The query joins parking_events with lots and zones tables to connect\
+    \ events to their geographic MSA regions. It groups data by MSA to compute aggregate\
     \ metrics including total parking events, average occupancy rates, revenue per\
     \ MSA, and utilization quartiles. Window functions calculate rolling averages\
     \ to identify trending markets and compar\n\nBusiness Value: Query results with\
     \ analysis and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can\
     \ you generate a time-series forecast with seasonal decomposition and trend analysis\
-    \ for our parking operations?\n\nDescription: Situation: The Parking Intelligence\
-    \ operations experience fluctuating demand patterns across different time periods,\
-    \ influenced by seasonal factors such as holidays, weather, and local events.\
-    \ Historical data in parking_events, lots, and zones tables captures timestamped\
-    \ transactions that reveal cyclical patterns and underlying trends critical for\
-    \ capacity planning and resource allocation. Task: Perform time-series forecasting\
-    \ that decomposes parking demand into seasonal, trend, and residual components\
-    \ to enable accurate prediction of future utilization and support operational\
-    \ planning. Action: The query extracts parking events with timestamps and groups\
-    \ data by time periods (hourly, daily, weekly, monthly) to construct time-series\
-    \ aggregates. It calculates moving averages using window functions with ROWS BETWEEN\
-    \ clauses to smooth short-term volatility and expose underlying trends. Seasonal\
-    \ components are identified by grouping by day-of-week, month, or hour-of-day\
-    \ and computing averag\n\nBusiness Value: Query results with analysis and recommendations.\n\
-    \nComplexity: moderate\n\n---\n\nUse Case: Can you perform anomaly detection analysis\
-    \ using statistical methods and generate alerts for unusual parking patterns?\n\
-    \nDescription: Situation: The Parking Intelligence platform monitors thousands\
-    \ of parking events daily across multiple lots and zones. Anomalous patterns such\
-    \ as unexpected occupancy spikes, unusual duration outliers, or irregular revenue\
-    \ fluctuations may indicate operational issues, system errors, fraudulent activity,\
-    \ or emerging demand shifts that require immediate attention. Historical data\
-    \ in parking_events, lots, and zones provides the baseline for detecting statistically\
-    \ significant deviations. Task: Identify anomalous parking events and patterns\
-    \ using statistical methods, flag outliers for investigation, and generate alerts\
-    \ when metrics deviate significantly from expected norms. Action: The query aggregates\
-    \ parking metrics by lot, zone, and time period, computing mean, standard deviation,\
-    \ and quartile boundaries for key indicators such as occupancy rate, parking duration,\
-    \ and revenue per event. Window functions calculate rolling statistics over relevant\
-    \ time windows (7-day, 30-day) to establis\n\nBusiness Value: Query results with\
-    \ analysis and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can\
-    \ you provide customer segmentation analysis that reveals behavioral patterns\
-    \ and suggests targeting strategies?\n\nDescription: Situation: The Parking Intelligence\
-    \ business serves a diverse customer base with varying parking behaviors, frequency\
-    \ patterns, duration preferences, and price sensitivities. Understanding these\
-    \ behavioral segments is essential for personalized marketing, dynamic pricing\
-    \ strategies, and service optimization. Data in parking_events captures individual\
-    \ customer transactions linked to lots and zones, providing rich behavioral signals\
-    \ for segmentation analysis. Task: Segment customers based on parking behavioral\
-    \ patterns such as frequency, duration, time-of-day preferences, and spending\
-    \ levels, then recommend targeted strategies for each segment to optimize engagement\
-    \ and revenue. Action: The query groups parking_events by customer identifiers\
-    \ to compute behavioral metrics including total visits, average parking duration,\
-    \ preferred time windows (morning/afternoon/evening), day-of-week patterns, total\
-    \ spend, and average transaction value. It uses NTILE or quartile functions to\
-    \ classify cust\n\nBusiness Value: Query results with analysis and recommendations.\n\
+    \ for our parking operations?\n\nDescription: The Parking Intelligence operations\
+    \ experience fluctuating demand patterns across different time periods, influenced\
+    \ by seasonal factors such as holidays, weather, and local events. Historical\
+    \ data in parking_events, lots, and zones tables captures timestamped transactions\
+    \ that reveal cyclical patterns and underlying trends critical for capacity planning\
+    \ and resource allocation. Perform time-series forecasting that decomposes parking\
+    \ demand into seasonal, trend, and residual components to enable accurate prediction\
+    \ of future utilization and support operational planning. The query extracts parking\
+    \ events with timestamps and groups data by time periods (hourly, daily, weekly,\
+    \ monthly) to construct time-series aggregates. It calculates moving averages\
+    \ using window functions with ROWS BETWEEN clauses to smooth short-term volatility\
+    \ and expose underlying trends. Seasonal components are identified by grouping\
+    \ by day-of-week, month, or hour-of-day and computing averag\n\nBusiness Value:\
+    \ Query results with analysis and recommendations.\n\nComplexity: moderate\n\n\
+    ---\n\nUse Case: Can you perform anomaly detection analysis using statistical\
+    \ methods and generate alerts for unusual parking patterns?\n\nDescription: The\
+    \ Parking Intelligence platform monitors thousands of parking events daily across\
+    \ multiple lots and zones. Anomalous patterns such as unexpected occupancy spikes,\
+    \ unusual duration outliers, or irregular revenue fluctuations may indicate operational\
+    \ issues, system errors, fraudulent activity, or emerging demand shifts that require\
+    \ immediate attention. Historical data in parking_events, lots, and zones provides\
+    \ the baseline for detecting statistically significant deviations. Identify anomalous\
+    \ parking events and patterns using statistical methods, flag outliers for investigation,\
+    \ and generate alerts when metrics deviate significantly from expected norms.\
+    \ The query aggregates parking metrics by lot, zone, and time period, computing\
+    \ mean, standard deviation, and quartile boundaries for key indicators such as\
+    \ occupancy rate, parking duration, and revenue per event. Window functions calculate\
+    \ rolling statistics over relevant time windows (7-day, 30-day) to establis\n\n\
+    Business Value: Query results with analysis and recommendations.\n\nComplexity:\
+    \ moderate\n\n---\n\nUse Case: Can you provide customer segmentation analysis\
+    \ that reveals behavioral patterns and suggests targeting strategies?\n\nDescription:\
+    \ The Parking Intelligence business serves a diverse customer base with varying\
+    \ parking behaviors, frequency patterns, duration preferences, and price sensitivities.\
+    \ Understanding these behavioral segments is essential for personalized marketing,\
+    \ dynamic pricing strategies, and service optimization. Data in parking_events\
+    \ captures individual customer transactions linked to lots and zones, providing\
+    \ rich behavioral signals for segmentation analysis. Segment customers based on\
+    \ parking behavioral patterns such as frequency, duration, time-of-day preferences,\
+    \ and spending levels, then recommend targeted strategies for each segment to\
+    \ optimize engagement and revenue. The query groups parking_events by customer\
+    \ identifiers to compute behavioral metrics including total visits, average parking\
+    \ duration, preferred time windows (morning/afternoon/evening), day-of-week patterns,\
+    \ total spend, and average transaction value. It uses NTILE or quartile functions\
+    \ to classify cust\n\nBusiness Value: Query results with analysis and recommendations.\n\
     \nComplexity: moderate\n\n---\n\nUse Case: Can you analyze price elasticity with\
     \ demand response modeling to identify revenue optimization opportunities?\n\n\
-    Description: Situation: The Parking Intelligence business uses dynamic pricing\
-    \ strategies across different lots, zones, and time periods to balance demand\
-    \ and maximize revenue. Understanding how parking demand responds to price changes—the\
-    \ price elasticity—is critical for setting optimal rates. Historical data in parking_events,\
+    Description: The Parking Intelligence business uses dynamic pricing strategies\
+    \ across different lots, zones, and time periods to balance demand and maximize\
+    \ revenue. Understanding how parking demand responds to price changes—the price\
+    \ elasticity—is critical for setting optimal rates. Historical data in parking_events,\
     \ lots, and zones captures pricing variations and corresponding demand levels,\
     \ enabling econometric analysis of price-demand relationships and revenue impacts.\
-    \ Task: Calculate price elasticity of demand, model how utilization responds to\
-    \ pricing changes, and identify optimal pricing strategies that maximize total\
-    \ revenue while maintaining target occupancy levels. Action: The query joins parking_events\
-    \ with lots and zones to associate each transaction with its price point and capacity\
+    \ Calculate price elasticity of demand, model how utilization responds to pricing\
+    \ changes, and identify optimal pricing strategies that maximize total revenue\
+    \ while maintaining target occupancy levels. The query joins parking_events with\
+    \ lots and zones to associate each transaction with its price point and capacity\
     \ context. It groups data by lot, zone, time period, and price tier to compute\
     \ demand metrics (number of events, occupancy rate) at different price levels.\
     \ Window functions calculate percentage cha\n\nBusiness Value: Query results with\
     \ analysis and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can\
     \ you provide a supply-demand gap analysis for our parking facilities along with\
     \ capacity planning insights and recommendations for facility expansion?\n\nDescription:\
-    \ Situation: The parking operations team is experiencing frequent capacity issues\
-    \ at multiple facilities and needs to identify which lots are undersupplied relative\
-    \ to demand. Historical data from parking_events, lots, and zones tables contains\
-    \ utilization patterns, occupancy rates, and zone-level demand signals that can\
-    \ inform strategic capacity planning decisions. Task: Analyze supply-demand gaps\
-    \ across all parking facilities, calculate capacity utilization rates, and generate\
-    \ data-driven recommendations for facility expansion prioritization. Action: The\
-    \ query joins parking_events with lots and zones to aggregate demand metrics by\
-    \ facility and time period. It computes occupancy rates, peak utilization percentages,\
-    \ and unfulfilled demand indicators using grouping by lot and zone dimensions.\
-    \ Window functions calculate rolling average occupancy trends and comparative\
-    \ metrics against facility capacity. Quartile analysis identifies facilities in\
-    \ the top tier of utilization requiring expansi\n\nBusiness Value: Query results\
-    \ with analysis and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case:\
-    \ Can you show me a market penetration analysis with growth metrics and suggested\
-    \ expansion strategies for our parking network?\n\nDescription: Situation: The\
-    \ business development team is planning to expand the parking network into new\
-    \ geographic areas and needs to understand current market penetration rates across\
-    \ existing zones. Data from parking_events, lots, and zones provides insights\
-    \ into usage patterns, market share by area, and untapped potential in underserved\
-    \ locations. Task: Calculate market penetration rates by zone, measure year-over-year\
-    \ growth metrics, and identify high-potential areas for strategic expansion investments.\
-    \ Action: The query aggregates parking_events by zone geography, computing unique\
-    \ user counts and event volumes as penetration proxies. It groups by zone and\
-    \ time dimensions to calculate growth rates using window functions with LAG to\
-    \ compare current versus prior period metrics. Market share is computed as the\
-    \ percentage of total events per zone. Rolling averages smooth seasonal volatility,\
-    \ and quartile rankings identify zones with above-median growth trajectories.\
-    \ NULL handling ensures incomplet\n\nBusiness Value: Query results with analysis\
-    \ and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can you analyze\
-    \ revenue per square foot across our parking facilities and provide optimization\
-    \ recommendations for improving facility efficiency?\n\nDescription: Situation:\
-    \ The finance and operations teams need to maximize return on parking facility\
-    \ assets by understanding which locations generate the most revenue relative to\
-    \ their physical footprint. The parking_events table contains transaction and\
+    \ The parking operations team is experiencing frequent capacity issues at multiple\
+    \ facilities and needs to identify which lots are undersupplied relative to demand.\
+    \ Historical data from parking_events, lots, and zones tables contains utilization\
+    \ patterns, occupancy rates, and zone-level demand signals that can inform strategic\
+    \ capacity planning decisions. Analyze supply-demand gaps across all parking facilities,\
+    \ calculate capacity utilization rates, and generate data-driven recommendations\
+    \ for facility expansion prioritization. The query joins parking_events with lots\
+    \ and zones to aggregate demand metrics by facility and time period. It computes\
+    \ occupancy rates, peak utilization percentages, and unfulfilled demand indicators\
+    \ using grouping by lot and zone dimensions. Window functions calculate rolling\
+    \ average occupancy trends and comparative metrics against facility capacity.\
+    \ Quartile analysis identifies facilities in the top tier of utilization requiring\
+    \ expansi\n\nBusiness Value: Query results with analysis and recommendations.\n\
+    \nComplexity: moderate\n\n---\n\nUse Case: Can you show me a market penetration\
+    \ analysis with growth metrics and suggested expansion strategies for our parking\
+    \ network?\n\nDescription: The business development team is planning to expand\
+    \ the parking network into new geographic areas and needs to understand current\
+    \ market penetration rates across existing zones. Data from parking_events, lots,\
+    \ and zones provides insights into usage patterns, market share by area, and untapped\
+    \ potential in underserved locations. Calculate market penetration rates by zone,\
+    \ measure year-over-year growth metrics, and identify high-potential areas for\
+    \ strategic expansion investments. The query aggregates parking_events by zone\
+    \ geography, computing unique user counts and event volumes as penetration proxies.\
+    \ It groups by zone and time dimensions to calculate growth rates using window\
+    \ functions with LAG to compare current versus prior period metrics. Market share\
+    \ is computed as the percentage of total events per zone. Rolling averages smooth\
+    \ seasonal volatility, and quartile rankings identify zones with above-median\
+    \ growth trajectories. NULL handling ensures incomplet\n\nBusiness Value: Query\
+    \ results with analysis and recommendations.\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: Can you analyze revenue per square foot across our parking facilities\
+    \ and provide optimization recommendations for improving facility efficiency?\n\
+    \nDescription: The finance and operations teams need to maximize return on parking\
+    \ facility assets by understanding which locations generate the most revenue relative\
+    \ to their physical footprint. The parking_events table contains transaction and\
     \ revenue data, while the lots table includes facility square footage and capacity\
-    \ specifications, enabling revenue efficiency analysis across the portfolio. Task:\
-    \ Calculate revenue per square foot for each parking facility, benchmark performance\
-    \ against portfolio averages, and identify optimization opportunities to improve\
-    \ underperforming locations. Action: The query joins parking_events revenue data\
-    \ with lots facility dimensions, grouping by lot to sum total revenue and divide\
-    \ by square footage. Aggregate functions compute revenue per square foot alongside\
-    \ utilization rates and average transaction values. Window functions calculate\
-    \ portfolio-wide percentile rankings and comparative metrics, identifying facilities\
-    \ in the bottom quartile for targeted\n\nBusiness Value: Query results with analysis\
-    \ and recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can you build\
-    \ a comprehensive market intelligence dashboard with multi-dimensional analytics\
-    \ across our parking operations?\n\nDescription: Situation: Executive leadership\
-    \ requires a unified view of parking operations performance across customer, financial,\
-    \ operational, and market dimensions to support strategic decision-making. The\
-    \ parking_events, lots, and zones tables contain granular transactional and operational\
-    \ data that can be aggregated into executive-level KPIs spanning revenue, utilization,\
-    \ customer behavior, and geographic performance. Task: Generate a multi-dimensional\
-    \ analytics dashboard that integrates customer engagement metrics, revenue performance\
-    \ indicators, facility utilization rates, and zone-level market trends into a\
-    \ single comprehensive view. Action: The query uses multiple CTEs to separately\
-    \ compute dimensional metrics: customer dimension aggregates unique users, visit\
-    \ frequency, and retention rates; revenue dimension sums transactions and calculates\
-    \ growth rates; operational dimension computes occupancy and turnover metrics;\
-    \ geographic dimension groups by zones for market coverage. Window functions\n\
+    \ specifications, enabling revenue efficiency analysis across the portfolio. Calculate\
+    \ revenue per square foot for each parking facility, benchmark performance against\
+    \ portfolio averages, and identify optimization opportunities to improve underperforming\
+    \ locations. The query joins parking_events revenue data with lots facility dimensions,\
+    \ grouping by lot to sum total revenue and divide by square footage. Aggregate\
+    \ functions compute revenue per square foot alongside utilization rates and average\
+    \ transaction values. Window functions calculate portfolio-wide percentile rankings\
+    \ and comparative metrics, identifying facilities in the bottom quartile for targeted\n\
     \nBusiness Value: Query results with analysis and recommendations.\n\nComplexity:\
-    \ moderate\n\n---\n\nUse Case: Can you perform a cross-database performance optimization\
-    \ analysis and provide query efficiency metrics for our parking intelligence system?\n\
-    \nDescription: Situation: The data engineering team has noticed increasing query\
-    \ latency across the parking intelligence analytics platform as data volumes have\
-    \ grown. The parking_events table has accumulated millions of rows, and complex\
-    \ analytical queries joining with lots and zones tables are experiencing performance\
-    \ degradation. Understanding query execution patterns, join efficiency, and aggregation\
-    \ costs is critical for optimization planning. Task: Analyze query performance\
-    \ patterns across the database, identify execution bottlenecks in common analytical\
-    \ queries, and provide specific optimization recommendations to improve efficiency.\
-    \ Action: The query examines execution patterns by grouping parking_events by\
-    \ time periods and computing row counts, join cardinalities, and aggregation complexities.\
-    \ It uses window functions to calculate query response time trends and identify\
-    \ queries with deteriorating performance over time. CTEs separate analysis of\
-    \ table scan costs, join efficiency metrics (comp\n\nBusiness Value: Query results\
-    \ with analysis and recommendations.\n\nComplexity: moderate\n\n---\n\n1. Create\
-    \ Database Schema:\n   \n\n2. Load Sample Data (optional):\n   \n\nRun the ETL\
-    \ pipeline to extract data from government sources:\n\nExecute queries from `queries/queries.md`\
-    \ using your preferred database client or application.\n\nRun the validation suite\
-    \ to verify queries:\n\n---\n\nLast Updated: 2026-02-04\n\n---\n\nAll queries\
-    \ in this database are designed to work across multiple database platforms:\n\n\
-    - PostgreSQL: Full support with standard SQL features\n\nQueries use standard\
-    \ SQL syntax and avoid platform-specific features to ensure compatibility.\n\n\
-    ---\n\nDocument Information:\n\n- Generated: 20260216-1856\n- Database: db-11\n\
+    \ moderate\n\n---\n\nUse Case: Can you build a comprehensive market intelligence\
+    \ dashboard with multi-dimensional analytics across our parking operations?\n\n\
+    Description: Executive leadership requires a unified view of parking operations\
+    \ performance across customer, financial, operational, and market dimensions to\
+    \ support strategic decision-making. The parking_events, lots, and zones tables\
+    \ contain granular transactional and operational data that can be aggregated into\
+    \ executive-level KPIs spanning revenue, utilization, customer behavior, and geographic\
+    \ performance. Generate a multi-dimensional analytics dashboard that integrates\
+    \ customer engagement metrics, revenue performance indicators, facility utilization\
+    \ rates, and zone-level market trends into a single comprehensive view. The query\
+    \ uses multiple CTEs to separately compute dimensional metrics: customer dimension\
+    \ aggregates unique users, visit frequency, and retention rates; revenue dimension\
+    \ sums transactions and calculates growth rates; operational dimension computes\
+    \ occupancy and turnover metrics; geographic dimension groups by zones for market\
+    \ coverage. Window functions\n\nBusiness Value: Query results with analysis and\
+    \ recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can you perform\
+    \ a cross-database performance optimization analysis and provide query efficiency\
+    \ metrics for our parking intelligence system?\n\nDescription: The data engineering\
+    \ team has noticed increasing query latency across the parking intelligence analytics\
+    \ platform as data volumes have grown. The parking_events table has accumulated\
+    \ millions of rows, and complex analytical queries joining with lots and zones\
+    \ tables are experiencing performance degradation. Understanding query execution\
+    \ patterns, join efficiency, and aggregation costs is critical for optimization\
+    \ planning. Analyze query performance patterns across the database, identify execution\
+    \ bottlenecks in common analytical queries, and provide specific optimization\
+    \ recommendations to improve efficiency. The query examines execution patterns\
+    \ by grouping parking_events by time periods and computing row counts, join cardinalities,\
+    \ and aggregation complexities. It uses window functions to calculate query response\
+    \ time trends and identify queries with deteriorating performance over time. CTEs\
+    \ separate analysis of table scan costs, join efficiency metrics (comp\n\nBusiness\
+    \ Value: Query results with analysis and recommendations.\n\nComplexity: moderate\n\
+    \n---\n\n1. Create Database Schema:\n   \n\n2. Load Sample Data (optional):\n\
+    \   \n\nRun the ETL pipeline to extract data from government sources:\n\nExecute\
+    \ queries from `queries/queries.md` using your preferred database client or application.\n\
+    \nRun the validation suite to verify queries:\n\n---\n\nLast Updated: 2026-02-04\n\
+    \n---\n\nAll queries in this database are designed to work across multiple database\
+    \ platforms:\n\n- PostgreSQL: Full support with standard SQL features\n\nQueries\
+    \ use standard SQL syntax and avoid platform-specific features to ensure compatibility.\n\
+    \n---\n\nDocument Information:\n\n- Generated: 20260216-2243\n- Database: db-11\n\
     - Type: Parking Intelligence Database\n- Queries: 30 production queries\n- Status:\
     \ ✅ Complete Comprehensive Deliverable"
   version: 1.0.0

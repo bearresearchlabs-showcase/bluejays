@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/db_documentation.schema.json",
+  "title": "Database Documentation Config",
+  "description": "JSON Schema for db-N documentation (installation, specs, schema, data dictionary). Output: MDX-compatible markdown (https://mdxjs.com/) with YAML frontmatter, CommonMark body.",
+  "type": "object",
+  "required": [
+    "database",
+    "installation_guide",
+    "specifications"
+  ],
+  "properties": {
+    "database": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^db-\\d+$",
+          "description": "Database identifier (e.g. db-1)"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Database display name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Database type"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status (e.g. Complete)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Database description"
+        }
+      }
+    },
+    "installation_guide": {
+      "type": "object",
+      "required": [
+        "steps"
+      ],
+      "properties": {
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "title"
+            ],
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string"
+              },
+              "commands": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "specifications": {
+      "type": "object",
+      "properties": {
+        "postgresql_version": {
+          "type": "string",
+          "description": "Minimum PostgreSQL version"
+        },
+        "extensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disk_space_mb": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "memory_mb": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "platforms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "schema": {
+      "type": "object",
+      "description": "Reference to deliverable JSON schema section (no inline SQL)",
+      "properties": {
+        "overview": {
+          "type": "string"
+        },
+        "table_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "tables": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "er_diagram": {
+          "type": "string",
+          "description": "Mermaid ER diagram"
+        }
+      }
+    },
+    "data_dictionary": {
+      "type": "object",
+      "description": "Reference to docs/DATA_DICTIONARY.md structure",
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "Path to DATA_DICTIONARY.md"
+        },
+        "tables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "columns": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "nullable": {
+                      "type": "boolean"
+                    },
+                    "default": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "frontmatter": {
+      "type": "object",
+      "description": "MDX YAML frontmatter. Optional overrides for title, description.",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "database": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

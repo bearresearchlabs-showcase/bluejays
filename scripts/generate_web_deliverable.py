@@ -49,7 +49,12 @@ def parse_schema(sql_content: str) -> list:
         line_stripped = line.strip()
 
         if line_stripped.startswith('CREATE TABLE'):
-            match = re.match(r'CREATE TABLE\s+(\w+)', line_stripped, re.IGNORECASE)
+            # Handle: CREATE TABLE [IF NOT EXISTS] [schema.]table_name
+            match = re.match(
+                r'CREATE TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?(?:\w+\.)?(\w+)',
+                line_stripped,
+                re.IGNORECASE,
+            )
             if match:
                 if current_table:
                     tables.append(current_table)
@@ -59,30 +64,49 @@ def parse_schema(sql_content: str) -> list:
                     'columns': []
                 }
 
-        elif current_table and re.match(r'^\w+\s+', line_stripped):
-            parts = line_stripped.split(',')[0].strip()
-            if parts:
-                col_match = re.match(r'(\w+)\s+([^,\s]+(?:\s*\([^)]+\))?)', parts)
-                if col_match:
-                    col_name = col_match.group(1)
-                    col_type = col_match.group(2)
-                    constraints = []
-                    if 'PRIMARY KEY' in line_stripped:
-                        constraints.append('PRIMARY KEY')
-                    if 'UNIQUE' in line_stripped:
-                        constraints.append('UNIQUE')
-                    if 'NOT NULL' in line_stripped:
-                        constraints.append('NOT NULL')
-                    if 'FOREIGN KEY' in line_stripped or 'REFERENCES' in line_stripped:
-                        constraints.append('FOREIGN KEY')
-                    desc_match = re.search(r'--\s*(.+)', line_stripped)
-                    description = desc_match.group(1) if desc_match else ''
-                    current_table['columns'].append({
-                        'name': col_name,
-                        'data_type': col_type,
-                        'constraints': ', '.join(constraints) if constraints else '',
-                        'description': description
-                    })
+        elif line_stripped.startswith('CREATE INDEX') or line_stripped.startswith('CREATE UNIQUE INDEX'):
+            if current_table:
+                tables.append(current_table)
+                current_table = None
+
+        elif current_table:
+            # Skip table-level constraints
+            if re.match(r"^\s*PRIMARY\s+KEY\s*\(", line_stripped, re.IGNORECASE):
+                continue
+            if re.match(r"^\s*UNIQUE\s*\(", line_stripped, re.IGNORECASE):
+                continue
+            if re.match(r"^\s*CONSTRAINT\s+", line_stripped, re.IGNORECASE):
+                continue
+            if re.match(r"^\s*FOREIGN\s+KEY\s*\(", line_stripped, re.IGNORECASE):
+                continue
+            if re.match(r"^\s*CHECK\s*\(", line_stripped, re.IGNORECASE):
+                continue
+            # Parse column: name type [constraints] — type may contain commas e.g. NUMERIC(10,2)
+            line_no_trailing = line_stripped.rstrip(',').strip()
+            col_match = re.match(
+                r'(\w+)\s+([A-Za-z][A-Za-z0-9_]*(?:\s*\([^)]*\))?)\s*(.*)$',
+                line_no_trailing,
+            )
+            if col_match:
+                col_name = col_match.group(1)
+                col_type = col_match.group(2)
+                constraints = []
+                if 'PRIMARY KEY' in line_stripped:
+                    constraints.append('PRIMARY KEY')
+                if 'UNIQUE' in line_stripped:
+                    constraints.append('UNIQUE')
+                if 'NOT NULL' in line_stripped:
+                    constraints.append('NOT NULL')
+                if 'FOREIGN KEY' in line_stripped or 'REFERENCES' in line_stripped:
+                    constraints.append('FOREIGN KEY')
+                desc_match = re.search(r'--\s*(.+)', line_stripped)
+                description = desc_match.group(1) if desc_match else ''
+                current_table['columns'].append({
+                    'name': col_name,
+                    'data_type': col_type,
+                    'constraints': ', '.join(constraints) if constraints else '',
+                    'description': description
+                })
 
     if current_table:
         tables.append(current_table)
