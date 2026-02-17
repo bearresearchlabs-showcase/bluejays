@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-3
-domain: Hierarchical Orders / Supply Chain
-source: [commercial]
-license_type: [Commercial]
-license_cost: [NDA]
-tables: 3
-total_rows: ~120
+domain: retail, orders, hierarchy, e-commerce
+source: synthetic
+license_type: Open
+license_cost: $0
+tables: 4
+total_rows: ~5K
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,30 +17,19 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for hierarchical order management (LinkWay). It models
-parent-child order hierarchies, related line items, and cross-linked metrics. It is
-designed to support text-to-SQL training across tree traversal, aggregation, and
-recursive query patterns commonly encountered in order and supply-chain analytics.
+This database supports analytics for hierarchical order structures: parent-child relationships, order aggregation, and multi-level reporting.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-3:
-- Hierarchy analytics: rollups by parent, subtree aggregation, depth analysis
-- Order metrics: value totals by category, status, date; trend and outlier detection
-- Related data: table2/table3 joins for line-item and metric analysis
-- Dashboards: daily/weekly/monthly aggregations, quartiles, rolling averages
+Target use cases: order hierarchy analytics, parent-child rollups, category reporting, value aggregation.
 ```
 
 ## Business Value
 
 ```text
-Hierarchical order databases represent high-value domains for text-to-SQL because:
-- Queries require recursive CTEs and tree traversal (parent_id → id chains)
-- Aggregations span multiple levels (leaf → branch → root rollups)
-- Stakeholders need self-serve reporting (operations, finance, supply chain)
-- Evidence bridges natural-language questions to schema-grounded SQL.
+Enables e-commerce and B2B platforms to analyze order trees and aggregate metrics across hierarchy levels ($1M+ ARR).
 ```
 
 ## Schema
@@ -102,23 +91,7 @@ CREATE INDEX IF NOT EXISTS idx_table3_table2_id ON table3(table2_id);
 ## Domain Knowledge
 
 ```text
-Key domain concepts required to write correct queries against this database:
-
-HIERARCHY (table1):
-- Self-referential: parent_id references id; root rows have parent_id NULL
-- id: primary key; parent_id: foreign key to table1(id), ON DELETE SET NULL
-- name, value (NUMERIC), category, date_col for grouping and aggregation
-- created_at, updated_at for temporal filtering
-
-RELATED TABLES:
-- table2: child of table1; table1_id references table1(id), ON DELETE CASCADE
-- table3: links table1 and table2; table1_id, table2_id; metric_value, status
-- table3 requires both table1 and table2; use JOINs for cross-table analytics
-
-AGGREGATION PATTERNS:
-- Rolling averages, quartiles (PERCENTILE_CONT), z-scores for outlier detection
-- GROUP BY category, date_col, or status for segmentation
-- Recursive CTEs (WITH RECURSIVE) for subtree traversal and depth calculation
+table1 (parent_id hierarchy), table2, table3, orders_order view. Self-referential and multi-table joins.
 ```
 
 ## Query Difficulty Distribution
@@ -157,8 +130,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -183,8 +154,6 @@ Target distribution across 30 queries:
   "normal_query": "Compute weekly order total amount statistics by order status bucket with quartiles, z-score outliers, and increasing-trend counts."
 }
 ```
-
-
 
 ### Query 3 — moderate / aggregation
 
@@ -211,8 +180,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -237,8 +204,6 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily order total amount statistics by order status with outlier count, increasing-trend count, and maximum cumulative sum."
 }
 ```
-
-
 
 ### Query 5 — moderate / aggregation
 
@@ -265,8 +230,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -291,8 +254,6 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily order total amount statistics grouped by order status, with quartiles, rolling average, and z-score based outlier count."
 }
 ```
-
-
 
 ### Query 7 — moderate / aggregation
 
@@ -319,8 +280,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 8 — moderate / aggregation
 
 ```json
@@ -345,8 +304,6 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily order total amount statistics per seller with sequential differences, gap analysis, and quartiles."
 }
 ```
-
-
 
 ### Query 9 — moderate / aggregation
 
@@ -373,8 +330,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 10 — moderate / aggregation
 
 ```json
@@ -399,8 +354,6 @@ Target distribution across 30 queries:
   "normal_query": "Compute weekly order total amount statistics per seller with recency-frequency metrics, quartiles, and rolling average."
 }
 ```
-
-
 
 ### Query 11 — moderate / aggregation
 
@@ -427,8 +380,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 12 — moderate / aggregation
 
 ```json
@@ -453,8 +404,6 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily order total amounts for each seller with acceleration metrics (second-order derivatives), quartile distributions, and outlier detection counts."
 }
 ```
-
-
 
 ### Query 13 — moderate / aggregation
 
@@ -481,8 +430,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 14 — moderate / aggregation
 
 ```json
@@ -507,8 +454,6 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly order total amounts for each seller with weighted moving average smoothing, quartile distributions, and counts of increasing trends."
 }
 ```
-
-
 
 ### Query 15 — moderate / aggregation
 
@@ -535,8 +480,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -561,8 +504,6 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly order total amount statistics for each seller including lifetime-value style metrics, quartiles, and cumulative sum."
 }
 ```
-
-
 
 ### Query 17 — moderate / aggregation
 
@@ -589,8 +530,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 18 — moderate / aggregation
 
 ```json
@@ -615,8 +554,6 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily order total amount statistics for each seller structured as heatmap dimensions, including quartiles and outlier counts."
 }
 ```
-
-
 
 ### Query 19 — moderate / aggregation
 
@@ -643,8 +580,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 20 — moderate / aggregation
 
 ```json
@@ -669,8 +604,6 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly order total amount statistics for each seller including cross-correlation style metrics, quartiles, and rolling averages."
 }
 ```
-
-
 
 ### Query 21 — moderate / aggregation
 
@@ -697,8 +630,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -723,8 +654,6 @@ Target distribution across 30 queries:
   "normal_query": "Calculate comprehensive weekly order total amount statistics for each seller, providing all dashboard metrics including quartiles and multi-metric aggregations."
 }
 ```
-
-
 
 ### Query 23 — moderate / aggregation
 
@@ -751,8 +680,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -777,8 +704,6 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily order total amount statistics for each seller, including concentration index metrics, quartile distributions, and outlier identification counts."
 }
 ```
-
-
 
 ### Query 25 — moderate / aggregation
 
@@ -805,17 +730,38 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 26 — moderate / aggregation
 
 ```json
 {
   "db_id": "db-3",
   "question_id": 26,
-  "question": "What are the monthly order totals for each seller, broken down with quartiles for fiscal period comparison?",
-  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY status ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM orders_order\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.status) AS daily_partition_count,\n        AVG(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN 8 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 310\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS next_value,\n        c2.total_amount - LAG(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.total_amount) OVER (PARTITION BY c2.status) AS partition_avg,\n        STDDEV(c2.total_amount) OVER (PARTITION BY c2.status) AS partition_stddev,\n        NTILE(6) OVER (PARTITION BY c2.status ORDER BY c2.total_amount) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.total_amount DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.total_amount - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.status ORDER BY c3.total_amount) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.status,\n    COUNT(*) AS record_count,\n    AVG(c4.total_amount) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.total_amount) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.total_amount) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.total_amount) AS q3_value,\n    STDDEV(c4.total_amount) AS stddev_value,\n    MIN(c4.total_amount) AS min_value,\n    MAX(c4.total_amount) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.status\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
-  "evidence": "The query groups by seller and month using DATE_TRUNC('month'). It calculates quartiles (PERCENTILE_CONT), average, and standard deviation. Limits to 80 records per seller. Output includes quartile breakdowns for fiscal period comparison.",
+  "question": "What are the monthly order totals for each seller (root node), including subtree rollups and quartiles for fiscal period comparison?",
+  "SQL": "WITH RECURSIVE hierarchy AS (\n    SELECT id AS node_id, id AS root_id, 1 AS depth,\n           COALESCE(value, 0) AS total_amount,\n           COALESCE(created_at, date_col::timestamp) AS created_at\n    FROM table1\n    WHERE parent_id IS NULL\n    UNION ALL\n    SELECT t.id, h.root_id, h.depth + 1,\n           COALESCE(t.value, 0),\n           COALESCE(t.created_at, t.date_col::timestamp)\n    FROM table1 t\n    JOIN hierarchy h ON t.parent_id = h.node_id\n),\ncte_monthly AS (\n    SELECT\n        DATE_TRUNC('month', created_at) AS period,\n        root_id AS seller_id,\n        total_amount,\n        depth,\n        ROW_NUMBER() OVER (PARTITION BY root_id, DATE_TRUNC('month', created_at) ORDER BY created_at DESC) AS rn\n    FROM hierarchy\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_limited AS (\n    SELECT * FROM cte_monthly WHERE rn <= 80\n)\nSELECT\n    period,\n    seller_id,\n    COUNT(*) AS record_count,\n    AVG(total_amount) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY total_amount) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY total_amount) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY total_amount) AS q3_value,\n    STDDEV(total_amount) AS stddev_value,\n    MIN(total_amount) AS min_value,\n    MAX(total_amount) AS max_value\nFROM cte_limited\nGROUP BY period, seller_id\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "Uses WITH RECURSIVE to traverse the parent_id hierarchy in table1. Anchor selects root nodes (parent_id IS NULL); recursive part joins children to parents. Computes subtree rollups by root_id (seller), groups by month, and calculates quartiles for fiscal period comparison.",
+  "difficulty": "moderate",
+  "query_category": "aggregation",
+  "tables_used": [
+    "table1",
+    "hierarchy",
+    "cte_monthly",
+    "cte_limited"
+  ],
+  "schema_context": {},
+  "expected_output": "Aggregated metrics grouped by month and seller_id (root node)",
+  "normal_query": "Calculate monthly aggregated order total amounts per seller (root) with recursive subtree rollup and quartile distributions for fiscal period comparison."
+}
+```
+
+### Query 27 — moderate / aggregation
+
+```json
+{
+  "db_id": "db-3",
+  "question_id": 27,
+  "question": "What are the daily order totals by order status, including throughput metrics, quartiles, and rolling averages?",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY status ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM orders_order\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.status) AS daily_partition_count,\n        AVG(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN 7 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 90\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS next_value,\n        c2.total_amount - LAG(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.total_amount) OVER (PARTITION BY c2.status) AS partition_avg,\n        STDDEV(c2.total_amount) OVER (PARTITION BY c2.status) AS partition_stddev,\n        NTILE(6) OVER (PARTITION BY c2.status ORDER BY c2.total_amount) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.total_amount DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.total_amount - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.status ORDER BY c3.total_amount) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.status,\n    COUNT(*) AS record_count,\n    AVG(c4.total_amount) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.total_amount) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.total_amount) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.total_amount) AS q3_value,\n    STDDEV(c4.total_amount) AS stddev_value,\n    MIN(c4.total_amount) AS min_value,\n    MAX(c4.total_amount) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.status\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "The query groups by status and day. It calculates record_count (volume), avg_rolling (7-row moving average), max_cumulative (peak capacity). Limits to 90 records per status, >=2 records per group. Output includes throughput indicators, quartiles, and rolling averages.",
   "difficulty": "moderate",
   "query_category": "aggregation",
   "tables_used": [
@@ -828,21 +774,19 @@ Target distribution across 30 queries:
   ],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and status",
-  "normal_query": "Calculate monthly aggregated order total amounts per seller with quartile distributions to enable fiscal period-over-period comparison."
+  "normal_query": "Calculate daily order total amounts grouped by order status with throughput optimization metrics, quartile distributions, and rolling averages."
 }
 ```
 
-
-
-### Query 27 — moderate / aggregation
+### Query 28 — moderate / aggregation
 
 ```json
 {
   "db_id": "db-3",
-  "question_id": 27,
-  "question": "What are the daily order totals by order status, including throughput metrics, quartiles, and rolling averages?",
-  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY seller_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM orders_order\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.seller_id) AS daily_partition_count,\n        AVG(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at ROWS BETWEEN 9 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 320\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.total_amount, 1) OVER (PARTITION BY c2.seller_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.total_amount, 1) OVER (PARTITION BY c2.seller_id ORDER BY c2.created_at) AS next_value,\n        c2.total_amount - LAG(c2.total_amount, 1) OVER (PARTITION BY c2.seller_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.total_amount) OVER (PARTITION BY c2.seller_id) AS partition_avg,\n        STDDEV(c2.total_amount) OVER (PARTITION BY c2.seller_id) AS partition_stddev,\n        NTILE(7) OVER (PARTITION BY c2.seller_id ORDER BY c2.total_amount) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.total_amount DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.total_amount - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.seller_id ORDER BY c3.total_amount) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.seller_id,\n    COUNT(*) AS record_count,\n    AVG(c4.total_amount) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.total_amount) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.total_amount) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.total_amount) AS q3_value,\n    STDDEV(c4.total_amount) AS stddev_value,\n    MIN(c4.total_amount) AS min_value,\n    MAX(c4.total_amount) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.seller_id\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
-  "evidence": "The query groups by status and day. It calculates record_count (volume), avg_rolling (7-row moving average), max_cumulative (peak capacity). Limits to 90 records per status, \u22652 records per group. Output includes throughput indicators, quartiles, and rolling averages.",
+  "question_id": 28,
+  "question": "What are the weekly order totals per seller with cumulative trends, quartiles, and activity rankings?",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY seller_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM orders_order\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.seller_id) AS daily_partition_count,\n        AVG(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 100\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.total_amount, 1) OVER (PARTITION BY c2.seller_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.total_amount, 1) OVER (PARTITION BY c2.seller_id ORDER BY c2.created_at) AS next_value,\n        c2.total_amount - LAG(c2.total_amount, 1) OVER (PARTITION BY c2.seller_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.total_amount) OVER (PARTITION BY c2.seller_id) AS partition_avg,\n        STDDEV(c2.total_amount) OVER (PARTITION BY c2.seller_id) AS partition_stddev,\n        NTILE(8) OVER (PARTITION BY c2.seller_id ORDER BY c2.total_amount) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.total_amount DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.total_amount - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.seller_id ORDER BY c3.total_amount) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('week', c4.created_at) AS period,\n    c4.seller_id,\n    COUNT(*) AS record_count,\n    AVG(c4.total_amount) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.total_amount) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.total_amount) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.total_amount) AS q3_value,\n    STDDEV(c4.total_amount) AS stddev_value,\n    MIN(c4.total_amount) AS min_value,\n    MAX(c4.total_amount) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('week', c4.created_at), c4.seller_id\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "The query computes cumulative_sum and max_cumulative. It derives trend_direction and increasing_count. Ranks sellers by cumulative sum. Filters to >=3 records per group. Output includes cumulative trend indicators, quartiles, and seller rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
   "tables_used": [
@@ -855,21 +799,19 @@ Target distribution across 30 queries:
   ],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and seller_id",
-  "normal_query": "Calculate daily order total amounts grouped by order status with throughput optimization metrics, quartile distributions, and rolling averages."
+  "normal_query": "Calculate weekly order total amounts for each seller with cumulative trend analysis, quartile distributions, and seller ranking."
 }
 ```
 
-
-
-### Query 28 — moderate / aggregation
+### Query 29 — moderate / aggregation
 
 ```json
 {
   "db_id": "db-3",
-  "question_id": 28,
-  "question": "What are the weekly order totals per seller with cumulative trends, quartiles, and activity rankings?",
-  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY status ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM orders_order\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.status) AS daily_partition_count,\n        AVG(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 330\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS next_value,\n        c2.total_amount - LAG(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.total_amount) OVER (PARTITION BY c2.status) AS partition_avg,\n        STDDEV(c2.total_amount) OVER (PARTITION BY c2.status) AS partition_stddev,\n        NTILE(8) OVER (PARTITION BY c2.status ORDER BY c2.total_amount) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.total_amount DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.total_amount - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.status ORDER BY c3.total_amount) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.status,\n    COUNT(*) AS record_count,\n    AVG(c4.total_amount) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.total_amount) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.total_amount) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.total_amount) AS q3_value,\n    STDDEV(c4.total_amount) AS stddev_value,\n    MIN(c4.total_amount) AS min_value,\n    MAX(c4.total_amount) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.status\nHAVING COUNT(*) >= 2\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
-  "evidence": "The query computes cumulative_sum and max_cumulative. It derives trend_direction and increasing_count. Ranks sellers by cumulative sum. Filters to \u22653 records per group. Output includes cumulative trend indicators, quartiles, and seller rankings.",
+  "question_id": 29,
+  "question": "What are the monthly order totals by order status with multi-dimensional aggregations and quartiles?",
+  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY status ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM orders_order\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.status) AS daily_partition_count,\n        AVG(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.total_amount) OVER (PARTITION BY c1.status ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 90\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS next_value,\n        c2.total_amount - LAG(c2.total_amount, 1) OVER (PARTITION BY c2.status ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.total_amount) OVER (PARTITION BY c2.status) AS partition_avg,\n        STDDEV(c2.total_amount) OVER (PARTITION BY c2.status) AS partition_stddev,\n        NTILE(9) OVER (PARTITION BY c2.status ORDER BY c2.total_amount) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.total_amount DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.total_amount - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.status ORDER BY c3.total_amount) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('month', c4.created_at) AS period,\n    c4.status,\n    COUNT(*) AS record_count,\n    AVG(c4.total_amount) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.total_amount) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.total_amount) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.total_amount) AS q3_value,\n    STDDEV(c4.total_amount) AS stddev_value,\n    MIN(c4.total_amount) AS min_value,\n    MAX(c4.total_amount) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('month', c4.created_at), c4.status\nHAVING COUNT(*) >= 1\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
+  "evidence": "The query uses time period (month) and order status as grouping dimensions. It aggregates record count, average, quartiles, stddev, min, max, outlier_count, trend indicators. Requires >=1 record per group. Output includes multi-dimensional aggregate metrics and quartiles.",
   "difficulty": "moderate",
   "query_category": "aggregation",
   "tables_used": [
@@ -882,38 +824,9 @@ Target distribution across 30 queries:
   ],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and status",
-  "normal_query": "Calculate weekly order total amounts for each seller with cumulative trend analysis, quartile distributions, and seller ranking."
-}
-```
-
-
-
-### Query 29 — moderate / aggregation
-
-```json
-{
-  "db_id": "db-3",
-  "question_id": 29,
-  "question": "What are the monthly order totals by order status with multi-dimensional aggregations and quartiles?",
-  "SQL": "WITH cte_level_1 AS (\n    SELECT \n        *,\n        ROW_NUMBER() OVER (PARTITION BY seller_id ORDER BY created_at DESC) AS rn,\n        DATE_TRUNC('day', created_at) AS day_bucket,\n        DATE_TRUNC('week', created_at) AS week_bucket,\n        EXTRACT(HOUR FROM created_at) AS hour_val,\n        EXTRACT(DOW FROM created_at) AS dow_val\n    FROM orders_order\n    WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '365 days'\n),\ncte_level_2 AS (\n    SELECT\n        c1.*,\n        COUNT(*) OVER (PARTITION BY c1.day_bucket, c1.seller_id) AS daily_partition_count,\n        AVG(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS rolling_avg,\n        SUM(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum,\n        FIRST_VALUE(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at) AS first_val,\n        LAST_VALUE(c1.total_amount) OVER (PARTITION BY c1.seller_id ORDER BY c1.created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_val\n    FROM cte_level_1 c1\n    WHERE c1.rn <= 340\n),\ncte_level_3 AS (\n    SELECT\n        c2.*,\n        LAG(c2.total_amount, 1) OVER (PARTITION BY c2.seller_id ORDER BY c2.created_at) AS prev_value,\n        LEAD(c2.total_amount, 1) OVER (PARTITION BY c2.seller_id ORDER BY c2.created_at) AS next_value,\n        c2.total_amount - LAG(c2.total_amount, 1) OVER (PARTITION BY c2.seller_id ORDER BY c2.created_at) AS delta_value,\n        AVG(c2.total_amount) OVER (PARTITION BY c2.seller_id) AS partition_avg,\n        STDDEV(c2.total_amount) OVER (PARTITION BY c2.seller_id) AS partition_stddev,\n        NTILE(9) OVER (PARTITION BY c2.seller_id ORDER BY c2.total_amount) AS ntile_bucket,\n        RANK() OVER (PARTITION BY c2.day_bucket ORDER BY c2.total_amount DESC) AS daily_rank\n    FROM cte_level_2 c2\n),\ncte_level_4 AS (\n    SELECT\n        c3.*,\n        CASE \n            WHEN c3.partition_stddev > 0 THEN (c3.total_amount - c3.partition_avg) / c3.partition_stddev\n            ELSE 0 \n        END AS z_score,\n        DENSE_RANK() OVER (ORDER BY c3.cumulative_sum DESC) AS overall_rank,\n        PERCENT_RANK() OVER (PARTITION BY c3.seller_id ORDER BY c3.total_amount) AS pct_rank,\n        CASE\n            WHEN c3.delta_value > 0 THEN 'Increasing'\n            WHEN c3.delta_value < 0 THEN 'Decreasing'\n            ELSE 'Stable'\n        END AS trend_direction\n    FROM cte_level_3 c3\n)\nSELECT\n    DATE_TRUNC('day', c4.created_at) AS period,\n    c4.seller_id,\n    COUNT(*) AS record_count,\n    AVG(c4.total_amount) AS avg_value,\n    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY c4.total_amount) AS q1_value,\n    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY c4.total_amount) AS median_value,\n    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY c4.total_amount) AS q3_value,\n    STDDEV(c4.total_amount) AS stddev_value,\n    MIN(c4.total_amount) AS min_value,\n    MAX(c4.total_amount) AS max_value,\n    SUM(CASE WHEN c4.z_score > 2 THEN 1 ELSE 0 END) AS outlier_count,\n    SUM(CASE WHEN c4.trend_direction = 'Increasing' THEN 1 ELSE 0 END) AS increasing_count,\n    AVG(c4.rolling_avg) AS avg_rolling,\n    MAX(c4.cumulative_sum) AS max_cumulative\nFROM cte_level_4 c4\nGROUP BY DATE_TRUNC('day', c4.created_at), c4.seller_id\nHAVING COUNT(*) >= 3\nORDER BY period DESC, avg_value DESC\nLIMIT 100",
-  "evidence": "The query uses time period (month) and order status as grouping dimensions. It aggregates record count, average, quartiles, stddev, min, max, outlier_count, trend indicators. Requires \u22651 record per group. Output includes multi-dimensional aggregate metrics and quartiles.",
-  "difficulty": "moderate",
-  "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "orders_order",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
-  "schema_context": {},
-  "expected_output": "Aggregated metrics grouped by day and seller_id",
   "normal_query": "Calculate monthly order total amounts grouped by order status with multi-dimensional aggregate metrics and quartile distributions."
 }
 ```
-
-
 
 ### Query 30 — moderate / aggregation
 
@@ -939,5 +852,3 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly order total amounts grouped by order status using IQR-style outlier detection methods with quartile distributions."
 }
 ```
-
-

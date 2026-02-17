@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-12
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
+domain: fintech, banking, credit cards, rewards
+source: synthetic
+license_type: Open
+license_cost: $0
+tables: 15
+total_rows: ~120K
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,19 +17,19 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for db-12.
+This database supports analytics for credit card and rewards programs: transactions, rewards, categories, and cardholder behavior.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-12: analytics, reporting, dashboards.
+Target use cases: rewards analytics, category optimization, cardholder segmentation, redemption dashboards.
 ```
 
 ## Business Value
 
 ```text
-Business value for db-12.
+Enables issuers to optimize rewards programs, increase engagement, and reduce churn ($1M+ ARR).
 ```
 
 ## Schema
@@ -39,7 +39,7 @@ Business value for db-12.
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:11
 -- Database: db-12
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -66,7 +66,7 @@ CREATE TABLE credit_card_issuers (
     cfpb_complaint_count INTEGER DEFAULT 0,
     cfpb_complaint_resolution_rate NUMERIC(5, 2),
     data_source VARCHAR(50) DEFAULT 'CFPB_API',
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Credit Cards Table
@@ -94,7 +94,7 @@ CREATE TABLE credit_cards (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Cards, transactions, rewards, categories. Points, redemption, merchant categories.
 ```
 
 ## Query Difficulty Distribution

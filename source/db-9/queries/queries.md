@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-9
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
+domain: shipping, logistics, freight
+source: synthetic
+license_type: Open
+license_cost: $0
+tables: 14
+total_rows: ~60K
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,19 +17,19 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for db-9.
+This database supports analytics for shipping and logistics: shipments, carriers, routes, and delivery performance.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-9: analytics, reporting, dashboards.
+Target use cases: shipment analytics, carrier performance, route optimization, delivery dashboards.
 ```
 
 ## Business Value
 
 ```text
-Business value for db-9.
+Enables logistics firms to optimize shipping, reduce costs, and improve delivery performance ($1M+ ARR).
 ```
 
 ## Schema
@@ -39,7 +39,7 @@ Business value for db-9.
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:05
 -- Database: db-9
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -61,8 +61,8 @@ CREATE TABLE shipping_carriers (
     commercial_pricing_available BOOLEAN DEFAULT FALSE,
     requires_account BOOLEAN DEFAULT FALSE,
     active_status BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Shipping Zones Table
@@ -79,7 +79,7 @@ CREATE TABLE shipping_zones (
     transit_days_max INTEGER,
     effective_date DATE NOT NULL,
     expiration_date DATE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (carrier_id) REFERENCES shipping_carriers(carrier_id)
 );
 
@@ -88,14 +88,14 @@ CREATE TABLE shipping_zones (
 CREATE TABLE shipping_service_types (
     service_id VARCHAR(255) PRIMARY KEY,
     carrier_id VARCHAR(50) NOT NULL,
-    service_code VA
+    service_code VARCHAR(
 -- ...
 ```
 
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Shipments, carriers, routes, delivery events. Freight, tracking, ETA.
 ```
 
 ## Query Difficulty Distribution

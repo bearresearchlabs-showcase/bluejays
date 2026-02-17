@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-16
-domain: Flood Risk / M&A Due Diligence
-source: [commercial]
-license_type: [Commercial]
-license_cost: [NDA]
+domain: insurance, M&A, due diligence, flood risk
+source: synthetic
+license_type: Open
+license_cost: $0
 tables: 12
-total_rows: ~18M
+total_rows: ~30K
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,30 +17,19 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports flood risk analytics for real estate M&A due diligence. It integrates
-FEMA flood zones, NOAA sea level rise projections, USGS streamflow data, and NASA flood models
-to assess physical climate risk for property portfolios. It is designed to support text-to-SQL
-training across spatial, multi-source, and risk-scoring query types for investment analysts.
+This database supports analytics for flood risk assessment in M&A due diligence: properties, flood zones, risk scores, and insurance exposure.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-16:
-- M&A due diligence: pre-acquisition flood risk assessment for property portfolios
-- Portfolio analytics: geographic risk hotspots, cluster patterns, exposure by state/county
-- Risk scoring: composite scores from FEMA, sea level rise, streamflow, NASA models
-- Financial impact: estimated damage, annual loss, insurance premium estimates
+Target use cases: property risk analytics, flood zone reporting, M&A due diligence dashboards, exposure aggregation.
 ```
 
 ## Business Value
 
 ```text
-Flood risk databases represent high-value domains for text-to-SQL because:
-- Queries require spatial reasoning (ST_Distance, ST_DWithin, geography joins)
-- Multi-source integration (FEMA, NOAA, USGS, NASA) demands complex CTEs
-- Stakeholders are investment analysts and underwriters needing self-serve analytics
-- Errors affect acquisition decisions and insurance pricing.
+Enables insurers and M&A advisors to assess flood exposure and price risk ($1M+ ARR).
 ```
 
 ## Schema
@@ -101,31 +90,7 @@ CREATE TABLE real_estate_properties (
 ## Domain Knowledge
 
 ```text
-Key domain concepts required to write correct queries against this database:
-
-FEMA FLOOD ZONES:
-- zone_code: 'A', 'AE', 'AH', 'AO', 'V', 'VE', 'X', 'D', 'X500' — V/VE = velocity (highest risk)
-- base_flood_elevation (BFE): feet above sea level; property elevation - BFE = elevation_above_bfe
-- zone_geom: polygon geography; property_geom: point geography
-
-SEA LEVEL RISE (NOAA):
-- scenario: 'Low', 'Intermediate-Low', 'Intermediate', 'Intermediate-High', 'High', 'Extreme'
-- sea_level_rise_feet: projected rise; high_tide_flooding_days: annual flooding days
-- projection_year: 2030, 2050, 2100, etc.
-
-STREAMFLOW (USGS):
-- discharge_cfs: cubic feet per second; gage_height_feet, stage_feet
-- flood_category: 'None', 'Action', 'Minor', 'Moderate', 'Major'
-- flood_stage_feet, moderate_flood_stage_feet, major_flood_stage_feet
-
-NASA FLOOD MODELS:
-- model_name: 'GFMS', 'LIS', 'VIIRS', 'MODIS', 'FloodPlanet'
-- inundation_depth_feet, flood_probability (0-100), flood_severity
-
-RISK SCORING:
-- Risk scores 0-100; risk_category: 'Low', 'Moderate', 'High', 'Extreme'
-- overall_risk_score: weighted composite; estimated_annual_loss (EAL)
-- Spatial: ST_DISTANCE, ST_DWithin for nearest-neighbor and containment
+Properties, flood zones, risk scores. FEMA zones, elevation, exposure. M&A due diligence workflows.
 ```
 
 ## Query Difficulty Distribution
@@ -176,8 +141,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -208,8 +171,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 3 — moderate / aggregation
 
 ```json
@@ -238,8 +199,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -264,12 +223,10 @@ Target distribution across 30 queries:
     "impact_assessment"
   ],
   "schema_context": {},
-  "expected_output": "The query returns sea level rise impact projections for coastal properties across 2050, 2070, and 2100 time horizons, comparing optimistic, moderate, and pessimistic climate scenarios with flood zone migration and property exposure.",
+  "expected_output": "The query returns sea level rise impact projections for coastal properties across 2050, 2070, and 2100 time horizons, comparing optimistic, moderate, and pessimistic climate scenarios with flood zone ",
   "normal_query": "Sea level rise impact projections for coastal properties across 2050, 2070, and 2100 time horizons, comparing optimistic, moderate, and pessimistic climate scenarios with flood zone migration and property exposure changes."
 }
 ```
-
-
 
 ### Query 5 — moderate / aggregation
 
@@ -278,7 +235,7 @@ Target distribution across 30 queries:
   "db_id": "db-16",
   "question_id": 5,
   "question": "What do streamflow patterns and gauge data tell us about flood frequency and intensity near our target properties?",
-  "SQL": "WITH streamflow_observations_base AS (\n    SELECT\n        uso.observation_id,\n        uso.gauge_id,\n        uso.observation_time,\n        uso.gage_height_feet,\n        uso.discharge_cfs,\n        uso.stage_feet,\n        uso.flood_category,\n        uso.percentile_rank,\n        usg.gauge_name,\n        usg.gauge_latitude,\n        usg.gauge_longitude,\n        usg.gauge_geom,\n        usg.flood_stage_feet,\n        usg.moderate_flood_stage_feet,\n        usg.major_flood_stage_feet,\n        usg.drainage_area_sq_miles,\n        usg.state_code,\n        usg.county_name,\n        usg.river_name,\n        EXTRACT(YEAR FROM uso.observation_time) AS observation_year,\n        EXTRACT(MONTH FROM uso.observation_time) AS observation_month\n    FROM usgs_streamflow_observations uso\n    INNER JOIN usgs_streamflow_gauges usg ON uso.gauge_id = usg.gauge_id\n    WHERE usg.active_status = TRUE\n        AND uso.observation_time >= CURRENT_DATE - INTERVAL '20 years'\n),\nflood_event_identification AS (\n    SELECT\n        sob.observation_id,\n        sob.gauge_id,\n        sob.gauge_name,\n        sob.observation_time,\n        sob.observation_year,\n        sob.observation_month,\n        sob.gage_height_feet,\n        sob.discharge_cfs,\n        sob.stage_feet,\n        sob.flood_category,\n        sob.flood_stage_feet,\n        sob.moderate_flood_stage_feet,\n        sob.major_flood_stage_feet,\n        sob.state_code,\n        sob.county_name,\n        sob.river_name,\n        CASE\n            WHEN sob.stage_feet >= sob.major_flood_stage_feet THEN 'Major'\n            WHEN sob.stage_feet >= sob.moderate_flood_stage_feet THEN 'Moderate'\n            WHEN sob.stage_feet >= sob.flood_stage_feet THEN 'Minor'\n            ELSE 'None'\n        END AS flood_severity,\n        CASE\n            WHEN sob.stage_feet >= sob.major_flood_stage_feet THEN 3\n            WHEN sob.stage_feet >= sob.moderate_flood_stage_feet THEN 2\n            WHEN sob.stage_feet >= sob.flood_stage_feet THEN 1\n            ELSE 0\n        END AS flood_severity_score\n    FROM streamflow_observations_base sob\n),\nflood_frequency_calculation AS (\n    SELECT\n        fei.gauge_id,\n        fei.gauge_name,\n        fei.state_code,\n        fei.county_name,\n        fei.river_name,\n        fei.observation_year,\n        COUNT(DISTINCT CASE WHEN fei.flood_severity != 'None' THEN DATE(fei.observation_time) END) AS flood_days_per_year,\n        COUNT(DISTINCT CASE WHEN fei.flood_severity = 'Major' THEN DATE(fei.observation_time) END) AS major_flood_days_per_year,\n        COUNT(DISTINCT CASE WHEN fei.flood_severity = 'Moderate' THEN DATE(fei.observation_time) END) AS moderate_flood_days_per_year,\n        COUNT(DISTINCT CASE WHEN fei.flood_severity = 'Minor' THEN DATE(fei.observation_time) END) AS minor_flood_days_per_year,\n        MAX(fei.discharge_cfs) AS peak_discharge_cfs,\n        MAX(fei.stage_feet) AS peak_stage_feet,\n        AVG(CASE WHEN fei.flood_severity != 'None' THEN fei.discharge_cfs END) AS avg_flood_discharge_cfs\n    FROM flood_event_identification fei\n    GROUP BY fei.gauge_id, fei.gauge_name, fei.state_code, fei.county_name, fei.river_name, fei.observation_year\n),\nrecurrence_interval_analysis AS (\n    SELECT\n        ffc.gauge_id,\n        ffc.gauge_name,\n        ffc.state_code,\n        ffc.county_name,\n        ffc.river_name,\n        ffc.observation_year,\n        ffc.flood_days_per_year,\n        ffc.major_flood_days_per_year,\n        ffc.moderate_flood_days_per_year,\n        ffc.minor_flood_days_per_year,\n        ffc.peak_discharge_cfs,\n        ffc.peak_stage_feet,\n        ffc.avg_flood_discharge_cfs,\n        COUNT(*) OVER (PARTITION BY ffc.gauge_id) AS total_years,\n        COUNT(CASE WHEN ffc.flood_days_per_year > 0 THEN 1 END) OVER (PARTITION BY ffc.gauge_id) AS years_with_floods,\n        AVG(ffc.flood_days_per_year) OVER (PARTITION BY ffc.gauge_id) AS avg_flood_days_per_year,\n        AVG(ffc.peak_discharge_cfs) OVER (PARTITION BY ffc.gauge_id) AS avg_peak_discharge\n    FROM flood_frequency_calculation ffc\n),\ngauge_network_coverage AS (\n    SELECT\n        ria.gauge_id,\n        ria.gauge_name,\n        ria.state_code,\n        ria.county_name,\n        ria.river_name,\n        ria.total_years,\n        ria.years_with_floods,\n        ROUND(CAST(ria.avg_flood_days_per_year AS NUMERIC), 2) AS avg_flood_days_per_year,\n        ROUND(CAST(ria.avg_peak_discharge AS NUMERIC), 2) AS avg_peak_discharge_cfs,\n        (\n            SELECT COUNT(*)\n            FROM usgs_streamflow_gauges usg2\n            WHERE usg2.active_status = TRUE\n                AND usg2.gauge_geom IS NOT NULL\n                AND (\n                    SELECT gauge_geom FROM usgs_streamflow_gauges WHERE gauge_id = ria.gauge_id\n                ) IS NOT NULL\n                AND ST_DISTANCE(\n                    usg2.gauge_geom,\n                    (SELECT gauge_geom FROM usgs_streamflow_gauges WHERE gauge_id = ria.gauge_id)\n                ) < 50000\n        ) AS nearby_gauges_count,\n        CASE\n            WHEN ria.years_with_floods > 0 THEN\n                ria.total_years::NUMERIC / ria.years_with_floods::NUMERIC\n            ELSE NULL\n        END AS recurrence_interval_years\n    FROM recurrence_interval_analysis ria\n)\nSELECT\n    gauge_id,\n    gauge_name,\n    state_code,\n    county_name,\n    river_name,\n    total_years,\n    years_with_floods,\n    avg_flood_days_per_year,\n    avg_peak_discharge_cfs,\n    nearby_gauges_count,\n    ROUND(CAST(recurrence_interval_years AS NUMERIC), 2) AS recurrence_interval_years\nFROM gauge_network_coverage\nORDER BY avg_flood_days_per_year DESC, recurrence_interval_years ASC\nLIMIT 5000;",
+  "SQL": "WITH streamflow_observations_base AS (\n    SELECT\n        uso.observation_id,\n        uso.gauge_id,\n        uso.observation_time,\n        uso.gage_height_feet,\n        uso.discharge_cfs,\n        uso.stage_feet,\n        uso.flood_category,\n        uso.percentile_rank,\n        usg.gauge_name,\n        usg.gauge_latitude,\n        usg.gauge_longitude,\n        usg.gauge_geom,\n        usg.flood_stage_feet,\n        usg.moderate_flood_stage_feet,\n        usg.major_flood_stage_feet,\n        usg.drainage_area_sq_miles,\n        usg.state_code,\n        usg.county_name,\n        usg.river_name,\n        EXTRACT(YEAR FROM uso.observation_time) AS observation_year,\n        EXTRACT(MONTH FROM uso.observation_time) AS observation_month\n    FROM usgs_streamflow_observations uso\n    INNER JOIN usgs_streamflow_gauges usg ON uso.gauge_id = usg.gauge_id\n    WHERE usg.active_status = TRUE\n        AND uso.observation_time >= CURRENT_DATE - INTERVAL '20 years'\n),\nflood_event_identification AS (\n    SELECT\n        sob.observation_id,\n        sob.gauge_id,\n        sob.gauge_name,\n        sob.observation_time,\n        sob.observation_year,\n        sob.observation_month,\n        sob.gage_height_feet,\n        sob.discharge_cfs,\n        sob.stage_feet,\n        sob.flood_category,\n        sob.flood_stage_feet,\n        sob.moderate_flood_stage_feet,\n        sob.major_flood_stage_feet,\n        sob.state_code,\n        sob.county_name,\n        sob.river_name,\n        CASE\n            WHEN sob.major_flood_stage_feet IS NOT NULL AND sob.stage_feet IS NOT NULL AND sob.stage_feet >= sob.major_flood_stage_feet THEN 'Major'\n            WHEN sob.moderate_flood_stage_feet IS NOT NULL AND sob.stage_feet IS NOT NULL AND sob.stage_feet >= sob.moderate_flood_stage_feet THEN 'Moderate'\n            WHEN sob.flood_stage_feet IS NOT NULL AND sob.stage_feet IS NOT NULL AND sob.stage_feet >= sob.flood_stage_feet THEN 'Minor'\n            ELSE 'None'\n        END AS flood_severity,\n        CASE\n            WHEN sob.major_flood_stage_feet IS NOT NULL AND sob.stage_feet IS NOT NULL AND sob.stage_feet >= sob.major_flood_stage_feet THEN 3\n            WHEN sob.moderate_flood_stage_feet IS NOT NULL AND sob.stage_feet IS NOT NULL AND sob.stage_feet >= sob.moderate_flood_stage_feet THEN 2\n            WHEN sob.flood_stage_feet IS NOT NULL AND sob.stage_feet IS NOT NULL AND sob.stage_feet >= sob.flood_stage_feet THEN 1\n            ELSE 0\n        END AS flood_severity_score\n    FROM streamflow_observations_base sob\n),\nflood_frequency_calculation AS (\n    SELECT\n        fei.gauge_id,\n        fei.gauge_name,\n        fei.state_code,\n        fei.county_name,\n        fei.river_name,\n        fei.observation_year,\n        COUNT(DISTINCT CASE WHEN fei.flood_severity != 'None' THEN DATE(fei.observation_time) END) AS flood_days_per_year,\n        COUNT(DISTINCT CASE WHEN fei.flood_severity = 'Major' THEN DATE(fei.observation_time) END) AS major_flood_days_per_year,\n        COUNT(DISTINCT CASE WHEN fei.flood_severity = 'Moderate' THEN DATE(fei.observation_time) END) AS moderate_flood_days_per_year,\n        COUNT(DISTINCT CASE WHEN fei.flood_severity = 'Minor' THEN DATE(fei.observation_time) END) AS minor_flood_days_per_year,\n        MAX(fei.discharge_cfs) AS peak_discharge_cfs,\n        MAX(fei.stage_feet) AS peak_stage_feet,\n        AVG(CASE WHEN fei.flood_severity != 'None' THEN fei.discharge_cfs END) AS avg_flood_discharge_cfs\n    FROM flood_event_identification fei\n    GROUP BY fei.gauge_id, fei.gauge_name, fei.state_code, fei.county_name, fei.river_name, fei.observation_year\n),\nrecurrence_interval_analysis AS (\n    SELECT\n        ffc.gauge_id,\n        ffc.gauge_name,\n        ffc.state_code,\n        ffc.county_name,\n        ffc.river_name,\n        ffc.observation_year,\n        ffc.flood_days_per_year,\n        ffc.major_flood_days_per_year,\n        ffc.moderate_flood_days_per_year,\n        ffc.minor_flood_days_per_year,\n        ffc.peak_discharge_cfs,\n        ffc.peak_stage_feet,\n        ffc.avg_flood_discharge_cfs,\n        COUNT(*) OVER (PARTITION BY ffc.gauge_id) AS total_years,\n        COUNT(CASE WHEN ffc.flood_days_per_year > 0 THEN 1 END) OVER (PARTITION BY ffc.gauge_id) AS years_with_floods,\n        AVG(ffc.flood_days_per_year) OVER (PARTITION BY ffc.gauge_id) AS avg_flood_days_per_year,\n        AVG(ffc.peak_discharge_cfs) OVER (PARTITION BY ffc.gauge_id) AS avg_peak_discharge\n    FROM flood_frequency_calculation ffc\n),\ngauge_network_coverage AS (\n    SELECT\n        ria.gauge_id,\n        ria.gauge_name,\n        ria.state_code,\n        ria.county_name,\n        ria.river_name,\n        ria.total_years,\n        ria.years_with_floods,\n        ROUND(CAST(ria.avg_flood_days_per_year AS NUMERIC), 2) AS avg_flood_days_per_year,\n        ROUND(CAST(ria.avg_peak_discharge AS NUMERIC), 2) AS avg_peak_discharge_cfs,\n        (\n            SELECT COUNT(*)\n            FROM usgs_streamflow_gauges usg2\n            WHERE usg2.active_status = TRUE\n                AND usg2.gauge_geom IS NOT NULL\n                AND (\n                    SELECT gauge_geom FROM usgs_streamflow_gauges WHERE gauge_id = ria.gauge_id\n                ) IS NOT NULL\n                AND ST_DISTANCE(\n                    usg2.gauge_geom,\n                    (SELECT gauge_geom FROM usgs_streamflow_gauges WHERE gauge_id = ria.gauge_id)\n                ) < 50000\n        ) AS nearby_gauges_count,\n        CASE\n            WHEN ria.years_with_floods > 0 THEN\n                ria.total_years::NUMERIC / ria.years_with_floods::NUMERIC\n            ELSE NULL\n        END AS recurrence_interval_years\n    FROM recurrence_interval_analysis ria\n)\nSELECT\n    gauge_id,\n    gauge_name,\n    state_code,\n    county_name,\n    river_name,\n    total_years,\n    years_with_floods,\n    avg_flood_days_per_year,\n    avg_peak_discharge_cfs,\n    nearby_gauges_count,\n    ROUND(CAST(recurrence_interval_years AS NUMERIC), 2) AS recurrence_interval_years\nFROM gauge_network_coverage\nORDER BY avg_flood_days_per_year DESC, recurrence_interval_years ASC\nLIMIT 5000;",
   "evidence": "The query identifies properties within catchment areas of stream gauges, joins properties with the nearest upstream and downstream gauge stations, retrieves historical discharge data, and calculates recurrence intervals and peak flow statistics for flood frequency analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
@@ -293,12 +250,10 @@ Target distribution across 30 queries:
     "gauge_network_coverage"
   ],
   "schema_context": {},
-  "expected_output": "The query returns streamflow-based flood frequency analysis using gauge network data, showing coverage quality, historical flood patterns, peak flow statistics, and recurrence probability for properties near monitored stream reaches.",
+  "expected_output": "The query returns streamflow-based flood frequency analysis using gauge network data, showing coverage quality, historical flood patterns, peak flow statistics, and recurrence probability for properti",
   "normal_query": "Streamflow-based flood frequency analysis using gauge network data, showing coverage quality, historical flood patterns, peak flow statistics, and recurrence probability for properties near monitored waterways."
 }
 ```
-
-
 
 ### Query 6 — moderate / aggregation
 
@@ -325,8 +280,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 7 — moderate / aggregation
 
 ```json
@@ -351,8 +304,6 @@ Target distribution across 30 queries:
   "normal_query": "Property and flood zone intersection analysis with spatial relationship metrics"
 }
 ```
-
-
 
 ### Query 8 — moderate / aggregation
 
@@ -379,8 +330,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 9 — moderate / aggregation
 
 ```json
@@ -405,8 +354,6 @@ Target distribution across 30 queries:
   "normal_query": "Geographic risk clustering analysis with spatial pattern identification"
 }
 ```
-
-
 
 ### Query 10 — moderate / aggregation
 
@@ -433,8 +380,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 11 — moderate / aggregation
 
 ```json
@@ -459,8 +404,6 @@ Target distribution across 30 queries:
   "normal_query": "Display financial impact analysis results for mergers and acquisitions pricing models."
 }
 ```
-
-
 
 ### Query 12 — moderate / aggregation
 
@@ -487,8 +430,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 13 — moderate / aggregation
 
 ```json
@@ -513,8 +454,6 @@ Target distribution across 30 queries:
   "normal_query": "Display NOAA sea level rise scenario comparison analysis results."
 }
 ```
-
-
 
 ### Query 14 — moderate / aggregation
 
@@ -541,8 +480,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 15 — moderate / aggregation
 
 ```json
@@ -567,8 +504,6 @@ Target distribution across 30 queries:
   "normal_query": "Display NASA model prediction accuracy assessment analysis results."
 }
 ```
-
-
 
 ### Query 16 — moderate / aggregation
 
@@ -595,8 +530,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 17 — moderate / aggregation
 
 ```json
@@ -621,8 +554,6 @@ Target distribution across 30 queries:
   "normal_query": "A comprehensive data quality report showing completeness, consistency, and timeliness metrics for flood risk data"
 }
 ```
-
-
 
 ### Query 18 — moderate / aggregation
 
@@ -649,8 +580,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 19 — moderate / aggregation
 
 ```json
@@ -675,8 +604,6 @@ Target distribution across 30 queries:
   "normal_query": "A consolidated risk score for each property that combines and weights multiple risk assessment sources into a single comprehensive metric"
 }
 ```
-
-
 
 ### Query 20 — moderate / aggregation
 
@@ -703,8 +630,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 21 — moderate / aggregation
 
 ```json
@@ -729,8 +654,6 @@ Target distribution across 30 queries:
   "normal_query": "Statistical analysis results showing the relationship between property elevation levels and their corresponding flood risk scores."
 }
 ```
-
-
 
 ### Query 22 — moderate / aggregation
 
@@ -757,8 +680,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 23 — moderate / aggregation
 
 ```json
@@ -783,8 +704,6 @@ Target distribution across 30 queries:
   "normal_query": "Model performance metrics comparing predicted vs. actual flood risk across different modeling approaches."
 }
 ```
-
-
 
 ### Query 24 — moderate / aggregation
 
@@ -811,8 +730,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 25 — moderate / aggregation
 
 ```json
@@ -837,8 +754,6 @@ Target distribution across 30 queries:
   "normal_query": "Property type risk analysis showing risk scores, exposure levels, and vulnerability patterns across residential, commercial, and other property categories."
 }
 ```
-
-
 
 ### Query 26 — moderate / aggregation
 
@@ -868,8 +783,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 27 — moderate / aggregation
 
 ```json
@@ -894,8 +807,6 @@ Target distribution across 30 queries:
   "normal_query": "Identify properties with critical flood risk levels that may constitute material deal-breakers during acquisition due diligence."
 }
 ```
-
-
 
 ### Query 28 — moderate / aggregation
 
@@ -922,8 +833,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 29 — moderate / aggregation
 
 ```json
@@ -949,8 +858,6 @@ Target distribution across 30 queries:
 }
 ```
 
-
-
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -975,5 +882,3 @@ Target distribution across 30 queries:
   "normal_query": "Produce a complete due diligence report covering all flood risk dimensions for the target property portfolio."
 }
 ```
-
-

@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-14
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
+domain: cloud, cost optimization, AWS, infrastructure
+source: open
+license_type: Open
+license_cost: $0
+tables: 11
+total_rows: ~40K
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,19 +17,19 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for db-14.
+This database supports analytics for cloud instance costs: instance types, pricing, regions, and cost optimization.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-14: analytics, reporting, dashboards.
+Target use cases: cost analytics, instance comparison, optimization recommendations, cloud dashboards.
 ```
 
 ## Business Value
 
 ```text
-Business value for db-14.
+Enables cloud teams to reduce spend, right-size instances, and optimize infrastructure ($1M+ ARR).
 ```
 
 ## Schema
@@ -39,7 +39,7 @@ Business value for db-14.
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:13
 -- Database: db-14
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -58,7 +58,7 @@ CREATE TABLE cloud_providers (
     pricing_api_endpoint VARCHAR(500),
     documentation_url VARCHAR(500),
     data_source VARCHAR(100),  -- 'vantage.sh', 'official_api', 'scraped'
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_frequency VARCHAR(50),  -- 'daily', 'weekly', 'monthly'
     data_quality_score NUMERIC(5, 2)
 );
@@ -78,7 +78,7 @@ CREATE TABLE cloud_regions (
     launch_date DATE,
     data_center_count INTEGER,
     availability_zones_count INTEGER,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (provider_id) REFERENCES cloud_providers(provider_id)
 );
 
@@ -88,14 +88,14 @@ CREATE TABLE instance_families (
     family_id VARCHAR(255) PRIMARY KEY,
     provider_id VARCHAR(50) NOT NULL,
     family_name VARCHAR(100) NOT NULL,  -- 'General Purpose', 'Compute Optimized', 'Memory Optimized'
-    family_code
+    family_code VARC
 -- ...
 ```
 
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Instance types, regions, pricing. vCPU, memory, storage. Reserved vs on-demand.
 ```
 
 ## Query Difficulty Distribution
