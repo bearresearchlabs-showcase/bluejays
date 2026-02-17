@@ -179,6 +179,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -208,6 +209,7 @@ Target distribution across 30 queries:
   "normal_query": "Comprehensive skill gap analysis showing missing skills for target roles, prerequisite skill chains and dependencies, prioritized learning path recommendations with sequence ordering, and estimated time investment required to acquire each skill"
 }
 ```
+
 
 
 ### Query 3 — moderate / aggregation
@@ -242,6 +244,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -270,6 +273,7 @@ Target distribution across 30 queries:
   "normal_query": "Application success rates segmented by user cohorts and job categories, conversion funnel metrics showing drop-off at each stage, time-to-response statistics from application submission to employer action, and correlation analysis of factors associated with successful placements"
 }
 ```
+
 
 
 ### Query 5 — moderate / aggregation
@@ -303,6 +307,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -329,6 +334,7 @@ Target distribution across 30 queries:
   "normal_query": "Geographic job market analysis showing job density by location, salary ranges, remote work adoption rates, competition levels, and location attractiveness scores."
 }
 ```
+
 
 
 ### Query 7 — moderate / aggregation
@@ -359,6 +365,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 8 — moderate / aggregation
 
 ```json
@@ -385,6 +392,7 @@ Target distribution across 30 queries:
   "normal_query": "User cohort analysis examining registration cohorts, retention metrics over time, application behavior patterns, and career progression indicators."
 }
 ```
+
 
 
 ### Query 9 — moderate / aggregation
@@ -419,6 +427,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 10 — moderate / aggregation
 
 ```json
@@ -444,6 +453,7 @@ Target distribution across 30 queries:
   "normal_query": "Federal job opportunities analysis covering agency hiring patterns, pay plan distributions (GS, FP, etc.), grade level trends, geographic distribution of positions, and department intelligence."
 }
 ```
+
 
 
 ### Query 11 — moderate / aggregation
@@ -475,6 +485,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 12 — moderate / aggregation
 
 ```json
@@ -502,6 +513,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze the application funnel with stage-by-stage conversion rates, drop-off identification points, time-to-conversion metrics, and actionable optimization recommendations."
 }
 ```
+
 
 
 ### Query 13 — moderate / aggregation
@@ -533,6 +545,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 14 — moderate / aggregation
 
 ```json
@@ -557,6 +570,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze time-to-fill metrics with hiring velocity indicators, market efficiency benchmarks, and identify optimization opportunities to accelerate hiring."
 }
 ```
+
 
 
 ### Query 15 — moderate / aggregation
@@ -586,6 +600,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -613,6 +628,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 17 — moderate / aggregation
 
 ```json
@@ -637,6 +653,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze job titles to create normalized clusters with similarity scores and standardized title mappings."
 }
 ```
+
 
 
 ### Query 18 — moderate / aggregation
@@ -667,6 +684,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 19 — moderate / aggregation
 
 ```json
@@ -692,6 +710,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze company growth through hiring trends, geographic expansion patterns, and key growth indicators."
 }
 ```
+
 
 
 ### Query 20 — moderate / aggregation
@@ -722,6 +741,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 21 — moderate / aggregation
 
 ```json
@@ -748,6 +768,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -772,6 +793,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze industry transitions to map common career paths, calculate transition success rates, and identify optimal transition strategies across industries."
 }
 ```
+
 
 
 ### Query 23 — moderate / aggregation
@@ -803,6 +825,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -826,6 +849,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze market saturation levels to measure competition intensity, calculate opportunity density, and generate saturation indicators across job market segments."
 }
 ```
+
 
 
 ### Query 25 — moderate / aggregation
@@ -855,6 +879,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 26 — moderate / aggregation
 
 ```json
@@ -876,6 +901,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze career progression paths showing sequential job advancement opportunities with optimization recommendations for career trajectory planning."
 }
 ```
+
 
 
 ### Query 27 — moderate / aggregation
@@ -906,6 +932,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 28 — moderate / aggregation
 
 ```json
@@ -928,6 +955,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate market forecasts with time-series trend projections, future state predictions, and statistical confidence intervals for forecast reliability."
 }
 ```
+
 
 
 ### Query 29 — moderate / aggregation
@@ -958,6 +986,7 @@ Target distribution across 30 queries:
   "normal_query": "Execute cross-database job matching that unifies results from multiple sources, attributes findings to original sources, and manages data redundancy across systems."
 }
 ```
+
 
 
 ### Query 30 — moderate / aggregation
@@ -993,4 +1022,5 @@ Target distribution across 30 queries:
   "normal_query": "Create a comprehensive market intelligence dashboard featuring executive summary KPIs, critical business metrics, and multi-dimensional analytics for strategic oversight."
 }
 ```
+
 

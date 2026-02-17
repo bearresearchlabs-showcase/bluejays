@@ -66,7 +66,7 @@ If `queries.json` is missing or invalid:
  "business_value": "Business value description (was Client Deliverable)",
  "purpose": "Purpose description (was Business Value)",
  "complexity": "Complexity description",
- "expected_output": "Expected output description",
+ "expected_output": "The query returns [general result description].",
  "sql": "Full SQL query text",
  "line_number": 152
  }
@@ -93,7 +93,7 @@ Do not duplicate or overlap content between them. Description answers "what and 
 - **business_value**: Business value description (was "Client Deliverable" - describes the business value/deliverable)
 - **purpose**: Purpose description (was "Business Value" - describes the purpose/reason for the query)
 - **complexity**: Complexity description
-- **expected_output**: Expected output description
+- **expected_output**: The general result of the query. Use format: "The query returns [general result description]." Avoid imperative verbs (Display, Show, Return). Describe what the result is, not the action.
 - **sql**: Complete SQL query text
 - **line_number**: Line number where query starts in queries.md
 

@@ -175,10 +175,11 @@ Target distribution across 30 queries:
     "final_rate_intelligence"
   ],
   "schema_context": {},
-  "expected_output": "Comprehensive rate analysis with geographic aggregations, rate code classifications, utility comparisons, and cost intelligence metrics.",
+  "expected_output": "The query returns comprehensive rate analysis with geographic aggregations, rate code classifications, utility comparisons, and cost intelligence metrics.",
   "normal_query": "Comprehensive rate analysis with geographic aggregations, rate code classifications, utility comparisons, and cost intelligence metrics"
 }
 ```
+
 
 
 ### Query 2 — moderate / aggregation
@@ -208,10 +209,11 @@ Target distribution across 30 queries:
     "states"
   ],
   "schema_context": {},
-  "expected_output": "Comprehensive tiered rate and TOU analysis with usage scenarios, cost calculations, and optimization recommendations.",
+  "expected_output": "The query returns tiered rate and TOU analysis with usage scenarios, cost calculations, and optimization recommendations.",
   "normal_query": "Comprehensive tiered rate and time-of-use analysis with usage scenarios, cost calculations, and optimization recommendations"
 }
 ```
+
 
 
 ### Query 3 — moderate / aggregation
@@ -240,10 +242,11 @@ Target distribution across 30 queries:
     "final_rebate_intelligence"
   ],
   "schema_context": {},
-  "expected_output": "Comprehensive solar rebate aggregation with federal, state, and utility incentives, rebate stacking optimization, and total savings calculations.",
+  "expected_output": "The query returns solar rebate aggregation with federal, state, and utility incentives, rebate stacking optimization, and total savings calculations.",
   "normal_query": "Comprehensive solar rebate aggregation with federal, state, and utility incentives, rebate stacking optimization, and total savings calculations"
 }
 ```
+
 
 
 ### Query 4 — moderate / aggregation
@@ -269,10 +272,11 @@ Target distribution across 30 queries:
     "final_trend_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Historical rate trend analysis with time-series metrics, volatility calculations, and trend identification.",
+  "expected_output": "The query returns historical rate trend analysis with time-series metrics, volatility calculations, and trend identification.",
   "normal_query": "Historical rate trend analysis with time-series metrics, volatility calculations, and trend identification"
 }
 ```
+
 
 
 ### Query 5 — moderate / aggregation
@@ -298,10 +302,11 @@ Target distribution across 30 queries:
     "final_comparison_matrix"
   ],
   "schema_context": {},
-  "expected_output": "Geographic rate comparison matrix with cross-state benchmarking, competitive positioning, and market intelligence metrics.",
+  "expected_output": "The query returns a geographic rate comparison matrix with cross-state benchmarking, competitive positioning, and market intelligence metrics.",
   "normal_query": "Geographic rate comparison matrix with cross-state benchmarking, competitive positioning, and market intelligence metrics"
 }
 ```
+
 
 
 ### Query 6 — moderate / aggregation
@@ -327,10 +332,11 @@ Target distribution across 30 queries:
     "final_benchmarking_report"
   ],
   "schema_context": {},
-  "expected_output": "Utility performance benchmarking report with rate competitiveness metrics, market positioning, and peer comparisons.",
+  "expected_output": "The query returns a utility performance benchmarking report with rate competitiveness metrics, market positioning, and peer comparisons.",
   "normal_query": "Generate a utility performance benchmarking report that includes rate competitiveness metrics, market positioning relative to peers, and comparative performance indicators."
 }
 ```
+
 
 
 ### Query 7 — moderate / aggregation
@@ -356,10 +362,11 @@ Target distribution across 30 queries:
     "final_market_share_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Rate code market share analysis with adoption rates, utility distribution, and market penetration metrics.",
+  "expected_output": "The query returns rate code market share analysis with adoption rates, utility distribution, and market penetration metrics.",
   "normal_query": "Produce a rate code market share analysis showing adoption rates across different customer segments, utility-level distribution patterns, and overall market penetration metrics."
 }
 ```
+
 
 
 ### Query 8 — moderate / aggregation
@@ -388,10 +395,11 @@ Target distribution across 30 queries:
     "final_roi_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Solar rebate ROI analysis with payback periods, NPV calculations, and financial return metrics.",
+  "expected_output": "The query returns solar rebate ROI analysis with payback periods, NPV calculations, and financial return metrics.",
   "normal_query": "Create a solar rebate ROI analysis that includes payback period calculations, net present value (NPV) metrics, and comprehensive financial return indicators for solar investments."
 }
 ```
+
 
 
 ### Query 9 — moderate / aggregation
@@ -415,10 +423,11 @@ Target distribution across 30 queries:
     "final_cross_state_comparison"
   ],
   "schema_context": {},
-  "expected_output": "Cross-state rate comparison with regional market dynamics, competitive analysis, and market trends.",
+  "expected_output": "The query returns cross-state rate comparison with regional market dynamics, competitive analysis, and market trends.",
   "normal_query": "Generate a cross-state rate comparison report that examines regional market dynamics, performs competitive analysis across state boundaries, and identifies emerging market trends."
 }
 ```
+
 
 
 ### Query 10 — moderate / aggregation
@@ -448,10 +457,11 @@ Target distribution across 30 queries:
     "final_complexity_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Rate structure complexity analysis with complexity metrics, multi-tier optimization, and structure comparisons.",
+  "expected_output": "The query returns rate structure complexity analysis with complexity metrics, multi-tier optimization, and structure comparisons.",
   "normal_query": "Develop a rate structure complexity analysis that measures complexity metrics for different pricing models, identifies multi-tier optimization opportunities, and provides structure-to-structure comparisons."
 }
 ```
+
 
 
 ### Query 11 — moderate / aggregation
@@ -478,10 +488,11 @@ Target distribution across 30 queries:
     "final_expiration_intelligence"
   ],
   "schema_context": {},
-  "expected_output": "Historical rebate trend analysis with expiration forecasts, lifecycle tracking, and trend identification.",
+  "expected_output": "The query returns historical rebate trend analysis with expiration forecasts, lifecycle tracking, and trend identification.",
   "normal_query": "Analyze historical rebate trends including expiration forecasts, program lifecycle tracking, and emerging trend identification."
 }
 ```
+
 
 
 ### Query 12 — moderate / aggregation
@@ -508,10 +519,11 @@ Target distribution across 30 queries:
     "final_geographic_optimization"
   ],
   "schema_context": {},
-  "expected_output": "Geographic rate optimization with zip code level intelligence and location-based recommendations.",
+  "expected_output": "The query returns geographic rate optimization with zip code level intelligence and location-based recommendations.",
   "normal_query": "Perform geographic rate optimization with zip code-level intelligence and location-based pricing recommendations."
 }
 ```
+
 
 
 ### Query 13 — moderate / aggregation
@@ -536,10 +548,11 @@ Target distribution across 30 queries:
     "final_portfolio_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Utility rate portfolio analysis with diversity metrics and optimization recommendations.",
+  "expected_output": "The query returns utility rate portfolio analysis with diversity metrics and optimization recommendations.",
   "normal_query": "Analyze the utility rate portfolio with diversity metrics across rate codes and provide optimization recommendations."
 }
 ```
+
 
 
 ### Query 14 — moderate / aggregation
@@ -565,10 +578,11 @@ Target distribution across 30 queries:
     "final_economics_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Solar installation economics with net metering analysis and financial modeling.",
+  "expected_output": "The query returns solar installation economics with net metering analysis and financial modeling.",
   "normal_query": "Analyze solar installation economics with net metering impact and comprehensive financial modeling."
 }
 ```
+
 
 
 ### Query 15 — moderate / aggregation
@@ -593,10 +607,11 @@ Target distribution across 30 queries:
     "final_volatility_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Rate volatility analysis with risk assessment metrics and risk classifications.",
+  "expected_output": "The query returns rate volatility analysis with risk assessment metrics and risk classifications.",
   "normal_query": "Analyze rate volatility patterns with comprehensive risk assessment metrics and risk classification framework."
 }
 ```
+
 
 
 ### Query 16 — moderate / aggregation
@@ -617,10 +632,11 @@ Target distribution across 30 queries:
     "market_segmentation"
   ],
   "schema_context": {},
-  "expected_output": "Market segmentation analysis with rate type distributions and customer segment metrics.",
+  "expected_output": "The query returns market segmentation analysis with rate type distributions and customer segment metrics.",
   "normal_query": "Provide market segmentation analysis showing rate type distributions and customer segment metrics."
 }
 ```
+
 
 
 ### Query 17 — moderate / aggregation
@@ -641,10 +657,11 @@ Target distribution across 30 queries:
     "competitive_positioning"
   ],
   "schema_context": {},
-  "expected_output": "Cross-utility rate comparison with competitive positioning and benchmarking.",
+  "expected_output": "The query returns cross-utility rate comparison with competitive positioning and benchmarking.",
   "normal_query": "Generate cross-utility rate comparison analysis with competitive positioning and benchmarking metrics."
 }
 ```
+
 
 
 ### Query 18 — moderate / aggregation
@@ -665,10 +682,11 @@ Target distribution across 30 queries:
     "maximum_savings_calculation"
   ],
   "schema_context": {},
-  "expected_output": "Rebate stacking optimization with maximum savings calculations.",
+  "expected_output": "The query returns rebate stacking optimization with maximum savings calculations.",
   "normal_query": "Analyze rebate stacking optimization to identify maximum savings calculations for eligible customers."
 }
 ```
+
 
 
 ### Query 19 — moderate / aggregation
@@ -690,10 +708,11 @@ Target distribution across 30 queries:
     "market_penetration"
   ],
   "schema_context": {},
-  "expected_output": "Rate code adoption analysis with market penetration metrics.",
+  "expected_output": "The query returns rate code adoption analysis with market penetration metrics.",
   "normal_query": "Perform rate code adoption analysis with market penetration metrics across utility service areas."
 }
 ```
+
 
 
 ### Query 20 — moderate / aggregation
@@ -714,10 +733,11 @@ Target distribution across 30 queries:
     "regional_rebate_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Geographic rebate intelligence with state-level aggregations.",
+  "expected_output": "The query returns geographic rebate intelligence with state-level aggregations.",
   "normal_query": "Generate geographic rebate intelligence with state-level aggregations and regional performance analysis."
 }
 ```
+
 
 
 ### Query 21 — moderate / aggregation
@@ -738,10 +758,11 @@ Target distribution across 30 queries:
     "forecast_models"
   ],
   "schema_context": {},
-  "expected_output": "Rate trend forecasting with predictive analytics and trend predictions.",
+  "expected_output": "The query returns rate trend forecasting with predictive analytics and trend predictions.",
   "normal_query": "Show rate trend forecasting with predictive analytics and future trend predictions."
 }
 ```
+
 
 
 ### Query 22 — moderate / aggregation
@@ -762,10 +783,11 @@ Target distribution across 30 queries:
     "portfolio_optimization"
   ],
   "schema_context": {},
-  "expected_output": "Utility rate strategy analysis with portfolio optimization recommendations.",
+  "expected_output": "The query returns utility rate strategy analysis with portfolio optimization recommendations.",
   "normal_query": "Show utility rate strategy analysis with rate code portfolio optimization recommendations."
 }
 ```
+
 
 
 ### Query 23 — moderate / aggregation
@@ -789,10 +811,11 @@ Target distribution across 30 queries:
     "market_coverage_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Solar rebate market intelligence with incentive availability analysis.",
+  "expected_output": "The query returns solar rebate market intelligence with incentive availability analysis.",
   "normal_query": "Show solar rebate market intelligence with detailed incentive availability analysis."
 }
 ```
+
 
 
 ### Query 24 — moderate / aggregation
@@ -813,10 +836,11 @@ Target distribution across 30 queries:
     "market_share_by_region"
   ],
   "schema_context": {},
-  "expected_output": "Cross-regional rate comparison with market share analysis.",
+  "expected_output": "The query returns cross-regional rate comparison with market share analysis.",
   "normal_query": "Show cross-regional rate comparison with detailed market share analysis."
 }
 ```
+
 
 
 ### Query 25 — moderate / aggregation
@@ -839,10 +863,11 @@ Target distribution across 30 queries:
     "efficiency_metrics"
   ],
   "schema_context": {},
-  "expected_output": "Rate structure performance analysis with cost efficiency metrics.",
+  "expected_output": "The query returns rate structure performance analysis with cost efficiency metrics.",
   "normal_query": "Show rate structure performance analysis with detailed cost efficiency metrics."
 }
 ```
+
 
 
 ### Query 26 — moderate / aggregation
@@ -862,10 +887,11 @@ Target distribution across 30 queries:
     "hierarchy_analysis"
   ],
   "schema_context": {},
-  "expected_output": "Recursive rate code hierarchy analysis with multi-level traversal.",
+  "expected_output": "The query returns recursive rate code hierarchy analysis with multi-level traversal.",
   "normal_query": "Perform recursive rate code hierarchy analysis with multi-level structure traversal."
 }
 ```
+
 
 
 ### Query 27 — moderate / aggregation
@@ -889,10 +915,11 @@ Target distribution across 30 queries:
     "comprehensive_dashboard"
   ],
   "schema_context": {},
-  "expected_output": "Comprehensive rate intelligence dashboard with multi-dimensional analysis.",
+  "expected_output": "The query returns a rate intelligence dashboard with multi-dimensional analysis.",
   "normal_query": "Generate comprehensive rate intelligence dashboard with multi-dimensional breakdown analysis."
 }
 ```
+
 
 
 ### Query 28 — moderate / aggregation
@@ -914,10 +941,11 @@ Target distribution across 30 queries:
     "competitive_positioning"
   ],
   "schema_context": {},
-  "expected_output": "Solar rebate competitive analysis with market positioning intelligence.",
+  "expected_output": "The query returns solar rebate competitive analysis with market positioning intelligence.",
   "normal_query": "Conduct solar rebate competitive analysis with market positioning intelligence assessment."
 }
 ```
+
 
 
 ### Query 29 — moderate / aggregation
@@ -938,10 +966,11 @@ Target distribution across 30 queries:
     "cluster_identification"
   ],
   "schema_context": {},
-  "expected_output": "Geographic rate clustering analysis with regional pattern identification.",
+  "expected_output": "The query returns geographic rate clustering analysis with regional pattern identification.",
   "normal_query": "Perform geographic rate clustering analysis with regional pattern identification."
 }
 ```
+
 
 
 ### Query 30 — moderate / aggregation
@@ -965,8 +994,9 @@ Target distribution across 30 queries:
     "optimization_recommendations"
   ],
   "schema_context": {},
-  "expected_output": "Enterprise rate optimization platform with comprehensive cost intelligence.",
+  "expected_output": "The query returns enterprise rate optimization with comprehensive cost intelligence.",
   "normal_query": "Deploy enterprise rate optimization platform with comprehensive cost intelligence and analysis."
 }
 ```
+
 

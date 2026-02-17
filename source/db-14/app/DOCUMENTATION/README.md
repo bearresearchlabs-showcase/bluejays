@@ -87,20 +87,20 @@ createdb -U postgres db_14
 
 ### Step 3: Load Schema
 
-Load schema.sql to create tables, indexes, and constraints.
+From the database directory, load `schema.sql` to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_14 -f schema.sql
+psql -U postgres -d db_14 -f DATABASE/schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load sample data from `data.sql` if available.
 
 ```bash
-psql -U postgres -d db_14 -f data.sql
+psql -U postgres -d db_14 -f DATABASE/data.sql
 ```
 
 ---
@@ -337,6 +337,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `max_value` NUMERIC(15, 4) 
 - `std_deviation` NUMERIC(15, 4) 
 - `last_updated` TIMESTAMP 
+
+---
+
+## Query Documentation
+
+See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover cost comparison, rightsizing, optimization recommendations, and FinOps analytics.
 
 ---
 

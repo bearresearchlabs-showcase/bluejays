@@ -116,6 +116,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -140,6 +141,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute weekly model altitude statistics by airspeed bucket with quartiles, z-score outliers, and increasing-trend counts."
 }
 ```
+
 
 
 ### Query 3 — moderate / aggregation
@@ -168,6 +170,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -192,6 +195,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily model altitude statistics by flight phase with outlier count, increasing-trend count, and maximum cumulative sum."
 }
 ```
+
 
 
 ### Query 5 — moderate / aggregation
@@ -220,6 +224,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -244,6 +249,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily model ID statistics grouped by user, including quartiles, rolling average, and z-score based outlier count."
 }
 ```
+
 
 
 ### Query 7 — moderate / aggregation
@@ -272,6 +278,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 8 — moderate / aggregation
 
 ```json
@@ -296,6 +303,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily model ID statistics per model name including sequential differences, gap analysis, and quartiles."
 }
 ```
+
 
 
 ### Query 9 — moderate / aggregation
@@ -324,6 +332,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 10 — moderate / aggregation
 
 ```json
@@ -348,6 +357,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute weekly model ID statistics per model name with recency-frequency scoring metrics, quartiles, and rolling average."
 }
 ```
+
 
 
 ### Query 11 — moderate / aggregation
@@ -376,6 +386,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 12 — moderate / aggregation
 
 ```json
@@ -400,6 +411,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily model ID statistics per model name, including rate-of-change metrics, quartile distributions, and outlier counts."
 }
 ```
+
 
 
 ### Query 13 — moderate / aggregation
@@ -428,6 +440,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 14 — moderate / aggregation
 
 ```json
@@ -452,6 +465,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly model ID statistics per model name using weighted moving averages, quartile distributions, and trend frequency counts."
 }
 ```
+
 
 
 ### Query 15 — moderate / aggregation
@@ -480,6 +494,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -504,6 +519,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly model ID statistics grouped by model name, incorporating lifetime value style metrics, quartile distributions, and cumulative sum analysis."
 }
 ```
+
 
 
 ### Query 17 — moderate / aggregation
@@ -532,6 +548,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 18 — moderate / aggregation
 
 ```json
@@ -556,6 +573,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily model ID statistics grouped by model name, structured for heatmap visualization with quartile distributions and outlier counts."
 }
 ```
+
 
 
 ### Query 19 — moderate / aggregation
@@ -584,6 +602,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 20 — moderate / aggregation
 
 ```json
@@ -608,6 +627,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly model ID statistics grouped by model name, incorporating cross-correlation style metrics, quartile distributions, and rolling averages."
 }
 ```
+
 
 
 ### Query 21 — moderate / aggregation
@@ -636,6 +656,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -660,6 +681,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate weekly model ID statistics aggregated by model name, delivering a complete set of dashboard metrics including quartiles and comprehensive multi-metric summaries."
 }
 ```
+
 
 
 ### Query 23 — moderate / aggregation
@@ -688,6 +710,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -712,6 +735,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily model ID statistics grouped by model name, featuring concentration index measurements, quartile analysis, and outlier detection counts."
 }
 ```
+
 
 
 ### Query 25 — moderate / aggregation
@@ -740,6 +764,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 26 — moderate / aggregation
 
 ```json
@@ -764,6 +789,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly model ID statistics grouped by model name to enable fiscal period comparison, including quartile distributions."
 }
 ```
+
 
 
 ### Query 27 — moderate / aggregation
@@ -792,6 +818,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 28 — moderate / aggregation
 
 ```json
@@ -816,6 +843,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly model ID statistics grouped by model name to support cumulative trend analysis, including quartile distributions."
 }
 ```
+
 
 
 ### Query 29 — moderate / aggregation
@@ -844,6 +872,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -868,4 +897,5 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly model ID statistics grouped by user using IQR-style outlier detection methodology, including quartile distributions."
 }
 ```
+
 

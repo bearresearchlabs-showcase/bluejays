@@ -169,6 +169,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -196,6 +197,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a pricing trend analysis report that tracks how model prices have changed over time and correlates those changes with shifts in market share and customer adoption rates"
 }
 ```
+
 
 
 ### Query 3 — moderate / aggregation
@@ -226,6 +228,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -252,6 +255,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 5 — moderate / aggregation
 
 ```json
@@ -276,6 +280,7 @@ Target distribution across 30 queries:
   "normal_query": "Create a model adoption prediction analysis that correlates benchmark performance scores with historical adoption rates and projects future market penetration based on performance characteristics"
 }
 ```
+
 
 
 ### Query 6 — moderate / aggregation
@@ -306,6 +311,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 7 — moderate / aggregation
 
 ```json
@@ -332,6 +338,7 @@ Target distribution across 30 queries:
   "normal_query": "Track market share evolution across models with competitive positioning metrics and share-of-voice trends"
 }
 ```
+
 
 
 ### Query 8 — moderate / aggregation
@@ -361,6 +368,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 9 — moderate / aggregation
 
 ```json
@@ -386,6 +394,7 @@ Target distribution across 30 queries:
   "normal_query": "Evaluate pricing strategy effectiveness with revenue impact analysis and optimization recommendations"
 }
 ```
+
 
 
 ### Query 10 — moderate / aggregation
@@ -415,6 +424,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 11 — moderate / aggregation
 
 ```json
@@ -440,6 +450,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a comprehensive analysis report with metrics and insights for government compliance scorecard including regulatory risk assessment."
 }
 ```
+
 
 
 ### Query 12 — moderate / aggregation
@@ -469,6 +480,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 13 — moderate / aggregation
 
 ```json
@@ -494,6 +506,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a comprehensive analysis report with metrics and insights for benchmark leaderboard featuring dynamic ranking and tier classification."
 }
 ```
+
 
 
 ### Query 14 — moderate / aggregation
@@ -523,6 +536,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 15 — moderate / aggregation
 
 ```json
@@ -548,6 +562,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a comprehensive analysis report with metrics and insights for model comparison matrix featuring multi-dimensional scoring."
 }
 ```
+
 
 
 ### Query 16 — moderate / aggregation
@@ -577,6 +592,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 17 — moderate / aggregation
 
 ```json
@@ -602,6 +618,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a market intelligence report with competitive positioning analysis comparing our models against competitor benchmarks and market leaders"
 }
 ```
+
 
 
 ### Query 18 — moderate / aggregation
@@ -631,6 +648,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 19 — moderate / aggregation
 
 ```json
@@ -656,6 +674,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze the model adoption funnel with conversion metrics at each stage to identify bottlenecks and optimization opportunities in the user journey"
 }
 ```
+
 
 
 ### Query 20 — moderate / aggregation
@@ -685,6 +704,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 21 — moderate / aggregation
 
 ```json
@@ -710,6 +730,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a comprehensive analysis report showing pricing elasticity metrics combined with demand forecasting insights"
 }
 ```
+
 
 
 ### Query 22 — moderate / aggregation
@@ -739,6 +760,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 23 — moderate / aggregation
 
 ```json
@@ -764,6 +786,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a lifecycle performance tracking report that classifies and tracks model performance across development stages"
 }
 ```
+
 
 
 ### Query 24 — moderate / aggregation
@@ -793,6 +816,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 25 — moderate / aggregation
 
 ```json
@@ -818,6 +842,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a reliability scoring report for benchmark evaluations including statistical confidence intervals and quality metrics"
 }
 ```
+
 
 
 ### Query 26 — moderate / aggregation
@@ -847,6 +872,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 27 — moderate / aggregation
 
 ```json
@@ -872,6 +898,7 @@ Target distribution across 30 queries:
   "normal_query": "Produce a market penetration analysis breaking down adoption and usage patterns across different geographic regions and demographic segments"
 }
 ```
+
 
 
 ### Query 28 — moderate / aggregation
@@ -901,6 +928,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 29 — moderate / aggregation
 
 ```json
@@ -928,6 +956,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -953,4 +982,5 @@ Target distribution across 30 queries:
   "normal_query": "Develop a strategic model selection framework that matches optimal models to specific use cases based on performance requirements and operational constraints"
 }
 ```
+
 

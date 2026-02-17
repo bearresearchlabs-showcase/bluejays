@@ -100,20 +100,20 @@ createdb -U postgres db_13
 
 ### Step 3: Load Schema
 
-Load schema.sql to create tables, indexes, and constraints.
+From the database directory, load `schema.sql` to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_13 -f schema.sql
+psql -U postgres -d db_13 -f DATABASE/schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load sample data from `data.sql` if available.
 
 ```bash
-psql -U postgres -d db_13 -f data.sql
+psql -U postgres -d db_13 -f DATABASE/data.sql
 ```
 
 ---
@@ -373,6 +373,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `start_time` TIMESTAMP NOT NULL
 - `end_time` TIMESTAMP 
 - `data_volume_bytes` BIGINT  — Data volume processed in bytes
+
+---
+
+## Query Documentation
+
+See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover model comparison, market intelligence, government compliance, adoption analytics, and pricing history.
 
 ---
 

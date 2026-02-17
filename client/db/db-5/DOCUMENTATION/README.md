@@ -11,6 +11,34 @@ database: db-5
 
 ---
 
+## Purpose
+
+This database supports analytics for POS retail operations (Lucasa). It models people, employees, items, locations, inventory, and sales transactions. Queries use aggregations, joins, and window functions for sales analytics, inventory management, employee performance, and operational dashboards across retail locations.
+
+---
+
+## Use Case
+
+Target use cases for db-5:
+
+- **Sales analytics:** Transaction volume, revenue by location, payment type breakdown
+- **Inventory:** Stock levels, location-item quantities, reorder triggers
+- **Employee performance:** Sales per employee, balance tracking, location assignments
+- **Operational dashboards:** Item categories, pricing, tax configuration
+
+---
+
+## Business Value
+
+POS retail databases represent high-value domains for text-to-SQL because:
+
+- Queries require understanding of people–employee–location–item hierarchies
+- Data supports multi-location retail analytics and inventory optimization
+- Stakeholders need self-serve analytics (operations, finance, store managers)
+- Evidence bridges natural-language questions to schema-grounded SQL
+
+---
+
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -31,20 +59,20 @@ createdb -U postgres db_5
 
 ### Step 3: Load Schema
 
-Load schema.sql to create tables, indexes, and constraints.
+From the database directory, load `schema.sql` to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_5 -f schema.sql
+psql -U postgres -d db_5 -f DATABASE/schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load sample data from `data.sql` if available.
 
 ```bash
-psql -U postgres -d db_5 -f data.sql
+psql -U postgres -d db_5 -f DATABASE/data.sql
 ```
 
 ---
@@ -161,6 +189,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `customer_id` INTEGER FOREIGN KEY
 - `payment_type` VARCHAR(50) 
 - `location_id` INTEGER FOREIGN KEY
+
+---
+
+## Query Documentation
+
+See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover sales analytics, inventory, employee performance, and multi-location aggregations.
 
 ---
 

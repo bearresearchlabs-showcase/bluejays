@@ -178,7 +178,7 @@ db-{N}/
       "business_value": "Business value",
       "purpose": "Purpose",
       "complexity": "Complexity",
-      "expected_output": "Expected output",
+      "expected_output": "The query returns [general result description].",
       "sql": "SQL query code"
     }
   ]

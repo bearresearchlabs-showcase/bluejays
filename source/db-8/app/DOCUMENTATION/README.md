@@ -11,6 +11,34 @@ database: db-8
 
 ---
 
+## Purpose
+
+This database supports analytics for job market intelligence. It models user profiles, companies, job postings, skills, applications, recommendations, market trends, and data sources (USAJobs, BLS, state boards). Queries use window functions, aggregations, and JSON operations for skill matching, salary trends, and job market analytics.
+
+---
+
+## Use Case
+
+Target use cases for db-8:
+
+- **Job matching:** Skill alignment, location preference, salary expectation, experience level
+- **Market trends:** Geographic scope, industry, job category, salary trends, competition index
+- **Company analytics:** Employer rankings, federal vs private, agency codes, pay plans
+- **Data provenance:** USAJobs, BLS, state board sources, extraction metadata
+
+---
+
+## Business Value
+
+Job market databases represent high-value domains for text-to-SQL because:
+
+- Queries span profiles, postings, skills, applications, and market trends
+- Stakeholders need skill-demand analytics and salary benchmarking
+- Federal and private job data require complex joins and filters
+- Evidence bridges natural-language questions to schema-grounded SQL
+
+---
+
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -31,20 +59,20 @@ createdb -U postgres db_8
 
 ### Step 3: Load Schema
 
-Load schema.sql to create tables, indexes, and constraints.
+From the database directory, load `schema.sql` to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_8 -f schema.sql
+psql -U postgres -d db_8 -f DATABASE/schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load sample data from `data.sql` if available.
 
 ```bash
-psql -U postgres -d db_8 -f data.sql
+psql -U postgres -d db_8 -f DATABASE/data.sql
 ```
 
 ---
@@ -320,6 +348,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `industry_filter` VARCHAR(100) 
 - `results_count` INTEGER 
 - `search_date` TIMESTAMP 
+
+---
+
+## Query Documentation
+
+See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover job matching, market trends, skill demand, salary analytics, and data source provenance.
 
 ---
 

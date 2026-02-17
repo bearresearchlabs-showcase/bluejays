@@ -171,6 +171,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -197,6 +198,7 @@ Target distribution across 30 queries:
   "normal_query": "The query returns hierarchical spatial relationships traversing from parent to child boundaries across multiple administrative levels."
 }
 ```
+
 
 
 ### Query 3 — moderate / aggregation
@@ -227,6 +229,7 @@ Target distribution across 30 queries:
   "normal_query": "The query returns correlation coefficients and temporal pattern metrics across different weather parameters."
 }
 ```
+
 
 
 ### Query 4 — moderate / aggregation
@@ -261,6 +264,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 5 — moderate / aggregation
 
 ```json
@@ -291,6 +295,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -315,10 +320,11 @@ Target distribution across 30 queries:
     "final_accuracy_trends"
   ],
   "schema_context": {},
-  "expected_output": "Display forecast accuracy trends with temporal error pattern detection",
+  "expected_output": "The query returns forecast accuracy trends with temporal error pattern detection.",
   "normal_query": "Display forecast accuracy trends with temporal error pattern detection"
 }
 ```
+
 
 
 ### Query 7 — moderate / aggregation
@@ -342,10 +348,11 @@ Target distribution across 30 queries:
     "final_aggregation_report"
   ],
   "schema_context": {},
-  "expected_output": "Show boundary-level forecast aggregations with multi-level spatial summarization",
+  "expected_output": "The query returns boundary-level forecast aggregations with multi-level spatial summarization.",
   "normal_query": "Show boundary-level forecast aggregations with multi-level spatial summarization"
 }
 ```
+
 
 
 ### Query 8 — moderate / aggregation
@@ -369,10 +376,11 @@ Target distribution across 30 queries:
     "final_validation_report"
   ],
   "schema_context": {},
-  "expected_output": "Show observation-based forecast validation with accuracy scoring",
+  "expected_output": "The query returns observation-based forecast validation with accuracy scoring.",
   "normal_query": "Show observation-based forecast validation with accuracy scoring"
 }
 ```
+
 
 
 ### Query 9 — moderate / aggregation
@@ -394,10 +402,11 @@ Target distribution across 30 queries:
     "final_intersection_report"
   ],
   "schema_context": {},
-  "expected_output": "Show multi-boundary spatial intersection analysis with overlap detection",
+  "expected_output": "The query returns multi-boundary spatial intersection analysis with overlap detection.",
   "normal_query": "Show multi-boundary spatial intersection analysis with overlap detection"
 }
 ```
+
 
 
 ### Query 10 — moderate / aggregation
@@ -421,10 +430,11 @@ Target distribution across 30 queries:
     "final_distribution_report"
   ],
   "schema_context": {},
-  "expected_output": "Show forecast parameter distribution analysis with statistical profiling",
+  "expected_output": "The query returns forecast parameter distribution analysis with statistical profiling.",
   "normal_query": "Show forecast parameter distribution analysis with statistical profiling"
 }
 ```
+
 
 
 ### Query 11 — moderate / aggregation
@@ -448,10 +458,11 @@ Target distribution across 30 queries:
     "final_interpolation_report"
   ],
   "schema_context": {},
-  "expected_output": "Analysis showing interpolated forecast values with detected spatial gradients across geographic boundaries",
+  "expected_output": "The query returns interpolated forecast values with detected spatial gradients across geographic boundaries.",
   "normal_query": "Analysis showing interpolated forecast values with detected spatial gradients across geographic boundaries"
 }
 ```
+
 
 
 ### Query 12 — moderate / aggregation
@@ -476,10 +487,11 @@ Target distribution across 30 queries:
     "final_pattern_report"
   ],
   "schema_context": {},
-  "expected_output": "Clustered weather patterns with spatial and temporal pattern detection metrics",
+  "expected_output": "The query returns clustered weather patterns with spatial and temporal pattern detection metrics.",
   "normal_query": "Clustered weather patterns with spatial and temporal pattern detection metrics"
 }
 ```
+
 
 
 ### Query 13 — moderate / aggregation
@@ -505,10 +517,11 @@ Target distribution across 30 queries:
     "final_model_comparison"
   ],
   "schema_context": {},
-  "expected_output": "Comparative performance metrics across multiple forecast models",
+  "expected_output": "The query returns comparative performance metrics across multiple forecast models.",
   "normal_query": "Comparative performance metrics across multiple forecast models"
 }
 ```
+
 
 
 ### Query 14 — moderate / aggregation
@@ -535,10 +548,11 @@ Target distribution across 30 queries:
     "final_anomaly_report"
   ],
   "schema_context": {},
-  "expected_output": "Detected forecast anomalies at geographic boundaries with statistical outlier classification",
+  "expected_output": "The query returns detected forecast anomalies at geographic boundaries with statistical outlier classification.",
   "normal_query": "Detected forecast anomalies at geographic boundaries with statistical outlier classification"
 }
 ```
+
 
 
 ### Query 15 — moderate / aggregation
@@ -568,10 +582,11 @@ Target distribution across 30 queries:
     "risk_category_assignment"
   ],
   "schema_context": {},
-  "expected_output": "Insurance risk factor calculations derived from medium-range forecasts",
+  "expected_output": "The query returns insurance risk factor calculations derived from medium-range forecasts.",
   "normal_query": "Insurance risk factor calculations derived from medium-range forecasts"
 }
 ```
+
 
 
 ### Query 16 — moderate / aggregation
@@ -598,10 +613,11 @@ Target distribution across 30 queries:
     "final_rate_table"
   ],
   "schema_context": {},
-  "expected_output": "The query returns insurance rate tables derived from forecast risk factors",
+  "expected_output": "The query returns insurance rate tables derived from forecast risk factors.",
   "normal_query": "The query returns insurance rate tables derived from forecast risk factors"
 }
 ```
+
 
 
 ### Query 17 — moderate / aggregation
@@ -626,10 +642,11 @@ Target distribution across 30 queries:
     "recommended_rates"
   ],
   "schema_context": {},
-  "expected_output": "The query returns comparative analysis of rate tables across different forecast time horizons",
+  "expected_output": "The query returns comparative analysis of rate tables across different forecast time horizons.",
   "normal_query": "The query returns comparative analysis of rate tables across different forecast time horizons"
 }
 ```
+
 
 
 ### Query 18 — moderate / aggregation
@@ -654,10 +671,11 @@ Target distribution across 30 queries:
     "forecast_improvement_analysis"
   ],
   "schema_context": {},
-  "expected_output": "The query returns validation analysis comparing actual claims to predicted risk factors",
+  "expected_output": "The query returns validation analysis comparing actual claims to predicted risk factors.",
   "normal_query": "The query returns validation analysis comparing actual claims to predicted risk factors"
 }
 ```
+
 
 
 ### Query 19 — moderate / aggregation
@@ -681,10 +699,11 @@ Target distribution across 30 queries:
     "stability_recommendations"
   ],
   "schema_context": {},
-  "expected_output": "The query returns volatility and stability metrics for insurance rates",
+  "expected_output": "The query returns volatility and stability metrics for insurance rates.",
   "normal_query": "The query returns volatility and stability metrics for insurance rates"
 }
 ```
+
 
 
 ### Query 20 — moderate / aggregation
@@ -708,10 +727,11 @@ Target distribution across 30 queries:
     "comparative_analysis"
   ],
   "schema_context": {},
-  "expected_output": "The query returns risk rankings and comparative analysis across policy areas",
+  "expected_output": "The query returns risk rankings and comparative analysis across policy areas.",
   "normal_query": "The query returns risk rankings and comparative analysis across policy areas"
 }
 ```
+
 
 
 ### Query 21 — moderate / aggregation
@@ -735,10 +755,11 @@ Target distribution across 30 queries:
     "parameter_ranking"
   ],
   "schema_context": {},
-  "expected_output": "Analysis showing the relationship between forecast accuracy and insurance rate adjustments",
+  "expected_output": "The query returns the relationship between forecast accuracy and insurance rate adjustments.",
   "normal_query": "Analysis showing the relationship between forecast accuracy and insurance rate adjustments"
 }
 ```
+
 
 
 ### Query 22 — moderate / aggregation
@@ -760,10 +781,11 @@ Target distribution across 30 queries:
     "ensemble_quality_assessment"
   ],
   "schema_context": {},
-  "expected_output": "Ensemble forecast statistics across multiple forecast days with rate correlation metrics",
+  "expected_output": "The query returns ensemble forecast statistics across multiple forecast days with rate correlation metrics.",
   "normal_query": "Ensemble forecast statistics across multiple forecast days with rate correlation metrics"
 }
 ```
+
 
 
 ### Query 23 — moderate / aggregation
@@ -789,10 +811,11 @@ Target distribution across 30 queries:
     "recommendation_generation"
   ],
   "schema_context": {},
-  "expected_output": "Optimal forecast day selection analysis based on accuracy and rate prediction performance",
+  "expected_output": "The query returns optimal forecast day selection analysis based on accuracy and rate prediction performance.",
   "normal_query": "Optimal forecast day selection analysis based on accuracy and rate prediction performance"
 }
 ```
+
 
 
 ### Query 24 — moderate / aggregation
@@ -820,10 +843,11 @@ Target distribution across 30 queries:
     "dashboard_metrics"
   ],
   "schema_context": {},
-  "expected_output": "Comprehensive overview of all rate modeling metrics, forecast performance, and regional analysis",
+  "expected_output": "The query returns a comprehensive overview of rate modeling metrics, forecast performance, and regional analysis.",
   "normal_query": "Comprehensive overview of all rate modeling metrics, forecast performance, and regional analysis"
 }
 ```
+
 
 
 ### Query 25 — moderate / aggregation
@@ -850,10 +874,11 @@ Target distribution across 30 queries:
     "final_composite_reflectivity"
   ],
   "schema_context": {},
-  "expected_output": "US-wide NEXRAD reflectivity composite showing maximum reflectivity values across all radar sites",
+  "expected_output": "The query returns a US-wide NEXRAD reflectivity composite with maximum reflectivity values across radar sites.",
   "normal_query": "US-wide NEXRAD reflectivity composite showing maximum reflectivity values across all radar sites"
 }
 ```
+
 
 
 ### Query 26 — moderate / aggregation
@@ -879,10 +904,11 @@ Target distribution across 30 queries:
     "predicted_storm_path"
   ],
   "schema_context": {},
-  "expected_output": "Return storm cell tracking and movement analysis metrics derived from NEXRAD radar observations",
+  "expected_output": "The query returns storm cell tracking and movement analysis metrics from NEXRAD radar observations.",
   "normal_query": "Return storm cell tracking and movement analysis metrics derived from NEXRAD radar observations"
 }
 ```
+
 
 
 ### Query 27 — moderate / aggregation
@@ -908,10 +934,11 @@ Target distribution across 30 queries:
     "final_cloud_composite"
   ],
   "schema_context": {},
-  "expected_output": "Return a composite cloud coverage visualization across the United States using satellite imagery",
+  "expected_output": "The query returns a composite cloud coverage visualization across the United States from satellite imagery.",
   "normal_query": "Return a composite cloud coverage visualization across the United States using satellite imagery"
 }
 ```
+
 
 
 ### Query 28 — moderate / aggregation
@@ -939,10 +966,11 @@ Target distribution across 30 queries:
     "final_fused_precipitation"
   ],
   "schema_context": {},
-  "expected_output": "Return fused precipitation estimates derived from both NEXRAD radar and satellite observations",
+  "expected_output": "The query returns fused precipitation estimates from NEXRAD radar and satellite observations.",
   "normal_query": "Return fused precipitation estimates derived from both NEXRAD radar and satellite observations"
 }
 ```
+
 
 
 ### Query 29 — moderate / aggregation
@@ -966,10 +994,11 @@ Target distribution across 30 queries:
     "fire_intensity_classification"
   ],
   "schema_context": {},
-  "expected_output": "Return satellite-detected fire hotspots and monitoring statistics across all US regions",
+  "expected_output": "The query returns satellite-detected fire hotspots and monitoring statistics across US regions.",
   "normal_query": "Return satellite-detected fire hotspots and monitoring statistics across all US regions"
 }
 ```
+
 
 
 ### Query 30 — moderate / aggregation
@@ -994,8 +1023,9 @@ Target distribution across 30 queries:
     "composite_calculation"
   ],
   "schema_context": {},
-  "expected_output": "Return an integrated weather composite product merging NEXRAD radar and satellite observations across the United States",
+  "expected_output": "The query returns an integrated weather composite merging NEXRAD radar and satellite observations across the United States.",
   "normal_query": "Return an integrated weather composite product merging NEXRAD radar and satellite observations across the United States"
 }
 ```
+
 

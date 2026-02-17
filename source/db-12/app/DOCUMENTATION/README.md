@@ -11,6 +11,34 @@ database: db-12
 
 ---
 
+## Purpose
+
+This database supports analytics for credit card and rewards optimization. It models issuers, cards, rewards categories, card rewards structure, bank offers, eligibility, merchants, user profiles, transactions, recommendations, CFPB complaints, and Federal Reserve credit data. Queries use aggregations, window functions, and joins for rewards optimization, spending analysis, and regulatory compliance.
+
+---
+
+## Use Case
+
+Target use cases for db-12:
+
+- **Rewards optimization:** Category-based rewards, card recommendations, potential rewards lost
+- **Spending analytics:** Transaction patterns, merchant categories, top cards
+- **Regulatory compliance:** CFPB consumer complaints, Federal Reserve credit data
+- **Offer management:** Bank offers, eligibility, activation, savings
+
+---
+
+## Business Value
+
+Credit card and rewards databases represent high-value domains for text-to-SQL because:
+
+- Queries span issuers, cards, transactions, rewards, and regulatory data
+- Stakeholders need optimization and compliance analytics
+- Multi-table joins and aggregations are common
+- Evidence bridges natural-language questions to schema-grounded SQL
+
+---
+
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -31,20 +59,20 @@ createdb -U postgres db_12
 
 ### Step 3: Load Schema
 
-Load schema.sql to create tables, indexes, and constraints.
+From the database directory, load `schema.sql` to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_12 -f schema.sql
+psql -U postgres -d db_12 -f DATABASE/schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load sample data from `data.sql` if available.
 
 ```bash
-psql -U postgres -d db_12 -f data.sql
+psql -U postgres -d db_12 -f DATABASE/data.sql
 ```
 
 ---
@@ -366,6 +394,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `offers_activated_count` INTEGER 
 - `offers_savings_total` NUMERIC(10, 2) 
 - `analysis_timestamp` TIMESTAMP 
+
+---
+
+## Query Documentation
+
+See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover rewards optimization, spending analytics, card recommendations, CFPB complaints, and Federal Reserve credit data.
 
 ---
 

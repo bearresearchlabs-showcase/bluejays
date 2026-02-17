@@ -12,7 +12,7 @@ This rule provides a generalized workflow for creating new databases following t
 ## TDD, BDD, DDD, and Distributed Architectural Patterns
 
 - **TDD**: Kent Beck Red-Green-Refactor. Write validation scripts and tests first; implement schema and queries to pass. Phase 0–5 validation drives implementation.
-- **BDD**: Cucumber/Gherkin-style acceptance criteria. Query metadata (`description`, `use_case`, `expected_output`) captures acceptance criteria; validation phases verify behavior.
+- **BDD**: Cucumber/Gherkin-style acceptance criteria. Query metadata (`description`, `use_case`, `expected_output`) captures acceptance criteria; validation phases verify behavior. `expected_output` describes the general result (format: "The query returns [general result description].").
 - **DDD**: Eric Evans "Domain-Driven Design". Each database (db-{N}) is a bounded context; schemas and queries stay within domain boundaries.
 - **Distributed Architectural Patterns**: Schemas and queries target PostgreSQL; redundancy architecture supports failover and cross-database linking. Web-deployable deliverables follow microservice-style separation (Vercel, Turborepo).
 
@@ -169,7 +169,7 @@ Create `db-{N}/queries/queries.md` with exactly 30 queries:
 
 **Complexity:** {Complexity description}
 
-**Expected Output:** {Expected output description}
+**Expected Output:** The query returns [general result description]. (Avoid imperative verbs: Display, Show, Return.)
 
 ```sql
 -- Query SQL here

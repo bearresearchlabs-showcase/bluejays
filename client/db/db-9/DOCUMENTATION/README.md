@@ -11,6 +11,34 @@ database: db-9
 
 ---
 
+## Purpose
+
+This database supports analytics for shipping intelligence. It models carriers, zones, service types, rates, packages, shipments, tracking events, rate comparisons, address validation, and customs. Queries use aggregations, window functions, and JSON for carrier benchmarking, transit analytics, and cost optimization.
+
+---
+
+## Use Case
+
+Target use cases for db-9:
+
+- **Rate comparison:** Cheapest vs fastest carrier, zone-based pricing, dimensional weight
+- **Shipment analytics:** Transit times, on-time delivery, exception rates, cost per package
+- **Carrier performance:** Revenue, average rate, total shipments, service mix
+- **International:** Customs declarations, duty/tax, HS codes, country of origin
+
+---
+
+## Business Value
+
+Shipping intelligence databases represent high-value domains for text-to-SQL because:
+
+- Queries span carriers, zones, rates, shipments, and tracking
+- Stakeholders need cost optimization and carrier benchmarking
+- Dimensional weight and zone logic require complex calculations
+- Evidence bridges natural-language questions to schema-grounded SQL
+
+---
+
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -31,20 +59,20 @@ createdb -U postgres db_9
 
 ### Step 3: Load Schema
 
-Load schema.sql to create tables, indexes, and constraints.
+From the database directory, load `schema.sql` to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_9 -f schema.sql
+psql -U postgres -d db_9 -f DATABASE/schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load sample data from `data.sql` if available.
 
 ```bash
-psql -U postgres -d db_9 -f data.sql
+psql -U postgres -d db_9 -f DATABASE/data.sql
 ```
 
 ---
@@ -346,6 +374,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `error_message` VARCHAR(1000) 
 - `api_endpoint` VARCHAR(500) 
 - `created_at` TIMESTAMP 
+
+---
+
+## Query Documentation
+
+See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover rate comparison, shipment analytics, carrier performance, tracking events, and international customs.
 
 ---
 

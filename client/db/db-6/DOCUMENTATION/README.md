@@ -11,6 +11,34 @@ database: db-6
 
 ---
 
+## Purpose
+
+This database supports analytics for weather data pipeline systems. It integrates GRIB2 forecasts, shapefile boundaries, weather stations, observations, spatial joins, CRS transformations, and data quality metrics. Queries use PostGIS geography types, spatial operations, and window functions for forecast aggregation, boundary analysis, and pipeline monitoring.
+
+---
+
+## Use Case
+
+Target use cases for db-6:
+
+- **Forecast aggregation:** GRIB2 parameters by boundary, grid cell statistics, spatial joins
+- **Weather observations:** Station data, temperature/dewpoint/humidity trends, data freshness
+- **Pipeline monitoring:** Transformation logs, load status, data quality metrics
+- **Spatial analytics:** Point-in-polygon, distance queries, CRS transformations
+
+---
+
+## Business Value
+
+Weather pipeline databases represent high-value domains for text-to-SQL because:
+
+- Queries require spatial reasoning (geography types, ST_Distance, ST_Within)
+- Multi-source integration (GRIB2, shapefiles, API) demands complex CTEs
+- Stakeholders need forecast aggregation and pipeline health dashboards
+- Evidence bridges natural-language questions to schema-grounded SQL
+
+---
+
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -31,20 +59,20 @@ createdb -U postgres db_6
 
 ### Step 3: Load Schema
 
-Load schema.sql to create tables, indexes, and constraints.
+From the database directory, load `schema.sql` to create tables, indexes, and constraints. PostGIS extension required for spatial columns.
 
 ```bash
-psql -U postgres -d db_6 -f schema.sql
+psql -U postgres -d db_6 -f DATABASE/schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load sample data from `data.sql` if available.
 
 ```bash
-psql -U postgres -d db_6 -f data.sql
+psql -U postgres -d db_6 -f DATABASE/data.sql
 ```
 
 ---
@@ -56,7 +84,7 @@ psql -U postgres -d db_6 -f data.sql
 - **Memory:** 256 MB minimum
 - **Platforms:** PostgreSQL
 
-Standard PostgreSQL. No extensions required unless noted.
+PostgreSQL 14+ with PostGIS extension for geography columns. Disk: 500 MB minimum for spatial data.
 
 ---
 
@@ -285,6 +313,12 @@ Standard PostgreSQL. No extensions required unless noted.
 - `first_observation_date` DATE 
 - `last_observation_date` DATE 
 - `update_frequency_minutes` INTEGER 
+
+---
+
+## Query Documentation
+
+See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover spatial joins, forecast aggregation, weather observations, pipeline monitoring, and CRS transformations.
 
 ---
 

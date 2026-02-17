@@ -169,7 +169,7 @@ If `queries.json` is missing or invalid:
       "title": "Query title",
       "description": "Query description",
       "complexity": "Complexity description",
-      "expected_output": "Expected output description",
+      "expected_output": "The query returns [general result description].",
       "sql": "Full SQL query text",
       "line_number": 152
     }
@@ -183,7 +183,7 @@ If `queries.json` is missing or invalid:
 - **title**: Query title from header
 - **description**: Query description text
 - **complexity**: Complexity description
-- **expected_output**: Expected output description
+- **expected_output**: The general result of the query. Use format: "The query returns [general result description]." Avoid imperative verbs (Display, Show, Return). Describe what the result is, not the action.
 - **sql**: Complete SQL query text
 - **line_number**: Line number where query starts in queries.md
 

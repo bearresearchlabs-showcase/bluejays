@@ -130,7 +130,7 @@ Each query in the OpenAPI spec must include:
 - `description`: Query description (explains what the SQL does technically - describes SQL operations, joins, CTEs, aggregations, window functions, spatial operations, etc.)
 - `complexity`: Complexity description
 - `sql`: Complete SQL code
-- `expected_output`: Expected output description
+- `expected_output`: The general result of the query. Format: "The query returns [general result description]." Avoid imperative verbs (Display, Show, Return).
 - `categories`: Query categories
 - `database_compatibility`: Platform compatibility flags
 - `useCase`: Use case description (was "Business Use Case" - describes the business use case for the query)

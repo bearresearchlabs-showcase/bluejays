@@ -183,6 +183,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -208,6 +209,7 @@ Target distribution across 30 queries:
   "normal_query": "Zone analysis results displaying zone-level distribution statistics, average transit times by shipping zone, geographic shipping pattern trends, and actionable optimization recommendations."
 }
 ```
+
 
 
 ### Query 3 — moderate / aggregation
@@ -240,6 +242,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -264,6 +267,7 @@ Target distribution across 30 queries:
   "normal_query": "Address validation analytics displaying validation success rates, address correction pattern analysis, data quality metrics, and specific recommendations for improving address accuracy across the shipping network."
 }
 ```
+
 
 
 ### Query 5 — moderate / aggregation
@@ -295,6 +299,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -322,6 +327,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 7 — moderate / aggregation
 
 ```json
@@ -347,6 +353,7 @@ Target distribution across 30 queries:
   "normal_query": "International customs compliance analysis displaying duty amounts, tax calculations, clearance success rates, and optimization opportunities for international shipments."
 }
 ```
+
 
 
 ### Query 8 — moderate / aggregation
@@ -377,6 +384,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 9 — moderate / aggregation
 
 ```json
@@ -404,6 +412,7 @@ Target distribution across 30 queries:
   "normal_query": "API performance monitoring analysis displaying response times, error rates, throughput metrics, bottleneck identification, and optimization recommendations for rate request APIs."
 }
 ```
+
 
 
 ### Query 10 — moderate / aggregation
@@ -436,6 +445,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 11 — moderate / aggregation
 
 ```json
@@ -463,6 +473,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 12 — moderate / aggregation
 
 ```json
@@ -487,6 +498,7 @@ Target distribution across 30 queries:
   "normal_query": "Display zone coverage analysis highlighting coverage gaps, optimization opportunities, and recommended route expansions."
 }
 ```
+
 
 
 ### Query 13 — moderate / aggregation
@@ -517,6 +529,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 14 — moderate / aggregation
 
 ```json
@@ -543,6 +556,7 @@ Target distribution across 30 queries:
   "normal_query": "Show carrier service performance comparison with delivery time breakdowns, success rates, and reliability metrics."
 }
 ```
+
 
 
 ### Query 15 — moderate / aggregation
@@ -573,6 +587,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -599,6 +614,7 @@ Target distribution across 30 queries:
   "normal_query": "Provide a comprehensive cost breakdown analysis that shows individual component costs, their attribution to total shipping expenses, and identifies optimization opportunities."
 }
 ```
+
 
 
 ### Query 17 — moderate / aggregation
@@ -629,6 +645,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 18 — moderate / aggregation
 
 ```json
@@ -655,6 +672,7 @@ Target distribution across 30 queries:
   "normal_query": "Evaluate address validation quality by measuring accuracy rates, analyzing the impact of address corrections on successful deliveries, and tracking quality improvement trends over time."
 }
 ```
+
 
 
 ### Query 19 — moderate / aggregation
@@ -685,6 +703,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 20 — moderate / aggregation
 
 ```json
@@ -711,6 +730,7 @@ Target distribution across 30 queries:
   "normal_query": "Build a multi-dimensional carrier rate comparison matrix that displays pricing across carriers, package characteristics, destination zones, and service tiers to identify optimal carrier selections for different scenarios."
 }
 ```
+
 
 
 ### Query 21 — moderate / aggregation
@@ -741,6 +761,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -767,6 +788,7 @@ Target distribution across 30 queries:
   "normal_query": "Show zone transit time analysis with actual versus expected delivery times, reliability metrics, and carrier performance rankings."
 }
 ```
+
 
 
 ### Query 23 — moderate / aggregation
@@ -797,6 +819,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -823,6 +846,7 @@ Target distribution across 30 queries:
   "normal_query": "Show API cache optimization results including cache hit rates, caching opportunities, and performance improvements."
 }
 ```
+
 
 
 ### Query 25 — moderate / aggregation
@@ -853,6 +877,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 26 — moderate / aggregation
 
 ```json
@@ -879,6 +904,7 @@ Target distribution across 30 queries:
   "normal_query": "Carrier performance benchmarks comparing actual performance metrics against industry standards and best practices."
 }
 ```
+
 
 
 ### Query 27 — moderate / aggregation
@@ -909,6 +935,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 28 — moderate / aggregation
 
 ```json
@@ -935,6 +962,7 @@ Target distribution across 30 queries:
   "normal_query": "Route efficiency metrics with calculated efficiency scores, performance rankings across routes, and identification of optimization opportunities."
 }
 ```
+
 
 
 ### Query 29 — moderate / aggregation
@@ -965,6 +993,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -991,4 +1020,5 @@ Target distribution across 30 queries:
   "normal_query": "Comprehensive real-time shipping intelligence dashboard displaying all critical metrics, performance trends, and actionable insights across carriers, costs, and operations."
 }
 ```
+
 

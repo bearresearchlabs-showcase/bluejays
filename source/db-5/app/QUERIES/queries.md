@@ -176,6 +176,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -200,6 +201,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly sales statistics per customer including quartiles, z-score-based outlier count, and count of transactions with increasing trend."
 }
 ```
+
 
 
 ### Query 3 — moderate / aggregation
@@ -228,6 +230,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -252,6 +255,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly sales statistics by payment type including quartiles, outlier count, and count of transactions with increasing trend."
 }
 ```
+
 
 
 ### Query 5 — moderate / aggregation
@@ -280,6 +284,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -304,6 +309,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily sales statistics per employee including quartiles, 10-day rolling average, and z-score based anomaly detection."
 }
 ```
+
 
 
 ### Query 7 — moderate / aggregation
@@ -332,6 +338,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 8 — moderate / aggregation
 
 ```json
@@ -356,6 +363,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily sales statistics by payment type including z-score anomaly detection, quartiles, and trend pattern counts."
 }
 ```
+
 
 
 ### Query 9 — moderate / aggregation
@@ -384,6 +392,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 10 — moderate / aggregation
 
 ```json
@@ -408,6 +417,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly sales statistics per employee including cohort-retention style indicators, quartile distributions, and progression metrics."
 }
 ```
+
 
 
 ### Query 11 — moderate / aggregation
@@ -436,6 +446,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 12 — moderate / aggregation
 
 ```json
@@ -460,6 +471,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly sales statistics for each employee, including benchmarking metrics for cross-employee comparison and quartile distribution."
 }
 ```
+
 
 
 ### Query 13 — moderate / aggregation
@@ -488,6 +500,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 14 — moderate / aggregation
 
 ```json
@@ -512,6 +525,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily sales statistics for each customer, including peak hour metrics for staffing optimization and quartile distribution."
 }
 ```
+
 
 
 ### Query 15 — moderate / aggregation
@@ -540,6 +554,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -564,6 +579,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly sales performance metrics for each employee, including year-over-year growth rates, seasonal trend adjustments, and quartile distributions."
 }
 ```
+
 
 
 ### Query 17 — moderate / aggregation
@@ -592,6 +608,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 18 — moderate / aggregation
 
 ```json
@@ -616,6 +633,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute weekly sales metrics for each customer, including their running percentile rank within the weekly customer cohort and quartile distributions."
 }
 ```
+
 
 
 ### Query 19 — moderate / aggregation
@@ -644,6 +662,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 20 — moderate / aggregation
 
 ```json
@@ -668,6 +687,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate daily sales metrics for each employee with forensic analysis indicators for voided and deleted transactions, sequential transaction patterns, and quartile distributions."
 }
 ```
+
 
 
 ### Query 21 — moderate / aggregation
@@ -696,6 +716,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -720,6 +741,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly sales statistics per customer with sequential purchase pattern metrics and quartile analysis for behavior tracking."
 }
 ```
+
 
 
 ### Query 23 — moderate / aggregation
@@ -748,6 +770,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -772,6 +795,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly sales statistics per employee with computed anomaly scores and quartile distributions for performance monitoring."
 }
 ```
+
 
 
 ### Query 25 — moderate / aggregation
@@ -800,6 +824,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 26 — moderate / aggregation
 
 ```json
@@ -824,6 +849,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily sales statistics for each customer including throughput indicators and quartile breakdowns."
 }
 ```
+
 
 
 ### Query 27 — moderate / aggregation
@@ -852,6 +878,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 28 — moderate / aggregation
 
 ```json
@@ -876,6 +903,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly sales statistics for each employee with multi-dimensional aggregation structure and quartile breakdowns."
 }
 ```
+
 
 
 ### Query 29 — moderate / aggregation
@@ -904,6 +932,7 @@ Target distribution across 30 queries:
 ```
 
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -928,4 +957,5 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly sales statistics for each customer with IQR-style outlier detection and quartile breakdowns."
 }
 ```
+
 
