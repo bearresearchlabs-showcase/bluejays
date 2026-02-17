@@ -74,11 +74,21 @@ If `queries.json` is missing or invalid:
 }
 ```
 
+## Description vs Evidence (CRITICAL)
+
+**description** and **evidence** must be different:
+
+- **description**: Provides the **context** of the query—domain, business purpose, what the query accomplishes conceptually, who needs it and why.
+- **evidence**: Provides the **justification**—how the query implements the solution, technical approach (CTEs, joins, aggregations, window functions), implementation details that justify the design.
+
+Do not duplicate or overlap content between them. Description answers "what and why"; evidence answers "how and why this approach."
+
 ## Required Fields
 
 - **number**: Query number (1-30)
 - **title**: Query title from header
-- **description**: Query description text (explains what the SQL does technically - describes SQL operations, joins, CTEs, aggregations, window functions, spatial operations, etc.)
+- **description**: Context of the query—domain, purpose, what the query is about conceptually. Must be different from evidence.
+- **evidence**: Justification—how the query implements the solution, technical approach (CTEs, joins, window functions), why this approach is correct. Must be different from description.
 - **use_case**: Use case description (was "Business Use Case" - describes the business use case for the query)
 - **business_value**: Business value description (was "Client Deliverable" - describes the business value/deliverable)
 - **purpose**: Purpose description (was "Business Value" - describes the purpose/reason for the query)
