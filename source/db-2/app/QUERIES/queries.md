@@ -4,32 +4,44 @@
 
 ```yaml
 db_id: db-2
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Filling Station Retail / POS
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 7
+total_rows: ~7.5K
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-2.
+This database supports analytics for filling station and retail point-of-sale (POS) operations.
+It models people, employees, items, locations, inventory, and sales transactions. It is designed
+to support text-to-SQL training across revenue, inventory, and workforce query types commonly
+encountered in convenience store and gas station retail analytics.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-2: analytics, reporting, dashboards.
+Target use cases for db-2:
+- Sales analytics: daily/weekly revenue by employee, location, or item category
+- Performance: employee sales trends, rolling averages, above-average transaction counts
+- Inventory: stock levels by location, reorder alerts, item movement
+- Operations: multi-location comparison, payment type mix, peak hours
+- Product dashboards: margin analysis (unit_price vs cost_price), category performance
 ```
 
 ## Business Value
 
 ```text
-Business value for db-2.
+Retail POS databases represent high-value domains for text-to-SQL because:
+- Queries require understanding of multi-location, multi-employee hierarchies
+- Data relationships span people → employees → sales → items → locations
+- Stakeholders need self-serve analytics (store managers, regional ops, finance)
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -107,7 +119,26 @@ CREATE TABLE phppos_locations (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+PEOPLE AND EMPLOYEES:
+- phppos_people: base person record (person_id); employees extend via phppos_employees
+- phppos_employees: person_id PK/FK; username, balance; deleted=1 means soft-deleted
+- phppos_employees_locations: many-to-many; which employees work at which locations
+
+ITEMS AND INVENTORY:
+- phppos_items: products; cost_price (wholesale), unit_price (retail); category for grouping
+- phppos_location_items: inventory per location; quantity is stock on hand
+- is_serialized, is_service: item type flags; deleted=1 means discontinued
+
+LOCATIONS:
+- phppos_locations: store sites; default_tax_1..5 for tax rates; stock_alert_email for reorders
+- receive_stock_alert: '0' or '1' for low-stock notifications
+
+SALES:
+- phppos_sales: sale_id, employee_id, sale_time, customer_id, payment_type, location_id
+- sale_time: transaction timestamp; group by DATE_TRUNC for daily/weekly aggregation
+- Rolling averages and performance_category (Above/Below Average) used for trend analysis.
 ```
 
 ## Query Difficulty Distribution

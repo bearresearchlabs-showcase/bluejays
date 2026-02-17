@@ -1,7 +1,36 @@
 {
-  "check_date": "20260216-2159",
+  "check_date": "20260216-2314",
   "databases": {
     "db-1": {
+      "checks": [
+        [
+          "queries.json 30 queries",
+          true
+        ],
+        [
+          "queries.md exists",
+          true
+        ],
+        [
+          "schema exists",
+          true
+        ],
+        [
+          "data.sql exists",
+          true
+        ],
+        [
+          "client DOCUMENTATION/ (README.md only)",
+          true
+        ],
+        [
+          "metadata/db_metadata.json",
+          true
+        ]
+      ],
+      "Pass": 1
+    },
+    "db-2": {
       "checks": [
         [
           "queries.json 30 queries",
@@ -32,7 +61,7 @@
     }
   },
   "summary": {
-    "passed": 1,
+    "passed": 2,
     "failed": 0
   }
 }

@@ -4,32 +4,42 @@
 
 ```yaml
 db_id: db-4
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: SharedAI / AI Model Registry
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 1
+total_rows: ~200
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-4.
+This database supports analytics for SharedAI (Seydam AI) model registries. It models
+AI/ML models created by users, including model names, ownership, and creation timestamps.
+It is designed to support text-to-SQL training across adoption, usage, and operational
+query types commonly encountered in AI platform analytics.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-4: analytics, reporting, dashboards.
+Target use cases for db-4:
+- Adoption analytics: model creation volume, user activity, growth trends
+- Usage patterns: models per user, creation frequency, time-of-day distribution
+- Operations: outlier detection, rolling metrics, quartile analysis for capacity planning
+- Product dashboards: model registry growth, top creators, adoption curves
 ```
 
 ## Business Value
 
 ```text
-Business value for db-4.
+AI model registries represent high-value domains for text-to-SQL because:
+- Queries require understanding of model lifecycle (creation, ownership, timestamps)
+- Stakeholders need self-serve analytics (product, platform, growth teams)
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -54,7 +64,19 @@ CREATE INDEX IF NOT EXISTS idx_models_name ON public.models(name);
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+MODELS TABLE:
+- id: BIGINT primary key; used as numeric proxy in aggregations (count, avg, percentile)
+- name: model identifier/name; partition key for per-model analytics
+- user_id: creator/owner; partition key for per-user analytics
+- created_at: timestamp of model creation; used for time-bucketing (day, week, month)
+
+ANALYTICS PATTERNS:
+- Rolling averages: ROWS BETWEEN N PRECEDING AND CURRENT ROW over created_at
+- Z-scores: (value - partition_avg) / partition_stddev for outlier detection
+- Quartiles: PERCENTILE_CONT(0.25), (0.5), (0.75) WITHIN GROUP
+- Trend direction: LAG/LEAD to classify Increasing, Decreasing, Stable
 ```
 
 ## Query Difficulty Distribution

@@ -4,32 +4,43 @@
 
 ```yaml
 db_id: db-8
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Job Market Intelligence
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 12
+total_rows: ~130
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-8.
+This database supports analytics for job market intelligence platforms. It models user profiles,
+job postings, companies, skills, applications, and market trends. It integrates data from USAJobs.gov,
+BLS, Department of Labor, and state employment boards. It is designed to support text-to-SQL training
+across candidate matching, market analysis, and talent acquisition query types.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-8: analytics, reporting, dashboards.
+Target use cases for db-8:
+- Candidate matching: skill alignment, location fit, salary expectations, experience level
+- Market intelligence: trend analysis, skill demand projections, salary benchmarking
+- Application analytics: conversion funnels, success rates, cohort retention
+- Competitive intelligence: employer branding, market share, geographic hotspots
 ```
 
 ## Business Value
 
 ```text
-Business value for db-8.
+Job market databases represent high-value domains for text-to-SQL because:
+- Queries require understanding of skills hierarchies, match scoring, and recruitment funnels
+- Data relationships span users, jobs, companies, skills, and applications
+- Stakeholders need self-serve analytics (recruiters, compensation analysts, product teams)
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -94,7 +105,31 @@ CREATE TABLE companies (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+JOB MARKET STRUCTURE:
+- user_profiles: candidates with location, experience, salary expectations, preferred_work_model (remote/hybrid/onsite)
+- job_postings: positions with salary_min/max, salary_type (annual/hourly/monthly), work_model, posted_date
+- companies: employers with industry, company_size (startup/small/medium/large/enterprise), company_rating
+
+SKILLS AND MATCHING:
+- skills: hierarchical (parent_skill_id); skill_category (programming, framework, certification, etc.)
+- job_skills_requirements: requirement_type is required | preferred | nice_to_have; importance_score
+- user_skills: proficiency_level (beginner/intermediate/advanced/expert); proficiency_score
+- Match scores: skill_match_score, location_match_score, salary_match_score, experience_match_score; weighted overall_match_score
+
+APPLICATIONS AND FUNNEL:
+- job_applications: application_status (submitted/under_review/interview/offer/rejected)
+- Conversion funnel: submission → review → interview → offer
+- match_score: candidate-job fit at application time
+
+MARKET TRENDS:
+- market_trends: trend_date, geographic_scope, growth_rate, competition_index
+- Recency multipliers: recent postings weighted higher (e.g. 7-day: 1.2x, 14-day: 1.1x)
+
+GEOGRAPHY:
+- location_state, location_city (US 2-letter state codes)
+- Remote work: work_model = 'remote' implies location flexibility
 ```
 
 ## Query Difficulty Distribution

@@ -4,32 +4,43 @@
 
 ```yaml
 db_id: db-6
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Weather / Insurance
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 11
+total_rows: ~100
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-6.
+This database supports analytics for weather consulting and insurance risk assessment. It models
+GRIB2 gridded forecasts (NDFD), shapefile boundaries (CWA, fire zones, marine zones, river basins),
+weather station observations, and spatial joins. It is designed to support text-to-SQL training
+across forecast accuracy, spatial aggregation, and insurance risk query types.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-6: analytics, reporting, dashboards.
+Target use cases for db-6:
+- Forecast accuracy: compare GRIB2 forecasts to observations, compute error metrics
+- Spatial analysis: aggregate forecasts by boundary (CWA, county, fire zone), spatial joins
+- Insurance risk: regional weather patterns, boundary hierarchies, exposure by geography
+- Pipeline ops: transformation status, load logs, data quality metrics
 ```
 
 ## Business Value
 
 ```text
-Business value for db-6.
+Weather consulting and insurance databases represent high-value domains for text-to-SQL because:
+- Queries require spatial reasoning (ST_WITHIN, ST_INTERSECTS, ST_DISTANCE, CRS transforms)
+- Forecast–observation comparison drives premium and claims decisions
+- Stakeholders need location-specific risk analytics (product, actuarial, underwriting)
+- Evidence bridges natural-language questions to PostGIS and schema-grounded SQL.
 ```
 
 ## Schema
@@ -94,7 +105,27 @@ CREATE TABLE weather_observations (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+GRIB2 AND FORECASTS:
+- grib2_forecasts: gridded NDFD (National Digital Forecast Database) data; parameter_name (Temperature, Precipitation, WindSpeed); grid_cell_geom is point geometry
+- forecast_time, parameter_value; transformation_status = 'Success' for valid rows
+- spatial_extent_west/south/east/north: bounding box; source_crs, target_crs for coordinate systems
+
+SHAPEFILE BOUNDARIES:
+- shapefile_boundaries: polygons; feature_type is CWA | FireZone | MarineZone | RiverBasin | County
+- boundary_geom: polygon geometry; office_code (NWS office); state_code (2-letter)
+- CWA: County Warning Area (NWS forecast responsibility zone)
+
+WEATHER STATIONS AND OBSERVATIONS:
+- weather_stations: cwa_code links to shapefile office_code; station_geom
+- weather_observations: station_id, observation_time, temperature, precipitation_amount, wind_speed
+
+SPATIAL OPERATIONS (PostGIS):
+- ST_WITHIN(point, polygon): point inside polygon
+- ST_INTERSECTS(geom1, geom2): geometries overlap
+- ST_DISTANCE(geom1, geom2): meters; ST_AREA(geom): area
+- grid_cell_geom and boundary_geom must be cast/typed for PostGIS
 ```
 
 ## Query Difficulty Distribution

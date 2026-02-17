@@ -4,32 +4,45 @@
 
 ```yaml
 db_id: db-11
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Parking Intelligence
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 14
+total_rows: ~65
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-11.
+This database supports analytics for parking intelligence and urban mobility. It models
+metropolitan areas, cities, parking facilities, utilization, pricing, traffic volume,
+events, and competitive analysis. It is designed to support text-to-SQL training across
+demand forecasting, market expansion, and operational query types for parking operators
+and real estate developers.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-11: analytics, reporting, dashboards.
+Target use cases for db-11:
+- Market intelligence: demand scores, growth potential, expansion recommendations by MSA
+- Utilization analytics: occupancy rates, revenue per facility, peak-hour patterns
+- Event parking: stadiums, venues, event-driven demand and pricing
+- Competitive analysis: facility counts, pricing benchmarks, market share
+- Traffic correlation: AADT, peak-hour volume vs parking demand
 ```
 
 ## Business Value
 
 ```text
-Business value for db-11.
+Parking intelligence represents high-value domains for text-to-SQL because:
+- Queries require geographic hierarchy (MSA → city → facility) and spatial joins
+- Demand scoring combines demographics, utilization, and traffic data
+- Stakeholders need market expansion and pricing optimization insights
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -99,7 +112,33 @@ CREATE TABLE cities (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+GEOGRAPHY:
+- metropolitan_areas: MSA, CSA, Micropolitan; msa_geom (PostGIS GEOGRAPHY polygon)
+- cities: city_id, msa_id; city_geom (point); population_density, median_household_income
+- spatial_extent_west/south/east/north: bounding box for MSA
+
+PARKING FACILITIES:
+- parking_facilities: facility_type (Surface Lot, Garage, Structure, Valet, Street)
+- total_spaces, accessible_spaces, ev_charging_stations
+- is_event_parking, is_monthly_parking, is_hourly_parking, accepts_reservations
+
+UTILIZATION:
+- parking_utilization: utilization_date, utilization_hour, occupancy_rate (0–100)
+- spaces_occupied, spaces_available, revenue_generated
+
+PRICING:
+- parking_pricing: rate_type (hourly, daily, monthly, event); price amounts
+
+TRAFFIC:
+- traffic_volume_data: annual_average_daily_traffic (AADT), peak_hour_volume
+- location_id links to city or facility
+
+EVENTS AND VENUES:
+- stadiums_venues: venue_type (Stadium, Arena, Convention Center); capacity
+- events: links to venues; event_date, attendance
+- Event parking drives utilization spikes
 ```
 
 ## Query Difficulty Distribution

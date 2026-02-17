@@ -4,32 +4,43 @@
 
 ```yaml
 db_id: db-1
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Chat / Messaging
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 12
+total_rows: ~65
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-1.
+This database supports analytics for chat and messaging platforms. It models user profiles,
+conversations, messages, friend networks, notifications, file attachments, and anonymous
+chat flows. It is designed to support text-to-SQL training across engagement, retention,
+and operational query types commonly encountered in messaging product analytics.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-1: analytics, reporting, dashboards.
+Target use cases for db-1:
+- Engagement analytics: active users, message volume, chat participation rates
+- Retention: friend networks, invitation flows, re-engagement patterns
+- Operations: notification delivery, file attachment usage, anonymous chat metrics
+- Product dashboards: conversation growth, AI vs human message mix, peak usage
 ```
 
 ## Business Value
 
 ```text
-Business value for db-1.
+Messaging platforms represent high-value domains for text-to-SQL because:
+- Queries require understanding of social graphs (friends, participants, invitations)
+- Data relationships are complex (profile → chat → message → attachment chains)
+- Stakeholders need self-serve analytics (product, growth, support teams)
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -105,7 +116,32 @@ CREATE TABLE anonymous_chats (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+CHAT AND MESSAGING:
+- profiles: user accounts with username, email, display_name; id is UUID
+- chats: conversation containers; created_by references profiles
+- messages: individual messages in a chat; sender_id references profiles; is_ai flags AI-generated content
+- chat_participants: many-to-many (chat_id, user_id); users must join to participate
+- friends: bidirectional relationship; status is pending | accepted | declined
+
+ANONYMOUS FLOWS:
+- anonymous_chats: ephemeral chats without identity
+- anonymous_chat_users: participants in anonymous chats
+- anonymous_messages: messages in anonymous chats
+
+INVITATIONS AND NOTIFICATIONS:
+- chat_invitations: invite users to join chats
+- notifications: delivery of alerts to users
+
+ATTACHMENTS:
+- file_attachments: links messages to uploaded files
+
+AVIATION (aircraft_position_history):
+- hex: ICAO 24-bit transponder code identifying aircraft
+- altitude: feet; speed: knots (groundspeed)
+- timestamp: when the position was recorded
+- Rolling averages, z-scores, and quartiles are used for anomaly detection.
 ```
 
 ## Query Difficulty Distribution

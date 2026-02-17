@@ -4,32 +4,45 @@
 
 ```yaml
 db_id: db-9
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Shipping Intelligence
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 14
+total_rows: ~22M
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-9.
+This database supports analytics for shipping and logistics platforms. It models carriers,
+zones, rates, packages, shipments, tracking events, address validation, customs, and
+adjustments. It is designed to support text-to-SQL training across rate comparison,
+zone analysis, tracking, cost optimization, and international shipping query types.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-9: analytics, reporting, dashboards.
+Target use cases for db-9:
+- Rate comparison: multi-carrier cost analysis, cheapest/fastest option identification
+- Zone analysis: geographic distribution, transit time optimization by zone
+- Tracking analytics: delivery predictions, event patterns, anomaly detection
+- Address validation: correction rates, DPV confirmation, quality metrics
+- Cost optimization: carrier performance, bulk preset tuning, adjustment recovery
+- International: customs duty/tax analysis, clearance success, HS tariff optimization
 ```
 
 ## Business Value
 
 ```text
-Business value for db-9.
+Shipping intelligence databases represent high-value domains for text-to-SQL because:
+- Queries require understanding of zones, dimensional weight, and carrier-specific logic
+- Data relationships span carriers, services, zones, rates, and tracking events
+- Stakeholders need self-serve analytics (operations, finance, customer service)
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -95,7 +108,38 @@ CREATE TABLE shipping_service_types (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+CARRIERS AND SERVICES:
+- shipping_carriers: USPS, UPS, FedEx; carrier_code, carrier_type (Postal/Courier/Freight)
+- shipping_service_types: service_code, service_name, service_category; max_weight_lbs
+- active_status: carriers and services can be inactive; filter for active_status = TRUE
+
+ZONES AND RATES:
+- shipping_zones: origin_zip_code, destination_zip_code, zone_number; zone_type (Domestic, International, Alaska, Hawaii)
+- transit_days_min, transit_days_max: delivery time range; effective_date, expiration_date for validity
+- shipping_rates: total_rate by carrier, service, weight_lbs; effective/expiration dates
+
+PACKAGES AND DIMENSIONAL WEIGHT:
+- packages: weight_lbs, length_inches, width_inches, height_inches
+- billable_weight = MAX(actual_weight, dimensional_weight) where dimensional_weight = L×W×H/166
+
+SHIPMENTS AND TRACKING:
+- shipments: links package, carrier, service; origin/destination zip; total_cost, shipment_status
+- tracking_events: event_type (Label Created, In Transit, Out for Delivery, Delivered, Exception)
+- event_timestamp, event_status, event_location for sequence analysis
+
+ADDRESS VALIDATION:
+- address_validation_results: input vs validated addresses; validation_status (Valid, Corrected, Invalid, Ambiguous)
+- dpv_confirmation: Delivery Point Validation; cmra_flag, vacant_flag, residential_flag
+
+INTERNATIONAL CUSTOMS:
+- international_customs: customs_value, hs_tariff_code; customs_duty_amount, customs_tax_amount
+- customs_status: Cleared, Held, Returned; customs_cleared_date
+
+ADJUSTMENTS:
+- shipping_adjustments: adjustment_type (Weight, Dimensions, Zone); original_amount, adjusted_amount
+- adjustment_status: Applied, Disputed, Resolved
 ```
 
 ## Query Difficulty Distribution

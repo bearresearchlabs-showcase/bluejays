@@ -67,7 +67,7 @@ license_type: [Commercial / Open / Academic]
 license_cost: [Annual cost if applicable]
 tables: 0
 total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 `
   const purposeText = opts.purpose_text ?? `This database supports analytics for ${dbId}.`

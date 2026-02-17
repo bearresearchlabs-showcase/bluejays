@@ -4,32 +4,43 @@
 
 ```yaml
 db_id: db-3
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Hierarchical Orders / Supply Chain
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 3
+total_rows: ~120
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-3.
+This database supports analytics for hierarchical order management (LinkWay). It models
+parent-child order hierarchies, related line items, and cross-linked metrics. It is
+designed to support text-to-SQL training across tree traversal, aggregation, and
+recursive query patterns commonly encountered in order and supply-chain analytics.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-3: analytics, reporting, dashboards.
+Target use cases for db-3:
+- Hierarchy analytics: rollups by parent, subtree aggregation, depth analysis
+- Order metrics: value totals by category, status, date; trend and outlier detection
+- Related data: table2/table3 joins for line-item and metric analysis
+- Dashboards: daily/weekly/monthly aggregations, quartiles, rolling averages
 ```
 
 ## Business Value
 
 ```text
-Business value for db-3.
+Hierarchical order databases represent high-value domains for text-to-SQL because:
+- Queries require recursive CTEs and tree traversal (parent_id → id chains)
+- Aggregations span multiple levels (leaf → branch → root rollups)
+- Stakeholders need self-serve reporting (operations, finance, supply chain)
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -91,7 +102,23 @@ CREATE INDEX IF NOT EXISTS idx_table3_table2_id ON table3(table2_id);
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+HIERARCHY (table1):
+- Self-referential: parent_id references id; root rows have parent_id NULL
+- id: primary key; parent_id: foreign key to table1(id), ON DELETE SET NULL
+- name, value (NUMERIC), category, date_col for grouping and aggregation
+- created_at, updated_at for temporal filtering
+
+RELATED TABLES:
+- table2: child of table1; table1_id references table1(id), ON DELETE CASCADE
+- table3: links table1 and table2; table1_id, table2_id; metric_value, status
+- table3 requires both table1 and table2; use JOINs for cross-table analytics
+
+AGGREGATION PATTERNS:
+- Rolling averages, quartiles (PERCENTILE_CONT), z-scores for outlier detection
+- GROUP BY category, date_col, or status for segmentation
+- Recursive CTEs (WITH RECURSIVE) for subtree traversal and depth calculation
 ```
 
 ## Query Difficulty Distribution

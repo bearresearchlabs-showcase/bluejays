@@ -4,32 +4,43 @@
 
 ```yaml
 db_id: db-16
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Flood Risk / M&A Due Diligence
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 12
+total_rows: ~18M
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-16.
+This database supports flood risk analytics for real estate M&A due diligence. It integrates
+FEMA flood zones, NOAA sea level rise projections, USGS streamflow data, and NASA flood models
+to assess physical climate risk for property portfolios. It is designed to support text-to-SQL
+training across spatial, multi-source, and risk-scoring query types for investment analysts.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-16: analytics, reporting, dashboards.
+Target use cases for db-16:
+- M&A due diligence: pre-acquisition flood risk assessment for property portfolios
+- Portfolio analytics: geographic risk hotspots, cluster patterns, exposure by state/county
+- Risk scoring: composite scores from FEMA, sea level rise, streamflow, NASA models
+- Financial impact: estimated damage, annual loss, insurance premium estimates
 ```
 
 ## Business Value
 
 ```text
-Business value for db-16.
+Flood risk databases represent high-value domains for text-to-SQL because:
+- Queries require spatial reasoning (ST_Distance, ST_DWithin, geography joins)
+- Multi-source integration (FEMA, NOAA, USGS, NASA) demands complex CTEs
+- Stakeholders are investment analysts and underwriters needing self-serve analytics
+- Errors affect acquisition decisions and insurance pricing.
 ```
 
 ## Schema
@@ -90,7 +101,31 @@ CREATE TABLE real_estate_properties (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+FEMA FLOOD ZONES:
+- zone_code: 'A', 'AE', 'AH', 'AO', 'V', 'VE', 'X', 'D', 'X500' — V/VE = velocity (highest risk)
+- base_flood_elevation (BFE): feet above sea level; property elevation - BFE = elevation_above_bfe
+- zone_geom: polygon geography; property_geom: point geography
+
+SEA LEVEL RISE (NOAA):
+- scenario: 'Low', 'Intermediate-Low', 'Intermediate', 'Intermediate-High', 'High', 'Extreme'
+- sea_level_rise_feet: projected rise; high_tide_flooding_days: annual flooding days
+- projection_year: 2030, 2050, 2100, etc.
+
+STREAMFLOW (USGS):
+- discharge_cfs: cubic feet per second; gage_height_feet, stage_feet
+- flood_category: 'None', 'Action', 'Minor', 'Moderate', 'Major'
+- flood_stage_feet, moderate_flood_stage_feet, major_flood_stage_feet
+
+NASA FLOOD MODELS:
+- model_name: 'GFMS', 'LIS', 'VIIRS', 'MODIS', 'FloodPlanet'
+- inundation_depth_feet, flood_probability (0-100), flood_severity
+
+RISK SCORING:
+- Risk scores 0-100; risk_category: 'Low', 'Moderate', 'High', 'Extreme'
+- overall_risk_score: weighted composite; estimated_annual_loss (EAL)
+- Spatial: ST_DISTANCE, ST_DWithin for nearest-neighbor and containment
 ```
 
 ## Query Difficulty Distribution

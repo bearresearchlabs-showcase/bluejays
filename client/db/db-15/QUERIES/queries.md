@@ -4,32 +4,45 @@
 
 ```yaml
 db_id: db-15
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Electricity / Solar
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 17
+total_rows: ~105
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-15.
+This database supports analytics for electricity cost intelligence and solar rebate programs.
+It models U.S. states, counties, zip codes, utility companies, rate structures, electricity
+rates (flat, tiered, time-of-use), federal/state/utility incentives, and geographic rate
+areas. It is designed to support text-to-SQL training across rate comparison, incentive
+eligibility, and solar ROI query types commonly encountered in energy analytics.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-15: analytics, reporting, dashboards.
+Target use cases for db-15:
+- Rate comparison: compare electricity rates across utilities, states, rate codes
+- Solar ROI: aggregate federal, state, and utility incentives by location
+- Geographic analytics: rates and incentives by zip, county, state
+- Rate structure analysis: tiered vs TOU vs flat; demand charges; fixed charges
+- Incentive eligibility: minimum/maximum system size, effective/expiration dates
 ```
 
 ## Business Value
 
 ```text
-Business value for db-15.
+Electricity and solar databases represent high-value domains for text-to-SQL because:
+- Queries require understanding of rate structures (tiers, TOU periods, demand charges)
+- Incentive stacking (federal + state + utility) requires multi-table joins
+- Stakeholders need location-based analytics (installers, homeowners, utilities)
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -100,7 +113,28 @@ CREATE TABLE utility_companies (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+GEOGRAPHY:
+- states: state_id (2-letter), region, division
+- counties: county_fips_code (5-digit), links to state
+- zip_codes: links to state/county; latitude/longitude WGS84
+
+UTILITIES AND RATES:
+- utility_companies: utility_type (Investor-Owned, Municipal, Cooperative, etc.)
+- rate_structures: effective_date, expiration_date, approval_status
+- electricity_rates: fixed_charge_usd, energy_charge_usd_per_kwh, demand_charge_usd_per_kw
+- rate_structure_type: Flat, Tiered, Time-of-Use, Demand, Hybrid
+
+TIERED AND TOU:
+- tiered_rate_tiers: tier_start_kwh, tier_end_kwh (NULL = unlimited)
+- time_of_use_periods: period_name (Peak, Off-Peak, Super Off-Peak); period_start_time, period_end_time; season (Summer, Winter, All)
+
+INCENTIVES:
+- federal_incentives, state_incentives, utility_incentives
+- incentive_type: Tax Credit, Rebate, Grant, Net Metering, Feed-in Tariff
+- incentive_unit: per_watt, per_kwh, percentage, fixed_amount
+- minimum_system_size_kw, maximum_system_size_kw for eligibility
 ```
 
 ## Query Difficulty Distribution

@@ -4,32 +4,44 @@
 
 ```yaml
 db_id: db-7
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Maritime Shipping
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 14
+total_rows: ~120
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-7.
+This database supports analytics for maritime shipping and logistics. It models carriers,
+ports, vessels, routes, sailings, voyages, and real-time vessel tracking. It is designed
+to support text-to-SQL training across fleet operations, schedule intelligence, and
+spatial analytics commonly encountered in maritime supply chain analytics.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-7: analytics, reporting, dashboards.
+Target use cases for db-7:
+- Fleet operations: vessel position tracking, route deviation, navigation status
+- Schedule intelligence: sailings, port calls, voyage planning, ETA analysis
+- Carrier analytics: performance, capacity (TEU), fleet composition
+- Spatial analytics: port proximity, distance calculations, geographic aggregations
+- Supply chain dashboards: port throughput, carrier reliability, voyage timelines
 ```
 
 ## Business Value
 
 ```text
-Business value for db-7.
+Maritime shipping databases represent high-value domains for text-to-SQL because:
+- Queries require domain knowledge (MMSI, IMO, SCAC, TEU, nautical miles, knots)
+- Spatial operations (PostGIS) and temporal analytics are central to fleet visibility
+- Stakeholders need self-serve analytics (operations, logistics, procurement)
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -98,7 +110,32 @@ CREATE TABLE locations (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+CARRIERS AND VESSELS:
+- carriers: shipping lines; scac_code (Standard Carrier Alpha Code); carrier_type: Container, Bulk, RoRo, Tanker, General
+- total_capacity_teu: Twenty-foot Equivalent Unit (container capacity)
+- vessels: imo_number (IMO), mmsi (Maritime Mobile Service Identity); carrier_id links to carriers
+
+PORTS AND LOCATIONS:
+- ports: port_geom (PostGIS GEOGRAPHY); country_code (ISO 3166-1 alpha-3)
+- locations: hierarchical (Country, Region, State, Province); location_geom, spatial_extent_*
+- route_ports: links routes to ports in sequence; port_pairs: origin-destination pairs
+
+ROUTES AND VOYAGES:
+- routes: carrier service patterns; route_ports defines port sequence
+- sailings: scheduled departures; voyages: actual trips; voyage_port_calls: actual port visits
+- eta: Estimated Time of Arrival
+
+VESSEL TRACKING:
+- vessel_tracking: position_geom, latitude, longitude; speed_knots, course_degrees, heading_degrees
+- navigation_status: Moored, At anchor, Under way, etc.
+- ST_DISTANCE(geom1, geom2) / 1852.0 converts meters to nautical miles
+- data_quality: High, Medium, Low
+
+SPATIAL:
+- PostGIS GEOGRAPHY for lat/lon; use ST_DISTANCE, ST_* functions
+- Coordinates in degrees; distances in nautical miles (nm); speed in knots
 ```
 
 ## Query Difficulty Distribution

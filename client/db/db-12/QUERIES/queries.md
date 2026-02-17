@@ -4,32 +4,44 @@
 
 ```yaml
 db_id: db-12
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Credit Card / Rewards
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 15
+total_rows: ~70
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-12.
+This database supports analytics for credit card and rewards optimization. It models issuers,
+cards, rewards structures, bank offers, merchants, user profiles, spending transactions, CFPB
+complaints, and Federal Reserve credit data. It is designed to support text-to-SQL training
+across card comparison, rewards optimization, offer eligibility, and compliance query types.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-12: analytics, reporting, dashboards.
+Target use cases for db-12:
+- Card comparison: annual fees, rewards multipliers, signup bonuses, APR by credit tier
+- Rewards optimization: maximize points/cash back by category and card
+- Offer eligibility: bank offers, activation status, minimum spend requirements
+- Compliance: CFPB complaint counts, resolution rates, Federal Reserve data
+- Spending analytics: transaction patterns, merchant categories, category spend
 ```
 
 ## Business Value
 
 ```text
-Business value for db-12.
+Credit card and rewards databases represent high-value domains for text-to-SQL because:
+- Queries require understanding of rewards structures (multipliers, categories, limits)
+- Card taxonomy is complex (issuer, type, network, level, credit score tier)
+- Stakeholders need self-serve analytics (product, marketing, compliance teams)
+- CFPB and Federal Reserve data add regulatory and market context.
 ```
 
 ## Schema
@@ -94,7 +106,30 @@ CREATE TABLE credit_cards (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+ISSUERS AND CARDS:
+- credit_card_issuers: issuer_id, bank_type (National, Regional, Credit Union, Fintech)
+- credit_cards: card_id, issuer_id; card_type (Cash Back, Travel, Points, Miles, Business, Secured)
+- card_network: Visa, Mastercard, Amex, Discover; card_level: Standard, Gold, Platinum, Signature, Infinite
+- annual_fee, signup_bonus_points, signup_bonus_spend_requirement, signup_bonus_timeframe_months
+- apr_purchase, apr_balance_transfer, apr_cash_advance; credit_score_min, credit_score_max
+
+REWARDS:
+- rewards_categories: category_code (DINING, GAS, GROCERIES, TRAVEL); merchant_category_codes (MCC)
+- card_rewards_structure: rewards_multiplier (e.g., 3.0 for 3x), rewards_type (Points, Cash Back, Miles)
+- annual_spend_limit, quarterly_spend_limit; effective_start_date, effective_end_date
+
+BANK OFFERS:
+- bank_offers: offer_type (Statement Credit, Points Bonus, Cash Back, Discount)
+- discount_amount, discount_percentage, minimum_spend, maximum_discount
+- offer_start_date, offer_end_date; is_targeted, activation_required
+- card_offer_eligibility: eligibility_status, activation_status
+
+COMPLIANCE:
+- cfpb_complaint_count, cfpb_complaint_resolution_rate (CFPB)
+- federal_reserve_credit_data: revolving debt, delinquency rates
+- merchant_locations: PostGIS geography for spatial queries
 ```
 
 ## Query Difficulty Distribution

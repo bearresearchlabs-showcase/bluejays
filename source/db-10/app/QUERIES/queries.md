@@ -4,32 +4,45 @@
 
 ```yaml
 db_id: db-10
-domain: Database domain
-source: [synthetic / open / commercial]
-license_type: [Commercial / Open / Academic]
-license_cost: [Annual cost if applicable]
-tables: 0
-total_rows: ~0
-date_range: 2020-01-01 to 2024-12-31
+domain: Marketing Intelligence
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
+tables: 12
+total_rows: ~1M
+date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
 
 ## Purpose
 
 ```text
-This database supports analytics for db-10.
+This database supports marketing intelligence and retail analytics. It models products,
+retailers, stores, pricing, inventory, deal alerts, and geographic markets. It integrates
+data from U.S. Census Bureau, BLS, FTC, Data.gov, and retail sources. It is designed to
+support text-to-SQL training across competitive pricing, market share, inventory, and
+promotional analytics commonly encountered in retail and marketing operations.
 ```
 
 ## Use Case
 
 ```text
-Target use cases for db-10: analytics, reporting, dashboards.
+Target use cases for db-10:
+- Competitive pricing: multi-retailer price comparison, geographic filtering, temporal trends
+- Market intelligence: market share, retailer rankings, HHI concentration, positioning
+- Inventory: availability predictions, stockout analysis, restocking recommendations
+- Deals and promotions: deal detection, alert generation, discount patterns
+- Category analytics: seasonal decomposition, YoY growth, trend classification
 ```
 
 ## Business Value
 
 ```text
-Business value for db-10.
+Marketing and retail intelligence represent high-value domains for text-to-SQL because:
+- Queries require understanding of pricing, inventory, and geographic market concepts
+- Data relationships span products, retailers, stores, and external (Census, BLS) sources
+- Stakeholders need self-serve analytics (pricing, merchandising, supply chain teams)
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -97,7 +110,34 @@ CREATE TABLE retailers (
 ## Domain Knowledge
 
 ```text
-Domain-specific concepts for this database.
+Key domain concepts required to write correct queries against this database:
+
+PRODUCTS AND RETAIL:
+- products: SKU, UPC, category, subcategory, brand; is_active filters active catalog
+- retailers: retailer_type is big_box | department_store | online | specialty | discount
+- stores: physical locations; store_id links to product_pricing and product_inventory
+
+PRICING:
+- product_pricing: current_price, original_price, sale_price; price_type is sale | clearance | regular
+- price_effective_date, price_expiry_date; is_online_price distinguishes online vs in-store
+- discount_percentage; price_confidence_score for data quality
+
+INVENTORY:
+- product_inventory: stock_level, stock_status (in_stock | out_of_stock), available_quantity
+- last_checked_at, last_restocked_at for temporal analysis
+
+DEALS:
+- deal_alerts: deal_type, discount_percentage, deal_price, original_price
+- deal_start_date, deal_end_date; deal_status (active | expired)
+
+GEOGRAPHIC MARKETS (PostGIS):
+- geographic_markets: market_type is zip | city | state; market_code, market_name, state_code
+- market_geom, store_geom for ST_WITHIN spatial joins
+- population, median_income for demographic context
+
+EXTERNAL DATA:
+- census_retail_data, bls_price_data: government-sourced benchmarks
+- data_sources, pipeline_metadata: provenance and ETL tracking
 ```
 
 ## Query Difficulty Distribution
