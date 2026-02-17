@@ -146,6 +146,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -178,6 +179,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 3 — moderate / aggregation
 
 ```json
@@ -209,6 +211,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -236,6 +239,7 @@ Target distribution across 30 queries:
   "normal_query": "Historical rate trend analysis with time-series metrics, volatility calculations, and trend identification"
 }
 ```
+
 
 ### Query 5 — moderate / aggregation
 
@@ -265,6 +269,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -293,6 +298,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 7 — moderate / aggregation
 
 ```json
@@ -320,6 +326,7 @@ Target distribution across 30 queries:
   "normal_query": "Produce a rate code market share analysis showing adoption rates across different customer segments, utility-level distribution patterns, and overall market penetration metrics."
 }
 ```
+
 
 ### Query 8 — moderate / aggregation
 
@@ -352,6 +359,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 9 — moderate / aggregation
 
 ```json
@@ -377,6 +385,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a cross-state rate comparison report that examines regional market dynamics, performs competitive analysis across state boundaries, and identifies emerging market trends."
 }
 ```
+
 
 ### Query 10 — moderate / aggregation
 
@@ -410,6 +419,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 11 — moderate / aggregation
 
 ```json
@@ -438,6 +448,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze historical rebate trends including expiration forecasts, program lifecycle tracking, and emerging trend identification."
 }
 ```
+
 
 ### Query 12 — moderate / aggregation
 
@@ -468,6 +479,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 13 — moderate / aggregation
 
 ```json
@@ -494,6 +506,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze the utility rate portfolio with diversity metrics across rate codes and provide optimization recommendations."
 }
 ```
+
 
 ### Query 14 — moderate / aggregation
 
@@ -523,6 +536,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 15 — moderate / aggregation
 
 ```json
@@ -550,6 +564,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -572,6 +587,7 @@ Target distribution across 30 queries:
   "normal_query": "Provide market segmentation analysis showing rate type distributions and customer segment metrics."
 }
 ```
+
 
 ### Query 17 — moderate / aggregation
 
@@ -596,6 +612,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 18 — moderate / aggregation
 
 ```json
@@ -618,6 +635,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze rebate stacking optimization to identify maximum savings calculations for eligible customers."
 }
 ```
+
 
 ### Query 19 — moderate / aggregation
 
@@ -643,6 +661,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 20 — moderate / aggregation
 
 ```json
@@ -665,6 +684,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate geographic rebate intelligence with state-level aggregations and regional performance analysis."
 }
 ```
+
 
 ### Query 21 — moderate / aggregation
 
@@ -689,6 +709,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -711,6 +732,7 @@ Target distribution across 30 queries:
   "normal_query": "Show utility rate strategy analysis with rate code portfolio optimization recommendations."
 }
 ```
+
 
 ### Query 23 — moderate / aggregation
 
@@ -738,6 +760,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -760,6 +783,7 @@ Target distribution across 30 queries:
   "normal_query": "Show cross-regional rate comparison with detailed market share analysis."
 }
 ```
+
 
 ### Query 25 — moderate / aggregation
 
@@ -786,6 +810,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 26 — moderate / aggregation
 
 ```json
@@ -807,6 +832,7 @@ Target distribution across 30 queries:
   "normal_query": "Perform recursive rate code hierarchy analysis with multi-level structure traversal."
 }
 ```
+
 
 ### Query 27 — moderate / aggregation
 
@@ -834,6 +860,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 28 — moderate / aggregation
 
 ```json
@@ -858,6 +885,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 29 — moderate / aggregation
 
 ```json
@@ -880,6 +908,7 @@ Target distribution across 30 queries:
   "normal_query": "Perform geographic rate clustering analysis with regional pattern identification."
 }
 ```
+
 
 ### Query 30 — moderate / aggregation
 
@@ -906,3 +935,4 @@ Target distribution across 30 queries:
   "normal_query": "Deploy enterprise rate optimization platform with comprehensive cost intelligence and analysis."
 }
 ```
+

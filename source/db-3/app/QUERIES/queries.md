@@ -130,6 +130,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -154,6 +155,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute weekly order total amount statistics by order status bucket with quartiles, z-score outliers, and increasing-trend counts."
 }
 ```
+
 
 ### Query 3 — moderate / aggregation
 
@@ -180,6 +182,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -204,6 +207,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily order total amount statistics by order status with outlier count, increasing-trend count, and maximum cumulative sum."
 }
 ```
+
 
 ### Query 5 — moderate / aggregation
 
@@ -230,6 +234,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -254,6 +259,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily order total amount statistics grouped by order status, with quartiles, rolling average, and z-score based outlier count."
 }
 ```
+
 
 ### Query 7 — moderate / aggregation
 
@@ -280,6 +286,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 8 — moderate / aggregation
 
 ```json
@@ -304,6 +311,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily order total amount statistics per seller with sequential differences, gap analysis, and quartiles."
 }
 ```
+
 
 ### Query 9 — moderate / aggregation
 
@@ -330,6 +338,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 10 — moderate / aggregation
 
 ```json
@@ -354,6 +363,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute weekly order total amount statistics per seller with recency-frequency metrics, quartiles, and rolling average."
 }
 ```
+
 
 ### Query 11 — moderate / aggregation
 
@@ -380,6 +390,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 12 — moderate / aggregation
 
 ```json
@@ -404,6 +415,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily order total amounts for each seller with acceleration metrics (second-order derivatives), quartile distributions, and outlier detection counts."
 }
 ```
+
 
 ### Query 13 — moderate / aggregation
 
@@ -430,6 +442,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 14 — moderate / aggregation
 
 ```json
@@ -454,6 +467,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly order total amounts for each seller with weighted moving average smoothing, quartile distributions, and counts of increasing trends."
 }
 ```
+
 
 ### Query 15 — moderate / aggregation
 
@@ -480,6 +494,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -504,6 +519,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly order total amount statistics for each seller including lifetime-value style metrics, quartiles, and cumulative sum."
 }
 ```
+
 
 ### Query 17 — moderate / aggregation
 
@@ -530,6 +546,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 18 — moderate / aggregation
 
 ```json
@@ -554,6 +571,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily order total amount statistics for each seller structured as heatmap dimensions, including quartiles and outlier counts."
 }
 ```
+
 
 ### Query 19 — moderate / aggregation
 
@@ -580,6 +598,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 20 — moderate / aggregation
 
 ```json
@@ -604,6 +623,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly order total amount statistics for each seller including cross-correlation style metrics, quartiles, and rolling averages."
 }
 ```
+
 
 ### Query 21 — moderate / aggregation
 
@@ -630,6 +650,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -654,6 +675,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate comprehensive weekly order total amount statistics for each seller, providing all dashboard metrics including quartiles and multi-metric aggregations."
 }
 ```
+
 
 ### Query 23 — moderate / aggregation
 
@@ -680,6 +702,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -704,6 +727,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily order total amount statistics for each seller, including concentration index metrics, quartile distributions, and outlier identification counts."
 }
 ```
+
 
 ### Query 25 — moderate / aggregation
 
@@ -730,6 +754,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 26 — moderate / aggregation
 
 ```json
@@ -754,6 +779,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly aggregated order total amounts per seller with quartile distributions to enable fiscal period-over-period comparison."
 }
 ```
+
 
 ### Query 27 — moderate / aggregation
 
@@ -780,6 +806,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 28 — moderate / aggregation
 
 ```json
@@ -804,6 +831,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly order total amounts for each seller with cumulative trend analysis, quartile distributions, and seller ranking."
 }
 ```
+
 
 ### Query 29 — moderate / aggregation
 
@@ -830,6 +858,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -854,3 +883,4 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly order total amounts grouped by order status using IQR-style outlier detection methods with quartile distributions."
 }
 ```
+

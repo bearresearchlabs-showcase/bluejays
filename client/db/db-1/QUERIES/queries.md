@@ -144,6 +144,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -168,6 +169,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly altitude statistics segmented by speed bucket, including quartiles, z-score-based outliers, and counts of increasing-trend readings."
 }
 ```
+
 
 ### Query 3 — moderate / aggregation
 
@@ -194,6 +196,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -218,6 +221,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily altitude statistics by speed, including outlier count, increasing-trend count, and maximum cumulative sum."
 }
 ```
+
 
 ### Query 5 — moderate / aggregation
 
@@ -244,6 +248,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -268,6 +273,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily altitude statistics grouped by speed bucket, including quartiles, rolling average, and z-score-based outlier count."
 }
 ```
+
 
 ### Query 7 — moderate / aggregation
 
@@ -294,6 +300,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 8 — moderate / aggregation
 
 ```json
@@ -318,6 +325,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute daily altitude statistics per aircraft hex code with sequential differences between consecutive readings, gap analysis, and quartiles."
 }
 ```
+
 
 ### Query 9 — moderate / aggregation
 
@@ -344,6 +352,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 10 — moderate / aggregation
 
 ```json
@@ -368,6 +377,7 @@ Target distribution across 30 queries:
   "normal_query": "Compute weekly altitude statistics per aircraft hex code with recency-frequency metrics, quartiles, and rolling average."
 }
 ```
+
 
 ### Query 11 — moderate / aggregation
 
@@ -394,6 +404,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 12 — moderate / aggregation
 
 ```json
@@ -418,6 +429,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily altitude statistics per aircraft hex code with rate-of-change metrics, quartile distributions, and outlier counts."
 }
 ```
+
 
 ### Query 13 — moderate / aggregation
 
@@ -444,6 +456,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 14 — moderate / aggregation
 
 ```json
@@ -468,6 +481,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly altitude statistics per aircraft hex code with weighted moving averages, quartile distributions, and trend frequency counts."
 }
 ```
+
 
 ### Query 15 — moderate / aggregation
 
@@ -494,6 +508,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -518,6 +533,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly altitude statistics per aircraft including lifetime value metrics, quartile distribution, and cumulative sum analysis."
 }
 ```
+
 
 ### Query 17 — moderate / aggregation
 
@@ -544,6 +560,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 18 — moderate / aggregation
 
 ```json
@@ -568,6 +585,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate daily altitude statistics per aircraft formatted for heatmap visualization including quartile ranges and outlier counts."
 }
 ```
+
 
 ### Query 19 — moderate / aggregation
 
@@ -594,6 +612,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 20 — moderate / aggregation
 
 ```json
@@ -618,6 +637,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly altitude statistics per aircraft with cross-correlation style metrics, quartile distribution, and rolling average trends."
 }
 ```
+
 
 ### Query 21 — moderate / aggregation
 
@@ -644,6 +664,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -668,6 +689,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate weekly altitude statistics per aircraft hex identifier with full multi-metric aggregation including quartiles for dashboard display."
 }
 ```
+
 
 ### Query 23 — moderate / aggregation
 
@@ -694,6 +716,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -718,6 +741,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate daily altitude statistics per aircraft hex identifier with concentration index calculations, quartile distributions, and outlier counts."
 }
 ```
+
 
 ### Query 25 — moderate / aggregation
 
@@ -744,6 +768,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 26 — moderate / aggregation
 
 ```json
@@ -768,6 +793,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate monthly altitude statistics for each aircraft hex identifier, including quartiles to support fiscal period comparison and month-over-month analysis."
 }
 ```
+
 
 ### Query 27 — moderate / aggregation
 
@@ -794,6 +820,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 28 — moderate / aggregation
 
 ```json
@@ -818,6 +845,7 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly altitude statistics for each aircraft hex with cumulative trend analysis, activity ranking, and quartile distributions."
 }
 ```
+
 
 ### Query 29 — moderate / aggregation
 
@@ -844,6 +872,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -868,3 +897,4 @@ Target distribution across 30 queries:
   "normal_query": "Calculate weekly altitude statistics grouped by speed buckets using IQR-style outlier detection methodology with quartiles and trend indicators."
 }
 ```
+

@@ -139,6 +139,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -165,6 +166,7 @@ Target distribution across 30 queries:
   "normal_query": "The query returns hierarchical spatial relationships traversing from parent to child boundaries across multiple administrative levels."
 }
 ```
+
 
 ### Query 3 — moderate / aggregation
 
@@ -194,6 +196,7 @@ Target distribution across 30 queries:
   "normal_query": "The query returns correlation coefficients and temporal pattern metrics across different weather parameters."
 }
 ```
+
 
 ### Query 4 — moderate / aggregation
 
@@ -226,6 +229,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 5 — moderate / aggregation
 
 ```json
@@ -254,6 +258,7 @@ Target distribution across 30 queries:
   "normal_query": "The query returns weather station coverage metrics, identifies spatial gaps in observation networks, and suggests optimal locations for new stations."
 }
 ```
+
 
 ### Query 6 — moderate / aggregation
 
@@ -284,6 +289,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 7 — moderate / aggregation
 
 ```json
@@ -309,6 +315,7 @@ Target distribution across 30 queries:
   "normal_query": "Show boundary-level forecast aggregations with multi-level spatial summarization"
 }
 ```
+
 
 ### Query 8 — moderate / aggregation
 
@@ -336,6 +343,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 9 — moderate / aggregation
 
 ```json
@@ -359,6 +367,7 @@ Target distribution across 30 queries:
   "normal_query": "Show multi-boundary spatial intersection analysis with overlap detection"
 }
 ```
+
 
 ### Query 10 — moderate / aggregation
 
@@ -386,6 +395,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 11 — moderate / aggregation
 
 ```json
@@ -411,6 +421,7 @@ Target distribution across 30 queries:
   "normal_query": "Analysis showing interpolated forecast values with detected spatial gradients across geographic boundaries"
 }
 ```
+
 
 ### Query 12 — moderate / aggregation
 
@@ -438,6 +449,7 @@ Target distribution across 30 queries:
   "normal_query": "Clustered weather patterns with spatial and temporal pattern detection metrics"
 }
 ```
+
 
 ### Query 13 — moderate / aggregation
 
@@ -467,6 +479,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 14 — moderate / aggregation
 
 ```json
@@ -495,6 +508,7 @@ Target distribution across 30 queries:
   "normal_query": "Detected forecast anomalies at geographic boundaries with statistical outlier classification"
 }
 ```
+
 
 ### Query 15 — moderate / aggregation
 
@@ -528,6 +542,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -557,6 +572,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 17 — moderate / aggregation
 
 ```json
@@ -583,6 +599,7 @@ Target distribution across 30 queries:
   "normal_query": "The query returns comparative analysis of rate tables across different forecast time horizons"
 }
 ```
+
 
 ### Query 18 — moderate / aggregation
 
@@ -611,6 +628,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 19 — moderate / aggregation
 
 ```json
@@ -636,6 +654,7 @@ Target distribution across 30 queries:
   "normal_query": "The query returns volatility and stability metrics for insurance rates"
 }
 ```
+
 
 ### Query 20 — moderate / aggregation
 
@@ -663,6 +682,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 21 — moderate / aggregation
 
 ```json
@@ -689,6 +709,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -712,6 +733,7 @@ Target distribution across 30 queries:
   "normal_query": "Ensemble forecast statistics across multiple forecast days with rate correlation metrics"
 }
 ```
+
 
 ### Query 23 — moderate / aggregation
 
@@ -740,6 +762,7 @@ Target distribution across 30 queries:
   "normal_query": "Optimal forecast day selection analysis based on accuracy and rate prediction performance"
 }
 ```
+
 
 ### Query 24 — moderate / aggregation
 
@@ -771,6 +794,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 25 — moderate / aggregation
 
 ```json
@@ -800,6 +824,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 26 — moderate / aggregation
 
 ```json
@@ -828,6 +853,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 27 — moderate / aggregation
 
 ```json
@@ -855,6 +881,7 @@ Target distribution across 30 queries:
   "normal_query": "Return a composite cloud coverage visualization across the United States using satellite imagery"
 }
 ```
+
 
 ### Query 28 — moderate / aggregation
 
@@ -886,6 +913,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 29 — moderate / aggregation
 
 ```json
@@ -911,6 +939,7 @@ Target distribution across 30 queries:
   "normal_query": "Return satellite-detected fire hotspots and monitoring statistics across all US regions"
 }
 ```
+
 
 ### Query 30 — moderate / aggregation
 
@@ -938,3 +967,4 @@ Target distribution across 30 queries:
   "normal_query": "Return an integrated weather composite product merging NEXRAD radar and satellite observations across the United States"
 }
 ```
+

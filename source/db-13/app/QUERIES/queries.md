@@ -125,6 +125,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -153,6 +154,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 3 — moderate / aggregation
 
 ```json
@@ -180,6 +182,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -205,6 +208,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 5 — moderate / aggregation
 
 ```json
@@ -229,6 +233,7 @@ Target distribution across 30 queries:
   "normal_query": "Create a model adoption prediction analysis that correlates benchmark performance scores with historical adoption rates and projects future market penetration based on performance characteristics"
 }
 ```
+
 
 ### Query 6 — moderate / aggregation
 
@@ -257,6 +262,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 7 — moderate / aggregation
 
 ```json
@@ -284,6 +290,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 8 — moderate / aggregation
 
 ```json
@@ -309,6 +316,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a performance correlation matrix across benchmarks with cross-model statistical relationships and pattern identification"
 }
 ```
+
 
 ### Query 9 — moderate / aggregation
 
@@ -336,6 +344,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 10 — moderate / aggregation
 
 ```json
@@ -361,6 +370,7 @@ Target distribution across 30 queries:
   "normal_query": "Compare model family performance with statistical significance testing and comprehensive performance metrics"
 }
 ```
+
 
 ### Query 11 — moderate / aggregation
 
@@ -388,6 +398,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 12 — moderate / aggregation
 
 ```json
@@ -413,6 +424,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a comprehensive analysis report with metrics and insights for adoption prediction model including performance correlation analysis."
 }
 ```
+
 
 ### Query 13 — moderate / aggregation
 
@@ -440,6 +452,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 14 — moderate / aggregation
 
 ```json
@@ -465,6 +478,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a comprehensive analysis report with metrics and insights for performance-price optimization analysis including ROI calculation."
 }
 ```
+
 
 ### Query 15 — moderate / aggregation
 
@@ -492,6 +506,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -517,6 +532,7 @@ Target distribution across 30 queries:
   "normal_query": "Show me a temporal performance analysis with trend projections to forecast how our models will perform in upcoming periods"
 }
 ```
+
 
 ### Query 17 — moderate / aggregation
 
@@ -544,6 +560,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 18 — moderate / aggregation
 
 ```json
@@ -569,6 +586,7 @@ Target distribution across 30 queries:
   "normal_query": "Provide a benchmark evaluation quality assessment with statistical validation metrics to ensure result reliability and methodological rigor"
 }
 ```
+
 
 ### Query 19 — moderate / aggregation
 
@@ -596,6 +614,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 20 — moderate / aggregation
 
 ```json
@@ -621,6 +640,7 @@ Target distribution across 30 queries:
   "normal_query": "Conduct a performance benchmark gap analysis identifying areas of underperformance with prioritized improvement recommendations based on competitive context"
 }
 ```
+
 
 ### Query 21 — moderate / aggregation
 
@@ -648,6 +668,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -673,6 +694,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a performance consistency analysis report comparing model results across multiple benchmarks"
 }
 ```
+
 
 ### Query 23 — moderate / aggregation
 
@@ -700,6 +722,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -725,6 +748,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a competitive intelligence dashboard with comprehensive market dynamics analysis and competitor performance metrics"
 }
 ```
+
 
 ### Query 25 — moderate / aggregation
 
@@ -752,6 +776,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 26 — moderate / aggregation
 
 ```json
@@ -777,6 +802,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a comprehensive analysis report that detects performance anomalies and identifies statistical outliers across our AI models"
 }
 ```
+
 
 ### Query 27 — moderate / aggregation
 
@@ -804,6 +830,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 28 — moderate / aggregation
 
 ```json
@@ -829,6 +856,7 @@ Target distribution across 30 queries:
   "normal_query": "Create a performance optimization recommendations report that evaluates potential improvements against their implementation costs and expected benefits"
 }
 ```
+
 
 ### Query 29 — moderate / aggregation
 
@@ -856,6 +884,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -881,3 +910,4 @@ Target distribution across 30 queries:
   "normal_query": "Develop a strategic model selection framework that matches optimal models to specific use cases based on performance requirements and operational constraints"
 }
 ```
+

@@ -141,6 +141,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -174,6 +175,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 3 — moderate / aggregation
 
 ```json
@@ -203,6 +205,7 @@ Target distribution across 30 queries:
   "normal_query": "Market share report showing retailer rankings, share percentages, competitive positioning metrics, and temporal trends by product category"
 }
 ```
+
 
 ### Query 4 — moderate / aggregation
 
@@ -237,6 +240,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 5 — moderate / aggregation
 
 ```json
@@ -264,6 +268,7 @@ Target distribution across 30 queries:
   "normal_query": "Product category trend analysis report with seasonal patterns, growth metrics, cyclical components, and demand forecasts"
 }
 ```
+
 
 ### Query 6 — moderate / aggregation
 
@@ -296,6 +301,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 7 — moderate / aggregation
 
 ```json
@@ -326,6 +332,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate comprehensive marketing metrics analysis report"
 }
 ```
+
 
 ### Query 8 — moderate / aggregation
 
@@ -358,6 +365,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 9 — moderate / aggregation
 
 ```json
@@ -388,6 +396,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate comprehensive marketing metrics analysis report"
 }
 ```
+
 
 ### Query 10 — moderate / aggregation
 
@@ -420,6 +429,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 11 — moderate / aggregation
 
 ```json
@@ -450,6 +460,7 @@ Target distribution across 30 queries:
   "normal_query": "Comprehensive marketing performance analysis report with key metrics"
 }
 ```
+
 
 ### Query 12 — moderate / aggregation
 
@@ -482,6 +493,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 13 — moderate / aggregation
 
 ```json
@@ -512,6 +524,7 @@ Target distribution across 30 queries:
   "normal_query": "Comprehensive marketing performance analysis report with key metrics"
 }
 ```
+
 
 ### Query 14 — moderate / aggregation
 
@@ -544,6 +557,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 15 — moderate / aggregation
 
 ```json
@@ -574,6 +588,7 @@ Target distribution across 30 queries:
   "normal_query": "Comprehensive marketing performance analysis report with key metrics"
 }
 ```
+
 
 ### Query 16 — moderate / aggregation
 
@@ -606,6 +621,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 17 — moderate / aggregation
 
 ```json
@@ -636,6 +652,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate comprehensive analysis report with key marketing performance metrics"
 }
 ```
+
 
 ### Query 18 — moderate / aggregation
 
@@ -668,6 +685,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 19 — moderate / aggregation
 
 ```json
@@ -698,6 +716,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate comprehensive analysis report with key marketing performance metrics"
 }
 ```
+
 
 ### Query 20 — moderate / aggregation
 
@@ -730,6 +749,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 21 — moderate / aggregation
 
 ```json
@@ -760,6 +780,7 @@ Target distribution across 30 queries:
   "normal_query": "Comprehensive marketing performance analysis with key metrics"
 }
 ```
+
 
 ### Query 22 — moderate / aggregation
 
@@ -792,6 +813,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 23 — moderate / aggregation
 
 ```json
@@ -822,6 +844,7 @@ Target distribution across 30 queries:
   "normal_query": "Comprehensive marketing performance analysis with key metrics"
 }
 ```
+
 
 ### Query 24 — moderate / aggregation
 
@@ -854,6 +877,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 25 — moderate / aggregation
 
 ```json
@@ -884,6 +908,7 @@ Target distribution across 30 queries:
   "normal_query": "Comprehensive marketing performance analysis with key metrics"
 }
 ```
+
 
 ### Query 26 — moderate / aggregation
 
@@ -916,6 +941,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 27 — moderate / aggregation
 
 ```json
@@ -946,6 +972,7 @@ Target distribution across 30 queries:
   "normal_query": "Comprehensive analysis report with marketing performance metrics"
 }
 ```
+
 
 ### Query 28 — moderate / aggregation
 
@@ -978,6 +1005,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 29 — moderate / aggregation
 
 ```json
@@ -1009,6 +1037,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -1039,3 +1068,4 @@ Target distribution across 30 queries:
   "normal_query": "Comprehensive analysis report with marketing performance metrics"
 }
 ```
+

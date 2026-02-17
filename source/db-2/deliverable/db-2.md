@@ -2797,7 +2797,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260216-0700
+- **Generated**: 20260216-1856
 - **Database**: db-2
 - **Type**: Filling Station Retail / POS (phppos)
 - **Queries**: 30 production queries

@@ -2798,7 +2798,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260216-0700
+- **Generated**: 20260216-1856
 - **Database**: db-5
 - **Type**: POS Retail (Lucasa)
 - **Queries**: 30 production queries

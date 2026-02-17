@@ -145,6 +145,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -171,6 +172,7 @@ Target distribution across 30 queries:
   "normal_query": "Create a port call performance report with delay metrics, on-time performance rates, vessel dwell times, and operational efficiency classifications for each port."
 }
 ```
+
 
 ### Query 3 — moderate / aggregation
 
@@ -200,6 +202,7 @@ Target distribution across 30 queries:
   "normal_query": "Produce a route optimization report showing transit times, voyage distances, fuel efficiency metrics, and carrier performance comparisons across major shipping routes."
 }
 ```
+
 
 ### Query 4 — moderate / aggregation
 
@@ -231,6 +234,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 5 — moderate / aggregation
 
 ```json
@@ -257,6 +261,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a port statistics report with vessel call volumes, container throughput figures, berth utilization rates, and operational efficiency metrics for each port terminal."
 }
 ```
+
 
 ### Query 6 — moderate / aggregation
 
@@ -287,6 +292,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 7 — moderate / aggregation
 
 ```json
@@ -315,6 +321,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a multi-port route report with complete route paths, identified transshipment points, connectivity analysis between ports, and path optimization recommendations."
 }
 ```
+
 
 ### Query 8 — moderate / aggregation
 
@@ -345,6 +352,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 9 — moderate / aggregation
 
 ```json
@@ -372,6 +380,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a port pair demand report showing trade volumes between port pairs, demand trends over time, and market opportunity analysis."
 }
 ```
+
 
 ### Query 10 — moderate / aggregation
 
@@ -404,6 +413,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 11 — moderate / aggregation
 
 ```json
@@ -432,6 +442,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a carrier route performance report showing service quality metrics, competitive positioning across routes, and actionable route optimization recommendations."
 }
 ```
+
 
 ### Query 12 — moderate / aggregation
 
@@ -464,6 +475,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 13 — moderate / aggregation
 
 ```json
@@ -490,6 +502,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a port capacity report showing utilization rates for each port and berth, efficiency metrics, congestion pattern identification, and optimization recommendations to improve throughput."
 }
 ```
+
 
 ### Query 14 — moderate / aggregation
 
@@ -520,6 +533,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 15 — moderate / aggregation
 
 ```json
@@ -548,6 +562,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a carrier market share report showing market share percentages by route, competitive positioning rankings, route dominance analysis, and market concentration indicators."
 }
 ```
+
 
 ### Query 16 — moderate / aggregation
 
@@ -578,6 +593,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a vessel route efficiency report showing efficiency metrics, fuel consumption optimization, and transit time benchmarks across routes."
 }
 ```
+
 
 ### Query 17 — moderate / aggregation
 
@@ -610,6 +626,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 18 — moderate / aggregation
 
 ```json
@@ -638,6 +655,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 19 — moderate / aggregation
 
 ```json
@@ -665,6 +683,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a route network report showing connectivity metrics between ports, hub port identification, and network optimization recommendations."
 }
 ```
+
 
 ### Query 20 — moderate / aggregation
 
@@ -696,6 +715,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 21 — moderate / aggregation
 
 ```json
@@ -726,6 +746,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -752,6 +773,7 @@ Target distribution across 30 queries:
   "normal_query": "Create a route profitability report that analyzes revenue metrics, evaluates cost efficiency, and identifies profitability optimization opportunities."
 }
 ```
+
 
 ### Query 23 — moderate / aggregation
 
@@ -783,6 +805,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -812,6 +835,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 25 — moderate / aggregation
 
 ```json
@@ -838,6 +862,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a port infrastructure utilization report that measures utilization rates across port facilities, evaluates resource efficiency, and identifies optimization opportunities."
 }
 ```
+
 
 ### Query 26 — moderate / aggregation
 
@@ -867,6 +892,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 27 — moderate / aggregation
 
 ```json
@@ -893,6 +919,7 @@ Target distribution across 30 queries:
   "normal_query": "Produce a trade volume trends report with growth forecasts, emerging market opportunities, and strategic expansion recommendations for key port pairs."
 }
 ```
+
 
 ### Query 28 — moderate / aggregation
 
@@ -922,6 +949,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 29 — moderate / aggregation
 
 ```json
@@ -949,6 +977,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate a carrier alliance performance report with collaborative efficiency metrics, network synergy indicators, and partnership optimization recommendations."
 }
 ```
+
 
 ### Query 30 — moderate / aggregation
 
@@ -984,3 +1013,4 @@ Target distribution across 30 queries:
   "normal_query": "Build a comprehensive maritime intelligence dashboard displaying key performance indicators, operational metrics, financial performance, market intelligence, and strategic insights across all dimensions."
 }
 ```
+

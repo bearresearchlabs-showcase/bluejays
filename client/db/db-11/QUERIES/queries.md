@@ -145,6 +145,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -174,6 +175,7 @@ Target distribution across 30 queries:
   "normal_query": "Show competitive analysis grouped by facility cluster including pricing strategy recommendations, market share percentages, and revenue optimization opportunities."
 }
 ```
+
 
 ### Query 3 — moderate / aggregation
 
@@ -205,6 +207,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 4 — moderate / aggregation
 
 ```json
@@ -235,6 +238,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 5 — moderate / aggregation
 
 ```json
@@ -264,6 +268,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -291,6 +296,7 @@ Target distribution across 30 queries:
   "normal_query": "Show demographic targeting analysis with segment-specific pricing strategies and marketing recommendations."
 }
 ```
+
 
 ### Query 7 — moderate / aggregation
 
@@ -322,6 +328,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 8 — moderate / aggregation
 
 ```json
@@ -348,6 +355,7 @@ Target distribution across 30 queries:
   "normal_query": "Analyze utilization patterns showing trend decomposition, anomaly flags, and capacity planning recommendations."
 }
 ```
+
 
 ### Query 9 — moderate / aggregation
 
@@ -378,6 +386,7 @@ Target distribution across 30 queries:
   "normal_query": "Identify market expansion opportunities with quantified opportunity scores, risk assessments, and prioritized expansion recommendations."
 }
 ```
+
 
 ### Query 10 — moderate / aggregation
 
@@ -410,6 +419,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 11 — moderate / aggregation
 
 ```json
@@ -440,6 +450,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve competitive positioning metrics including market share trends, competitor comparisons, and actionable strategic recommendations."
 }
 ```
+
 
 ### Query 12 — moderate / aggregation
 
@@ -472,6 +483,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 13 — moderate / aggregation
 
 ```json
@@ -502,6 +514,7 @@ Target distribution across 30 queries:
   "normal_query": "Generate monthly parking optimization metrics with customer lifetime value calculations and retention analysis insights."
 }
 ```
+
 
 ### Query 14 — moderate / aggregation
 
@@ -534,6 +547,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 15 — moderate / aggregation
 
 ```json
@@ -564,6 +578,7 @@ Target distribution across 30 queries:
   "normal_query": "Compare reservation versus walk-in customer patterns with revenue optimization insights and capacity planning recommendations."
 }
 ```
+
 
 ### Query 16 — moderate / aggregation
 
@@ -596,6 +611,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 17 — moderate / aggregation
 
 ```json
@@ -626,6 +642,7 @@ Target distribution across 30 queries:
   "normal_query": "Comparative analysis of weekend and weekday parking behavior with differentiated pricing strategy recommendations."
 }
 ```
+
 
 ### Query 18 — moderate / aggregation
 
@@ -658,6 +675,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 19 — moderate / aggregation
 
 ```json
@@ -688,6 +706,7 @@ Target distribution across 30 queries:
   "normal_query": "Operator type analysis with market share calculations and competitive advantage assessment metrics."
 }
 ```
+
 
 ### Query 20 — moderate / aggregation
 
@@ -720,6 +739,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 21 — moderate / aggregation
 
 ```json
@@ -750,6 +770,7 @@ Target distribution across 30 queries:
   "normal_query": "Analysis results showing MSA-level metrics with regional market insights and expansion opportunity recommendations."
 }
 ```
+
 
 ### Query 22 — moderate / aggregation
 
@@ -782,6 +803,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 23 — moderate / aggregation
 
 ```json
@@ -812,6 +834,7 @@ Target distribution across 30 queries:
   "normal_query": "Anomaly detection results identifying statistical outliers with alert flags and deviation metrics."
 }
 ```
+
 
 ### Query 24 — moderate / aggregation
 
@@ -844,6 +867,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 25 — moderate / aggregation
 
 ```json
@@ -874,6 +898,7 @@ Target distribution across 30 queries:
   "normal_query": "Price elasticity analysis results showing demand response curves, elasticity coefficients, and revenue optimization recommendations."
 }
 ```
+
 
 ### Query 26 — moderate / aggregation
 
@@ -906,6 +931,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 27 — moderate / aggregation
 
 ```json
@@ -936,6 +962,7 @@ Target distribution across 30 queries:
   "normal_query": "Market penetration analysis displaying growth metrics across zones and strategic expansion opportunities."
 }
 ```
+
 
 ### Query 28 — moderate / aggregation
 
@@ -968,6 +995,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 29 — moderate / aggregation
 
 ```json
@@ -999,6 +1027,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -1029,3 +1058,4 @@ Target distribution across 30 queries:
   "normal_query": "Performance analysis identifying query execution bottlenecks with optimization metrics and efficiency improvement recommendations."
 }
 ```
+

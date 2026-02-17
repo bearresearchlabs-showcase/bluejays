@@ -143,6 +143,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -173,6 +174,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 3 — moderate / aggregation
 
 ```json
@@ -195,6 +197,7 @@ Target distribution across 30 queries:
   "normal_query": "Show reserved instance ROI analysis comparing upfront costs versus on-demand pricing with 1-year and 3-year projections"
 }
 ```
+
 
 ### Query 4 — moderate / aggregation
 
@@ -219,6 +222,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 5 — moderate / aggregation
 
 ```json
@@ -241,6 +245,7 @@ Target distribution across 30 queries:
   "normal_query": "Show instance pricing across all regions with cost comparisons and recommendations for regional optimization"
 }
 ```
+
 
 ### Query 6 — moderate / aggregation
 
@@ -265,6 +270,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 7 — moderate / aggregation
 
 ```json
@@ -287,6 +293,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve cost efficiency metrics ranked by instance family"
 }
 ```
+
 
 ### Query 8 — moderate / aggregation
 
@@ -311,6 +318,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 9 — moderate / aggregation
 
 ```json
@@ -333,6 +341,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve comparative cost metrics for multi-cloud migration scenarios"
 }
 ```
+
 
 ### Query 10 — moderate / aggregation
 
@@ -357,6 +366,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 11 — moderate / aggregation
 
 ```json
@@ -379,6 +389,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve instance sizing recommendations with current utilization metrics and potential cost savings"
 }
 ```
+
 
 ### Query 12 — moderate / aggregation
 
@@ -403,6 +414,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 13 — moderate / aggregation
 
 ```json
@@ -425,6 +437,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve reserved instance purchase recommendations based on usage patterns and break-even analysis"
 }
 ```
+
 
 ### Query 14 — moderate / aggregation
 
@@ -449,6 +462,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 15 — moderate / aggregation
 
 ```json
@@ -471,6 +485,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve matched instance types across cloud providers with normalized specifications and pricing comparison"
 }
 ```
+
 
 ### Query 16 — moderate / aggregation
 
@@ -495,6 +510,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 17 — moderate / aggregation
 
 ```json
@@ -517,6 +533,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve cost and usage metrics for deprecated and soon-to-be-deprecated instances"
 }
 ```
+
 
 ### Query 18 — moderate / aggregation
 
@@ -541,6 +558,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 19 — moderate / aggregation
 
 ```json
@@ -563,6 +581,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve detailed cost and utilization metrics for GPU instances"
 }
 ```
+
 
 ### Query 20 — moderate / aggregation
 
@@ -587,6 +606,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 21 — moderate / aggregation
 
 ```json
@@ -609,6 +629,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve detailed network cost metrics including bandwidth charges, data transfer costs, and network resource utilization"
 }
 ```
+
 
 ### Query 22 — moderate / aggregation
 
@@ -633,6 +654,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 23 — moderate / aggregation
 
 ```json
@@ -655,6 +677,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve comprehensive lifecycle cost metrics tracking total expenses for each instance from launch through termination including all cost phases"
 }
 ```
+
 
 ### Query 24 — moderate / aggregation
 
@@ -679,6 +702,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 25 — moderate / aggregation
 
 ```json
@@ -701,6 +725,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve a comprehensive comparison matrix of cloud instance types showing relative performance, cost, utilization, and efficiency metrics side-by-side"
 }
 ```
+
 
 ### Query 26 — moderate / aggregation
 
@@ -726,6 +751,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 27 — moderate / aggregation
 
 ```json
@@ -748,6 +774,7 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve detailed reserved instance utilization and cost efficiency metrics"
 }
 ```
+
 
 ### Query 28 — moderate / aggregation
 
@@ -772,6 +799,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 29 — moderate / aggregation
 
 ```json
@@ -795,6 +823,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -817,3 +846,4 @@ Target distribution across 30 queries:
   "normal_query": "Retrieve a complete set of detailed cost metrics for executive dashboard visualization"
 }
 ```
+

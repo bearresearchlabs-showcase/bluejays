@@ -141,6 +141,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 2 — moderate / aggregation
 
 ```json
@@ -171,6 +172,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 3 — moderate / aggregation
 
 ```json
@@ -198,6 +200,7 @@ Target distribution across 30 queries:
   "normal_query": "Historical flood event analysis showing occurrence frequency, temporal patterns, seasonal clustering, and recurrence intervals for properties under consideration."
 }
 ```
+
 
 ### Query 4 — moderate / aggregation
 
@@ -228,6 +231,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 5 — moderate / aggregation
 
 ```json
@@ -255,6 +259,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 6 — moderate / aggregation
 
 ```json
@@ -279,6 +284,7 @@ Target distribution across 30 queries:
   "normal_query": "Performance evaluation results for NASA flood models with statistical metrics"
 }
 ```
+
 
 ### Query 7 — moderate / aggregation
 
@@ -305,6 +311,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 8 — moderate / aggregation
 
 ```json
@@ -329,6 +336,7 @@ Target distribution across 30 queries:
   "normal_query": "Temporal risk trend analysis with historical patterns and projections"
 }
 ```
+
 
 ### Query 9 — moderate / aggregation
 
@@ -355,6 +363,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 10 — moderate / aggregation
 
 ```json
@@ -379,6 +388,7 @@ Target distribution across 30 queries:
   "normal_query": "Multi-factor property vulnerability assessment with composite scoring"
 }
 ```
+
 
 ### Query 11 — moderate / aggregation
 
@@ -405,6 +415,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 12 — moderate / aggregation
 
 ```json
@@ -429,6 +440,7 @@ Target distribution across 30 queries:
   "normal_query": "Display FEMA flood zone risk classification analysis results."
 }
 ```
+
 
 ### Query 13 — moderate / aggregation
 
@@ -455,6 +467,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 14 — moderate / aggregation
 
 ```json
@@ -479,6 +492,7 @@ Target distribution across 30 queries:
   "normal_query": "Display USGS streamflow historical pattern recognition analysis results."
 }
 ```
+
 
 ### Query 15 — moderate / aggregation
 
@@ -505,6 +519,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 16 — moderate / aggregation
 
 ```json
@@ -529,6 +544,7 @@ Target distribution across 30 queries:
   "normal_query": "A detailed risk summary report for properties under consideration for acquisition, including aggregated risk metrics and comparative analysis"
 }
 ```
+
 
 ### Query 17 — moderate / aggregation
 
@@ -555,6 +571,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 18 — moderate / aggregation
 
 ```json
@@ -579,6 +596,7 @@ Target distribution across 30 queries:
   "normal_query": "An optimized query result showing properties accurately matched to flood zones using efficient spatial join techniques"
 }
 ```
+
 
 ### Query 19 — moderate / aggregation
 
@@ -605,6 +623,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 20 — moderate / aggregation
 
 ```json
@@ -629,6 +648,7 @@ Target distribution across 30 queries:
   "normal_query": "A time-series projection of flood risk metrics showing expected risk evolution over future time periods for the property portfolio"
 }
 ```
+
 
 ### Query 21 — moderate / aggregation
 
@@ -655,6 +675,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 22 — moderate / aggregation
 
 ```json
@@ -679,6 +700,7 @@ Target distribution across 30 queries:
   "normal_query": "Historical flood event analysis showing property damage, affected areas, and risk score changes over time."
 }
 ```
+
 
 ### Query 23 — moderate / aggregation
 
@@ -705,6 +727,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 24 — moderate / aggregation
 
 ```json
@@ -730,6 +753,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 25 — moderate / aggregation
 
 ```json
@@ -754,6 +778,7 @@ Target distribution across 30 queries:
   "normal_query": "Property type risk analysis showing risk scores, exposure levels, and vulnerability patterns across residential, commercial, and other property categories."
 }
 ```
+
 
 ### Query 26 — moderate / aggregation
 
@@ -783,6 +808,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 27 — moderate / aggregation
 
 ```json
@@ -807,6 +833,7 @@ Target distribution across 30 queries:
   "normal_query": "Identify properties with critical flood risk levels that may constitute material deal-breakers during acquisition due diligence."
 }
 ```
+
 
 ### Query 28 — moderate / aggregation
 
@@ -833,6 +860,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 29 — moderate / aggregation
 
 ```json
@@ -858,6 +886,7 @@ Target distribution across 30 queries:
 }
 ```
 
+
 ### Query 30 — moderate / aggregation
 
 ```json
@@ -882,3 +911,4 @@ Target distribution across 30 queries:
   "normal_query": "Produce a complete due diligence report covering all flood risk dimensions for the target property portfolio."
 }
 ```
+
