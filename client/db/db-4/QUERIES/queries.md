@@ -101,14 +101,7 @@ Target distribution across 30 queries:
   "evidence": "The query constructs four CTEs. First, it retains the 60 most recent records per model name (cte_level_1). Second, it computes a 5-row rolling average and cumulative sum via window functions on id (cte_level_2). Third, it uses LAG, LEAD, and partition statistics for trend and z-score calculation (cte_level_3). Fourth, it flags outliers (z-score > 2) and trend direction, then aggregates by day and name with PERCENTILE_CONT, SUM for outlier/increasing counts, and AVG for rolling average.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and name",
   "normal_query": "Compute daily model altitude statistics with rolling averages and outlier counts for each aircraft model over the last 365 days."
@@ -128,14 +121,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and user_id. It divides id into sextiles (NTILE(6)), calculates z-scores per partition, flags outliers (>2 std dev), and uses LAG/LEAD to compare consecutive values for trend direction. Aggregates include quartiles (PERCENTILE_CONT), outlier count, and increasing-trend count.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and user_id",
   "normal_query": "Compute weekly model altitude statistics by airspeed bucket with quartiles, z-score outliers, and increasing-trend counts."
@@ -155,14 +141,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and name. It uses PERCENTILE_CONT for Q1, median, Q3; computes a 6-row rolling average; flags outliers via z-score; and aggregates record count, stddev, min, max, outlier count, and increasing count. ROW_NUMBER limits to 80 points per model name.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and name",
   "normal_query": "Compute monthly model altitude statistics per aircraft model with quartiles, median, outlier count, and rolling average."
@@ -182,14 +161,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and user_id. It calculates running cumulative sum of id, applies a 7-row rolling window, uses NTILE(8) for distribution, and aggregates outlier count, increasing-trend count, and max cumulative sum per group.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and user_id",
   "normal_query": "Compute daily model altitude statistics by flight phase with outlier count, increasing-trend count, and maximum cumulative sum."
@@ -209,14 +181,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and name. It calculates STDDEV, PERCENTILE_CONT for quartiles, and uses LAG/LEAD with delta_value to derive trend_direction. Aggregates include record count, quartiles, stddev, outlier count, and increasing count. ROW_NUMBER limits to 100 points per model.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and name",
   "normal_query": "Compute weekly model altitude statistics per aircraft model with record count, quartiles, standard deviation, and increasing-trend count."
@@ -236,14 +201,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and user_id. It computes z-scores (mean, stddev per partition; zero when stddev=0), flags outliers, calculates a rolling average, and filters to groups with \u22651 record. Output includes quartiles, rolling average, and outlier count.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and user_id",
   "normal_query": "Compute daily model ID statistics grouped by user, including quartiles, rolling average, and z-score based outlier count."
@@ -263,14 +221,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and name. It captures min/max id, flags outliers (z-score > 2), limits to 120 points per model, uses PERCENT_RANK, and calculates cumulative sum via window. Aggregates include quartiles, min, max, outlier count, and max cumulative sum.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and name",
   "normal_query": "Compute monthly model ID statistics per model name with quartiles, minimum and maximum values, outlier count, and maximum cumulative sum."
@@ -290,14 +241,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and user_id. It uses LAG to get previous id, computes delta (current minus previous), derives trend_direction from the sign, and uses LEAD for next value. Aggregates include quartiles and sequential difference metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and user_id",
   "normal_query": "Compute daily model ID statistics per model name including sequential differences, gap analysis, and quartiles."
@@ -317,14 +261,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and name. It computes mean and stddev per group, flags anomalies (|z| > 2), handles stddev=0 safely, segments into septiles (NTILE(7)), and aggregates quartiles, outlier count, and trend direction counts.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and name",
   "normal_query": "Compute daily model ID statistics grouped by user with z-score anomaly detection, quartiles, and trend direction counts."
@@ -344,14 +281,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and user_id. It assigns ROW_NUMBER (desc timestamp) for recency scoring, uses record count as frequency proxy, ranks by cumulative sum, computes 6-row rolling average, and filters to groups with \u22652 records. Output includes quartiles and rolling average.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and user_id",
   "normal_query": "Compute weekly model ID statistics per model name with recency-frequency scoring metrics, quartiles, and rolling average."
@@ -371,14 +301,7 @@ Target distribution across 30 queries:
   "evidence": "The query treats each model name as a cohort dimension. It limits to 160 points per name, uses window functions for increasing_count and trend_direction (analogous to retention), and orders by time period and average value. Output includes cohort-style progression and quartile boundaries.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and name",
   "normal_query": "Calculate monthly model ID statistics grouped by user, including cohort-style retention metrics and quartile distributions."
@@ -398,14 +321,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and user_id. It uses LAG to create first derivative (id change). trend_direction captures sign of change. LAG and LEAD together enable second-order derivative. Z-scores flag outliers. Output includes change rate metrics, quartiles, and outlier count.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and user_id",
   "normal_query": "Calculate daily model ID statistics per model name, including rate-of-change metrics, quartile distributions, and outlier counts."
@@ -425,14 +341,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and name. It employs PERCENT_RANK for cross-category benchmarking and PERCENTILE_CONT for percentile values. Data segmented into quintiles (NTILE(5)). Partition-level avg/stddev enable z-scores. Output includes percentile rankings and quartile distributions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and name",
   "normal_query": "Calculate weekly model ID statistics by user with cross-user percentile rankings and quartile distributions."
@@ -452,14 +361,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and user_id. It implements a 3-row rolling window for simple moving average (avg_rolling). It counts periods where id is increasing and flags statistical outliers. Limited to 190 points per user. Output includes quartiles and trend pattern counts.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and user_id",
   "normal_query": "Calculate monthly model ID statistics per model name using weighted moving averages, quartile distributions, and trend frequency counts."
@@ -479,14 +381,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and name. It ranks id within each day using window functions to identify peaks per user category. Extracts hour and day-of-week for temporal analysis. Calculates max_cumulative and avg_rolling. Output includes peak period identification and quartile distributions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and name",
   "normal_query": "Calculate daily model ID statistics by user, identifying peak periods, operational efficiency indicators, and quartile distributions."
@@ -506,14 +401,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and user_id. It computes cumulative_sum as total activity proxy, tracks max_cumulative for lifetime value, ranks users by cumulative sum, applies PERCENT_RANK. Limited to 210 points per user, \u22652 records per group. Output includes LTV metrics, quartiles, and cumulative totals.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and user_id",
   "normal_query": "Calculate weekly model ID statistics grouped by model name, incorporating lifetime value style metrics, quartile distributions, and cumulative sum analysis."
@@ -533,14 +421,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and name. It extracts hour_val and dow_val for temporal context. Uses window functions (rolling avg, cumulative sum, LAG, LEAD) and aggregates by period and name. Output includes temporal correlation metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and name",
   "normal_query": "Calculate monthly model ID statistics grouped by user, incorporating year-over-year growth style metrics and quartile distributions."
@@ -560,14 +441,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and user_id. It uses period and user_id as dimensions. Computes avg_value and record_count, extracts hour and day-of-week, flags outliers via z-scores. Output includes quartiles and outlier count.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and user_id",
   "normal_query": "Calculate daily model ID statistics grouped by model name, structured for heatmap visualization with quartile distributions and outlier counts."
@@ -587,14 +461,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and name. It applies PERCENT_RANK for running percentile position and PERCENTILE_CONT for quartile breakpoints. Limited to 240 points per model. Counts increasing trends and outliers. Output includes running percentiles, quartiles, and trend pattern counts.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and name",
   "normal_query": "Calculate weekly model ID statistics grouped by user, incorporating running percentile distributions, quartile analysis, and trend counts."
@@ -614,14 +481,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and user_id. It uses LAG and LEAD to access preceding and following period values. Calculates delta_value and trend_direction. Partition_avg and partition_stddev enable z-score normalization. Output includes sequential correlation metrics and quartiles.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and user_id",
   "normal_query": "Calculate monthly model ID statistics grouped by model name, incorporating cross-correlation style metrics, quartile distributions, and rolling averages."
@@ -641,14 +501,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and name. It treats trend_direction (Increasing, Decreasing, Stable) as status categories. Uses LAG and LEAD for sequential status change tracing, calculates z-scores, computes quartiles per group. Output includes status transition sequences and quartile boundaries.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and name",
   "normal_query": "Calculate daily model ID statistics grouped by user, incorporating status transition analysis, quartile distributions, and outlier detection counts."
@@ -668,14 +521,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and user_id. It performs single-pass aggregation: record_count, avg_value, quartiles, stddev, min, max, outlier_count, increasing_count, avg_rolling, max_cumulative. Filters to \u22652 records per user-month. Output includes full dashboard suite of statistics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and user_id",
   "normal_query": "Generate weekly model ID statistics aggregated by model name, delivering a complete set of dashboard metrics including quartiles and comprehensive multi-metric summaries."
@@ -695,14 +541,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and name. It employs LAG and LEAD for previous/next period values, calculates delta_value and trend_direction, uses ROWS BETWEEN window frames, applies ROW_NUMBER for ordering, limits to 280 points per model. Output includes sequential pattern indicators and quartiles.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and name",
   "normal_query": "Compute monthly model ID statistics segmented by user, incorporating sequential pattern detection metrics and quartile distributions."
@@ -722,14 +561,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and user_id. It uses DENSE_RANK for ranking, PERCENT_RANK for relative position, cumulative_sum for concentration measurement, NTILE(4) for quartiles, z-scores for outliers. Output includes concentration indices, quartiles, and outlier count.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and user_id",
   "normal_query": "Calculate daily model ID statistics grouped by model name, featuring concentration index measurements, quartile analysis, and outlier detection counts."
@@ -749,14 +581,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and name. It calculates z_score as anomaly metric, aggregates outlier_count, computes partition_avg and partition_stddev, counts trend_direction records, limits to 300 points per model. Output includes anomaly scores, quartiles, and trend counts.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and name",
   "normal_query": "Generate weekly model ID statistics by user with anomaly score assignments, quartile analysis, and aggregated trend pattern counts."
@@ -776,14 +601,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and user_id. It uses DATE_TRUNC('month') for period grouping. Calculates quartiles (PERCENTILE_CONT), average, and standard deviation. Limits to 310 points per user. Output includes quartile breakdowns for fiscal period comparison.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and user_id",
   "normal_query": "Calculate monthly model ID statistics grouped by model name to enable fiscal period comparison, including quartile distributions."
@@ -803,14 +621,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and name. It calculates record_count (volume), avg_rolling (9-row moving average), max_cumulative (peak capacity). Limits to 320 points per model, \u22651 record per group. Output includes throughput indicators, quartiles, and rolling averages.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and name",
   "normal_query": "Calculate daily model ID statistics grouped by user, including throughput metrics, quartile distributions, and rolling averages."
@@ -830,14 +641,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and user_id. It computes cumulative_sum and max_cumulative. Derives trend_direction and increasing_count. Ranks users by cumulative sum. Filters to \u22652 records per group. Output includes cumulative trend indicators, quartiles, and user rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and user_id",
   "normal_query": "Calculate weekly model ID statistics grouped by model name to support cumulative trend analysis, including quartile distributions."
@@ -857,14 +661,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and name. It uses time period (day) and name as grouping dimensions. Aggregates record count, average, quartiles, stddev, min, max, outlier_count, trend indicators. Requires \u22653 records per group. Output includes multi-dimensional aggregate metrics and quartiles.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and name",
   "normal_query": "Calculate monthly model ID statistics grouped by user to enable multi-dimensional aggregation and pivot analysis, including quartile distributions."
@@ -884,14 +681,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and user_id. It calculates quartiles via PERCENTILE_CONT for Q1 and Q3 (IQR support), flags outliers (z-score > 2), includes stddev_value for IQR-based boundaries, computes trend counts. Limited to 350 points per user. Output includes IQR-style outlier detection, quartiles, and trend metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "created_at",
-    "models",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and user_id",
   "normal_query": "Calculate weekly model ID statistics grouped by user using IQR-style outlier detection methodology, including quartile distributions."

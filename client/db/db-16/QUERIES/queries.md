@@ -150,26 +150,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins flood_zones, properties, and risk_scores tables on property identifiers, aggregates risk components by property, calculates composite risk scores using weighted averages, applies risk category thresholds (low/medium/high/extreme), and computes financial impact estimates based on property value.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "current_date",
-    "real_estate_properties",
-    "property_location_analysis",
-    "fema_flood_zones",
-    "high",
-    "fema_flood_zone_analysis",
-    "noaa_sea_level_rise",
-    "fema_risk_scoring",
-    "noaa_sea_level_rise_analysis",
-    "usgs_streamflow_gauges",
-    "usgs_streamflow_observations",
-    "sea_level_rise_risk_scoring",
-    "usgs_streamflow_analysis",
-    "nasa_flood_models",
-    "streamflow_risk_scoring",
-    "nasa_flood_model_analysis",
-    "nasa_risk_scoring",
-    "composite_risk_calculation"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns property-level flood risk scores with FEMA, sea level rise, streamflow, and NASA model components, plus composite risk category and financial impact estimates.",
   "normal_query": "Property-level flood risk scores combining FEMA flood zones, sea level rise projections, streamflow data, and NASA climate models, with composite risk categories and estimated financial impacts."
@@ -189,19 +170,7 @@ Target distribution across 30 queries:
   "evidence": "The query spatially joins properties with flood_zones using geographic coordinates, groups properties by region and sub-region, calculates aggregate risk metrics (average, maximum, standard deviation) for each geographic cluster, identifies hotspots where risk scores exceed regional thresholds, and uses window functions for cluster rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "flood_risk_assessments",
-    "portfolio_property_risk_base",
-    "geographic_clustering",
-    "risk_hotspot_detection",
-    "portfolio_aggregation_base",
-    "geographic_risk_concentration",
-    "portfolio_diversification_analysis",
-    "hotspot_summary",
-    "geographic_concentration_summary",
-    "final_portfolio_summary"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns portfolio-wide risk analysis showing geographic clustering of high-risk properties, regional risk concentration metrics, and hotspot identification across acquisition targets.",
   "normal_query": "Portfolio-wide risk analysis showing geographic clustering of high-risk properties, regional risk concentration metrics, and hotspot identification across acquisition targets."
@@ -221,17 +190,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins properties with historical flood event records, groups events by property and time dimensions (year, season, decade), calculates event frequencies and time intervals between occurrences, and uses window functions to compute rolling averages of event frequency and recurrence intervals.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "hfe",
-    "historical_flood_events",
-    "historical_flood_events_base",
-    "temporal_clustering_analysis",
-    "recurrence_interval_calculation",
-    "frequency_pattern_analysis",
-    "geographic_recurrence_analysis",
-    "severity_trend_analysis",
-    "flood_frequency_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns historical flood event analysis showing occurrence frequency, temporal patterns, seasonal clustering, and recurrence intervals for properties under consideration.",
   "normal_query": "Historical flood event analysis showing occurrence frequency, temporal patterns, seasonal clustering, and recurrence intervals for properties under consideration."
@@ -251,18 +210,7 @@ Target distribution across 30 queries:
   "evidence": "The query filters properties within coastal proximity thresholds, joins with sea level rise projection models for each time horizon and scenario, calculates flood zone changes as properties migrate from lower to higher risk zones, and aggregates exposure by scenario.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "current_date",
-    "noaa_sea_level_rise",
-    "real_estate_properties",
-    "sea_level_rise_projections_base",
-    "property_slr_matching",
-    "nearest_station_selection",
-    "multi_horizon_projections",
-    "scenario_comparison",
-    "temporal_projection_analysis",
-    "impact_assessment"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns sea level rise impact projections for coastal properties across 2050, 2070, and 2100 time horizons, comparing optimistic, moderate, and pessimistic climate scenarios with flood zone migration and property exposure.",
   "normal_query": "Sea level rise impact projections for coastal properties across 2050, 2070, and 2100 time horizons, comparing optimistic, moderate, and pessimistic climate scenarios with flood zone migration and property exposure changes."
@@ -282,16 +230,7 @@ Target distribution across 30 queries:
   "evidence": "The query identifies properties within catchment areas of stream gauges, joins properties with the nearest upstream and downstream gauge stations, retrieves historical discharge data, and calculates recurrence intervals and peak flow statistics for flood frequency analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "uso",
-    "usgs_streamflow_observations",
-    "usgs_streamflow_gauges",
-    "streamflow_observations_base",
-    "flood_event_identification",
-    "flood_frequency_calculation",
-    "recurrence_interval_analysis",
-    "gauge_network_coverage"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns streamflow-based flood frequency analysis using gauge network data, showing coverage quality, historical flood patterns, peak flow statistics, and recurrence probability for properties near monitored stream reaches.",
   "normal_query": "Streamflow-based flood frequency analysis using gauge network data, showing coverage quality, historical flood patterns, peak flow statistics, and recurrence probability for properties near monitored waterways."
@@ -311,14 +250,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins flood model predictions with actual flood observations, groups results by model version and time period, calculates performance metrics such as precision, recall, and RMSE, uses window functions to compute rolling accuracy trends and comparative benchmarks, applies quartile analysis to segment prediction errors, and handles NULL values for incomplete observation data.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns performance evaluation results for NASA flood models with statistical metrics.",
   "normal_query": "Performance evaluation results for NASA flood models with statistical metrics"
@@ -338,14 +270,7 @@ Target distribution across 30 queries:
   "evidence": "The query performs spatial joins between properties and flood_zones tables to identify intersections, groups results by flood zone classification and property type, calculates aggregate metrics including total property count, assessed value exposure, and average risk scores per zone, and uses window functions to rank zones by exposure level and compute percentile distributions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns property and flood zone intersection analysis with spatial relationship metrics.",
   "normal_query": "Property and flood zone intersection analysis with spatial relationship metrics"
@@ -365,14 +290,7 @@ Target distribution across 30 queries:
   "evidence": "The query extracts risk scores with associated timestamps, groups data by time periods (monthly, quarterly, yearly) and geographic dimensions, calculates aggregate risk metrics and growth rates for each period, uses window functions to compute rolling averages, year-over-year comparisons, and moving trend indicators, applies quartile analysis to identify accelerating risk areas, and handles NULL values in historical records.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns temporal risk trend analysis with historical patterns and projections.",
   "normal_query": "Temporal risk trend analysis with historical patterns and projections"
@@ -392,14 +310,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups data by geographic coordinates and administrative boundaries, calculates density metrics and aggregate risk scores for each area, identifies clusters using spatial proximity and risk threshold criteria, uses window functions to compute cluster rankings and comparative metrics between clusters, and applies quartile analysis to segment cluster risk levels.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns geographic risk clustering analysis with spatial pattern identification.",
   "normal_query": "Geographic risk clustering analysis with spatial pattern identification"
@@ -419,14 +330,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins properties with flood_zones and risk_scores tables, aggregates multiple risk dimensions including location-based hazard levels, property characteristics like elevation and construction type, historical loss data, and proximity to water bodies, applies weighting factors to different risk components, and uses window functions for percentile rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns multi-factor property vulnerability assessment with composite scoring.",
   "normal_query": "Multi-factor property vulnerability assessment with composite scoring"
@@ -446,14 +350,7 @@ Target distribution across 30 queries:
   "evidence": "The query performs multi-dimensional aggregation by grouping properties by flood zone classification and risk tier, calculates summary statistics including total property values at risk, average risk scores, and value quartiles to identify concentration risk. Window functions compute rolling averages of historical flood events and year-over-year risk score changes. LEFT JOINs ensure all properties are included even with missing data.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns financial impact analysis results for mergers and acquisitions pricing models.",
   "normal_query": "Display financial impact analysis results for mergers and acquisitions pricing models."
@@ -473,14 +370,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups properties by FEMA flood zone designations (A, AE, V, VE, X, etc.) and calculates aggregate metrics including property counts per zone, total insured values, and average risk scores. Statistical functions compute quartile distributions of risk scores within each zone to identify outliers and concentration. Window functions generate zone rankings and comparative metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns FEMA flood zone risk classification analysis results.",
   "normal_query": "Display FEMA flood zone risk classification analysis results."
@@ -500,14 +390,7 @@ Target distribution across 30 queries:
   "evidence": "The query creates scenario-based groupings by categorizing properties according to their elevation relative to each NOAA projection threshold (0.5m, 1.0m, 1.5m, 2.0m sea level rise by 2100). Aggregation functions calculate properties at risk, total asset values exposed, and risk trajectory by scenario.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns NOAA sea level rise scenario comparison analysis results.",
   "normal_query": "Display NOAA sea level rise scenario comparison analysis results."
@@ -527,14 +410,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates USGS streamflow measurements by time periods (monthly, seasonal, annual) and gauge locations, calculating statistical measures including mean discharge, peak flows, base flows, and flow variability coefficients. Window functions compute rolling averages, trend indicators, and comparative metrics across gauges.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns USGS streamflow historical pattern recognition analysis results.",
   "normal_query": "Display USGS streamflow historical pattern recognition analysis results."
@@ -554,14 +430,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins NASA model predictions (forecasted flood zones or risk probabilities) with observed flood outcomes, groups by model and geography, calculates accuracy metrics (precision, recall, MAE, RMSE), and uses window functions for model comparison and confidence intervals.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns NASA model prediction accuracy assessment analysis results.",
   "normal_query": "Display NASA model prediction accuracy assessment analysis results."
@@ -581,14 +450,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins properties with their corresponding flood zones and risk scores, groups properties by portfolio identifier and flood zone category, computes aggregate metrics including total exposure value, average risk scores, and property counts, and calculates quartile distributions of risk scores within each portfolio.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a detailed risk summary report for properties under consideration for acquisition, including aggregated risk metrics and comparative analysis.",
   "normal_query": "A detailed risk summary report for properties under consideration for acquisition, including aggregated risk metrics and comparative analysis"
@@ -608,14 +470,7 @@ Target distribution across 30 queries:
   "evidence": "The query performs completeness checks by counting NULL and missing values in critical fields across all three tables, calculates consistency metrics by identifying properties without matching flood zone assignments or risk scores, groups quality metrics by data source and property type, and uses window functions for trend analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a comprehensive data quality report showing completeness, consistency, and timeliness metrics for flood risk data.",
   "normal_query": "A comprehensive data quality report showing completeness, consistency, and timeliness metrics for flood risk data"
@@ -635,14 +490,7 @@ Target distribution across 30 queries:
   "evidence": "The query employs spatial indexing hints to leverage pre-built spatial indexes on property locations and flood zone geometries, uses bounding box pre-filtering to quickly eliminate non-overlapping candidates, and applies staged filtering to reduce computational load.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns properties accurately matched to flood zones using efficient spatial join techniques.",
   "normal_query": "An optimized query result showing properties accurately matched to flood zones using efficient spatial join techniques"
@@ -662,14 +510,7 @@ Target distribution across 30 queries:
   "evidence": "The query pivots risk scores from different sources stored in the risk_scores table, applies source-specific weighting factors, aggregates into a composite score using weighted averages, and uses window functions for percentile rankings across the portfolio.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a consolidated risk score for each property that combines and weights multiple risk assessment sources into a single comprehensive metric.",
   "normal_query": "A consolidated risk score for each property that combines and weights multiple risk assessment sources into a single comprehensive metric"
@@ -689,14 +530,7 @@ Target distribution across 30 queries:
   "evidence": "The query extracts historical risk score time series for each property, groups by property and time period, calculates trend metrics and rate-of-change indicators, uses window functions for rolling averages and year-over-year comparisons, and projects risk evolution over hold periods.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a time-series projection of flood risk metrics showing expected risk evolution over future time periods for the property portfolio.",
   "normal_query": "A time-series projection of flood risk metrics showing expected risk evolution over future time periods for the property portfolio"
@@ -716,14 +550,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins properties with their associated flood zones and risk scores, groups properties by elevation ranges or quartiles, calculates aggregate risk metrics (mean, median, standard deviation) for each elevation band, applies window functions to compute rolling averages and percentile rankings, and uses correlation coefficients to measure the strength of the elevation-risk relationship.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns statistical analysis results showing the relationship between property elevation levels and their corresponding flood risk scores.",
   "normal_query": "Statistical analysis results showing the relationship between property elevation levels and their corresponding flood risk scores."
@@ -743,14 +570,7 @@ Target distribution across 30 queries:
   "evidence": "The query retrieves historical flood events with their occurrence dates and severity levels, joins with affected properties within flood zone boundaries, groups results by flood event and property characteristics, calculates aggregated impact metrics including number of properties affected, total estimated damages, and average risk score changes before and after events. Window functions compute running totals and event rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns historical flood event analysis showing property damage, affected areas, and risk score changes over time.",
   "normal_query": "Historical flood event analysis showing property damage, affected areas, and risk score changes over time."
@@ -770,14 +590,7 @@ Target distribution across 30 queries:
   "evidence": "The query extracts predicted risk scores from multiple models alongside actual flood outcomes for each property, groups results by model identifier and time period, calculates performance metrics including prediction accuracy, MAE, RMSE, and confusion matrix statistics (true positives, false positives, etc.). Window functions compute percentile rankings of model performance.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns model performance metrics comparing predicted vs. actual flood risk across different modeling approaches.",
   "normal_query": "Model performance metrics comparing predicted vs. actual flood risk across different modeling approaches."
@@ -797,14 +610,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups properties by geographic dimensions such as flood zone designation, county, zip code, or grid coordinates, calculates aggregate risk metrics for each geographic unit including average risk score, property count, high-risk property percentage, and risk score quartiles. Window functions compute regional rankings and compare each area's risk to neighboring regions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns geographic distribution analysis showing flood risk concentration, high-risk areas, and regional risk patterns.",
   "normal_query": "Geographic distribution analysis showing flood risk concentration, high-risk areas, and regional risk patterns."
@@ -824,14 +630,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups properties by type classification (single-family residential, multi-family, commercial, industrial, etc.), joins with associated flood zones and risk scores, calculates aggregate statistics for each property type including average risk score, median risk score, risk score distribution quartiles, count of high-risk properties, and percentage of properties in flood zones. Window functions compute type-level rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns property type risk analysis showing risk scores, exposure levels, and vulnerability patterns across residential, commercial, and other property categories.",
   "normal_query": "Property type risk analysis showing risk scores, exposure levels, and vulnerability patterns across residential, commercial, and other property categories."
@@ -851,17 +650,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses recursive CTEs to traverse zone connectivity relationships, joins flood_zones with properties and risk_scores tables, groups results by zone hierarchy levels, computes aggregate risk scores at each propagation level using window functions for cumulative impact analysis, calculates rolling averages to identify risk acceleration patterns, and handles NULL values in zone connectivity data.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "fema_flood_zones",
-    "flood_risk_assessments",
-    "property_base_risk",
-    "recursive_risk_propagation",
-    "property_spatial_network",
-    "propagation_aggregation",
-    "final_risk_calculation",
-    "spatial_clustering"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns the recursive propagation of flood risk across interconnected zones with detailed analytical metrics.",
   "normal_query": "Display the recursive propagation of flood risk across interconnected zones with detailed analytical metrics."
@@ -881,14 +670,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins properties with flood_zones and risk_scores tables using LEFT JOINs to capture properties with missing risk data, filters for properties exceeding critical risk thresholds (top quartile), groups results by zone and property characteristics, computes aggregate exposure metrics including total property value at risk and count of critically exposed assets, and uses window functions to rank and compare exposure levels.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns properties with critical flood risk levels that may constitute material deal-breakers during acquisition due diligence.",
   "normal_query": "Identify properties with critical flood risk levels that may constitute material deal-breakers during acquisition due diligence."
@@ -908,14 +690,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins properties with risk_scores and flood_zones tables, groups properties by current risk level and mitigation scenario, computes baseline risk exposure values and potential losses, calculates mitigation costs by property type and zone characteristics using CASE statements, and uses window functions to calculate risk reduction percentages and payback periods across different mitigation strategies.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns the financial trade-offs between mitigation investment costs and risk reduction benefits for properties post-acquisition.",
   "normal_query": "Evaluate the financial trade-offs between mitigation investment costs and risk reduction benefits for properties post-acquisition."
@@ -935,14 +710,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates properties from target portfolios joining flood_zones and risk_scores tables, groups by target portfolio identifier, zone type, and risk tier, computes concentration metrics including Herfindahl index for geographic and risk dispersion, uses window functions to calculate portfolio-level statistics and compare each target against benchmark diversification ratios, and analyzes correlation between portfolio composition and risk exposure.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns geographic and risk concentration patterns across potential acquisition targets to assess portfolio diversification quality.",
   "normal_query": "Evaluate geographic and risk concentration patterns across potential acquisition targets to assess portfolio diversification quality."
@@ -962,14 +730,7 @@ Target distribution across 30 queries:
   "evidence": "The query performs complex joins across flood_zones, properties, and risk_scores tables using LEFT JOINs to ensure complete coverage including properties with incomplete data, groups results by multiple dimensions including zone type, property characteristics, and risk categories, and computes extensive aggregate metrics including total exposure value, risk score distributions, and concentration metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "real_estate_properties",
-    "base_analysis",
-    "flood_risk_assessments",
-    "secondary_analysis",
-    "aggregated_metrics",
-    "window_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a complete due diligence report covering all flood risk dimensions for the target property portfolio.",
   "normal_query": "Produce a complete due diligence report covering all flood risk dimensions for the target property portfolio."

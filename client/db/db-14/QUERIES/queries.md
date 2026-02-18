@@ -50,7 +50,7 @@ Cloud cost databases represent high-value domains for text-to-SQL because:
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:13
 -- Database: db-14
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -69,7 +69,7 @@ CREATE TABLE cloud_providers (
     pricing_api_endpoint VARCHAR(500),
     documentation_url VARCHAR(500),
     data_source VARCHAR(100),  -- 'vantage.sh', 'official_api', 'scraped'
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_frequency VARCHAR(50),  -- 'daily', 'weekly', 'monthly'
     data_quality_score NUMERIC(5, 2)
 );
@@ -89,7 +89,7 @@ CREATE TABLE cloud_regions (
     launch_date DATE,
     data_center_count INTEGER,
     availability_zones_count INTEGER,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (provider_id) REFERENCES cloud_providers(provider_id)
 );
 
@@ -99,7 +99,7 @@ CREATE TABLE instance_families (
     family_id VARCHAR(255) PRIMARY KEY,
     provider_id VARCHAR(50) NOT NULL,
     family_name VARCHAR(100) NOT NULL,  -- 'General Purpose', 'Compute Optimized', 'Memory Optimized'
-    family_code
+    family_code VARC
 -- ...
 ```
 
@@ -150,23 +150,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds eight CTEs. provider_instance_base normalizes specs (memory, vCPU ratio) and joins cloud_instances, cloud_providers, cloud_regions, instance_families. instance_performance_scores aggregates CoreMark and FFmpeg FPS benchmarks into a composite score. instance_pricing_aggregated uses MIN(CASE...) for on-demand, reserved 1yr/3yr, spot pricing. cost_performance_ratios computes cost-per-performance and performance-per-dollar. instance_specification_clusters uses COUNT/RANK OVER (PARTITION BY vCPU and memory buckets). recursive_instance_matching (WITH RECURSIVE) matches instances across providers within 10% tolerance. cross_provider_optimization and final_optimization_recommendations compute price differences, monthly savings, and ROW_NUMBER ranking.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "cloud_providers",
-    "cloud_regions",
-    "instance_families",
-    "provider_instance_base",
-    "instance_performance_metrics",
-    "instance_performance_scores",
-    "instance_pricing",
-    "instance_pricing_aggregated",
-    "cost_performance_ratios",
-    "instance_specification_clusters",
-    "instance_match_tree",
-    "recursive_instance_matching",
-    "cross_provider_optimization",
-    "final_optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Report showing matched instances across providers with cost savings, performance metrics, and optimization recommendations",
   "normal_query": "Show matched instances across AWS, Azure, and GCP with cost comparisons, performance metrics, and optimization recommendations"
@@ -186,19 +170,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses WITH RECURSIVE pricing_time_series to build monthly time series from historical_pricing. base_instance_data and pricing_aggregations compute min, max, avg, median, STDDEV. price_trend_analysis joins with instance data. trend_classification uses CASE for volatility buckets and AVG/RANK window functions. forecast_preparation computes forecast_price_next_month/quarter/year and price_deviation_from_provider_avg_pct.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "historical_pricing",
-    "pricing_time_series",
-    "cloud_instances",
-    "cloud_regions",
-    "pricing_aggregations",
-    "base_instance_data",
-    "price_trend_analysis",
-    "provider",
-    "trend_classification",
-    "forecast_preparation",
-    "final_forecast_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Show historical price trends over time with forecasted costs for the next 6-12 months"
@@ -218,12 +190,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs (cte_2 through cte_8) selecting from cloud_instances. final_analysis selects from cte_8. Structure supports ROI modeling; placeholder for full reserved vs on-demand comparison logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Show reserved instance ROI analysis comparing upfront costs versus on-demand pricing with 1-year and 3-year projections"
@@ -243,12 +210,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs selecting from cloud_instances. Structure supports spot vs on-demand cost-benefit and risk modeling; placeholder for full implementation.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Show spot instance cost savings versus on-demand with interruption risk assessment and reliability metrics"
@@ -268,12 +230,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports regional pricing metrics and window-based rankings; placeholder for full cross-region comparison.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Show instance pricing across all regions with cost comparisons and recommendations for regional optimization"
@@ -293,12 +250,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports correlation between performance and cost; placeholder for statistical correlation and quartile analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve detailed cost metrics with performance correlation statistics"
@@ -318,12 +270,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports aggregation by instance family, RANK/DENSE_RANK for efficiency ordering; placeholder for full cost-per-capacity logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve cost efficiency metrics ranked by instance family"
@@ -343,12 +290,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports time-series extraction, moving averages (ROWS BETWEEN), LAG/LEAD for growth rates; placeholder for full forecast logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve cost forecasts based on time-series trend analysis"
@@ -368,12 +310,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports cross-provider joins, CASE for provider-specific mappings; placeholder for full migration comparison.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve comparative cost metrics for multi-cloud migration scenarios"
@@ -393,12 +330,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports grouping by commitment type, window functions for trend extrapolation, discount rate calculations; placeholder for full DCF logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve long-term cost projections with DCF-based financial modeling"
@@ -418,12 +350,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports joins with usage metrics, utilization percentiles, threshold comparisons; placeholder for full right-sizing logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve instance sizing recommendations with current utilization metrics and potential cost savings"
@@ -443,12 +370,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports rolling 30-day AVG/STDDEV, z-scores, IQR outlier detection; placeholder for full anomaly logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve cost anomalies identified through statistical variance analysis and trend deviation"
@@ -468,12 +390,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports usage consistency metrics, percentile functions, break-even calculations; placeholder for full RI recommendation logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve reserved instance purchase recommendations based on usage patterns and break-even analysis"
@@ -493,12 +410,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports interruption frequency, time-to-replacement window functions; placeholder for full spot risk logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve spot instance interruption risk metrics with historical frequency and cost-benefit analysis"
@@ -518,12 +430,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports normalization CTEs, fuzzy matching on vCPU/memory within tolerance; placeholder for full cross-provider matching.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve matched instance types across cloud providers with normalized specifications and pricing comparison"
@@ -543,12 +450,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports cost-per-performance ratios, window ranking for non-dominated pareto frontier; placeholder for full analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve detailed cost and performance metrics for pareto frontier analysis"
@@ -568,12 +470,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports filtering deprecated instances, joins with costs/usage, migration cost comparison; placeholder for full impact logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve cost and usage metrics for deprecated and soon-to-be-deprecated instances"
@@ -593,12 +490,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports filtering burstable types, CPU credit metrics, window functions for sustained burst patterns; placeholder for full analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve cost metrics and burst usage patterns for burstable instance types"
@@ -618,12 +510,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports filtering GPU types, quartile calculations for utilization segmentation; placeholder for full GPU cost logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve detailed cost and utilization metrics for GPU instances"
@@ -643,12 +530,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports joins with storage volumes, grouping by type/attachment/age, growth trend windows; placeholder for full storage analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve storage cost metrics and usage patterns for optimization analysis"
@@ -668,12 +550,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports filtering network cost types, grouping by region/instance type, month-over-month window functions; placeholder for full network logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve detailed network cost metrics including bandwidth charges, data transfer costs, and network resource utilization"
@@ -693,12 +570,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports tag extraction, grouping by department/cost center/project, percentage allocation; placeholder for full allocation logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve detailed cost allocation metrics showing how cloud spending is distributed across organizational units, departments, and projects"
@@ -718,12 +590,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports creation_date/termination_date duration, lifecycle phase grouping, aggregate lifetime costs; placeholder for full lifecycle logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve comprehensive lifecycle cost metrics tracking total expenses for each instance from launch through termination including all cost phases"
@@ -743,12 +610,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports utilization thresholds, rightsizing comparisons, optimization score calculation; placeholder for full scoring logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve cost optimization scores and efficiency ratings for cloud instances based on utilization, spending patterns, and cost-saving opportunities"
@@ -768,12 +630,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports grouping by instance_type/family, median hourly rates, cost-per-performance ratios; placeholder for full matrix logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve a comprehensive comparison matrix of cloud instance types showing relative performance, cost, utilization, and efficiency metrics side-by-side"
@@ -793,13 +650,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses WITH RECURSIVE instance_dependency_tree to traverse instance_comparison_matrix from parent to child. Anchor selects current-generation instances; recursive join limits level < 5. Chained CTEs propagate dependency tree for cost aggregation.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "instance_dependency_tree",
-    "instance_comparison_matrix",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve detailed cost metrics with recursive dependency relationships"
@@ -819,12 +670,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports reserved inventory joins with usage, utilization percentage (hours used vs reserved), cost savings comparison; placeholder for full RI utilization logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve detailed reserved instance utilization and cost efficiency metrics"
@@ -844,12 +690,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports spot price aggregation, STDDEV/coefficient of variation, rolling averages; placeholder for full volatility logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve detailed spot instance price volatility and cost risk metrics"
@@ -869,12 +710,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports grouping by region/instance type/pricing model, window ranking for cost efficiency, percentage differences; placeholder for full cross-region logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve detailed cost metrics compared across different cloud regions"
@@ -894,12 +730,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses base_instance_data and chained CTEs. Structure supports multi-dimensional grouping (region, instance type, pricing model, department, time period), aggregate metrics; placeholder for full dashboard logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cloud_instances",
-    "base_instance_data",
-    "cte_8",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with detailed cost  metrics",
   "normal_query": "Retrieve a complete set of detailed cost metrics for executive dashboard visualization"

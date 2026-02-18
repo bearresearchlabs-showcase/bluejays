@@ -52,7 +52,7 @@ Electricity and solar databases represent high-value domains for text-to-SQL bec
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:13
 -- Database: db-15
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -71,7 +71,7 @@ CREATE TABLE states (
     division VARCHAR(50),  -- Census division
     timezone VARCHAR(50),
     is_active BOOLEAN DEFAULT TRUE,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Counties Table
@@ -84,7 +84,7 @@ CREATE TABLE counties (
     county_seat VARCHAR(100),
     population INTEGER,
     area_sq_miles NUMERIC(10, 2),
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (state_id) REFERENCES states(state_id)
 );
 
@@ -98,7 +98,7 @@ CREATE TABLE zip_codes (
     latitude NUMERIC(10, 7),  -- WGS84
     longitude NUMERIC(10, 7),  -- WGS84
     timezone VARCHAR(50),
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (state_id) REFERENCES states(state_id),
     FOREIGN KEY (county_id) REFERENCES counties(county_id)
 );
@@ -106,7 +106,7 @@ CREATE TABLE zip_codes (
 -- Utility Companies Table
 -- Stores electric utility company information
 CREATE TABLE utility_companies (
-    utility_
+    utility_id VARC
 -- ...
 ```
 
@@ -159,21 +159,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups data by relevant geographic and utility dimensions, computes summary statistics including aggregates and quartile distributions, applies window functions to calculate rolling averages and comparative metrics across time periods and regions, and implements robust NULL handling in joins to ensure data completeness across date ranges.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "utility_companies",
-    "rate_codes",
-    "geographic_rate_areas",
-    "rate_structures",
-    "historical_electricity_rates",
-    "rate_comparison_metrics",
-    "rate_trend_analysis",
-    "state_rate_summary",
-    "utility_rate_analysis",
-    "rate_code_intelligence",
-    "final_rate_intelligence"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns comprehensive rate analysis with geographic aggregations, rate code classifications, utility comparisons, and cost intelligence metrics.",
   "normal_query": "Comprehensive rate analysis with geographic aggregations, rate code classifications, utility comparisons, and cost intelligence metrics"
@@ -193,21 +179,7 @@ Target distribution across 30 queries:
   "evidence": "The query recursively processes rate tier structures, groups data by consumption levels and time periods, computes cost aggregates for each scenario and quartile distribution of outcomes, employs window functions to calculate rolling usage patterns and comparative cost metrics across rate plans, and handles edge cases including NULL values in join conditions and boundary date ranges.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "tiered_rate_tiers",
-    "rate_structures",
-    "electricity_rates",
-    "tiered_rate_calculations",
-    "time_of_use_periods",
-    "usage_scenario_modeling",
-    "tou_period_analysis",
-    "tiered_rate_cost_calculations",
-    "tou_rate_cost_calculations",
-    "rate_optimization_comparison",
-    "utility_companies",
-    "rate_codes",
-    "states"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns tiered rate and TOU analysis with usage scenarios, cost calculations, and optimization recommendations.",
   "normal_query": "Comprehensive tiered rate and time-of-use analysis with usage scenarios, cost calculations, and optimization recommendations"
@@ -227,20 +199,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups incentive data by source type and relevant customer dimensions, computes aggregate rebate amounts and quartile distributions to identify typical and exceptional savings opportunities, uses window functions to calculate rolling incentive trends and comparative savings metrics across regions and time periods, and implements NULL-safe joins.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "federal_incentives",
-    "state_incentives",
-    "states",
-    "utility_incentives",
-    "utility_companies",
-    "federal_incentive_analysis",
-    "state_incentive_analysis",
-    "utility_incentive_analysis",
-    "zip_codes",
-    "geographic_rebate_aggregation",
-    "rebate_optimization_analysis",
-    "final_rebate_intelligence"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns solar rebate aggregation with federal, state, and utility incentives, rebate stacking optimization, and total savings calculations.",
   "normal_query": "Comprehensive solar rebate aggregation with federal, state, and utility incentives, rebate stacking optimization, and total savings calculations"
@@ -260,17 +219,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups historical rate data by relevant time dimensions and market segments, computes statistical aggregates including mean, standard deviation, and quartile distributions to measure central tendency and spread, applies window functions to calculate rolling averages, year-over-year comparisons, and moving volatility metrics across time periods, and handles edge cases such as NULL values in historical records.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "historical_electricity_rates",
-    "utility_companies",
-    "rate_codes",
-    "states",
-    "historical_rate_timeline",
-    "rate_change_analysis",
-    "volatility_metrics",
-    "trend_identification",
-    "final_trend_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns historical rate trend analysis with time-series metrics, volatility calculations, and trend identification.",
   "normal_query": "Historical rate trend analysis with time-series metrics, volatility calculations, and trend identification"
@@ -290,17 +239,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups rate data by geographic dimensions including state, utility territory, and market segment, computes comparison aggregates and quartile benchmarks to position each market relative to peers, utilizes window functions to calculate cross-market rankings, regional averages, and comparative growth metrics over time, and implements robust NULL handling in geographic joins.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "state_rate_benchmarks",
-    "utility_companies",
-    "rate_codes",
-    "utility_rate_positioning",
-    "region_rate_benchmarks",
-    "market_intelligence",
-    "final_comparison_matrix"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a geographic rate comparison matrix with cross-state benchmarking, competitive positioning, and market intelligence metrics.",
   "normal_query": "Geographic rate comparison matrix with cross-state benchmarking, competitive positioning, and market intelligence metrics"
@@ -320,17 +259,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins rebate, installation, and consumption tables to create a unified dataset. It groups data by utility and relevant time periods to compute aggregate performance metrics such as average rates, rebate participation, and customer adoption. Window functions calculate percentile rankings and quartiles to position each utility against peers. Rolling averages identify trends over time.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "utility_companies",
-    "electricity_rates",
-    "rate_codes",
-    "states",
-    "utility_rate_performance",
-    "peer_utility_analysis",
-    "state_benchmark_metrics",
-    "competitive_positioning",
-    "final_benchmarking_report"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a utility performance benchmarking report with rate competitiveness metrics, market positioning, and peer comparisons.",
   "normal_query": "Generate a utility performance benchmarking report that includes rate competitiveness metrics, market positioning relative to peers, and comparative performance indicators."
@@ -350,17 +279,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates customer and consumption data grouped by rate code and utility to calculate market share percentages. It computes adoption rates by dividing customers on each rate code by total customers within each utility and across the market. Window functions rank rate codes by popularity and calculate cumulative market share. Handles NULL or inactive rate codes.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "rate_codes",
-    "electricity_rates",
-    "utility_companies",
-    "states",
-    "rate_code_adoption",
-    "state_rate_code_penetration",
-    "market_share_calculations",
-    "regional_market_dynamics",
-    "final_market_share_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate code market share analysis with adoption rates, utility distribution, and market penetration metrics.",
   "normal_query": "Produce a rate code market share analysis showing adoption rates across different customer segments, utility-level distribution patterns, and overall market penetration metrics."
@@ -380,20 +299,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins solar installation records with rebate disbursements and ongoing consumption data to build a complete financial picture. It calculates initial investment costs (installation minus rebates), estimates annual energy savings by multiplying production by avoided electricity rates, and computes simple payback and NPV using appropriate discount rates.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "solar_rebate_aggregations",
-    "states",
-    "utility_companies",
-    "zip_codes",
-    "electricity_rates",
-    "rebate_aggregation_by_location",
-    "solar_system_scenarios",
-    "electricity_rate_for_location",
-    "roi_calculations",
-    "generate_series",
-    "npv_analysis",
-    "final_roi_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns solar rebate ROI analysis with payback periods, NPV calculations, and financial return metrics.",
   "normal_query": "Create a solar rebate ROI analysis that includes payback period calculations, net present value (NPV) metrics, and comprehensive financial return indicators for solar investments."
@@ -413,15 +319,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates rate and consumption data grouped by state and utility to calculate average rates, rate ranges, and customer-weighted average prices. It uses window functions to rank states by rate competitiveness and calculate regional percentiles. Subqueries or CTEs compute year-over-year rate changes.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "state_rate_statistics",
-    "regional_benchmarks",
-    "national_benchmarks",
-    "regional_positioning",
-    "final_cross_state_comparison"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns cross-state rate comparison with regional market dynamics, competitive analysis, and market trends.",
   "normal_query": "Generate a cross-state rate comparison report that examines regional market dynamics, performs competitive analysis across state boundaries, and identifies emerging market trends."
@@ -441,21 +339,7 @@ Target distribution across 30 queries:
   "evidence": "The query analyzes rate structure definitions to compute complexity scores based on factors like number of pricing tiers, presence of time-of-use periods, and demand charge components. It groups by rate code and applies scoring logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "rate_structures",
-    "electricity_rates",
-    "rate_codes",
-    "tiered_rate_tiers",
-    "time_of_use_periods",
-    "rate_structure_details",
-    "tier_complexity_analysis",
-    "tou_complexity_analysis",
-    "complexity_metrics",
-    "utility_companies",
-    "states",
-    "structure_optimization_analysis",
-    "final_complexity_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate structure complexity analysis with complexity metrics, multi-tier optimization, and structure comparisons.",
   "normal_query": "Develop a rate structure complexity analysis that measures complexity metrics for different pricing models, identifies multi-tier optimization opportunities, and provides structure-to-structure comparisons."
@@ -475,18 +359,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins rebates, installations, and consumption tables on relevant keys with NULL-safe handling. It groups data by time periods and program dimensions to compute aggregate metrics such as total rebate amounts, application counts, and approval rates. Window functions calculate rolling averages and year-over-year comparisons. Date logic identifies programs nearing expiration.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "federal_incentives",
-    "state_incentives",
-    "states",
-    "utility_incentives",
-    "utility_companies",
-    "federal_rebate_timeline",
-    "state_rebate_timeline",
-    "utility_rebate_timeline",
-    "rebate_expiration_analysis",
-    "final_expiration_intelligence"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns historical rebate trend analysis with expiration forecasts, lifecycle tracking, and trend identification.",
   "normal_query": "Analyze historical rebate trends including expiration forecasts, program lifecycle tracking, and emerging trend identification."
@@ -506,18 +379,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins customer, consumption, rate, and geographic tables using zip code as the primary dimension. It groups data by zip code and computes aggregated metrics including average rates, total consumption, customer counts, and solar installation penetration. Window functions rank zip codes by performance indicators and calculate percentile distributions. Statistical measures identify outlier zip codes.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "zip_codes",
-    "states",
-    "counties",
-    "geographic_rate_areas",
-    "electricity_rates",
-    "zip_code_rate_analysis",
-    "county_rate_benchmarks",
-    "state_rate_benchmarks",
-    "zip_code_optimization",
-    "final_geographic_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns geographic rate optimization with zip code level intelligence and location-based recommendations.",
   "normal_query": "Perform geographic rate optimization with zip code-level intelligence and location-based pricing recommendations."
@@ -537,16 +399,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates data from rate schedules, customer assignments, and consumption tables grouped by rate code. It computes diversity metrics including customer count per rate, revenue contribution, concentration indices (HHI), and usage pattern variance. Window functions calculate each rate's share of total portfolio and rank rates by multiple dimensions. Quartile analysis segments rates into performance tiers.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "utility_companies",
-    "states",
-    "electricity_rates",
-    "rate_codes",
-    "utility_rate_portfolio",
-    "state_portfolio_benchmarks",
-    "portfolio_diversity_metrics",
-    "final_portfolio_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns utility rate portfolio analysis with diversity metrics and optimization recommendations.",
   "normal_query": "Analyze the utility rate portfolio with diversity metrics across rate codes and provide optimization recommendations."
@@ -566,17 +419,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins solar installation records with consumption data, rebate payments, utility rates, and net metering credits. It groups by installation and time periods to calculate metrics including total installation cost, rebate amounts received, energy produced, energy consumed, net metering credits earned, and grid electricity costs avoided. Window functions compute cumulative financial flows and identify payback periods.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "utility_incentives",
-    "utility_companies",
-    "electricity_rates",
-    "solar_system_economics",
-    "net_metering_analysis",
-    "solar_economics_calculations",
-    "solar_rebate_aggregations",
-    "rebate_adjusted_economics",
-    "final_economics_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns solar installation economics with net metering analysis and financial modeling.",
   "normal_query": "Analyze solar installation economics with net metering impact and comprehensive financial modeling."
@@ -596,16 +439,7 @@ Target distribution across 30 queries:
   "evidence": "The query analyzes historical rate data grouped by rate code and time periods. It computes volatility metrics including standard deviation, coefficient of variation, rate change frequency, and maximum single-period changes. Window functions calculate rolling volatility measures and compare current volatility to historical baselines. Statistical tests identify significant volatility.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "historical_electricity_rates",
-    "historical_rate_volatility",
-    "volatility_metrics",
-    "utility_companies",
-    "rate_codes",
-    "states",
-    "risk_assessment",
-    "final_volatility_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate volatility analysis with risk assessment metrics and risk classifications.",
   "normal_query": "Analyze rate volatility patterns with comprehensive risk assessment metrics and risk classification framework."
@@ -625,12 +459,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins rebate, installation, and consumption tables, groups customers by rate type and demographic segments, computes aggregate counts and percentages for each segment, calculates quartile distributions to identify concentration patterns, and uses window functions to compare segment performance metrics against overall averages. Handles NULL values in optional fields and filters for active rate codes.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "electricity_rates",
-    "states",
-    "rate_type_distribution",
-    "market_segmentation"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns market segmentation analysis with rate type distributions and customer segment metrics.",
   "normal_query": "Provide market segmentation analysis showing rate type distributions and customer segment metrics."
@@ -650,12 +479,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins utility rate tables across multiple providers, groups rates by utility and rate type, computes average and median rates for each utility, calculates percentile rankings to determine competitive positioning, uses window functions to compute rolling averages and year-over-year rate changes, and applies benchmarking calculations to show how each utility's rates compare to market averages.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "electricity_rates",
-    "utility_companies",
-    "utility_rate_comparison",
-    "competitive_positioning"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns cross-utility rate comparison with competitive positioning and benchmarking.",
   "normal_query": "Generate cross-utility rate comparison analysis with competitive positioning and benchmarking metrics."
@@ -675,12 +499,7 @@ Target distribution across 30 queries:
   "evidence": "The query identifies all active rebate programs, cross-references customer eligibility criteria across multiple rebate tables, groups rebates by customer and installation type, computes total savings for each valid rebate combination while respecting stacking restrictions, uses window functions to rank combinations by total savings amount, and aggregates the maximum possible savings per customer.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "solar_rebate_aggregations",
-    "rebate_combinations",
-    "system_scenarios",
-    "maximum_savings_calculation"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rebate stacking optimization with maximum savings calculations.",
   "normal_query": "Analyze rebate stacking optimization to identify maximum savings calculations for eligible customers."
@@ -700,13 +519,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins customer enrollment records with rate code definitions across utilities, groups customers by rate code type and utility, calculates adoption rates as the percentage of eligible customers enrolled in each rate code, computes market penetration by comparing current enrollments to total addressable customer base, and uses window functions to track adoption trends over time.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "rate_codes",
-    "electricity_rates",
-    "utility_companies",
-    "rate_code_adoption",
-    "market_penetration"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate code adoption analysis with market penetration metrics.",
   "normal_query": "Perform rate code adoption analysis with market penetration metrics across utility service areas."
@@ -726,12 +539,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins rebate applications with customer location data, groups rebates by state and utility service territory, computes aggregate metrics including total rebate amounts, application counts, approval rates, and average rebate values per state, calculates quartile distributions to identify high and low performing regions, and uses window functions to rank states by program performance.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "solar_rebate_aggregations",
-    "states",
-    "state_rebate_aggregations",
-    "regional_rebate_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns geographic rebate intelligence with state-level aggregations.",
   "normal_query": "Generate geographic rebate intelligence with state-level aggregations and regional performance analysis."
@@ -751,12 +559,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates historical rate data by time periods and rate categories, calculates statistical measures including moving averages and growth rates, applies window functions to compute rolling trends and year-over-year comparisons, and handles NULL values in temporal joins to ensure complete time series coverage.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "historical_electricity_rates",
-    "historical_rate_trends",
-    "trend_calculation",
-    "forecast_models"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate trend forecasting with predictive analytics and trend predictions.",
   "normal_query": "Show rate trend forecasting with predictive analytics and future trend predictions."
@@ -776,12 +579,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups customers and consumption data by rate code and customer segment, computes aggregate metrics including revenue per customer and penetration rates, uses window functions to rank rate codes by performance indicators and calculate market share within segments, and applies quartile analysis to identify high and low performers while handling edge cases in customer transitions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "utility_companies",
-    "electricity_rates",
-    "utility_portfolio_analysis",
-    "portfolio_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns utility rate strategy analysis with portfolio optimization recommendations.",
   "normal_query": "Show utility rate strategy analysis with rate code portfolio optimization recommendations."
@@ -801,15 +599,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates rebate application and installation data by program type, geographic region, and time period, calculates utilization rates and remaining budget allocations, employs window functions to track cumulative redemption patterns and forecast depletion timelines, and handles NULL values in eligibility criteria joins.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "federal_incentives",
-    "state_incentives",
-    "utility_incentives",
-    "utility_companies",
-    "incentive_availability",
-    "market_coverage_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns solar rebate market intelligence with incentive availability analysis.",
   "normal_query": "Show solar rebate market intelligence with detailed incentive availability analysis."
@@ -829,12 +619,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups rate and customer data by geographic region and rate category, calculates average rates and rate distributions within each region, uses window functions to compute market share percentages and rank regions by competitiveness metrics, and performs comparative analysis across regions while handling differences in rate structure definitions and NULL values in regional boundary assignments.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "regional_rate_statistics",
-    "market_share_by_region"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns cross-regional rate comparison with market share analysis.",
   "normal_query": "Show cross-regional rate comparison with detailed market share analysis."
@@ -854,14 +639,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups consumption and billing data by rate structure type and customer characteristics, computes aggregate metrics including revenue yield, cost-to-serve ratios, and customer retention rates, applies window functions to calculate efficiency quartiles and benchmark performance across structures, and handles edge cases such as hybrid rate customers and NULL values in cost allocation joins.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "rate_structures",
-    "electricity_rates",
-    "tiered_rate_tiers",
-    "time_of_use_periods",
-    "rate_structure_performance",
-    "efficiency_metrics"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate structure performance analysis with cost efficiency metrics.",
   "normal_query": "Show rate structure performance analysis with detailed cost efficiency metrics."
@@ -881,11 +659,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses recursive CTEs to traverse the rate code hierarchy from top-level parent codes down through all descendant levels, joining rebate, installation, and consumption tables as needed. It groups results by rate code level and hierarchy path, computes aggregate metrics at each level including customer counts and usage volumes, and applies window functions to calculate cumulative metrics across the hierarchy.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "rate_codes",
-    "rate_code_hierarchy",
-    "hierarchy_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns recursive rate code hierarchy analysis with multi-level traversal.",
   "normal_query": "Perform recursive rate code hierarchy analysis with multi-level structure traversal."
@@ -905,15 +679,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins rebate eligibility, solar installation, and consumption data across common keys, then groups by multiple dimensions such as region, customer segment, rate type, and time period. It computes aggregate statistics including average rates, total revenue, customer counts, and usage volumes, calculates quartile distributions to identify rate outliers, and applies window functions to generate cross-dimensional comparisons.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "rate_codes",
-    "solar_rebate_aggregations",
-    "rate_intelligence_summary",
-    "rebate_intelligence_summary",
-    "comprehensive_dashboard"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a rate intelligence dashboard with multi-dimensional analysis.",
   "normal_query": "Generate comprehensive rate intelligence dashboard with multi-dimensional breakdown analysis."
@@ -933,13 +699,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins solar installation records with rebate eligibility and consumption data to calculate program performance metrics. It groups by program type, geographic market, and customer segment to enable competitive comparisons, computes aggregate metrics including average rebate amounts, participation rates, installation counts, and cost per watt, and applies window functions to calculate market share and competitive positioning.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "solar_rebate_aggregations",
-    "states",
-    "utility_companies",
-    "rebate_competitive_analysis",
-    "competitive_positioning"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns solar rebate competitive analysis with market positioning intelligence.",
   "normal_query": "Conduct solar rebate competitive analysis with market positioning intelligence assessment."
@@ -959,12 +719,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates rebate, installation, and consumption data by geographic dimensions such as zip code, county, and service region. It groups by geographic hierarchies to analyze rate distributions at multiple geographic scales, computes statistical aggregates including average rates, rate variance, customer density, and consumption intensity by region, and applies window functions to calculate regional rankings and clustering metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "geographic_rate_clusters",
-    "cluster_identification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns geographic rate clustering analysis with regional pattern identification.",
   "normal_query": "Perform geographic rate clustering analysis with regional pattern identification."
@@ -984,15 +739,7 @@ Target distribution across 30 queries:
   "evidence": "The query integrates data from rebate eligibility, solar installations, and consumption systems through comprehensive joins on customer and time dimensions. It groups by enterprise-relevant dimensions including customer segment, product line, geography, and time period to enable strategic analysis, computes aggregate metrics across dimensions, and applies window functions for cross-dimensional comparisons and trend analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "electricity_rates",
-    "utility_companies",
-    "states",
-    "rate_codes",
-    "comprehensive_rate_analysis",
-    "cost_optimization_scenarios",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns enterprise rate optimization with comprehensive cost intelligence.",
   "normal_query": "Deploy enterprise rate optimization platform with comprehensive cost intelligence and analysis."

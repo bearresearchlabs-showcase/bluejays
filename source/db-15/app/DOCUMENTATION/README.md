@@ -146,9 +146,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `utility_incentives` — (see data dictionary)
 - `solar_rebate_aggregations` — (see data dictionary)
 - `rate_comparison_matrix` — (see data dictionary)
-- `data_extraction_log` — (see data dictionary)
-
----
+- `data_extraction_log` — (see data dictionary)---
 
 ## Data Dictionary
 

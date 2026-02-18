@@ -105,9 +105,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `bulk_shipping_presets` — (see data dictionary)
 - `shipping_analytics` — (see data dictionary)
 - `international_customs` — (see data dictionary)
-- `api_rate_request_log` — (see data dictionary)
-
----
+- `api_rate_request_log` — (see data dictionary)---
 
 ## Data Dictionary
 

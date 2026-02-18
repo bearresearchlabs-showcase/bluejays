@@ -130,9 +130,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `cost_optimization_recommendations` — (see data dictionary)
 - `instance_comparison_matrix` — (see data dictionary)
 - `data_extraction_log` — (see data dictionary)
-- `cost__analytics` — (see data dictionary)
-
----
+- `cost__analytics` — (see data dictionary)---
 
 ## Data Dictionary
 

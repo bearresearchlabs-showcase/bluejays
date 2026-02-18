@@ -105,9 +105,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `competitive_analysis` — (see data dictionary)
 - `business_districts` — (see data dictionary)
 - `facility_district_mapping` — (see data dictionary)
-- `data_source_metadata` — (see data dictionary)
-
----
+- `data_source_metadata` — (see data dictionary)---
 
 ## Data Dictionary
 

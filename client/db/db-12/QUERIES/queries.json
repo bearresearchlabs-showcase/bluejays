@@ -211,7 +211,7 @@
       "number": 18,
       "title": "moderate / aggregation",
       "question": "Can you generate card upgrade and downgrade recommendations for our customers?",
-      "description": "The customer retention and growth team wants to proactively identify cardholders whose spending behavior suggests they would derive more value from a different card tier\u2014either upgrading high-spenders to premium cards with better rewards but higher fees, or downgrading low-utilization customers to no-fee cards to reduce churn\u2014while maximizing customer lifetime value and satisfaction.",
+      "description": "The customer retention and growth team wants to proactively identify cardholders whose spending behavior suggests they would derive more value from a different card tier—either upgrading high-spenders to premium cards with better rewards but higher fees, or downgrading low-utilization customers to no-fee cards to reduce churn—while maximizing customer lifetime value and satisfaction.",
       "evidence": "The query joins transactions, cards, and rewards tables to build comprehensive customer profiles, calculates total annual spending by category and rewards earned per customer, compares current annual fees against reward value generated, groups cardholders by current card tier, and uses window functions to compute spending percentiles within each tier for upgrade/downgrade recommendations.",
       "complexity": "moderate",
       "expected_output": "[Expected output description]",

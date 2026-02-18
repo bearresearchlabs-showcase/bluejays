@@ -109,8 +109,54 @@ CREATE TABLE file_attachments (
 );
 
 CREATE TABLE anonymous_chats (
-    id UUID PRIMARY KEY DEFAULT gen_rand
--- ...
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    join_code VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP
+);
+
+CREATE TABLE anonymous_chat_users (
+    guest_id UUID NOT NULL,
+    chat_id UUID NOT NULL REFERENCES anonymous_chats(id),
+    PRIMARY KEY (guest_id, chat_id)
+);
+
+CREATE TABLE anonymous_messages (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    chat_id UUID NOT NULL REFERENCES anonymous_chats(id),
+    guest_id UUID NOT NULL,
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE chat_invitations (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    inviting_user_id UUID NOT NULL REFERENCES profiles(id),
+    invited_user_id UUID NOT NULL REFERENCES profiles(id),
+    chat_id UUID NOT NULL REFERENCES chats(id),
+    status VARCHAR(50) NOT NULL DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Aircraft position history (for time-series analytics queries)
+CREATE TABLE aircraft_position_history (
+    id SERIAL PRIMARY KEY,
+    hex VARCHAR(20) NOT NULL,
+    speed NUMERIC(10, 2),
+    altitude NUMERIC(10, 2),
+    timestamp TIMESTAMP NOT NULL
+);
+CREATE INDEX idx_aircraft_position_hex ON aircraft_position_history(hex);
+CREATE INDEX idx_aircraft_position_timestamp ON aircraft_position_history(timestamp);
+
+CREATE INDEX idx_messages_chat_id ON messages(chat_id);
+CREATE INDEX idx_messages_sender_id ON messages(sender_id);
+CREATE INDEX idx_messages_created_at ON messages(created_at);
+CREATE INDEX idx_chat_participants_user_id ON chat_participants(user_id);
+CREATE INDEX idx_friends_user_id ON friends(user_id);
+CREATE INDEX idx_friends_friend_id ON friends(friend_id);
+CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+CREATE INDEX idx_file_attachments_chat_id ON file_attachments(chat_id);
 ```
 
 ## Domain Knowledge
@@ -166,14 +212,7 @@ Target distribution across 30 queries:
   "evidence": "The query constructs four CTEs. First, it retains the 60 most recent telemetry points per aircraft (cte_level_1). Second, it computes a 5-row rolling average and cumulative sum via window functions (cte_level_2). Third, it uses LAG, LEAD, and partition statistics for trend and z-score calculation (cte_level_3). Fourth, it flags outliers (z-score > 2) and trend direction, then aggregates by day and hex with PERCENTILE_CONT, SUM for outlier/increasing counts, and AVG for rolling average.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and hex",
   "normal_query": "Calculate daily altitude statistics for each aircraft over the last 365 days, including rolling averages and outlier counts."
@@ -193,14 +232,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups telemetry by week and speed bucket. It divides altitude into sextiles (NTILE(6)), calculates z-scores per partition, flags outliers (>2 std dev), and uses LAG/LEAD to compare consecutive readings for trend direction. Aggregates include quartiles (PERCENTILE_CONT), outlier count, and increasing-trend count.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and speed",
   "normal_query": "Calculate weekly altitude statistics segmented by speed bucket, including quartiles, z-score-based outliers, and counts of increasing-trend readings."
@@ -220,14 +252,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and aircraft hex. It uses PERCENTILE_CONT for Q1, median, Q3; computes a 6-row rolling average; flags outliers via z-score; and aggregates record count, stddev, min, max, outlier count, and increasing count. ROW_NUMBER limits to 80 points per aircraft.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and hex",
   "normal_query": "Calculate monthly altitude statistics per aircraft hex code, including quartiles, median, outlier count, and rolling average."
@@ -247,14 +272,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by date and speed. It calculates running cumulative sum of altitude changes, applies a 7-row rolling window, uses NTILE(8) for distribution, and aggregates outlier count, increasing-trend count, and max cumulative sum per group.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and speed",
   "normal_query": "Calculate daily altitude statistics by speed, including outlier count, increasing-trend count, and maximum cumulative sum."
@@ -274,14 +292,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and hex. It calculates STDDEV, PERCENTILE_CONT for quartiles, and uses LAG/LEAD with delta_value to derive trend_direction. Aggregates include record count, quartiles, stddev, outlier count, and increasing count. ROW_NUMBER limits to 100 points per aircraft.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and hex",
   "normal_query": "Calculate weekly altitude statistics per aircraft hex code, including record count, quartiles, standard deviation, and increasing-trend count."
@@ -301,14 +312,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and speed bucket. It computes z-scores (mean, stddev per partition; zero when stddev=0), flags outliers, calculates a 5-row rolling average, and filters to groups with \u22652 records. Output includes quartiles, rolling average, and outlier count.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and speed",
   "normal_query": "Compute daily altitude statistics grouped by speed bucket, including quartiles, rolling average, and z-score-based outlier count."
@@ -328,14 +332,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by month and hex. It captures min/max altitude, flags outliers (z-score > 2), limits to 80 points per aircraft, uses PERCENT_RANK, and calculates cumulative sum via window. Aggregates include quartiles, min, max, outlier count, and max cumulative sum.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and hex",
   "normal_query": "Compute monthly altitude statistics per aircraft hex code with quartiles, minimum, maximum, outlier count, and maximum cumulative sum."
@@ -355,14 +352,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and hex. It uses LAG to get previous altitude, computes delta (current minus previous), derives trend_direction from the sign, and uses LEAD for next value. Aggregates include quartiles and sequential difference metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and speed",
   "normal_query": "Compute daily altitude statistics per aircraft hex code with sequential differences between consecutive readings, gap analysis, and quartiles."
@@ -382,14 +372,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by day and speed bucket. It computes mean and stddev per group, flags anomalies (|z| > 2), handles stddev=0 safely, segments into octiles (NTILE(8)), and aggregates quartiles, outlier count, and trend direction counts.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and hex",
   "normal_query": "Compute daily altitude statistics grouped by speed bucket with z-score anomaly detection, quartiles, and trend direction counts."
@@ -409,14 +392,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and hex. It assigns ROW_NUMBER (desc timestamp) for recency scoring, uses record count as frequency proxy, ranks by cumulative sum, computes 6-row rolling average, and filters to groups with \u22653 records. Output includes quartiles and rolling average.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and speed",
   "normal_query": "Compute weekly altitude statistics per aircraft hex code with recency-frequency metrics, quartiles, and rolling average."
@@ -436,14 +412,7 @@ Target distribution across 30 queries:
   "evidence": "The query treats each speed range as a cohort. It limits to 90 points per speed bucket, uses window functions for increasing_count and trend_direction (analogous to retention), and orders by time period and average value. Output includes cohort-style progression and quartile boundaries.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and hex",
   "normal_query": "Calculate monthly altitude statistics grouped by speed range, including cohort-style retention metrics and quartile breakdowns."
@@ -463,14 +432,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses LAG to create first derivative (altitude change). trend_direction captures sign of change. LAG and LEAD together enable second-order derivative (rate of change of rate). Z-scores flag outliers. Limited to 60 points per aircraft. Output includes change rate metrics, quartiles, and outlier count.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and speed",
   "normal_query": "Calculate daily altitude statistics per aircraft hex code with rate-of-change metrics, quartile distributions, and outlier counts."
@@ -490,14 +452,7 @@ Target distribution across 30 queries:
   "evidence": "The query employs PERCENT_RANK for cross-category benchmarking and PERCENTILE_CONT for percentile values. Data segmented into sextiles. Speed categories ranked by cumulative altitude sum. Partition-level avg/stddev enable z-scores. Output includes percentile rankings and quartile distributions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and hex",
   "normal_query": "Calculate weekly altitude statistics by speed category with cross-category percentile benchmarking and quartile distributions."
@@ -517,14 +472,7 @@ Target distribution across 30 queries:
   "evidence": "The query implements a 6-row rolling window for simple moving average (avg_rolling). It counts periods where altitude is increasing and flags statistical outliers. Limited to 80 points per aircraft, minimum 1 record per group. Output includes quartiles and trend pattern counts.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and speed",
   "normal_query": "Calculate monthly altitude statistics per aircraft hex code with weighted moving averages, quartile distributions, and trend frequency counts."
@@ -544,14 +492,7 @@ Target distribution across 30 queries:
   "evidence": "The query ranks altitude within each day using window functions to identify peaks per speed category. Extracts hour and day-of-week for temporal analysis. Calculates max_cumulative and avg_rolling as efficiency proxies. Output includes peak period identification and quartile distributions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and hex",
   "normal_query": "Calculate daily altitude statistics by speed category with peak period identification, operational efficiency metrics, and quartile distributions."
@@ -571,14 +512,7 @@ Target distribution across 30 queries:
   "evidence": "The query computes cumulative_sum as total exposure proxy, tracks max_cumulative for lifetime activity, ranks aircraft by cumulative sum, applies PERCENT_RANK for quartile placement. Limited to 60 points per aircraft, \u22653 records per group. Output includes LTV metrics, quartiles, and cumulative totals.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and speed",
   "normal_query": "Calculate weekly altitude statistics per aircraft including lifetime value metrics, quartile distribution, and cumulative sum analysis."
@@ -598,14 +532,7 @@ Target distribution across 30 queries:
   "evidence": "The query extracts hour_val and dow_val for temporal context. It uses window functions (rolling avg, cumulative sum, LAG, LEAD) and aggregates by period and hex. Output includes temporal correlation metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and hex",
   "normal_query": "Calculate monthly altitude statistics grouped by speed range with year-over-year growth indicators and quartile distribution."
@@ -625,14 +552,7 @@ Target distribution across 30 queries:
   "evidence": "The query segments by speed and time period. It uses PARTITION BY speed for window functions, groups by week and speed, and produces regime-specific aggregates including quartiles and trend counts.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and speed",
   "normal_query": "Calculate daily altitude statistics per aircraft formatted for heatmap visualization including quartile ranges and outlier counts."
@@ -652,14 +572,7 @@ Target distribution across 30 queries:
   "evidence": "The query calculates STDDEV per partition as volatility measure. It uses PERCENTILE_CONT for quartiles and trend_direction for consistency. Aggregates include stddev, quartiles, outlier count, and increasing count.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and hex",
   "normal_query": "Calculate weekly altitude statistics grouped by speed range with running percentile analysis, quartile distribution, and trend direction counts."
@@ -679,14 +592,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses PERCENT_RANK and PERCENTILE_CONT for cross-aircraft and cross-speed distribution comparison. DENSE_RANK and NTILE support benchmarking. Output includes percentile rankings and quartile distributions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and speed",
   "normal_query": "Calculate monthly altitude statistics per aircraft with cross-correlation style metrics, quartile distribution, and rolling average trends."
@@ -706,14 +612,7 @@ Target distribution across 30 queries:
   "evidence": "The query implements rolling windows (ROWS BETWEEN N PRECEDING AND CURRENT ROW) for moving average and cumulative sum. Window functions (LAG, LEAD, FIRST_VALUE, LAST_VALUE) support trend analysis. Output includes rolling and cumulative metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and hex",
   "normal_query": "Calculate daily altitude statistics grouped by speed, including status transition analysis, quartile distributions, and outlier counts."
@@ -733,14 +632,7 @@ Target distribution across 30 queries:
   "evidence": "The query partitions by speed and groups by day and speed. It combines temporal (DATE_TRUNC) and speed dimensions. Output includes speed-temporal segmented aggregates.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and speed",
   "normal_query": "Generate weekly altitude statistics per aircraft hex identifier with full multi-metric aggregation including quartiles for dashboard display."
@@ -760,14 +652,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses PERCENTILE_CONT(0.25), (0.5), (0.75) for quartiles. NTILE provides distribution bins. Output includes q1, median, q3, and distribution shape metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and hex",
   "normal_query": "Calculate monthly altitude statistics grouped by speed with sequential pattern analysis metrics and quartile distributions."
@@ -787,14 +672,7 @@ Target distribution across 30 queries:
   "evidence": "The query extracts EXTRACT(HOUR) and EXTRACT(DOW) for temporal features. It correlates these with altitude via partition and grouping. Output includes time-of-day correlation metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and speed",
   "normal_query": "Generate daily altitude statistics per aircraft hex identifier with concentration index calculations, quartile distributions, and outlier counts."
@@ -814,14 +692,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses PERCENT_RANK across partitions for cross-aircraft and cross-speed comparison. PERCENTILE_CONT and NTILE support distribution analysis. Output includes percentile rankings and quartile breakdowns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and hex",
   "normal_query": "Calculate weekly altitude statistics grouped by speed, including statistical anomaly scores, quartile distributions, and trend direction counts."
@@ -841,14 +712,7 @@ Target distribution across 30 queries:
   "evidence": "The query computes delta_value (current minus LAG) as first derivative. trend_direction (Increasing/Decreasing/Stable) captures sign. LAG+LEAD enable second derivative. Z-scores flag outliers. Output includes rate-of-change and acceleration-like metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and speed",
   "normal_query": "Calculate monthly altitude statistics for each aircraft hex identifier, including quartiles to support fiscal period comparison and month-over-month analysis."
@@ -868,14 +732,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups by week and speed. It aggregates altitude metrics per speed-temporal cell. Output includes regime-specific trend aggregates.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and hex",
   "normal_query": "Calculate daily altitude statistics segmented by speed buckets with throughput optimization metrics, quartile distributions, and 7-day rolling averages."
@@ -895,14 +752,7 @@ Target distribution across 30 queries:
   "evidence": "The query computes cumulative_sum and max_cumulative. ROW_NUMBER (desc) scores recency. Record count proxies frequency. Output includes LTV-style and recency-frequency metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by month and speed",
   "normal_query": "Calculate weekly altitude statistics for each aircraft hex with cumulative trend analysis, activity ranking, and quartile distributions."
@@ -922,14 +772,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses PERCENTILE_CONT and PERCENT_RANK for distribution metrics. Groups by month and hex or speed. Output includes quartiles and percentile distributions across dimensions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by day and hex",
   "normal_query": "Calculate monthly altitude statistics grouped by speed buckets with comprehensive multi-dimensional aggregations and quartile distributions to support flexible pivot reporting."
@@ -949,14 +792,7 @@ Target distribution across 30 queries:
   "evidence": "The query correlates altitude with period (day/week/month), hex, and speed. Multi-dimensional grouping and window functions (PARTITION BY hex, speed) produce cross-dimensional aggregates.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "timestamp",
-    "aircraft_position_history",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics grouped by week and speed",
   "normal_query": "Calculate weekly altitude statistics grouped by speed buckets using IQR-style outlier detection methodology with quartiles and trend indicators."

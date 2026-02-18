@@ -1,10 +1,10 @@
 ---
-title: Filling Station Retail / POS — Documentation
+title: Filling Station Retail / POS (phppos) — Documentation
 description: Installation guide, specifications, schema, data dictionary.
 database: db-2
 ---
 
-# Filling Station Retail / POS — Documentation
+# Filling Station Retail / POS (phppos) — Documentation
 
 **Database:** db-2
 **Content:** Installation guide, specifications, schema, data dictionary.
@@ -34,7 +34,7 @@ createdb -U postgres db_2
 Load schema.sql to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_2 -f schema.sql
+psql -U postgres -d db_2 -f DATABASE/schema.sql
 ```
 
 ---
@@ -44,7 +44,7 @@ psql -U postgres -d db_2 -f schema.sql
 Load sample data from data.sql if available.
 
 ```bash
-psql -U postgres -d db_2 -f data.sql
+psql -U postgres -d db_2 -f DATABASE/data.sql
 ```
 
 ---
@@ -70,9 +70,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `phppos_locations` — (see data dictionary)
 - `phppos_employees_locations` — (see data dictionary)
 - `phppos_location_items` — (see data dictionary)
-- `phppos_sales` — (see data dictionary)
-
----
+- `phppos_sales` — (see data dictionary)---
 
 ## Data Dictionary
 

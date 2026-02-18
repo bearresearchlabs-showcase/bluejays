@@ -136,9 +136,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `historical_flood_events` — (see data dictionary)
 - `model_performance_metrics` — (see data dictionary)
 - `portfolio_risk_summaries` — (see data dictionary)
-- `data_quality_metrics` — (see data dictionary)
-
----
+- `data_quality_metrics` — (see data dictionary)---
 
 ## Data Dictionary
 

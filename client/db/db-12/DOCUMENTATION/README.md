@@ -106,9 +106,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `card_recommendations` — (see data dictionary)
 - `cfpb_consumer_complaints` — (see data dictionary)
 - `federal_reserve_credit_data` — (see data dictionary)
-- `rewards_optimization_analytics` — (see data dictionary)
-
----
+- `rewards_optimization_analytics` — (see data dictionary)---
 
 ## Data Dictionary
 

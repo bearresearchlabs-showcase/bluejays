@@ -46,22 +46,28 @@ TEMPLATE_SECTIONS = [
 ]
 
 
-def _normalize_query(q: Dict[str, Any], db_id: str) -> Dict[str, Any]:
-    """Normalize query dict to template format (question_id, question, SQL, evidence, etc.)."""
+def _normalize_query(q: Dict[str, Any], db_id: str, bit_by_bit: bool = False) -> Dict[str, Any]:
+    """Normalize query dict to template format (question_id, question, SQL, evidence, etc.).
+    When bit_by_bit=True, use only values from q—no inference, no fallbacks that alter content."""
     num = q.get("question_id", q.get("number", 0))
     question = q.get("question", q.get("title", q.get("use_case", f"Query {num}")))
     normal_query = q.get("normal_query", "").strip()
     sql = q.get("SQL", q.get("sql", ""))
-    evidence = q.get("evidence", q.get("description", ""))
+    evidence = q.get("evidence", "") if bit_by_bit else q.get("evidence", q.get("description", ""))
     difficulty = q.get("difficulty", _map_complexity(q.get("complexity", "")))
-    category = q.get("query_category", "aggregation")
-    tables = q.get("tables_used", [])
-    schema_ctx = q.get("schema_context", {})
-    expected = q.get("expected_output", "[]")
-    if not tables and sql:
-        tables = _infer_tables(sql)
-    if not category and sql:
+    category = q.get("query_category")
+    if not category and q.get("title", "").strip():
+        parts = str(q.get("title", "")).split(" / ", 1)
+        category = parts[1].strip() if len(parts) > 1 else None
+    if not category and not bit_by_bit and sql:
         category = _infer_category(sql, difficulty)
+    if not category:
+        category = "aggregation"
+    tables = q.get("tables_used", [])
+    if not tables and not bit_by_bit and sql:
+        tables = _infer_tables(sql)
+    schema_ctx = q.get("schema_context", {})
+    expected = q.get("expected_output", "") if bit_by_bit else q.get("expected_output", "[]")
     out = {
         "db_id": db_id,
         "question_id": num,
@@ -117,9 +123,10 @@ def _infer_category(sql: str, difficulty: str) -> str:
     return "filtering/lookup"
 
 
-def _format_query_block(q: Dict[str, Any], db_id: str) -> str:
-    """Format one query as template block: ### Query N — difficulty / query_category + ```json."""
-    nq = _normalize_query(q, db_id)
+def _format_query_block(q: Dict[str, Any], db_id: str, bit_by_bit: bool = False) -> str:
+    """Format one query as template block: ### Query N — difficulty / query_category + ```json.
+    When bit_by_bit=True, copy values exactly from q with no inference."""
+    nq = _normalize_query(q, db_id, bit_by_bit=bit_by_bit)
     header = f"### Query {nq['question_id']} — {nq['difficulty']} / {nq['query_category']}"
     # JSON with 2-space indent, exclude internal keys
     out = {

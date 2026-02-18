@@ -51,7 +51,7 @@ Maritime shipping databases represent high-value domains for text-to-SQL because
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:04
 -- Database: db-7
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -160,22 +160,7 @@ Target distribution across 30 queries:
   "evidence": "The query employs six CTEs: vessel_tracking_cohorts (base extraction), vessel_position_sequences (LAG/LEAD for prev/next position), vessel_movement_calculations (ST_DISTANCE, calculated speed, bearing), vessel_route_deviations (correlated subqueries for nearest route, distance to route, speed/course deviation), vessel_operational_patterns (rolling avg, cumulative distance, window functions), vessel_status_classification (operational_status, route_deviation_status, data_freshness_status CASE expressions).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "vt",
-    "vessel_tracking",
-    "vessels",
-    "carriers",
-    "vessel_tracking_cohorts",
-    "previous",
-    "vessel_position_sequences",
-    "routes",
-    "route_ports",
-    "ports",
-    "vessel_movement_calculations",
-    "vessel_route_deviations",
-    "vessel_operational_patterns",
-    "vessel_status_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Vessel position tracking report with current positions, speeds, courses, route deviations, and navigation status for active vessels.",
   "normal_query": "Generate a vessel position tracking report showing current positions, speeds, courses, route deviations, and navigation status for all active vessels in the fleet."
@@ -195,16 +180,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses four CTEs: port_call_cohorts, port_call_delay_calculations (arrival/departure delay, dwell time, EXTRACT EPOCH), port_call_performance_metrics (30-row moving avg, PERCENT_RANK, on_time indicators), port_call_classification (arrival_performance_class, dwell_time_efficiency_class CASE expressions).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "port_calls",
-    "vessels",
-    "carriers",
-    "ports",
-    "port_call_cohorts",
-    "port_call_delay_calculations",
-    "port_call_performance_metrics",
-    "port_call_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Port call performance report with delay metrics, on-time performance rates, dwell times, and operational efficiency classifications.",
   "normal_query": "Create a port call performance report with delay metrics, on-time performance rates, vessel dwell times, and operational efficiency classifications for each port."
@@ -224,18 +200,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses six CTEs: route_sailing_analysis, route_port_pair_aggregation (PERCENTILE_CONT, STDDEV), route_efficiency_calculations (transit variance, speed_efficiency_nm_per_day), carrier_route_comparison (correlated subqueries for fastest competitor, RANK within port pair), route_optimization_scoring (weighted optimization_score), route_classification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "routes",
-    "carriers",
-    "ports",
-    "route_sailing_analysis",
-    "route_port_pair_aggregation",
-    "route_efficiency_calculations",
-    "carrier_route_comparison",
-    "route_optimization_scoring",
-    "route_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Route optimization report with transit times, distances, efficiency metrics, and carrier performance comparisons.",
   "normal_query": "Produce a route optimization report showing transit times, voyage distances, fuel efficiency metrics, and carrier performance comparisons across major shipping routes."
@@ -255,19 +220,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses six CTEs: carrier_sailing_metrics, carrier_port_call_metrics (on_time counts, delay/dwell AVGs), carrier_performance_aggregation (completion rates, on-time rates), carrier_performance_comparison (AVG OVER for market averages, RANK, PERCENT_RANK), carrier_reliability_scoring (weighted reliability_score), carrier_performance_classification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "carriers",
-    "routes",
-    "sailings",
-    "vessels",
-    "port_calls",
-    "carrier_sailing_metrics",
-    "carrier_port_call_metrics",
-    "carrier_performance_aggregation",
-    "carrier_performance_comparison",
-    "carrier_reliability_scoring",
-    "carrier_performance_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Carrier performance report with on-time performance rates, vessel utilization, capacity metrics, reliability scores, and performance rankings.",
   "normal_query": "Build a carrier performance report showing on-time performance rates, vessel utilization statistics, capacity metrics, reliability scores, and competitive performance rankings."
@@ -287,16 +240,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups port call data by port identifier and terminal, aggregating vessel calls and summing TEUs from sailings joined to port calls. Computes berth utilization and throughput-to-handling efficiency metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "port_statistics",
-    "ports",
-    "port_statistics_base",
-    "port_monthly_aggregation",
-    "port_throughput_analysis",
-    "port_efficiency_calculations",
-    "port_performance_scoring",
-    "port_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Port statistics report with vessel calls, container throughput, berth utilization, and operational efficiency metrics.",
   "normal_query": "Generate a port statistics report with vessel call volumes, container throughput figures, berth utilization rates, and operational efficiency metrics for each port terminal."
@@ -316,18 +260,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins vessel_tracking with port_calls and sailings, groups by vessel/carrier/route, computes utilization percentages and efficiency ratios, applies window functions for rolling averages and quartile analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "vessels",
-    "carriers",
-    "routes",
-    "ports",
-    "vessel_capacity_analysis",
-    "route_capacity_aggregation",
-    "vessel_capacity_aggregation",
-    "capacity_utilization_scoring",
-    "capacity_optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Capacity utilization report with vessel utilization rates, route efficiency metrics, and optimization recommendations.",
   "normal_query": "Generate a comprehensive capacity utilization report showing vessel utilization rates, route efficiency metrics, and actionable optimization recommendations."
@@ -347,18 +280,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins port_calls with sailings to construct sequential port visit chains, uses LAG/LEAD to identify transshipment events (vessel change mid-route), groups by origin-destination pairs and intermediate stops.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "routes",
-    "carriers",
-    "route_ports",
-    "ports",
-    "route_port_paths",
-    "path",
-    "route_path_aggregation",
-    "transshipment_detection",
-    "route_connectivity_analysis",
-    "route_path_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Multi-port route report with route paths, transshipment points, connectivity analysis, and path optimization recommendations.",
   "normal_query": "Generate a multi-port route report with complete route paths, identified transshipment points, connectivity analysis between ports, and path optimization recommendations."
@@ -378,18 +300,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins vessels with carriers and links to sailings and port_calls, groups by carrier and vessel, computes utilization percentages (capacity vs actual load), schedule adherence, and performance indicators.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "vessels",
-    "carriers",
-    "port",
-    "port_calls",
-    "vessel_sailing_utilization",
-    "vessel_port_call_utilization",
-    "vessel_comprehensive_utilization",
-    "carrier_vessel_comparison",
-    "vessel_performance_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Vessel utilization report with utilization rates across carriers, vessel performance metrics, and optimization opportunities.",
   "normal_query": "Generate a vessel utilization report showing utilization rates across carriers, comparative vessel performance metrics, and identified optimization opportunities."
@@ -409,17 +320,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins port_calls with sailings to identify origin-destination port pairs, groups by port pair, computes total shipments and cargo volume, applies window functions for period-over-period growth and moving averages.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "routes",
-    "ports",
-    "carriers",
-    "port_pair_sailing_volume",
-    "port_pair_monthly_aggregation",
-    "port_pair_trend_analysis",
-    "port_pair_demand_scoring",
-    "port_pair_market_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Port pair demand report with trade volumes, demand trends, and market opportunity analysis.",
   "normal_query": "Generate a port pair demand report showing trade volumes between port pairs, demand trends over time, and market opportunity analysis."
@@ -439,20 +340,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins sailings with port_calls to match planned voyages with actual outcomes, calculates completion status (actual vs scheduled), groups by route/carrier/port, computes completion percentages and on-time rates.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "voyages",
-    "vessels",
-    "carriers",
-    "routes",
-    "voyage_port_calls",
-    "port_calls",
-    "ports",
-    "voyage_port_call_sequence",
-    "voyage_completion_metrics",
-    "voyage_completion_rates",
-    "carrier_voyage_comparison",
-    "voyage_reliability_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Voyage completion report with completion rates, port call success metrics, and delay root cause analysis.",
   "normal_query": "Generate a voyage completion report showing completion rates, port call success metrics, and detailed delay root cause analysis."
@@ -472,18 +360,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins carrier, sailings, port_calls, and vessel_tracking, aggregates by carrier and route, computes on-time rates and transit times, uses window functions for competitive rankings and quartile analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "routes",
-    "carriers",
-    "port_calls",
-    "carrier_route_sailing_metrics",
-    "carrier_route_port_call_metrics",
-    "carrier_route_comprehensive_metrics",
-    "route_competitive_benchmark",
-    "carrier_route_performance_scoring",
-    "carrier_route_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Carrier route performance report with service quality metrics, competitive positioning, and route optimization recommendations.",
   "normal_query": "Generate a carrier route performance report showing service quality metrics, competitive positioning across routes, and actionable route optimization recommendations."
@@ -503,20 +380,7 @@ Target distribution across 30 queries:
   "evidence": "The query retrieves vessel positions from vessel_tracking, joins with sailings for planned routes, uses ST_DISTANCE for deviation, flags threshold exceedances, applies window functions for rolling speed pattern analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "vessel_tracking",
-    "vessels",
-    "sailings",
-    "routes",
-    "ports",
-    "previous",
-    "vessel_tracking_sequence",
-    "vessel_distance_calculations",
-    "route_deviation_analysis",
-    "vessel_speed_analysis",
-    "vessel_tracking_summary",
-    "vessel_route_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Vessel tracking report with positions, route deviations, speed patterns, and optimization recommendations.",
   "normal_query": "Generate a vessel tracking report showing current and historical positions, identified route deviations from planned paths, speed pattern analysis, and specific optimization recommendations."
@@ -536,16 +400,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates port_calls by port and berth, calculates occupancy rates (berth-occupied/time), turnaround and waiting times, uses window functions for peak congestion detection via rolling utilization.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "port_calls",
-    "ports",
-    "vessels",
-    "port_call_detailed_metrics",
-    "port_daily_capacity_metrics",
-    "port_capacity_utilization",
-    "port_congestion_analysis",
-    "port_optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Port capacity report with utilization rates, berth efficiency, congestion patterns, and optimization recommendations.",
   "normal_query": "Generate a port capacity report showing utilization rates for each port and berth, efficiency metrics, congestion pattern identification, and optimization recommendations to improve throughput."
@@ -565,18 +420,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins sailings with port_calls to compare scheduled vs actual times, calculates delay durations and severity, computes on-time percentages by carrier/route/period, uses window functions for rolling trends.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "routes",
-    "carriers",
-    "vessels",
-    "ports",
-    "sailing_schedule_metrics",
-    "carrier_route_reliability_metrics",
-    "reliability_trend_analysis",
-    "service_consistency_analysis",
-    "reliability_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Sailing schedule reliability report with on-time performance metrics, schedule adherence, and service consistency analysis.",
   "normal_query": "Generate a sailing schedule reliability report showing on-time performance percentages, schedule adherence metrics, delay pattern analysis, and service consistency evaluation across carriers and routes."
@@ -596,18 +440,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates sailings and port_calls by carrier and route (origin-destination pairs), counts voyages or capacity deployment, computes each carrier's percentage share of total route activity.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "routes",
-    "carriers",
-    "carrier_route_volume",
-    "route_total_volume",
-    "carrier_market_share_calculation",
-    "carrier_route_rankings",
-    "route_market_concentration",
-    "carrier_route_dominance",
-    "carrier_market_trends"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Carrier market share report with market share by route, competitive positioning, and route dominance analysis.",
   "normal_query": "Generate a carrier market share report showing market share percentages by route, competitive positioning rankings, route dominance analysis, and market concentration indicators."
@@ -627,19 +460,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins vessel_tracking, port_calls, and sailings to construct voyage paths, groups by route and vessel type, computes fuel per nm, transit time, distance, uses window functions for rolling metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "vessels",
-    "routes",
-    "carriers",
-    "ports",
-    "vessel_route_sailing_metrics",
-    "route_efficiency_benchmarks",
-    "vessel_route_efficiency_analysis",
-    "fuel_optimization_analysis",
-    "vessel_efficiency_scoring",
-    "efficiency_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Vessel route efficiency report with efficiency metrics, fuel optimization, and transit time benchmarking.",
   "normal_query": "Generate a vessel route efficiency report showing efficiency metrics, fuel consumption optimization, and transit time benchmarks across routes."
@@ -659,20 +480,7 @@ Target distribution across 30 queries:
   "evidence": "The query extracts port call sequences from port_calls ordered by timestamp per voyage, uses LAG/LEAD for consecutive port pairs and distance calculation, groups by voyage and port sequence.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "voyages",
-    "vessels",
-    "routes",
-    "voyage_port_calls",
-    "port_calls",
-    "ports",
-    "previous",
-    "voyage_port_call_sequence",
-    "port_call_distances",
-    "voyage_efficiency_metrics",
-    "port_call_optimization_analysis",
-    "sequence_efficiency_scoring"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Port call sequence report with optimal sequences, dwell time analysis, and voyage efficiency recommendations.",
   "normal_query": "Generate a port call sequence report showing optimal calling sequences, dwell time analysis at each port, and voyage efficiency recommendations."
@@ -692,17 +500,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins vessel_tracking, sailings, and port_calls for each vessel, groups by vessel, calculates KPIs, uses window functions for fleet-average comparison and outlier identification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "vessels",
-    "carriers",
-    "sailings",
-    "port_calls",
-    "vessel_operational_metrics",
-    "vessel_performance_calculations",
-    "fleet_benchmark_metrics",
-    "operational_excellence_scoring",
-    "vessel_performance_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Vessel performance report with benchmarks, fleet comparisons, and operational excellence metrics.",
   "normal_query": "Generate a vessel performance report showing performance benchmarks, fleet-wide comparisons, and operational excellence metrics for each vessel."
@@ -722,17 +520,7 @@ Target distribution across 30 queries:
   "evidence": "The query constructs a network graph from sailings and port_calls (ports as nodes, routes as edges), groups by port for connectivity metrics and centrality measures.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "routes",
-    "route_ports",
-    "ports",
-    "route_port_connections",
-    "port_connection_aggregation",
-    "port_hub_scoring",
-    "port_pair_connectivity",
-    "network_efficiency_metrics",
-    "hub_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Route network report with connectivity metrics, hub identification, and network optimization recommendations.",
   "normal_query": "Generate a route network report showing connectivity metrics between ports, hub port identification, and network optimization recommendations."
@@ -752,19 +540,7 @@ Target distribution across 30 queries:
   "evidence": "The query analyzes sailings grouped by route (origin-destination) and time period, calculates service frequencies, schedule consistency, and identifies coverage gaps.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "s",
-    "sailings",
-    "routes",
-    "carriers",
-    "ports",
-    "sailing_schedule_analysis",
-    "route_port_pair_frequency",
-    "fcm",
-    "frequency_consistency_metrics",
-    "schedule_gap_analysis",
-    "frequency_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Sailing frequency report with service frequencies, consistency metrics, and schedule optimization recommendations.",
   "normal_query": "Generate a sailing frequency report showing service frequencies by route, consistency metrics for schedule reliability, and schedule optimization recommendations."
@@ -784,19 +560,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins vessel_tracking, port_calls, sailings, and carriers, groups by port/carrier/period, computes delay statistics, uses window functions for rolling delay averages and trend identification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pc",
-    "port_calls",
-    "ports",
-    "vessels",
-    "sailings",
-    "routes",
-    "carriers",
-    "port_call_historical_delays",
-    "port_delay_statistics",
-    "delay_risk_scoring",
-    "delay_prediction_and_mitigation"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Port call delay prediction report with delay probabilities, risk factors, and mitigation recommendations.",
   "normal_query": "Generate a comprehensive port call delay prediction report that calculates delay probabilities, identifies key risk factors, and provides mitigation recommendations."
@@ -816,16 +580,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins sailings, port_calls, carriers, and vessel_tracking, groups by route/carrier/vessel type, computes revenue, costs, fuel, port fees, net margin, uses window functions for profitability metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "routes",
-    "carriers",
-    "route_revenue_metrics",
-    "route_cost_efficiency",
-    "route_profitability_benchmark",
-    "profitability_scoring",
-    "profitability_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Route profitability report with revenue metrics, cost efficiency, and profitability optimization recommendations.",
   "normal_query": "Create a route profitability report that analyzes revenue metrics, evaluates cost efficiency, and identifies profitability optimization opportunities."
@@ -845,19 +600,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins carriers and sailings for vessel metadata (build dates), links to vessel_tracking and port_calls, calculates vessel age, correlates with performance metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "current_date",
-    "vessels",
-    "carriers",
-    "sailings",
-    "port_calls",
-    "vessel_age_calculations",
-    "vessel_age_performance_metrics",
-    "age_group_benchmarks",
-    "age_performance_correlation",
-    "modernization_priority_scoring",
-    "modernization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Vessel age-performance report with correlations, modernization priorities, and fleet strategy recommendations.",
   "normal_query": "Generate a vessel age-performance correlation report that analyzes the relationship between vessel age and operational performance, identifies modernization priorities, and provides fleet strategy recommendations."
@@ -877,18 +620,7 @@ Target distribution across 30 queries:
   "evidence": "The query extracts temporal dimensions from port_calls and sailings, groups by year/quarter/month/week/day-of-week, calculates volume metrics and identifies patterns at multiple granularities.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "s",
-    "routes",
-    "carriers",
-    "ports",
-    "sailing_seasonal_metrics",
-    "monthly_demand_aggregation",
-    "seasonal_pattern_analysis",
-    "peak_period_identification",
-    "capacity_planning_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Seasonal demand report with demand patterns, peak periods, and capacity planning recommendations.",
   "normal_query": "Create a seasonal demand analysis report that identifies demand patterns across different time periods, highlights peak shipping periods, and provides capacity planning recommendations."
@@ -908,16 +640,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins port_calls with vessel_tracking and sailings to reconstruct visit timelines, groups by port/berth/period, calculates utilization rates and efficiency metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ports",
-    "port_calls",
-    "vessels",
-    "port_infrastructure_metrics",
-    "daily_infrastructure_utilization",
-    "infrastructure_efficiency_calculations",
-    "infrastructure_bottleneck_analysis",
-    "infrastructure_optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Port infrastructure report with utilization rates, resource efficiency, and optimization recommendations.",
   "normal_query": "Generate a port infrastructure utilization report that measures utilization rates across port facilities, evaluates resource efficiency, and identifies optimization opportunities."
@@ -937,17 +660,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins vessel_tracking with port_calls and sailings for actual vs scheduled transit times, groups by carrier/route/vessel, computes stddev and coefficient of variation, uses window functions for rolling averages and quartile analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "routes",
-    "carriers",
-    "ports",
-    "sailing_transit_time_metrics",
-    "route_transit_time_statistics",
-    "transit_time_reliability_metrics",
-    "reliability_scoring",
-    "reliability_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Transit time variability report with reliability scores, schedule predictability, and optimization recommendations.",
   "normal_query": "Generate a transit time variability report showing reliability scores, schedule predictability indicators, and recommendations for route optimization."
@@ -967,16 +680,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates sailings and port_calls by port pairs over multiple periods, calculates period-over-period growth, uses window functions for moving averages and YoY comparison, groups by port pairs/carriers/vessel types.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "routes",
-    "ports",
-    "port_pair_monthly_volumes",
-    "port_pair_trend_calculations",
-    "trend_classification",
-    "growth_forecasting",
-    "market_opportunity_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Trade volume trends report with growth forecasts, market opportunities, and strategic planning recommendations.",
   "normal_query": "Produce a trade volume trends report with growth forecasts, emerging market opportunities, and strategic expansion recommendations for key port pairs."
@@ -996,17 +700,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins vessel_tracking, sailings, and port_calls with carrier fleet info, groups by vessel type/size/route, calculates utilization and capacity matching, uses window functions for cross-route performance comparison.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "vessels",
-    "carriers",
-    "sailings",
-    "routes",
-    "vessel_route_deployment",
-    "vessel_deployment_summary",
-    "route_deployment_analysis",
-    "deployment_optimization_scoring",
-    "deployment_strategy_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Vessel deployment report with deployment patterns, route allocation efficiency, and fleet optimization recommendations.",
   "normal_query": "Create a vessel deployment report showing current deployment patterns, route allocation efficiency metrics, and fleet optimization recommendations."
@@ -1026,17 +720,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates carriers, sailings, and vessel_tracking by alliance membership, compares solo vs collaborative performance, calculates shared capacity utilization and schedule coordination, uses window functions for member comparison.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "routes",
-    "sailings",
-    "carriers",
-    "route_carrier_participation",
-    "route_totals",
-    "route_carrier_alliance_metrics",
-    "carrier_alliance_performance",
-    "carrier_collaborative_efficiency",
-    "alliance_optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Carrier alliance report with performance metrics, collaborative efficiency, and partnership optimization recommendations.",
   "normal_query": "Generate a carrier alliance performance report with collaborative efficiency metrics, network synergy indicators, and partnership optimization recommendations."
@@ -1056,24 +740,7 @@ Target distribution across 30 queries:
   "evidence": "The query performs complex joins across vessel_tracking, port_calls, sailings, and carriers, groups by time/region/carrier/vessel type/route, computes operational KPIs via aggregate functions, uses window functions for comparative metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sailings",
-    "carriers",
-    "routes",
-    "ports",
-    "port_calls",
-    "vessels",
-    "carrier_performance_summary",
-    "port_operations_summary",
-    "route_intelligence_summary",
-    "operational_kpis",
-    "vessel_fleet_summary",
-    "port_pairs",
-    "group",
-    "executive_kpi_calculations",
-    "market_intelligence_summary",
-    "executive_dashboard_summary"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Comprehensive maritime intelligence dashboard with KPIs, operational metrics, financial performance, market intelligence, and strategic insights.",
   "normal_query": "Build a comprehensive maritime intelligence dashboard displaying key performance indicators, operational metrics, financial performance, market intelligence, and strategic insights across all dimensions."

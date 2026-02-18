@@ -163,13 +163,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups transactions by date and employee, then computes each employee's overall average transaction value as a benchmark. It applies a 7-row rolling window ordered by date to calculate smoothed averages, compares individual transactions against the employee's benchmark to count above-average performance, retains only the 100 most recent transactions per employee to focus on current trends, and excludes days with single transactions to avoid statistical noise. A dataset containing daily metrics for each employee showing their ro",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Daily aggregated sales metrics with rolling averages and trend indicators",
   "normal_query": "Calculate daily sales metrics for each employee including rolling 7-day average and count of transactions above their personal average."
@@ -189,14 +183,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups purchases by month and customer, then calculates quartiles by segmenting spend into sextiles (six equal groups). It computes z-scores for each transaction and flags those exceeding two standard deviations as outliers. To detect momentum, it derives trend direction by comparing consecutive transaction amounts and counts how many show increases. The query limits each customer to their 70 most recent data points for manageability and requires at least three transactions per month per customer to ensure s",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for customer purchase frequency segmentation",
   "normal_query": "Generate monthly customer purchase statistics including quartiles, z-score-based outlier count, and count of transactions following an increasing trend."
@@ -216,14 +203,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups sales by date and employee, then applies PERCENTILE_CONT to compute Q1 (25th percentile), median (50th percentile), and Q3 (75th percentile) for robust statistical summaries. It calculates a 7-row rolling average to smooth daily volatility, segments transactions into septiles (seven equal groups) to classify distribution spread, and permits single-transaction days to accommodate newly hired employees who are ramping up. Daily performance metrics for",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for employee performance quartile ranking",
   "normal_query": "Calculate daily sales statistics per employee with quartiles, median, outlier count, and rolling average."
@@ -243,14 +223,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups transactions by week and payment type, then computes quartiles to understand the spread of transaction amounts within each payment method. It applies an 8-row rolling window to smooth weekly fluctuations, segments data into octiles (eight equal groups) for finer distribution analysis, flags statistical outliers, counts transactions that increase compared to prior periods to identify momentum, and requires at least two records per week per payme",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for payment type revenue distribution",
   "normal_query": "Compute weekly sales statistics by payment type with quartiles, outlier count, and count of transactions showing an increasing trend."
@@ -270,14 +243,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups sales by month and location, then calculates Q1, median, and Q3 to profile the spending distribution at each site. It computes standard deviation to quantify sales variability, which helps distinguish consistently performing stores from volatile ones. A 9-row rolling window smooths multi-month trends, and the data is segmented into noniles (nine equal groups) for granular dis",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for location-based sales velocity",
   "normal_query": "Compute monthly sales statistics per location with quartiles, standard deviation, outlier count, and maximum cumulative sum."
@@ -297,14 +263,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates sales transactions by day and employee, extracts temporal features (hour of day and day of week) to provide context, calculates quartile boundaries (25th, 50th, 75th percentiles) for distribution analysis, computes a 10-day rolling average to smooth short-term fluctuations, applies z-score methodology to flag statistical outliers beyond normal variance, and accommodates employees who may have only a single transaction on certain days. A dataset containing daily performance metrics for each employee including quartile values for understanding sales distribution,",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for hourly sales pattern detection",
   "normal_query": "Calculate daily sales statistics for each employee including quartile distributions, rolling averages, and z-score outlier counts."
@@ -324,14 +283,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups sales data by month and customer, uses window functions LAG and LEAD to compute differences between consecutive months (measuring changes in purchase frequency and amounts), derives trend direction indicators (increasing, stable, or decreasing), calculates quartile boundaries for spend distribution analysis, and filters to include only customers with at least 3 months of purchase history to ensure meaningful trend detection. A dataset containing monthly metrics for each customer inclu",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for invoice gap analysis",
   "normal_query": "Calculate monthly sales statistics for each customer including gap analysis metrics between consecutive months, quartile distributions, and trend direction counts."
@@ -351,14 +303,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates transactions by day and payment type, applies z-score statistical methodology to flag days where transaction volumes or amounts fall outside normal variance thresholds, calculates quartile boundaries to establish baseline expectations for each payment type, derives trend direction indicators to capture momentum patterns, and requires at least 2 transaction records per group to enable meaningful statistical comparison. A dataset containing daily metrics",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for suspended transaction anomaly detection",
   "normal_query": "Calculate daily sales statistics grouped by payment type including z-score anomaly detection, quartile distributions, and trend direction counts."
@@ -378,14 +323,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups sales transactions by week and customer, uses the ROW_NUMBER window function to establish recency ordering (identifying most recent purchases), ranks customers by cumulative spending to determine monetary value tiers, calculates quartile boundaries for spend distribution analysis, computes rolling averages to smooth weekly volatility, and filters to include only customers with at least 3 weeks of purchase activity to ensure statistically meaningful metri",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for customer recency-frequency analysis",
   "normal_query": "Calculate weekly sales statistics for each customer including recency-frequency metrics, quartile distributions, and rolling averages."
@@ -405,14 +343,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates sales by month and employee, calculates an increasing_count metric that tracks cumulative months of activity to enable cohort-based comparisons, derives trend_direction indicators to classify performance momentum (improving, stable, declining), computes quartile boundaries to enable relative performance assessment against peers, and accommodates single-record months to include newly hired employees in the analysis without distorting statistical",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for multi-period cohort retention",
   "normal_query": "Calculate monthly sales statistics for each employee including cohort-style performance metrics and quartile distributions."
@@ -432,14 +363,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups transactions by calendar day and location, computes delta_value to measure day-over-day change in sales velocity, calculates quartile boundaries (Q1, Q2, Q3) for the distribution, identifies outliers beyond typical ranges, and filters to locations with at least 2 days of data to ensure meaningful trend analysis. A dataset showing daily performance metrics for each location\u2014acceleration indicators measuring growth momentum, quartile values showing the sales distribution, and outlier counts flagging anomalous days that may require investigation.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for sales acceleration rate computation",
   "normal_query": "Calculate daily sales statistics for each location with acceleration metrics, quartile distribution, and count of outliers."
@@ -459,14 +383,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups transactions by calendar week and employee, applies PERCENT_RANK to determine each employee's relative position within their cohort, uses DENSE_RANK for sequential performance ordering without gaps, calculates quartile boundaries to segment the sales distribution, and requires at least 3 weeks of data per employee to establish reliable patterns. A dataset showing weekly performance metrics for each employee\u2014benchmark rankings showing relative standing among peers, quartile values revealing the distribution of their sales, an",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for cross-location revenue benchmarking",
   "normal_query": "Calculate weekly sales statistics for each employee with cross-location benchmarking metrics and quartile distribution."
@@ -486,14 +403,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups transactions by calendar month and payment type (credit card, cash, mobile wallet, etc.), computes a rolling average using a ROWS BETWEEN window frame that looks backward across multiple months to smooth volatility, calculates quartile boundaries for the distribution, and requires at least 2 months of data per payment type to establish baseline trends. A dataset showing monthly performance metrics for each payment type\u2014rolling averages that reveal smoothed trend lines free from s",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for time-weighted moving average",
   "normal_query": "Calculate monthly sales statistics for each payment type with time-weighted moving average and quartile distribution."
@@ -513,14 +423,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups transactions by calendar day and customer, extracts the sale_hour timestamp component to identify when each transaction occurred, determines peak shopping hours for each customer segment through frequency analysis, calculates quartile boundaries for the sales distribution, and includes even single-transaction days to capture all customer activity patterns without imposing minimum thresholds. A dataset showing daily performance metrics for each customer\u2014peak hour indicators",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for peak hour identification and staffing",
   "normal_query": "Calculate daily sales statistics for each customer with peak hour metrics and quartile distribution."
@@ -540,14 +443,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups transactions by calendar week and location, computes cumulative_sum to track running total revenue as a proxy for long-term value generation, calculates max_cumulative to identify peak value contribution periods, applies quartile segmentation to the distribution, and requires at least 3 weeks of data per location to establish meaningful cumulative patterns rather than isolated events. A dataset showing weekly performance metrics for each location\u2014LTV-style rankings that priori",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for customer lifetime value estimation",
   "normal_query": "Calculate weekly sales statistics for each location with LTV-style metrics and quartile distribution."
@@ -567,14 +463,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups sales data by month and employee identifier, applies window functions to compute trend_direction and delta_value metrics for growth analysis, filters records to the most recent 365 days to enable valid year-over-year comparisons, and accommodates months where an employee may have only a single transaction record. A dataset containing monthly sales metrics for each employee, including growth direction indicators, percentage or absolute delta values from the prior year, and quartile positions within their peer group.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for yoy growth rate with seasonal adjustment",
   "normal_query": "Calculate monthly sales performance metrics for each employee, including year-over-year growth comparisons and quartile distributions."
@@ -594,14 +483,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups transaction data by calendar day and payment_type, structures output using period (date/time dimension) and payment_type as the two heatmap axes, calculates quartile distributions to enable color-coding intensity, counts trend occurrences for velocity indicators, and filters to groups with at least 2 transaction records to ensure statistical relevance. A heatmap-ready dataset with daily metrics for each payment type, including dimensional coordinates for plotting, quartile values for color intensity mapping, and trend counts s",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for transaction velocity heatmap data",
   "normal_query": "Generate daily sales metrics grouped by payment type, optimized for heatmap visualization with quartile breakdowns and trend indicators."
@@ -621,14 +503,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups sales transactions by calendar week and customer identifier, applies PERCENT_RANK window function to show each customer's relative position in the weekly spending distribution, uses PERCENTILE_CONT to calculate quartile boundaries (25th, 50th, 75th percentiles) for the week, and filters to groups containing at least 3 transaction records to ensure meaningful statistical calculations. A dataset of weekly metrics for each customer showing their running percentile rank within that week's customer base, quartile cl",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for running percentile sales distribution",
   "normal_query": "Calculate weekly sales performance metrics for each customer, showing running percentile positions and quartile distributions."
@@ -648,14 +523,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups sales data by calendar month and location identifier, uses DENSE_RANK window function to rank locations by cross-sell metrics within each month, calculates partition-specific statistics to enable peer comparisons across similar location types or regions, computes quartile distributions to classify high and low performers, and filters to groups with at least 3 transaction records for statistical validity. A dataset of monthly metrics for each location including cross-sell effectiveness indicators (su",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for employee cross-sell effectiveness",
   "normal_query": "Generate monthly sales metrics for each location showing cross-sell performance indicators and quartile rankings."
@@ -675,14 +543,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups transaction records by calendar day and employee identifier, applies LAG and LEAD window functions to sequence transactions chronologically and identify gaps or reversals, leverages the deleted flag column (if present) to track soft-deleted or voided transactions separately from completed sales, calculates quartile distributions for transaction volumes and values, and includes all transaction states to provide complete forensic visibil",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for deleted transaction forensic analysis",
   "normal_query": "Calculate daily sales metrics for each employee with forensic tracking of transaction sequences, voids, refunds, and soft-deleted records, plus quartile distributions."
@@ -702,14 +563,7 @@ Target distribution across 30 queries:
   "evidence": "The query filters to include only groups with at least 2 records to ensure statistical validi",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for multi-metric dashboard aggregation",
   "normal_query": "Calculate comprehensive weekly sales statistics grouped by payment type, including quartiles and multi-metric aggregations for dashboard reporting."
@@ -729,14 +583,7 @@ Target distribution across 30 queries:
   "evidence": "The query also computes quartiles (Q1, median, Q3) to understand spending distribution and includes record count, average, and range metrics. Only customers with at least 3",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for sequential purchase pattern mining",
   "normal_query": "Calculate monthly sales statistics for each customer with sequential purchase pattern analysis and quartile breakdowns."
@@ -756,14 +603,7 @@ Target distribution across 30 queries:
   "evidence": "The query also includes quartile calculations (Q1, median, Q3), record coun",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for revenue concentration index",
   "normal_query": "Calculate daily sales statistics by location with revenue concentration indices and quartile analysis."
@@ -783,14 +623,7 @@ Target distribution across 30 queries:
   "evidence": "The query also computes quartiles (Q1, median, Q3) for distribution context, record count, average sale value, standard deviation for volatility assessment, and",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for anomaly score computation",
   "normal_query": "Calculate weekly sales statistics for each employee with anomaly detection scores and quartile analysis."
@@ -810,14 +643,7 @@ Target distribution across 30 queries:
   "evidence": "The month truncation ensures each payment type's metrics can be easily compared month-o",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for fiscal period comparative analysis",
   "normal_query": "Calculate monthly sales statistics by payment type formatted for fiscal period comparisons with quartile distributions."
@@ -837,14 +663,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates sales data by day and customer identifier, calculates throughput proxies such as record count, rolling averages, and cumulative maximums, and includes days with single transactions to capture all customer activity. A dataset containing daily metrics for each customer with throughput indicators, quartile values (Q1, Q2, Q3), and activity level classifications for capacity and loyalty analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for transaction throughput optimization",
   "normal_query": "Calculate daily sales statistics per customer with transaction throughput indicators and quartile breakdowns."
@@ -864,14 +683,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates sales data by week and location, calculates trend direction indicators and counts of increasing payment patterns to analyze shifts in payment mix, and filters to include only location-weeks with at least 3 transaction records to ensure statistical relevance. A dataset containing weekly metrics for each location with payment trend indicators, quartile values, and activity summaries for terminal planning and cash handling optimization.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for store account payment trend analysis",
   "normal_query": "Calculate weekly sales statistics per location with payment trend indicators and quartile breakdowns."
@@ -891,14 +703,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates sales data by month and employee identifier, uses both period and employee_id as dimensional attributes to enable pivot table analysis, and includes months where employees have only a single transaction to provide complete coverage. A dataset containing monthly metrics for each employee with multi-dimensional attributes, quartile values, and summary statistics that support flexible pivot analysis and performance reporting.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for multi-dimensional pivot analysis",
   "normal_query": "Calculate monthly sales statistics per employee with multi-dimensional grouping and quartile breakdowns."
@@ -918,14 +723,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates sales data by day and payment type, calculates trend direction metrics to track stage progression through the day, and filters to include only day-payment type combinations with at least 2 transaction records to ensure meaningful trend detection. A dataset containing daily metrics for each payment type with funnel progression indicators, quartile values, and stage evolution patterns for conversion optimization analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for sales funnel stage progression",
   "normal_query": "Calculate daily sales statistics by payment type with funnel progression metrics and quartile breakdowns."
@@ -945,14 +743,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates sales data by week and customer, calculates first quartile (Q1) and third quartile (Q3) using PERCENTILE_CONT functions, applies z-score thresholds above 2 standard deviations to approximate IQR outlier detection methodology, and filters to include only customer-weeks with at least 3 transaction records to ensure statistical validity. A dataset containing weekly metrics for each customer with quartile values, IQR-based outlier flags, trend counts, and statistical indicators for fraud detection and VIP customer identification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "sale_time",
-    "phppos_sales",
-    "cte_level_1",
-    "cte_level_2",
-    "cte_level_3",
-    "cte_level_4"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Aggregated metrics for outlier detection with iqr method",
   "normal_query": "Calculate weekly sales statistics per customer with IQR-style outlier identification and quartile breakdowns."

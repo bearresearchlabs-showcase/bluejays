@@ -52,7 +52,7 @@ Marketing and retail intelligence represent high-value domains for text-to-SQL b
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:09
 -- Database: db-10
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -77,7 +77,7 @@ CREATE TABLE products (
     model_number VARCHAR(100),
     category VARCHAR(100) NOT NULL,
     subcategory VARCHAR(100),
-    product_description VARCHAR(16777216),
+    product_description TEXT,
     product_image_url VARCHAR(1000),
     weight_lbs NUMERIC(8, 2),
     dimensions_length NUMERIC(8, 2),
@@ -85,8 +85,8 @@ CREATE TABLE products (
     dimensions_height NUMERIC(8, 2),
     color VARCHAR(100),
     size VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     is_active BOOLEAN DEFAULT TRUE,
     data_source VARCHAR(50) DEFAULT 'MANUAL'
 );
@@ -103,7 +103,7 @@ CREATE TABLE retailers (
     headquarters_state VARCHAR(2),
     headquarters_zip VARCHAR(20),
     headquarters_country VARCHAR(2) DEFAULT 'US',
-    headquarters_latitu
+    headquarters_latitude NUMERIC(10, 7),
 -- ...
 ```
 
@@ -162,24 +162,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "product_pricing",
-    "products",
-    "retailers",
-    "stores",
-    "product_base_pricing",
-    "geographic_markets",
-    "geographic_market_mapping",
-    "market_pricing_aggregates",
-    "retailer_market_positioning",
-    "temporal_price_trends",
-    "final_price_intelligence"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Product pricing comparison report showing best prices by retailer and location, price trends, and competitive positioning metrics",
   "normal_query": "Product pricing comparison report showing best prices by retailer and location, along with price trends and competitive positioning metrics"
 }
 ```
+
 
 
 
@@ -194,27 +183,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pi",
-    "product_inventory",
-    "products",
-    "stores",
-    "retailers",
-    "check",
-    "ih",
-    "inventory_history",
-    "inventory_patterns",
-    "stockout_analysis",
-    "stockout_durations",
-    "seasonal_patterns",
-    "geographic_clustering",
-    "availability_prediction"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Inventory availability predictions with confidence scores, restocking recommendations, and geographic distribution analysis",
   "normal_query": "Inventory availability predictions with confidence scores, restocking recommendations, and geographic distribution analysis"
 }
 ```
+
 
 
 
@@ -229,24 +204,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "retailers",
-    "product_pricing",
-    "products",
-    "product_inventory",
-    "retailer_product_sales",
-    "category_market_totals",
-    "retailer_category_share",
-    "market_share_rankings",
-    "temporal_share_analysis",
-    "market_concentration",
-    "final_market_share_intelligence"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Market share report showing retailer rankings, share percentages, competitive positioning, and temporal trends by product category",
   "normal_query": "Market share report showing retailer rankings, share percentages, competitive positioning metrics, and temporal trends by product category"
 }
 ```
+
 
 
 
@@ -261,27 +225,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "da",
-    "deal_alerts",
-    "products",
-    "retailers",
-    "stores",
-    "dph",
-    "deal_price_history",
-    "product_pricing",
-    "price_change_detection",
-    "deal_pattern_analysis",
-    "das",
-    "deal_alert_scoring",
-    "temporal_deal_trends",
-    "final_deal_intelligence"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Detailed analysis report with metrics and insights",
   "normal_query": "Deal detection analysis report identifying price drops, promotional patterns, alert triggers, and temporal deal characteristics"
 }
 ```
+
 
 
 
@@ -296,22 +246,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "category_sales_base",
-    "monthly_category_aggregates",
-    "seasonal_decomposition",
-    "trend_analysis",
-    "category_performance_metrics",
-    "final_category_intelligence"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Detailed analysis report with metrics and insights",
   "normal_query": "Product category trend analysis report with seasonal patterns, growth metrics, cyclical components, and demand forecasts"
 }
 ```
+
 
 
 
@@ -326,25 +267,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Generate comprehensive marketing metrics analysis report"
 }
 ```
+
 
 
 
@@ -359,25 +288,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Generate comprehensive marketing metrics analysis report"
 }
 ```
+
 
 
 
@@ -392,25 +309,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Generate comprehensive marketing metrics analysis report"
 }
 ```
+
 
 
 
@@ -425,25 +330,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Generate comprehensive marketing metrics analysis report"
 }
 ```
+
 
 
 
@@ -458,25 +351,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Generate comprehensive marketing metrics analysis report"
 }
 ```
+
 
 
 
@@ -491,25 +372,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive marketing performance analysis report with key metrics"
 }
 ```
+
 
 
 
@@ -524,25 +393,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive marketing performance analysis report with key metrics"
 }
 ```
+
 
 
 
@@ -557,25 +414,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive marketing performance analysis report with key metrics"
 }
 ```
+
 
 
 
@@ -590,25 +435,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive marketing performance analysis report with key metrics"
 }
 ```
+
 
 
 
@@ -623,25 +456,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive marketing performance analysis report with key metrics"
 }
 ```
+
 
 
 
@@ -656,25 +477,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Generate comprehensive analysis report with key marketing performance metrics"
 }
 ```
+
 
 
 
@@ -689,25 +498,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Generate comprehensive analysis report with key marketing performance metrics"
 }
 ```
+
 
 
 
@@ -722,25 +519,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Generate comprehensive analysis report with key marketing performance metrics"
 }
 ```
+
 
 
 
@@ -755,25 +540,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Generate comprehensive analysis report with key marketing performance metrics"
 }
 ```
+
 
 
 
@@ -788,25 +561,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Generate comprehensive analysis report with key marketing performance metrics"
 }
 ```
+
 
 
 
@@ -821,25 +582,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive marketing performance analysis with key metrics"
 }
 ```
+
 
 
 
@@ -854,25 +603,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive marketing performance analysis with key metrics"
 }
 ```
+
 
 
 
@@ -887,25 +624,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive marketing performance analysis with key metrics"
 }
 ```
+
 
 
 
@@ -920,25 +645,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive marketing performance analysis with key metrics"
 }
 ```
+
 
 
 
@@ -953,25 +666,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive marketing performance analysis with key metrics"
 }
 ```
+
 
 
 
@@ -986,25 +687,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive analysis report with marketing performance metrics"
 }
 ```
+
 
 
 
@@ -1019,25 +708,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive analysis report with marketing performance metrics"
 }
 ```
+
 
 
 
@@ -1052,25 +729,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive analysis report with marketing performance metrics"
 }
 ```
+
 
 
 
@@ -1085,25 +750,13 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive analysis report with marketing performance metrics"
 }
 ```
+
 
 
 
@@ -1118,20 +771,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs. base_analysis joins products, product_pricing, retailers, stores, and product_inventory. aggregated_metrics groups by category, subcategory, brand, price_month and computes product/retailer/store counts, avg/median/min/max price, stddev, and in_stock/out_of_stock counts. temporal_analysis uses LAG and LEAD for prev/next month prices, a 12-month moving average (ROWS BETWEEN 11 PRECEDING), and price_volatility_12m. trend_calculations adds mom_price_change (percent) and availability_rate. market_intelligence derives price_trend (strong_increase, moderate_increase, stable, moderate_decrease, strong_decrease), availability_classification, price_rank (ROW_NUMBER), and price_percentile (PERCENT_RANK). final_analysis rounds and selects output columns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "pp",
-    "products",
-    "product_pricing",
-    "retailers",
-    "stores",
-    "product_inventory",
-    "base_analysis",
-    "aggregated_metrics",
-    "temporal_analysis",
-    "trend_calculations",
-    "market_intelligence",
-    "final_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics",
   "normal_query": "Comprehensive analysis report with marketing performance metrics"

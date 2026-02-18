@@ -52,7 +52,7 @@ Parking intelligence represents high-value domains for text-to-SQL because:
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:10
 -- Database: db-11
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -83,7 +83,7 @@ CREATE TABLE metropolitan_areas (
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
     data_year INTEGER,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Cities Table
@@ -105,7 +105,7 @@ CREATE TABLE cities (
     city_latitude NUMERIC(10, 7),
     city_longitude NUMERIC(10, 7),
     timezone VARCHAR(50),
-    d
+    dat
 -- ...
 ```
 
@@ -163,21 +163,7 @@ Target distribution across 30 queries:
   "evidence": "The query constructs CTEs: city_demographic_cohorts (cities + MSA), parking_facility_aggregations, utilization_metrics, city_utilization_aggregations, traffic_correlation_analysis, market_demand_scoring (weighted demand and growth scores), ranked_markets (ROW_NUMBER, PERCENT_RANK, LAG, LEAD, AVG, STDDEV). Output includes demand_score, growth_potential_score, expansion_priority, market_tier.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cities",
-    "metropolitan_areas",
-    "parking_facilities",
-    "parking_utilization",
-    "utilization_metrics",
-    "traffic_volume_data",
-    "current_date",
-    "city_demographic_cohorts",
-    "parking_facility_aggregations",
-    "city_utilization_aggregations",
-    "traffic_correlation_analysis",
-    "market_demand_scoring",
-    "ranked_markets"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Market demand scores by metropolitan area with rankings, growth indicators, and expansion recommendations.",
   "normal_query": "Show market demand scores for each metropolitan area including their competitive rankings, growth trends, and recommendations for expansion."
@@ -197,19 +183,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses facility_location_clusters (ST_Distance for nearby facilities), pricing_analysis (ROW_NUMBER for recency), competitive_clusters (ARRAY_AGG, FILTER, ST_Distance < 500m), utilization_by_facility, market_share_calculation, pricing_optimization_recommendations. Output includes recommended_rate, estimated_revenue_impact, competitive_advantage_score.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "parking_pricing",
-    "facility_location_clusters",
-    "pricing_analysis",
-    "parking_utilization",
-    "average",
-    "utilization_by_facility",
-    "competitive_clusters",
-    "market_share_calculation",
-    "pricing_optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Competitive analysis by facility cluster with pricing recommendations, market share calculations, and revenue optimization opportunities.",
   "normal_query": "Show competitive analysis grouped by facility cluster including pricing strategy recommendations, market share percentages, and revenue optimization opportunities."
@@ -229,19 +203,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds upcoming_events, historical_event_patterns (AVG, PERCENTILE_CONT by event_type/day/hour), venue_parking_analysis (ST_Distance, nearby facilities), event_demand_forecast, demand_supply_analysis, pricing_recommendations. Output includes forecasted_parking_demand, supply_status, recommended_event_rate.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "events",
-    "stadiums_venues",
-    "cities",
-    "parking_facilities",
-    "parking_pricing",
-    "upcoming_events",
-    "historical_event_patterns",
-    "venue_parking_analysis",
-    "event_demand_forecast",
-    "demand_supply_analysis",
-    "pricing_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Event parking demand forecasts with pricing recommendations and revenue optimization opportunities.",
   "normal_query": "Show parking demand forecasts for scheduled events with dynamic pricing recommendations and revenue optimization strategies."
@@ -261,19 +223,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins airport_passenger_volumes, airport_parking_facilities, monthly_utilization_patterns, seasonal_pattern_analysis (seasonal_multiplier), passenger_correlation_analysis, revenue_optimization. Uses PERCENTILE_CONT, AVG, CASE for seasonal pricing. Output includes recommended_seasonal_rate, season_category.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "airports",
-    "cities",
-    "parking_facilities",
-    "parking_pricing",
-    "parking_utilization",
-    "monthly_utilization_patterns",
-    "airport_parking_facilities",
-    "seasonal_pattern_analysis",
-    "airport_passenger_volumes",
-    "passenger_correlation_analysis",
-    "revenue_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Airport parking revenue optimization recommendations with seasonal pricing strategies and capacity utilization insights.",
   "normal_query": "Show airport parking revenue optimization recommendations including seasonal pricing strategies and capacity utilization insights."
@@ -293,18 +243,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses traffic_monitoring_locations (ST_MakePoint), nearby_parking_facilities (ST_Distance < 500m), hourly_utilization_by_facility, traffic_parking_correlation (correlation coefficient formula), demand_forecasting_model. Output includes correlation_coefficient, forecasted_occupancy_rate.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "traffic_volume_data",
-    "cities",
-    "current_date",
-    "traffic_monitoring_locations",
-    "parking_facilities",
-    "parking_utilization",
-    "nearby_parking_facilities",
-    "hourly_utilization_by_facility",
-    "traffic_parking_correlation",
-    "demand_forecasting_model"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Traffic-parking correlation analysis with demand forecasts and facility placement recommendations.",
   "normal_query": "Show correlation analysis between traffic patterns and parking demand with forecasts and facility placement recommendations."
@@ -324,17 +263,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds demographic_segments (income, age, employment CASE), facility_pricing_by_city, utilization_by_demographic, demographic_correlation (revenue_per_capita, price_sensitivity_index), segment_optimization. Output includes recommended_hourly_rate, market_penetration_score.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cities",
-    "parking_facilities",
-    "parking_pricing",
-    "parking_utilization",
-    "demographic_segments",
-    "facility_pricing_by_city",
-    "utilization_by_demographic",
-    "demographic_correlation",
-    "segment_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Demographic targeting analysis with segment-specific pricing and marketing recommendations.",
   "normal_query": "Show demographic targeting analysis with segment-specific pricing strategies and marketing recommendations."
@@ -354,19 +283,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses city_characteristics, utilization_metrics, normalized_characteristics (MIN/MAX OVER for 0-1 scale), segment_assignment (CASE for Premium Urban, Urban Professional, etc.), segment_profiles, segment_optimization. ROW_NUMBER for segment_rank. Output includes revenue_potential_score, recommended_segment_rate.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cities",
-    "metropolitan_areas",
-    "parking_facilities",
-    "parking_pricing",
-    "parking_utilization",
-    "city_characteristics",
-    "utilization_metrics",
-    "normalized_characteristics",
-    "segment_assignment",
-    "segment_profiles",
-    "segment_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Market segments with characteristics, revenue potential, and optimization recommendations.",
   "normal_query": "Identify market segments with detailed characteristics, revenue potential, and actionable optimization recommendations."
@@ -386,16 +303,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds hourly_utilization_base, temporal_aggregations (AVG, PERCENTILE_CONT, STDDEV by facility/hour/dow/month), moving_averages (ROWS BETWEEN 2 PRECEDING AND 2 FOLLOWING), seasonal_decomposition (trend, seasonal, residual), anomaly_detection (ABS(residual) > 2*stddev). Output includes is_anomaly, anomaly_type, trend_direction.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_utilization",
-    "parking_facilities",
-    "hourly_utilization_base",
-    "temporal_aggregations",
-    "moving_averages",
-    "seasonal_decomposition",
-    "anomaly_detection",
-    "cities"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Utilization patterns with trend analysis, anomaly flags, and capacity planning recommendations.",
   "normal_query": "Analyze utilization patterns showing trend decomposition, anomaly flags, and capacity planning recommendations."
@@ -415,19 +323,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates parking_events by geographic dimensions (zones, lots, regions), joins with lots and zones, calculates market size (transaction volume, revenue density, growth rates). Window functions rank by opportunity score, compute risk factors (revenue volatility). Output includes expansion targets and risk assessment.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "cities",
-    "metropolitan_areas",
-    "parking_facilities",
-    "candidate_markets",
-    "parking_utilization",
-    "market_metrics",
-    "parking_pricing",
-    "competitive_landscape",
-    "risk_assessment",
-    "opportunity_scoring",
-    "expansion_prioritization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Market expansion opportunities with opportunity scores, risk assessments, and expansion priorities.",
   "normal_query": "Identify market expansion opportunities with quantified opportunity scores, risk assessments, and prioritized expansion recommendations."
@@ -447,20 +343,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates historical revenue by time period (daily, weekly, monthly). Uses window functions for moving averages, exponential smoothing, year-over-year comparisons. Calculates standard errors and confidence intervals from historical variance. Output includes revenue forecasts with confidence bounds.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Generate revenue forecasts with time-series projections, confidence intervals, and analytical insights."
@@ -480,20 +363,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins parking_events with lots and zones, aggregates utilization by provider and zone. Computes market share percentages via window functions, rolling 3-month averages, quartile analysis. COALESCE for NULL zone assignments. Output includes market share, competitive recommendations.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Retrieve competitive positioning metrics including market share trends, competitor comparisons, and actionable strategic recommendations."
@@ -513,20 +383,7 @@ Target distribution across 30 queries:
   "evidence": "The query segments parking_events by business district zones. Groups by hour and day for demand patterns. Uses window functions for moving averages, RANK(), PERCENT_RANK(). Correlates occupancy with zone characteristics (commercial, retail, mixed-use). Output includes peak demand periods, dynamic pricing opportunities.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Analyze business district parking demand patterns with correlation metrics and revenue optimization opportunities."
@@ -546,20 +403,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates parking_events by customer and month. Uses PARTITION BY customer_id for retention cohorts, LAG/LEAD for tenure, cumulative revenue for CLV. Output includes churn risk factors, retention metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Generate monthly parking optimization metrics with customer lifetime value calculations and retention analysis insights."
@@ -579,20 +423,7 @@ Target distribution across 30 queries:
   "evidence": "The query filters parking_events to EV charging spots, joins with lots. Calculates utilization rates, revenue per charging space. Window functions for month-over-month growth, rolling averages. Projects future demand. Output includes expansion recommendations.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Analyze EV charging facility performance with demand forecasting models and revenue impact projections."
@@ -612,20 +443,7 @@ Target distribution across 30 queries:
   "evidence": "The query segments parking_events by reservation status (pre-booked vs walk-in). Joins with lots and zones. Calculates revenue per type, average duration, no-show rates. Window functions for expected vs actual. Output includes optimal reservation allocation.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Compare reservation versus walk-in customer patterns with revenue optimization insights and capacity planning recommendations."
@@ -645,20 +463,7 @@ Target distribution across 30 queries:
   "evidence": "The query segments parking_events by hour and day of week. Joins with lots and zones. Window functions for rolling 3-hour average occupancy. Computes occupancy quartiles, actual vs capacity ratios. Flags hours exceeding 85% for premium pricing. Output includes peak period identification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Analysis of peak hour parking utilization with pricing optimization recommendations and capacity management metrics."
@@ -678,20 +483,7 @@ Target distribution across 30 queries:
   "evidence": "The query extracts hour and day-of-week for temporal context. Groups by period and facility. Uses window functions (rolling avg, cumulative sum, LAG, LEAD). Output includes temporal correlation metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Comparative analysis of weekend and weekday parking behavior with differentiated pricing strategy recommendations."
@@ -711,20 +503,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins parking_events with lots and zones, aggregates demand by facility and time period. Computes occupancy rates, peak utilization. Window functions for rolling average trends, quartile analysis. Output includes supply-demand gaps, expansion prioritization.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Facility type performance analysis with benchmarking metrics and revenue optimization recommendations."
@@ -744,20 +523,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups parking_events by customer. Computes total visits, average duration, preferred time windows, day-of-week patterns, total spend. Uses NTILE or quartile functions for behavioral classification. Output includes segment profiles.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Operator type analysis with market share calculations and competitive advantage assessment metrics."
@@ -777,20 +543,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins parking_events with lots and zones. Groups by lot, zone, time period, price tier. Computes demand at different price levels. Window functions for percentage change in price and demand. Output includes elasticity estimates, revenue impact.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Cross-city comparative analysis with performance benchmarking and best practice identification across markets."
@@ -810,20 +563,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins parking_events with lots and zones by MSA. Groups by MSA. Computes total events, avg occupancy, revenue, utilization quartiles. Window functions for rolling averages, trending markets. Output includes regional performance rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Analysis results showing MSA-level metrics with regional market insights and expansion opportunity recommendations."
@@ -843,20 +583,7 @@ Target distribution across 30 queries:
   "evidence": "The query extracts timestamps, groups by hour/day/week/month. Uses ROWS BETWEEN for moving averages. Identifies seasonal components by day-of-week, month, hour. Decomposes into seasonal, trend, residual. Output includes time-series forecast components.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Time-series forecasting results showing seasonal patterns, trend components, and projected future values."
@@ -876,20 +603,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates by lot, zone, time period. Computes mean, stddev, quartile boundaries. Window functions for rolling 7-day and 30-day statistics. Flags values exceeding 2 std dev. Output includes anomaly flags, baseline metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Anomaly detection results identifying statistical outliers with alert flags and deviation metrics."
@@ -909,20 +623,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups parking_events by customer. Computes visits, duration, time windows, day-of-week patterns, spend, avg transaction value. Uses NTILE or quartile for classification. Output includes behavioral segment profiles.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Customer segmentation results showing behavioral clusters with characteristics and recommended targeting strategies."
@@ -942,20 +643,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins parking_events with lots and zones. Groups by lot, zone, time period, price tier. Computes demand metrics at different price levels. Window functions for percentage change in price and demand. Output includes elasticity and revenue impact.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Price elasticity analysis results showing demand response curves, elasticity coefficients, and revenue optimization recommendations."
@@ -975,20 +663,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins parking_events with lots and zones. Aggregates demand by facility and time period. Computes occupancy rates, peak utilization, unfulfilled demand. Window functions for rolling averages, quartile analysis. Output includes supply-demand gaps, expansion prioritization.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Analysis showing supply-demand gaps across parking facilities with capacity utilization metrics and expansion recommendations."
@@ -1008,20 +683,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates parking_events by zone geography. Computes unique users, event volumes. Groups by zone and time. Uses LAG for growth rates. Calculates market share percentage. Rolling averages, quartile rankings. COALESCE for NULL. Output includes penetration rates, growth trajectories.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Market penetration analysis displaying growth metrics across zones and strategic expansion opportunities."
@@ -1041,20 +703,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins parking_events revenue with lots facility dimensions. Groups by lot. Sums revenue, divides by square footage. Window functions for percentile rankings, comparative metrics. Output includes revenue per square foot, bottom-quartile identification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Revenue per square foot analysis by facility with efficiency benchmarks and optimization recommendations."
@@ -1074,20 +723,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses multiple CTEs for dimensional metrics: customer (unique users, visit frequency, retention), revenue (transactions, growth rates), operational (occupancy, turnover), geographic (zones, market coverage). Window functions for rankings. Output includes integrated dashboard metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Comprehensive dashboard metrics spanning customer behavior, revenue performance, operational efficiency, and market trends across multiple dimensions."
@@ -1107,20 +743,7 @@ Target distribution across 30 queries:
   "evidence": "The query examines execution patterns by grouping parking_events by time periods. Computes row counts, join cardinalities, aggregation complexity. Window functions for response time trends. CTEs for table scan costs, join efficiency. Output includes optimization recommendations.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "parking_facilities",
-    "cities",
-    "metropolitan_areas",
-    "parking_utilization",
-    "parking_pricing",
-    "facility_base_data",
-    "pricing_analysis",
-    "utilization_aggregations",
-    "competitive_landscape",
-    "market_intelligence",
-    "ranked_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Query results with analysis and recommendations.",
   "normal_query": "Performance analysis identifying query execution bottlenecks with optimization metrics and efficiency improvement recommendations."

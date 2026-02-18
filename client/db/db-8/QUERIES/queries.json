@@ -91,7 +91,7 @@
       "number": 8,
       "title": "moderate / aggregation",
       "question": "Can you analyze user cohorts to track retention rates and career progression patterns over time?",
-      "description": "Platform product managers and workforce analysts need to understand how different user cohorts behave over time\u2014engagement, retention, and career advancement.",
+      "description": "Platform product managers and workforce analysts need to understand how different user cohorts behave over time—engagement, retention, and career advancement.",
       "evidence": "The query creates cohorts by extracting registration date periods from user_profiles, uses self-joins or window functions to track user activity over subsequent periods, and calculates retention rates and application patterns.",
       "complexity": "moderate",
       "expected_output": "User cohort analysis with registration cohorts, retention metrics, application patterns, and career progression indicators.",

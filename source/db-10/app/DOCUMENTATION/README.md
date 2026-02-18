@@ -103,9 +103,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `bls_price_data` — (see data dictionary)
 - `geographic_markets` — (see data dictionary)
 - `data_sources` — (see data dictionary)
-- `pipeline_metadata` — (see data dictionary)
-
----
+- `pipeline_metadata` — (see data dictionary)---
 
 ## Data Dictionary
 

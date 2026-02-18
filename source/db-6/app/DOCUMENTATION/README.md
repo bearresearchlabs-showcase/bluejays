@@ -102,9 +102,7 @@ PostgreSQL 14+ with PostGIS extension for geography columns. Disk: 500 MB minimu
 - `data_quality_metrics` — (see data dictionary)
 - `load_status` — (see data dictionary)
 - `weather_forecast_aggregations` — (see data dictionary)
-- `weather_stations` — (see data dictionary)
-
----
+- `weather_stations` — (see data dictionary)---
 
 ## Data Dictionary
 

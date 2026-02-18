@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-15
-domain: energy, utilities, solar, rebates
-source: open
-license_type: Open
-license_cost: $0
+domain: Electricity / Solar
+source: [commercial]
+license_type: [Commercial]
+license_cost: [NDA]
 tables: 17
-total_rows: ~60K
+total_rows: ~105
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,19 +17,32 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for electricity costs and solar rebates: rates, tariffs, rebate programs, and solar incentives.
+This database supports analytics for electricity cost intelligence and solar rebate programs.
+It models U.S. states, counties, zip codes, utility companies, rate structures, electricity
+rates (flat, tiered, time-of-use), federal/state/utility incentives, and geographic rate
+areas. It is designed to support text-to-SQL training across rate comparison, incentive
+eligibility, and solar ROI query types commonly encountered in energy analytics.
 ```
 
 ## Use Case
 
 ```text
-Target use cases: rate analytics, rebate eligibility, solar ROI, utility dashboards.
+Target use cases for db-15:
+- Rate comparison: compare electricity rates across utilities, states, rate codes
+- Solar ROI: aggregate federal, state, and utility incentives by location
+- Geographic analytics: rates and incentives by zip, county, state
+- Rate structure analysis: tiered vs TOU vs flat; demand charges; fixed charges
+- Incentive eligibility: minimum/maximum system size, effective/expiration dates
 ```
 
 ## Business Value
 
 ```text
-Enables energy and solar firms to model costs, optimize rebate eligibility, and drive solar adoption ($1M+ ARR).
+Electricity and solar databases represent high-value domains for text-to-SQL because:
+- Queries require understanding of rate structures (tiers, TOU periods, demand charges)
+- Incentive stacking (federal + state + utility) requires multi-table joins
+- Stakeholders need location-based analytics (installers, homeowners, utilities)
+- Evidence bridges natural-language questions to schema-grounded SQL.
 ```
 
 ## Schema
@@ -100,7 +113,28 @@ CREATE TABLE utility_companies (
 ## Domain Knowledge
 
 ```text
-Rates, tariffs, rebates, utilities. Solar incentives, kWh, demand charges.
+Key domain concepts required to write correct queries against this database:
+
+GEOGRAPHY:
+- states: state_id (2-letter), region, division
+- counties: county_fips_code (5-digit), links to state
+- zip_codes: links to state/county; latitude/longitude WGS84
+
+UTILITIES AND RATES:
+- utility_companies: utility_type (Investor-Owned, Municipal, Cooperative, etc.)
+- rate_structures: effective_date, expiration_date, approval_status
+- electricity_rates: fixed_charge_usd, energy_charge_usd_per_kwh, demand_charge_usd_per_kw
+- rate_structure_type: Flat, Tiered, Time-of-Use, Demand, Hybrid
+
+TIERED AND TOU:
+- tiered_rate_tiers: tier_start_kwh, tier_end_kwh (NULL = unlimited)
+- time_of_use_periods: period_name (Peak, Off-Peak, Super Off-Peak); period_start_time, period_end_time; season (Summer, Winter, All)
+
+INCENTIVES:
+- federal_incentives, state_incentives, utility_incentives
+- incentive_type: Tax Credit, Rebate, Grant, Net Metering, Feed-in Tariff
+- incentive_unit: per_watt, per_kwh, percentage, fixed_amount
+- minimum_system_size_kw, maximum_system_size_kw for eligibility
 ```
 
 ## Query Difficulty Distribution
@@ -125,26 +159,14 @@ Target distribution across 30 queries:
   "evidence": "The query groups data by relevant geographic and utility dimensions, computes summary statistics including aggregates and quartile distributions, applies window functions to calculate rolling averages and comparative metrics across time periods and regions, and implements robust NULL handling in joins to ensure data completeness across date ranges.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "utility_companies",
-    "rate_codes",
-    "geographic_rate_areas",
-    "rate_structures",
-    "historical_electricity_rates",
-    "rate_comparison_metrics",
-    "rate_trend_analysis",
-    "state_rate_summary",
-    "utility_rate_analysis",
-    "rate_code_intelligence",
-    "final_rate_intelligence"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns comprehensive rate analysis with geographic aggregations, rate code classifications, utility comparisons, and cost intelligence metrics.",
   "normal_query": "Comprehensive rate analysis with geographic aggregations, rate code classifications, utility comparisons, and cost intelligence metrics"
 }
 ```
+
+
 
 ### Query 2 — moderate / aggregation
 
@@ -153,30 +175,18 @@ Target distribution across 30 queries:
   "db_id": "db-15",
   "question_id": 2,
   "question": "Can you show me a recursive rate structure analysis with tiered rate calculations and time-of-use optimization recommendations?",
-  "SQL": "WITH RECURSIVE tiered_rate_calculations AS (\n    -- Anchor CTE: Base tier calculations for tiered rates\n    SELECT\n        trt.tier_id,\n        trt.rate_structure_id,\n        trt.tier_number,\n        trt.tier_name,\n        trt.tier_start_kwh,\n        trt.tier_end_kwh,\n        trt.energy_charge_usd_per_kwh,\n        rs.utility_id,\n        rs.rate_code_id,\n        er.state_id,\n        -- Calculate tier range\n        CASE\n            WHEN trt.tier_end_kwh IS NULL THEN 999999\n            ELSE trt.tier_end_kwh - trt.tier_start_kwh\n        END AS tier_kwh_range,\n        -- Tier usage scenarios\n        0 AS cumulative_kwh_usage,\n        trt.tier_start_kwh AS scenario_start_kwh,\n        COALESCE(trt.tier_end_kwh, 999999) AS scenario_end_kwh\n    FROM tiered_rate_tiers trt\n    INNER JOIN rate_structures rs ON trt.rate_structure_id = rs.rate_structure_id\n    INNER JOIN electricity_rates er ON rs.rate_structure_id = er.rate_structure_id\n    WHERE rs.is_current = TRUE\n        AND er.is_current = TRUE\n        AND (trt.expiration_date IS NULL OR trt.expiration_date > CURRENT_DATE)\n\n    UNION ALL\n\n    -- Recursive step: Calculate cumulative tier costs\n    SELECT\n        trc.tier_id,\n        trc.rate_structure_id,\n        trc.tier_number,\n        trc.tier_name,\n        trc.tier_start_kwh,\n        trc.tier_end_kwh,\n        trc.energy_charge_usd_per_kwh,\n        trc.utility_id,\n        trc.rate_code_id,\n        trc.state_id,\n        trc.tier_kwh_range,\n        trc.cumulative_kwh_usage + trc.tier_kwh_range,\n        trc.scenario_start_kwh,\n        trc.scenario_end_kwh\n    FROM tiered_rate_calculations trc\n    INNER JOIN tiered_rate_tiers trt ON (\n        trt.rate_structure_id = trc.rate_structure_id\n        AND trt.tier_number = trc.tier_number + 1\n    )\n    WHERE trc.cumulative_kwh_usage < 10000\n),\ntou_period_analysis AS (\n    -- Second CTE: Time-of-use period analysis with period aggregations\n    SELECT\n        tou.tou_period_id,\n        tou.rate_structure_id,\n        tou.period_name,\n        tou.period_start_time,\n        tou.period_end_time,\n        tou.day_of_week,\n        tou.season,\n        tou.energy_charge_usd_per_kwh,\n        rs.utility_id,\n        rs.rate_code_id,\n        er.state_id,\n        -- Calculate period duration in hours\n        CASE\n            WHEN tou.period_end_time > tou.period_start_time THEN\n                EXTRACT(EPOCH FROM (tou.period_end_time - tou.period_start_time)) / 3600\n            ELSE\n                EXTRACT(EPOCH FROM (tou.period_end_time + INTERVAL '24 hours' - tou.period_start_time)) / 3600\n        END AS period_duration_hours,\n        -- Period cost scenarios\n        CASE\n            WHEN tou.period_name LIKE '%Peak%' THEN 'High Cost'\n            WHEN tou.period_name LIKE '%Off-Peak%' THEN 'Low Cost'\n            ELSE 'Medium Cost'\n        END AS period_cost_category\n    FROM time_of_use_periods tou\n    INNER JOIN rate_structures rs ON tou.rate_structure_id = rs.rate_structure_id\n    INNER JOIN electricity_rates er ON rs.rate_structure_id = er.rate_structure_id\n    WHERE rs.is_current = TRUE\n        AND er.is_current = TRUE\n        AND (tou.expiration_date IS NULL OR tou.expiration_date > CURRENT_DATE)\n),\nusage_scenario_modeling AS (\n    -- Third CTE: Model usage scenarios for cost calculations\n    SELECT\n        usage_kwh,\n        usage_scenario_name\n    FROM (\n        VALUES\n            (500, 'Low Usage'),\n            (1000, 'Medium Usage'),\n            (2000, 'High Usage'),\n            (5000, 'Very High Usage')\n    ) AS scenarios(usage_kwh, usage_scenario_name)\n),\ntiered_rate_cost_calculations AS (\n    -- Fourth CTE: Calculate costs for tiered rates across usage scenarios\n    SELECT\n        trc.rate_structure_id,\n        trc.utility_id,\n        trc.rate_code_id,\n        trc.state_id,\n        usm.usage_kwh,\n        usm.usage_scenario_name,\n        SUM(\n            CASE\n                WHEN usm.usage_kwh >= trc.tier_start_kwh THEN\n                    CASE\n                        WHEN trc.tier_end_kwh IS NULL OR usm.usage_kwh <= trc.tier_end_kwh THEN\n                            (usm.usage_kwh - trc.tier_start_kwh + 1) * trc.energy_charge_usd_per_kwh\n                        ELSE\n                            trc.tier_kwh_range * trc.energy_charge_usd_per_kwh\n                    END\n                ELSE 0\n            END\n        ) AS tiered_energy_cost,\n        MAX(trc.tier_number) AS tiers_applied,\n        COUNT(DISTINCT trc.tier_id) AS tier_count\n    FROM tiered_rate_calculations trc\n    CROSS JOIN usage_scenario_modeling usm\n    GROUP BY trc.rate_structure_id, trc.utility_id, trc.rate_code_id, trc.state_id, usm.usage_kwh, usm.usage_scenario_name\n),\ntou_rate_cost_calculations AS (\n    -- Fifth CTE: Calculate costs for TOU rates across usage scenarios\n    SELECT\n        toua.rate_structure_id,\n        toua.utility_id,\n        toua.rate_code_id,\n        toua.state_id,\n        usm.usage_kwh,\n        usm.usage_scenario_name,\n        -- Distribute usage across TOU periods (simplified: 40% peak, 60% off-peak)\n        SUM(\n            CASE\n                WHEN toua.period_cost_category = 'High Cost' THEN\n                    usm.usage_kwh * 0.4 * toua.energy_charge_usd_per_kwh\n                WHEN toua.period_cost_category = 'Low Cost' THEN\n                    usm.usage_kwh * 0.6 * toua.energy_charge_usd_per_kwh\n                ELSE\n                    usm.usage_kwh * 0.1 * toua.energy_charge_usd_per_kwh\n            END\n        ) AS tou_energy_cost,\n        COUNT(DISTINCT toua.tou_period_id) AS tou_period_count,\n        AVG(\n            CASE\n                WHEN toua.period_cost_category = 'High Cost' THEN toua.energy_charge_usd_per_kwh\n                ELSE NULL\n            END\n        ) AS avg_peak_rate,\n        AVG(\n            CASE\n                WHEN toua.period_cost_category = 'Low Cost' THEN toua.energy_charge_usd_per_kwh\n                ELSE NULL\n            END\n        ) AS avg_offpeak_rate\n    FROM tou_period_analysis toua\n    CROSS JOIN usage_scenario_modeling usm\n    GROUP BY toua.rate_structure_id, toua.utility_id, toua.rate_code_id, toua.state_id, usm.usage_kwh, usm.usage_scenario_name\n),\nrate_optimization_comparison AS (\n    -- Sixth CTE: Compare tiered vs TOU rates for optimization\n    SELECT\n        COALESCE(trcc.rate_structure_id, torcc.rate_structure_id) AS rate_structure_id,\n        COALESCE(trcc.utility_id, torcc.utility_id) AS utility_id,\n        COALESCE(trcc.rate_code_id, torcc.rate_code_id) AS rate_code_id,\n        COALESCE(trcc.state_id, torcc.state_id) AS state_id,\n        COALESCE(trcc.usage_kwh, torcc.usage_kwh) AS usage_kwh,\n        COALESCE(trcc.usage_scenario_name, torcc.usage_scenario_name) AS usage_scenario_name,\n        trcc.tiered_energy_cost,\n        trcc.tiers_applied,\n        trcc.tier_count,\n        torcc.tou_energy_cost,\n        torcc.tou_period_count,\n        torcc.avg_peak_rate,\n        torcc.avg_offpeak_rate,\n        -- Cost comparison\n        CASE\n            WHEN trcc.tiered_energy_cost IS NOT NULL AND torcc.tou_energy_cost IS NOT NULL THEN\n                trcc.tiered_energy_cost - torcc.tou_energy_cost\n            ELSE NULL\n        END AS cost_difference_tiered_vs_tou,\n        CASE\n            WHEN trcc.tiered_energy_cost IS NOT NULL AND torcc.tou_energy_cost IS NOT NULL AND torcc.tou_energy_cost != 0 THEN\n                ((trcc.tiered_energy_cost - torcc.tou_energy_cost) / ABS(torcc.tou_energy_cost)) * 100\n            ELSE NULL\n        END AS cost_difference_percentage,\n        -- Optimal rate recommendation\n        CASE\n            WHEN trcc.tiered_energy_cost IS NOT NULL AND torcc.tou_energy_cost IS NOT NULL THEN\n                CASE\n                    WHEN trcc.tiered_energy_cost < torcc.tou_energy_cost THEN 'Tiered Rate'\n                    ELSE 'TOU Rate'\n                END\n            WHEN trcc.tiered_energy_cost IS NOT NULL THEN 'Tiered Rate'\n            WHEN torcc.tou_energy_cost IS NOT NULL THEN 'TOU Rate'\n            ELSE 'Standard Rate'\n        END AS optimal_rate_type\n    FROM tiered_rate_cost_calculations trcc\n    FULL OUTER JOIN tou_rate_cost_calculations torcc ON (\n        trcc.rate_structure_id = torcc.rate_structure_id\n        AND trcc.usage_kwh = torcc.usage_kwh\n    )\n)\nSELECT\n    roc.rate_structure_id,\n    roc.utility_id,\n    uc.utility_name,\n    roc.rate_code_id,\n    rc.rate_code,\n    rc.rate_code_category,\n    roc.state_id,\n    s.state_name,\n    roc.usage_kwh,\n    roc.usage_scenario_name,\n    ROUND(CAST(roc.tiered_energy_cost AS NUMERIC), 2) AS tiered_energy_cost,\n    roc.tiers_applied,\n    roc.tier_count,\n    ROUND(CAST(roc.tou_energy_cost AS NUMERIC), 2) AS tou_energy_cost,\n    roc.tou_period_count,\n    ROUND(CAST(roc.avg_peak_rate AS NUMERIC), 6) AS avg_peak_rate,\n    ROUND(CAST(roc.avg_offpeak_rate AS NUMERIC), 6) AS avg_offpeak_rate,\n    ROUND(CAST(roc.cost_difference_tiered_vs_tou AS NUMERIC), 2) AS cost_difference_tiered_vs_tou,\n    ROUND(CAST(roc.cost_difference_percentage AS NUMERIC), 2) AS cost_difference_percentage,\n    roc.optimal_rate_type\nFROM rate_optimization_comparison roc\nINNER JOIN utility_companies uc ON roc.utility_id = uc.utility_id\nINNER JOIN rate_codes rc ON roc.rate_code_id = rc.rate_code_id\nINNER JOIN states s ON roc.state_id = s.state_id\nORDER BY roc.state_id, roc.utility_id, roc.usage_kwh;",
+  "SQL": "WITH RECURSIVE tiered_rate_calculations AS (\n    -- Anchor CTE: Base tier calculations for tiered rates\n    SELECT\n        trt.tier_id,\n        trt.rate_structure_id,\n        trt.tier_number,\n        trt.tier_name,\n        trt.tier_start_kwh,\n        trt.tier_end_kwh,\n        trt.energy_charge_usd_per_kwh,\n        rs.utility_id,\n        rs.rate_code_id,\n        er.state_id,\n        -- Calculate tier range\n        CASE\n            WHEN trt.tier_end_kwh IS NULL THEN 999999\n            ELSE trt.tier_end_kwh - trt.tier_start_kwh\n        END AS tier_kwh_range,\n        -- Tier usage scenarios\n        0 AS cumulative_kwh_usage,\n        trt.tier_start_kwh AS scenario_start_kwh,\n        COALESCE(trt.tier_end_kwh, 999999) AS scenario_end_kwh\n    FROM tiered_rate_tiers trt\n    INNER JOIN rate_structures rs ON trt.rate_structure_id = rs.rate_structure_id\n    INNER JOIN electricity_rates er ON rs.rate_structure_id = er.rate_structure_id\n    WHERE rs.is_current = TRUE\n        AND er.is_current = TRUE\n        AND trt.expiration_date IS NULL OR trt.expiration_date > CURRENT_DATE\n\n    UNION ALL\n\n    -- Recursive step: Calculate cumulative tier costs\n    SELECT\n        trc.tier_id,\n        trc.rate_structure_id,\n        trc.tier_number,\n        trc.tier_name,\n        trc.tier_start_kwh,\n        trc.tier_end_kwh,\n        trc.energy_charge_usd_per_kwh,\n        trc.utility_id,\n        trc.rate_code_id,\n        trc.state_id,\n        trc.tier_kwh_range,\n        trc.cumulative_kwh_usage + trc.tier_kwh_range,\n        trc.scenario_start_kwh,\n        trc.scenario_end_kwh\n    FROM tiered_rate_calculations trc\n    INNER JOIN tiered_rate_tiers trt ON (\n        trt.rate_structure_id = trc.rate_structure_id\n        AND trt.tier_number = trc.tier_number + 1\n    )\n    WHERE trc.cumulative_kwh_usage < 10000\n),\ntou_period_analysis AS (\n    -- Second CTE: Time-of-use period analysis with period aggregations\n    SELECT\n        tou.tou_period_id,\n        tou.rate_structure_id,\n        tou.period_name,\n        tou.period_start_time,\n        tou.period_end_time,\n        tou.day_of_week,\n        tou.season,\n        tou.energy_charge_usd_per_kwh,\n        rs.utility_id,\n        rs.rate_code_id,\n        er.state_id,\n        -- Calculate period duration in hours\n        CASE\n            WHEN tou.period_end_time > tou.period_start_time THEN\n                EXTRACT(EPOCH FROM (tou.period_end_time - tou.period_start_time)) / 3600\n            ELSE\n                EXTRACT(EPOCH FROM (tou.period_end_time + INTERVAL '24 hours' - tou.period_start_time)) / 3600\n        END AS period_duration_hours,\n        -- Period cost scenarios\n        CASE\n            WHEN tou.period_name LIKE '%Peak%' THEN 'High Cost'\n            WHEN tou.period_name LIKE '%Off-Peak%' THEN 'Low Cost'\n            ELSE 'Medium Cost'\n        END AS period_cost_category\n    FROM time_of_use_periods tou\n    INNER JOIN rate_structures rs ON tou.rate_structure_id = rs.rate_structure_id\n    INNER JOIN electricity_rates er ON rs.rate_structure_id = er.rate_structure_id\n    WHERE rs.is_current = TRUE\n        AND er.is_current = TRUE\n        AND tou.expiration_date IS NULL OR tou.expiration_date > CURRENT_DATE\n),\nusage_scenario_modeling AS (\n    -- Third CTE: Model usage scenarios for cost calculations\n    SELECT\n        usage_kwh,\n        usage_scenario_name\n    FROM (\n        VALUES\n            (500, 'Low Usage'),\n            (1000, 'Medium Usage'),\n            (2000, 'High Usage'),\n            (5000, 'Very High Usage')\n    ) AS scenarios(usage_kwh, usage_scenario_name)\n),\ntiered_rate_cost_calculations AS (\n    -- Fourth CTE: Calculate costs for tiered rates across usage scenarios\n    SELECT\n        trc.rate_structure_id,\n        trc.utility_id,\n        trc.rate_code_id,\n        trc.state_id,\n        usm.usage_kwh,\n        usm.usage_scenario_name,\n        SUM(\n            CASE\n                WHEN usm.usage_kwh >= trc.tier_start_kwh THEN\n                    CASE\n                        WHEN trc.tier_end_kwh IS NULL OR usm.usage_kwh <= trc.tier_end_kwh THEN\n                            (usm.usage_kwh - trc.tier_start_kwh + 1) * trc.energy_charge_usd_per_kwh\n                        ELSE\n                            trc.tier_kwh_range * trc.energy_charge_usd_per_kwh\n                    END\n                ELSE 0\n            END\n        ) AS tiered_energy_cost,\n        MAX(trc.tier_number) AS tiers_applied,\n        COUNT(DISTINCT trc.tier_id) AS tier_count\n    FROM tiered_rate_calculations trc\n    CROSS JOIN usage_scenario_modeling usm\n    GROUP BY trc.rate_structure_id, trc.utility_id, trc.rate_code_id, trc.state_id, usm.usage_kwh, usm.usage_scenario_name\n),\ntou_rate_cost_calculations AS (\n    -- Fifth CTE: Calculate costs for TOU rates across usage scenarios\n    SELECT\n        toua.rate_structure_id,\n        toua.utility_id,\n        toua.rate_code_id,\n        toua.state_id,\n        usm.usage_kwh,\n        usm.usage_scenario_name,\n        -- Distribute usage across TOU periods (simplified: 40% peak, 60% off-peak)\n        SUM(\n            CASE\n                WHEN toua.period_cost_category = 'High Cost' THEN\n                    usm.usage_kwh * 0.4 * toua.energy_charge_usd_per_kwh\n                WHEN toua.period_cost_category = 'Low Cost' THEN\n                    usm.usage_kwh * 0.6 * toua.energy_charge_usd_per_kwh\n                ELSE\n                    usm.usage_kwh * 0.1 * toua.energy_charge_usd_per_kwh\n            END\n        ) AS tou_energy_cost,\n        COUNT(DISTINCT toua.tou_period_id) AS tou_period_count,\n        AVG(\n            CASE\n                WHEN toua.period_cost_category = 'High Cost' THEN toua.energy_charge_usd_per_kwh\n                ELSE NULL\n            END\n        ) AS avg_peak_rate,\n        AVG(\n            CASE\n                WHEN toua.period_cost_category = 'Low Cost' THEN toua.energy_charge_usd_per_kwh\n                ELSE NULL\n            END\n        ) AS avg_offpeak_rate\n    FROM tou_period_analysis toua\n    CROSS JOIN usage_scenario_modeling usm\n    GROUP BY toua.rate_structure_id, toua.utility_id, toua.rate_code_id, toua.state_id, usm.usage_kwh, usm.usage_scenario_name\n),\nrate_optimization_comparison AS (\n    -- Sixth CTE: Compare tiered vs TOU rates for optimization\n    SELECT\n        COALESCE(trcc.rate_structure_id, torcc.rate_structure_id) AS rate_structure_id,\n        COALESCE(trcc.utility_id, torcc.utility_id) AS utility_id,\n        COALESCE(trcc.rate_code_id, torcc.rate_code_id) AS rate_code_id,\n        COALESCE(trcc.state_id, torcc.state_id) AS state_id,\n        COALESCE(trcc.usage_kwh, torcc.usage_kwh) AS usage_kwh,\n        COALESCE(trcc.usage_scenario_name, torcc.usage_scenario_name) AS usage_scenario_name,\n        trcc.tiered_energy_cost,\n        trcc.tiers_applied,\n        trcc.tier_count,\n        torcc.tou_energy_cost,\n        torcc.tou_period_count,\n        torcc.avg_peak_rate,\n        torcc.avg_offpeak_rate,\n        -- Cost comparison\n        CASE\n            WHEN trcc.tiered_energy_cost IS NOT NULL AND torcc.tou_energy_cost IS NOT NULL THEN\n                trcc.tiered_energy_cost - torcc.tou_energy_cost\n            ELSE NULL\n        END AS cost_difference_tiered_vs_tou,\n        CASE\n            WHEN trcc.tiered_energy_cost IS NOT NULL AND torcc.tou_energy_cost IS NOT NULL AND torcc.tou_energy_cost != 0 THEN\n                ((trcc.tiered_energy_cost - torcc.tou_energy_cost) / ABS(torcc.tou_energy_cost)) * 100\n            ELSE NULL\n        END AS cost_difference_percentage,\n        -- Optimal rate recommendation\n        CASE\n            WHEN trcc.tiered_energy_cost IS NOT NULL AND torcc.tou_energy_cost IS NOT NULL THEN\n                CASE\n                    WHEN trcc.tiered_energy_cost < torcc.tou_energy_cost THEN 'Tiered Rate'\n                    ELSE 'TOU Rate'\n                END\n            WHEN trcc.tiered_energy_cost IS NOT NULL THEN 'Tiered Rate'\n            WHEN torcc.tou_energy_cost IS NOT NULL THEN 'TOU Rate'\n            ELSE 'Standard Rate'\n        END AS optimal_rate_type\n    FROM tiered_rate_cost_calculations trcc\n    FULL OUTER JOIN tou_rate_cost_calculations torcc ON (\n        trcc.rate_structure_id = torcc.rate_structure_id\n        AND trcc.usage_kwh = torcc.usage_kwh\n    )\n)\nSELECT\n    roc.rate_structure_id,\n    roc.utility_id,\n    uc.utility_name,\n    roc.rate_code_id,\n    rc.rate_code,\n    rc.rate_code_category,\n    roc.state_id,\n    s.state_name,\n    roc.usage_kwh,\n    roc.usage_scenario_name,\n    ROUND(CAST(roc.tiered_energy_cost AS NUMERIC), 2) AS tiered_energy_cost,\n    roc.tiers_applied,\n    roc.tier_count,\n    ROUND(CAST(roc.tou_energy_cost AS NUMERIC), 2) AS tou_energy_cost,\n    roc.tou_period_count,\n    ROUND(CAST(roc.avg_peak_rate AS NUMERIC), 6) AS avg_peak_rate,\n    ROUND(CAST(roc.avg_offpeak_rate AS NUMERIC), 6) AS avg_offpeak_rate,\n    ROUND(CAST(roc.cost_difference_tiered_vs_tou AS NUMERIC), 2) AS cost_difference_tiered_vs_tou,\n    ROUND(CAST(roc.cost_difference_percentage AS NUMERIC), 2) AS cost_difference_percentage,\n    roc.optimal_rate_type\nFROM rate_optimization_comparison roc\nINNER JOIN utility_companies uc ON roc.utility_id = uc.utility_id\nINNER JOIN rate_codes rc ON roc.rate_code_id = rc.rate_code_id\nINNER JOIN states s ON roc.state_id = s.state_id\nORDER BY roc.state_id, roc.utility_id, roc.usage_kwh;",
   "evidence": "The query recursively processes rate tier structures, groups data by consumption levels and time periods, computes cost aggregates for each scenario and quartile distribution of outcomes, employs window functions to calculate rolling usage patterns and comparative cost metrics across rate plans, and handles edge cases including NULL values in join conditions and boundary date ranges.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "tiered_rate_tiers",
-    "rate_structures",
-    "electricity_rates",
-    "tiered_rate_calculations",
-    "time_of_use_periods",
-    "usage_scenario_modeling",
-    "tou_period_analysis",
-    "tiered_rate_cost_calculations",
-    "tou_rate_cost_calculations",
-    "rate_optimization_comparison",
-    "utility_companies",
-    "rate_codes",
-    "states"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns tiered rate and TOU analysis with usage scenarios, cost calculations, and optimization recommendations.",
   "normal_query": "Comprehensive tiered rate and time-of-use analysis with usage scenarios, cost calculations, and optimization recommendations"
 }
 ```
+
+
 
 ### Query 3 — moderate / aggregation
 
@@ -189,25 +199,14 @@ Target distribution across 30 queries:
   "evidence": "The query groups incentive data by source type and relevant customer dimensions, computes aggregate rebate amounts and quartile distributions to identify typical and exceptional savings opportunities, uses window functions to calculate rolling incentive trends and comparative savings metrics across regions and time periods, and implements NULL-safe joins.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "federal_incentives",
-    "state_incentives",
-    "states",
-    "utility_incentives",
-    "utility_companies",
-    "federal_incentive_analysis",
-    "state_incentive_analysis",
-    "utility_incentive_analysis",
-    "zip_codes",
-    "geographic_rebate_aggregation",
-    "rebate_optimization_analysis",
-    "final_rebate_intelligence"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns solar rebate aggregation with federal, state, and utility incentives, rebate stacking optimization, and total savings calculations.",
   "normal_query": "Comprehensive solar rebate aggregation with federal, state, and utility incentives, rebate stacking optimization, and total savings calculations"
 }
 ```
+
+
 
 ### Query 4 — moderate / aggregation
 
@@ -220,22 +219,14 @@ Target distribution across 30 queries:
   "evidence": "The query groups historical rate data by relevant time dimensions and market segments, computes statistical aggregates including mean, standard deviation, and quartile distributions to measure central tendency and spread, applies window functions to calculate rolling averages, year-over-year comparisons, and moving volatility metrics across time periods, and handles edge cases such as NULL values in historical records.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "historical_electricity_rates",
-    "utility_companies",
-    "rate_codes",
-    "states",
-    "historical_rate_timeline",
-    "rate_change_analysis",
-    "volatility_metrics",
-    "trend_identification",
-    "final_trend_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns historical rate trend analysis with time-series metrics, volatility calculations, and trend identification.",
   "normal_query": "Historical rate trend analysis with time-series metrics, volatility calculations, and trend identification"
 }
 ```
+
+
 
 ### Query 5 — moderate / aggregation
 
@@ -248,22 +239,14 @@ Target distribution across 30 queries:
   "evidence": "The query groups rate data by geographic dimensions including state, utility territory, and market segment, computes comparison aggregates and quartile benchmarks to position each market relative to peers, utilizes window functions to calculate cross-market rankings, regional averages, and comparative growth metrics over time, and implements robust NULL handling in geographic joins.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "state_rate_benchmarks",
-    "utility_companies",
-    "rate_codes",
-    "utility_rate_positioning",
-    "region_rate_benchmarks",
-    "market_intelligence",
-    "final_comparison_matrix"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a geographic rate comparison matrix with cross-state benchmarking, competitive positioning, and market intelligence metrics.",
   "normal_query": "Geographic rate comparison matrix with cross-state benchmarking, competitive positioning, and market intelligence metrics"
 }
 ```
+
+
 
 ### Query 6 — moderate / aggregation
 
@@ -276,22 +259,14 @@ Target distribution across 30 queries:
   "evidence": "The query joins rebate, installation, and consumption tables to create a unified dataset. It groups data by utility and relevant time periods to compute aggregate performance metrics such as average rates, rebate participation, and customer adoption. Window functions calculate percentile rankings and quartiles to position each utility against peers. Rolling averages identify trends over time.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "utility_companies",
-    "electricity_rates",
-    "rate_codes",
-    "states",
-    "utility_rate_performance",
-    "peer_utility_analysis",
-    "state_benchmark_metrics",
-    "competitive_positioning",
-    "final_benchmarking_report"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a utility performance benchmarking report with rate competitiveness metrics, market positioning, and peer comparisons.",
   "normal_query": "Generate a utility performance benchmarking report that includes rate competitiveness metrics, market positioning relative to peers, and comparative performance indicators."
 }
 ```
+
+
 
 ### Query 7 — moderate / aggregation
 
@@ -304,22 +279,14 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates customer and consumption data grouped by rate code and utility to calculate market share percentages. It computes adoption rates by dividing customers on each rate code by total customers within each utility and across the market. Window functions rank rate codes by popularity and calculate cumulative market share. Handles NULL or inactive rate codes.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "rate_codes",
-    "electricity_rates",
-    "utility_companies",
-    "states",
-    "rate_code_adoption",
-    "state_rate_code_penetration",
-    "market_share_calculations",
-    "regional_market_dynamics",
-    "final_market_share_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate code market share analysis with adoption rates, utility distribution, and market penetration metrics.",
   "normal_query": "Produce a rate code market share analysis showing adoption rates across different customer segments, utility-level distribution patterns, and overall market penetration metrics."
 }
 ```
+
+
 
 ### Query 8 — moderate / aggregation
 
@@ -332,25 +299,14 @@ Target distribution across 30 queries:
   "evidence": "The query joins solar installation records with rebate disbursements and ongoing consumption data to build a complete financial picture. It calculates initial investment costs (installation minus rebates), estimates annual energy savings by multiplying production by avoided electricity rates, and computes simple payback and NPV using appropriate discount rates.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "solar_rebate_aggregations",
-    "states",
-    "utility_companies",
-    "zip_codes",
-    "electricity_rates",
-    "rebate_aggregation_by_location",
-    "solar_system_scenarios",
-    "electricity_rate_for_location",
-    "roi_calculations",
-    "generate_series",
-    "npv_analysis",
-    "final_roi_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns solar rebate ROI analysis with payback periods, NPV calculations, and financial return metrics.",
   "normal_query": "Create a solar rebate ROI analysis that includes payback period calculations, net present value (NPV) metrics, and comprehensive financial return indicators for solar investments."
 }
 ```
+
+
 
 ### Query 9 — moderate / aggregation
 
@@ -359,24 +315,18 @@ Target distribution across 30 queries:
   "db_id": "db-15",
   "question_id": 9,
   "question": "Can you compare electricity rates across different states and analyze regional market dynamics?",
-  "SQL": "WITH state_rate_statistics AS (\n    -- First CTE: Calculate comprehensive state rate statistics\n    SELECT\n        s.state_id,\n        s.state_name,\n        s.region,\n        s.division,\n        COUNT(DISTINCT er.utility_id) AS utility_count,\n        COUNT(DISTINCT er.rate_id) AS total_rate_count,\n        AVG(er.energy_charge_usd_per_kwh) AS avg_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY er.energy_charge_usd_per_kwh) AS median_rate,\n        PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY er.energy_charge_usd_per_kwh) AS q1_rate,\n        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY er.energy_charge_usd_per_kwh) AS q3_rate,\n        MIN(er.energy_charge_usd_per_kwh) AS min_rate,\n        MAX(er.energy_charge_usd_per_kwh) AS max_rate,\n        STDDEV(er.energy_charge_usd_per_kwh) AS stddev_rate,\n        -- Rate type breakdowns\n        AVG(CASE WHEN er.rate_type = 'Residential' THEN er.energy_charge_usd_per_kwh END) AS avg_residential_rate,\n        AVG(CASE WHEN er.rate_type = 'Commercial' THEN er.energy_charge_usd_per_kwh END) AS avg_commercial_rate,\n        AVG(CASE WHEN er.rate_type = 'Industrial' THEN er.energy_charge_usd_per_kwh END) AS avg_industrial_rate\n    FROM states s\n    INNER JOIN electricity_rates er ON s.state_id = er.state_id\n    WHERE er.is_current = TRUE\n    GROUP BY s.state_id, s.state_name, s.region, s.division\n),\nregional_benchmarks AS (\n    -- Second CTE: Calculate regional benchmarks\n    SELECT\n        srs.region,\n        COUNT(DISTINCT srs.state_id) AS state_count,\n        AVG(srs.avg_rate) AS region_avg_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY srs.avg_rate) AS region_median_rate,\n        MIN(srs.avg_rate) AS region_min_rate,\n        MAX(srs.avg_rate) AS region_max_rate,\n        STDDEV(srs.avg_rate) AS region_stddev_rate,\n        AVG(srs.avg_residential_rate) AS region_avg_residential_rate,\n        AVG(srs.avg_commercial_rate) AS region_avg_commercial_rate,\n        AVG(srs.avg_industrial_rate) AS region_avg_industrial_rate\n    FROM state_rate_statistics srs\n    GROUP BY srs.region\n),\nnational_benchmarks AS (\n    -- Third CTE: Calculate national benchmarks\n    SELECT\n        AVG(srs.avg_rate) AS national_avg_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY srs.avg_rate) AS national_median_rate,\n        MIN(srs.avg_rate) AS national_min_rate,\n        MAX(srs.avg_rate) AS national_max_rate,\n        STDDEV(srs.avg_rate) AS national_stddev_rate\n    FROM state_rate_statistics srs\n),\nstate_comparison_matrix AS (\n    -- Fourth CTE: Create state comparison matrix\n    SELECT\n        srs1.state_id AS state_1_id,\n        srs1.state_name AS state_1_name,\n        srs1.region AS state_1_region,\n        srs1.avg_rate AS state_1_avg_rate,\n        srs2.state_id AS state_2_id,\n        srs2.state_name AS state_2_name,\n        srs2.region AS state_2_region,\n        srs2.avg_rate AS state_2_avg_rate,\n        srs1.avg_rate - srs2.avg_rate AS rate_difference,\n        CASE\n            WHEN srs2.avg_rate > 0 THEN\n                ((srs1.avg_rate - srs2.avg_rate) / srs2.avg_rate) * 100\n            ELSE NULL\n        END AS rate_difference_percentage,\n        CASE\n            WHEN srs1.region = srs2.region THEN 'Same Region'\n            ELSE 'Different Region'\n        END AS regional_comparison_type\n    FROM state_rate_statistics srs1\n    CROSS JOIN state_rate_statistics srs2\n    WHERE srs1.state_id < srs2.state_id\n),\nregional_positioning AS (\n    -- Fifth CTE: Analyze regional positioning\n    SELECT\n        srs.*,\n        rb.region_avg_rate,\n        rb.region_median_rate,\n        rb.region_min_rate,\n        rb.region_max_rate,\n        nb.national_avg_rate,\n        nb.national_median_rate,\n        -- Regional positioning\n        srs.avg_rate - rb.region_avg_rate AS difference_from_region_avg,\n        CASE\n            WHEN rb.region_avg_rate > 0 THEN\n                ((srs.avg_rate - rb.region_avg_rate) / rb.region_avg_rate) * 100\n            ELSE NULL\n        END AS difference_from_region_avg_percentage,\n        -- National positioning\n        srs.avg_rate - nb.national_avg_rate AS difference_from_national_avg,\n        CASE\n            WHEN nb.national_avg_rate > 0 THEN\n                ((srs.avg_rate - nb.national_avg_rate) / nb.national_avg_rate) * 100\n            ELSE NULL\n        END AS difference_from_national_avg_percentage,\n        -- Regional quartile\n        CASE\n            WHEN srs.avg_rate <= PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY srs.avg_rate) OVER (PARTITION BY srs.region) THEN 'Lowest Quartile'\n            WHEN srs.avg_rate <= PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY srs.avg_rate) OVER (PARTITION BY srs.region) THEN 'Second Quartile'\n            WHEN srs.avg_rate <= PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY srs.avg_rate) OVER (PARTITION BY srs.region) THEN 'Third Quartile'\n            ELSE 'Highest Quartile'\n        END AS regional_quartile,\n        -- National percentile\n        PERCENT_RANK() OVER (ORDER BY srs.avg_rate) AS national_percentile_rank\n    FROM state_rate_statistics srs\n    INNER JOIN regional_benchmarks rb ON srs.region = rb.region\n    CROSS JOIN national_benchmarks nb\n),\nfinal_cross_state_comparison AS (\n    -- Sixth CTE: Final cross-state comparison\n    SELECT\n        rp.*,\n        ROW_NUMBER() OVER (PARTITION BY rp.region ORDER BY rp.avg_rate) AS region_rate_rank,\n        COUNT(*) OVER (PARTITION BY rp.region) AS states_in_region,\n        -- Market classification\n        CASE\n            WHEN rp.difference_from_national_avg_percentage < -15 THEN 'Very Low Cost State'\n            WHEN rp.difference_from_national_avg_percentage < -5 THEN 'Low Cost State'\n            WHEN rp.difference_from_national_avg_percentage < 5 THEN 'Average Cost State'\n            WHEN rp.difference_from_national_avg_percentage < 15 THEN 'High Cost State'\n            ELSE 'Very High Cost State'\n        END AS market_classification\n    FROM regional_positioning rp\n)\nSELECT\n    state_id, state_name, region, division,\n    utility_count, total_rate_count,\n    ROUND(CAST(avg_rate AS NUMERIC), 6) AS avg_rate,\n    ROUND(CAST(median_rate AS NUMERIC), 6) AS median_rate,\n    ROUND(CAST(q1_rate AS NUMERIC), 6) AS q1_rate,\n    ROUND(CAST(q3_rate AS NUMERIC), 6) AS q3_rate,\n    ROUND(CAST(min_rate AS NUMERIC), 6) AS min_rate,\n    ROUND(CAST(max_rate AS NUMERIC), 6) AS max_rate,\n    ROUND(CAST(avg_residential_rate AS NUMERIC), 6) AS avg_residential_rate,\n    ROUND(CAST(avg_commercial_rate AS NUMERIC), 6) AS avg_commercial_rate,\n    ROUND(CAST(avg_industrial_rate AS NUMERIC), 6) AS avg_industrial_rate,\n    ROUND(CAST(region_avg_rate AS NUMERIC), 6) AS region_avg_rate,\n    ROUND(CAST(difference_from_region_avg AS NUMERIC), 6) AS difference_from_region_avg,\n    ROUND(CAST(difference_from_region_avg_percentage AS NUMERIC), 2) AS difference_from_region_avg_percentage,\n    ROUND(CAST(national_avg_rate AS NUMERIC), 6) AS national_avg_rate,\n    ROUND(CAST(difference_from_national_avg AS NUMERIC), 6) AS difference_from_national_avg,\n    ROUND(CAST(difference_from_national_avg_percentage AS NUMERIC), 2) AS difference_from_national_avg_percentage,\n    regional_quartile,\n    ROUND(CAST(national_percentile_rank * 100 AS NUMERIC), 2) AS national_percentile_rank,\n    region_rate_rank,\n    states_in_region,\n    market_classification\nFROM final_cross_state_comparison\nORDER BY avg_rate;",
+  "SQL": "WITH state_rate_statistics AS (\n    -- First CTE: Calculate comprehensive state rate statistics\n    SELECT\n        s.state_id,\n        s.state_name,\n        s.region,\n        s.division,\n        COUNT(DISTINCT er.utility_id) AS utility_count,\n        COUNT(DISTINCT er.rate_id) AS total_rate_count,\n        AVG(er.energy_charge_usd_per_kwh) AS avg_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY er.energy_charge_usd_per_kwh) AS median_rate,\n        PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY er.energy_charge_usd_per_kwh) AS q1_rate,\n        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY er.energy_charge_usd_per_kwh) AS q3_rate,\n        MIN(er.energy_charge_usd_per_kwh) AS min_rate,\n        MAX(er.energy_charge_usd_per_kwh) AS max_rate,\n        STDDEV(er.energy_charge_usd_per_kwh) AS stddev_rate,\n        -- Rate type breakdowns\n        AVG(CASE WHEN er.rate_type = 'Residential' THEN er.energy_charge_usd_per_kwh END) AS avg_residential_rate,\n        AVG(CASE WHEN er.rate_type = 'Commercial' THEN er.energy_charge_usd_per_kwh END) AS avg_commercial_rate,\n        AVG(CASE WHEN er.rate_type = 'Industrial' THEN er.energy_charge_usd_per_kwh END) AS avg_industrial_rate\n    FROM states s\n    INNER JOIN electricity_rates er ON s.state_id = er.state_id\n    WHERE er.is_current = TRUE\n    GROUP BY s.state_id, s.state_name, s.region, s.division\n),\nregional_benchmarks AS (\n    -- Second CTE: Calculate regional benchmarks\n    SELECT\n        srs.region,\n        COUNT(DISTINCT srs.state_id) AS state_count,\n        AVG(srs.avg_rate) AS region_avg_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY srs.avg_rate) AS region_median_rate,\n        MIN(srs.avg_rate) AS region_min_rate,\n        MAX(srs.avg_rate) AS region_max_rate,\n        STDDEV(srs.avg_rate) AS region_stddev_rate,\n        AVG(srs.avg_residential_rate) AS region_avg_residential_rate,\n        AVG(srs.avg_commercial_rate) AS region_avg_commercial_rate,\n        AVG(srs.avg_industrial_rate) AS region_avg_industrial_rate\n    FROM state_rate_statistics srs\n    GROUP BY srs.region\n),\nnational_benchmarks AS (\n    -- Third CTE: Calculate national benchmarks\n    SELECT\n        AVG(srs.avg_rate) AS national_avg_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY srs.avg_rate) AS national_median_rate,\n        MIN(srs.avg_rate) AS national_min_rate,\n        MAX(srs.avg_rate) AS national_max_rate,\n        STDDEV(srs.avg_rate) AS national_stddev_rate\n    FROM state_rate_statistics srs\n),\nstate_comparison_matrix AS (\n    -- Fourth CTE: Create state comparison matrix\n    SELECT\n        srs1.state_id AS state_1_id,\n        srs1.state_name AS state_1_name,\n        srs1.region AS state_1_region,\n        srs1.avg_rate AS state_1_avg_rate,\n        srs2.state_id AS state_2_id,\n        srs2.state_name AS state_2_name,\n        srs2.region AS state_2_region,\n        srs2.avg_rate AS state_2_avg_rate,\n        srs1.avg_rate - srs2.avg_rate AS rate_difference,\n        CASE\n            WHEN srs2.avg_rate > 0 THEN\n                ((srs1.avg_rate - srs2.avg_rate) / srs2.avg_rate) * 100\n            ELSE NULL\n        END AS rate_difference_percentage,\n        CASE\n            WHEN srs1.region = srs2.region THEN 'Same Region'\n            ELSE 'Different Region'\n        END AS regional_comparison_type\n    FROM state_rate_statistics srs1\n    CROSS JOIN state_rate_statistics srs2\n    WHERE srs1.state_id < srs2.state_id\n),\nregional_positioning AS (\n    -- Fifth CTE: Analyze regional positioning\n    SELECT\n        srs.*,\n        rb.region_avg_rate,\n        rb.region_median_rate,\n        rb.region_min_rate,\n        rb.region_max_rate,\n        nb.national_avg_rate,\n        nb.national_median_rate,\n        -- Regional positioning\n        srs.avg_rate - rb.region_avg_rate AS difference_from_region_avg,\n        CASE\n            WHEN rb.region_avg_rate > 0 THEN\n                ((srs.avg_rate - rb.region_avg_rate) / rb.region_avg_rate) * 100\n            ELSE NULL\n        END AS difference_from_region_avg_percentage,\n        -- National positioning\n        srs.avg_rate - nb.national_avg_rate AS difference_from_national_avg,\n        CASE\n            WHEN nb.national_avg_rate > 0 THEN\n                ((srs.avg_rate - nb.national_avg_rate) / nb.national_avg_rate) * 100\n            ELSE NULL\n        END AS difference_from_national_avg_percentage,\n        -- Regional quartile\n        CASE\n            WHEN srs.avg_rate <= PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY srs.avg_rate) OVER (PARTITION BY srs.region) THEN 'Lowest Quartile'\n            WHEN srs.avg_rate <= PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY srs.avg_rate) OVER (PARTITION BY srs.region) THEN 'Second Quartile'\n            WHEN srs.avg_rate <= PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY srs.avg_rate) OVER (PARTITION BY srs.region) THEN 'Third Quartile'\n            ELSE 'Highest Quartile'\n        END AS regional_quartile,\n        -- National percentile\n        PERCENT_RANK() OVER (ORDER BY srs.avg_rate) AS national_percentile_rank\n    FROM state_rate_statistics srs\n    CROSS JOIN regional_benchmarks rb ON srs.region = rb.region\n    CROSS JOIN national_benchmarks nb\n),\nfinal_cross_state_comparison AS (\n    -- Sixth CTE: Final cross-state comparison\n    SELECT\n        rp.*,\n        ROW_NUMBER() OVER (PARTITION BY rp.region ORDER BY rp.avg_rate) AS region_rate_rank,\n        COUNT(*) OVER (PARTITION BY rp.region) AS states_in_region,\n        -- Market classification\n        CASE\n            WHEN rp.difference_from_national_avg_percentage < -15 THEN 'Very Low Cost State'\n            WHEN rp.difference_from_national_avg_percentage < -5 THEN 'Low Cost State'\n            WHEN rp.difference_from_national_avg_percentage < 5 THEN 'Average Cost State'\n            WHEN rp.difference_from_national_avg_percentage < 15 THEN 'High Cost State'\n            ELSE 'Very High Cost State'\n        END AS market_classification\n    FROM regional_positioning rp\n)\nSELECT\n    state_id, state_name, region, division,\n    utility_count, total_rate_count,\n    ROUND(CAST(avg_rate AS NUMERIC), 6) AS avg_rate,\n    ROUND(CAST(median_rate AS NUMERIC), 6) AS median_rate,\n    ROUND(CAST(q1_rate AS NUMERIC), 6) AS q1_rate,\n    ROUND(CAST(q3_rate AS NUMERIC), 6) AS q3_rate,\n    ROUND(CAST(min_rate AS NUMERIC), 6) AS min_rate,\n    ROUND(CAST(max_rate AS NUMERIC), 6) AS max_rate,\n    ROUND(CAST(avg_residential_rate AS NUMERIC), 6) AS avg_residential_rate,\n    ROUND(CAST(avg_commercial_rate AS NUMERIC), 6) AS avg_commercial_rate,\n    ROUND(CAST(avg_industrial_rate AS NUMERIC), 6) AS avg_industrial_rate,\n    ROUND(CAST(region_avg_rate AS NUMERIC), 6) AS region_avg_rate,\n    ROUND(CAST(difference_from_region_avg AS NUMERIC), 6) AS difference_from_region_avg,\n    ROUND(CAST(difference_from_region_avg_percentage AS NUMERIC), 2) AS difference_from_region_avg_percentage,\n    ROUND(CAST(national_avg_rate AS NUMERIC), 6) AS national_avg_rate,\n    ROUND(CAST(difference_from_national_avg AS NUMERIC), 6) AS difference_from_national_avg,\n    ROUND(CAST(difference_from_national_avg_percentage AS NUMERIC), 2) AS difference_from_national_avg_percentage,\n    regional_quartile,\n    ROUND(CAST(national_percentile_rank * 100 AS NUMERIC), 2) AS national_percentile_rank,\n    region_rate_rank,\n    states_in_region,\n    market_classification\nFROM final_cross_state_comparison\nORDER BY avg_rate;",
   "evidence": "The query aggregates rate and consumption data grouped by state and utility to calculate average rates, rate ranges, and customer-weighted average prices. It uses window functions to rank states by rate competitiveness and calculate regional percentiles. Subqueries or CTEs compute year-over-year rate changes.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "state_rate_statistics",
-    "regional_benchmarks",
-    "national_benchmarks",
-    "regional_positioning",
-    "final_cross_state_comparison"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns cross-state rate comparison with regional market dynamics, competitive analysis, and market trends.",
   "normal_query": "Generate a cross-state rate comparison report that examines regional market dynamics, performs competitive analysis across state boundaries, and identifies emerging market trends."
 }
 ```
+
+
 
 ### Query 10 — moderate / aggregation
 
@@ -389,26 +339,14 @@ Target distribution across 30 queries:
   "evidence": "The query analyzes rate structure definitions to compute complexity scores based on factors like number of pricing tiers, presence of time-of-use periods, and demand charge components. It groups by rate code and applies scoring logic.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "rate_structures",
-    "electricity_rates",
-    "rate_codes",
-    "tiered_rate_tiers",
-    "time_of_use_periods",
-    "rate_structure_details",
-    "tier_complexity_analysis",
-    "tou_complexity_analysis",
-    "complexity_metrics",
-    "utility_companies",
-    "states",
-    "structure_optimization_analysis",
-    "final_complexity_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate structure complexity analysis with complexity metrics, multi-tier optimization, and structure comparisons.",
   "normal_query": "Develop a rate structure complexity analysis that measures complexity metrics for different pricing models, identifies multi-tier optimization opportunities, and provides structure-to-structure comparisons."
 }
 ```
+
+
 
 ### Query 11 — moderate / aggregation
 
@@ -421,23 +359,14 @@ Target distribution across 30 queries:
   "evidence": "The query joins rebates, installations, and consumption tables on relevant keys with NULL-safe handling. It groups data by time periods and program dimensions to compute aggregate metrics such as total rebate amounts, application counts, and approval rates. Window functions calculate rolling averages and year-over-year comparisons. Date logic identifies programs nearing expiration.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "federal_incentives",
-    "state_incentives",
-    "states",
-    "utility_incentives",
-    "utility_companies",
-    "federal_rebate_timeline",
-    "state_rebate_timeline",
-    "utility_rebate_timeline",
-    "rebate_expiration_analysis",
-    "final_expiration_intelligence"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns historical rebate trend analysis with expiration forecasts, lifecycle tracking, and trend identification.",
   "normal_query": "Analyze historical rebate trends including expiration forecasts, program lifecycle tracking, and emerging trend identification."
 }
 ```
+
+
 
 ### Query 12 — moderate / aggregation
 
@@ -446,27 +375,18 @@ Target distribution across 30 queries:
   "db_id": "db-15",
   "question_id": 12,
   "question": "Can you provide geographic rate optimization analysis broken down by zip code?",
-  "SQL": "WITH zip_code_rate_analysis AS (\n    -- First CTE: Analyze rates by zip code\n    SELECT\n        zc.zip_code,\n        zc.city,\n        zc.state_id,\n        s.state_name,\n        zc.county_id,\n        c.county_name,\n        zc.latitude,\n        zc.longitude,\n        COUNT(DISTINCT gra.rate_structure_id) AS available_rate_structures,\n        COUNT(DISTINCT er.utility_id) AS utilities_serving_zip,\n        AVG(er.energy_charge_usd_per_kwh) AS avg_zip_rate,\n        MIN(er.energy_charge_usd_per_kwh) AS min_zip_rate,\n        MAX(er.energy_charge_usd_per_kwh) AS max_zip_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY er.energy_charge_usd_per_kwh) AS median_zip_rate\n    FROM zip_codes zc\n    INNER JOIN states s ON zc.state_id = s.state_id\n    LEFT JOIN counties c ON zc.county_id = c.county_id\n    LEFT JOIN geographic_rate_areas gra ON zc.zip_code = gra.zip_code\n    LEFT JOIN electricity_rates er ON gra.rate_structure_id = er.rate_structure_id\n    WHERE er.is_current = TRUE\n    GROUP BY zc.zip_code, zc.city, zc.state_id, s.state_name, zc.county_id, c.county_name, zc.latitude, zc.longitude\n),\ncounty_rate_benchmarks AS (\n    -- Second CTE: Calculate county-level benchmarks\n    SELECT\n        c.county_id,\n        c.county_name,\n        c.state_id,\n        AVG(zcra.avg_zip_rate) AS county_avg_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY zcra.avg_zip_rate) AS county_median_rate,\n        MIN(zcra.avg_zip_rate) AS county_min_rate,\n        MAX(zcra.avg_zip_rate) AS county_max_rate\n    FROM zip_code_rate_analysis zcra\n    INNER JOIN counties c ON zcra.county_id = c.county_id\n    GROUP BY c.county_id, c.county_name, c.state_id\n),\nstate_rate_benchmarks AS (\n    -- Third CTE: Calculate state-level benchmarks\n    SELECT\n        s.state_id,\n        s.state_name,\n        AVG(zcra.avg_zip_rate) AS state_avg_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY zcra.avg_zip_rate) AS state_median_rate\n    FROM zip_code_rate_analysis zcra\n    INNER JOIN states s ON zcra.state_id = s.state_id\n    GROUP BY s.state_id, s.state_name\n),\nzip_code_optimization AS (\n    -- Fourth CTE: Optimize rates by zip code\n    SELECT\n        zcra.*,\n        crb.county_avg_rate,\n        crb.county_median_rate,\n        crb.county_min_rate,\n        crb.county_max_rate,\n        srb.state_avg_rate,\n        srb.state_median_rate,\n        -- Optimization metrics\n        zcra.avg_zip_rate - crb.county_avg_rate AS difference_from_county_avg,\n        CASE\n            WHEN crb.county_avg_rate > 0 THEN\n                ((zcra.avg_zip_rate - crb.county_avg_rate) / crb.county_avg_rate) * 100\n            ELSE NULL\n        END AS difference_from_county_avg_percentage,\n        zcra.avg_zip_rate - srb.state_avg_rate AS difference_from_state_avg,\n        CASE\n            WHEN srb.state_avg_rate > 0 THEN\n                ((zcra.avg_zip_rate - srb.state_avg_rate) / srb.state_avg_rate) * 100\n            ELSE NULL\n        END AS difference_from_state_avg_percentage,\n        -- Rate competitiveness\n        CASE\n            WHEN zcra.avg_zip_rate <= crb.county_min_rate THEN 'Most Competitive'\n            WHEN zcra.avg_zip_rate <= crb.county_median_rate THEN 'Competitive'\n            WHEN zcra.avg_zip_rate <= crb.county_avg_rate THEN 'Average'\n            ELSE 'Above Average'\n        END AS competitiveness_classification\n    FROM zip_code_rate_analysis zcra\n    LEFT JOIN county_rate_benchmarks crb ON zcra.county_id = crb.county_id\n    INNER JOIN state_rate_benchmarks srb ON zcra.state_id = srb.state_id\n),\nfinal_geographic_optimization AS (\n    -- Fifth CTE: Final geographic optimization\n    SELECT\n        zco.*,\n        ROUND(CAST(zco.difference_from_county_avg AS NUMERIC), 6) AS difference_from_county_avg,\n        ROUND(CAST(zco.difference_from_county_avg_percentage AS NUMERIC), 2) AS difference_from_county_avg_percentage,\n        ROUND(CAST(zco.difference_from_state_avg AS NUMERIC), 6) AS difference_from_state_avg,\n        ROUND(CAST(zco.difference_from_state_avg_percentage AS NUMERIC), 2) AS difference_from_state_avg_percentage,\n        -- Window functions for ranking\n        ROW_NUMBER() OVER (PARTITION BY zco.state_id ORDER BY zco.avg_zip_rate) AS state_rate_rank,\n        PERCENT_RANK() OVER (PARTITION BY zco.state_id ORDER BY zco.avg_zip_rate) AS state_rate_percentile\n    FROM zip_code_optimization zco\n)\nSELECT\n    zip_code, city, state_id, state_name, county_id, county_name,\n    latitude, longitude, available_rate_structures, utilities_serving_zip,\n    ROUND(CAST(avg_zip_rate AS NUMERIC), 6) AS avg_zip_rate,\n    ROUND(CAST(min_zip_rate AS NUMERIC), 6) AS min_zip_rate,\n    ROUND(CAST(max_zip_rate AS NUMERIC), 6) AS max_zip_rate,\n    ROUND(CAST(median_zip_rate AS NUMERIC), 6) AS median_zip_rate,\n    ROUND(CAST(county_avg_rate AS NUMERIC), 6) AS county_avg_rate,\n    difference_from_county_avg, difference_from_county_avg_percentage,\n    ROUND(CAST(state_avg_rate AS NUMERIC), 6) AS state_avg_rate,\n    difference_from_state_avg, difference_from_state_avg_percentage,\n    competitiveness_classification, state_rate_rank,\n    ROUND(CAST(state_rate_percentile * 100 AS NUMERIC), 2) AS state_rate_percentile\nFROM final_geographic_optimization\nORDER BY state_name, avg_zip_rate;",
+  "SQL": "WITH zip_code_rate_analysis AS (\n    -- First CTE: Analyze rates by zip code\n    SELECT\n        zc.zip_code,\n        zc.city,\n        zc.state_id,\n        s.state_name,\n        zc.county_id,\n        c.county_name,\n        zc.latitude,\n        zc.longitude,\n        COUNT(DISTINCT gra.rate_structure_id) AS available_rate_structures,\n        COUNT(DISTINCT gra.utility_id) AS utilities_serving_zip,\n        AVG(er.energy_charge_usd_per_kwh) AS avg_zip_rate,\n        MIN(er.energy_charge_usd_per_kwh) AS min_zip_rate,\n        MAX(er.energy_charge_usd_per_kwh) AS max_zip_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY er.energy_charge_usd_per_kwh) AS median_zip_rate\n    FROM zip_codes zc\n    INNER JOIN states s ON zc.state_id = s.state_id\n    LEFT JOIN counties c ON zc.county_id = c.county_id\n    LEFT JOIN geographic_rate_areas gra ON zc.zip_code = gra.zip_code\n    LEFT JOIN electricity_rates er ON gra.rate_structure_id = er.rate_structure_id\n    WHERE er.is_current = TRUE\n    GROUP BY zc.zip_code, zc.city, zc.state_id, s.state_name, zc.county_id, c.county_name, zc.latitude, zc.longitude\n),\ncounty_rate_benchmarks AS (\n    -- Second CTE: Calculate county-level benchmarks\n    SELECT\n        c.county_id,\n        c.county_name,\n        c.state_id,\n        AVG(zcra.avg_zip_rate) AS county_avg_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY zcra.avg_zip_rate) AS county_median_rate,\n        MIN(zcra.avg_zip_rate) AS county_min_rate,\n        MAX(zcra.avg_zip_rate) AS county_max_rate\n    FROM zip_code_rate_analysis zcra\n    INNER JOIN counties c ON zcra.county_id = c.county_id\n    GROUP BY c.county_id, c.county_name, c.state_id\n),\nstate_rate_benchmarks AS (\n    -- Third CTE: Calculate state-level benchmarks\n    SELECT\n        s.state_id,\n        s.state_name,\n        AVG(zcra.avg_zip_rate) AS state_avg_rate,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY zcra.avg_zip_rate) AS state_median_rate\n    FROM zip_code_rate_analysis zcra\n    INNER JOIN states s ON zcra.state_id = s.state_id\n    GROUP BY s.state_id, s.state_name\n),\nzip_code_optimization AS (\n    -- Fourth CTE: Optimize rates by zip code\n    SELECT\n        zcra.*,\n        crb.county_avg_rate,\n        crb.county_median_rate,\n        crb.county_min_rate,\n        crb.county_max_rate,\n        srb.state_avg_rate,\n        srb.state_median_rate,\n        -- Optimization metrics\n        zcra.avg_zip_rate - crb.county_avg_rate AS difference_from_county_avg,\n        CASE\n            WHEN crb.county_avg_rate > 0 THEN\n                ((zcra.avg_zip_rate - crb.county_avg_rate) / crb.county_avg_rate) * 100\n            ELSE NULL\n        END AS difference_from_county_avg_percentage,\n        zcra.avg_zip_rate - srb.state_avg_rate AS difference_from_state_avg,\n        CASE\n            WHEN srb.state_avg_rate > 0 THEN\n                ((zcra.avg_zip_rate - srb.state_avg_rate) / srb.state_avg_rate) * 100\n            ELSE NULL\n        END AS difference_from_state_avg_percentage,\n        -- Rate competitiveness\n        CASE\n            WHEN zcra.avg_zip_rate <= crb.county_min_rate THEN 'Most Competitive'\n            WHEN zcra.avg_zip_rate <= crb.county_median_rate THEN 'Competitive'\n            WHEN zcra.avg_zip_rate <= crb.county_avg_rate THEN 'Average'\n            ELSE 'Above Average'\n        END AS competitiveness_classification\n    FROM zip_code_rate_analysis zcra\n    LEFT JOIN county_rate_benchmarks crb ON zcra.county_id = crb.county_id\n    INNER JOIN state_rate_benchmarks srb ON zcra.state_id = srb.state_id\n),\nfinal_geographic_optimization AS (\n    -- Fifth CTE: Final geographic optimization\n    SELECT\n        zco.*,\n        ROUND(CAST(zco.difference_from_county_avg AS NUMERIC), 6) AS difference_from_county_avg,\n        ROUND(CAST(zco.difference_from_county_avg_percentage AS NUMERIC), 2) AS difference_from_county_avg_percentage,\n        ROUND(CAST(zco.difference_from_state_avg AS NUMERIC), 6) AS difference_from_state_avg,\n        ROUND(CAST(zco.difference_from_state_avg_percentage AS NUMERIC), 2) AS difference_from_state_avg_percentage,\n        -- Window functions for ranking\n        ROW_NUMBER() OVER (PARTITION BY zco.state_id ORDER BY zco.avg_zip_rate) AS state_rate_rank,\n        PERCENT_RANK() OVER (PARTITION BY zco.state_id ORDER BY zco.avg_zip_rate) AS state_rate_percentile\n    FROM zip_code_optimization zco\n)\nSELECT\n    zip_code, city, state_id, state_name, county_id, county_name,\n    latitude, longitude, available_rate_structures, utilities_serving_zip,\n    ROUND(CAST(avg_zip_rate AS NUMERIC), 6) AS avg_zip_rate,\n    ROUND(CAST(min_zip_rate AS NUMERIC), 6) AS min_zip_rate,\n    ROUND(CAST(max_zip_rate AS NUMERIC), 6) AS max_zip_rate,\n    ROUND(CAST(median_zip_rate AS NUMERIC), 6) AS median_zip_rate,\n    ROUND(CAST(county_avg_rate AS NUMERIC), 6) AS county_avg_rate,\n    difference_from_county_avg, difference_from_county_avg_percentage,\n    ROUND(CAST(state_avg_rate AS NUMERIC), 6) AS state_avg_rate,\n    difference_from_state_avg, difference_from_state_avg_percentage,\n    competitiveness_classification, state_rate_rank,\n    ROUND(CAST(state_rate_percentile * 100 AS NUMERIC), 2) AS state_rate_percentile\nFROM final_geographic_optimization\nORDER BY state_name, avg_zip_rate;",
   "evidence": "The query joins customer, consumption, rate, and geographic tables using zip code as the primary dimension. It groups data by zip code and computes aggregated metrics including average rates, total consumption, customer counts, and solar installation penetration. Window functions rank zip codes by performance indicators and calculate percentile distributions. Statistical measures identify outlier zip codes.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "zip_codes",
-    "states",
-    "counties",
-    "geographic_rate_areas",
-    "electricity_rates",
-    "zip_code_rate_analysis",
-    "county_rate_benchmarks",
-    "state_rate_benchmarks",
-    "zip_code_optimization",
-    "final_geographic_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns geographic rate optimization with zip code level intelligence and location-based recommendations.",
   "normal_query": "Perform geographic rate optimization with zip code-level intelligence and location-based pricing recommendations."
 }
 ```
+
+
 
 ### Query 13 — moderate / aggregation
 
@@ -479,21 +399,14 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates data from rate schedules, customer assignments, and consumption tables grouped by rate code. It computes diversity metrics including customer count per rate, revenue contribution, concentration indices (HHI), and usage pattern variance. Window functions calculate each rate's share of total portfolio and rank rates by multiple dimensions. Quartile analysis segments rates into performance tiers.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "utility_companies",
-    "states",
-    "electricity_rates",
-    "rate_codes",
-    "utility_rate_portfolio",
-    "state_portfolio_benchmarks",
-    "portfolio_diversity_metrics",
-    "final_portfolio_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns utility rate portfolio analysis with diversity metrics and optimization recommendations.",
   "normal_query": "Analyze the utility rate portfolio with diversity metrics across rate codes and provide optimization recommendations."
 }
 ```
+
+
 
 ### Query 14 — moderate / aggregation
 
@@ -506,22 +419,14 @@ Target distribution across 30 queries:
   "evidence": "The query joins solar installation records with consumption data, rebate payments, utility rates, and net metering credits. It groups by installation and time periods to calculate metrics including total installation cost, rebate amounts received, energy produced, energy consumed, net metering credits earned, and grid electricity costs avoided. Window functions compute cumulative financial flows and identify payback periods.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "utility_incentives",
-    "utility_companies",
-    "electricity_rates",
-    "solar_system_economics",
-    "net_metering_analysis",
-    "solar_economics_calculations",
-    "solar_rebate_aggregations",
-    "rebate_adjusted_economics",
-    "final_economics_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns solar installation economics with net metering analysis and financial modeling.",
   "normal_query": "Analyze solar installation economics with net metering impact and comprehensive financial modeling."
 }
 ```
+
+
 
 ### Query 15 — moderate / aggregation
 
@@ -534,21 +439,14 @@ Target distribution across 30 queries:
   "evidence": "The query analyzes historical rate data grouped by rate code and time periods. It computes volatility metrics including standard deviation, coefficient of variation, rate change frequency, and maximum single-period changes. Window functions calculate rolling volatility measures and compare current volatility to historical baselines. Statistical tests identify significant volatility.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "historical_electricity_rates",
-    "historical_rate_volatility",
-    "volatility_metrics",
-    "utility_companies",
-    "rate_codes",
-    "states",
-    "risk_assessment",
-    "final_volatility_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate volatility analysis with risk assessment metrics and risk classifications.",
   "normal_query": "Analyze rate volatility patterns with comprehensive risk assessment metrics and risk classification framework."
 }
 ```
+
+
 
 ### Query 16 — moderate / aggregation
 
@@ -561,17 +459,14 @@ Target distribution across 30 queries:
   "evidence": "The query joins rebate, installation, and consumption tables, groups customers by rate type and demographic segments, computes aggregate counts and percentages for each segment, calculates quartile distributions to identify concentration patterns, and uses window functions to compare segment performance metrics against overall averages. Handles NULL values in optional fields and filters for active rate codes.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "electricity_rates",
-    "states",
-    "rate_type_distribution",
-    "market_segmentation"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns market segmentation analysis with rate type distributions and customer segment metrics.",
   "normal_query": "Provide market segmentation analysis showing rate type distributions and customer segment metrics."
 }
 ```
+
+
 
 ### Query 17 — moderate / aggregation
 
@@ -584,17 +479,14 @@ Target distribution across 30 queries:
   "evidence": "The query joins utility rate tables across multiple providers, groups rates by utility and rate type, computes average and median rates for each utility, calculates percentile rankings to determine competitive positioning, uses window functions to compute rolling averages and year-over-year rate changes, and applies benchmarking calculations to show how each utility's rates compare to market averages.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "electricity_rates",
-    "utility_companies",
-    "utility_rate_comparison",
-    "competitive_positioning"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns cross-utility rate comparison with competitive positioning and benchmarking.",
   "normal_query": "Generate cross-utility rate comparison analysis with competitive positioning and benchmarking metrics."
 }
 ```
+
+
 
 ### Query 18 — moderate / aggregation
 
@@ -607,17 +499,14 @@ Target distribution across 30 queries:
   "evidence": "The query identifies all active rebate programs, cross-references customer eligibility criteria across multiple rebate tables, groups rebates by customer and installation type, computes total savings for each valid rebate combination while respecting stacking restrictions, uses window functions to rank combinations by total savings amount, and aggregates the maximum possible savings per customer.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "solar_rebate_aggregations",
-    "rebate_combinations",
-    "system_scenarios",
-    "maximum_savings_calculation"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rebate stacking optimization with maximum savings calculations.",
   "normal_query": "Analyze rebate stacking optimization to identify maximum savings calculations for eligible customers."
 }
 ```
+
+
 
 ### Query 19 — moderate / aggregation
 
@@ -630,18 +519,14 @@ Target distribution across 30 queries:
   "evidence": "The query joins customer enrollment records with rate code definitions across utilities, groups customers by rate code type and utility, calculates adoption rates as the percentage of eligible customers enrolled in each rate code, computes market penetration by comparing current enrollments to total addressable customer base, and uses window functions to track adoption trends over time.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "rate_codes",
-    "electricity_rates",
-    "utility_companies",
-    "rate_code_adoption",
-    "market_penetration"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate code adoption analysis with market penetration metrics.",
   "normal_query": "Perform rate code adoption analysis with market penetration metrics across utility service areas."
 }
 ```
+
+
 
 ### Query 20 — moderate / aggregation
 
@@ -654,17 +539,14 @@ Target distribution across 30 queries:
   "evidence": "The query joins rebate applications with customer location data, groups rebates by state and utility service territory, computes aggregate metrics including total rebate amounts, application counts, approval rates, and average rebate values per state, calculates quartile distributions to identify high and low performing regions, and uses window functions to rank states by program performance.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "solar_rebate_aggregations",
-    "states",
-    "state_rebate_aggregations",
-    "regional_rebate_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns geographic rebate intelligence with state-level aggregations.",
   "normal_query": "Generate geographic rebate intelligence with state-level aggregations and regional performance analysis."
 }
 ```
+
+
 
 ### Query 21 — moderate / aggregation
 
@@ -677,17 +559,14 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates historical rate data by time periods and rate categories, calculates statistical measures including moving averages and growth rates, applies window functions to compute rolling trends and year-over-year comparisons, and handles NULL values in temporal joins to ensure complete time series coverage.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "historical_electricity_rates",
-    "historical_rate_trends",
-    "trend_calculation",
-    "forecast_models"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate trend forecasting with predictive analytics and trend predictions.",
   "normal_query": "Show rate trend forecasting with predictive analytics and future trend predictions."
 }
 ```
+
+
 
 ### Query 22 — moderate / aggregation
 
@@ -700,17 +579,14 @@ Target distribution across 30 queries:
   "evidence": "The query groups customers and consumption data by rate code and customer segment, computes aggregate metrics including revenue per customer and penetration rates, uses window functions to rank rate codes by performance indicators and calculate market share within segments, and applies quartile analysis to identify high and low performers while handling edge cases in customer transitions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "utility_companies",
-    "electricity_rates",
-    "utility_portfolio_analysis",
-    "portfolio_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns utility rate strategy analysis with portfolio optimization recommendations.",
   "normal_query": "Show utility rate strategy analysis with rate code portfolio optimization recommendations."
 }
 ```
+
+
 
 ### Query 23 — moderate / aggregation
 
@@ -723,20 +599,14 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates rebate application and installation data by program type, geographic region, and time period, calculates utilization rates and remaining budget allocations, employs window functions to track cumulative redemption patterns and forecast depletion timelines, and handles NULL values in eligibility criteria joins.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "federal_incentives",
-    "state_incentives",
-    "utility_incentives",
-    "utility_companies",
-    "incentive_availability",
-    "market_coverage_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns solar rebate market intelligence with incentive availability analysis.",
   "normal_query": "Show solar rebate market intelligence with detailed incentive availability analysis."
 }
 ```
+
+
 
 ### Query 24 — moderate / aggregation
 
@@ -749,17 +619,14 @@ Target distribution across 30 queries:
   "evidence": "The query groups rate and customer data by geographic region and rate category, calculates average rates and rate distributions within each region, uses window functions to compute market share percentages and rank regions by competitiveness metrics, and performs comparative analysis across regions while handling differences in rate structure definitions and NULL values in regional boundary assignments.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "regional_rate_statistics",
-    "market_share_by_region"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns cross-regional rate comparison with market share analysis.",
   "normal_query": "Show cross-regional rate comparison with detailed market share analysis."
 }
 ```
+
+
 
 ### Query 25 — moderate / aggregation
 
@@ -772,19 +639,14 @@ Target distribution across 30 queries:
   "evidence": "The query groups consumption and billing data by rate structure type and customer characteristics, computes aggregate metrics including revenue yield, cost-to-serve ratios, and customer retention rates, applies window functions to calculate efficiency quartiles and benchmark performance across structures, and handles edge cases such as hybrid rate customers and NULL values in cost allocation joins.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "rate_structures",
-    "electricity_rates",
-    "tiered_rate_tiers",
-    "time_of_use_periods",
-    "rate_structure_performance",
-    "efficiency_metrics"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns rate structure performance analysis with cost efficiency metrics.",
   "normal_query": "Show rate structure performance analysis with detailed cost efficiency metrics."
 }
 ```
+
+
 
 ### Query 26 — moderate / aggregation
 
@@ -797,16 +659,14 @@ Target distribution across 30 queries:
   "evidence": "The query uses recursive CTEs to traverse the rate code hierarchy from top-level parent codes down through all descendant levels, joining rebate, installation, and consumption tables as needed. It groups results by rate code level and hierarchy path, computes aggregate metrics at each level including customer counts and usage volumes, and applies window functions to calculate cumulative metrics across the hierarchy.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "rate_codes",
-    "rate_code_hierarchy",
-    "hierarchy_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns recursive rate code hierarchy analysis with multi-level traversal.",
   "normal_query": "Perform recursive rate code hierarchy analysis with multi-level structure traversal."
 }
 ```
+
+
 
 ### Query 27 — moderate / aggregation
 
@@ -819,20 +679,14 @@ Target distribution across 30 queries:
   "evidence": "The query joins rebate eligibility, solar installation, and consumption data across common keys, then groups by multiple dimensions such as region, customer segment, rate type, and time period. It computes aggregate statistics including average rates, total revenue, customer counts, and usage volumes, calculates quartile distributions to identify rate outliers, and applies window functions to generate cross-dimensional comparisons.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "rate_codes",
-    "solar_rebate_aggregations",
-    "rate_intelligence_summary",
-    "rebate_intelligence_summary",
-    "comprehensive_dashboard"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a rate intelligence dashboard with multi-dimensional analysis.",
   "normal_query": "Generate comprehensive rate intelligence dashboard with multi-dimensional breakdown analysis."
 }
 ```
+
+
 
 ### Query 28 — moderate / aggregation
 
@@ -845,18 +699,14 @@ Target distribution across 30 queries:
   "evidence": "The query joins solar installation records with rebate eligibility and consumption data to calculate program performance metrics. It groups by program type, geographic market, and customer segment to enable competitive comparisons, computes aggregate metrics including average rebate amounts, participation rates, installation counts, and cost per watt, and applies window functions to calculate market share and competitive positioning.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "solar_rebate_aggregations",
-    "states",
-    "utility_companies",
-    "rebate_competitive_analysis",
-    "competitive_positioning"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns solar rebate competitive analysis with market positioning intelligence.",
   "normal_query": "Conduct solar rebate competitive analysis with market positioning intelligence assessment."
 }
 ```
+
+
 
 ### Query 29 — moderate / aggregation
 
@@ -869,17 +719,14 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates rebate, installation, and consumption data by geographic dimensions such as zip code, county, and service region. It groups by geographic hierarchies to analyze rate distributions at multiple geographic scales, computes statistical aggregates including average rates, rate variance, customer density, and consumption intensity by region, and applies window functions to calculate regional rankings and clustering metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "states",
-    "electricity_rates",
-    "geographic_rate_clusters",
-    "cluster_identification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns geographic rate clustering analysis with regional pattern identification.",
   "normal_query": "Perform geographic rate clustering analysis with regional pattern identification."
 }
 ```
+
+
 
 ### Query 30 — moderate / aggregation
 
@@ -892,17 +739,11 @@ Target distribution across 30 queries:
   "evidence": "The query integrates data from rebate eligibility, solar installations, and consumption systems through comprehensive joins on customer and time dimensions. It groups by enterprise-relevant dimensions including customer segment, product line, geography, and time period to enable strategic analysis, computes aggregate metrics across dimensions, and applies window functions for cross-dimensional comparisons and trend analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "electricity_rates",
-    "utility_companies",
-    "states",
-    "rate_codes",
-    "comprehensive_rate_analysis",
-    "cost_optimization_scenarios",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns enterprise rate optimization with comprehensive cost intelligence.",
   "normal_query": "Deploy enterprise rate optimization platform with comprehensive cost intelligence and analysis."
 }
 ```
+
+

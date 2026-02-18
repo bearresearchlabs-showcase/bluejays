@@ -47,8 +47,10 @@ Weather consulting and insurance databases represent high-value domains for text
 
 ```sql
 -- Weather Data Pipeline Database Schema
--- Compatible with PostgreSQL
+-- Compatible with PostgreSQL + PostGIS
 -- Production schema for weather data pipeline system
+
+CREATE EXTENSION IF NOT EXISTS postgis;
 
 -- GRIB2 Forecasts Table
 -- Stores gridded forecast data from NDFD (National Digital Forecast Database)
@@ -58,7 +60,7 @@ CREATE TABLE grib2_forecasts (
     forecast_time TIMESTAMP NOT NULL,
     grid_cell_latitude NUMERIC(10, 7) NOT NULL,
     grid_cell_longitude NUMERIC(10, 7) NOT NULL,
-    grid_cell_geom TEXT,  -- Point geometry for grid cell center (PostgreSQL)
+    grid_cell_geom GEOGRAPHY(POINT),  -- Point geometry for grid cell center (PostGIS)
     parameter_value NUMERIC(10, 2),
     source_file VARCHAR(500),
     source_crs VARCHAR(50),
@@ -80,7 +82,7 @@ CREATE TABLE shapefile_boundaries (
     feature_type VARCHAR(50) NOT NULL,  -- 'CWA', 'FireZone', 'MarineZone', 'RiverBasin', 'County'
     feature_name VARCHAR(255),
     feature_identifier VARCHAR(100),
-    boundary_geom TEXT,  -- Polygon geometry
+    boundary_geom GEOGRAPHY,  -- Polygon geometry (PostGIS)
     source_shapefile VARCHAR(500),
     source_crs VARCHAR(50),
     target_crs VARCHAR(50),
@@ -96,9 +98,7 @@ CREATE TABLE shapefile_boundaries (
 );
 
 -- Real-Time Weather Observations Table
--- Stores point observations from NWS API
-CREATE TABLE weather_observations (
-    observation_id VARCHAR(255) PR
+-- Stores point observations from NWS
 -- ...
 ```
 
@@ -150,20 +150,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses multiple nested CTEs to extract and filter forecast parameters from grib2_forecasts, spatially joins with shapefile_boundaries (ST_Contains, ST_Intersects), aggregates by region and time, computes mean/median/quartiles for temperature/precipitation/wind, and applies window functions for rolling averages and comparative metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "gf",
-    "grib2_forecasts",
-    "forecast_parameter_cohorts",
-    "shapefile_boundaries",
-    "spatial_boundary_matching",
-    "weather_observations",
-    "weather_stations",
-    "boundary_forecast_aggregations",
-    "observation_forecast_comparison",
-    "forecast_accuracy_metrics",
-    "temporal_forecast_analysis",
-    "final_forecast_analytics"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns spatial weather forecast metrics aggregated across geographic boundaries with nested analytical layers.",
   "normal_query": "The query returns spatial weather forecast metrics aggregated across geographic boundaries with nested analytical layers."
@@ -183,16 +170,7 @@ Target distribution across 30 queries:
   "evidence": "The query employs a recursive CTE with shapefile_boundaries as anchor, recursively joins boundaries using ST_Contains/ST_Within for parent-child relationships, tracks hierarchy depth and path, accumulates area/perimeter metadata, applies window functions for cumulative statistics, and aggregates weather station counts per level.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shapefile_boundaries",
-    "boundary_spatial_hierarchy",
-    "hierarchy_metrics",
-    "shortest_paths",
-    "path_optimization",
-    "grib2_forecasts",
-    "forecast_boundary_aggregations",
-    "final_hierarchy_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns hierarchical spatial relationships traversing from parent to child boundaries across multiple administrative levels.",
   "normal_query": "The query returns hierarchical spatial relationships traversing from parent to child boundaries across multiple administrative levels."
@@ -212,18 +190,7 @@ Target distribution across 30 queries:
   "evidence": "The query creates CTEs to pivot weather parameters into separate columns, performs temporal alignment with common time windows, computes correlation coefficients between parameter pairs across rolling windows, applies LAG/LEAD for temporal sequences and phase relationships.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "grib2_forecasts",
-    "parameter_time_series",
-    "all",
-    "temperature_series",
-    "precipitation_series",
-    "windspeed_series",
-    "multi_parameter_join",
-    "temporal_lag_analysis",
-    "correlation_calculations",
-    "pattern_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns correlation coefficients and temporal pattern metrics across different weather parameters.",
   "normal_query": "The query returns correlation coefficients and temporal pattern metrics across different weather parameters."
@@ -243,20 +210,7 @@ Target distribution across 30 queries:
   "evidence": "The query creates CTEs to analyze spatial join cardinality (forecast points per boundary, boundaries per cell), measures join selectivity, evaluates spatial index effectiveness, groups by boundary complexity and forecast resolution, applies window functions to rank boundaries by processing time.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "metrics",
-    "efficiency",
-    "spatial_join_results",
-    "spatial_join_base_metrics",
-    "shapefile_boundaries",
-    "grib2_forecasts",
-    "type",
-    "boundary_forecast_join_analysis",
-    "spatial_relationship_analysis",
-    "strategy",
-    "join_optimization_scoring",
-    "final_join_optimization"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns performance metrics and matching statistics for spatial join operations between boundaries and forecast data.",
   "normal_query": "The query returns performance metrics and matching statistics for spatial join operations between boundaries and forecast data."
@@ -276,18 +230,7 @@ Target distribution across 30 queries:
   "evidence": "The query creates CTEs to calculate Voronoi/buffer zones around weather_stations, spatially joins with shapefile_boundaries to identify insufficient-density regions, computes coverage statistics (percentage covered, station density, average distance to nearest station).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "weather_observations",
-    "weather_stations",
-    "station_coverage_base",
-    "station_density_analysis",
-    "coverage_gap_analysis",
-    "shapefile_boundaries",
-    "boundary_coverage_analysis",
-    "grib2_forecasts",
-    "interpolation_opportunity_analysis",
-    "final_coverage_report"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns weather station coverage metrics, identifies spatial gaps in observation networks, and suggests optimal locations for new stations.",
   "normal_query": "The query returns weather station coverage metrics, identifies spatial gaps in observation networks, and suggests optimal locations for new stations."
@@ -307,18 +250,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins grib2_forecasts with weather_stations, groups by time period and forecast parameter, calculates error metrics (MAE, RMSE, bias), applies window functions for rolling accuracy and period-over-period comparison, handles NULLs via LEFT JOINs.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "gf",
-    "grib2_forecasts",
-    "weather_observations",
-    "forecast_observation_pairs",
-    "temporal_error_aggregation",
-    "trend_analysis",
-    "error_pattern_detection",
-    "seasonal_error_analysis",
-    "accuracy_classification",
-    "final_accuracy_trends"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns forecast accuracy trends with temporal error pattern detection.",
   "normal_query": "Display forecast accuracy trends with temporal error pattern detection"
@@ -338,15 +270,7 @@ Target distribution across 30 queries:
   "evidence": "The query performs spatial joins between grib2_forecasts and shapefile_boundaries using geographic intersection, groups by boundary hierarchy levels, computes aggregate statistics (mean, min, max, stddev), applies quartile calculations and window functions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "grib2_forecasts",
-    "shapefile_boundaries",
-    "forecast_boundary_matching",
-    "boundary_forecast_aggregation",
-    "temporal_aggregation",
-    "statistical_summary",
-    "final_aggregation_report"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns boundary-level forecast aggregations with multi-level spatial summarization.",
   "normal_query": "Show boundary-level forecast aggregations with multi-level spatial summarization"
@@ -366,15 +290,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins grib2_forecasts with weather_stations by matching grid points to nearest stations and forecast times to observation timestamps, groups by station/parameter/period, calculates absolute error, percentage error, hit rates, skill scores, applies window functions for station-specific baselines.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "weather_observations",
-    "grib2_forecasts",
-    "observation_forecast_matching",
-    "validation_metrics",
-    "station_validation_summary",
-    "validation_scoring",
-    "final_validation_report"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns observation-based forecast validation with accuracy scoring.",
   "normal_query": "Show observation-based forecast validation with accuracy scoring"
@@ -394,13 +310,7 @@ Target distribution across 30 queries:
   "evidence": "The query performs self-joins on shapefile_boundaries using spatial intersection functions, groups by boundary type pairs and regions, calculates overlap areas and percentages, uses window functions to rank boundaries by coverage.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shapefile_boundaries",
-    "boundary_pairs",
-    "intersection_analysis",
-    "overlap_metrics",
-    "final_intersection_report"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns multi-boundary spatial intersection analysis with overlap detection.",
   "normal_query": "Show multi-boundary spatial intersection analysis with overlap detection"
@@ -420,15 +330,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups grib2_forecasts by parameter, spatial boundary (from shapefile_boundaries), and time period, computes mean/median/stddev/min/max/coefficient of variation, calculates quartiles and percentiles for distribution shape.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "grib2_forecasts",
-    "parameter_distribution_base",
-    "parameter_statistics",
-    "distribution_metrics",
-    "outlier_detection",
-    "outlier_summary",
-    "final_distribution_report"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns forecast parameter distribution analysis with statistical profiling.",
   "normal_query": "Show forecast parameter distribution analysis with statistical profiling"
@@ -448,15 +350,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins forecast grid data with boundaries and station observations, groups by region and parameter, computes spatial interpolation metrics using neighboring points, calculates gradient magnitudes via window functions comparing adjacent cells, applies quartile analysis for high-gradient areas.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "grib2_forecasts",
-    "spatial_forecast_grid",
-    "nearest_neighbor_analysis",
-    "spatial_gradient_calculation",
-    "interpolation_quality_metrics",
-    "spatial_pattern_analysis",
-    "final_interpolation_report"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns interpolated forecast values with detected spatial gradients across geographic boundaries.",
   "normal_query": "Analysis showing interpolated forecast values with detected spatial gradients across geographic boundaries"
@@ -476,16 +370,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates forecast parameters by region and time, employs multi-dimensional clustering on temperature/precipitation/pressure, uses window functions for temporal persistence (rolling averages, LAG comparisons), identifies spatial coherence via correlation between adjacent regions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "grib2_forecasts",
-    "multi_parameter_forecast",
-    "pattern_feature_extraction",
-    "spatial_temporal_clustering",
-    "cluster_metrics",
-    "pattern",
-    "pattern_anomaly_detection",
-    "final_pattern_report"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns clustered weather patterns with spatial and temporal pattern detection metrics.",
   "normal_query": "Clustered weather patterns with spatial and temporal pattern detection metrics"
@@ -505,17 +390,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins forecast data from multiple models with observations, groups by model/parameter/region/lead time, computes bias/MAE/RMSE, uses window functions for rolling accuracy and model ranking, applies quartile analysis for consistency.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "source",
-    "grib2_forecasts",
-    "forecast_model_identification",
-    "weather_observations",
-    "observation_forecast_matching",
-    "model_performance_metrics",
-    "model_comparison_analysis",
-    "model_performance_scoring",
-    "final_model_comparison"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns comparative performance metrics across multiple forecast models.",
   "normal_query": "Comparative performance metrics across multiple forecast models"
@@ -535,18 +410,7 @@ Target distribution across 30 queries:
   "evidence": "The query spatially joins forecast grid points with boundary polygons for edge regions, groups by boundary and parameter, computes mean/stddev/interquartile ranges, applies window functions for z-scores and modified z-scores for anomaly detection.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shapefile_boundaries",
-    "grib2_forecasts",
-    "boundary_forecast_aggregation",
-    "moving",
-    "previous",
-    "temporal_statistics",
-    "anomaly_detection_metrics",
-    "outlier_classification",
-    "anomaly_severity_scoring",
-    "final_anomaly_report"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns detected forecast anomalies at geographic boundaries with statistical outlier classification.",
   "normal_query": "Detected forecast anomalies at geographic boundaries with statistical outlier classification"
@@ -566,21 +430,7 @@ Target distribution across 30 queries:
   "evidence": "The query filters forecasts to 7-14 day lead time, joins with insured boundaries and weather_stations, groups by region/forecast date/risk parameter, computes max values, accumulation totals, and probability of threshold exceedance.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "forecasts",
-    "insurance_policy_areas",
-    "forecast_period",
-    "shapefile_boundaries",
-    "grib2_forecasts",
-    "policy_area_forecasts",
-    "forecast_statistics",
-    "precipitation_risk_calculation",
-    "temperature_risk_calculation",
-    "wind_risk_calculation",
-    "flood_risk_calculation",
-    "combined_risk_factors",
-    "risk_category_assignment"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns insurance risk factor calculations derived from medium-range forecasts.",
   "normal_query": "Insurance risk factor calculations derived from medium-range forecasts"
@@ -600,18 +450,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins forecast data with boundaries and observations, groups by region and risk parameters, calculates aggregate risk scores using quartile distributions, applies window functions for rolling risk trends and comparative metrics, handles NULLs in spatial joins.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "query",
-    "insurance_risk_factors",
-    "insurance_policy_areas",
-    "risk_factors_base",
-    "base_rate_calculation",
-    "risk_component_calculation",
-    "rate_tier_assignment",
-    "risk_adjusted_rate_calculation",
-    "confidence_calculation",
-    "final_rate_table"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns insurance rate tables derived from forecast risk factors.",
   "normal_query": "The query returns insurance rate tables derived from forecast risk factors"
@@ -631,16 +470,7 @@ Target distribution across 30 queries:
   "evidence": "The query constructs five CTEs: forecast_period, forecast_rate_mapping_data (joins forecast_rate_mapping, grib2_forecasts, insurance_rate_tables), parameter_impact_aggregation, parameter_contribution_analysis (window functions for contribution_percentage), parameter_ranking (ROW_NUMBER for impact/contribution rank). Output includes impact_classification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "insurance_rate_tables",
-    "rate_tables_by_day",
-    "rates_by_forecast_day",
-    "previous",
-    "rate_statistics",
-    "rate_trend_analysis",
-    "optimal_rate_selection",
-    "recommended_rates"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns comparative analysis of rate tables across different forecast time horizons.",
   "normal_query": "The query returns comparative analysis of rate tables across different forecast time horizons"
@@ -660,16 +490,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins ensemble forecast data with historical claim rates, groups by region and forecast day, computes ensemble spread metrics (stddev, IQR), applies window functions for day-over-day spread changes and 7-day rolling averages, uses quartile analysis for reliability segmentation.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "insurance_claims_history",
-    "insurance_risk_factors",
-    "historical_claims",
-    "forecast_risk_factors",
-    "claims_risk_matching",
-    "claims_risk_analysis",
-    "accuracy_statistics",
-    "forecast_improvement_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns validation analysis comparing actual claims to predicted risk factors.",
   "normal_query": "The query returns validation analysis comparing actual claims to predicted risk factors"
@@ -689,15 +510,7 @@ Target distribution across 30 queries:
   "evidence": "The query compares insurance_rate_tables across forecast days 7-14, groups by policy_area/policy_type/coverage_type, computes rate volatility and confidence metrics, applies window functions for cross-day comparison, produces recommendation_status.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "insurance_rate_tables",
-    "rate_data",
-    "rate_volatility_calculation",
-    "previous",
-    "rate_stability_metrics",
-    "cross_day_volatility",
-    "stability_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns volatility and stability metrics for insurance rates.",
   "normal_query": "The query returns volatility and stability metrics for insurance rates"
@@ -717,15 +530,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses five CTEs: forecast_period, forecast_rate_mapping_data, parameter_impact_aggregation, parameter_contribution_analysis (CASE for contribution_percentage, impact_percentage_of_base_rate), parameter_ranking (ROW_NUMBER for parameter_impact_rank, parameter_contribution_rank). Output includes impact_classification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "insurance_risk_factors",
-    "insurance_policy_areas",
-    "policy_area_risk_aggregation",
-    "policy_area_summary",
-    "type",
-    "risk_ranking_calculation",
-    "comparative_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns risk rankings and comparative analysis across policy areas.",
   "normal_query": "The query returns risk rankings and comparative analysis across policy areas"
@@ -745,15 +550,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins grib2_forecasts with weather_stations and shapefile_boundaries, groups by region/forecast horizon/parameter, computes forecast error rates, correlates with rate changes, applies window functions for rolling 30-day accuracy, uses quartile analysis for forecast-to-rate sensitivity.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "forecast_rate_mapping",
-    "grib2_forecasts",
-    "insurance_rate_tables",
-    "forecast_rate_mapping_data",
-    "parameter_impact_aggregation",
-    "parameter_contribution_analysis",
-    "parameter_ranking"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns the relationship between forecast accuracy and insurance rate adjustments.",
   "normal_query": "Analysis showing the relationship between forecast accuracy and insurance rate adjustments"
@@ -773,13 +570,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses five CTEs: rate_ensemble_data, ensemble_statistics (PERCENTILE_CONT for quartiles, STDDEV, VARIANCE), ensemble_consensus_calculation (consensus_rate, confidence_interval, IQR, coefficient_of_variation), ensemble_quality_assessment (ensemble_quality_score, ensemble_reliability).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "insurance_rate_tables",
-    "rate_ensemble_data",
-    "ensemble_statistics",
-    "ensemble_consensus_calculation",
-    "ensemble_quality_assessment"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns ensemble forecast statistics across multiple forecast days with rate correlation metrics.",
   "normal_query": "Ensemble forecast statistics across multiple forecast days with rate correlation metrics"
@@ -799,17 +590,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses six CTEs: forecast_day_metrics, forecast_day_scoring (confidence_score, stability_score, accuracy_score, planning_horizon_score), optimization_scoring (weighted overall_optimization_score), forecast_day_ranking (ROW_NUMBER, PERCENT_RANK), recommendation_generation (recommendation_status, recommendation_justification).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "claims",
-    "insurance_claims_history",
-    "insurance_rate_tables",
-    "historical",
-    "forecast_day_metrics",
-    "forecast_day_scoring",
-    "optimization_scoring",
-    "forecast_day_ranking",
-    "recommendation_generation"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns optimal forecast day selection analysis based on accuracy and rate prediction performance.",
   "normal_query": "Optimal forecast day selection analysis based on accuracy and rate prediction performance"
@@ -829,19 +610,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses seven CTEs: risk_factors_summary, rate_tables_summary, rate_comparison_summary, claims_validation_summary, comprehensive_summary (FULL OUTER JOINs), dashboard_metrics (risk_category, rate_stability, overall_status CASE expressions).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "insurance_risk_factors",
-    "insurance_rate_tables",
-    "rate_table_comparison",
-    "insurance_claims_history",
-    "risk_factors_summary",
-    "rate_tables_summary",
-    "rate_comparison_summary",
-    "claims_validation_summary",
-    "insurance_policy_areas",
-    "comprehensive_summary",
-    "dashboard_metrics"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a comprehensive overview of rate modeling metrics, forecast performance, and regional analysis.",
   "normal_query": "Comprehensive overview of all rate modeling metrics, forecast performance, and regional analysis"
@@ -861,18 +630,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses eight CTEs: us_spatial_bounds, active_nexrad_sites, recent_nexrad_scans, nexrad_reflectivity_data (ST_DISTANCE, quality_weight, distance_weight), us_grid_cells, grid_nexrad_matching (ST_DWITHIN), weighted_reflectivity_calculation (inverse distance weighting), final_composite_reflectivity (precipitation_intensity, coverage_quality).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "nexrad_radar_sites",
-    "nexrad_level2_data",
-    "active_nexrad_sites",
-    "radar",
-    "recent_nexrad_scans",
-    "us_grid_cells",
-    "nexrad_reflectivity_data",
-    "grid_nexrad_matching",
-    "weighted_reflectivity_calculation",
-    "final_composite_reflectivity"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a US-wide NEXRAD reflectivity composite with maximum reflectivity values across radar sites.",
   "normal_query": "US-wide NEXRAD reflectivity composite showing maximum reflectivity values across all radar sites"
@@ -892,17 +650,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses seven CTEs: time_window, storm_cells_by_scan (ROW_NUMBER for scan_number), storm_cell_movement (ST_DISTANCE, movement_speed_kmh, movement_direction_deg via ATAN2/DEGREES), storm_cell_association (association_confidence), storm_track_aggregation, storm_development_analysis (development_trend, severity_classification), predicted_storm_path (ST_TRANSLATE for 1h/2h predictions).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "nexrad_storm_cells",
-    "time_window",
-    "north",
-    "storm_cells_by_scan",
-    "storm_cell_movement",
-    "storm_cell_association",
-    "storm_track_aggregation",
-    "storm_development_analysis",
-    "predicted_storm_path"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns storm cell tracking and movement analysis metrics from NEXRAD radar observations.",
   "normal_query": "Return storm cell tracking and movement analysis metrics derived from NEXRAD radar observations"
@@ -922,17 +670,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses eight CTEs: us_spatial_bounds, active_satellite_sources, recent_satellite_scans, satellite_cloud_data, us_grid_cells, grid_satellite_matching (ST_DWITHIN), cloud_property_aggregation (cloud_top_height, cloud_phase, optical_depth), final_cloud_composite (dominant_cloud_phase, cloud_height_classification, cloud_thickness_classification).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "satellite_imagery_sources",
-    "satellite_imagery_products",
-    "active_satellite_sources",
-    "recent_satellite_scans",
-    "us_grid_cells",
-    "satellite_cloud_data",
-    "grid_satellite_matching",
-    "cloud_property_aggregation",
-    "final_cloud_composite"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns a composite cloud coverage visualization across the United States from satellite imagery.",
   "normal_query": "Return a composite cloud coverage visualization across the United States using satellite imagery"
@@ -952,19 +690,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses eight CTEs: us_spatial_bounds, recent_nexrad_precipitation, recent_satellite_precipitation, us_precipitation_grid, grid_nexrad_matching, grid_satellite_matching, fused_precipitation_calculation (FULL OUTER JOIN), final_fused_precipitation (weighted combination by quality weights, precipitation_intensity).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "radar",
-    "nexrad_reflectivity_grid",
-    "nexrad_radar_sites",
-    "satellite_imagery_products",
-    "us_precipitation_grid",
-    "recent_nexrad_precipitation",
-    "recent_satellite_precipitation",
-    "grid_nexrad_matching",
-    "grid_satellite_matching",
-    "fused_precipitation_calculation",
-    "final_fused_precipitation"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns fused precipitation estimates from NEXRAD radar and satellite observations.",
   "normal_query": "Return fused precipitation estimates derived from both NEXRAD radar and satellite observations"
@@ -984,15 +710,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses five CTEs: us_spatial_bounds, recent_fire_detections, fire_clustering (ROW_NUMBER for cluster_id), fire_cluster_aggregation (ST_MAKEPOINT for cluster_center_geom, SUM fire_power_mw), fire_intensity_classification (fire_intensity_classification, fire_status).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "satellite",
-    "satellite_imagery_products",
-    "satellite_imagery_sources",
-    "recent_fire_detections",
-    "fire_clustering",
-    "fire_cluster_aggregation",
-    "fire_intensity_classification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns satellite-detected fire hotspots and monitoring statistics across US regions.",
   "normal_query": "Return satellite-detected fire hotspots and monitoring statistics across all US regions"
@@ -1012,16 +730,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses four CTEs: us_spatial_bounds, recent_nexrad_data, recent_satellite_data, us_composite_grid, grid_data_matching (LEFT JOIN with ST_DWITHIN, AVG for reflectivity/precipitation), composite_calculation (weighted fusion: 0.6 NEXRAD + 0.4 satellite for precipitation, data_source classification).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "nexrad_reflectivity_grid",
-    "nexrad_radar_sites",
-    "satellite_imagery_products",
-    "us_composite_grid",
-    "recent_nexrad_data",
-    "recent_satellite_data",
-    "grid_data_matching",
-    "composite_calculation"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "The query returns an integrated weather composite merging NEXRAD radar and satellite observations across the United States.",
   "normal_query": "Return an integrated weather composite product merging NEXRAD radar and satellite observations across the United States"

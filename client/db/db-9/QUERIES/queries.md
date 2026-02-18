@@ -52,7 +52,7 @@ Shipping intelligence databases represent high-value domains for text-to-SQL bec
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:05
 -- Database: db-9
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -74,8 +74,8 @@ CREATE TABLE shipping_carriers (
     commercial_pricing_available BOOLEAN DEFAULT FALSE,
     requires_account BOOLEAN DEFAULT FALSE,
     active_status BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Shipping Zones Table
@@ -92,7 +92,7 @@ CREATE TABLE shipping_zones (
     transit_days_max INTEGER,
     effective_date DATE NOT NULL,
     expiration_date DATE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (carrier_id) REFERENCES shipping_carriers(carrier_id)
 );
 
@@ -101,7 +101,7 @@ CREATE TABLE shipping_zones (
 CREATE TABLE shipping_service_types (
     service_id VARCHAR(255) PRIMARY KEY,
     carrier_id VARCHAR(50) NOT NULL,
-    service_code VA
+    service_code VARCHAR(
 -- ...
 ```
 
@@ -164,18 +164,7 @@ Target distribution across 30 queries:
   "evidence": "The query constructs five CTEs: package_dimensions (billable weight, DIM divisor 166), zone_lookup (origin-destination zone), carrier_service_options (CROSS JOIN carriers and services), rate_calculations (subquery for MIN rate by weight), rate_rankings (ROW_NUMBER for cheapest/fastest). Output includes rate_rank, speed_rank, cost_difference_from_cheapest, cost_premium_percentage.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "packages",
-    "shipping_zones",
-    "shipping_carriers",
-    "shipping_service_types",
-    "zone_lookup",
-    "shipping_rates",
-    "carrier_service_options",
-    "package_dimensions",
-    "rate_calculations",
-    "rate_rankings"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Rate comparison results showing cheapest carrier, fastest carrier, cost savings potential, and detailed rate breakdowns for all available options.",
   "normal_query": "Rate comparison results showing the cheapest carrier option, fastest delivery carrier, potential cost savings, and detailed rate breakdowns across all available shipping options."
@@ -195,15 +184,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses WITH RECURSIVE zone_hierarchy to traverse zone relationships, zone_statistics for aggregate transit metrics, carrier_zone_performance for carrier-by-zone analysis, zone_rankings with ROW_NUMBER and PERCENT_RANK. LATERAL join selects best carrier per zone. Output includes speed_category, consistency_category.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipping_zones",
-    "zone_hierarchy",
-    "shipping_carriers",
-    "zone_statistics",
-    "zone_rankings",
-    "lateral",
-    "carrier_zone_performance"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Zone analysis results showing zone distributions, average transit times by zone, geographic shipping patterns, and optimization recommendations.",
   "normal_query": "Zone analysis results displaying zone-level distribution statistics, average transit times by shipping zone, geographic shipping pattern trends, and actionable optimization recommendations."
@@ -223,18 +204,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds six CTEs: tracking_event_sequence (ROW_NUMBER, LAG, LEAD for event order), event_time_intervals (EXTRACT EPOCH for hours between events), shipment_progress_analysis (MAX CASE for milestone timestamps), historical_delivery_patterns (PERCENTILE_CONT for p95), delivery_prediction (CASE for predicted date), anomaly_detection (delay and anomaly flags).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "tracking_events",
-    "shipments",
-    "tracking_event_sequence",
-    "event_time_intervals",
-    "shipment_progress_analysis",
-    "historical_delivery_patterns",
-    "delivery_prediction",
-    "anomaly_detection",
-    "shipping_carriers",
-    "shipping_service_types"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Tracking analytics showing delivery predictions, event patterns, anomaly detection results, and carrier performance metrics.",
   "normal_query": "Tracking analytics results presenting delivery time predictions, shipping event pattern analysis, anomaly detection findings, and comprehensive carrier performance metrics."
@@ -254,14 +224,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds four CTEs: address_validation_comparison (CASE for address_was_corrected and correction_type), validation_statistics (GROUP BY date, COUNT by status), correction_pattern_analysis (GROUP BY correction_type), validation_quality_metrics (success_rate, dpv_rate, invalid_rate). LATERAL join for most_common_correction_type.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "address_validation_results",
-    "address_validation_comparison",
-    "validation_statistics",
-    "validation_quality_metrics",
-    "lateral",
-    "correction_pattern_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Address validation analytics showing validation rates, correction patterns, quality metrics, and recommendations for improving address accuracy.",
   "normal_query": "Address validation analytics displaying validation success rates, address correction pattern analysis, data quality metrics, and specific recommendations for improving address accuracy across the shipping network."
@@ -281,17 +244,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs: shipment_cost_details, daily_cost_summary (GROUP BY date/carrier/service), carrier_performance_metrics (delivery_success_rate, exception_rate), service_performance_metrics, cost_optimization_opportunities (subquery for alternative_min_rate). Uses ROW_NUMBER for revenue_rank, performance_rank, cost_efficiency_rank.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "shipment_cost_details",
-    "daily_cost_summary",
-    "shipping_carriers",
-    "shipping_service_types",
-    "shipping_rates",
-    "carrier_performance_metrics",
-    "cost_optimization_opportunities"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Shipping cost analytics showing revenue metrics, cost breakdowns, carrier performance comparisons, and optimization recommendations.",
   "normal_query": "Shipping cost analytics presenting revenue metrics, detailed cost breakdowns by component, carrier-to-carrier performance comparisons, and specific optimization recommendations for reducing shipping expenses."
@@ -311,15 +264,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds three CTEs: preset_usage_analysis (JOIN bulk_shipping_presets with shipments, AVG actual vs default), preset_cost_analysis (subquery for optimized_rate, potential_savings_per_shipment), preset_recommendations (CASE for optimization_recommendation). ROW_NUMBER for savings_rank.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "bulk_shipping_presets",
-    "shipments",
-    "packages",
-    "shipping_rates",
-    "preset_usage_analysis",
-    "preset_cost_analysis",
-    "preset_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Bulk shipping preset optimization results showing recommended configurations, cost savings potential, and usage patterns.",
   "normal_query": "Bulk shipping preset optimization analysis showing recommended preset configurations, potential cost savings, weight distribution patterns, and usage frequency across shipment types."
@@ -339,15 +284,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs: international_shipment_details (JOIN international_customs, shipments, packages), customs_value_analysis (PERCENTILE_CONT for median, p95), duty_rate_analysis (GROUP BY country, hs_tariff_code), customs_clearance_performance (clearance_success_rate), customs_optimization_opportunities (deviation_from_avg, cost_category).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "international_customs",
-    "shipments",
-    "packages",
-    "international_shipment_details",
-    "customs_value_analysis",
-    "customs_clearance_performance",
-    "customs_optimization_opportunities"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "International customs analysis showing duty amounts, tax calculations, optimization opportunities, and clearance success rates.",
   "normal_query": "International customs compliance analysis displaying duty amounts, tax calculations, clearance success rates, and optimization opportunities for international shipments."
@@ -367,16 +304,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs: adjustment_details (JOIN shipping_adjustments, shipments, packages), adjustment_statistics (PERCENTILE_CONT for median, p95), carrier_adjustment_patterns, discrepancy_analysis (CASE for discrepancy_category, impact_level), cost_recovery_opportunities. Note: cost_recovery_opportunities references adjustment_status which is in adjustment_details; JOIN may use discrepancy_analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipping_adjustments",
-    "shipments",
-    "packages",
-    "adjustment_details",
-    "shipping_carriers",
-    "discrepancy_analysis",
-    "adjustment_statistics",
-    "cost_recovery_opportunities"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Shipping adjustment analysis showing adjustment types, discrepancy patterns, cost recovery opportunities, and prevention recommendations.",
   "normal_query": "Shipping adjustment and discrepancy analysis showing adjustment types, pattern detection, root cause identification, cost recovery opportunities, and prevention recommendations."
@@ -396,17 +324,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds five CTEs: api_request_details, api_performance_metrics (PERCENTILE_CONT for p50, p95, p99), hourly_performance_patterns, error_pattern_analysis (GROUP BY error_message), optimization_recommendations (CASE for recommendation). LATERAL joins for peak_error_hour and most_common_error.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "arl",
-    "api_rate_request_log",
-    "shipping_carriers",
-    "api_request_details",
-    "api_performance_metrics",
-    "optimization_recommendations",
-    "lateral",
-    "hourly_performance_patterns",
-    "error_pattern_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "API performance analysis showing response times, error rates, optimization opportunities, and performance recommendations.",
   "normal_query": "API performance monitoring analysis displaying response times, error rates, throughput metrics, bottleneck identification, and optimization recommendations for rate request APIs."
@@ -426,18 +344,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds six CTEs: daily_shipment_summary, revenue_trend_analysis (LAG for previous_day, week_ago, month_ago; AVG OVER ROWS BETWEEN for 7-day and 30-day), carrier_performance_summary, service_performance_summary, revenue_growth_metrics (day_over_day, week_over_week, month_over_month), dashboard_summary (scalar subqueries for top_carrier, top_service).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "daily_shipment_summary",
-    "shipping_carriers",
-    "shipping_service_types",
-    "revenue_trend_analysis",
-    "carrier_performance_summary",
-    "service_performance_summary",
-    "revenue_growth_metrics",
-    "dashboard_summary"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Shipping analytics dashboard showing revenue trends, shipment volumes, performance metrics, and business intelligence insights.",
   "normal_query": "Executive shipping analytics dashboard displaying revenue trends, shipment volume analysis, carrier performance metrics, cost efficiency indicators, and key business intelligence insights."
@@ -457,15 +364,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds four CTEs: package_dimension_analysis (dimensional_weight_lbs = L\u00d7W\u00d7H/166, billable_weight_lbs), dimensional_weight_impact (subqueries for cost_at_actual_weight, cost_at_billable_weight), optimization_opportunities (optimization_category), package_configuration_recommendations (SQRT/POWER for recommended_max_dimension). ROW_NUMBER for optimization_priority_rank.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "packages",
-    "shipping_rates",
-    "package_dimension_analysis",
-    "shipments",
-    "dimensional_weight_impact",
-    "optimization_opportunities",
-    "package_configuration_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Dimensional weight optimization results showing recommended package configurations and cost savings potential.",
   "normal_query": "Show dimensional weight optimization results with recommended package configurations and potential cost savings."
@@ -485,14 +384,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses WITH RECURSIVE zone_coverage_map to expand coverage to adjacent zones, zip_prefix_coverage (GROUP BY origin/destination prefix), coverage_gaps (CASE for coverage_category), carrier_coverage_comparison (STRING_AGG, has_good_coverage, has_no_coverage). Window functions for destination_count_for_origin.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipping_zones",
-    "zone_coverage_map",
-    "zip_prefix_coverage",
-    "coverage_gaps",
-    "shipping_carriers",
-    "carrier_coverage_comparison"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Zone coverage analysis showing coverage gaps, optimization opportunities, and route recommendations.",
   "normal_query": "Display zone coverage analysis highlighting coverage gaps, optimization opportunities, and recommended route expansions."
@@ -512,16 +404,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates shipping costs by carrier and route over time, calculates volatility (STDDEV, coefficient of variation), uses LAG and ROWS BETWEEN for rolling averages and period-over-period changes, identifies seasonal patterns, PERCENTILE_CONT for quartiles. Handles NULL in historical rate data.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipping_rates",
-    "rate_history_analysis",
-    "rate_changes",
-    "volatility_metrics",
-    "trend_analysis",
-    "shipping_carriers",
-    "shipping_service_types",
-    "rate_prediction"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Rate volatility analysis showing price trends, volatility metrics, and optimization recommendations.",
   "normal_query": "Present rate volatility analysis showing historical price trends, volatility metrics, and cost optimization recommendations."
@@ -541,16 +424,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins shipments with carriers and routes, groups by carrier and service level, calculates delivery time metrics (AVG, PERCENTILE_CONT), computes on-time delivery rates against SLA, uses ROW_NUMBER and window functions for ranking and rolling performance trends.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "shipping_zones",
-    "shipment_delivery_metrics",
-    "carrier_service_performance",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_rankings",
-    "performance_categories"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Carrier service performance comparison showing delivery times, success rates, and reliability metrics.",
   "normal_query": "Show carrier service performance comparison with delivery time breakdowns, success rates, and reliability metrics."
@@ -570,16 +444,7 @@ Target distribution across 30 queries:
   "evidence": "The query evaluates alternative routes between origin-destination pairs, groups shipments by route, calculates total costs and average transit times, cost-per-day metrics, uses window functions for efficiency scores combining cost and time, identifies Pareto-optimal routes, PERCENTILE_CONT for quartiles.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Route optimization results showing optimal routes, cost-time trade-offs, and efficiency metrics.",
   "normal_query": "Display route optimization results showing optimal route selections, cost versus time trade-offs, and overall efficiency metrics."
@@ -599,16 +464,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins shipment and cost tables, groups by cost component type and carrier, computes aggregate totals and percentages, uses window functions for running totals and period comparisons, PERCENTILE_CONT for quartile analysis. Handles NULL in optional cost fields.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Cost breakdown analysis showing component costs, cost attribution, and optimization recommendations.",
   "normal_query": "Provide a comprehensive cost breakdown analysis that shows individual component costs, their attribution to total shipping expenses, and identifies optimization opportunities."
@@ -628,16 +484,7 @@ Target distribution across 30 queries:
   "evidence": "The query analyzes tracking event sequences, groups by shipment and carrier, computes event timing and frequency aggregates, uses LAG/LEAD for rolling averages and deviation patterns, identifies anomaly flags based on event gaps or exception counts.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Tracking pattern analysis showing normal patterns, detected anomalies, and predictive insights.",
   "normal_query": "Analyze tracking event patterns to establish baseline behavior, detect anomalies that deviate from normal patterns, and provide predictive insights for potential issues."
@@ -657,16 +504,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins address validation results with shipment outcomes, groups by validation status and correction type, computes success rates and correction impact on delivery, uses window functions for trend analysis. Handles NULL for optional validation fields.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Address validation quality metrics showing accuracy rates, correction impact, and quality trends.",
   "normal_query": "Evaluate address validation quality by measuring accuracy rates, analyzing the impact of address corrections on successful deliveries, and tracking quality improvement trends over time."
@@ -686,16 +524,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins international shipments with customs and route data, groups by origin-destination country pairs, computes cost and transit time aggregates, factors in customs clearance days and duty amounts, uses window functions for route ranking and trade-off analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "International route analysis showing optimal routes, customs considerations, and cost-time trade-offs.",
   "normal_query": "Analyze international shipping routes to identify optimal pathways that balance cost and transit time while accounting for customs clearance requirements and complexities."
@@ -715,16 +544,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds a matrix by CROSS JOIN or pivoting carrier rate tables across weight brackets, zones, and service levels. Uses PERCENTILE_CONT or similar for rate distributions. Window functions for comparative rankings across dimensions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Rate comparison matrix showing carrier rates across multiple dimensions and optimal selections.",
   "normal_query": "Build a multi-dimensional carrier rate comparison matrix that displays pricing across carriers, package characteristics, destination zones, and service tiers to identify optimal carrier selections for different scenarios."
@@ -744,16 +564,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins shipments with packages, groups by product category and package size range, calculates volume efficiency ratios (product vs package volume), PERCENTILE_CONT for quartiles, window functions to compare against optimal benchmarks. Aggregates potential savings (actual vs projected cost).",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Package dimension optimization results showing recommended dimensions and cost savings potential.",
   "normal_query": "Show package dimension optimization results with recommended dimensions and potential cost savings."
@@ -773,16 +584,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins shipments with carriers and routes, filters for completed deliveries, groups by shipping zone and carrier, calculates average actual vs expected transit times, variance metrics, window functions for rolling 30-day averages and carrier ranking within zone.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Zone transit time analysis showing actual vs expected times, reliability metrics, and performance rankings.",
   "normal_query": "Show zone transit time analysis with actual versus expected delivery times, reliability metrics, and carrier performance rankings."
@@ -802,16 +604,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins shipment data with customs declarations and tariff code reference tables, groups by product type, tariff code, and destination country, calculates aggregate duty amounts and average duty rates, compares against alternative tariff codes, window functions for product ranking.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Customs duty optimization results showing tariff code analysis and cost reduction opportunities.",
   "normal_query": "Show customs duty optimization results including tariff code analysis and cost reduction opportunities."
@@ -831,16 +624,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins API request logs with cache performance metrics and carrier cost data, groups by request type, route popularity, and time windows, calculates cache hit rates and miss rates, window functions for trend analysis and cost savings quantification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "API cache optimization results showing hit rates, caching opportunities, and performance improvements.",
   "normal_query": "Show API cache optimization results including cache hit rates, caching opportunities, and performance improvements."
@@ -860,16 +644,7 @@ Target distribution across 30 queries:
   "evidence": "The query extracts historical revenue from shipments and billing, groups by month, carrier, service level, customer segment, calculates YoY and MoM growth rates, applies time-series aggregations for seasonal patterns, uses window functions for trend projection and confidence intervals.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Revenue forecasts showing predicted revenue, confidence intervals, and trend analysis.",
   "normal_query": "Show revenue forecasts including predicted revenue amounts, confidence intervals, and trend analysis."
@@ -889,16 +664,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins shipment data with carrier information and industry benchmark tables, groups by carrier and service type, computes aggregate metrics (avg delivery time, on-time percentage, cost per shipment), PERCENT_RANK for percentile rankings vs industry quartiles. Handles NULL for incomplete data.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Carrier performance benchmarks showing performance relative to industry standards and best practices.",
   "normal_query": "Carrier performance benchmarks comparing actual performance metrics against industry standards and best practices."
@@ -918,16 +684,7 @@ Target distribution across 30 queries:
   "evidence": "The query calculates dimensional weight (L\u00d7W\u00d7H/divisor) per shipment, compares to actual weight, groups by product category and package type, computes cost difference and optimization potential, uses window functions for savings ranking. Identifies shipments charged at DIM weight.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Dimensional weight cost analysis showing cost impact and optimization recommendations.",
   "normal_query": "Dimensional weight cost analysis identifying cost impact of dimensional pricing and providing actionable optimization recommendations."
@@ -947,16 +704,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins routes with shipment performance data, groups by origin-destination and carrier, computes efficiency scores (transit time, fill rate, per-mile cost), uses window functions for performance ranking and optimization opportunity identification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Route efficiency metrics showing efficiency scores, performance rankings, and optimization opportunities.",
   "normal_query": "Route efficiency metrics with calculated efficiency scores, performance rankings across routes, and identification of optimization opportunities."
@@ -976,16 +724,7 @@ Target distribution across 30 queries:
   "evidence": "The query unions or joins rate tables from all carriers, applies carrier-specific pricing logic (base rates, surcharges, volume discounts), uses window functions (MIN, ROW_NUMBER) to identify best rate per shipment scenario while considering service level requirements.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Multi-carrier rate aggregation showing all available rates and best rate selections.",
   "normal_query": "Multi-carrier rate aggregation displaying all available carrier rates with automated best rate selection for each shipping scenario."
@@ -1005,16 +744,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds multiple CTEs (base_data, aggregated_metrics, performance_analysis, optimization_recommendations) joining shipments, packages, carriers, service types. Computes total_revenue, delivery_success_rate, ROW_NUMBER for revenue_rank and cost_rank, CASE for performance_category. Consolidates key metrics into single result set.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "shipments",
-    "packages",
-    "base_data",
-    "aggregated_metrics",
-    "shipping_carriers",
-    "shipping_service_types",
-    "performance_analysis",
-    "optimization_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Comprehensive dashboard showing all key shipping intelligence metrics, trends, and actionable insights.",
   "normal_query": "Comprehensive real-time shipping intelligence dashboard displaying all critical metrics, performance trends, and actionable insights across carriers, costs, and operations."

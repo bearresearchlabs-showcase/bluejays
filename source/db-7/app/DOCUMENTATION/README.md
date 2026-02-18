@@ -105,9 +105,7 @@ PostgreSQL 14+ with PostGIS for geography columns. Disk: 500 MB minimum for spat
 - `voyage_port_calls` — (see data dictionary)
 - `vessel_tracking` — (see data dictionary)
 - `port_statistics` — (see data dictionary)
-- `carrier_performance` — (see data dictionary)
-
----
+- `carrier_performance` — (see data dictionary)---
 
 ## Data Dictionary
 

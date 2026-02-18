@@ -143,9 +143,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `model_pricing_history` — (see data dictionary)
 - `model_performance_history` — (see data dictionary)
 - `data_sources` — (see data dictionary)
-- `pipeline_metadata` — (see data dictionary)
-
----
+- `pipeline_metadata` — (see data dictionary)---
 
 ## Data Dictionary
 

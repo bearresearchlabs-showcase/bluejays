@@ -50,7 +50,7 @@ Job market databases represent high-value domains for text-to-SQL because:
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:05
 -- Database: db-8
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -98,7 +98,7 @@ CREATE TABLE companies (
     company_name_normalized VARCHAR(255), -- Normalized name for matching
     industry VARCHAR(100),
     company_size VARCHAR(50), -- 'startup', 'small', 'medium', 'large', 'enterprise'
-   
+
 -- ...
 ```
 
@@ -154,24 +154,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins user_profiles with job_postings and skills tables, groups results by user and job to calculate multi-dimensional match scores, computes skill overlap percentages and gap analysis, evaluates location and salary compatibility using threshold comparisons, applies window functions to rank recommendations per user based on composite scores, and handles NULL values in optional profile fields.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "user_profiles",
-    "user_skills",
-    "skills",
-    "job_postings",
-    "companies",
-    "job_skills_requirements",
-    "unnest",
-    "user_profile_analysis",
-    "active_job_postings",
-    "user_skills_aggregated",
-    "job_skills_aggregated",
-    "user_job_skill_matching",
-    "location_matching",
-    "salary_matching",
-    "experience_matching",
-    "final_match_scoring"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Ranked list of job recommendations with match scores, skill alignment details, location compatibility, salary match, and recommendation reasons.",
   "normal_query": "Ranked list of personalized job recommendations with composite match scores, detailed skill alignment analysis, location compatibility ratings, salary expectation matching, and explanatory reasons for each recommendation"
@@ -191,19 +174,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses a recursive CTE to traverse the skills hierarchy and identify prerequisite chains, joins user_profiles with job_postings to identify required versus possessed skills, groups by user and skill category to aggregate gap metrics, and applies window functions to sequence learning recommendations.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "skills",
-    "skill_hierarchy",
-    "job_postings",
-    "job_skills_requirements",
-    "unnest",
-    "user_skills",
-    "user_profiles",
-    "target_job_skills",
-    "user_skill_gaps",
-    "missing_skill_dependencies",
-    "learning_path_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Skill gap analysis with missing skills, prerequisite skill chains, learning path recommendations, and estimated time to acquire skills.",
   "normal_query": "Comprehensive skill gap analysis showing missing skills for target roles, prerequisite skill chains and dependencies, prioritized learning path recommendations with sequence ordering, and estimated time investment required to acquire each skill"
@@ -223,20 +194,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates job_postings and applications data by month, location, and skill category using GROUP BY with date functions, calculates period-over-period growth rates using LAG window functions, computes rolling averages and quartile distributions for salary trends, and applies time-series aggregation.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "mt",
-    "market_trends",
-    "market_trend_base",
-    "trend_aggregations",
-    "time_series_analysis",
-    "active",
-    "job_postings",
-    "job_skills_requirements",
-    "skills",
-    "growth_metrics",
-    "skill_demand_projection",
-    "forecast_projections"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Market trend analysis with growth rates, skill demand projections, salary trends, geographic shifts, and competitive metrics.",
   "normal_query": "Comprehensive market trend analysis including month-over-month and year-over-year growth rates, skill demand projections and emerging skills identification, salary trend analysis by role and location, geographic market shifts and hotspot detection, and competitive market metrics"
@@ -256,18 +214,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins applications with user_profiles and job_postings to create cohort segments based on experience level, location, and industry, groups by cohort and application stage to calculate conversion rates at each funnel stage.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ja",
-    "job_applications",
-    "application_cohorts",
-    "application_timeline",
-    "cohort_aggregations",
-    "job_postings",
-    "user_profiles",
-    "conversion_funnel",
-    "cohort_comparison",
-    "success_factor_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Application success rates by cohort, conversion funnel metrics, time-to-response statistics, and success factor correlations.",
   "normal_query": "Application success rates segmented by user cohorts and job categories, conversion funnel metrics showing drop-off at each stage, time-to-response statistics from application submission to employer action, and correlation analysis of factors associated with successful placements"
@@ -287,19 +234,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates job_postings by company to calculate posting volumes and market share percentages, groups applications by company to measure candidate interest and application rates, and applies time-series grouping.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "companies",
-    "job_postings",
-    "job_applications",
-    "job_skills_requirements",
-    "skills",
-    "company_job_metrics",
-    "industry_market_share",
-    "company_application_metrics",
-    "company_skill_demand",
-    "company_competitive_position",
-    "employer_brand_score"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Company competitive analysis with market share, posting trends, application rates, brand metrics, and competitive rankings.",
   "normal_query": "Company competitive analysis showing market share by posting volume and application attraction, job posting trend patterns over time, application rate metrics and candidate interest levels, employer brand strength indicators, and competitive rankings across multiple dimensions"
@@ -319,16 +254,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins user_profiles, job_postings, skills, and applications tables, groups by geographic dimensions (city, state, region), and computes job counts, average salaries, percentiles, remote work percentages, and application-to-job ratios.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "job_applications",
-    "location_job_aggregations",
-    "location_application_metrics",
-    "location_competition_analysis",
-    "state_level_aggregations",
-    "location_attractiveness_scoring",
-    "final_location_ranking"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Geographic market analysis with job density, salary ranges, remote work rates, competition metrics, and location attractiveness scores.",
   "normal_query": "Geographic job market analysis showing job density by location, salary ranges, remote work adoption rates, competition levels, and location attractiveness scores."
@@ -348,16 +274,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins job_postings with skills and related tables, groups by job title, industry, experience level, and company size, and calculates mean, median, percentiles (25th, 50th, 75th, 90th) for salary benchmarking.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "salary_data_normalization",
-    "role_salary_aggregations",
-    "industry_salary_benchmarks",
-    "role_market_positioning",
-    "location_salary_benchmarks",
-    "role_industry_comparison",
-    "role_location_comparison"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Salary benchmarking analysis with percentile rankings, market positioning, salary ranges, and compensation trends.",
   "normal_query": "Salary benchmarking analysis with detailed percentile rankings, market position indicators, compensation ranges by role and industry, and trending patterns."
@@ -377,16 +294,7 @@ Target distribution across 30 queries:
   "evidence": "The query creates cohorts by extracting registration date periods from user_profiles, uses self-joins or window functions to track user activity over subsequent periods, and calculates retention rates and application patterns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "up",
-    "user_profiles",
-    "user_registration_cohorts",
-    "job_applications",
-    "user_application_activity",
-    "cohort_aggregations",
-    "cohort_retention_analysis",
-    "cohort_progression_metrics"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "User cohort analysis with registration cohorts, retention metrics, application patterns, and career progression indicators.",
   "normal_query": "User cohort analysis examining registration cohorts, retention metrics over time, application behavior patterns, and career progression indicators."
@@ -406,20 +314,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates skills from job_postings to measure demand and from user_profiles to measure supply, joins these aggregates to quantify market imbalances, and identifies high-demand skills with low supply.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job",
-    "job_skills_requirements",
-    "skills",
-    "job_postings",
-    "user",
-    "user_skills",
-    "user_profiles",
-    "skill_demand_aggregation",
-    "skill_supply_aggregation",
-    "demand_supply_comparison",
-    "market_imbalance_calculation",
-    "skill_opportunity_scoring"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Skill demand vs supply analysis with market imbalances, skill gap opportunities, and market trend indicators.",
   "normal_query": "Skill demand versus supply analysis identifying market imbalances, skill gap opportunities, high-demand skills, undersupplied competencies, and emerging trend indicators."
@@ -439,15 +334,7 @@ Target distribution across 30 queries:
   "evidence": "The query filters job_postings for federal positions, groups by agency and department, computes pay plan and grade level distributions, and analyzes geographic distribution and hiring trends over time.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "companies",
-    "federal_job_aggregations",
-    "pay_plan_analysis",
-    "grade_level_analysis",
-    "geographic_federal_distribution",
-    "agency_hiring_patterns"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Federal job opportunities analysis with agency patterns, pay plan distributions, grade level trends, and geographic distribution.",
   "normal_query": "Federal job opportunities analysis covering agency hiring patterns, pay plan distributions (GS, FP, etc.), grade level trends, geographic distribution of positions, and department intelligence."
@@ -467,17 +354,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins user_profiles with applications and job_postings to track search sessions, groups by search criteria and user segments, computes engagement metrics and conversion rates, and applies window functions for rolling search trends.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ujsh",
-    "user_job_search_history",
-    "user_search_activity",
-    "job_recommendations",
-    "search_pattern_analysis",
-    "recommendation_engagement",
-    "search_recommendation_correlation",
-    "user_behavior_segmentation",
-    "user_profiles"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Job search behavior analysis with search patterns, filter usage, recommendation engagement, and optimization insights.",
   "normal_query": "Analyze job search behavior including search patterns, filter preferences, recommendation engagement rates, and identify opportunities for optimization."
@@ -497,17 +374,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins applications with job_postings and user_profiles to construct the funnel journey, groups by funnel stage and job characteristics, computes stage-by-stage conversion rates and drop-off percentages using aggregates and LAG window functions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_applications",
-    "job_postings",
-    "application_stages",
-    "previous",
-    "start",
-    "funnel_stage_counts",
-    "funnel_conversion_rates",
-    "stage_time_analysis",
-    "funnel_optimization_insights"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Application funnel analysis with conversion rates, drop-off points, time-to-conversion metrics, and optimization recommendations.",
   "normal_query": "Analyze the application funnel with stage-by-stage conversion rates, drop-off identification points, time-to-conversion metrics, and actionable optimization recommendations."
@@ -527,17 +394,7 @@ Target distribution across 30 queries:
   "evidence": "The query performs self-joins on the skills table to identify skill pairs within the same job posting or user profile, groups by skill combination and job category, computes co-occurrence frequencies and lift metrics, and calculates average salary premiums by joining with job_postings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job",
-    "job_skills_requirements",
-    "skills",
-    "job_postings",
-    "job_skill_combinations",
-    "skill_pair_co_occurrence",
-    "individual_skill_metrics",
-    "skill_pair_value_analysis",
-    "skill_pair_scoring"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Skill combination analysis with co-occurrence patterns, high-value skill pairs, and optimal skill portfolio recommendations.",
   "normal_query": "Analyze skill combinations to identify co-occurrence patterns, high-value skill pairings, and generate optimal skill portfolio recommendations for career development."
@@ -557,14 +414,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins job_postings with applications to calculate time-to-fill (days from posting to acceptance), groups by job category, seniority level, location, and company attributes, and computes velocity metrics using aggregates and window functions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "job_applications",
-    "job_posting_lifecycle",
-    "time_to_fill_metrics",
-    "industry_time_analysis",
-    "market_efficiency_indicators"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Time-to-fill analysis with hiring velocity metrics, market efficiency indicators, and optimization insights.",
   "normal_query": "Analyze time-to-fill metrics with hiring velocity indicators, market efficiency benchmarks, and identify optimization opportunities to accelerate hiring."
@@ -584,15 +434,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups job_postings by work location type, industry, geography, and time period, computes adoption rates and year-over-year growth, and applies window functions for moving averages and trend analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "work_model_distribution",
-    "monthly_work_model_trends",
-    "previous",
-    "geographic_remote_distribution",
-    "industry_remote_adoption",
-    "work_model_trend_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Remote work trends analysis with adoption rates, geographic distribution, work model evolution, and trend projections.",
   "normal_query": "Analyze remote work trends including adoption rates by industry and geography, work model evolution patterns, and generate data-driven trend projections."
@@ -612,15 +454,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups records by data source and time period, computes extraction success rates, record counts, and data age, and uses window functions for rolling averages and comparative metrics across sources.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "data_source_metadata",
-    "data_source_extraction_summary",
-    "eg",
-    "extraction_gaps",
-    "source_quality_metrics",
-    "source_freshness_analysis",
-    "source_reliability_scoring"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Data source quality analysis with extraction metrics, freshness tracking, and reliability scores.",
   "normal_query": "Show data source quality metrics including extraction success rates, data freshness indicators, and overall reliability scores."
@@ -640,14 +474,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups job postings by title variations, computes string similarity metrics, aggregates posting counts per variant, applies clustering logic to group similar titles, and uses window functions to rank titles within clusters.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "job_title_variations",
-    "title_frequency_analysis",
-    "unnest",
-    "title_similarity_clustering",
-    "title_normalization_mapping"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Job title normalization analysis with clusters, similarity scores, and standardized titles.",
   "normal_query": "Analyze job titles to create normalized clusters with similarity scores and standardized title mappings."
@@ -667,16 +494,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins applications with user_profiles, job_postings, and skills to create feature vectors (skill match rate, experience level, application timing), computes aggregates grouped by applicant characteristics and job attributes, and uses window functions for percentile rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "user_skills",
-    "job_skills_requirements",
-    "job_applications",
-    "user_profiles",
-    "job_postings",
-    "application_features",
-    "feature_engineering",
-    "success_probability_scoring"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Application success prediction with probability scores, success factors, and optimization recommendations.",
   "normal_query": "Predict application success probability with contributing success factors and actionable optimization recommendations."
@@ -696,15 +514,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups job_postings by company and time period, computes hiring volume trends and expansion patterns across locations and departments, and applies window functions for growth rate calculations.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "companies",
-    "company_hiring_timeline",
-    "company_growth_metrics",
-    "company_growth_analysis",
-    "company_summary_metrics",
-    "company_growth_scoring"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Company growth analysis with hiring trends, expansion patterns, and growth indicators.",
   "normal_query": "Analyze company growth through hiring trends, geographic expansion patterns, and key growth indicators."
@@ -724,16 +534,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins skills with job_postings to track demand over time, groups by skill and time period, computes trend indicators and demand trajectories, and classifies skills by lifecycle stage using aggregates and window functions.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_skills_requirements",
-    "skills",
-    "job_postings",
-    "skill_demand_timeline",
-    "skill_trend_analysis",
-    "skill_growth_metrics",
-    "skill_lifecycle_detection",
-    "emerging_skills_identification"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Skill evolution analysis with emerging skills, trend indicators, and lifecycle stages.",
   "normal_query": "Track skill evolution over time, detecting emerging skills, trend trajectories, and lifecycle stages in the job market."
@@ -753,14 +554,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins applications with job_postings and user_profiles, groups by time dimensions (hour of day, day of week, time since posting), computes success rate aggregates and response time quartiles, and uses window functions for rolling averages and comparative metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ja",
-    "job_applications",
-    "job_postings",
-    "application_timing_features",
-    "timing_success_analysis",
-    "optimal_timing_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Application timing analysis with optimal timing recommendations, time-to-response patterns, and success rate optimizations.",
   "normal_query": "Analyze application timing patterns to determine optimal submission times, response patterns, and success rate correlations based on timing factors."
@@ -780,14 +574,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins user_profiles with applications and job_postings to track industry changes, groups by source and target industry pairs, computes success rate aggregates and transition frequency counts, and uses window functions for sequential career move analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "user_profiles",
-    "job_applications",
-    "job_postings",
-    "user_industry_history",
-    "industry_transition_matrix",
-    "transition_path_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Industry transition analysis with career paths, transition success rates, and optimal transition strategies.",
   "normal_query": "Analyze industry transitions to map common career paths, calculate transition success rates, and identify optimal transition strategies across industries."
@@ -807,17 +594,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins job_postings with applications, user_profiles, and skills, groups by role, industry, location, and experience level, computes salary percentiles and quartiles via PERCENTILE_CONT, and uses window functions for market positioning and leverage factor aggregation.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "user_profiles",
-    "market_salary_benchmarks",
-    "job_applications",
-    "user_skills",
-    "job_skills_requirements",
-    "user_market_positioning",
-    "negotiation_leverage_factors",
-    "negotiation_recommendations"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Salary negotiation intelligence with market positioning, leverage factors, and negotiation recommendations.",
   "normal_query": "Analyze salary negotiation dynamics to determine market positioning, identify leverage factors, and generate data-driven negotiation recommendations."
@@ -837,13 +614,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins applications with job_postings and user_profiles, groups by role, industry, location, and skill categories, computes applicant-to-job ratios and opportunity density, and uses window functions for saturation scoring.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "job_applications",
-    "market_opportunity_density",
-    "competition_intensity_analysis",
-    "market_saturation_scoring"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Market saturation analysis with competition intensity, opportunity density, and saturation indicators.",
   "normal_query": "Analyze market saturation levels to measure competition intensity, calculate opportunity density, and generate saturation indicators across job market segments."
@@ -863,15 +634,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins user_profiles with applications and job_postings to reconstruct user journeys, sequences interactions chronologically to build funnel stages, groups by cohort and entry point, and computes conversion rates using LAG for drop-off analysis.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "user_profiles",
-    "user_job_search_history",
-    "job_recommendations",
-    "job_applications",
-    "user_journey_events",
-    "journey_stage_analysis",
-    "journey_funnel_metrics"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "User journey analysis with engagement funnels, conversion paths, and optimization recommendations.",
   "normal_query": "Analyze user journeys to map engagement funnels, trace conversion paths, and generate optimization recommendations for improving conversion rates."
@@ -891,11 +654,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses recursive CTEs to trace multi-level career progressions from entry to senior positions, groups by job title sequences and industry verticals, computes aggregate metrics like time-to-promotion and success rates, and applies window functions to rank optimal paths.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "job_hierarchy_base",
-    "career_path_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Career path analysis with progression sequences, advancement paths, and optimization recommendations.",
   "normal_query": "Analyze career progression paths showing sequential job advancement opportunities with optimization recommendations for career trajectory planning."
@@ -915,16 +674,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups data by industry, location_state, work_model, and job_type, computes segment size and growth metrics, calculates quartiles for segment boundaries, and uses window functions to compare segments and compute attractiveness scores.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "job_skills_requirements",
-    "skills",
-    "multi_dimensional_job_features",
-    "unnest",
-    "dimension_aggregations",
-    "segment_profiling",
-    "segment_comparison"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Market segmentation analysis with segment profiles, characteristics, and segment-specific insights.",
   "normal_query": "Conduct market segmentation analysis identifying distinct clusters with detailed segment profiles, defining characteristics, and segment-specific behavioral insights."
@@ -944,12 +694,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups historical data by month and relevant dimensions, computes rolling aggregates using window functions (LAG, ROWS BETWEEN), calculates year-over-year growth rates, and generates forward projections with confidence intervals.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "historical_market_trends",
-    "trend_calculations",
-    "forecast_projections"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Market forecasts with trend projections, future predictions, and forecast confidence intervals.",
   "normal_query": "Generate market forecasts with time-series trend projections, future state predictions, and statistical confidence intervals for forecast reliability."
@@ -969,18 +714,7 @@ Target distribution across 30 queries:
   "evidence": "The query uses UNION/UNION ALL to combine results from multiple sources, applies standardization logic for job titles and locations, uses MD5 fingerprinting for deduplication, and applies FIRST_VALUE and source priority ordering.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "all",
-    "job_postings",
-    "companies",
-    "usajobs",
-    "multi_source_job_aggregation",
-    "user_skills",
-    "job_skills_requirements",
-    "source_deduplication",
-    "unified_job_matching",
-    "cross_source_analytics"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Cross-database job matching with unified results, source attribution, and redundancy handling.",
   "normal_query": "Execute cross-database job matching that unifies results from multiple sources, attributes findings to original sources, and manages data redundancy across systems."
@@ -1000,23 +734,7 @@ Target distribution across 30 queries:
   "evidence": "The query builds multiple CTEs (market_overview_metrics, user_engagement_metrics, skill_market_metrics, industry_breakdown, geographic_breakdown, data_source_health, executive_summary), computes volume and efficiency metrics, and uses CROSS JOIN and subqueries for json_object_agg aggregations.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "job_postings",
-    "user_profiles",
-    "job_applications",
-    "job_recommendations",
-    "user_job_search_history",
-    "skills",
-    "job_skills_requirements",
-    "data_source_metadata",
-    "industry_breakdown",
-    "geographic_breakdown",
-    "data_source_health",
-    "market_overview_metrics",
-    "user_engagement_metrics",
-    "skill_market_metrics",
-    "executive_summary"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Comprehensive market intelligence dashboard with executive summary, key metrics, and multi-dimensional analytics.",
   "normal_query": "Create a comprehensive market intelligence dashboard featuring executive summary KPIs, critical business metrics, and multi-dimensional analytics for strategic oversight."

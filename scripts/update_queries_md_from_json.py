@@ -100,7 +100,7 @@ def main() -> int:
             print(f"Warning: Query {n} not in queries.json, skipping", file=sys.stderr)
             continue
         q = by_num[n]
-        new_block = _format_query_block(q, db_id)
+        new_block = _format_query_block(q, db_id, bit_by_bit=True)
         md_content = update_query_block(md_content, n, new_block)
         updated += 1
 

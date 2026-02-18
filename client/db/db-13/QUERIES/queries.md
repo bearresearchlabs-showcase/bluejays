@@ -51,7 +51,7 @@ AI benchmark databases represent high-value domains for text-to-SQL because:
 -- Generated from schema.sql
 -- Generated: 2026-02-05 19:10:12
 -- Database: db-13
--- 
+--
 -- This file contains PostgreSQL-specific SQL syntax.
 -- Use this file when setting up the database in PostgreSQL.
 --
@@ -86,7 +86,7 @@ CREATE TABLE ai_models (
     supports_streaming BOOLEAN DEFAULT TRUE,
     supports_function_calling BOOLEAN DEFAULT FALSE,
     supports_vision BOOLEAN DEFAULT FALSE,
-    supports_audio BOOLEAN 
+    supports_audio BOOLEAN
 -- ...
 ```
 
@@ -149,19 +149,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins benchmark, model, and metric tables, groups results by model and benchmark category, computes aggregate statistics including mean intelligence scores and percentile rankings, applies window functions to calculate competitive positioning metrics and quartile distributions for price-performance.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "model_base_metrics",
-    "percentiles",
-    "intelligence_rankings",
-    "speed_rankings",
-    "price_performance_metrics",
-    "competitive_positioning",
-    "benchmark_evaluations",
-    "benchmark_aggregates",
-    "final_comparison"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Model performance comparison report showing top models by intelligence, speed, and price-performance ratio with competitive positioning metrics",
   "normal_query": "Show me a model performance comparison report that displays the top-performing models ranked by intelligence score, speed metrics, and price-performance ratio, along with their competitive positioning in the market"
@@ -181,17 +169,7 @@ Target distribution across 30 queries:
   "evidence": "The query performs time-series analysis by grouping models by release date and family, uses window functions with LAG to calculate period-over-period price changes and percentage deltas, computes rolling 3-month and 6-month average prices, joins with market share and adoption metrics tables.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "model_pricing_history",
-    "ai_models",
-    "pricing_timeline",
-    "price_changes",
-    "model_adoption_metrics",
-    "adoption_correlation",
-    "marketing_intelligence",
-    "market_share_impact",
-    "trend_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Pricing trend report showing price changes over time with corresponding market share and adoption rate changes",
   "normal_query": "Generate a pricing trend analysis report that tracks how model prices have changed over time and correlates those changes with shifts in market share and customer adoption rates"
@@ -211,16 +189,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins model metadata with benchmark results, groups by model family and benchmark category, computes aggregate statistics including mean scores, standard deviation, and variance for each family-category combination, performs statistical significance testing.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "benchmark_evaluations",
-    "model_family_base",
-    "family_benchmark_stats",
-    "overall_benchmark_stats",
-    "statistical_significance",
-    "family_rankings",
-    "competitive_advantages"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Model family benchmark performance report showing average scores, variance, and statistical significance by benchmark category",
   "normal_query": "Create a model family benchmark performance report that shows average scores, variance metrics, and statistical significance across different benchmark categories for each model family"
@@ -240,14 +209,7 @@ Target distribution across 30 queries:
   "evidence": "The query filters benchmark results to include only government-designated evaluations, joins with regulatory requirement tables containing compliance thresholds, calculates risk scores based on deviation from mandated thresholds.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "government_benchmark_data",
-    "government_benchmarks_base",
-    "compliance_aggregation",
-    "risk_assessment",
-    "regulatory_alignment"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for query 4",
   "normal_query": "Generate a government benchmark compliance tracking report that shows how models perform on regulatory benchmarks, identifies compliance gaps, and assesses regulatory risk levels"
@@ -267,14 +229,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins historical adoption data with benchmark performance metrics, groups by model cohorts with similar release timeframe, uses window functions for trend analysis and adoption trajectory projection.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "model_adoption_metrics",
-    "ai_models",
-    "model_performance_metrics",
-    "model_pricing_history",
-    "adoption_trends",
-    "performance_correlation"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for query 5",
   "normal_query": "Create a model adoption prediction analysis that correlates benchmark performance scores with historical adoption rates and projects future market penetration based on performance characteristics"
@@ -294,16 +249,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups benchmark results by model and time period, calculates performance aggregates and quartiles, applies window functions for rolling averages and period-over-period changes, performs clustering on trajectory patterns to group similar models, handles NULL values in joins.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "model_performance_history",
-    "ai_models",
-    "performance_timeline",
-    "trajectory_calculation",
-    "temporal_clustering",
-    "lifecycle_stage_detection",
-    "trend_analysis",
-    "final_trajectory_analysis"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Performance trajectory analysis with clustering results, trend indicators, and lifecycle stage identification",
   "normal_query": "Analyze performance trajectories over time with temporal clustering to identify trend patterns and lifecycle stages"
@@ -323,16 +269,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins benchmark, model, and metrics data to calculate market share by aggregating usage or performance indicators, groups by time period and model, uses window functions to compute market share changes, competitive rank movements, and rolling market concentration metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_7",
-    "median_by_date_7",
-    "aggregated_metrics_7",
-    "window_analysis_7",
-    "correlation_analysis_7",
-    "final_aggregation_7"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for model market share evolution with competitive dynamics",
   "normal_query": "Track market share evolution across models with competitive positioning metrics and share-of-voice trends"
@@ -352,15 +289,7 @@ Target distribution across 30 queries:
   "evidence": "The query pivots benchmark results to create a matrix structure with models as rows and benchmarks as columns, computes pairwise correlation coefficients between benchmark scores across the model population, applies window functions for rolling correlations and temporal stability.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_8",
-    "aggregated_metrics_8",
-    "window_analysis_8",
-    "correlation_analysis_8",
-    "final_aggregation_8"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for benchmark performance correlation matrix with cross-model analysis",
   "normal_query": "Generate a performance correlation matrix across benchmarks with cross-model statistical relationships and pattern identification"
@@ -380,15 +309,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins pricing, model performance, and revenue data, groups by pricing tier, model, and time period, calculates KPIs including revenue per model and price elasticity, uses window functions for period-over-period revenue changes and rolling averages.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_9",
-    "aggregated_metrics_9",
-    "window_analysis_9",
-    "correlation_analysis_9",
-    "final_aggregation_9"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for pricing strategy impact analysis with revenue optimization",
   "normal_query": "Evaluate pricing strategy effectiveness with revenue impact analysis and optimization recommendations"
@@ -408,15 +329,7 @@ Target distribution across 30 queries:
   "evidence": "The query groups benchmark results by model family and relevant dimensions, calculates aggregate metrics including means, standard deviations, and sample sizes, computes statistical test results (t-statistics, p-values, confidence intervals), uses window functions for percentile rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_10",
-    "aggregated_metrics_10",
-    "window_analysis_10",
-    "correlation_analysis_10",
-    "final_aggregation_10"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for model family performance comparison with statistical testing",
   "normal_query": "Compare model family performance with statistical significance testing and comprehensive performance metrics"
@@ -436,15 +349,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins benchmark, model, and metrics tables to collect compliance-related data, groups by regulatory category and model type, computes aggregate compliance scores and risk levels using quartile analysis, applies window functions for rolling compliance trends and risk rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_11",
-    "aggregated_metrics_11",
-    "window_analysis_11",
-    "correlation_analysis_11",
-    "final_aggregation_11"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for government compliance scorecard with regulatory risk assessment",
   "normal_query": "Generate a comprehensive analysis report with metrics and insights for government compliance scorecard including regulatory risk assessment."
@@ -464,15 +369,7 @@ Target distribution across 30 queries:
   "evidence": "The query combines historical benchmark data with adoption indicators, groups by model family and time period, calculates performance aggregates and variance, uses window functions for rolling adoption rates and performance trends, performs correlation analysis between performance and adoption.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_12",
-    "aggregated_metrics_12",
-    "window_analysis_12",
-    "correlation_analysis_12",
-    "final_aggregation_12"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for adoption prediction model with performance correlation",
   "normal_query": "Generate a comprehensive analysis report with metrics and insights for adoption prediction model including performance correlation analysis."
@@ -492,15 +389,7 @@ Target distribution across 30 queries:
   "evidence": "The query retrieves benchmark scores across all models and test categories, groups by benchmark type and model, computes aggregate performance scores and percentile rankings, uses window functions to assign dynamic ranks and calculate moving averages, applies quartile-based logic to classify models into performance tiers.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_13",
-    "aggregated_metrics_13",
-    "window_analysis_13",
-    "correlation_analysis_13",
-    "final_aggregation_13"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for benchmark leaderboard with dynamic ranking and tier classification",
   "normal_query": "Generate a comprehensive analysis report with metrics and insights for benchmark leaderboard featuring dynamic ranking and tier classification."
@@ -520,15 +409,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins benchmark performance data with pricing information, groups by model and pricing tier, computes performance-to-price ratios and value metrics, uses window functions to rank models by ROI within price brackets and calculate competitive positioning scores.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_14",
-    "aggregated_metrics_14",
-    "window_analysis_14",
-    "correlation_analysis_14",
-    "final_aggregation_14"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for performance-price optimization analysis with roi calculation",
   "normal_query": "Generate a comprehensive analysis report with metrics and insights for performance-price optimization analysis including ROI calculation."
@@ -548,15 +429,7 @@ Target distribution across 30 queries:
   "evidence": "The query consolidates benchmark results from multiple test categories and metrics tables, groups by model and performance dimension, computes normalized scores for each dimension, uses window functions for percentile ranks and rolling performance trends, applies weighting factors for composite multi-dimensional scores.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_15",
-    "aggregated_metrics_15",
-    "window_analysis_15",
-    "correlation_analysis_15",
-    "final_aggregation_15"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for model comparison matrix with multi-dimensional scoring",
   "normal_query": "Generate a comprehensive analysis report with metrics and insights for model comparison matrix featuring multi-dimensional scoring."
@@ -576,15 +449,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins benchmark results with model and metric metadata, groups by time periods and model dimensions, calculates rolling averages using window functions to smooth volatility, computes period-over-period growth rates, applies statistical trend analysis and quartile calculations.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_16",
-    "aggregated_metrics_16",
-    "window_analysis_16",
-    "correlation_analysis_16",
-    "final_aggregation_16"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for temporal performance forecasting with trend projection",
   "normal_query": "Show me a temporal performance analysis with trend projections to forecast how our models will perform in upcoming periods"
@@ -604,15 +469,7 @@ Target distribution across 30 queries:
   "evidence": "The query performs cross-model comparisons by joining benchmark results across vendors and types, aggregates performance metrics by market segments and benchmark categories, uses window functions for percentile rankings and market share metrics, computes performance gaps between models.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_17",
-    "aggregated_metrics_17",
-    "window_analysis_17",
-    "correlation_analysis_17",
-    "final_aggregation_17"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for market intelligence aggregation with competitive positioning",
   "normal_query": "Generate a market intelligence report with competitive positioning analysis comparing our models against competitor benchmarks and market leaders"
@@ -632,15 +489,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates benchmark results by evaluation methodology and metric type, calculates statistical validity indicators (standard deviations, coefficient of variation, confidence intervals), groups by benchmark dimensions, uses window functions to identify outliers and consistency patterns.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_18",
-    "aggregated_metrics_18",
-    "window_analysis_18",
-    "correlation_analysis_18",
-    "final_aggregation_18"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for benchmark evaluation quality assessment with statistical validation",
   "normal_query": "Provide a benchmark evaluation quality assessment with statistical validation metrics to ensure result reliability and methodological rigor"
@@ -660,15 +509,7 @@ Target distribution across 30 queries:
   "evidence": "The query segments models and benchmarks by adoption stage, aggregates user activity and evaluation metrics at each funnel level, uses window functions to calculate stage-to-stage conversion rates and time-to-conversion metrics.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_19",
-    "aggregated_metrics_19",
-    "window_analysis_19",
-    "correlation_analysis_19",
-    "final_aggregation_19"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for model adoption funnel analysis with conversion metrics",
   "normal_query": "Analyze the model adoption funnel with conversion metrics at each stage to identify bottlenecks and optimization opportunities in the user journey"
@@ -688,15 +529,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins benchmark results with target thresholds and competitive baselines, calculates performance deltas across dimensions, groups by model type, benchmark category, and metric, uses window functions for gap quantification and prioritization.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_20",
-    "aggregated_metrics_20",
-    "window_analysis_20",
-    "correlation_analysis_20",
-    "final_aggregation_20"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for performance benchmark gap analysis with improvement recommendations",
   "normal_query": "Conduct a performance benchmark gap analysis identifying areas of underperformance with prioritized improvement recommendations based on competitive context"
@@ -716,15 +549,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins benchmark and model tables with pricing and usage metrics, groups by model category and time period, calculates price-demand correlation coefficients and elasticity ratios, computes rolling averages, applies quartile segmentation, uses window functions for time-series demand forecasting.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_21",
-    "aggregated_metrics_21",
-    "window_analysis_21",
-    "correlation_analysis_21",
-    "final_aggregation_21"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for pricing elasticity analysis with demand forecasting",
   "normal_query": "Generate a comprehensive analysis report showing pricing elasticity metrics combined with demand forecasting insights"
@@ -744,15 +569,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates performance metrics from multiple benchmark tables using UNION or JOIN, groups by model and benchmark category, calculates coefficient of variation and standard deviation across benchmarks, employs window functions for performance ranks and rank consistency identification.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_22",
-    "aggregated_metrics_22",
-    "window_analysis_22",
-    "correlation_analysis_22",
-    "final_aggregation_22"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for cross-benchmark performance consistency analysis",
   "normal_query": "Generate a performance consistency analysis report comparing model results across multiple benchmarks"
@@ -772,15 +589,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins model metadata with benchmark results and release stage information, uses CASE statements to classify models into lifecycle stages, groups performance metrics by model family and stage, calculates stage-over-stage improvements using LAG window functions, computes percentile rankings.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_23",
-    "aggregated_metrics_23",
-    "window_analysis_23",
-    "correlation_analysis_23",
-    "final_aggregation_23"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for model lifecycle performance tracking with stage classification",
   "normal_query": "Generate a lifecycle performance tracking report that classifies and tracks model performance across development stages"
@@ -800,15 +609,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates benchmark submissions across model providers, groups by provider organization and time periods, calculates market share percentages from submission volumes and top performance counts, uses window functions for quarter-over-quarter growth rates and rolling market share trends.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_24",
-    "aggregated_metrics_24",
-    "window_analysis_24",
-    "correlation_analysis_24",
-    "final_aggregation_24"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for competitive intelligence dashboard with market dynamics",
   "normal_query": "Generate a competitive intelligence dashboard with comprehensive market dynamics analysis and competitor performance metrics"
@@ -828,15 +629,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates multiple evaluation runs for each model-benchmark combination, groups by model, benchmark, and evaluation configuration, calculates mean scores and standard deviations across runs, computes 95% confidence intervals using t-distribution statistics, derives reliability coefficients from inter-run variance.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_25",
-    "aggregated_metrics_25",
-    "window_analysis_25",
-    "correlation_analysis_25",
-    "final_aggregation_25"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for benchmark evaluation reliability scoring with confidence intervals",
   "normal_query": "Generate a reliability scoring report for benchmark evaluations including statistical confidence intervals and quality metrics"
@@ -856,15 +649,7 @@ Target distribution across 30 queries:
   "evidence": "The query aggregates performance metrics by model and benchmark dimensions, calculates mean, standard deviation, and quartiles (Q1, Q3, IQR) to establish normal ranges, applies window functions to compute z-scores and percentile rankings, flags data points outside 1.5*IQR boundaries for outlier detection.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_26",
-    "aggregated_metrics_26",
-    "window_analysis_26",
-    "correlation_analysis_26",
-    "final_aggregation_26"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for model performance anomaly detection with outlier analysis",
   "normal_query": "Generate a comprehensive analysis report that detects performance anomalies and identifies statistical outliers across our AI models"
@@ -884,15 +669,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins benchmark, model, and customer data tables, groups by geographic dimensions and demographic attributes, calculates penetration metrics including adoption rates and market share percentages, employs window functions for regional rankings and growth rate computation.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_27",
-    "aggregated_metrics_27",
-    "window_analysis_27",
-    "correlation_analysis_27",
-    "final_aggregation_27"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for market penetration analysis with geographic and demographic segmentation",
   "normal_query": "Produce a market penetration analysis breaking down adoption and usage patterns across different geographic regions and demographic segments"
@@ -912,15 +689,7 @@ Target distribution across 30 queries:
   "evidence": "The query analyzes performance metrics across models and benchmarks, identifies bottlenecks by comparing actual results against optimal baselines, calculates potential improvement magnitude using statistical aggregations, estimates implementation costs, computes benefit-to-cost ratios for prioritization.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_28",
-    "aggregated_metrics_28",
-    "window_analysis_28",
-    "correlation_analysis_28",
-    "final_aggregation_28"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for performance optimization recommendations with cost-benefit analysis",
   "normal_query": "Create a performance optimization recommendations report that evaluates potential improvements against their implementation costs and expected benefits"
@@ -940,15 +709,7 @@ Target distribution across 30 queries:
   "evidence": "The query joins benchmark results with model metadata and business metrics, groups by model and evaluation dimension, computes dimension-specific scores using weighted aggregations, applies window functions for percentile rankings within each dimension and composite scoring.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_29",
-    "aggregated_metrics_29",
-    "window_analysis_29",
-    "correlation_analysis_29",
-    "final_aggregation_29"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for comprehensive model evaluation report with multi-dimensional scoring",
   "normal_query": "Generate a comprehensive multi-dimensional model evaluation report with scoring across accuracy, efficiency, reliability, and business impact metrics"
@@ -968,15 +729,7 @@ Target distribution across 30 queries:
   "evidence": "The query categorizes use cases by requirement profiles, aggregates model performance metrics across relevant benchmarks grouped by model family and capability dimensions, applies filtering to eliminate models failing mandatory requirements, calculates match scores using weighted criteria.",
   "difficulty": "moderate",
   "query_category": "aggregation",
-  "tables_used": [
-    "ai_models",
-    "model_performance_metrics",
-    "base_data_30",
-    "aggregated_metrics_30",
-    "window_analysis_30",
-    "correlation_analysis_30",
-    "final_aggregation_30"
-  ],
+  "tables_used": [],
   "schema_context": {},
   "expected_output": "Analysis report with comprehensive metrics and insights for strategic model selection framework with use case optimization",
   "normal_query": "Develop a strategic model selection framework that matches optimal models to specific use cases based on performance requirements and operational constraints"

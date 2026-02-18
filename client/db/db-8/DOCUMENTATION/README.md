@@ -103,9 +103,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `market_trends` — (see data dictionary)
 - `job_market_analytics` — (see data dictionary)
 - `data_source_metadata` — (see data dictionary)
-- `user_job_search_history` — (see data dictionary)
-
----
+- `user_job_search_history` — (see data dictionary)---
 
 ## Data Dictionary
 

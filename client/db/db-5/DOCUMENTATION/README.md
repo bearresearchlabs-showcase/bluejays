@@ -98,9 +98,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `phppos_locations` — (see data dictionary)
 - `phppos_employees_locations` — (see data dictionary)
 - `phppos_location_items` — (see data dictionary)
-- `phppos_sales` — (see data dictionary)
-
----
+- `phppos_sales` — (see data dictionary)---
 
 ## Data Dictionary
 
