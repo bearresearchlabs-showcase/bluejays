@@ -772,7 +772,7 @@ LIMIT 100;
 
 **Business Value:** Skill gap analysis with missing skills, prerequisite skill chains, learning path recommendations, and estimated time to acquire skills.
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH RECURSIVE skill_hierarchy AS (
@@ -5264,7 +5264,7 @@ ORDER BY
 
 **Business Value:** Career path analysis with progression sequences, advancement paths, and optimization recommendations.
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH RECURSIVE job_hierarchy_base AS (
@@ -6071,7 +6071,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260218-0146
+- **Generated**: 20260218-0255
 - **Database**: db-8
 - **Type**: Job Market Intelligence Database
 - **Queries**: 30 production queries

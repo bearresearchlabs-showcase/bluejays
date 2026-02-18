@@ -716,7 +716,7 @@ ORDER BY rr.rate_rank, rr.speed_rank;
 
 **Business Value:** Zone analysis results showing zone distributions, average transit times by zone, geographic shipping patterns, and optimization recommendations.
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH RECURSIVE zone_hierarchy AS (
@@ -2149,7 +2149,7 @@ ORDER BY pcr.dimensional_weight_cost_impact DESC;
 
 **Business Value:** Zone coverage analysis showing coverage gaps, optimization opportunities, and route recommendations.
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH RECURSIVE zone_coverage_map AS (
@@ -4204,7 +4204,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260218-0146
+- **Generated**: 20260218-0255
 - **Database**: db-9
 - **Type**: Shipping Intelligence Database
 - **Queries**: 30 production queries

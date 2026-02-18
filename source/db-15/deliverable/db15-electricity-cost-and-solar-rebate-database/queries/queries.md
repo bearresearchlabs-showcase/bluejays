@@ -49,7 +49,7 @@ CREATE TABLE states (
     division VARCHAR(50),  -- Census division
     timezone VARCHAR(50),
     is_active BOOLEAN DEFAULT TRUE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Counties Table
@@ -62,7 +62,7 @@ CREATE TABLE counties (
     county_seat VARCHAR(100),
     population INTEGER,
     area_sq_miles NUMERIC(10, 2),
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (state_id) REFERENCES states(state_id)
 );
 
@@ -76,7 +76,7 @@ CREATE TABLE zip_codes (
     latitude NUMERIC(10, 7),  -- WGS84
     longitude NUMERIC(10, 7),  -- WGS84
     timezone VARCHAR(50),
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (state_id) REFERENCES states(state_id),
     FOREIGN KEY (county_id) REFERENCES counties(county_id)
 );
@@ -89,7 +89,7 @@ CREATE TABLE utility_companies (
     utility_display_name VARCHAR(255),
     utility_type VARCHAR(50),  -- 'Investor-Owned', 'Municipal', 'Cooperative', 'Federal', 'Power Marketer'
     state_id VARCHAR(2) NOT NULL,
-    s
+    service_territory_d
 -- ...
 ```
 

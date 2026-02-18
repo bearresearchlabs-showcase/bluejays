@@ -61,7 +61,7 @@ CREATE TABLE fema_flood_zones (
     spatial_extent_south NUMERIC(10, 6),
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     transformation_status VARCHAR(50)
 );
 
@@ -83,6 +83,7 @@ CREATE TABLE real_estate_properties (
     elevation_feet NUMERIC(10, 2),  -- Ground elevation above sea level
     state_code VARCHAR(2),
     county_fips VARCHAR(5),
+    c
 -- ...
 ```
 

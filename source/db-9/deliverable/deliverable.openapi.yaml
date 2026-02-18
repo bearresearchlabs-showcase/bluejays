@@ -450,7 +450,7 @@ info:
     times by zone, geographic shipping patterns, and optimization recommendations.
 
 
-    Complexity: challenging
+    Complexity: moderate
 
 
     ---
@@ -735,7 +735,7 @@ info:
     and route recommendations.
 
 
-    Complexity: challenging
+    Complexity: moderate
 
 
     ---
@@ -1306,7 +1306,7 @@ info:
     Document Information:
 
 
-    - Generated: 20260218-0146
+    - Generated: 20260218-0255
 
     - Database: db-9
 

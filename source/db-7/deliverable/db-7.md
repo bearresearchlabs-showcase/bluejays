@@ -2665,7 +2665,7 @@ LIMIT 1000;
 
 **Business Value:** Multi-port route report with route paths, transshipment points, connectivity analysis, and path optimization recommendations.
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH RECURSIVE route_port_paths AS (
@@ -6362,7 +6362,7 @@ LIMIT 2000;
 
 **Business Value:** Port call sequence report with optimal sequences, dwell time analysis, and voyage efficiency recommendations.
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH voyage_port_call_sequence AS (
@@ -6995,7 +6995,7 @@ LIMIT 500;
 
 **Business Value:** Route network report with connectivity metrics, hub identification, and network optimization recommendations.
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH route_port_connections AS (
@@ -10818,7 +10818,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260218-0146
+- **Generated**: 20260218-0255
 - **Database**: db-7
 - **Type**: Maritime Shipping Intelligence Database
 - **Queries**: 30 production queries

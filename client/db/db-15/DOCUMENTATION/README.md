@@ -41,10 +41,10 @@ psql -U postgres -d db_15 -f schema.sql
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load production data from data_large.sql when available (>= 1GB). No sample data.
 
 ```bash
-psql -U postgres -d db_15 -f data.sql
+psql -U postgres -d db_15 -f data_large.sql
 ```
 
 ---

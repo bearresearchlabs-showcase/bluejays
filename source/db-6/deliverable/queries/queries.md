@@ -44,7 +44,7 @@ Business value for db-6.
 CREATE TABLE grib2_forecasts (
     forecast_id VARCHAR(255) PRIMARY KEY,
     parameter_name VARCHAR(100) NOT NULL,
-    forecast_time TIMESTAMP_NTZ NOT NULL,
+    forecast_time TIMESTAMP NOT NULL,
     grid_cell_latitude NUMERIC(10, 7) NOT NULL,
     grid_cell_longitude NUMERIC(10, 7) NOT NULL,
     grid_cell_geom GEOGRAPHY,  -- Point geometry for grid cell center (PostgreSQL)
@@ -58,7 +58,7 @@ CREATE TABLE grib2_forecasts (
     spatial_extent_south NUMERIC(10, 6),
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     transformation_status VARCHAR(50)
 );
 
@@ -78,7 +78,7 @@ CREATE TABLE shapefile_boundaries (
     spatial_extent_south NUMERIC(10, 6),
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     transformation_status VARCHAR(50),
     state_code VARCHAR(2),
     office_code VARCHAR(10)
@@ -87,7 +87,7 @@ CREATE TABLE shapefile_boundaries (
 -- Real-Time Weather Observations Table
 -- Stores point observations from NWS API
 CREATE TABLE weather_observations (
-    obse
+    observation_id VARCH
 -- ...
 ```
 

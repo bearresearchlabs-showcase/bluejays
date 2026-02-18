@@ -1,14 +1,5 @@
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:13
--- Database: db-14
--- 
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
 -- Cloud Instance Cost Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
+-- Compatible with PostgreSQL
 -- Production schema for cloud instance cost analysis and optimization system
 
 -- Cloud Providers Table

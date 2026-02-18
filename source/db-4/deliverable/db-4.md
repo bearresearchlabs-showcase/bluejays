@@ -255,7 +255,7 @@ This database includes **30 production SQL queries**, each designed to solve spe
 
 **Business Value:** Aggregated metrics grouped by day and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -340,7 +340,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -425,7 +425,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -510,7 +510,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -595,7 +595,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -680,7 +680,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -765,7 +765,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -850,7 +850,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -935,7 +935,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1020,7 +1020,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1105,7 +1105,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1190,7 +1190,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1275,7 +1275,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1360,7 +1360,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1445,7 +1445,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1530,7 +1530,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1615,7 +1615,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1700,7 +1700,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1785,7 +1785,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1870,7 +1870,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1955,7 +1955,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2040,7 +2040,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2125,7 +2125,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2210,7 +2210,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2295,7 +2295,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2380,7 +2380,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2465,7 +2465,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2550,7 +2550,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2635,7 +2635,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and name
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2720,7 +2720,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and user_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2815,7 +2815,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260218-0146
+- **Generated**: 20260218-0255
 - **Database**: db-4
 - **Type**: SharedAI Models (Seydam AI)
 - **Queries**: 30 production queries

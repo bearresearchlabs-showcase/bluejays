@@ -1,22 +1,10 @@
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:09
--- Database: db-10
--- 
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
--- Shopping Aggregator Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
+-- Marketing Intelligence Database Schema
+-- Compatible with PostgreSQL
 -- Production schema for marketing intelligence and retail inventory tracking system
 -- Integrates data from U.S. Census Bureau, BLS, FTC, Data.gov, and retail sources
 
 -- Products Table
 -- Product catalog with SKUs, UPCs, categories, and brand information
--- Enable PostGIS extension for spatial data
-CREATE EXTENSION IF NOT EXISTS postgis;
-
 CREATE TABLE products (
     product_id VARCHAR(255) PRIMARY KEY,
     sku VARCHAR(100) UNIQUE,

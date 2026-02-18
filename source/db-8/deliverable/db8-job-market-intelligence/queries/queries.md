@@ -63,9 +63,9 @@ CREATE TABLE user_profiles (
     salary_expectation_min INTEGER,
     salary_expectation_max INTEGER,
     preferred_locations VARCHAR(16777216), -- JSON array of preferred locations
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    last_active_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_active_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     profile_completeness_score NUMERIC(5, 2),
     is_active BOOLEAN DEFAULT TRUE
 );
@@ -84,7 +84,8 @@ CREATE TABLE companies (
     website_url VARCHAR(500),
     linkedin_url VARCHAR(500),
     description VARCHAR(16777216),
-    founded_ye
+    founded_year INTEGER,
+    em
 -- ...
 ```
 

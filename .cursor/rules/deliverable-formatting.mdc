@@ -11,9 +11,11 @@ This formatting suite provides OpenAPI/Swagger specification formatting for data
 1. Machine-readable OpenAPI 3.0 specifications for API documentation, code generation, and integration with development tools
 2. Web-deployable HTML websites with anti-robot protection and Vercel Analytics integration
 
-## Format Command
+## Format Command (Standalone DEPRECATED)
 
-The `/format` command packages database deliverables into `/deliverable` folder with complete documentation **and generates web-deployable HTML websites**:
+**Note**: The standalone `/format` command is deprecated. Use `/build` instead; format runs as step 2 of build. The formatting logic and output structure below still apply when build runs.
+
+The `/format` command (or build step 2) packages database deliverables into `/deliverable` folder with complete documentation **and generates web-deployable HTML websites**:
 
 ```bash
 

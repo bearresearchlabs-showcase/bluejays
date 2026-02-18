@@ -41,10 +41,10 @@ psql -U postgres -d db_9 -f schema.sql
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load production data from data_large.sql when available (>= 1GB). No sample data.
 
 ```bash
-psql -U postgres -d db_9 -f data.sql
+psql -U postgres -d db_9 -f data_large.sql
 ```
 
 ---
@@ -221,7 +221,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `event_country` VARCHAR(2) 
 - `event_description` VARCHAR(1000) 
 - `carrier_status_code` VARCHAR(50) 
-- `raw_event_data` VARIANT  — JSON data from carrier API
+- `raw_event_data` JSONB  — JSON data from carrier API (PostgreSQL; use JSONB)
 - `created_at` TIMESTAMP 
 
 ### `rate_comparison_results`
@@ -238,7 +238,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `fastest_service_id` VARCHAR(255) 
 - `fastest_transit_days` INTEGER 
 - `total_options_count` INTEGER 
-- `comparison_metadata` VARIANT  — JSON with all rate options
+- `comparison_metadata` JSONB  — JSON with all rate options (PostgreSQL; use JSONB)
 - `created_at` TIMESTAMP 
 
 ### `address_validation_results`

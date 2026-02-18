@@ -31,9 +31,9 @@ installation_guide:
         - "psql -U postgres -d db_name -f schema.sql"
     - title: Load Data (Optional)
       description: |
-        Load sample data from data.sql if available.
+        Load production data from data_large.sql when available (>= 1GB). No sample data.
       commands:
-        - "psql -U postgres -d db_name -f data.sql"
+        - "psql -U postgres -d db_name -f data_large.sql"
 
 specifications:
   postgresql_version: "14+"

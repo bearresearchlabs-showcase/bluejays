@@ -1123,7 +1123,7 @@ ORDER BY forecast_time DESC, boundary_id, parameter_name;
 
 **Business Value:** Query results
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH RECURSIVE boundary_spatial_hierarchy AS (
@@ -6790,7 +6790,7 @@ LIMIT 100000;
 
 **Business Value:** Query results
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH time_window AS (
@@ -7895,7 +7895,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260218-0146
+- **Generated**: 20260218-0255
 - **Database**: db-6
 - **Type**: Weather Data Pipeline System
 - **Queries**: 30 production queries

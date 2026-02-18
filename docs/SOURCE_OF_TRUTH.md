@@ -36,6 +36,8 @@ client/db_drive_ready.zip (ZIP EXPORT)
 2. **Unify** – `python3 scripts/unify_from_source.py` (resync + verify)
 3. **Create zip (optional)** – `python3 scripts/unify_from_source.py --zip`
 
+**Build (full pipeline):** `python3 scripts/db_check.py build -a` or `npm run build:client` – Populate, format, resync, verify (compiles entire repo to client/db).
+
 Or step-by-step:
 - `python3 scripts/resync_client_db.py` – Sync `source/` -> `client/db/` (default db-root is source/)
 - `python3 scripts/reconcile_and_verify_queries.py` – Verify byte-for-byte
@@ -71,7 +73,7 @@ Tests in `tests/test_single_source_of_truth.py` enforce root cleanliness (no .py
 
 | Folder | Contents |
 |--------|----------|
-| **DATABASE/** | PostgreSQL-only SQL: schema.sql, data.sql, data_large.sql (≥1GB) |
+| **DATABASE/** | PostgreSQL-only SQL: schema.sql, data_large.sql (≥1GB). Production data only; no sample data. |
 | **DOCUMENTATION/** | db-N.md, db-N_documentation.html, db-N_deliverable.json |
 | **QUERIES/** | queries.md, queries.json (PostgreSQL-only queries) |
 

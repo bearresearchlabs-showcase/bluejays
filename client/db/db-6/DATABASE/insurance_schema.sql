@@ -35,11 +35,11 @@ CREATE TABLE IF NOT EXISTS insurance_risk_factors (
     parameter_name VARCHAR(100) NOT NULL,  -- 'Temperature', 'Precipitation', 'WindSpeed', etc.
     -- Risk metrics
     extreme_event_probability NUMERIC(5, 4),  -- Probability of extreme event (0-1)
+    temperature_extreme_risk NUMERIC(10, 2),  -- Temperature extreme risk score
     cumulative_precipitation_risk NUMERIC(10, 2),  -- Total precipitation risk score
     wind_damage_risk NUMERIC(10, 2),  -- Wind damage risk score
     freeze_risk NUMERIC(10, 2),  -- Freeze/frost risk score
     flood_risk NUMERIC(10, 2),  -- Flood risk score
-    temperature_extreme_risk NUMERIC(10, 2),  -- Temperature extreme risk score
     -- Forecast statistics
     min_forecast_value NUMERIC(10, 2),
     max_forecast_value NUMERIC(10, 2),
@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS insurance_rate_tables (
     -- Risk-adjusted rates
     risk_adjusted_rate NUMERIC(10, 2),
     risk_multiplier NUMERIC(5, 3),  -- Multiplier applied to base rate
+    overall_risk_score NUMERIC(5, 2),  -- Overall risk score (0-100)
     -- Rate components
     base_component NUMERIC(10, 2),
     precipitation_risk_component NUMERIC(10, 2),
@@ -86,7 +87,6 @@ CREATE TABLE IF NOT EXISTS insurance_rate_tables (
     -- Rate tiers
     rate_tier VARCHAR(50),  -- 'Standard', 'Preferred', 'Substandard', 'High Risk'
     rate_category VARCHAR(50),  -- 'Low', 'Moderate', 'High', 'Very High'
-    overall_risk_score NUMERIC(5, 2),  -- Risk score (0-100)
     -- Metadata
     calculation_method VARCHAR(100),  -- 'Forecast-Based', 'Historical', 'Hybrid'
     confidence_level NUMERIC(5, 2),  -- Confidence in forecast (0-100)

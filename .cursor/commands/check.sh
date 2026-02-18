@@ -1,5 +1,5 @@
 #!/bin/bash
-# Cursor /check command - Run full db_check (validate + format + qa + integrity + compliance)
+# Cursor /check command - Run full checks (validate + qa + integrity + compliance)
 # Usage: /check db-1 [db-5] | /check -a
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"

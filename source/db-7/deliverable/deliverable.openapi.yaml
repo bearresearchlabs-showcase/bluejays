@@ -214,8 +214,8 @@ info:
     \ change mid-route, groups by origin-destination port pairs and intermediate stops,\
     \ computes aggregate metrics including average number of legs, t\n\nBusiness Value:\
     \ Multi-port route report with route paths, transshipment points, connectivity\
-    \ analysis, and path optimization recommendations.\n\nComplexity: challenging\n\
-    \n---\n\nUse Case: Can you show me vessel utilization analysis across different\
+    \ analysis, and path optimization recommendations.\n\nComplexity: moderate\n\n\
+    ---\n\nUse Case: Can you show me vessel utilization analysis across different\
     \ carriers with fleet performance comparisons?\n\nDescription: Our carrier management\
     \ and procurement teams need to evaluate vessel performance across multiple carrier\
     \ partners to inform contract negotiations and identify underperforming assets.\
@@ -375,7 +375,7 @@ info:
     \ for each voyage. It uses window functions with LAG and LEAD to analyze consecutive\
     \ port pairs and calculate distances between ports. Grouping by voyage and port\
     \ sequen\n\nBusiness Value: Port call sequence report with optimal sequences,\
-    \ dwell time analysis, and voyage efficiency recommendations.\n\nComplexity: challenging\n\
+    \ dwell time analysis, and voyage efficiency recommendations.\n\nComplexity: moderate\n\
     \n---\n\nUse Case: Can you show me a vessel performance benchmarking analysis\
     \ with fleet comparison and operational excellence metrics?\n\nDescription: Maritime\
     \ carriers manage diverse fleets where individual vessel performance varies significantly\
@@ -407,11 +407,11 @@ info:
     \ extracting unique port pairs from sailings and port_calls tables, treating ports\
     \ as nodes and routes as edges. It groups by port to calculate\n\nBusiness Value:\
     \ Route network report with connectivity metrics, hub identification, and network\
-    \ optimization recommendations.\n\nComplexity: challenging\n\n---\n\nUse Case:\
-    \ Can you show me a sailing frequency analysis with service consistency metrics\
-    \ and schedule optimization recommendations?\n\nDescription: Shipping customers\
-    \ demand reliable, frequent service on key trade routes, making sailing frequency\
-    \ and schedule adherence critical competitive factors. The sailings table records\
+    \ optimization recommendations.\n\nComplexity: moderate\n\n---\n\nUse Case: Can\
+    \ you show me a sailing frequency analysis with service consistency metrics and\
+    \ schedule optimization recommendations?\n\nDescription: Shipping customers demand\
+    \ reliable, frequent service on key trade routes, making sailing frequency and\
+    \ schedule adherence critical competitive factors. The sailings table records\
     \ scheduled and actual sailing dates, port_calls captures actual arrival and departure\
     \ times, carriers maintains service schedules, and vessel_tracking provides real-time\
     \ adherence data. Inconsistent service frequency frustrates customers and leads\
@@ -606,7 +606,7 @@ info:
     \n---\n\nAll queries in this database are designed to work across multiple database\
     \ platforms:\n\n- PostgreSQL: Full support with standard SQL features\n\nQueries\
     \ use standard SQL syntax and avoid platform-specific features to ensure compatibility.\n\
-    \n---\n\nDocument Information:\n\n- Generated: 20260218-0146\n- Database: db-7\n\
+    \n---\n\nDocument Information:\n\n- Generated: 20260218-0255\n- Database: db-7\n\
     - Type: Maritime Shipping Intelligence Database\n- Queries: 30 production queries\n\
     - Status: ✅ Complete Comprehensive Deliverable"
   version: 1.0.0

@@ -53,6 +53,7 @@ def _normalize_query(q: Dict[str, Any], db_id: str, bit_by_bit: bool = False) ->
     question = q.get("question", q.get("title", q.get("use_case", f"Query {num}")))
     normal_query = q.get("normal_query", "").strip()
     sql = q.get("SQL", q.get("sql", ""))
+    description = q.get("description", "")
     evidence = q.get("evidence", "") if bit_by_bit else q.get("evidence", q.get("description", ""))
     difficulty = q.get("difficulty", _map_complexity(q.get("complexity", "")))
     category = q.get("query_category")
@@ -80,6 +81,8 @@ def _normalize_query(q: Dict[str, Any], db_id: str, bit_by_bit: bool = False) ->
         "schema_context": schema_ctx,
         "expected_output": expected,
     }
+    if description:
+        out["description"] = description
     if normal_query:
         out["normal_query"] = normal_query
     return out
@@ -141,6 +144,8 @@ def _format_query_block(q: Dict[str, Any], db_id: str, bit_by_bit: bool = False)
         "schema_context": nq["schema_context"],
         "expected_output": nq["expected_output"],
     }
+    if nq.get("description"):
+        out["description"] = nq["description"]
     if nq.get("normal_query"):
         out["normal_query"] = nq["normal_query"]
     json_str = json.dumps(out, indent=2, default=str)
@@ -271,7 +276,7 @@ def format_query_block_template(
         "title": title,
         "question": title or use_case,
         "description": description,
-        "evidence": description,
+        "evidence": kwargs.get("evidence", description),
         "use_case": use_case,
         "business_value": business_value,
         "purpose": purpose,

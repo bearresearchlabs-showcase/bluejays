@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Watch mode: run validate/format/qa when any file in the repo changes.
+Watch mode: run validate/build/qa when any file in the repo changes.
 Polls every 0.5 seconds for changes in source/, scripts/, template/.
 Usage:
   python3 scripts/watch_validate.py              # validate db-1 on change
   python3 scripts/watch_validate.py validate db-1 db-2
-  python3 scripts/watch_validate.py format db-1
+  python3 scripts/watch_validate.py build db-1    # build (includes format step)
   python3 scripts/watch_validate.py qa -a
 """
 
@@ -37,7 +37,7 @@ def _collect_mtimes(root: Path, dirs: tuple) -> dict:
 
 def main():
     argv = sys.argv[1:]
-    if argv and argv[0] in ("validate", "format", "qa", "integrity", "compliance"):
+    if argv and argv[0] in ("validate", "build", "qa", "integrity", "compliance"):
         subcmd = argv[0]
         args = argv[1:] or ["db-1"]
     else:

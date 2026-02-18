@@ -183,8 +183,8 @@ info:
     \ rolling 3-month and 6-month average prices to identify trends, joins with market\
     \ share and adoption metrics tables, calcul\n\nBusiness Value: Pricing trend report\
     \ showing price changes over time with corresponding market share and adoption\
-    \ rate changes\n\nComplexity: challenging\n\n---\n\nUse Case: Can you show me\
-    \ how different model families perform across various benchmarks, including statistical\
+    \ rate changes\n\nComplexity: moderate\n\n---\n\nUse Case: Can you show me how\
+    \ different model families perform across various benchmarks, including statistical\
     \ measures like variance and significance testing?\n\nDescription: As a research\
     \ analyst evaluating AI model capabilities, I need to compare performance patterns\
     \ across model families (e.g., GPT-series, Claude-series, Llama-series) to identify\
@@ -231,91 +231,91 @@ info:
     \ penetration potential. The query joins historical adoption data with corresponding\
     \ benchmark performance metrics, groups by model cohorts with similar release\
     \ timeframe\n\nBusiness Value: Analysis report with comprehensive metrics and\
-    \ insights for query 5\n\nComplexity: challenging\n\n---\n\nUse Case: Can you\
-    \ show me how model performance evolves over time with clustering patterns to\
-    \ identify similar trajectory groups?\n\nDescription: The AI marketing team needs\
-    \ to understand how different models evolve through their performance lifecycle\
-    \ to identify patterns of improvement, stagnation, or decline across various benchmarks\
-    \ and inform strategic investment decisions. Generate a performance trajectory\
-    \ analysis that clusters models by similar temporal patterns, identifies trend\
-    \ indicators, and classifies lifecycle stages. The query groups benchmark results\
-    \ by model and time period, calculates performance aggregates and quartiles for\
-    \ distribution analysis, applies window functions to compute rolling averages\
-    \ and period-over-period changes for trend detection, performs clustering on trajectory\
-    \ patterns to group similar models, and handles NULL values in benchmark-model\
-    \ joins and filters for relevant date ranges. Returns a dataset with model identifiers,\
-    \ time-series performance metrics, cluster assignments, trend direction indicators\
-    \ (improving/declining/stable), and lifecycle stage classif\n\nBusiness Value:\
-    \ Performance trajectory analysis with clustering results, trend indicators, and\
-    \ lifecycle stage identification\n\nComplexity: moderate\n\n---\n\nUse Case: Can\
-    \ you analyze how model market share changes over time and show the competitive\
-    \ dynamics between different models?\n\nDescription: Product managers need visibility\
-    \ into how their AI models' market positions are shifting relative to competitors\
-    \ to make informed decisions about marketing spend, feature prioritization, and\
-    \ competitive positioning strategies. Create a comprehensive market share evolution\
-    \ report that reveals competitive dynamics, share shifts, and positioning changes\
-    \ across the model landscape. The query joins benchmark, model, and metrics data\
-    \ to calculate market share by aggregating usage or performance indicators, groups\
-    \ results by time period and model to track evolution, uses window functions to\
-    \ compute market share changes, competitive rank movements, and rolling market\
-    \ concentration metrics, calculates quartile distributions to identify market\
-    \ leaders versus laggards, and properly handles NULL values in outer joins and\
-    \ filters for active time periods. Returns a report containing model identifiers,\
-    \ time-series market share percentages, rank positions, share change\n\nBusiness\
-    \ Value: Analysis report with comprehensive metrics and insights for model market\
-    \ share evolution with competitive dynamics\n\nComplexity: moderate\n\n---\n\n\
-    Use Case: Can you create a correlation matrix showing how performance across different\
-    \ benchmarks relates to each other for cross-model comparison?\n\nDescription:\
-    \ Research teams need to understand which benchmark performances are correlated\
-    \ across the model ecosystem to identify redundant evaluation metrics, discover\
-    \ underlying performance factors, and optimize their benchmark selection strategy.\
-    \ Produce a comprehensive correlation analysis that maps performance relationships\
-    \ across benchmarks and identifies cross-model patterns in multi-benchmark performance.\
-    \ The query pivots benchmark results to create a matrix structure with models\
-    \ as rows and benchmarks as columns, computes pairwise correlation coefficients\
-    \ between benchmark scores across the model population, groups by relevant dimensions\
-    \ to segment correlation patterns by model family or time period, applies window\
-    \ functions to calculate rolling correlations and identify temporal stability\
-    \ of relationships, determines quartile thresholds to classify correlation strength,\
-    \ and handles NULL values in sparse benchmark coverage and missing performance\
-    \ data. Retu\n\nBusiness Value: Analysis report with comprehensive metrics and\
-    \ insights for benchmark performance correlation matrix with cross-model analysis\n\
-    \nComplexity: moderate\n\n---\n\nUse Case: Can you analyze how different pricing\
-    \ strategies impact revenue and identify optimization opportunities?\n\nDescription:\
-    \ The revenue operations team needs to understand how pricing decisions for different\
-    \ AI models affect revenue generation and market adoption to optimize pricing\
-    \ tiers, identify revenue leakage, and maximize profitability across the model\
-    \ portfolio. Generate a comprehensive pricing impact analysis that quantifies\
-    \ revenue effects of pricing strategies and identifies optimization opportunities.\
-    \ The query joins pricing, model performance, and revenue data across relevant\
-    \ dimensions, groups by pricing tier, model, and time period to aggregate revenue\
-    \ metrics, calculates key performance indicators including revenue per model,\
-    \ customer acquisition at different price points, and price elasticity, uses window\
-    \ functions to compute period-over-period revenue changes, rolling averages for\
-    \ trend smoothing, and comparative metrics across pricing strategies, determines\
-    \ quartile distributions to identify high and low performing price points, and\
-    \ handles NULL values in revenue d\n\nBusiness Value: Analysis report with comprehensive\
-    \ metrics and insights for pricing strategy impact analysis with revenue optimization\n\
-    \nComplexity: moderate\n\n---\n\nUse Case: Can you compare performance across\
-    \ different model families with statistical testing to determine significant differences?\n\
-    \nDescription: The AI research team needs to rigorously compare performance across\
-    \ different model families (e.g., transformers vs. diffusion models, GPT variants\
-    \ vs. Claude variants) to validate architectural choices, support marketing claims,\
-    \ and guide future development priorities with statistically sound evidence. Create\
-    \ a model family performance comparison report that includes statistical hypothesis\
-    \ testing to determine whether observed performance differences are statistically\
-    \ significant. The query groups benchmark results by model family and relevant\
-    \ dimensions, calculates aggregate performance metrics including means, standard\
-    \ deviations, and sample sizes for each family, computes statistical test results\
-    \ such as t-statistics, p-values, and confidence intervals to assess significance\
-    \ of performance differences, uses window functions to rank families by performance\
-    \ and calculate percentile positions within and across families, determines quartile\
-    \ distributions to und\n\nBusiness Value: Analysis report with comprehensive metrics\
-    \ and insights for model family performance comparison with statistical testing\n\
-    \nComplexity: moderate\n\n---\n\nUse Case: Can you generate a government compliance\
-    \ scorecard that includes regulatory risk assessment?\n\nDescription: Our AI products\
-    \ must meet government compliance standards, and stakeholders need visibility\
-    \ into how our benchmark results and model performance align with regulatory requirements.\
+    \ insights for query 5\n\nComplexity: moderate\n\n---\n\nUse Case: Can you show\
+    \ me how model performance evolves over time with clustering patterns to identify\
+    \ similar trajectory groups?\n\nDescription: The AI marketing team needs to understand\
+    \ how different models evolve through their performance lifecycle to identify\
+    \ patterns of improvement, stagnation, or decline across various benchmarks and\
+    \ inform strategic investment decisions. Generate a performance trajectory analysis\
+    \ that clusters models by similar temporal patterns, identifies trend indicators,\
+    \ and classifies lifecycle stages. The query groups benchmark results by model\
+    \ and time period, calculates performance aggregates and quartiles for distribution\
+    \ analysis, applies window functions to compute rolling averages and period-over-period\
+    \ changes for trend detection, performs clustering on trajectory patterns to group\
+    \ similar models, and handles NULL values in benchmark-model joins and filters\
+    \ for relevant date ranges. Returns a dataset with model identifiers, time-series\
+    \ performance metrics, cluster assignments, trend direction indicators (improving/declining/stable),\
+    \ and lifecycle stage classif\n\nBusiness Value: Performance trajectory analysis\
+    \ with clustering results, trend indicators, and lifecycle stage identification\n\
+    \nComplexity: moderate\n\n---\n\nUse Case: Can you analyze how model market share\
+    \ changes over time and show the competitive dynamics between different models?\n\
+    \nDescription: Product managers need visibility into how their AI models' market\
+    \ positions are shifting relative to competitors to make informed decisions about\
+    \ marketing spend, feature prioritization, and competitive positioning strategies.\
+    \ Create a comprehensive market share evolution report that reveals competitive\
+    \ dynamics, share shifts, and positioning changes across the model landscape.\
+    \ The query joins benchmark, model, and metrics data to calculate market share\
+    \ by aggregating usage or performance indicators, groups results by time period\
+    \ and model to track evolution, uses window functions to compute market share\
+    \ changes, competitive rank movements, and rolling market concentration metrics,\
+    \ calculates quartile distributions to identify market leaders versus laggards,\
+    \ and properly handles NULL values in outer joins and filters for active time\
+    \ periods. Returns a report containing model identifiers, time-series market share\
+    \ percentages, rank positions, share change\n\nBusiness Value: Analysis report\
+    \ with comprehensive metrics and insights for model market share evolution with\
+    \ competitive dynamics\n\nComplexity: moderate\n\n---\n\nUse Case: Can you create\
+    \ a correlation matrix showing how performance across different benchmarks relates\
+    \ to each other for cross-model comparison?\n\nDescription: Research teams need\
+    \ to understand which benchmark performances are correlated across the model ecosystem\
+    \ to identify redundant evaluation metrics, discover underlying performance factors,\
+    \ and optimize their benchmark selection strategy. Produce a comprehensive correlation\
+    \ analysis that maps performance relationships across benchmarks and identifies\
+    \ cross-model patterns in multi-benchmark performance. The query pivots benchmark\
+    \ results to create a matrix structure with models as rows and benchmarks as columns,\
+    \ computes pairwise correlation coefficients between benchmark scores across the\
+    \ model population, groups by relevant dimensions to segment correlation patterns\
+    \ by model family or time period, applies window functions to calculate rolling\
+    \ correlations and identify temporal stability of relationships, determines quartile\
+    \ thresholds to classify correlation strength, and handles NULL values in sparse\
+    \ benchmark coverage and missing performance data. Retu\n\nBusiness Value: Analysis\
+    \ report with comprehensive metrics and insights for benchmark performance correlation\
+    \ matrix with cross-model analysis\n\nComplexity: moderate\n\n---\n\nUse Case:\
+    \ Can you analyze how different pricing strategies impact revenue and identify\
+    \ optimization opportunities?\n\nDescription: The revenue operations team needs\
+    \ to understand how pricing decisions for different AI models affect revenue generation\
+    \ and market adoption to optimize pricing tiers, identify revenue leakage, and\
+    \ maximize profitability across the model portfolio. Generate a comprehensive\
+    \ pricing impact analysis that quantifies revenue effects of pricing strategies\
+    \ and identifies optimization opportunities. The query joins pricing, model performance,\
+    \ and revenue data across relevant dimensions, groups by pricing tier, model,\
+    \ and time period to aggregate revenue metrics, calculates key performance indicators\
+    \ including revenue per model, customer acquisition at different price points,\
+    \ and price elasticity, uses window functions to compute period-over-period revenue\
+    \ changes, rolling averages for trend smoothing, and comparative metrics across\
+    \ pricing strategies, determines quartile distributions to identify high and low\
+    \ performing price points, and handles NULL values in revenue d\n\nBusiness Value:\
+    \ Analysis report with comprehensive metrics and insights for pricing strategy\
+    \ impact analysis with revenue optimization\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: Can you compare performance across different model families with statistical\
+    \ testing to determine significant differences?\n\nDescription: The AI research\
+    \ team needs to rigorously compare performance across different model families\
+    \ (e.g., transformers vs. diffusion models, GPT variants vs. Claude variants)\
+    \ to validate architectural choices, support marketing claims, and guide future\
+    \ development priorities with statistically sound evidence. Create a model family\
+    \ performance comparison report that includes statistical hypothesis testing to\
+    \ determine whether observed performance differences are statistically significant.\
+    \ The query groups benchmark results by model family and relevant dimensions,\
+    \ calculates aggregate performance metrics including means, standard deviations,\
+    \ and sample sizes for each family, computes statistical test results such as\
+    \ t-statistics, p-values, and confidence intervals to assess significance of performance\
+    \ differences, uses window functions to rank families by performance and calculate\
+    \ percentile positions within and across families, determines quartile distributions\
+    \ to und\n\nBusiness Value: Analysis report with comprehensive metrics and insights\
+    \ for model family performance comparison with statistical testing\n\nComplexity:\
+    \ moderate\n\n---\n\nUse Case: Can you generate a government compliance scorecard\
+    \ that includes regulatory risk assessment?\n\nDescription: Our AI products must\
+    \ meet government compliance standards, and stakeholders need visibility into\
+    \ how our benchmark results and model performance align with regulatory requirements.\
     \ The compliance team requires a scorecard to assess regulatory risk across different\
     \ AI models and benchmarks. Generate a comprehensive government compliance scorecard\
     \ with integrated regulatory risk assessment metrics. The query joins benchmark,\
@@ -639,7 +639,7 @@ info:
     \n---\n\nAll queries in this database are designed to work across multiple database\
     \ platforms:\n\n- PostgreSQL: Full support with standard SQL features\n\nQueries\
     \ use standard SQL syntax and avoid platform-specific features to ensure compatibility.\n\
-    \n---\n\nDocument Information:\n\n- Generated: 20260218-0146\n- Database: db-13\n\
+    \n---\n\nDocument Information:\n\n- Generated: 20260218-0255\n- Database: db-13\n\
     - Type: AI Benchmark Marketing Database\n- Queries: 30 production queries\n- Status:\
     \ ✅ Complete Comprehensive Deliverable"
   version: 1.0.0

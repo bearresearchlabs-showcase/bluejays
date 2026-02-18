@@ -41,10 +41,10 @@ psql -U postgres -d db_8 -f schema.sql
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load production data from data_large.sql when available (>= 1GB). No sample data.
 
 ```bash
-psql -U postgres -d db_8 -f data.sql
+psql -U postgres -d db_8 -f data_large.sql
 ```
 
 ---
@@ -163,11 +163,13 @@ Standard PostgreSQL. No extensions required unless noted.
 - `grade_level` VARCHAR(50)  — For federal jobs
 - `data_source` VARCHAR(50) NOT NULL — 'usajobs', 'bls', 'state_board', 'aggregated'
 - `source_url` VARCHAR(1000) 
+- `industry` VARCHAR(100)  — Denormalized from companies for query performance
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
 - `view_count` INTEGER 
 - `application_count` INTEGER 
 - `match_score_avg` NUMERIC(5, 2)  — Average match score from recommendations
+- `job_fingerprint` VARCHAR(500)  — Hash for deduplication/matching
 
 ### `skills`
 

@@ -49,7 +49,7 @@ CREATE TABLE cloud_providers (
     pricing_api_endpoint VARCHAR(500),
     documentation_url VARCHAR(500),
     data_source VARCHAR(100),  -- 'vantage.sh', 'official_api', 'scraped'
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_frequency VARCHAR(50),  -- 'daily', 'weekly', 'monthly'
     data_quality_score NUMERIC(5, 2)
 );
@@ -69,7 +69,7 @@ CREATE TABLE cloud_regions (
     launch_date DATE,
     data_center_count INTEGER,
     availability_zones_count INTEGER,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (provider_id) REFERENCES cloud_providers(provider_id)
 );
 
@@ -83,8 +83,11 @@ CREATE TABLE instance_families (
     family_description TEXT,
     use_case_category VARCHAR(100),
     target_workloads TEXT,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    FOREIGN KEY (provider_id) REFERENCES cloud_providers(provide
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (provider_id) REFERENCES cloud_providers(provider_id)
+);
+
+-- Cloud
 -- ...
 ```
 

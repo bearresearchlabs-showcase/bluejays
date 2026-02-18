@@ -41,10 +41,10 @@ psql -U postgres -d db_13 -f schema.sql
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from data.sql if available.
+Load production data from data_large.sql when available (>= 1GB). No sample data.
 
 ```bash
-psql -U postgres -d db_13 -f data.sql
+psql -U postgres -d db_13 -f data_large.sql
 ```
 
 ---
@@ -109,7 +109,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `source_url` VARCHAR(1000) 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
-- `metadata_json` VARCHAR(16777216)  — Additional JSON metadata
+- `metadata_json` TEXT  — Additional JSON metadata
 
 ### `model_performance_metrics`
 
@@ -152,7 +152,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `accuracy_percentage` NUMERIC(5, 2)  — Accuracy percentage
 - `evaluation_methodology` VARCHAR(500)  — Description of evaluation methodology
 - `benchmark_version` VARCHAR(50)  — Benchmark version
-- `evaluation_metadata` VARCHAR(16777216)  — JSON metadata with detailed results
+- `evaluation_metadata` TEXT  — JSON metadata with detailed results
 - `data_source` VARCHAR(100) 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
@@ -190,7 +190,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `growth_rate_percent` NUMERIC(5, 2)  — Growth rate percentage
 - `trend_direction` VARCHAR(50)  — 'increasing', 'decreasing', 'stable'
 - `competitive_advantage` VARCHAR(500)  — Key competitive advantages
-- `market_insights` VARCHAR(16777216)  — Detailed insights JSON
+- `market_insights` TEXT  — Detailed insights JSON
 - `data_source` VARCHAR(100) 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
@@ -214,7 +214,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `robustness_score` NUMERIC(5, 2)  — Robustness score (if applicable)
 - `bias_score` NUMERIC(5, 2)  — Bias score (if applicable)
 - `efficiency_score` NUMERIC(5, 2)  — Efficiency score (if applicable)
-- `benchmark_metadata` VARCHAR(16777216)  — JSON metadata
+- `benchmark_metadata` TEXT  — JSON metadata
 - `source_url` VARCHAR(1000) 
 - `data_source` VARCHAR(100) 
 - `created_at` TIMESTAMP 
@@ -235,7 +235,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `industry_adoption_score` NUMERIC(5, 2)  — Industry adoption score (0-100)
 - `enterprise_adoption_percent` NUMERIC(5, 2)  — Enterprise adoption percentage
 - `adoption_trend` VARCHAR(50)  — 'growing', 'stable', 'declining'
-- `adoption_metadata` VARCHAR(16777216)  — JSON metadata
+- `adoption_metadata` TEXT  — JSON metadata
 - `data_source` VARCHAR(100) 
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
@@ -266,7 +266,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `output_speed_tokens_per_sec` NUMERIC(10, 2) 
 - `latency_seconds` NUMERIC(10, 4) 
 - `performance_change_percent` NUMERIC(5, 2)  — Performance change from previous period
-- `benchmark_scores_json` VARCHAR(16777216)  — JSON with all benchmark scores
+- `benchmark_scores_json` TEXT  — JSON with all benchmark scores
 - `data_source` VARCHAR(100) 
 - `created_at` TIMESTAMP 
 
@@ -285,7 +285,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `sync_frequency` VARCHAR(50)  — 'hourly', 'daily', 'weekly', 'monthly', 'manual'
 - `data_quality_score` NUMERIC(5, 2)  — Data quality score (0-100)
 - `is_active` BOOLEAN 
-- `source_metadata` VARCHAR(16777216)  — JSON metadata
+- `source_metadata` TEXT  — JSON metadata
 - `created_at` TIMESTAMP 
 - `updated_at` TIMESTAMP 
 
@@ -299,7 +299,7 @@ Standard PostgreSQL. No extensions required unless noted.
 - `records_successful` INTEGER 
 - `records_failed` INTEGER 
 - `processing_duration_seconds` INTEGER 
-- `error_log` VARCHAR(16777216) 
+- `error_log` TEXT 
 - `status` VARCHAR(50)  — 'running', 'success', 'failed', 'partial'
 - `start_time` TIMESTAMP NOT NULL
 - `end_time` TIMESTAMP 

@@ -71,18 +71,19 @@ def get_est_timestamp() -> str:
 
 
 def get_data_sql_bytes_per_db() -> dict[str, int]:
-    """Return {db_id: bytes} for primary data.sql per db."""
+    """Return {db_id: bytes} for production data (>= 1GB) per db. No sample data."""
     result = {}
+    GB = 1024**3
     for n in range(1, 17):
         db_dir = SOURCE / f"db-{n}"
         if not db_dir.exists():
             continue
-        for base in [db_dir / "data", db_dir / "app" / "DATABASE"]:
+        for base in [db_dir / "data", db_dir / "DATABASE", db_dir / "app" / "DATABASE"]:
             if not base.exists():
                 continue
             for name in ["data_large.sql", "data_large_postgresql.sql", "data.sql"]:
                 p = base / name
-                if p.exists() and p.is_file():
+                if p.exists() and p.is_file() and p.stat().st_size >= GB:
                     result[f"db-{n}"] = p.stat().st_size
                     break
             if f"db-{n}" in result:

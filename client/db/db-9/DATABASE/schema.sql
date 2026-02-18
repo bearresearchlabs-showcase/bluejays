@@ -1,15 +1,6 @@
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:05
--- Database: db-9
--- 
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
--- Shipping Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
--- Production schema for shipping and rate comparison system
+-- Shipping Intelligence Database Schema
+-- Compatible with PostgreSQL
+-- Production schema for shipping intelligence and rate comparison system
 
 -- Shipping Carriers Table
 -- Stores carrier information (USPS, UPS, FedEx, etc.)
@@ -68,7 +59,7 @@ CREATE TABLE shipping_service_types (
     FOREIGN KEY (carrier_id) REFERENCES shipping_carriers(carrier_id)
 );
 
--- Shipping Rates Table
+-- Shipping Rate Tables Table
 -- Stores historical and current shipping rates
 CREATE TABLE shipping_rates (
     rate_id VARCHAR(255) PRIMARY KEY,
@@ -172,7 +163,7 @@ CREATE TABLE tracking_events (
     event_country VARCHAR(2),
     event_description VARCHAR(1000),
     carrier_status_code VARCHAR(50),
-    raw_event_data JSONB,  -- JSON data from carrier API
+    raw_event_data JSONB,  -- JSON data from carrier API (PostgreSQL; use JSONB)
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (shipment_id) REFERENCES shipments(shipment_id)
 );
@@ -192,7 +183,7 @@ CREATE TABLE rate_comparison_results (
     fastest_service_id VARCHAR(255),
     fastest_transit_days INTEGER,
     total_options_count INTEGER,
-    comparison_metadata JSONB,  -- JSON with all rate options
+    comparison_metadata JSONB,  -- JSON with all rate options (PostgreSQL; use JSONB)
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     FOREIGN KEY (cheapest_carrier_id) REFERENCES shipping_carriers(carrier_id),

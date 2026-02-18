@@ -1,22 +1,10 @@
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:04
--- Database: db-7
--- 
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
 -- Maritime Shipping Intelligence Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
+-- Compatible with PostgreSQL
 -- Production schema for maritime schedules and shipping intelligence system
 -- Based on Linescape API structure with government data integration
 
 -- Carriers Table
 -- Stores shipping line/carrier information
--- Enable PostGIS extension for spatial data
-CREATE EXTENSION IF NOT EXISTS postgis;
-
 CREATE TABLE carriers (
     carrier_id VARCHAR(255) PRIMARY KEY,
     carrier_name VARCHAR(255) NOT NULL,
@@ -345,7 +333,7 @@ CREATE INDEX idx_port_statistics_date ON port_statistics(statistic_date);
 CREATE INDEX idx_carrier_performance_carrier ON carrier_performance(carrier_id);
 CREATE INDEX idx_carrier_performance_period ON carrier_performance(evaluation_period_start, evaluation_period_end);
 
--- Spatial indexes (PostgreSQL PostGIS, Snowflake, Databricks)
+-- Spatial indexes (PostgreSQL PostGIS)
 -- Note: These may need database-specific syntax
 -- CREATE INDEX idx_ports_geom ON ports USING GIST(port_geom);
 -- CREATE INDEX idx_vessels_tracking_geom ON vessel_tracking USING GIST(position_geom);

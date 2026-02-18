@@ -51,9 +51,13 @@ def audit_database(db_name: str) -> dict:
         schema = db_folder / "schema.sql"
         data_sql = db_folder / "data.sql"
         data_large = db_folder / "data_large.sql"
-        has_data = data_sql.exists() or data_large.exists()
+        # Production data only (>= 1GB). No sample data.
+        has_production_data = (
+            (data_sql.exists() and data_sql.stat().st_size >= 1024**3)
+            or (data_large.exists() and data_large.stat().st_size >= 1024**3)
+        )
         result["database_dir"]["schema.sql"] = schema.exists()
-        result["database_dir"]["data.sql"] = has_data  # primary data: data.sql or data_large.sql
+        result["database_dir"]["data.sql"] = has_production_data  # production 1GB only
         if not schema.exists():
             result["issues"].append("No schema.sql")
             result["Pass"] = 0

@@ -55,7 +55,7 @@ info:
     \ rank cards by savings potential within each catego\n\nBusiness Value: Comprehensive\
     \ report showing optimal card for each category/merchant combination, potential\
     \ rewards lost from current usage, portfolio performance metrics, and ranked recommendations\
-    \ by savings potent\n\nComplexity: challenging\n\n---\n\nUse Case: Can you recommend\
+    \ by savings potent\n\nComplexity: moderate\n\n---\n\nUse Case: Can you recommend\
     \ which credit cards I should use at nearby merchants based on my location and\
     \ show me the best rewards opportunities around me?\n\nDescription: A credit card\
     \ user is planning shopping trips or evaluating spending opportunities in their\
@@ -106,8 +106,8 @@ info:
     \ traditional reward optimization. The query aggregates CFPB complaint data by\
     \ issuer\n\nBusiness Value: Comprehensive issuer risk assessment with complaint\
     \ trends, forecasted complaint volumes, risk scores, and recommendations for card\
-    \ selection based on issuer reputation.\n\nComplexity: challenging\n\n---\n\n\
-    Use Case: Can you analyze Federal Reserve credit data to show market trends, identify\
+    \ selection based on issuer reputation.\n\nComplexity: moderate\n\n---\n\nUse\
+    \ Case: Can you analyze Federal Reserve credit data to show market trends, identify\
     \ different consumer segments, and provide predictive indicators for the credit\
     \ card industry?\n\nDescription: The Federal Reserve publishes aggregate consumer\
     \ credit data including revolving credit balances, delinquency rates, charge-off\
@@ -137,8 +137,8 @@ info:
     \ ranges to determine current eligibility status, identifies gaps in application\
     \ history to recommend optimal timing windows, computes days until eligibility\
     \ restoration, and aggregates Chase-specific application patterns to provide\n\
-    \nBusiness Value: [Description of expected output]\n\nComplexity: challenging\n\
-    \n---\n\nUse Case: Can you show me annual fee optimization with card renewal value\
+    \nBusiness Value: [Description of expected output]\n\nComplexity: moderate\n\n\
+    ---\n\nUse Case: Can you show me annual fee optimization with card renewal value\
     \ analysis and portfolio cost-benefit calculation?\n\nDescription: Credit card\
     \ holders with multiple premium cards face significant annual fee burdens that\
     \ may not be justified by the rewards and benefits earned. Evaluating whether\
@@ -525,7 +525,7 @@ info:
     \nAll queries in this database are designed to work across multiple database platforms:\n\
     \n- PostgreSQL: Full support with standard SQL features\n\nQueries use standard\
     \ SQL syntax and avoid platform-specific features to ensure compatibility.\n\n\
-    ---\n\nDocument Information:\n\n- Generated: 20260218-0146\n- Database: db-12\n\
+    ---\n\nDocument Information:\n\n- Generated: 20260218-0255\n- Database: db-12\n\
     - Type: Credit Card and Rewards Optimization System\n- Queries: 30 production\
     \ queries\n- Status: ✅ Complete Comprehensive Deliverable"
   version: 1.0.0

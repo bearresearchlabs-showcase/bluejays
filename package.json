@@ -30,7 +30,8 @@
     "pre-commit:root": "bash scripts/pre-commit-root.sh",
     "test:regression": "REPO_HEALTH_LENIENT=1 python3 scripts/db_check.py test all -q --tb=line",
     "test:schema-postgresql": "python3 scripts/db_check.py schema-postgresql-validate -a",
-    "test:source-checks": "python3 scripts/db_check.py source-checks -a"
+    "test:source-checks": "python3 scripts/db_check.py source-checks -a",
+    "build:client": "python3 scripts/db_check.py build -a"
   },
   "workspaces": [
     "apps/*",

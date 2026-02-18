@@ -693,10 +693,10 @@ The deliverable folder is ready for deployment to:
 
 #### Integration with Format Command
 
-The `/format` command generates this web-deployable structure automatically, following the **db-6 golden solution**:
+The format step (run via `/build db-{N}`) generates this web-deployable structure automatically, following the **db-6 golden solution**.
 
 ```bash
-/format db-{N}
+/build db-{N}
 ```
 
 This creates (matching `db-6/deliverable/db6-weather-consulting-insurance/` structure exactly):
@@ -836,7 +836,7 @@ This workflow integrates with:
 ### Deliverable Packaging Issues
 
 **Error**: Missing files in deliverable
-**Solution**: Ensure all required files exist, run `/format` command
+**Solution**: Ensure all required files exist, run `/build` command
 
 ## Summary: Web-Deployable Deliverable Requirement
 

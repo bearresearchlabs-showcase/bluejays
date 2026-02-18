@@ -52,8 +52,8 @@ CREATE TABLE shipping_carriers (
     commercial_pricing_available BOOLEAN DEFAULT FALSE,
     requires_account BOOLEAN DEFAULT FALSE,
     active_status BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Shipping Zones Table
@@ -70,7 +70,7 @@ CREATE TABLE shipping_zones (
     transit_days_max INTEGER,
     effective_date DATE NOT NULL,
     expiration_date DATE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (carrier_id) REFERENCES shipping_carriers(carrier_id)
 );
 
@@ -83,7 +83,8 @@ CREATE TABLE shipping_service_types (
     service_name VARCHAR(255) NOT NULL,
     service_category VARCHAR(100),  -- 'Express', 'Ground', 'Priority', 'Economy'
     domestic_available BOOLEAN DEFAULT TRUE,
-    international_available BOOLEAN DEFAU
+    international_available BOOLEAN DEFAULT FALSE,
+    max_
 -- ...
 ```
 

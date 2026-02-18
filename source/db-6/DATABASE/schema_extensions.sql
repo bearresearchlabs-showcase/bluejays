@@ -63,7 +63,6 @@ ALTER TABLE grib2_forecasts ADD COLUMN IF NOT EXISTS ensemble_member INTEGER;  -
 -- Extended to support NWS API data
 ALTER TABLE weather_observations ADD COLUMN IF NOT EXISTS api_endpoint VARCHAR(500);
 ALTER TABLE weather_observations ADD COLUMN IF NOT EXISTS api_response_status INTEGER;
-ALTER TABLE weather_observations ADD COLUMN IF NOT EXISTS observation_value NUMERIC(10, 2);
 
 -- Weather Alerts Table
 -- Stores NWS weather alerts and warnings
@@ -87,7 +86,7 @@ CREATE TABLE IF NOT EXISTS weather_alerts (
     county_code VARCHAR(5),
     cwa_code VARCHAR(10),
     ingestion_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    alert_geometry TEXT  -- Polygon geometry for alert area
+    alert_geometry GEOGRAPHY  -- Polygon geometry for alert area
 );
 
 -- Model Forecast Comparison Table

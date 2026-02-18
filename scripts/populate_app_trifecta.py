@@ -54,11 +54,17 @@ def populate_app(db_num: int) -> bool:
     add_schema("schema_extensions.sql", "schema_extensions.sql", "schema_extensions.sql")
     add_schema("insurance_schema.sql", "insurance_schema.sql", "insurance_schema.sql")
     add_schema("nexrad_satellite_schema.sql", "nexrad_satellite_schema.sql", "nexrad_satellite_schema.sql")
-    # Only primary data file: prefer data_large >= 1GB, else data.sql
+    # Only production data (>= 1GB). No sample data.
     primary = get_primary_data_file(all_sql)
     if primary:
         dest_name, src_path = primary
         collected_sql[dest_name] = src_path
+
+    # Remove sample/mini data files from DATABASE/ when not in collected_sql
+    for stale in ["data.sql", "data_large.sql", "data_mini.sql"]:
+        p = db_dest / stale
+        if p.exists() and stale not in collected_sql:
+            p.unlink()
 
     for name, src_path in collected_sql.items():
         shutil.copy2(src_path, db_dest / name)

@@ -58,7 +58,7 @@ CREATE TABLE metropolitan_areas (
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
     data_year INTEGER,
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Cities Table
@@ -81,7 +81,7 @@ CREATE TABLE cities (
     city_longitude NUMERIC(10, 7),
     timezone VARCHAR(50),
     data_year INTEGER,
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (msa_id) REFERENCES metropolitan_areas(msa_id)
 );
 
@@ -89,7 +89,7 @@ CREATE TABLE cities (
 -- Stores airport information including passenger volumes and parking capacity
 CREATE TABLE airports (
     airport_id VARCHAR(10) PRIMARY KEY,  -- IATA code
-    a
+    airport_name 
 -- ...
 ```
 

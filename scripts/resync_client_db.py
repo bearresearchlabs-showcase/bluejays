@@ -223,7 +223,7 @@ def sync_database(db_num: int, db_root: Path, client_root: Path, dry_run: bool =
             if f.is_file() and f.suffix.lower() == ".sql":
                 all_sql[f.name] = f
 
-    # Filter: PostgreSQL-only SQL. Output: schema.sql, primary data (data_large >= 1GB or data.sql)
+    # Filter: PostgreSQL-only SQL. Output: schema.sql, primary data (production >= 1GB only, no sample)
     collected_sql = {}  # dest_name -> src_path
 
     def add_schema(dest: str, pg_src: str | None, base_src: str) -> None:
@@ -236,7 +236,7 @@ def sync_database(db_num: int, db_root: Path, client_root: Path, dry_run: bool =
     add_schema("insurance_schema.sql", "insurance_schema.sql", "insurance_schema.sql")
     add_schema("nexrad_satellite_schema.sql", "nexrad_satellite_schema.sql", "nexrad_satellite_schema.sql")
 
-    # Only primary data file: prefer data_large >= 1GB, else data.sql
+    # Only production data (>= 1GB). No sample data.
     primary = get_primary_data_file(all_sql)
     if primary:
         dest_name, src_path = primary

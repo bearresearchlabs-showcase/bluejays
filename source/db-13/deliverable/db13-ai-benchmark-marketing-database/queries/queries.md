@@ -69,8 +69,8 @@ CREATE TABLE ai_models (
     model_status VARCHAR(50) DEFAULT 'active', -- 'active', 'deprecated', 'preview', 'experimental'
     data_source VARCHAR(100) DEFAULT 'ARTIFICIAL_ANALYSIS',
     source_url VARCHAR(1000),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update
 -- ...
 ```
 

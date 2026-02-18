@@ -1,9 +1,9 @@
 {
-  "validation_date": "20260218-0117",
+  "validation_date": "20260218-0353",
   "databases": {
     "db-1": {
       "database": "db-1",
-      "start_time": "20260218-0117",
+      "start_time": "20260218-0353",
       "phases": {
         "phase_0_extraction": {
           "status": "PASS"
@@ -16,14 +16,14 @@
           "status": "PASS"
         },
         "phase_3_execution": {
-          "status": "PASS"
+          "status": "SKIPPED"
         },
         "phase_5_report": {
-          "status": "PASS"
+          "status": "SKIPPED"
         }
       },
       "status": "FAIL",
-      "end_time": "20260218-0117"
+      "end_time": "20260218-0353"
     }
   },
   "summary": {

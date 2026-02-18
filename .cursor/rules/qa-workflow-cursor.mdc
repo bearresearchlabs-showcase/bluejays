@@ -100,7 +100,7 @@ See `.cursor/rules/testing-app-running.mdc` for details.
 ./scripts/run_all_tests.sh [db-1] [db-5] | -a
 ```
 
-Installs workbenches, runs pytest, db_check validate/format/qa-suite, bird_workbench, gdpval-langgraph, integrity, etc.
+Installs workbenches, runs pytest, db_check validate/qa-suite/build, bird_workbench, gdpval-langgraph, integrity, etc.
 
 ## Cursor Techniques
 
@@ -108,7 +108,7 @@ Installs workbenches, runs pytest, db_check validate/format/qa-suite, bird_workb
 
 Use @-references to scope context and commands without switching workspaces:
 
-- `@db/db-1/` - Reference db-1 for /QA, /format, /validate
+- `@db/db-1/` - Reference db-1 for /QA, /build (format deprecated), /validate
 - `@db/db-1/ @db/db-5/` - Range for commands
 - `@.cursor/rules/` - Include rules in context
 - `@scripts/` - Reference scripts when modifying workflow

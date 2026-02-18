@@ -60,14 +60,13 @@ GB = 1024**3
 
 
 def get_primary_data_file(all_sql: dict[str, Path]) -> tuple[str, Path] | None:
-    """Return (dest_name, path) for the primary data file. Prefer data_large >= 1GB; else data.sql."""
+    """Return (dest_name, path) for the primary data file. Production only: >= 1GB. No sample data."""
     for src in ["data_large_postgresql.sql", "data_large.sql"]:
         if src in all_sql and all_sql[src].stat().st_size >= GB:
             return ("data_large.sql", all_sql[src])
     if "data.sql" in all_sql and all_sql["data.sql"].stat().st_size >= GB:
-        return ("data_large.sql", all_sql["data.sql"])  # db-16: data.sql is 2.5GB
-    if "data.sql" in all_sql:
-        return ("data.sql", all_sql["data.sql"])
+        return ("data_large.sql", all_sql["data.sql"])
+    # No fallback to small data.sql — production 1GB data only
     return None
 
 

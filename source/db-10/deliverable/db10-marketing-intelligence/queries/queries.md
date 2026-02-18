@@ -60,8 +60,8 @@ CREATE TABLE products (
     dimensions_height NUMERIC(8, 2),
     color VARCHAR(100),
     size VARCHAR(100),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     is_active BOOLEAN DEFAULT TRUE,
     data_source VARCHAR(50) DEFAULT 'MANUAL'
 );
@@ -85,7 +85,7 @@ CREATE TABLE retailers (
     founded_year INTEGER,
     employee_count INTEGER,
     annual_revenue_usd NUMERIC(15, 2),
-    data_source 
+    data_source VARCHAR(50) 
 -- ...
 ```
 

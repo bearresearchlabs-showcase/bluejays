@@ -7,7 +7,7 @@
     "version": "1.0"
   },
   "schema": {
-    "total_tables": 11,
+    "total_tables": 34,
     "tables": [
       {
         "name": "grib2_forecasts",
@@ -45,7 +45,7 @@
           },
           {
             "name": "grid_cell_geom",
-            "data_type": "TEXT",
+            "data_type": "GEOGRAPHY",
             "constraints": "",
             "description": "Point geometry for grid cell center (PostgreSQL)"
           },
@@ -153,7 +153,7 @@
           },
           {
             "name": "boundary_geom",
-            "data_type": "TEXT",
+            "data_type": "GEOGRAPHY",
             "constraints": "",
             "description": "Polygon geometry"
           },
@@ -273,7 +273,7 @@
           },
           {
             "name": "station_geom",
-            "data_type": "TEXT",
+            "data_type": "GEOGRAPHY",
             "constraints": "",
             "description": "Point geometry"
           },
@@ -1053,7 +1053,7 @@
           },
           {
             "name": "station_geom",
-            "data_type": "TEXT",
+            "data_type": "GEOGRAPHY",
             "constraints": "",
             "description": ""
           },
@@ -1112,6 +1112,2946 @@
             "description": ""
           }
         ]
+      },
+      {
+        "name": "aws_data_source_log",
+        "description": "",
+        "columns": [
+          {
+            "name": "source_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "source_name",
+            "data_type": "VARCHAR(500)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "source_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": "'noaa_gfs', 'noaa_hrrr', 'noaa_nexrad', etc."
+          },
+          {
+            "name": "bucket_name",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "file_path",
+            "data_type": "VARCHAR(1000)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "format",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'grib2', 'netcdf', 'binary', etc."
+          },
+          {
+            "name": "ingestion_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Success', 'Failed', 'Pending'"
+          },
+          {
+            "name": "metadata",
+            "data_type": "JSONB",
+            "constraints": "",
+            "description": "PostgreSQL JSONB (repo is PostgreSQL-only)"
+          },
+          {
+            "name": "file_size_bytes",
+            "data_type": "BIGINT",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "forecast_date",
+            "data_type": "DATE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "forecast_cycle",
+            "data_type": "VARCHAR(2)",
+            "constraints": "",
+            "description": "'00', '06', '12', '18'"
+          },
+          {
+            "name": "forecast_hour",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "nws_api_observation_log",
+        "description": "",
+        "columns": [
+          {
+            "name": "log_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "station_id",
+            "data_type": "VARCHAR(50)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "observation_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "api_endpoint",
+            "data_type": "VARCHAR(500)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "response_status",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "data_freshness_minutes",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ingestion_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "error_message",
+            "data_type": "VARCHAR(2000)",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "geoplatform_dataset_log",
+        "description": "",
+        "columns": [
+          {
+            "name": "dataset_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "title",
+            "data_type": "VARCHAR(500)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "description",
+            "data_type": "VARCHAR(2000)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "url",
+            "data_type": "VARCHAR(1000)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "search_term",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ingestion_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Discovered', 'Ingested', 'Failed'"
+          },
+          {
+            "name": "dataset_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'boundary', 'elevation', 'imagery', etc."
+          },
+          {
+            "name": "spatial_extent_west",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_south",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_east",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_north",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ALTER",
+            "data_type": "TABLE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ALTER",
+            "data_type": "TABLE",
+            "constraints": "",
+            "description": "'GFS', 'HRRR', 'RAP', etc."
+          },
+          {
+            "name": "ALTER",
+            "data_type": "TABLE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ALTER",
+            "data_type": "TABLE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ALTER",
+            "data_type": "TABLE",
+            "constraints": "",
+            "description": "For ensemble forecasts"
+          },
+          {
+            "name": "ALTER",
+            "data_type": "TABLE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ALTER",
+            "data_type": "TABLE",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "weather_alerts",
+        "description": "",
+        "columns": [
+          {
+            "name": "alert_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "event_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": "'Tornado Warning', 'Flood Warning', etc."
+          },
+          {
+            "name": "severity",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Extreme', 'Severe', 'Moderate', 'Minor', 'Unknown'"
+          },
+          {
+            "name": "urgency",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Immediate', 'Expected', 'Future', 'Past', 'Unknown'"
+          },
+          {
+            "name": "certainty",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Observed', 'Likely', 'Possible', 'Unlikely', 'Unknown'"
+          },
+          {
+            "name": "headline",
+            "data_type": "VARCHAR(500)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "description",
+            "data_type": "TEXT",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "instruction",
+            "data_type": "TEXT",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "effective_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "expires_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "onset_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ends_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "area_description",
+            "data_type": "VARCHAR(1000)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "geocode_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'FIPS', 'UGC', etc."
+          },
+          {
+            "name": "geocode_value",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "state_code",
+            "data_type": "VARCHAR(2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "county_code",
+            "data_type": "VARCHAR(5)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "cwa_code",
+            "data_type": "VARCHAR(10)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ingestion_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "alert_geometry",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Polygon geometry for alert area"
+          }
+        ]
+      },
+      {
+        "name": "model_forecast_comparison",
+        "description": "",
+        "columns": [
+          {
+            "name": "comparison_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "forecast_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "parameter_name",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_cell_latitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_cell_longitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "gfs_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "hrrr_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rap_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "gefs_mean_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "gefs_stddev_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "observation_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "observation_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "gfs_error",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "hrrr_error",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rap_error",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "best_model",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "Model with smallest error"
+          },
+          {
+            "name": "comparison_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "data_source_statistics",
+        "description": "",
+        "columns": [
+          {
+            "name": "stat_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "source_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": "'AWS_GFS', 'NWS_API', 'GEOPLATFORM'"
+          },
+          {
+            "name": "source_name",
+            "data_type": "VARCHAR(500)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "stat_date",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "files_ingested",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "records_processed",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "data_volume_mb",
+            "data_type": "NUMERIC(15, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ingestion_duration_seconds",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "success_rate",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "avg_latency_seconds",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "error_count",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "calculation_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "insurance_policy_areas",
+        "description": "",
+        "columns": [
+          {
+            "name": "policy_area_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "boundary_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": "References shapefile_boundaries"
+          },
+          {
+            "name": "policy_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "NOT NULL",
+            "description": "'Property', 'Crop', 'Auto', 'Marine', 'General Liability'"
+          },
+          {
+            "name": "coverage_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'Homeowners', 'Commercial Property', 'Crop Insurance', etc."
+          },
+          {
+            "name": "policy_area_name",
+            "data_type": "VARCHAR(255)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "state_code",
+            "data_type": "VARCHAR(2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "county_code",
+            "data_type": "VARCHAR(5)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "cwa_code",
+            "data_type": "VARCHAR(10)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "risk_zone",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Low', 'Moderate', 'High', 'Very High'"
+          },
+          {
+            "name": "base_rate_factor",
+            "data_type": "NUMERIC(5, 3)",
+            "constraints": "",
+            "description": "Multiplier for base rates"
+          },
+          {
+            "name": "effective_date",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "expiration_date",
+            "data_type": "DATE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "is_active",
+            "data_type": "BOOLEAN",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "created_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "updated_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "insurance_risk_factors",
+        "description": "",
+        "columns": [
+          {
+            "name": "risk_factor_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "policy_area_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": "References insurance_policy_areas"
+          },
+          {
+            "name": "forecast_period_start",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": "Start of forecast period (Dec 3, 2025)"
+          },
+          {
+            "name": "forecast_period_end",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": "End of forecast period (Dec 17, 2025)"
+          },
+          {
+            "name": "forecast_day",
+            "data_type": "INTEGER",
+            "constraints": "NOT NULL",
+            "description": "Days ahead: 7, 8, 9, ..., 14"
+          },
+          {
+            "name": "forecast_date",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": "Date when forecast was made"
+          },
+          {
+            "name": "parameter_name",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": "'Temperature', 'Precipitation', 'WindSpeed', etc."
+          },
+          {
+            "name": "extreme_event_probability",
+            "data_type": "NUMERIC(5, 4)",
+            "constraints": "",
+            "description": "Probability of extreme event (0-1)"
+          },
+          {
+            "name": "temperature_extreme_risk",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": "Temperature extreme risk score"
+          },
+          {
+            "name": "cumulative_precipitation_risk",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": "Total precipitation risk score"
+          },
+          {
+            "name": "wind_damage_risk",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": "Wind damage risk score"
+          },
+          {
+            "name": "freeze_risk",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": "Freeze/frost risk score"
+          },
+          {
+            "name": "flood_risk",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": "Flood risk score"
+          },
+          {
+            "name": "min_forecast_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "max_forecast_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "avg_forecast_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "median_forecast_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "stddev_forecast_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "percentile_90_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "percentile_95_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "percentile_99_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "overall_risk_score",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "risk_category",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Low', 'Moderate', 'High', 'Very High', 'Extreme'"
+          },
+          {
+            "name": "calculation_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "forecast_model",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'GFS', 'HRRR', 'Ensemble', etc."
+          },
+          {
+            "name": "data_quality_score",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "insurance_rate_tables",
+        "description": "",
+        "columns": [
+          {
+            "name": "rate_table_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "policy_area_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": "References insurance_policy_areas"
+          },
+          {
+            "name": "policy_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "coverage_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "forecast_period_start",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": "Dec 3, 2025"
+          },
+          {
+            "name": "forecast_period_end",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": "Dec 17, 2025"
+          },
+          {
+            "name": "forecast_day",
+            "data_type": "INTEGER",
+            "constraints": "NOT NULL",
+            "description": "7-14 days ahead"
+          },
+          {
+            "name": "forecast_date",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": "Date when forecast was made"
+          },
+          {
+            "name": "base_rate",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "base_rate_currency",
+            "data_type": "VARCHAR(3)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "risk_adjusted_rate",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "risk_multiplier",
+            "data_type": "NUMERIC(5, 3)",
+            "constraints": "",
+            "description": "Multiplier applied to base rate"
+          },
+          {
+            "name": "overall_risk_score",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": "Overall risk score (0-100)"
+          },
+          {
+            "name": "base_component",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "precipitation_risk_component",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "temperature_risk_component",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "wind_risk_component",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "freeze_risk_component",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "flood_risk_component",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "extreme_event_component",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rate_tier",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Standard', 'Preferred', 'Substandard', 'High Risk'"
+          },
+          {
+            "name": "rate_category",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Low', 'Moderate', 'High', 'Very High'"
+          },
+          {
+            "name": "calculation_method",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'Forecast-Based', 'Historical', 'Hybrid'"
+          },
+          {
+            "name": "confidence_level",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": "Confidence in forecast (0-100)"
+          },
+          {
+            "name": "effective_date",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "expiration_date",
+            "data_type": "DATE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "created_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "updated_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "insurance_claims_history",
+        "description": "",
+        "columns": [
+          {
+            "name": "claim_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "policy_area_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "",
+            "description": "References insurance_policy_areas"
+          },
+          {
+            "name": "claim_date",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "loss_date",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": "Date when loss occurred"
+          },
+          {
+            "name": "policy_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "coverage_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "claim_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'Weather', 'Fire', 'Flood', 'Wind', 'Freeze', etc."
+          },
+          {
+            "name": "loss_amount",
+            "data_type": "NUMERIC(12, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "claim_status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Open', 'Closed', 'Denied', 'Pending'"
+          },
+          {
+            "name": "weather_event_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'Hurricane', 'Tornado', 'Flood', 'Freeze', etc."
+          },
+          {
+            "name": "weather_event_date",
+            "data_type": "DATE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "temperature_at_loss",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "precipitation_at_loss",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "wind_speed_at_loss",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "forecast_available",
+            "data_type": "BOOLEAN",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "forecast_day",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "Days ahead forecast was made"
+          },
+          {
+            "name": "forecast_error",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": "Forecast vs actual error"
+          },
+          {
+            "name": "created_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "forecast_rate_mapping",
+        "description": "",
+        "columns": [
+          {
+            "name": "mapping_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "forecast_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": "References grib2_forecasts"
+          },
+          {
+            "name": "rate_table_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "",
+            "description": "References insurance_rate_tables"
+          },
+          {
+            "name": "risk_factor_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "",
+            "description": "References insurance_risk_factors"
+          },
+          {
+            "name": "policy_area_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": "References insurance_policy_areas"
+          },
+          {
+            "name": "forecast_date",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "forecast_day",
+            "data_type": "INTEGER",
+            "constraints": "NOT NULL",
+            "description": "7-14 days ahead"
+          },
+          {
+            "name": "forecast_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "parameter_name",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "parameter_value",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "risk_contribution",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": "Contribution to overall risk score"
+          },
+          {
+            "name": "rate_impact",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": "Impact on rate calculation"
+          },
+          {
+            "name": "mapping_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "rate_table_comparison",
+        "description": "",
+        "columns": [
+          {
+            "name": "comparison_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "policy_area_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "policy_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "coverage_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'Homeowners', 'Commercial Property', etc."
+          },
+          {
+            "name": "forecast_period_start",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": "Dec 3, 2025"
+          },
+          {
+            "name": "forecast_period_end",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": "Dec 17, 2025"
+          },
+          {
+            "name": "forecast_date",
+            "data_type": "DATE",
+            "constraints": "NOT NULL",
+            "description": "Date when forecast was made"
+          },
+          {
+            "name": "rate_day_7",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rate_day_8",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rate_day_9",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rate_day_10",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rate_day_11",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rate_day_12",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rate_day_13",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rate_day_14",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "min_rate",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "max_rate",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "avg_rate",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "median_rate",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "rate_volatility",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": "Standard deviation of rates"
+          },
+          {
+            "name": "rate_volatility_percent",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": "Rate volatility as percentage"
+          },
+          {
+            "name": "rate_trend",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Increasing', 'Decreasing', 'Stable'"
+          },
+          {
+            "name": "recommended_rate",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "recommended_forecast_day",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "Which forecast day to use"
+          },
+          {
+            "name": "confidence_score",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "recommendation_status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Recommended', 'Alternative', etc."
+          },
+          {
+            "name": "comparison_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "nexrad_radar_sites",
+        "description": "",
+        "columns": [
+          {
+            "name": "site_id",
+            "data_type": "VARCHAR(4)",
+            "constraints": "PRIMARY KEY",
+            "description": "4-letter site identifier (e.g., 'KTLX')"
+          },
+          {
+            "name": "site_name",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "site_latitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "site_longitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "site_geom",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Point geometry"
+          },
+          {
+            "name": "elevation_meters",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "state_code",
+            "data_type": "VARCHAR(2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "county_name",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "cwa_code",
+            "data_type": "VARCHAR(10)",
+            "constraints": "",
+            "description": "County Warning Area"
+          },
+          {
+            "name": "radar_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "Weather Surveillance Radar"
+          },
+          {
+            "name": "operational_status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Operational', 'Maintenance', 'Offline'"
+          },
+          {
+            "name": "coverage_radius_km",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Standard NEXRAD coverage radius"
+          },
+          {
+            "name": "first_operational_date",
+            "data_type": "DATE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "last_maintenance_date",
+            "data_type": "DATE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "update_frequency_minutes",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "Typical NEXRAD update frequency"
+          },
+          {
+            "name": "created_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "updated_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "nexrad_level2_data",
+        "description": "",
+        "columns": [
+          {
+            "name": "radar_data_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "site_id",
+            "data_type": "VARCHAR(4)",
+            "constraints": "NOT NULL",
+            "description": "References nexrad_radar_sites"
+          },
+          {
+            "name": "scan_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "volume_scan_number",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "elevation_angle",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": "Elevation angle in degrees"
+          },
+          {
+            "name": "azimuth_angle",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Azimuth angle in degrees"
+          },
+          {
+            "name": "range_gate",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "Range gate number"
+          },
+          {
+            "name": "range_km",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Distance from radar in kilometers"
+          },
+          {
+            "name": "reflectivity_dbz",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Reflectivity in dBZ"
+          },
+          {
+            "name": "reflectivity_geom",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Point geometry for reflectivity location"
+          },
+          {
+            "name": "radial_velocity_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Radial velocity in m/s"
+          },
+          {
+            "name": "velocity_geom",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Point geometry for velocity location"
+          },
+          {
+            "name": "spectrum_width_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Spectrum width in m/s"
+          },
+          {
+            "name": "data_quality_flag",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "Quality flags"
+          },
+          {
+            "name": "source_file",
+            "data_type": "VARCHAR(1000)",
+            "constraints": "",
+            "description": "Original NEXRAD file path"
+          },
+          {
+            "name": "aws_bucket",
+            "data_type": "VARCHAR(255)",
+            "constraints": "",
+            "description": "AWS S3 bucket"
+          },
+          {
+            "name": "aws_key",
+            "data_type": "VARCHAR(1000)",
+            "constraints": "",
+            "description": "AWS S3 key"
+          },
+          {
+            "name": "file_format",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Level2', 'Level3'"
+          },
+          {
+            "name": "compression_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'bzip2', 'gzip', 'none'"
+          },
+          {
+            "name": "decompression_status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Success', 'Failed', 'Pending'"
+          },
+          {
+            "name": "data_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Reflectivity', 'Velocity', 'SpectrumWidth', 'DifferentialReflectivity'"
+          },
+          {
+            "name": "sweep_mode",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'PPI' (Plan Position Indicator), 'RHI' (Range Height Indicator)"
+          },
+          {
+            "name": "pulse_repetition_frequency",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "PRF in Hz"
+          },
+          {
+            "name": "nyquist_velocity_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Nyquist velocity in m/s"
+          },
+          {
+            "name": "spatial_extent_west",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_south",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_east",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_north",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ingestion_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "processing_duration_seconds",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "records_processed",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "nexrad_reflectivity_grid",
+        "description": "",
+        "columns": [
+          {
+            "name": "grid_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "site_id",
+            "data_type": "VARCHAR(4)",
+            "constraints": "NOT NULL",
+            "description": "References nexrad_radar_sites"
+          },
+          {
+            "name": "scan_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_latitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_longitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_geom",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Point geometry"
+          },
+          {
+            "name": "grid_resolution_km",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Grid resolution in km"
+          },
+          {
+            "name": "max_reflectivity_dbz",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Maximum reflectivity in grid cell"
+          },
+          {
+            "name": "mean_reflectivity_dbz",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Mean reflectivity in grid cell"
+          },
+          {
+            "name": "min_reflectivity_dbz",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Minimum reflectivity in grid cell"
+          },
+          {
+            "name": "reflectivity_count",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "Number of observations in grid cell"
+          },
+          {
+            "name": "composite_reflectivity_dbz",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "height_of_max_reflectivity_m",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "precipitation_rate_mmh",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Precipitation rate in mm/h"
+          },
+          {
+            "name": "accumulated_precipitation_mm",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Accumulated precipitation in mm"
+          },
+          {
+            "name": "storm_cell_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "",
+            "description": "Identifier for storm cell tracking"
+          },
+          {
+            "name": "storm_severity",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Weak', 'Moderate', 'Strong', 'Severe', 'Extreme'"
+          },
+          {
+            "name": "grid_generation_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "grid_method",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'NearestNeighbor', 'Bilinear', 'Cressman', etc."
+          }
+        ]
+      },
+      {
+        "name": "nexrad_velocity_grid",
+        "description": "",
+        "columns": [
+          {
+            "name": "grid_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "site_id",
+            "data_type": "VARCHAR(4)",
+            "constraints": "NOT NULL",
+            "description": "References nexrad_radar_sites"
+          },
+          {
+            "name": "scan_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_latitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_longitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_geom",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Point geometry"
+          },
+          {
+            "name": "grid_resolution_km",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "radial_velocity_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Radial velocity in m/s"
+          },
+          {
+            "name": "velocity_azimuth",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Azimuth angle in degrees"
+          },
+          {
+            "name": "u_wind_component_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "East-west wind component"
+          },
+          {
+            "name": "v_wind_component_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "North-south wind component"
+          },
+          {
+            "name": "wind_speed_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Wind speed in m/s"
+          },
+          {
+            "name": "wind_direction_deg",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Wind direction in degrees"
+          },
+          {
+            "name": "spectrum_width_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "velocity_quality_flag",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "grid_generation_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "nexrad_storm_cells",
+        "description": "",
+        "columns": [
+          {
+            "name": "storm_cell_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "site_id",
+            "data_type": "VARCHAR(4)",
+            "constraints": "NOT NULL",
+            "description": "References nexrad_radar_sites"
+          },
+          {
+            "name": "first_detection_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "last_detection_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "storm_center_latitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "storm_center_longitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "storm_center_geom",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Point geometry"
+          },
+          {
+            "name": "storm_polygon_geom",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Polygon geometry for storm extent"
+          },
+          {
+            "name": "max_reflectivity_dbz",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "max_velocity_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "storm_area_km2",
+            "data_type": "NUMERIC(10, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "storm_diameter_km",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "storm_perimeter_km",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "storm_speed_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Storm movement speed"
+          },
+          {
+            "name": "storm_direction_deg",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Storm movement direction"
+          },
+          {
+            "name": "storm_severity",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Weak', 'Moderate', 'Strong', 'Severe', 'Extreme'"
+          },
+          {
+            "name": "storm_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Thunderstorm', 'Squall Line', 'Supercell', 'Mesocyclone', etc."
+          },
+          {
+            "name": "track_duration_minutes",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "scan_count",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "Number of scans where storm was detected"
+          },
+          {
+            "name": "tracking_status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Active', 'Dissipated', 'Merged'"
+          },
+          {
+            "name": "tracking_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "satellite_imagery_sources",
+        "description": "",
+        "columns": [
+          {
+            "name": "source_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "satellite_name",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": "'GOES-16', 'GOES-17', 'GOES-18', etc."
+          },
+          {
+            "name": "satellite_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'GOES', 'POES', 'MODIS', etc."
+          },
+          {
+            "name": "sensor_name",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'ABI' (Advanced Baseline Imager), etc."
+          },
+          {
+            "name": "orbital_position",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'GOES-East', 'GOES-West', etc."
+          },
+          {
+            "name": "coverage_area",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'CONUS', 'Full Disk', 'Mesoscale', etc."
+          },
+          {
+            "name": "spatial_resolution_km",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Spatial resolution in kilometers"
+          },
+          {
+            "name": "scan_frequency_minutes",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "Scan frequency in minutes"
+          },
+          {
+            "name": "temporal_resolution_minutes",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "operational_status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "first_operational_date",
+            "data_type": "DATE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "last_update_date",
+            "data_type": "DATE",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "created_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "updated_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "satellite_imagery_products",
+        "description": "",
+        "columns": [
+          {
+            "name": "product_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "source_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": "References satellite_imagery_sources"
+          },
+          {
+            "name": "product_name",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": "'ABI L2 Cloud Top Height', 'ABI L2 Cloud Top Temperature', etc."
+          },
+          {
+            "name": "product_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'Cloud', 'Fire', 'Precipitation', 'Temperature', 'Moisture', etc."
+          },
+          {
+            "name": "band_number",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "GOES ABI band number (1-16)"
+          },
+          {
+            "name": "band_name",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'Visible', 'Near-Infrared', 'Infrared', etc."
+          },
+          {
+            "name": "wavelength_um",
+            "data_type": "NUMERIC(8, 4)",
+            "constraints": "",
+            "description": "Wavelength in micrometers"
+          },
+          {
+            "name": "scan_start_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "scan_end_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "scan_duration_seconds",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "grid_latitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_longitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_geom",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Point geometry"
+          },
+          {
+            "name": "grid_resolution_km",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Grid resolution in kilometers"
+          },
+          {
+            "name": "pixel_value",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": "Raw pixel value"
+          },
+          {
+            "name": "calibrated_value",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": "Calibrated physical value"
+          },
+          {
+            "name": "brightness_temperature_k",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Brightness temperature in Kelvin (for IR bands)"
+          },
+          {
+            "name": "reflectance_percent",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": "Reflectance percentage (for visible bands)"
+          },
+          {
+            "name": "cloud_top_height_m",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Cloud top height in meters"
+          },
+          {
+            "name": "cloud_top_temperature_k",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Cloud top temperature in Kelvin"
+          },
+          {
+            "name": "cloud_phase",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Liquid', 'Ice', 'Mixed', 'Unknown'"
+          },
+          {
+            "name": "cloud_optical_depth",
+            "data_type": "NUMERIC(8, 4)",
+            "constraints": "",
+            "description": "Cloud optical depth"
+          },
+          {
+            "name": "fire_detection_confidence",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": "Fire detection confidence (0-100)"
+          },
+          {
+            "name": "fire_temperature_k",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Fire temperature in Kelvin"
+          },
+          {
+            "name": "fire_power_mw",
+            "data_type": "NUMERIC(12, 2)",
+            "constraints": "",
+            "description": "Fire radiative power in megawatts"
+          },
+          {
+            "name": "precipitation_rate_mmh",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Precipitation rate in mm/h"
+          },
+          {
+            "name": "source_file",
+            "data_type": "VARCHAR(1000)",
+            "constraints": "",
+            "description": "Original satellite file path"
+          },
+          {
+            "name": "aws_bucket",
+            "data_type": "VARCHAR(255)",
+            "constraints": "",
+            "description": "AWS S3 bucket"
+          },
+          {
+            "name": "aws_key",
+            "data_type": "VARCHAR(1000)",
+            "constraints": "",
+            "description": "AWS S3 key"
+          },
+          {
+            "name": "file_format",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'NetCDF', 'HDF5', 'GeoTIFF', etc."
+          },
+          {
+            "name": "compression_type",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "Compression type"
+          },
+          {
+            "name": "decompression_status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_west",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_south",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_east",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_north",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "ingestion_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "processing_duration_seconds",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "records_processed",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "satellite_imagery_grid",
+        "description": "",
+        "columns": [
+          {
+            "name": "grid_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "source_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": "References satellite_imagery_sources"
+          },
+          {
+            "name": "product_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "scan_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_latitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_longitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_geom",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Point geometry"
+          },
+          {
+            "name": "grid_resolution_km",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": "Grid resolution"
+          },
+          {
+            "name": "min_value",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "max_value",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "mean_value",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "median_value",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "stddev_value",
+            "data_type": "NUMERIC(10, 4)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "pixel_count",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "cloud_fraction",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": "Cloud fraction (0-100%)"
+          },
+          {
+            "name": "cloud_top_height_m",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "cloud_top_temperature_k",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "fire_count",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "total_fire_power_mw",
+            "data_type": "NUMERIC(12, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "precipitation_rate_mmh",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "aggregation_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "aggregation_method",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'Mean', 'Max', 'Min', 'Median', etc."
+          }
+        ]
+      },
+      {
+        "name": "nexrad_transformation_log",
+        "description": "",
+        "columns": [
+          {
+            "name": "transformation_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "site_id",
+            "data_type": "VARCHAR(4)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "source_file",
+            "data_type": "VARCHAR(1000)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "transformation_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": "'Decompression', 'Gridding', 'StormTracking', 'Composite'"
+          },
+          {
+            "name": "transformation_start_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "transformation_end_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "transformation_duration_seconds",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "input_format",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "input_size_bytes",
+            "data_type": "BIGINT",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "input_records",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "output_format",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "output_size_bytes",
+            "data_type": "BIGINT",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "output_records",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "transformation_status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": "'Success', 'Failed', 'Partial'"
+          },
+          {
+            "name": "error_message",
+            "data_type": "VARCHAR(2000)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "processing_method",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'PyART', 'wradlib', 'Custom', etc."
+          },
+          {
+            "name": "processing_parameters",
+            "data_type": "VARCHAR(2000)",
+            "constraints": "",
+            "description": "JSON parameters"
+          },
+          {
+            "name": "spatial_extent_west",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_south",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_east",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_north",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "created_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "satellite_transformation_log",
+        "description": "",
+        "columns": [
+          {
+            "name": "transformation_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "source_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "source_file",
+            "data_type": "VARCHAR(1000)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "transformation_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": "'Decompression', 'Reprojection', 'Gridding', 'ProductGeneration'"
+          },
+          {
+            "name": "transformation_start_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "transformation_end_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "transformation_duration_seconds",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "input_format",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "input_size_bytes",
+            "data_type": "BIGINT",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "input_bands",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "input_dimensions",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'width x height'"
+          },
+          {
+            "name": "output_format",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "output_size_bytes",
+            "data_type": "BIGINT",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "output_records",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "transformation_status",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "error_message",
+            "data_type": "VARCHAR(2000)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "processing_method",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'xarray', 'rasterio', 'GDAL', 'Custom', etc."
+          },
+          {
+            "name": "processing_parameters",
+            "data_type": "VARCHAR(2000)",
+            "constraints": "",
+            "description": "JSON parameters"
+          },
+          {
+            "name": "crs_transformation",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "CRS transformation applied"
+          },
+          {
+            "name": "spatial_extent_west",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_south",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_east",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "spatial_extent_north",
+            "data_type": "NUMERIC(10, 6)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "created_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "us_wide_composite_products",
+        "description": "",
+        "columns": [
+          {
+            "name": "composite_id",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": ""
+          },
+          {
+            "name": "product_type",
+            "data_type": "VARCHAR(100)",
+            "constraints": "NOT NULL",
+            "description": "'Precipitation', 'Cloud', 'Storm', 'Fire', 'Temperature'"
+          },
+          {
+            "name": "composite_time",
+            "data_type": "TIMESTAMP",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_latitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_longitude",
+            "data_type": "NUMERIC(10, 7)",
+            "constraints": "NOT NULL",
+            "description": ""
+          },
+          {
+            "name": "grid_geom",
+            "data_type": "GEOGRAPHY",
+            "constraints": "",
+            "description": "Point geometry"
+          },
+          {
+            "name": "grid_resolution_km",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "nexrad_reflectivity_dbz",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "nexrad_velocity_ms",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "nexrad_precipitation_rate_mmh",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "nexrad_contribution_weight",
+            "data_type": "NUMERIC(5, 3)",
+            "constraints": "",
+            "description": "Weight of NEXRAD data in composite"
+          },
+          {
+            "name": "satellite_brightness_temperature_k",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "satellite_reflectance_percent",
+            "data_type": "NUMERIC(6, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "satellite_cloud_top_height_m",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "satellite_precipitation_rate_mmh",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "satellite_contribution_weight",
+            "data_type": "NUMERIC(5, 3)",
+            "constraints": "",
+            "description": "Weight of satellite data in composite"
+          },
+          {
+            "name": "composite_precipitation_rate_mmh",
+            "data_type": "NUMERIC(8, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "composite_cloud_fraction",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "composite_storm_severity",
+            "data_type": "VARCHAR(50)",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "data_quality_score",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": "Overall data quality (0-100)"
+          },
+          {
+            "name": "coverage_percentage",
+            "data_type": "NUMERIC(5, 2)",
+            "constraints": "",
+            "description": "Percentage of expected data coverage"
+          },
+          {
+            "name": "nexrad_sites_count",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "Number of NEXRAD sites contributing"
+          },
+          {
+            "name": "satellite_sources_count",
+            "data_type": "INTEGER",
+            "constraints": "",
+            "description": "Number of satellite sources contributing"
+          },
+          {
+            "name": "composite_generation_timestamp",
+            "data_type": "TIMESTAMP",
+            "constraints": "",
+            "description": ""
+          },
+          {
+            "name": "composite_method",
+            "data_type": "VARCHAR(100)",
+            "constraints": "",
+            "description": "'WeightedAverage', 'Maximum', 'Minimum', 'Median', etc."
+          }
+        ]
       }
     ]
   },
@@ -1120,7 +4060,7 @@
       "number": 1,
       "title": "moderate / aggregation",
       "question": "Can you show me a production-grade spatial analysis of weather forecasts that uses nested CTEs and geospatial aggregations?",
-      "description": "A weather consulting firm needs to analyze forecast accuracy and spatial distribution patterns across multiple geographic regions to support insurance risk assessment. The analysis requires combining GRIB2 forecast data with shapefile boundaries and weather station observations to identify regional weather patterns and validate forecast performance. Produce a production-grade spatial weather forecast analysis with multi-level CTE nesting and geospatial aggregations to evaluate f",
+      "description": "A weather consulting firm needs to analyze forecast accuracy and spatial distribution patterns across multiple geographic regions to support insurance risk assessment. The analysis requires combining GRIB2 forecast data with shapefile boundaries and weather station observations to identify regional weather patterns and validate forecast performance. Produce a production-grade spatial weather forecast analysis with multi-level CTE nesting and geospatial aggregations to evaluate forecast parameter",
       "evidence": "A weather consulting firm needs to analyze forecast accuracy and spatial distribution patterns across multiple geographic regions to support insurance risk assessment. The analysis requires combining GRIB2 forecast data with shapefile boundaries and weather station observations to identify regional weather patterns and validate forecast performance. Produce a production-grade spatial weather forecast analysis with multi-level CTE nesting and geospatial aggregations to evaluate forecast parameters across boundary regions. The query uses multiple nested CTEs to first extract and filter forecast parameters from grib2_forecasts, then spatially joins these with shapefile_boundaries using geospatial functions (ST_Contains, ST_Intersects), aggregates weather metrics by region and time period, computes statistical measures (mean, median, quartiles) for temperature, precipitation, and wind parameters, applies window functions to calculate rolling averages and comparativ",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1130,11 +4070,11 @@
     },
     {
       "number": 2,
-      "title": "challenging / aggregation",
+      "title": "moderate / aggregation",
       "question": "Can you show me a recursive analysis of spatial boundary hierarchies with multi-hop geospatial traversal?",
-      "description": "The insurance division needs to understand hierarchical relationships between administrative boundaries (country, state, county, district) to aggregate weather risk across different organizational reporting levels and determine premium calculations at various geographic scales. Perform a recursive spatial boundary hierarchy analysis with multi-hop geospatial traversal to map parent-child relationships across administrative levels. The query employs a recursive CTE starti",
+      "description": "The insurance division needs to understand hierarchical relationships between administrative boundaries (country, state, county, district) to aggregate weather risk across different organizational reporting levels and determine premium calculations at various geographic scales. Perform a recursive spatial boundary hierarchy analysis with multi-hop geospatial traversal to map parent-child relationships across administrative levels. The query employs a recursive CTE starting with top-level boundar",
       "evidence": "The insurance division needs to understand hierarchical relationships between administrative boundaries (country, state, county, district) to aggregate weather risk across different organizational reporting levels and determine premium calculations at various geographic scales. Perform a recursive spatial boundary hierarchy analysis with multi-hop geospatial traversal to map parent-child relationships across administrative levels. The query employs a recursive CTE starting with top-level boundaries (countries or states) as the anchor, recursively joins shapefile_boundaries to itself using spatial containment predicates (ST_Contains or ST_Within) to identify child boundaries, tracks the hierarchy depth and path through each iteration, accumulates boundary metadata (area, perimeter, administrative level) at each level, applies window functions to calculate cumulative statistics rolling up from lowest to highest administrative units, aggregates weather station cou",
-      "complexity": "challenging",
+      "complexity": "moderate",
       "expected_output": "Query results",
       "sql": "WITH RECURSIVE boundary_spatial_hierarchy AS (\n    -- Anchor CTE: Direct spatial relationships between boundaries\n    SELECT DISTINCT\n        sb1.boundary_id AS parent_boundary_id,\n        sb1.feature_type AS parent_feature_type,\n        sb1.feature_name AS parent_feature_name,\n        sb2.boundary_id AS child_boundary_id,\n        sb2.feature_type AS child_feature_type,\n        sb2.feature_name AS child_feature_name,\n        1 AS hierarchy_level,\n        ARRAY[sb1.boundary_id, sb2.boundary_id] AS boundary_path,\n        CASE\n            WHEN sb1.boundary_geom IS NOT NULL AND sb2.boundary_geom IS NOT NULL THEN\n                CASE\n                    WHEN ST_WITHIN(sb2.boundary_geom, sb1.boundary_geom) THEN 'Contains'\n                    WHEN ST_WITHIN(sb1.boundary_geom, sb2.boundary_geom) THEN 'Contained By'\n                    WHEN ST_INTERSECTS(sb1.boundary_geom, sb2.boundary_geom) THEN 'Intersects'\n                    ELSE 'Near'\n                END\n            ELSE NULL\n        END AS spatial_relationship,\n        CASE\n            WHEN sb1.boundary_geom IS NOT NULL AND sb2.boundary_geom IS NOT NULL THEN\n                ST_DISTANCE(sb1.boundary_geom, sb2.boundary_geom)\n            ELSE NULL\n        END AS spatial_distance,\n        CASE\n            WHEN sb1.boundary_geom IS NOT NULL AND sb2.boundary_geom IS NOT NULL THEN\n                CASE\n                    WHEN ST_WITHIN(sb2.boundary_geom, sb1.boundary_geom) THEN\n                        ST_AREA(sb2.boundary_geom) / NULLIF(ST_AREA(sb1.boundary_geom), 0) * 100\n                    ELSE NULL\n                END\n            ELSE NULL\n        END AS coverage_percentage\n    FROM shapefile_boundaries sb1\n    CROSS JOIN shapefile_boundaries sb2\n    WHERE sb1.boundary_id != sb2.boundary_id\n        AND sb1.boundary_geom IS NOT NULL\n        AND sb2.boundary_geom IS NOT NULL\n        AND (\n            ST_WITHIN(sb2.boundary_geom, sb1.boundary_geom)\n            OR ST_INTERSECTS(sb1.boundary_geom, sb2.boundary_geom)\n            OR ST_DISTANCE(sb1.boundary_geom, sb2.boundary_geom) < 50000\n        )\n\n    UNION ALL\n\n    -- Recursive step: Multi-hop spatial relationships\n    SELECT\n        bsh.parent_boundary_id,\n        bsh.parent_feature_type,\n        bsh.parent_feature_name,\n        sb3.boundary_id AS child_boundary_id,\n        sb3.feature_type AS child_feature_type,\n        sb3.feature_name AS child_feature_name,\n        bsh.hierarchy_level + 1,\n        bsh.boundary_path || ARRAY[sb3.boundary_id],\n        CASE\n            WHEN bsh.spatial_relationship = 'Contains' AND sb3.boundary_geom IS NOT NULL THEN\n                CASE\n                    WHEN ST_WITHIN(sb3.boundary_geom,\n                        (SELECT boundary_geom FROM shapefile_boundaries WHERE boundary_id = bsh.parent_boundary_id)\n                    ) THEN 'Contains'\n                    WHEN ST_INTERSECTS(sb3.boundary_geom,\n                        (SELECT boundary_geom FROM shapefile_boundaries WHERE boundary_id = bsh.parent_boundary_id)\n                    ) THEN 'Intersects'\n                    ELSE 'Near'\n                END\n            ELSE bsh.spatial_relationship\n        END,\n        CASE\n            WHEN sb3.boundary_geom IS NOT NULL THEN\n                ST_DISTANCE(\n                    (SELECT boundary_geom FROM shapefile_boundaries WHERE boundary_id = bsh.parent_boundary_id),\n                    sb3.boundary_geom\n                )\n            ELSE bsh.spatial_distance\n        END,\n        CASE\n            WHEN sb3.boundary_geom IS NOT NULL AND bsh.spatial_relationship = 'Contains' THEN\n                ST_AREA(sb3.boundary_geom) / NULLIF(\n                    ST_AREA((SELECT boundary_geom FROM shapefile_boundaries WHERE boundary_id = bsh.parent_boundary_id)),\n                    0\n                ) * 100\n            ELSE bsh.coverage_percentage\n        END\n    FROM boundary_spatial_hierarchy bsh\n    INNER JOIN shapefile_boundaries sb3 ON (\n        NOT sb3.boundary_id = ANY(bsh.boundary_path)\n        AND sb3.boundary_geom IS NOT NULL\n        AND (\n            ST_WITHIN(sb3.boundary_geom,\n                (SELECT boundary_geom FROM shapefile_boundaries WHERE boundary_id = bsh.child_boundary_id)\n            )\n            OR ST_INTERSECTS(sb3.boundary_geom,\n                (SELECT boundary_geom FROM shapefile_boundaries WHERE boundary_id = bsh.child_boundary_id)\n            )\n        )\n    )\n    WHERE bsh.hierarchy_level < 5\n        AND array_length(bsh.boundary_path, 1) < 6\n),\nhierarchy_metrics AS (\n    -- Second CTE: Calculate hierarchy metrics with aggregations\n    SELECT\n        bsh.parent_boundary_id,\n        bsh.parent_feature_type,\n        bsh.parent_feature_name,\n        bsh.child_boundary_id,\n        bsh.child_feature_type,\n        bsh.child_feature_name,\n        bsh.hierarchy_level,\n        bsh.boundary_path,\n        array_length(bsh.boundary_path, 1) AS path_length,\n        bsh.spatial_relationship,\n        ROUND(CAST(bsh.spatial_distance AS NUMERIC), 2) AS spatial_distance,\n        ROUND(CAST(bsh.coverage_percentage AS NUMERIC), 2) AS coverage_percentage,\n        -- Count children at each level\n        COUNT(*) OVER (\n            PARTITION BY bsh.parent_boundary_id, bsh.hierarchy_level\n        ) AS children_count_at_level,\n        -- Total descendants count\n        COUNT(*) OVER (\n            PARTITION BY bsh.parent_boundary_id\n        ) AS total_descendants_count,\n        -- Path weight (inverse of hierarchy level)\n        1.0 / NULLIF(bsh.hierarchy_level, 0) AS path_weight\n    FROM boundary_spatial_hierarchy bsh\n),\nshortest_paths AS (\n    -- Third CTE: Find shortest paths between boundaries\n    SELECT\n        hm1.parent_boundary_id,\n        hm1.child_boundary_id AS intermediate_boundary_id,\n        hm2.child_boundary_id AS target_boundary_id,\n        hm1.hierarchy_level + hm2.hierarchy_level AS total_hops,\n        hm1.boundary_path || hm2.boundary_path[2:] AS combined_path,\n        hm1.path_weight + hm2.path_weight AS combined_path_weight,\n        hm1.spatial_distance + COALESCE(hm2.spatial_distance, 0) AS combined_distance\n    FROM hierarchy_metrics hm1\n    INNER JOIN hierarchy_metrics hm2 ON hm1.child_boundary_id = hm2.parent_boundary_id\n    WHERE hm1.child_boundary_id != hm2.child_boundary_id\n        AND NOT hm2.child_boundary_id = ANY(hm1.boundary_path)\n),\npath_optimization AS (\n    -- Fourth CTE: Optimize paths and find best routes\n    SELECT\n        sp.parent_boundary_id,\n        sp.target_boundary_id,\n        sp.total_hops,\n        sp.combined_path,\n        sp.combined_path_weight,\n        sp.combined_distance,\n        -- Window functions for path comparison\n        MIN(sp.combined_path_weight) OVER (\n            PARTITION BY sp.parent_boundary_id, sp.target_boundary_id\n        ) AS min_path_weight,\n        MIN(sp.total_hops) OVER (\n            PARTITION BY sp.parent_boundary_id, sp.target_boundary_id\n        ) AS min_hops,\n        ROW_NUMBER() OVER (\n            PARTITION BY sp.parent_boundary_id, sp.target_boundary_id\n            ORDER BY sp.combined_path_weight ASC, sp.total_hops ASC\n        ) AS path_rank\n    FROM shortest_paths sp\n),\nforecast_boundary_aggregations AS (\n    -- Fifth CTE: Aggregate forecasts by boundary hierarchy\n    SELECT\n        po.parent_boundary_id,\n        po.target_boundary_id,\n        po.total_hops,\n        po.combined_path,\n        po.path_rank,\n        sb_parent.feature_type AS parent_feature_type,\n        sb_parent.feature_name AS parent_feature_name,\n        sb_target.feature_type AS target_feature_type,\n        sb_target.feature_name AS target_feature_name,\n        COUNT(DISTINCT gf.forecast_id) AS forecast_count,\n        COUNT(DISTINCT gf.parameter_name) AS parameter_count,\n        AVG(gf.parameter_value) AS avg_forecast_value,\n        MIN(gf.parameter_value) AS min_forecast_value,\n        MAX(gf.parameter_value) AS max_forecast_value,\n        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY gf.parameter_value) AS median_forecast_value\n    FROM path_optimization po\n    INNER JOIN shapefile_boundaries sb_parent ON po.parent_boundary_id = sb_parent.boundary_id\n    INNER JOIN shapefile_boundaries sb_target ON po.target_boundary_id = sb_target.boundary_id\n    LEFT JOIN grib2_forecasts gf ON (\n        gf.grid_cell_geom IS NOT NULL\n        AND (\n            ST_WITHIN(gf.grid_cell_geom, sb_parent.boundary_geom)\n            OR ST_WITHIN(gf.grid_cell_geom, sb_target.boundary_geom)\n        )\n    )\n    WHERE po.path_rank = 1\n    GROUP BY\n        po.parent_boundary_id,\n        po.target_boundary_id,\n        po.total_hops,\n        po.combined_path,\n        po.path_rank,\n        sb_parent.feature_type,\n        sb_parent.feature_name,\n        sb_target.feature_type,\n        sb_target.feature_name\n),\nfinal_hierarchy_analysis AS (\n    -- Sixth CTE: Final analysis with comprehensive metrics\n    SELECT\n        fba.parent_boundary_id,\n        fba.parent_feature_type,\n        fba.parent_feature_name,\n        fba.target_boundary_id,\n        fba.target_feature_type,\n        fba.target_feature_name,\n        fba.total_hops,\n        fba.combined_path,\n        fba.forecast_count,\n        fba.parameter_count,\n        ROUND(CAST(fba.avg_forecast_value AS NUMERIC), 2) AS avg_forecast_value,\n        ROUND(CAST(fba.min_forecast_value AS NUMERIC), 2) AS min_forecast_value,\n        ROUND(CAST(fba.max_forecast_value AS NUMERIC), 2) AS max_forecast_value,\n        ROUND(CAST(fba.median_forecast_value AS NUMERIC), 2) AS median_forecast_value,\n        -- Window functions for comparison\n        AVG(fba.avg_forecast_value) OVER (\n            PARTITION BY fba.parent_feature_type\n        ) AS avg_by_feature_type,\n        PERCENT_RANK() OVER (\n            PARTITION BY fba.parent_feature_type\n            ORDER BY fba.forecast_count DESC\n        ) AS forecast_count_percentile,\n        NTILE(4) OVER (\n            ORDER BY fba.total_hops ASC\n        ) AS hop_quartile\n    FROM forecast_boundary_aggregations fba\n)\nSELECT\n    parent_boundary_id,\n    parent_feature_type,\n    parent_feature_name,\n    target_boundary_id,\n    target_feature_type,\n    target_feature_name,\n    total_hops,\n    combined_path,\n    forecast_count,\n    parameter_count,\n    avg_forecast_value,\n    min_forecast_value,\n    max_forecast_value,\n    median_forecast_value,\n    ROUND(CAST(avg_by_feature_type AS NUMERIC), 2) AS avg_by_feature_type,\n    ROUND(CAST(forecast_count_percentile * 100 AS NUMERIC), 2) AS forecast_count_percentile,\n    hop_quartile\nFROM final_hierarchy_analysis\nWHERE forecast_count > 0\nORDER BY total_hops ASC, forecast_count DESC\nLIMIT 200;",
       "line_number": 142,
@@ -1144,7 +4084,7 @@
       "number": 3,
       "title": "moderate / aggregation",
       "question": "Can you show me a correlation analysis between multiple weather parameters with cross-parameter temporal patterns?",
-      "description": "Actuaries require understanding of how different weather parameters (temperature, humidity, wind speed, precipitation) correlate with each other over time to model compound weather events that trigger insurance claims, such as heat waves combined with low humidity increasing wildfire risk. Generate a multi-parameter weather correlation analysis with cross-parameter temporal patterns to identify compound weather event signatures. The query creates CTEs to pivot weather pa",
+      "description": "Actuaries require understanding of how different weather parameters (temperature, humidity, wind speed, precipitation) correlate with each other over time to model compound weather events that trigger insurance claims, such as heat waves combined with low humidity increasing wildfire risk. Generate a multi-parameter weather correlation analysis with cross-parameter temporal patterns to identify compound weather event signatures. The query creates CTEs to pivot weather parameters from grib2_forec",
       "evidence": "Actuaries require understanding of how different weather parameters (temperature, humidity, wind speed, precipitation) correlate with each other over time to model compound weather events that trigger insurance claims, such as heat waves combined with low humidity increasing wildfire risk. Generate a multi-parameter weather correlation analysis with cross-parameter temporal patterns to identify compound weather event signatures. The query creates CTEs to pivot weather parameters from grib2_forecasts and weather_stations into separate columns by parameter type (temperature, precipitation, wind_speed, humidity, pressure), performs temporal alignment by standardizing timestamps and creating common time windows (hourly, daily, weekly), computes correlation coefficients between parameter pairs using aggregated statistical functions across rolling time windows, applies window functions with LAG and LEAD to detect temporal sequences and phase relationships (e.g., temp",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1156,7 +4096,7 @@
       "number": 4,
       "title": "moderate / aggregation",
       "question": "Can you show me an optimization analysis of spatial joins with boundary-forecast matching efficiency metrics?",
-      "description": "The data engineering team needs to optimize the spatial ETL pipeline that matches millions of forecast grid points to thousands of administrative boundaries, as current queries are timing out and impacting real-time weather alert delivery to policyholders. Conduct a spatial join optimization analysis with boundary-forecast matching efficiency metrics to identify performance bottlenecks and optimization opportunities. The query creates CTEs to analyze spatial join cardina",
+      "description": "The data engineering team needs to optimize the spatial ETL pipeline that matches millions of forecast grid points to thousands of administrative boundaries, as current queries are timing out and impacting real-time weather alert delivery to policyholders. Conduct a spatial join optimization analysis with boundary-forecast matching efficiency metrics to identify performance bottlenecks and optimization opportunities. The query creates CTEs to analyze spatial join cardinality by counting forecast",
       "evidence": "The data engineering team needs to optimize the spatial ETL pipeline that matches millions of forecast grid points to thousands of administrative boundaries, as current queries are timing out and impacting real-time weather alert delivery to policyholders. Conduct a spatial join optimization analysis with boundary-forecast matching efficiency metrics to identify performance bottlenecks and optimization opportunities. The query creates CTEs to analyze spatial join cardinality by counting forecast points per boundary and boundaries per forecast grid cell, measures join selectivity by computing the ratio of matched records to total Cartesian product, evaluates spatial index effectiveness by comparing indexed versus sequential scan performance using EXPLAIN ANALYZE metadata, groups by boundary complexity (vertex count, area size) and forecast resolution to identify join cost patterns, applies window functions to rank boundaries by join processing time and identify ",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1168,7 +4108,7 @@
       "number": 5,
       "title": "moderate / aggregation",
       "question": "Can you show me a coverage analysis of the weather station network with spatial gap detection and optimization recommendations?",
-      "description": "The operations team is responsible for maintaining an adequate weather observation network to validate forecasts and trigger parametric insurance payouts, but recent coverage audits revealed potential gaps in rural and high-risk areas where station density may be insufficient for accurate local weather monitoring. Produce a weather station network coverage analysis with spatial gap detection and coverage optimization to ensure adequate observation density across all insured regi",
+      "description": "The operations team is responsible for maintaining an adequate weather observation network to validate forecasts and trigger parametric insurance payouts, but recent coverage audits revealed potential gaps in rural and high-risk areas where station density may be insufficient for accurate local weather monitoring. Produce a weather station network coverage analysis with spatial gap detection and coverage optimization to ensure adequate observation density across all insured regions. The query cr",
       "evidence": "The operations team is responsible for maintaining an adequate weather observation network to validate forecasts and trigger parametric insurance payouts, but recent coverage audits revealed potential gaps in rural and high-risk areas where station density may be insufficient for accurate local weather monitoring. Produce a weather station network coverage analysis with spatial gap detection and coverage optimization to ensure adequate observation density across all insured regions. The query creates CTEs to calculate Voronoi polygons or buffer zones around each weather_station location to define coverage areas, spatially joins these coverage areas with shapefile_boundaries to identify regions with insufficient station density (areas beyond threshold distance from nearest station), computes coverage statistics including percentage of each boundary covered by station buffers, station density per square kilometer, and average distance to nearest station, applies ",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1180,7 +4120,7 @@
       "number": 6,
       "title": "moderate / aggregation",
       "question": "Can you show me how our forecast accuracy has been trending over time, including any recurring error patterns?",
-      "description": "A weather consulting insurance company needs to evaluate the performance of their weather forecasting models over time. The grib2_forecasts table contains predicted weather parameters, shapefile_boundaries defines coverage regions, and weather_stations holds actual observed weather data. Historical forecast errors show seasonal patterns that impact insurance risk assessments and client confidence. Analyze forecast accuracy trends over time and identify recurring temporal error p",
+      "description": "A weather consulting insurance company needs to evaluate the performance of their weather forecasting models over time. The grib2_forecasts table contains predicted weather parameters, shapefile_boundaries defines coverage regions, and weather_stations holds actual observed weather data. Historical forecast errors show seasonal patterns that impact insurance risk assessments and client confidence. Analyze forecast accuracy trends over time and identify recurring temporal error patterns to improv",
       "evidence": "A weather consulting insurance company needs to evaluate the performance of their weather forecasting models over time. The grib2_forecasts table contains predicted weather parameters, shapefile_boundaries defines coverage regions, and weather_stations holds actual observed weather data. Historical forecast errors show seasonal patterns that impact insurance risk assessments and client confidence. Analyze forecast accuracy trends over time and identify recurring temporal error patterns to improve model calibration and understand systematic biases. The query joins grib2_forecasts with weather_stations observations, groups data by time periods (daily, weekly, or monthly) and forecast parameters, calculates error metrics (MAE, RMSE, bias) as aggregates, applies window functions to compute rolling accuracy averages and period-over-period comparisons, handles NULL values in observation data through LEFT JOINs, and filters by relevant date ranges to capture seasonal ",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1192,7 +4132,7 @@
       "number": 7,
       "title": "moderate / aggregation",
       "question": "Can you aggregate forecast data across different boundary levels and show me the spatial summarization?",
-      "description": "The weather consulting insurance company serves clients across different geographic scales—individual properties, municipalities, counties, and states. The shapefile_boundaries table contains hierarchical spatial boundaries, and grib2_forecasts provides weather predictions at various grid resolutions. Clients need aggregated forecasts at their specific boundary level for policy pricing and risk assessment. Aggregate forecast data across multiple spatial boundary levels and provi",
+      "description": "The weather consulting insurance company serves clients across different geographic scales—individual properties, municipalities, counties, and states. The shapefile_boundaries table contains hierarchical spatial boundaries, and grib2_forecasts provides weather predictions at various grid resolutions. Clients need aggregated forecasts at their specific boundary level for policy pricing and risk assessment. Aggregate forecast data across multiple spatial boundary levels and provide comprehensive ",
       "evidence": "The weather consulting insurance company serves clients across different geographic scales—individual properties, municipalities, counties, and states. The shapefile_boundaries table contains hierarchical spatial boundaries, and grib2_forecasts provides weather predictions at various grid resolutions. Clients need aggregated forecasts at their specific boundary level for policy pricing and risk assessment. Aggregate forecast data across multiple spatial boundary levels and provide comprehensive spatial summarization for different administrative regions. The query performs spatial joins between grib2_forecasts and shapefile_boundaries using geographic intersection conditions, groups results by boundary hierarchy levels (property, municipality, county, state), computes aggregate statistics (mean, min, max, standard deviation) for each forecast parameter within each boundary, applies quartile calculations to identify extreme weather areas, uses window functions to",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1204,7 +4144,7 @@
       "number": 8,
       "title": "moderate / aggregation",
       "question": "Can you validate our forecasts against actual observations and provide accuracy scores?",
-      "description": "The insurance company must validate the reliability of weather forecasts used in policy pricing by comparing predicted values from grib2_forecasts against actual measurements from weather_stations. Forecast accuracy directly impacts claim accuracy, pricing models, and regulatory compliance. Systematic forecast errors could lead to underpricing risk or customer dissatisfaction. Validate forecast predictions against observed weather station data and generate comprehensive accuracy",
+      "description": "The insurance company must validate the reliability of weather forecasts used in policy pricing by comparing predicted values from grib2_forecasts against actual measurements from weather_stations. Forecast accuracy directly impacts claim accuracy, pricing models, and regulatory compliance. Systematic forecast errors could lead to underpricing risk or customer dissatisfaction. Validate forecast predictions against observed weather station data and generate comprehensive accuracy scores for each ",
       "evidence": "The insurance company must validate the reliability of weather forecasts used in policy pricing by comparing predicted values from grib2_forecasts against actual measurements from weather_stations. Forecast accuracy directly impacts claim accuracy, pricing models, and regulatory compliance. Systematic forecast errors could lead to underpricing risk or customer dissatisfaction. Validate forecast predictions against observed weather station data and generate comprehensive accuracy scores for each forecast parameter and location. The query joins grib2_forecasts with weather_stations observations by matching forecast grid points to nearest station locations and forecast times to observation timestamps, groups data by weather station, forecast parameter, and time period, calculates accuracy metrics including absolute error, percentage error, hit rates for threshold events, and skill scores, applies window functions to compute station-specific baseline accuracies and",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1216,7 +4156,7 @@
       "number": 9,
       "title": "moderate / aggregation",
       "question": "Can you analyze where different spatial boundaries overlap and detect intersection patterns?",
-      "description": "Insurance policies often cover areas that span multiple administrative or natural boundaries stored in shapefile_boundaries, such as flood zones crossing county lines, agricultural regions spanning municipalities, or coastal properties in multiple jurisdictions. Understanding boundary overlaps is critical for determining coverage responsibility, coordinating multi-jurisdiction policies, and avoiding gaps or double-coverage in risk assessment. Perform spatial intersection analysi",
+      "description": "Insurance policies often cover areas that span multiple administrative or natural boundaries stored in shapefile_boundaries, such as flood zones crossing county lines, agricultural regions spanning municipalities, or coastal properties in multiple jurisdictions. Understanding boundary overlaps is critical for determining coverage responsibility, coordinating multi-jurisdiction policies, and avoiding gaps or double-coverage in risk assessment. Perform spatial intersection analysis across multiple",
       "evidence": "Insurance policies often cover areas that span multiple administrative or natural boundaries stored in shapefile_boundaries, such as flood zones crossing county lines, agricultural regions spanning municipalities, or coastal properties in multiple jurisdictions. Understanding boundary overlaps is critical for determining coverage responsibility, coordinating multi-jurisdiction policies, and avoiding gaps or double-coverage in risk assessment. Perform spatial intersection analysis across multiple boundary types and detect overlap patterns to identify multi-jurisdictional coverage areas. The query performs self-joins on shapefile_boundaries to identify overlapping polygons using spatial intersection functions, groups results by boundary type pairs and geographic regions, calculates overlap areas and percentages for each intersection, applies aggregation to count the number of boundaries intersecting each location, uses window functions to rank boundaries by cover",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1228,7 +4168,7 @@
       "number": 10,
       "title": "moderate / aggregation",
       "question": "Can you show me the statistical distribution of forecast parameters and provide detailed profiling?",
-      "description": "The insurance company uses various weather parameters from grib2_forecasts (temperature, precipitation, wind speed, humidity) to assess risk and price policies. Understanding the statistical distribution of these parameters—including central tendency, variability, skewness, and extreme values—across different spatial boundaries and time periods is essential for actuarial modeling, risk classification, and identifying anomalous forecast patterns that could indicate data quality issues.",
+      "description": "The insurance company uses various weather parameters from grib2_forecasts (temperature, precipitation, wind speed, humidity) to assess risk and price policies. Understanding the statistical distribution of these parameters—including central tendency, variability, skewness, and extreme values—across different spatial boundaries and time periods is essential for actuarial modeling, risk classification, and identifying anomalous forecast patterns that could indicate data quality issues. Analyze th",
       "evidence": "The insurance company uses various weather parameters from grib2_forecasts (temperature, precipitation, wind speed, humidity) to assess risk and price policies. Understanding the statistical distribution of these parameters—including central tendency, variability, skewness, and extreme values—across different spatial boundaries and time periods is essential for actuarial modeling, risk classification, and identifying anomalous forecast patterns that could indicate data quality issues. Analyze the statistical distribution of each forecast parameter and generate comprehensive statistical profiles across spatial and temporal dimensions. The query groups grib2_forecasts by forecast parameter, spatial boundary (joined from shapefile_boundaries), and time period (daily, monthly, seasonal), computes descriptive statistics including mean, median, standard deviation, minimum, maximum, and coefficient of variation, calculates quartiles and percentiles to identify distrib",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1240,7 +4180,7 @@
       "number": 11,
       "title": "moderate / aggregation",
       "question": "Can you show me the geospatial forecast interpolation analysis that includes spatial gradient detection across our coverage areas?",
-      "description": "A weather consulting firm provides insurance companies with precise weather forecasts for risk assessment. The firm needs to interpolate forecast data between weather stations and identify areas with sharp weather gradients that could indicate high-risk zones. The grib2_forecasts table contains gridded forecast parameters, shapefile_boundaries defines geographic regions of interest, and weather_stations provides ground truth observation points. Generate a geospatial forecast int",
+      "description": "A weather consulting firm provides insurance companies with precise weather forecasts for risk assessment. The firm needs to interpolate forecast data between weather stations and identify areas with sharp weather gradients that could indicate high-risk zones. The grib2_forecasts table contains gridded forecast parameters, shapefile_boundaries defines geographic regions of interest, and weather_stations provides ground truth observation points. Generate a geospatial forecast interpolation analys",
       "evidence": "A weather consulting firm provides insurance companies with precise weather forecasts for risk assessment. The firm needs to interpolate forecast data between weather stations and identify areas with sharp weather gradients that could indicate high-risk zones. The grib2_forecasts table contains gridded forecast parameters, shapefile_boundaries defines geographic regions of interest, and weather_stations provides ground truth observation points. Generate a geospatial forecast interpolation analysis that detects spatial gradients to identify transition zones between different weather conditions. The query joins forecast grid data with spatial boundaries and station observations, groups results by geographic region and forecast parameter, computes spatial interpolation metrics using neighboring points, calculates gradient magnitudes using window functions to compare adjacent grid cells, applies quartile analysis to identify high-gradient areas, and handles NULL va",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1252,7 +4192,7 @@
       "number": 12,
       "title": "moderate / aggregation",
       "question": "Can you provide a weather pattern clustering analysis that detects spatial-temporal patterns in our forecast data?",
-      "description": "Insurance underwriters need to identify recurring weather patterns across different regions and time periods to better predict claim frequencies. Historical forecast data contains patterns such as cold fronts, heat waves, and storm systems that exhibit both spatial coherence (affecting multiple adjacent regions) and temporal persistence (lasting several days). The grib2_forecasts table stores time-series forecast data, shapefile_boundaries defines geographic clusters, and weather_stat",
+      "description": "Insurance underwriters need to identify recurring weather patterns across different regions and time periods to better predict claim frequencies. Historical forecast data contains patterns such as cold fronts, heat waves, and storm systems that exhibit both spatial coherence (affecting multiple adjacent regions) and temporal persistence (lasting several days). The grib2_forecasts table stores time-series forecast data, shapefile_boundaries defines geographic clusters, and weather_stations provid",
       "evidence": "Insurance underwriters need to identify recurring weather patterns across different regions and time periods to better predict claim frequencies. Historical forecast data contains patterns such as cold fronts, heat waves, and storm systems that exhibit both spatial coherence (affecting multiple adjacent regions) and temporal persistence (lasting several days). The grib2_forecasts table stores time-series forecast data, shapefile_boundaries defines geographic clusters, and weather_stations provides validation points. Perform weather pattern clustering analysis that identifies spatial-temporal patterns for predictive modeling. The query aggregates forecast parameters by region and time period, groups data using multi-dimensional clustering based on temperature, precipitation, and pressure patterns, employs window functions to detect temporal persistence through rolling averages and lag comparisons, identifies spatial coherence by analyzing correlation between adj",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1264,7 +4204,7 @@
       "number": 13,
       "title": "moderate / aggregation",
       "question": "Can you compare the performance of different forecast models using multi-model analysis?",
-      "description": "The weather consulting firm integrates forecasts from multiple numerical weather prediction models (GFS, ECMWF, NAM) stored in the grib2_forecasts table. Each model has different strengths and weaknesses for various forecast parameters and lead times. To provide clients with the most reliable forecasts, the firm must continuously evaluate model performance against actual observations from weather_stations across different shapefile_boundaries. Compare forecast model performance ",
+      "description": "The weather consulting firm integrates forecasts from multiple numerical weather prediction models (GFS, ECMWF, NAM) stored in the grib2_forecasts table. Each model has different strengths and weaknesses for various forecast parameters and lead times. To provide clients with the most reliable forecasts, the firm must continuously evaluate model performance against actual observations from weather_stations across different shapefile_boundaries. Compare forecast model performance using multi-model",
       "evidence": "The weather consulting firm integrates forecasts from multiple numerical weather prediction models (GFS, ECMWF, NAM) stored in the grib2_forecasts table. Each model has different strengths and weaknesses for various forecast parameters and lead times. To provide clients with the most reliable forecasts, the firm must continuously evaluate model performance against actual observations from weather_stations across different shapefile_boundaries. Compare forecast model performance using multi-model analysis to identify the most accurate model for each parameter and region. The query joins forecast data from multiple models with actual observations, groups results by model identifier, forecast parameter, region, and lead time, computes performance metrics including bias, mean absolute error, and root mean square error for each model, uses window functions to calculate rolling accuracy scores and rank models by performance, applies quartile analysis to identify cons",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1276,7 +4216,7 @@
       "number": 14,
       "title": "moderate / aggregation",
       "question": "Can you detect forecast anomalies at boundary regions using statistical outlier identification?",
-      "description": "Insurance policies often cover specific geographic boundaries such as counties, municipalities, or custom-defined regions stored in shapefile_boundaries. Weather forecasts at boundary edges sometimes exhibit anomalies due to interpolation artifacts, terrain discontinuities, or actual meteorological phenomena. Identifying statistical outliers in boundary forecasts from grib2_forecasts helps distinguish between data quality issues and genuine extreme weather events that require immediat",
+      "description": "Insurance policies often cover specific geographic boundaries such as counties, municipalities, or custom-defined regions stored in shapefile_boundaries. Weather forecasts at boundary edges sometimes exhibit anomalies due to interpolation artifacts, terrain discontinuities, or actual meteorological phenomena. Identifying statistical outliers in boundary forecasts from grib2_forecasts helps distinguish between data quality issues and genuine extreme weather events that require immediate attention",
       "evidence": "Insurance policies often cover specific geographic boundaries such as counties, municipalities, or custom-defined regions stored in shapefile_boundaries. Weather forecasts at boundary edges sometimes exhibit anomalies due to interpolation artifacts, terrain discontinuities, or actual meteorological phenomena. Identifying statistical outliers in boundary forecasts from grib2_forecasts helps distinguish between data quality issues and genuine extreme weather events that require immediate attention for claims preparation. Detect forecast anomalies at boundary regions using statistical outlier identification methods. The query spatially joins forecast grid points with boundary polygons to identify edge regions, groups forecast values by boundary and parameter type, computes statistical baselines including mean, standard deviation, and interquartile ranges for each boundary, applies window functions to calculate z-scores and modified z-scores for anomaly detection, ",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1288,7 +4228,7 @@
       "number": 15,
       "title": "moderate / aggregation",
       "question": "Can you calculate insurance risk factors based on the 7-14 day forecast range?",
-      "description": "Insurance companies need quantitative risk factors for medium-range weather exposure (7-14 days ahead) to adjust premiums, trigger parametric policies, and allocate claims reserves. The grib2_forecasts table contains ensemble forecasts for this lead time range, covering parameters like temperature extremes, precipitation accumulation, and wind speeds across insured regions defined in shapefile_boundaries. Weather_stations provide climatological context for normalizing risk relative to",
+      "description": "Insurance companies need quantitative risk factors for medium-range weather exposure (7-14 days ahead) to adjust premiums, trigger parametric policies, and allocate claims reserves. The grib2_forecasts table contains ensemble forecasts for this lead time range, covering parameters like temperature extremes, precipitation accumulation, and wind speeds across insured regions defined in shapefile_boundaries. Weather_stations provide climatological context for normalizing risk relative to historical",
       "evidence": "Insurance companies need quantitative risk factors for medium-range weather exposure (7-14 days ahead) to adjust premiums, trigger parametric policies, and allocate claims reserves. The grib2_forecasts table contains ensemble forecasts for this lead time range, covering parameters like temperature extremes, precipitation accumulation, and wind speeds across insured regions defined in shapefile_boundaries. Weather_stations provide climatological context for normalizing risk relative to historical conditions. Calculate insurance risk factors from 7-14 day forecasts for underwriting and claims management. The query filters forecast data to the 7-14 day lead time window using date arithmetic, joins forecasts with insured boundary regions and relevant weather stations, groups results by insurance region, forecast date, and risk parameter, computes risk-relevant aggregates including maximum values, accumulation totals, and probability of threshold exceedance, applies",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1300,7 +4240,7 @@
       "number": 16,
       "title": "moderate / aggregation",
       "question": "Can you generate an insurance rate table based on forecast risk factors from our weather data?",
-      "description": "Our weather consulting insurance team needs to price policies based on predicted weather risk. We have historical forecast data in grib2_forecasts with parameters like precipitation, temperature, and wind speed across different geographic boundaries defined in shapefile_boundaries, validated against actual observations from weather_stations. Generate an insurance rate table that translates forecast risk factors into pricing tiers for policy underwriting. The query joins ",
+      "description": "Our weather consulting insurance team needs to price policies based on predicted weather risk. We have historical forecast data in grib2_forecasts with parameters like precipitation, temperature, and wind speed across different geographic boundaries defined in shapefile_boundaries, validated against actual observations from weather_stations. Generate an insurance rate table that translates forecast risk factors into pricing tiers for policy underwriting. The query joins forecast data with geogra",
       "evidence": "Our weather consulting insurance team needs to price policies based on predicted weather risk. We have historical forecast data in grib2_forecasts with parameters like precipitation, temperature, and wind speed across different geographic boundaries defined in shapefile_boundaries, validated against actual observations from weather_stations. Generate an insurance rate table that translates forecast risk factors into pricing tiers for policy underwriting. The query joins forecast data with geographic boundaries and historical observations, groups results by region and risk parameters, calculates aggregate risk scores using quartile distributions of key weather variables, and applies window functions to compute rolling average risk trends and comparative metrics across time periods while handling NULL values in spatial joins and forecast horizons. The output provides a comprehensive rate table with risk scores, pricing tiers, and confidence intervals by g",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1312,7 +4252,7 @@
       "number": 17,
       "title": "moderate / aggregation",
       "question": "Can you compare rate tables between 7-day and 14-day weather forecast horizons?",
-      "description": "Our underwriting team has noticed that insurance rates may vary significantly depending on whether we use 7-day or 14-day weather forecasts, and we need to understand these differences to optimize our pricing strategy. The grib2_forecasts table contains predictions at multiple time horizons, shapefile_boundaries defines our coverage areas, and weather_stations provides ground truth for validation. Compare rate tables generated from 7-day forecasts against those from 14-day forec",
+      "description": "Our underwriting team has noticed that insurance rates may vary significantly depending on whether we use 7-day or 14-day weather forecasts, and we need to understand these differences to optimize our pricing strategy. The grib2_forecasts table contains predictions at multiple time horizons, shapefile_boundaries defines our coverage areas, and weather_stations provides ground truth for validation. Compare rate tables generated from 7-day forecasts against those from 14-day forecasts to identify ",
       "evidence": "Our underwriting team has noticed that insurance rates may vary significantly depending on whether we use 7-day or 14-day weather forecasts, and we need to understand these differences to optimize our pricing strategy. The grib2_forecasts table contains predictions at multiple time horizons, shapefile_boundaries defines our coverage areas, and weather_stations provides ground truth for validation. Compare rate tables generated from 7-day forecasts against those from 14-day forecasts to identify pricing discrepancies and forecast reliability patterns. The query filters forecast data by 7-day and 14-day lead times, joins with geographic boundaries to segment by policy region, computes risk-based rates for each forecast horizon using aggregated weather parameters, applies window functions to calculate rate differentials and percentage changes between the two horizons, groups results by region and risk category, and handles cases where forecasts may be missing for ",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1324,7 +4264,7 @@
       "number": 18,
       "title": "moderate / aggregation",
       "question": "Can you validate our historical insurance claims against the forecast risk factors that were predicted at the time?",
-      "description": "Our insurance company needs to assess the accuracy of our weather-based risk models by comparing actual claims payouts with the forecast risk factors that informed our original rate calculations. We maintain historical claims data alongside archived forecasts in grib2_forecasts, geographic policy boundaries in shapefile_boundaries, and observed weather conditions from weather_stations. Validate historical insurance claims against the forecast risk factors that were active when p",
+      "description": "Our insurance company needs to assess the accuracy of our weather-based risk models by comparing actual claims payouts with the forecast risk factors that informed our original rate calculations. We maintain historical claims data alongside archived forecasts in grib2_forecasts, geographic policy boundaries in shapefile_boundaries, and observed weather conditions from weather_stations. Validate historical insurance claims against the forecast risk factors that were active when policies were writ",
       "evidence": "Our insurance company needs to assess the accuracy of our weather-based risk models by comparing actual claims payouts with the forecast risk factors that informed our original rate calculations. We maintain historical claims data alongside archived forecasts in grib2_forecasts, geographic policy boundaries in shapefile_boundaries, and observed weather conditions from weather_stations. Validate historical insurance claims against the forecast risk factors that were active when policies were written to measure predictive accuracy and identify model weaknesses. The query joins historical claims records with corresponding forecast data based on policy dates and locations, matches claims with the relevant geographic boundaries, aggregates actual claim amounts by region and weather event type, computes predicted risk scores from the archived forecast parameters using the same methodology as current rating, applies window functions to calculate rolling claim-to-predi",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1336,7 +4276,7 @@
       "number": 19,
       "title": "moderate / aggregation",
       "question": "Can you analyze the volatility and stability of our insurance rates over time?",
-      "description": "Our actuarial team is concerned about rate instability causing customer retention issues and regulatory scrutiny. We need to understand how much our weather-based insurance rates fluctuate over time as new forecast data becomes available. Our data sources include grib2_forecasts with daily updated predictions, shapefile_boundaries defining rate territories, and weather_stations providing observed conditions for model refinement. Analyze rate volatility and stability patterns to ",
+      "description": "Our actuarial team is concerned about rate instability causing customer retention issues and regulatory scrutiny. We need to understand how much our weather-based insurance rates fluctuate over time as new forecast data becomes available. Our data sources include grib2_forecasts with daily updated predictions, shapefile_boundaries defining rate territories, and weather_stations providing observed conditions for model refinement. Analyze rate volatility and stability patterns to identify regions ",
       "evidence": "Our actuarial team is concerned about rate instability causing customer retention issues and regulatory scrutiny. We need to understand how much our weather-based insurance rates fluctuate over time as new forecast data becomes available. Our data sources include grib2_forecasts with daily updated predictions, shapefile_boundaries defining rate territories, and weather_stations providing observed conditions for model refinement. Analyze rate volatility and stability patterns to identify regions or time periods with excessive rate fluctuations and assess the predictability of our pricing model. The query extracts historical rate calculations across multiple time periods, joins forecast data with geographic boundaries to compute rates by territory and date, calculates statistical volatility measures including standard deviation and coefficient of variation using window functions over rolling time windows, computes rate change frequencies and magnitudes, groups re",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1348,7 +4288,7 @@
       "number": 20,
       "title": "moderate / aggregation",
       "question": "Can you rank and compare policy areas by their weather-related risk levels?",
-      "description": "Our business development team is expanding into new geographic markets and needs to prioritize areas for policy offerings based on weather risk profiles. We have comprehensive forecast data in grib2_forecasts, detailed geographic boundaries in shapefile_boundaries representing potential and existing policy territories, and validation data from weather_stations to ensure risk assessments are grounded in observed conditions. Rank all policy areas by overall weather risk exposure a",
+      "description": "Our business development team is expanding into new geographic markets and needs to prioritize areas for policy offerings based on weather risk profiles. We have comprehensive forecast data in grib2_forecasts, detailed geographic boundaries in shapefile_boundaries representing potential and existing policy territories, and validation data from weather_stations to ensure risk assessments are grounded in observed conditions. Rank all policy areas by overall weather risk exposure and provide compar",
       "evidence": "Our business development team is expanding into new geographic markets and needs to prioritize areas for policy offerings based on weather risk profiles. We have comprehensive forecast data in grib2_forecasts, detailed geographic boundaries in shapefile_boundaries representing potential and existing policy territories, and validation data from weather_stations to ensure risk assessments are grounded in observed conditions. Rank all policy areas by overall weather risk exposure and provide comparative analysis to guide market entry decisions and portfolio balancing. The query joins forecast data with all geographic boundaries to ensure complete territorial coverage, calculates composite risk scores by aggregating multiple weather parameters weighted by their claim correlation, groups results by policy area and time period, applies window functions to compute percentile rankings and comparative risk ratios across territories, identifies clusters of similar risk p",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1360,7 +4300,7 @@
       "number": 21,
       "title": "moderate / aggregation",
       "question": "Can you show me how weather forecast accuracy affects our insurance premium rates?",
-      "description": "The weather consulting team needs to understand how forecast prediction errors impact insurance rate calculations. Actuaries require insights into whether improving forecast accuracy in specific regions would justify rate adjustments for weather-dependent insurance products. Analyze the correlation between forecast accuracy metrics and insurance rate variations across different geographical boundaries and time periods. The query joins grib2_forecasts with actual weather_",
+      "description": "The weather consulting team needs to understand how forecast prediction errors impact insurance rate calculations. Actuaries require insights into whether improving forecast accuracy in specific regions would justify rate adjustments for weather-dependent insurance products. Analyze the correlation between forecast accuracy metrics and insurance rate variations across different geographical boundaries and time periods. The query joins grib2_forecasts with actual weather_stations observations to ",
       "evidence": "The weather consulting team needs to understand how forecast prediction errors impact insurance rate calculations. Actuaries require insights into whether improving forecast accuracy in specific regions would justify rate adjustments for weather-dependent insurance products. Analyze the correlation between forecast accuracy metrics and insurance rate variations across different geographical boundaries and time periods. The query joins grib2_forecasts with actual weather_stations observations to compute forecast error rates, then correlates these errors with rate changes by grouping data by region (using shapefile_boundaries), forecast horizon, and weather parameter type. Window functions calculate rolling 30-day forecast accuracy trends, and quartile analysis identifies regions with the highest forecast-to-rate sensitivity. NULL values in station data are handled using COALESCE to ensure complete temporal coverage. Returns a dataset showing forecast err",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1372,7 +4312,7 @@
       "number": 22,
       "title": "moderate / aggregation",
       "question": "Can you provide a multi-day ensemble forecast analysis for our rate modeling?",
-      "description": "Insurance underwriters need to assess how ensemble forecast spreads across 3-day, 5-day, and 7-day horizons correlate with claim rate volatility. When ensemble member predictions diverge significantly, it indicates higher uncertainty that should be reflected in premium adjustments. Generate a comprehensive analysis of ensemble forecast variability across multiple forecast days and correlate this uncertainty with historical insurance claim rates. The query aggregates grib",
+      "description": "Insurance underwriters need to assess how ensemble forecast spreads across 3-day, 5-day, and 7-day horizons correlate with claim rate volatility. When ensemble member predictions diverge significantly, it indicates higher uncertainty that should be reflected in premium adjustments. Generate a comprehensive analysis of ensemble forecast variability across multiple forecast days and correlate this uncertainty with historical insurance claim rates. The query aggregates grib2_forecasts ensemble memb",
       "evidence": "Insurance underwriters need to assess how ensemble forecast spreads across 3-day, 5-day, and 7-day horizons correlate with claim rate volatility. When ensemble member predictions diverge significantly, it indicates higher uncertainty that should be reflected in premium adjustments. Generate a comprehensive analysis of ensemble forecast variability across multiple forecast days and correlate this uncertainty with historical insurance claim rates. The query aggregates grib2_forecasts ensemble members by forecast day and valid time, computing standard deviation, interquartile range, and spread metrics for each parameter. These uncertainty measures are then joined with historical claim rates grouped by shapefile_boundaries regions. Window functions calculate day-over-day ensemble spread changes and 7-day rolling averages of both forecast uncertainty and claim frequencies. Quartile analysis segments regions by forecast reliability. Date range filters ensure alignmen",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1384,7 +4324,7 @@
       "number": 23,
       "title": "moderate / aggregation",
       "question": "Which forecast day should we use to optimize our rate predictions?",
-      "description": "The pricing team faces a tradeoff between forecast lead time and accuracy when setting insurance rates. Day 1 forecasts are most accurate but provide little advance notice for rate adjustments, while Day 7 forecasts allow operational planning but have higher error rates. The team needs data-driven guidance on which forecast day optimally balances accuracy and business utility. Identify the optimal forecast day horizon that maximizes rate prediction accuracy while maintaining suf",
+      "description": "The pricing team faces a tradeoff between forecast lead time and accuracy when setting insurance rates. Day 1 forecasts are most accurate but provide little advance notice for rate adjustments, while Day 7 forecasts allow operational planning but have higher error rates. The team needs data-driven guidance on which forecast day optimally balances accuracy and business utility. Identify the optimal forecast day horizon that maximizes rate prediction accuracy while maintaining sufficient lead time",
       "evidence": "The pricing team faces a tradeoff between forecast lead time and accuracy when setting insurance rates. Day 1 forecasts are most accurate but provide little advance notice for rate adjustments, while Day 7 forecasts allow operational planning but have higher error rates. The team needs data-driven guidance on which forecast day optimally balances accuracy and business utility. Identify the optimal forecast day horizon that maximizes rate prediction accuracy while maintaining sufficient lead time for underwriting operations. The query analyzes grib2_forecasts across forecast days 1 through 7, joining each with actual weather_stations observations and insurance rate changes. For each forecast day, it computes prediction accuracy metrics (RMSE, MAE, bias), rate prediction error, and business value scores. Grouping by forecast day, region from shapefile_boundaries, and season captures performance variations. Window functions compare each forecast day's performance ",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1396,7 +4336,7 @@
       "number": 24,
       "title": "moderate / aggregation",
       "question": "Can you give me a complete summary of our weather-based insurance rate modeling?",
-      "description": "Executive leadership requires a holistic view of the weather-based insurance program's analytical foundation for quarterly business reviews. They need to understand forecast data quality, geographical coverage, rate model performance, and identify opportunities for model refinement across all regions and product lines. Produce a comprehensive summary that synthesizes forecast accuracy, rate model performance, geographical coverage, temporal trends, and data quality metrics into ",
+      "description": "Executive leadership requires a holistic view of the weather-based insurance program's analytical foundation for quarterly business reviews. They need to understand forecast data quality, geographical coverage, rate model performance, and identify opportunities for model refinement across all regions and product lines. Produce a comprehensive summary that synthesizes forecast accuracy, rate model performance, geographical coverage, temporal trends, and data quality metrics into a unified executi",
       "evidence": "Executive leadership requires a holistic view of the weather-based insurance program's analytical foundation for quarterly business reviews. They need to understand forecast data quality, geographical coverage, rate model performance, and identify opportunities for model refinement across all regions and product lines. Produce a comprehensive summary that synthesizes forecast accuracy, rate model performance, geographical coverage, temporal trends, and data quality metrics into a unified executive dashboard. The query performs a complex multi-table join across grib2_forecasts, weather_stations, and shapefile_boundaries to create an integrated view. It groups data by region, forecast type, weather parameter, and time period to compute aggregate statistics including forecast accuracy rates, rate prediction errors, claim frequency alignment, and data completeness percentages. Window functions calculate year-over-year performance changes, market share by region, an",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1408,7 +4348,7 @@
       "number": 25,
       "title": "moderate / aggregation",
       "question": "Can you generate a nationwide composite of NEXRAD radar reflectivity data?",
-      "description": "The claims response team needs real-time situational awareness of severe weather across the entire United States to proactively allocate adjusters and predict claim surges. Individual NEXRAD radar sites provide limited coverage, so a composite view synthesizing all sites is essential for national-scale monitoring and triggering rate adjustments in affected regions. Create a unified, gap-free composite of NEXRAD radar reflectivity data covering the continental United States by in",
+      "description": "The claims response team needs real-time situational awareness of severe weather across the entire United States to proactively allocate adjusters and predict claim surges. Individual NEXRAD radar sites provide limited coverage, so a composite view synthesizing all sites is essential for national-scale monitoring and triggering rate adjustments in affected regions. Create a unified, gap-free composite of NEXRAD radar reflectivity data covering the continental United States by integrating data fr",
       "evidence": "The claims response team needs real-time situational awareness of severe weather across the entire United States to proactively allocate adjusters and predict claim surges. Individual NEXRAD radar sites provide limited coverage, so a composite view synthesizing all sites is essential for national-scale monitoring and triggering rate adjustments in affected regions. Create a unified, gap-free composite of NEXRAD radar reflectivity data covering the continental United States by integrating data from all available radar sites. The query extracts the most recent reflectivity data from all weather_stations equipped with NEXRAD capability, joining with shapefile_boundaries to map radar coverage to insurance rating territories. For overlapping coverage areas, it applies a maximum value composite technique where the highest reflectivity reading from any radar is selected. Spatial grouping aggregates data into a grid structure aligned with rating boundaries. Window func",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1418,11 +4358,11 @@
     },
     {
       "number": 26,
-      "title": "challenging / aggregation",
+      "title": "moderate / aggregation",
       "question": "Can you show me the storm cell tracking and movement analysis from NEXRAD radar data?",
-      "description": "A weather consulting firm providing insurance risk assessment needs to analyze severe weather events. NEXRAD radar systems track storm cells in real-time, and the firm must monitor storm movement patterns, intensity changes, and trajectories to assess potential property damage and issue timely warnings to insured clients. Generate a comprehensive storm cell tracking and movement analysis report showing cell positions, velocities, intensity metrics, and trajectory forecasts. Acti",
+      "description": "A weather consulting firm providing insurance risk assessment needs to analyze severe weather events. NEXRAD radar systems track storm cells in real-time, and the firm must monitor storm movement patterns, intensity changes, and trajectories to assess potential property damage and issue timely warnings to insured clients. Generate a comprehensive storm cell tracking and movement analysis report showing cell positions, velocities, intensity metrics, and trajectory forecasts. The query joins NEXRA",
       "evidence": "A weather consulting firm providing insurance risk assessment needs to analyze severe weather events. NEXRAD radar systems track storm cells in real-time, and the firm must monitor storm movement patterns, intensity changes, and trajectories to assess potential property damage and issue timely warnings to insured clients. Generate a comprehensive storm cell tracking and movement analysis report showing cell positions, velocities, intensity metrics, and trajectory forecasts. The query joins NEXRAD radar observations with spatial boundaries to identify affected regions, groups storm cells by unique identifiers and time intervals, calculates aggregate metrics including maximum reflectivity and cell velocity vectors, applies window functions to compute movement trends and acceleration patterns over rolling time windows, and handles cases where radar coverage gaps or data quality flags exist. The output provides a time-series dataset of tracked storm cells w",
-      "complexity": "challenging",
+      "complexity": "moderate",
       "expected_output": "Query results",
       "sql": "WITH time_window AS (\n    -- First CTE: Define time window for tracking (last 2 hours)\n    SELECT\n        CURRENT_TIMESTAMP - INTERVAL '2 hours' AS window_start,\n        CURRENT_TIMESTAMP AS window_end\n),\nstorm_cells_by_scan AS (\n    -- Second CTE: Get storm cells detected at each scan time\n    SELECT\n        nsc.storm_cell_id,\n        nsc.site_id,\n        nsc.first_detection_time,\n        nsc.last_detection_time,\n        nsc.storm_center_latitude,\n        nsc.storm_center_longitude,\n        nsc.storm_center_geom,\n        nsc.max_reflectivity_dbz,\n        nsc.storm_area_km2,\n        nsc.storm_severity,\n        nsc.storm_type,\n        DATE_TRUNC('minute', nsc.first_detection_time) AS scan_time_minute,\n        -- Calculate scan number (sequential)\n        ROW_NUMBER() OVER (\n            PARTITION BY nsc.site_id\n            ORDER BY nsc.first_detection_time\n        ) AS scan_number\n    FROM nexrad_storm_cells nsc\n    WHERE nsc.first_detection_time BETWEEN (\n        SELECT window_start FROM time_window\n    ) AND (\n        SELECT window_end FROM time_window\n    )\n        AND nsc.tracking_status = 'Active'\n        AND nsc.storm_center_geom IS NOT NULL\n),\nstorm_cell_movement AS (\n    -- Third CTE: Calculate storm cell movement between scans\n    SELECT\n        scbs1.storm_cell_id AS storm_cell_id_1,\n        scbs1.site_id AS site_id_1,\n        scbs1.scan_time_minute AS scan_time_1,\n        scbs1.storm_center_latitude AS lat_1,\n        scbs1.storm_center_longitude AS lon_1,\n        scbs1.storm_center_geom AS geom_1,\n        scbs1.max_reflectivity_dbz AS reflectivity_1,\n        scbs1.storm_area_km2 AS area_1,\n        scbs1.scan_number AS scan_num_1,\n        scbs2.storm_cell_id AS storm_cell_id_2,\n        scbs2.site_id AS site_id_2,\n        scbs2.scan_time_minute AS scan_time_2,\n        scbs2.storm_center_latitude AS lat_2,\n        scbs2.storm_center_longitude AS lon_2,\n        scbs2.storm_center_geom AS geom_2,\n        scbs2.max_reflectivity_dbz AS reflectivity_2,\n        scbs2.storm_area_km2 AS area_2,\n        scbs2.scan_number AS scan_num_2,\n        -- Distance between storm centers\n        ST_DISTANCE(scbs1.storm_center_geom, scbs2.storm_center_geom) / 1000.0 AS distance_km,\n        -- Time difference in minutes\n        EXTRACT(EPOCH FROM (scbs2.scan_time_minute - scbs1.scan_time_minute)) / 60.0 AS time_diff_minutes,\n        -- Movement speed (km/h)\n        CASE\n            WHEN EXTRACT(EPOCH FROM (scbs2.scan_time_minute - scbs1.scan_time_minute)) > 0 THEN\n                (ST_DISTANCE(scbs1.storm_center_geom, scbs2.storm_center_geom) / 1000.0) /\n                (EXTRACT(EPOCH FROM (scbs2.scan_time_minute - scbs1.scan_time_minute)) / 3600.0)\n            ELSE NULL\n        END AS movement_speed_kmh,\n        -- Movement direction (degrees from north)\n        DEGREES(\n            ATAN2(\n                ST_X(scbs2.storm_center_geom::GEOMETRY) - ST_X(scbs1.storm_center_geom::GEOMETRY),\n                ST_Y(scbs2.storm_center_geom::GEOMETRY) - ST_Y(scbs1.storm_center_geom::GEOMETRY)\n            )\n        ) AS movement_direction_deg,\n        -- Reflectivity change\n        scbs2.max_reflectivity_dbz - scbs1.max_reflectivity_dbz AS reflectivity_change_dbz,\n        -- Area change\n        scbs2.storm_area_km2 - scbs1.storm_area_km2 AS area_change_km2\n    FROM storm_cells_by_scan scbs1\n    INNER JOIN storm_cells_by_scan scbs2 ON (\n        scbs1.site_id = scbs2.site_id\n        AND scbs2.scan_number = scbs1.scan_number + 1\n    )\n),\nstorm_cell_association AS (\n    -- Fourth CTE: Associate storm cells across sites (same storm detected by multiple radars)\n    SELECT\n        scm.storm_cell_id_1,\n        scm.site_id_1,\n        scm.scan_time_1,\n        scm.lat_1,\n        scm.lon_1,\n        scm.reflectivity_1,\n        scm.area_1,\n        scm.storm_cell_id_2,\n        scm.site_id_2,\n        scm.scan_time_2,\n        scm.lat_2,\n        scm.lon_2,\n        scm.reflectivity_2,\n        scm.area_2,\n        scm.distance_km,\n        scm.time_diff_minutes,\n        ROUND(CAST(scm.movement_speed_kmh AS NUMERIC), 2) AS movement_speed_kmh,\n        ROUND(CAST(scm.movement_direction_deg AS NUMERIC), 2) AS movement_direction_deg,\n        ROUND(CAST(scm.reflectivity_change_dbz AS NUMERIC), 2) AS reflectivity_change_dbz,\n        ROUND(CAST(scm.area_change_km2 AS NUMERIC), 2) AS area_change_km2,\n        -- Association confidence (same storm if close in space and time)\n        CASE\n            WHEN scm.distance_km < 20 AND scm.time_diff_minutes < 10 THEN 'High Confidence'\n            WHEN scm.distance_km < 50 AND scm.time_diff_minutes < 20 THEN 'Moderate Confidence'\n            WHEN scm.distance_km < 100 AND scm.time_diff_minutes < 30 THEN 'Low Confidence'\n            ELSE 'Unlikely Same Storm'\n        END AS association_confidence\n    FROM storm_cell_movement scm\n    WHERE scm.distance_km < 100  -- Only consider storms within 100km\n        AND scm.time_diff_minutes BETWEEN 0 AND 30  -- Within 30 minutes\n),\nstorm_track_aggregation AS (\n    -- Fifth CTE: Aggregate storm tracks\n    SELECT\n        sca.storm_cell_id_1,\n        sca.site_id_1,\n        COUNT(DISTINCT sca.storm_cell_id_2) AS track_length,\n        MIN(sca.scan_time_1) AS track_start_time,\n        MAX(sca.scan_time_2) AS track_end_time,\n        AVG(sca.movement_speed_kmh) AS avg_movement_speed_kmh,\n        AVG(sca.movement_direction_deg) AS avg_movement_direction_deg,\n        MAX(sca.reflectivity_1) AS max_reflectivity_dbz,\n        MIN(sca.reflectivity_1) AS min_reflectivity_dbz,\n        AVG(sca.reflectivity_1) AS avg_reflectivity_dbz,\n        MAX(sca.reflectivity_change_dbz) AS max_intensification_dbz,\n        MIN(sca.reflectivity_change_dbz) AS max_weakening_dbz,\n        SUM(sca.area_change_km2) AS total_area_change_km2,\n        -- Track distance\n        SUM(sca.distance_km) AS total_track_distance_km,\n        -- Track duration\n        EXTRACT(EPOCH FROM (MAX(sca.scan_time_2) - MIN(sca.scan_time_1))) / 60.0 AS track_duration_minutes\n    FROM storm_cell_association sca\n    WHERE sca.association_confidence IN ('High Confidence', 'Moderate Confidence')\n    GROUP BY\n        sca.storm_cell_id_1,\n        sca.site_id_1\n),\nstorm_development_analysis AS (\n    -- Sixth CTE: Analyze storm development patterns\n    SELECT\n        sta.storm_cell_id_1,\n        sta.site_id_1,\n        sta.track_length,\n        sta.track_start_time,\n        sta.track_end_time,\n        ROUND(CAST(sta.avg_movement_speed_kmh AS NUMERIC), 2) AS avg_movement_speed_kmh,\n        ROUND(CAST(sta.avg_movement_direction_deg AS NUMERIC), 2) AS avg_movement_direction_deg,\n        ROUND(CAST(sta.max_reflectivity_dbz AS NUMERIC), 2) AS max_reflectivity_dbz,\n        ROUND(CAST(sta.min_reflectivity_dbz AS NUMERIC), 2) AS min_reflectivity_dbz,\n        ROUND(CAST(sta.avg_reflectivity_dbz AS NUMERIC), 2) AS avg_reflectivity_dbz,\n        ROUND(CAST(sta.max_intensification_dbz AS NUMERIC), 2) AS max_intensification_dbz,\n        ROUND(CAST(sta.max_weakening_dbz AS NUMERIC), 2) AS max_weakening_dbz,\n        ROUND(CAST(sta.total_area_change_km2 AS NUMERIC), 2) AS total_area_change_km2,\n        ROUND(CAST(sta.total_track_distance_km AS NUMERIC), 2) AS total_track_distance_km,\n        ROUND(CAST(sta.track_duration_minutes AS NUMERIC), 2) AS track_duration_minutes,\n        -- Development trend\n        CASE\n            WHEN sta.max_intensification_dbz > 10 THEN 'Rapidly Intensifying'\n            WHEN sta.max_intensification_dbz > 5 THEN 'Intensifying'\n            WHEN sta.max_weakening_dbz < -10 THEN 'Rapidly Weakening'\n            WHEN sta.max_weakening_dbz < -5 THEN 'Weakening'\n            ELSE 'Stable'\n        END AS development_trend,\n        -- Severity classification\n        CASE\n            WHEN sta.max_reflectivity_dbz >= 60 THEN 'Extreme'\n            WHEN sta.max_reflectivity_dbz >= 50 THEN 'Severe'\n            WHEN sta.max_reflectivity_dbz >= 40 THEN 'Strong'\n            WHEN sta.max_reflectivity_dbz >= 30 THEN 'Moderate'\n            ELSE 'Weak'\n        END AS severity_classification\n    FROM storm_track_aggregation sta\n),\npredicted_storm_path AS (\n    -- Seventh CTE: Predict storm path based on movement\n    SELECT\n        sda.storm_cell_id_1,\n        sda.site_id_1,\n        sda.track_length,\n        sda.track_start_time,\n        sda.track_end_time,\n        sda.avg_movement_speed_kmh,\n        sda.avg_movement_direction_deg,\n        sda.max_reflectivity_dbz,\n        sda.avg_reflectivity_dbz,\n        sda.development_trend,\n        sda.severity_classification,\n        -- Predicted position in 1 hour (using average movement)\n        CASE\n            WHEN sda.avg_movement_speed_kmh IS NOT NULL AND sda.avg_movement_direction_deg IS NOT NULL THEN\n                ST_TRANSLATE(\n                    (SELECT storm_center_geom FROM nexrad_storm_cells WHERE storm_cell_id = sda.storm_cell_id_1),\n                    sda.avg_movement_speed_kmh * 1.0 * SIN(RADIANS(sda.avg_movement_direction_deg)) * 1000.0,\n                    sda.avg_movement_speed_kmh * 1.0 * COS(RADIANS(sda.avg_movement_direction_deg)) * 1000.0\n                )\n            ELSE NULL\n        END AS predicted_position_1h_geom,\n        -- Predicted position in 2 hours\n        CASE\n            WHEN sda.avg_movement_speed_kmh IS NOT NULL AND sda.avg_movement_direction_deg IS NOT NULL THEN\n                ST_TRANSLATE(\n                    (SELECT storm_center_geom FROM nexrad_storm_cells WHERE storm_cell_id = sda.storm_cell_id_1),\n                    sda.avg_movement_speed_kmh * 2.0 * SIN(RADIANS(sda.avg_movement_direction_deg)) * 1000.0,\n                    sda.avg_movement_speed_kmh * 2.0 * COS(RADIANS(sda.avg_movement_direction_deg)) * 1000.0\n                )\n            ELSE NULL\n        END AS predicted_position_2h_geom\n    FROM storm_development_analysis sda\n)\nSELECT\n    storm_cell_id_1,\n    site_id_1,\n    track_length,\n    track_start_time,\n    track_end_time,\n    avg_movement_speed_kmh,\n    avg_movement_direction_deg,\n    max_reflectivity_dbz,\n    avg_reflectivity_dbz,\n    development_trend,\n    severity_classification,\n    predicted_position_1h_geom,\n    predicted_position_2h_geom\nFROM predicted_storm_path\nWHERE track_length >= 2  -- At least 2 scans for tracking\nORDER BY max_reflectivity_dbz DESC, track_start_time DESC\nLIMIT 1000;",
       "line_number": 803,
@@ -1432,7 +4372,7 @@
       "number": 27,
       "title": "moderate / aggregation",
       "question": "Can you generate a US-wide cloud composite image from satellite imagery data?",
-      "description": "A national weather service provider needs to create synoptic-scale cloud coverage products for media broadcast and public dissemination. Satellite imagery from multiple sensors captures cloud formations across different spectral bands, and these need to be merged into a seamless US-wide composite that shows current cloud conditions for weather forecasting and public awareness. Generate a comprehensive cloud composite product that integrates multi-satellite imagery across all US ",
+      "description": "A national weather service provider needs to create synoptic-scale cloud coverage products for media broadcast and public dissemination. Satellite imagery from multiple sensors captures cloud formations across different spectral bands, and these need to be merged into a seamless US-wide composite that shows current cloud conditions for weather forecasting and public awareness. Generate a comprehensive cloud composite product that integrates multi-satellite imagery across all US states and territ",
       "evidence": "A national weather service provider needs to create synoptic-scale cloud coverage products for media broadcast and public dissemination. Satellite imagery from multiple sensors captures cloud formations across different spectral bands, and these need to be merged into a seamless US-wide composite that shows current cloud conditions for weather forecasting and public awareness. Generate a comprehensive cloud composite product that integrates multi-satellite imagery across all US states and territories. The query retrieves satellite observations from multiple geostationary and polar-orbiting platforms, joins imagery data with shapefile boundaries to ensure complete US coverage, groups pixels by geographical coordinates and time stamps, computes cloud detection metrics using infrared and visible channel thresholds, applies window functions to blend overlapping satellite swaths and create seamless mosaics, and handles missing data regions through spatial interpolat",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1444,7 +4384,7 @@
       "number": 28,
       "title": "moderate / aggregation",
       "question": "Can you show me precipitation estimates that combine NEXRAD radar and satellite data?",
-      "description": "A hydrological forecasting agency requires accurate precipitation estimates for flood prediction and water resource management. NEXRAD radar provides high-resolution ground-based measurements but can be affected by beam blockage and range limitations, while satellite observations offer broader coverage but lower spatial resolution. Fusing both data sources improves precipitation estimation accuracy for critical decision-making. Generate precise precipitation estimates by integra",
+      "description": "A hydrological forecasting agency requires accurate precipitation estimates for flood prediction and water resource management. NEXRAD radar provides high-resolution ground-based measurements but can be affected by beam blockage and range limitations, while satellite observations offer broader coverage but lower spatial resolution. Fusing both data sources improves precipitation estimation accuracy for critical decision-making. Generate precise precipitation estimates by integrating NEXRAD radar",
       "evidence": "A hydrological forecasting agency requires accurate precipitation estimates for flood prediction and water resource management. NEXRAD radar provides high-resolution ground-based measurements but can be affected by beam blockage and range limitations, while satellite observations offer broader coverage but lower spatial resolution. Fusing both data sources improves precipitation estimation accuracy for critical decision-making. Generate precise precipitation estimates by integrating NEXRAD radar reflectivity with satellite-derived rainfall products. The query joins NEXRAD radar measurements with satellite precipitation retrievals using spatial and temporal matching criteria, groups observations by geographical grid cells and time periods, computes weighted precipitation estimates by combining radar quantitative precipitation estimates (QPE) with satellite microwave and infrared algorithms, applies window functions to calculate rolling accumulations and identify",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1456,7 +4396,7 @@
       "number": 29,
       "title": "moderate / aggregation",
       "question": "Can you show me fire detection and monitoring results from satellite data across the United States?",
-      "description": "A wildfire management agency and insurance risk assessment team must monitor active fires across the continental US to coordinate suppression efforts and evaluate property exposure. Satellite thermal sensors detect fire hotspots through infrared anomalies, providing critical early warning and situational awareness for fires in remote areas where ground observations are limited. Generate a comprehensive fire detection and monitoring report identifying active fire locations, inten",
+      "description": "A wildfire management agency and insurance risk assessment team must monitor active fires across the continental US to coordinate suppression efforts and evaluate property exposure. Satellite thermal sensors detect fire hotspots through infrared anomalies, providing critical early warning and situational awareness for fires in remote areas where ground observations are limited. Generate a comprehensive fire detection and monitoring report identifying active fire locations, intensity metrics, and",
       "evidence": "A wildfire management agency and insurance risk assessment team must monitor active fires across the continental US to coordinate suppression efforts and evaluate property exposure. Satellite thermal sensors detect fire hotspots through infrared anomalies, providing critical early warning and situational awareness for fires in remote areas where ground observations are limited. Generate a comprehensive fire detection and monitoring report identifying active fire locations, intensity metrics, and temporal progression across US territories. The query retrieves thermal anomaly data from satellite observations across multiple platforms, joins fire detections with shapefile boundaries to assign fires to administrative regions and land ownership categories, groups hotspots by fire event clusters using spatial proximity algorithms, computes aggregate metrics including fire radiative power totals and burned area estimates, applies window functions to track fire growth ",
       "complexity": "moderate",
       "expected_output": "Query results",
@@ -1468,7 +4408,7 @@
       "number": 30,
       "title": "moderate / aggregation",
       "question": "Can you generate a US-wide composite weather product combining NEXRAD radar and satellite data?",
-      "description": "A national weather forecasting center needs to produce comprehensive weather analysis products that leverage both ground-based radar and space-based satellite observations. NEXRAD radars excel at detecting precipitation structure and storm features but have limited coverage in mountainous terrain and gaps between radar sites, while satellites provide continuous spatial coverage but less detail on precipitation intensity. Combining both sources creates superior weather products for for",
+      "description": "A national weather forecasting center needs to produce comprehensive weather analysis products that leverage both ground-based radar and space-based satellite observations. NEXRAD radars excel at detecting precipitation structure and storm features but have limited coverage in mountainous terrain and gaps between radar sites, while satellites provide continuous spatial coverage but less detail on precipitation intensity. Combining both sources creates superior weather products for forecasting op",
       "evidence": "A national weather forecasting center needs to produce comprehensive weather analysis products that leverage both ground-based radar and space-based satellite observations. NEXRAD radars excel at detecting precipitation structure and storm features but have limited coverage in mountainous terrain and gaps between radar sites, while satellites provide continuous spatial coverage but less detail on precipitation intensity. Combining both sources creates superior weather products for forecasting operations. Generate a seamless US-wide composite weather product that integrates NEXRAD radar reflectivity with satellite cloud and precipitation imagery. The query retrieves observations from the NEXRAD radar network and multiple satellite platforms, performs spatial and temporal alignment using weather station coordinates as ground truth references, joins radar and satellite data with shapefile boundaries to establish consistent geographical grids, groups observations b",
       "complexity": "moderate",
       "expected_output": "Query results",

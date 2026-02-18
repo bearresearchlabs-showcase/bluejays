@@ -2,22 +2,32 @@
 
 ## Overview
 
-Scripts are organized for **single responsibility** and **consistent behavior**. Compiled binaries handle pure computation; Python orchestrates workflows.
+Scripts consolidate into **testing**, **checking**, and **validation + verification**. Compiled binaries handle pure computation; Python orchestrates workflows.
+
+## Command Categories
+
+| Category | Subcommands | Purpose |
+|----------|-------------|---------|
+| **Testing** | `test`, `validate`, `validate-queries` | BDD/TDD/DDD test suites, Phase 0–5 validation |
+| **Checking** | `qa`, `source-checks`, `check-commit`, `repo-health`, `schema-postgresql-validate` | Client audit, source material, repo health |
+| **Validation + Verification** | `validate`, `integrity`, `compliance` | Query validation, CRC/hash, compliance checklist |
+| **Build** | `build` | Populate → format → resync → verify (format is internal step) |
 
 ## Entry Points
 
 | Command | Script | Purpose |
 |---------|--------|---------|
 | `/validate` | `db_check.py validate` | Run validation suite (Phase 0–5) |
-| `/format` | `db_check.py format` | Package deliverables |
-| `/QA` | `db_check.py qa-suite` | QA suite + compliance + integrity |
-| `/check` | `db_check.py full` | All checks |
+| `/build` | `db_check.py build` | Build source → client/db (populate, format, resync, verify) |
+| `/QA` | `db_check.py qa-suite` | QA suite (audit + compliance + integrity); `--full` adds populate/format/resync |
+| `/check` | `db_check.py full` | All checks (validate + qa + integrity + compliance) |
+| `/test` | `db_check.py test` | BDD/TDD/DDD test suites |
 | `make scrub` | `scrub_keywords.py` | Keyword cleanup (config-driven) |
 | `make scrub-4x` | `scrub_4x.sh` | 4x parallel scrub (worktrees) |
 
 ## Core Scripts (Keep)
 
-- **db_check.py** – Unified orchestrator (validate, format, qa, integrity, compliance, export, etc.)
+- **db_check.py** – Unified orchestrator (testing, checking, validation, verification, build)
 - **validate.py** – Validation runner
 - **format.py** – Deliverable formatter
 - **integrity_checks.py** – CRC/SHA checksums (uses `bin/checksum` when built)

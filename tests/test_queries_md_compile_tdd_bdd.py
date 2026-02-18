@@ -102,6 +102,30 @@ class TestFormatQueriesMdTemplate:
         assert "—" in first_line
         assert "Query Documentation" in first_line
 
+    def test_format_query_block_includes_description_when_present(self):
+        """TDD: _format_query_block outputs description in JSON when q has both."""
+        from queries_md_template_formatter import _format_query_block
+
+        q = {
+            "number": 1,
+            "question_id": 1,
+            "description": "Context.",
+            "evidence": "Technical.",
+            "SQL": "SELECT 1",
+            "difficulty": "simple",
+            "query_category": "filter",
+            "tables_used": [],
+            "schema_context": {},
+            "expected_output": "x",
+        }
+        block = _format_query_block(q, "db-1", bit_by_bit=True)
+        m = re.search(r"```json\n(.*?)```", block, re.DOTALL)
+        assert m, "JSON block not found"
+        obj = json.loads(m.group(1))
+        assert "description" in obj
+        assert obj["description"] == "Context."
+        assert obj["evidence"] == "Technical."
+
 
 class TestLoadQueriesHeader:
     """TDD: load_queries_header loads from YAML/JSON correctly."""
@@ -515,3 +539,49 @@ class TestBDDDataUpdateScenario:
             assert "Evidence B" in qm.read_text(encoding="utf-8")
             assert "SELECT 2" in qm.read_text(encoding="utf-8")
             assert "Evidence A" not in qm.read_text(encoding="utf-8")
+
+    def test_given_distinct_description_evidence_when_roundtrip_then_still_distinct(self):
+        """Scenario: Description and evidence remain distinct after round-trip."""
+        from extract_queries_to_json import extract_queries
+        from queries_md_template_formatter import format_queries_md_template, _format_query_block
+        from update_queries_md_from_json import update_query_block, load_queries_json
+
+        with tempfile.TemporaryDirectory() as d:
+            qd = Path(d)
+            qj = qd / "queries.json"
+            qm = qd / "queries.md"
+
+            # Given: queries.json has distinct description and evidence for query 1
+            qs = [
+                {
+                    "number": 1,
+                    "question_id": 1,
+                    "question": "Q1?",
+                    "description": "Context: domain purpose.",
+                    "evidence": "The query uses CTEs and window functions.",
+                    "SQL": "SELECT 1",
+                    "difficulty": "simple",
+                    "query_category": "filter",
+                    "tables_used": [],
+                    "schema_context": {},
+                    "expected_output": "x",
+                },
+            ]
+            qj.write_text(json.dumps({"queries": qs}), encoding="utf-8")
+            qm.write_text(format_queries_md_template(qs, db_id="db-1", db_name="Test"), encoding="utf-8")
+
+            # When: update_queries_md_from_json runs for db-1
+            loaded = load_queries_json(qd)
+            new_block = _format_query_block(loaded[0], "db-1", bit_by_bit=True)
+            updated = update_query_block(qm.read_text(encoding="utf-8"), 1, new_block)
+            qm.write_text(updated, encoding="utf-8")
+
+            # When: extract_queries_to_json runs for db-1
+            extracted = extract_queries(qm)
+
+            # Then: queries.json still has distinct description and evidence for query 1
+            assert len(extracted) == 1
+            entry = extracted[0]
+            assert entry["description"] != entry["evidence"]
+            assert "Context" in (entry.get("description") or "")
+            assert "CTEs" in (entry.get("evidence") or "")

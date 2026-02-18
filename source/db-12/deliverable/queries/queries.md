@@ -54,7 +54,7 @@ CREATE TABLE credit_card_issuers (
     cfpb_complaint_count INTEGER DEFAULT 0,
     cfpb_complaint_resolution_rate NUMERIC(5, 2),
     data_source VARCHAR(50) DEFAULT 'CFPB_API',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Credit Cards Table
@@ -81,7 +81,8 @@ CREATE TABLE credit_cards (
     metal_card BOOLEAN DEFAULT FALSE,
     authorized_user_fee NUMERIC(10, 2) DEFAULT 0,
     card_agreement_url VARCHAR(500),
-    card_image_url VARCHAR(500)
+    card_image_url VARCHAR(500),
+    
 -- ...
 ```
 

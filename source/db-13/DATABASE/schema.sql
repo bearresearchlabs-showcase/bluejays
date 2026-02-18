@@ -1,14 +1,5 @@
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:12
--- Database: db-13
--- 
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
 -- AI Benchmark Marketing Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
+-- Compatible with PostgreSQL
 -- Production schema for AI model benchmark tracking and marketing intelligence system
 -- Integrates data from Artificial Analysis, NIST, NSF, Data.gov, and other reputable sources
 -- Target data volume: ~2GB
@@ -43,7 +34,7 @@ CREATE TABLE ai_models (
     source_url VARCHAR(1000),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    metadata_json VARCHAR(16777216) -- Additional JSON metadata
+    metadata_json TEXT -- Additional JSON metadata
 );
 
 -- Model Performance Metrics Table
@@ -91,7 +82,7 @@ CREATE TABLE benchmark_evaluations (
     accuracy_percentage NUMERIC(5, 2), -- Accuracy percentage
     evaluation_methodology VARCHAR(500), -- Description of evaluation methodology
     benchmark_version VARCHAR(50), -- Benchmark version
-    evaluation_metadata VARCHAR(16777216), -- JSON metadata with detailed results
+    evaluation_metadata TEXT, -- JSON metadata with detailed results
     data_source VARCHAR(100) DEFAULT 'ARTIFICIAL_ANALYSIS',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -137,7 +128,7 @@ CREATE TABLE marketing_intelligence (
     growth_rate_percent NUMERIC(5, 2), -- Growth rate percentage
     trend_direction VARCHAR(50), -- 'increasing', 'decreasing', 'stable'
     competitive_advantage VARCHAR(500), -- Key competitive advantages
-    market_insights VARCHAR(16777216), -- Detailed insights JSON
+    market_insights TEXT, -- Detailed insights JSON
     data_source VARCHAR(100) DEFAULT 'CALCULATED',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -163,7 +154,7 @@ CREATE TABLE government_benchmark_data (
     robustness_score NUMERIC(5, 2), -- Robustness score (if applicable)
     bias_score NUMERIC(5, 2), -- Bias score (if applicable)
     efficiency_score NUMERIC(5, 2), -- Efficiency score (if applicable)
-    benchmark_metadata VARCHAR(16777216), -- JSON metadata
+    benchmark_metadata TEXT, -- JSON metadata
     source_url VARCHAR(1000),
     data_source VARCHAR(100) DEFAULT 'GOVERNMENT',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -187,7 +178,7 @@ CREATE TABLE model_adoption_metrics (
     industry_adoption_score NUMERIC(5, 2), -- Industry adoption score (0-100)
     enterprise_adoption_percent NUMERIC(5, 2), -- Enterprise adoption percentage
     adoption_trend VARCHAR(50), -- 'growing', 'stable', 'declining'
-    adoption_metadata VARCHAR(16777216), -- JSON metadata
+    adoption_metadata TEXT, -- JSON metadata
     data_source VARCHAR(100) DEFAULT 'AGGREGATED',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -224,7 +215,7 @@ CREATE TABLE model_performance_history (
     output_speed_tokens_per_sec NUMERIC(10, 2),
     latency_seconds NUMERIC(10, 4),
     performance_change_percent NUMERIC(5, 2), -- Performance change from previous period
-    benchmark_scores_json VARCHAR(16777216), -- JSON with all benchmark scores
+    benchmark_scores_json TEXT, -- JSON with all benchmark scores
     data_source VARCHAR(100) DEFAULT 'ARTIFICIAL_ANALYSIS',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (model_id) REFERENCES ai_models(model_id)
@@ -246,7 +237,7 @@ CREATE TABLE data_sources (
     sync_frequency VARCHAR(50), -- 'hourly', 'daily', 'weekly', 'monthly', 'manual'
     data_quality_score NUMERIC(5, 2), -- Data quality score (0-100)
     is_active BOOLEAN DEFAULT TRUE,
-    source_metadata VARCHAR(16777216), -- JSON metadata
+    source_metadata TEXT, -- JSON metadata
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -262,7 +253,7 @@ CREATE TABLE pipeline_metadata (
     records_successful INTEGER DEFAULT 0,
     records_failed INTEGER DEFAULT 0,
     processing_duration_seconds INTEGER,
-    error_log VARCHAR(16777216),
+    error_log TEXT,
     status VARCHAR(50) DEFAULT 'running', -- 'running', 'success', 'failed', 'partial'
     start_time TIMESTAMP NOT NULL,
     end_time TIMESTAMP,

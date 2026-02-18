@@ -135,3 +135,35 @@ class TestQASuiteFlow:
             timeout=180,
         )
         assert "Format" in proc.stdout or "format" in proc.stdout, "QA suite should include format step"
+
+
+class TestBuildCommand:
+    """Build command compiles source → client/db (populate, format, resync, verify)."""
+
+    def test_build_no_args_returns_1(self):
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "db_check.py"), "build"],
+            cwd=str(ROOT),
+            capture_output=True,
+            text=True,
+        )
+        assert proc.returncode == 1
+        assert "Usage" in proc.stdout or "build" in proc.stdout
+
+    def test_build_db1_compiles_to_client(self):
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "db_check.py"), "build", "1"],
+            cwd=str(ROOT),
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        assert proc.returncode == 0, f"Build failed: {proc.stderr[:500]}"
+        assert "BUILD:" in proc.stdout
+        assert "Populate" in proc.stdout or "populate" in proc.stdout.lower()
+        assert "Resync" in proc.stdout or "resync" in proc.stdout.lower()
+        assert "Build Overall: PASS" in proc.stdout
+        client_db1 = CLIENT / "db-1"
+        assert client_db1.exists()
+        assert (client_db1 / "DATABASE").exists()
+        assert (client_db1 / "QUERIES" / "queries.json").exists()

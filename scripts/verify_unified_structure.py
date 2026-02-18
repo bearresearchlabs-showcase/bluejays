@@ -32,14 +32,15 @@ def verify_db(n: int) -> dict:
         schema = any(f.name.startswith("schema") for f in sql_files)
         if not schema:
             r["errors"].append("DATABASE/ missing schema*.sql")
-        # Primary data file: data_large.sql (>= 1GB) or data.sql
+        # Production data only (>= 1GB). No sample data.
         data_sql = db_dir / "data.sql"
         data_large = db_dir / "data_large.sql"
         has_data = data_sql.exists() or data_large.exists()
-        if not has_data:
-            r["errors"].append("DATABASE/ missing data.sql or data_large.sql")
-        elif data_large.exists() and data_large.stat().st_size < GB:
-            r["errors"].append(f"DATABASE/data_large.sql < 1GB ({data_large.stat().st_size / GB:.2f}GB)")
+        if has_data:
+            if data_sql.exists() and data_sql.stat().st_size < GB:
+                r["errors"].append(f"DATABASE/data.sql is sample data ({data_sql.stat().st_size / GB:.2f}GB); production 1GB required")
+            elif data_large.exists() and data_large.stat().st_size < GB:
+                r["errors"].append(f"DATABASE/data_large.sql < 1GB ({data_large.stat().st_size / GB:.2f}GB)")
         for f in sql_files:
             if "snowflake" in f.name.lower() or "bigquery" in f.name.lower():
                 r["errors"].append(f"DATABASE/ has non-PostgreSQL file: {f.name}")

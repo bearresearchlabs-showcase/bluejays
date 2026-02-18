@@ -86,10 +86,13 @@ backup_archive/
 venv_selenium/
 
 # SQL data files (excluded; use LFS or external storage for large datasets)
+# Only production data (>= 1GB) should exist; sample/mini excluded
 source/db-*/**/data.sql
 source/db-*/**/data_large*.sql
+source/db-*/**/data_mini.sql
 client/db/**/data.sql
 client/db/**/data_large*.sql
+client/db/**/data_mini.sql
 # Large data directories
 source/db-8/data/internet_pulled/
 source/db-8/data/internet_transformed/

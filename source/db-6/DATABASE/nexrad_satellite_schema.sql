@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS nexrad_radar_sites (
     site_name VARCHAR(255) NOT NULL,
     site_latitude NUMERIC(10, 7) NOT NULL,
     site_longitude NUMERIC(10, 7) NOT NULL,
-    site_geom TEXT,  -- Point geometry
+    site_geom GEOGRAPHY,  -- Point geometry
     elevation_meters NUMERIC(8, 2),
     state_code VARCHAR(2),
     county_name VARCHAR(100),
@@ -38,10 +38,10 @@ CREATE TABLE IF NOT EXISTS nexrad_level2_data (
     range_km NUMERIC(8, 2),  -- Distance from radar in kilometers
     -- Reflectivity data
     reflectivity_dbz NUMERIC(6, 2),  -- Reflectivity in dBZ
-    reflectivity_geom TEXT,  -- Point geometry for reflectivity location
+    reflectivity_geom GEOGRAPHY,  -- Point geometry for reflectivity location
     -- Velocity data
     radial_velocity_ms NUMERIC(6, 2),  -- Radial velocity in m/s
-    velocity_geom TEXT,  -- Point geometry for velocity location
+    velocity_geom GEOGRAPHY,  -- Point geometry for velocity location
     -- Spectrum width
     spectrum_width_ms NUMERIC(6, 2),  -- Spectrum width in m/s
     -- Data quality
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS nexrad_reflectivity_grid (
     scan_time TIMESTAMP NOT NULL,
     grid_latitude NUMERIC(10, 7) NOT NULL,
     grid_longitude NUMERIC(10, 7) NOT NULL,
-    grid_geom TEXT,  -- Point geometry
+    grid_geom GEOGRAPHY,  -- Point geometry
     grid_resolution_km NUMERIC(6, 2) DEFAULT 1.0,  -- Grid resolution in km
     -- Reflectivity values
     max_reflectivity_dbz NUMERIC(6, 2),  -- Maximum reflectivity in grid cell
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS nexrad_velocity_grid (
     scan_time TIMESTAMP NOT NULL,
     grid_latitude NUMERIC(10, 7) NOT NULL,
     grid_longitude NUMERIC(10, 7) NOT NULL,
-    grid_geom TEXT,  -- Point geometry
+    grid_geom GEOGRAPHY,  -- Point geometry
     grid_resolution_km NUMERIC(6, 2) DEFAULT 1.0,
     -- Velocity values
     radial_velocity_ms NUMERIC(6, 2),  -- Radial velocity in m/s
@@ -134,8 +134,8 @@ CREATE TABLE IF NOT EXISTS nexrad_storm_cells (
     last_detection_time TIMESTAMP,
     storm_center_latitude NUMERIC(10, 7),
     storm_center_longitude NUMERIC(10, 7),
-    storm_center_geom TEXT,  -- Point geometry
-    storm_polygon_geom TEXT,  -- Polygon geometry for storm extent
+    storm_center_geom GEOGRAPHY,  -- Point geometry
+    storm_polygon_geom GEOGRAPHY,  -- Polygon geometry for storm extent
     -- Storm characteristics
     max_reflectivity_dbz NUMERIC(6, 2),
     max_velocity_ms NUMERIC(6, 2),
@@ -193,7 +193,7 @@ CREATE TABLE IF NOT EXISTS satellite_imagery_products (
     -- Spatial information
     grid_latitude NUMERIC(10, 7) NOT NULL,
     grid_longitude NUMERIC(10, 7) NOT NULL,
-    grid_geom TEXT,  -- Point geometry
+    grid_geom GEOGRAPHY,  -- Point geometry
     grid_resolution_km NUMERIC(8, 2),  -- Grid resolution in kilometers
     -- Pixel values
     pixel_value NUMERIC(10, 4),  -- Raw pixel value
@@ -238,7 +238,7 @@ CREATE TABLE IF NOT EXISTS satellite_imagery_grid (
     scan_time TIMESTAMP NOT NULL,
     grid_latitude NUMERIC(10, 7) NOT NULL,
     grid_longitude NUMERIC(10, 7) NOT NULL,
-    grid_geom TEXT,  -- Point geometry
+    grid_geom GEOGRAPHY,  -- Point geometry
     grid_resolution_km NUMERIC(8, 2),  -- Grid resolution
     -- Aggregated values
     min_value NUMERIC(10, 4),
@@ -337,7 +337,7 @@ CREATE TABLE IF NOT EXISTS us_wide_composite_products (
     composite_time TIMESTAMP NOT NULL,
     grid_latitude NUMERIC(10, 7) NOT NULL,
     grid_longitude NUMERIC(10, 7) NOT NULL,
-    grid_geom TEXT,  -- Point geometry
+    grid_geom GEOGRAPHY,  -- Point geometry
     grid_resolution_km NUMERIC(8, 2) DEFAULT 1.0,
     -- NEXRAD contributions
     nexrad_reflectivity_dbz NUMERIC(6, 2),

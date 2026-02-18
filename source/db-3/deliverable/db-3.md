@@ -254,7 +254,7 @@ This database includes **30 production SQL queries**, each designed to solve spe
 
 **Business Value:** Aggregated metrics grouped by day and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -339,7 +339,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -424,7 +424,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -509,7 +509,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -594,7 +594,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -679,7 +679,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -764,7 +764,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -849,7 +849,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -934,7 +934,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1019,7 +1019,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1104,7 +1104,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1189,7 +1189,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1274,7 +1274,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1359,7 +1359,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1444,7 +1444,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1529,7 +1529,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1614,7 +1614,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1699,7 +1699,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1784,7 +1784,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1869,7 +1869,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1954,7 +1954,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2039,7 +2039,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2124,7 +2124,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2209,7 +2209,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2294,7 +2294,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2379,7 +2379,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2464,7 +2464,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2549,7 +2549,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by month and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2634,7 +2634,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by day and seller_id
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2719,7 +2719,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics grouped by week and status
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2814,7 +2814,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260218-0146
+- **Generated**: 20260218-0255
 - **Database**: db-3
 - **Type**: Hierarchical Orders (LinkWay)
 - **Queries**: 30 production queries

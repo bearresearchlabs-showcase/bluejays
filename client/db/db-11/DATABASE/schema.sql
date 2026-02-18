@@ -1,21 +1,9 @@
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:10
--- Database: db-11
--- 
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
--- Parking Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
--- Production schema for parking data pipeline system
+-- Parking Intelligence Database Schema
+-- Compatible with PostgreSQL
+-- Production schema for parking marketing intelligence system
 
 -- Metropolitan Areas Table
 -- Stores metropolitan statistical areas (MSAs) and combined statistical areas (CSAs)
--- Enable PostGIS extension for spatial data
-CREATE EXTENSION IF NOT EXISTS postgis;
-
 CREATE TABLE metropolitan_areas (
     msa_id VARCHAR(50) PRIMARY KEY,
     msa_name VARCHAR(255) NOT NULL,
@@ -198,8 +186,8 @@ CREATE TABLE events (
     FOREIGN KEY (city_id) REFERENCES cities(city_id)
 );
 
--- Market Metrics Table
--- Stores calculated market metrics and analytics
+-- Market Intelligence Metrics Table
+-- Stores calculated marketing intelligence metrics
 CREATE TABLE market_intelligence_metrics (
     metric_id VARCHAR(100) PRIMARY KEY,
     city_id VARCHAR(50),

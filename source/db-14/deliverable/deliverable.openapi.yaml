@@ -50,7 +50,7 @@ info:
     \ unit. Window functions calculate rolling 30-day averages and rank instances\
     \ by cost-effectiveness within each category. The query handles NU\n\nBusiness\
     \ Value: Report showing matched instances across providers with cost savings,\
-    \ performance metrics, and optimization recommendations\n\nComplexity: challenging\n\
+    \ performance metrics, and optimization recommendations\n\nComplexity: moderate\n\
     \n---\n\nUse Case: Can you provide a historical pricing trend analysis with multi-period\
     \ forecasting for our cloud instances?\n\nDescription: Cloud instance pricing\
     \ fluctuates over time due to market conditions, new instance types, and provider\
@@ -65,7 +65,7 @@ info:
     \ month-over-month change percentage, and year-over-year comparisons. Window functions\
     \ calculate 3-month, 6-month, and 12-month moving averages to smooth volatility.\
     \ The query applies linear regression within SQL using window functions to pro\n\
-    \nBusiness Value: Query results with detailed cost  metrics\n\nComplexity: challenging\n\
+    \nBusiness Value: Query results with detailed cost  metrics\n\nComplexity: moderate\n\
     \n---\n\nUse Case: Can you analyze the ROI of our reserved instances with multi-year\
     \ cost projections?\n\nDescription: Our organization is evaluating reserved instance\
     \ (RI) commitments to reduce cloud costs. Reserved instances require upfront payment\
@@ -420,7 +420,7 @@ info:
     \ groups results by dependency levels and instance characteristics, computes aggregate\
     \ cost metrics (total cost, average cost per dependency branch), and applies window\
     \ functions to calcul\n\nBusiness Value: Query results with detailed cost  metrics\n\
-    \nComplexity: challenging\n\n---\n\nUse Case: Can you show me a reserved instance\
+    \nComplexity: moderate\n\n---\n\nUse Case: Can you show me a reserved instance\
     \ utilization analysis?\n\nDescription: In the Cloud Instance Cost domain, organizations\
     \ purchase reserved instances to reduce cloud costs by committing to long-term\
     \ capacity, but unused or underutilized reserved capacity represents wasted financial\
@@ -508,7 +508,7 @@ info:
     \ queries in this database are designed to work across multiple database platforms:\n\
     \n- PostgreSQL: Full support with standard SQL features\n\nQueries use standard\
     \ SQL syntax and avoid platform-specific features to ensure compatibility.\n\n\
-    ---\n\nDocument Information:\n\n- Generated: 20260218-0146\n- Database: db-14\n\
+    ---\n\nDocument Information:\n\n- Generated: 20260218-0255\n- Database: db-14\n\
     - Type: Cloud Instance Cost Database\n- Queries: 30 production queries\n- Status:\
     \ ✅ Complete Comprehensive Deliverable"
   version: 1.0.0

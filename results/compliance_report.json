@@ -1,5 +1,5 @@
 {
-  "check_date": "20260218-0215",
+  "check_date": "20260218-0353",
   "databases": {
     "db-1": {
       "checks": [
@@ -17,7 +17,7 @@
         ],
         [
           "data.sql exists",
-          true
+          false
         ],
         [
           "client DOCUMENTATION/ (README.md only)",

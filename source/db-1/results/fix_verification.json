@@ -1,0 +1,96 @@
+{
+  "verification_date": "20260218-0353",
+  "file": "/Users/machine/Documents/AQ/db/source/db-1/QUERIES/queries.md",
+  "fixes": {
+    "query_2_array_syntax": {
+      "query_number": 2,
+      "fix": "Array syntax PostgreSQL compatibility",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "Query uses CTEs",
+          "status": "PASS"
+        },
+        {
+          "check": "Valid query structure",
+          "status": "PASS"
+        },
+        {
+          "check": "Array slicing syntax",
+          "status": "PASS",
+          "note": "Conceptual check"
+        }
+      ]
+    },
+    "query_26_recursive_cte": {
+      "query_number": 26,
+      "fix": "Query complexity validation",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "Query uses CTEs",
+          "status": "PASS"
+        },
+        {
+          "check": "Valid SQL structure",
+          "status": "PASS"
+        },
+        {
+          "check": "Query complexity",
+          "status": "PASS",
+          "note": "Conceptual check"
+        }
+      ]
+    },
+    "query_title_uniqueness": {
+      "fix": "Query title uniqueness",
+      "status": "FAIL",
+      "checks": [
+        {
+          "check": "All queries have titles",
+          "status": "PASS",
+          "count": 30
+        },
+        {
+          "check": "No duplicate titles",
+          "status": "FAIL",
+          "duplicates": {
+            "what are the daily altitude statistics by aircraft": [
+              18,
+              24
+            ],
+            "what are the weekly altitude statistics by speed r": [
+              19,
+              30
+            ],
+            "what are the monthly altitude statistics by aircra": [
+              20,
+              26
+            ]
+          }
+        },
+        {
+          "check": "Queries 26-30 exist",
+          "status": "PASS"
+        }
+      ]
+    },
+    "header_formatting": {
+      "fix": "Header formatting",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "All queries use ## Query N: format",
+          "status": "PASS",
+          "count": 30
+        },
+        {
+          "check": "No queries with --- prefix",
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "overall_status": "FAIL",
+  "Pass": 0
+}

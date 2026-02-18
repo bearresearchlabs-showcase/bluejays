@@ -39,3 +39,9 @@ Feature: queries.md compilation and consistency
     Then queries.md reflects the new evidence
     And queries.md reflects the new SQL
     And header sections remain intact
+
+  Scenario: Description and evidence remain distinct after round-trip
+    Given queries.json has distinct description and evidence for query 1
+    When update_queries_md_from_json runs for db-1
+    And extract_queries_to_json runs for db-1
+    Then queries.json still has distinct description and evidence for query 1

@@ -1,21 +1,9 @@
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:11
--- Database: db-12
--- 
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
 -- Credit Card Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
+-- Compatible with PostgreSQL
 -- Production schema for credit card and rewards optimization system
 
 -- Credit Card Issuers Table
 -- Stores information about credit card issuing banks and financial institutions
--- Enable PostGIS extension for spatial data
-CREATE EXTENSION IF NOT EXISTS postgis;
-
 CREATE TABLE credit_card_issuers (
     issuer_id VARCHAR(255) PRIMARY KEY,
     issuer_name VARCHAR(255) NOT NULL,

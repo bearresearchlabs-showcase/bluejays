@@ -10,7 +10,7 @@ CREATE TABLE fema_flood_zones (
     zone_code VARCHAR(10) NOT NULL,  -- 'A', 'AE', 'AH', 'AO', 'V', 'VE', 'X', 'D', etc.
     zone_description VARCHAR(255),
     base_flood_elevation NUMERIC(10, 2),  -- BFE in feet above sea level
-    zone_geom geography,  -- Polygon geometry for flood zone boundary
+    zone_geom GEOGRAPHY,  -- Polygon geometry for flood zone boundary
     community_id VARCHAR(50),
     community_name VARCHAR(255),
     state_code VARCHAR(2),
@@ -35,7 +35,7 @@ CREATE TABLE real_estate_properties (
     property_address VARCHAR(500),
     property_latitude NUMERIC(10, 7) NOT NULL,
     property_longitude NUMERIC(10, 7) NOT NULL,
-    property_geom geography,  -- Point geometry for property location
+    property_geom GEOGRAPHY,  -- Point geometry for property location
     property_type VARCHAR(100),  -- 'Residential', 'Commercial', 'Industrial', 'Mixed-Use'
     building_value NUMERIC(15, 2),
     land_value NUMERIC(15, 2),
@@ -62,7 +62,7 @@ CREATE TABLE noaa_sea_level_rise (
     station_name VARCHAR(255),
     station_latitude NUMERIC(10, 7) NOT NULL,
     station_longitude NUMERIC(10, 7) NOT NULL,
-    station_geom geography,  -- Point geometry
+    station_geom GEOGRAPHY,  -- Point geometry
     projection_year INTEGER NOT NULL,
     scenario VARCHAR(50),  -- 'Low', 'Intermediate-Low', 'Intermediate', 'Intermediate-High', 'High', 'Extreme'
     sea_level_rise_feet NUMERIC(8, 3),  -- Projected sea level rise in feet
@@ -79,7 +79,7 @@ CREATE TABLE usgs_streamflow_gauges (
     gauge_name VARCHAR(255),
     gauge_latitude NUMERIC(10, 7) NOT NULL,
     gauge_longitude NUMERIC(10, 7) NOT NULL,
-    gauge_geom geography,  -- Point geometry
+    gauge_geom GEOGRAPHY,  -- Point geometry
     drainage_area_sq_miles NUMERIC(12, 2),
     flood_stage_feet NUMERIC(8, 2),
     moderate_flood_stage_feet NUMERIC(8, 2),
@@ -117,7 +117,7 @@ CREATE TABLE nasa_flood_models (
     forecast_time TIMESTAMP NOT NULL,
     grid_cell_latitude NUMERIC(10, 7) NOT NULL,
     grid_cell_longitude NUMERIC(10, 7) NOT NULL,
-    grid_cell_geom geography,  -- Point geometry for grid cell center
+    grid_cell_geom GEOGRAPHY,  -- Point geometry for grid cell center
     inundation_depth_feet NUMERIC(8, 2),
     flood_probability NUMERIC(5, 2),  -- Probability percentage (0-100)
     flood_severity VARCHAR(50),  -- 'Low', 'Moderate', 'High', 'Extreme'
@@ -191,7 +191,7 @@ CREATE TABLE property_flood_zone_intersections (
     intersection_type VARCHAR(50),  -- 'Within', 'Adjacent', 'Near'
     distance_to_zone_feet NUMERIC(10, 2),
     elevation_difference_feet NUMERIC(10, 2),  -- Property elevation - BFE
-    intersection_geom geography,  -- Intersection geometry if applicable
+    intersection_geom GEOGRAPHY,  -- Intersection geometry if applicable
     load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -203,7 +203,7 @@ CREATE TABLE historical_flood_events (
     event_type VARCHAR(50),  -- 'Riverine', 'Coastal', 'Flash', 'Storm Surge', 'Tidal'
     start_date DATE NOT NULL,
     end_date DATE,
-    affected_area_geom geography,  -- Polygon geometry of affected area
+    affected_area_geom GEOGRAPHY,  -- Polygon geometry of affected area
     peak_discharge_cfs NUMERIC(12, 2),
     peak_stage_feet NUMERIC(8, 2),
     total_damage_dollars NUMERIC(15, 2),

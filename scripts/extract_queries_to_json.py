@@ -87,7 +87,7 @@ def extract_queries(md_path: Path) -> List[Dict]:
                         question = (obj.get("question", "") or title or f"Query {qnum}").strip()
                         normal_query = (obj.get("normal_query", "") or "")[:500]
                         evidence = (obj.get("evidence", title) or title)[:1000]
-                        desc = (obj.get("description") or evidence)[:500]
+                        desc = (obj.get("description") or "")[:500]  # Do not fallback to evidence
                         expected = (obj.get("expected_output", "Query results") or "Query results")[:200]
                         complexity = (obj.get("difficulty", "") or "")[:500]
                         for key in ("purpose", "use_case", "business_value"):

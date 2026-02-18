@@ -1,21 +1,26 @@
 #!/usr/bin/env python3
 """
-Unified DB Check - Consolidates validate, format, qa, integrity, and full checks.
+Unified DB Check - Testing, Checking, Validation + Verification.
+
+Commands consolidate into:
+  Testing:     test, validate, validate-queries
+  Checking:    qa, source-checks, check-commit, repo-health, schema-postgresql-validate
+  Validation:  validate
+  Verification: integrity, compliance
 
 Usage:
-    python3 scripts/db_check.py validate db-1 db-5   # = /validate
-    python3 scripts/db_check.py format db-1         # = /format
-    python3 scripts/db_check.py qa                   # client/db audit
-    python3 scripts/db_check.py integrity db-1       # CRC + hash
-    python3 scripts/db_check.py compliance db-1      # strict compliance checklist
-    python3 scripts/db_check.py full db-1            # all checks
-    python3 scripts/db_check.py qa-suite [db-1] [-a] # QA suite (client audit + compliance + integrity)
-    python3 scripts/db_check.py bird-workbench [db-1] [db-5] | -a  # BIRD benchmark + ACID/BASE + workbench assertions
+    python3 scripts/db_check.py validate db-1 db-5   # Validation suite (Phase 0–5)
+    python3 scripts/db_check.py qa                   # Client/db audit
+    python3 scripts/db_check.py integrity db-1       # CRC + hash verification
+    python3 scripts/db_check.py compliance db-1      # Strict compliance checklist
+    python3 scripts/db_check.py full db-1            # All checks (validate + qa + integrity + compliance)
+    python3 scripts/db_check.py qa-suite [db-1] [-a] # QA suite (audit + compliance + integrity); --full adds populate/format/resync
+    python3 scripts/db_check.py build [db-1] [db-5] | -a  # Build source → client/db (populate, format, resync, verify)
     python3 scripts/db_check.py test [schema-data|repo-health|queries-md|source-checks|all] [-v] [--lenient]  # BDD/TDD/DDD test suites
-    python3 scripts/db_check.py gdpval-langgraph [db-1] [db-5] | -a  # GDPval-style: prompt + reference(SQL) + deliverable(queries.md), .env harness, LangGraph
-    python3 scripts/db_check.py rotate [--max-lines 10000] # Rotate/trim logs
+    python3 scripts/db_check.py bird-workbench [db-1] [db-5] | -a  # BIRD benchmark + ACID/BASE
+    python3 scripts/db_check.py source-checks [db-1] | -a  # Source material checks
+    python3 scripts/db_check.py repo-health [db-1] | -a  # Repo health report
     python3 scripts/db_check.py check-commit  # Report if ~1%+ of repo changed (commit discipline)
-    python3 scripts/db_check.py schema-postgresql-validate [db-1] [db-5] | -a  # Validate schema files are PostgreSQL-only
 """
 
 import io
@@ -122,8 +127,8 @@ def cmd_validate_queries(args: List[str]) -> int:
         raise
 
 
-def cmd_format(args: List[str]) -> int:
-    """Run format (package deliverables)."""
+def cmd_format(args: List[str], *, _internal: bool = False) -> int:
+    """Run format (package deliverables). Internal: used by build and qa-suite. Standalone format removed."""
     start = time.perf_counter()
     log("db_check", "format", status="start", data={"args": args})
     try:
@@ -385,7 +390,7 @@ def cmd_qa_suite(args: List[str]) -> int:
             print(f"  WARNING: doc validation failed: {e}")
 
         print("\n[1/6] Format deliverables (queries, schema, docs)...")
-        ec_format = cmd_format(db_args)
+        ec_format = cmd_format(db_args, _internal=True)
         if ec_format != 0:
             print("  WARNING: format had errors")
 
@@ -433,6 +438,89 @@ def cmd_qa_suite(args: List[str]) -> int:
         print("PASS" if overall == 0 else "FAIL")
     else:
         print(f"\nQA Suite Overall: {'FAIL' if overall else 'PASS'}")
+    return overall
+
+
+def cmd_build(args: List[str]) -> int:
+    """Build source → client/db: populate, format, resync, verify. Compiles entire repo to client/."""
+    db_nums = parse_db_args(args)
+    if not db_nums:
+        print("Usage: db_check.py build [db-1] [db-5] | -a")
+        return 1
+
+    print("\n" + "=" * 70)
+    print("BUILD: source/ → client/db (populate → format → resync → verify)")
+    print("=" * 70)
+
+    # 1. Populate
+    print("\n[1/4] Populate source/db-N/ (data/, queries/, docs/ → DATABASE/, DOCUMENTATION/, QUERIES/)...")
+    try:
+        import sys as _sys
+        from populate_app_trifecta import main as populate_main
+        old = _sys.argv
+        _sys.argv = ["populate_app_trifecta.py"] + (["-a"] if len(db_nums) >= 16 else [f"db-{n}" for n in db_nums])
+        try:
+            ec_pop = populate_main()
+        finally:
+            _sys.argv = old
+        if ec_pop != 0:
+            print("  WARNING: populate_app had errors")
+        else:
+            print("  OK")
+    except Exception as e:
+        print(f"  ERROR: populate_app failed: {e}")
+        return 1
+
+    # 2. Format
+    print("\n[2/4] Format deliverables (queries, schema, docs)...")
+    db_args = ["-a"] if len(db_nums) >= 16 else [f"db-{n}" for n in db_nums]
+    ec_format = cmd_format(db_args, _internal=True)
+    if ec_format != 0:
+        print("  WARNING: format had errors")
+
+    # 3. Resync
+    print("\n[3/4] Resync source/ → client/db...")
+    resync_cmd = [sys.executable, str(scripts_dir / "resync_client_db.py"), "--verify"]
+    if len(db_nums) < 16:
+        resync_cmd.extend(["--dbs"] + [str(n) for n in db_nums])
+    try:
+        proc = subprocess.run(
+            resync_cmd,
+            cwd=str(root_dir),
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        if proc.returncode != 0:
+            print(f"  ERROR: resync failed")
+            if proc.stderr:
+                print(proc.stderr[:500])
+            return 1
+        print("  OK")
+    except subprocess.TimeoutExpired:
+        print("  ERROR: resync timeout")
+        return 1
+    except Exception as e:
+        print(f"  ERROR: resync failed: {e}")
+        return 1
+
+    # 4. Verify (audit + compliance + integrity)
+    print("\n[4/4] Verify client/db (audit, compliance, integrity)...")
+    prev = os.environ.get("VALIDATE_NO_OVERWRITE")
+    os.environ["VALIDATE_NO_OVERWRITE"] = "1"
+    try:
+        with redirect_stdout(io.StringIO()):
+            ec_qa = cmd_qa([])
+            ec_compliance = cmd_compliance(db_args)
+            ec_integrity = cmd_integrity(db_args)
+    finally:
+        if prev is None:
+            os.environ.pop("VALIDATE_NO_OVERWRITE", None)
+        else:
+            os.environ["VALIDATE_NO_OVERWRITE"] = prev
+
+    overall = 1 if any(c != 0 for c in [ec_format, ec_qa, ec_compliance, ec_integrity]) else 0
+    print(f"\nBuild Overall: {'FAIL' if overall else 'PASS'}")
     return overall
 
 
@@ -641,7 +729,7 @@ def cmd_test(args: List[str]) -> int:
 
 
 def cmd_full(args: List[str]) -> int:
-    """Run all checks: validate, format, qa, integrity, compliance."""
+    """Run all checks: validate, qa, integrity, compliance. (Format is a build step, not a check.)"""
     db_nums = parse_db_args(args)
     if not db_nums:
         print("Usage: db_check.py full db-1 [db-5] | -a")
@@ -649,22 +737,19 @@ def cmd_full(args: List[str]) -> int:
 
     exit_codes = []
     print("\n" + "=" * 70)
-    print("FULL CHECK (validate + format + qa + integrity + compliance)")
+    print("FULL CHECK (validate + qa + integrity + compliance)")
     print("=" * 70)
 
-    print("\n[1/5] Validate...")
+    print("\n[1/4] Validate...")
     exit_codes.append(cmd_validate(args))
 
-    print("\n[2/5] Format...")
-    exit_codes.append(cmd_format(args))
-
-    print("\n[3/5] QA (client/db)...")
+    print("\n[2/4] QA (client/db)...")
     exit_codes.append(cmd_qa([]))
 
-    print("\n[4/5] Integrity...")
+    print("\n[3/4] Integrity...")
     exit_codes.append(cmd_integrity(args))
 
-    print("\n[5/5] Compliance...")
+    print("\n[4/4] Compliance...")
     exit_codes.append(cmd_compliance(args))
 
     overall = 1 if any(c != 0 for c in exit_codes) else 0
@@ -675,7 +760,7 @@ def cmd_full(args: List[str]) -> int:
 def main() -> int:
     if len(sys.argv) < 2:
         print(__doc__)
-        print("\nSubcommands: validate, validate-queries, format, qa, qa-suite, integrity, compliance, source-checks, schema-postgresql-validate, repo-health, test, full, rotate, check-commit, bird-workbench")
+        print("\nSubcommands: validate, validate-queries, qa, qa-suite, build, integrity, compliance, source-checks, schema-postgresql-validate, repo-health, test, full, rotate, check-commit, bird-workbench")
         return 1
 
     subcmd = sys.argv[1].lower()
@@ -684,7 +769,7 @@ def main() -> int:
     log("db_check", "main", status="start", data={"subcmd": subcmd, "args": subargs, "session_id": sid})
 
     # Gate DB-dependent subcommands on env validation (qa-claude uses Claude, not DB)
-    DB_SUBCMDS = {"validate", "format", "qa", "integrity", "compliance", "qa-suite", "full", "debug", "bird-workbench"}
+    DB_SUBCMDS = {"validate", "qa", "integrity", "compliance", "qa-suite", "build", "full", "debug", "bird-workbench"}
     if subcmd in DB_SUBCMDS:
         from env_validator import ensure_env
         if not ensure_env("db"):
@@ -695,7 +780,8 @@ def main() -> int:
     elif subcmd == "validate-queries":
         return cmd_validate_queries(subargs)
     elif subcmd == "format":
-        return cmd_format(subargs)
+        print("Format removed. Use 'build' instead (format runs as step 2 of build).", file=sys.stderr)
+        return 1
     elif subcmd == "qa":
         return cmd_qa(subargs)
     elif subcmd == "integrity":
@@ -710,6 +796,8 @@ def main() -> int:
         return cmd_repo_health(subargs)
     elif subcmd == "qa-suite":
         return cmd_qa_suite(subargs)
+    elif subcmd == "build":
+        return cmd_build(subargs)
     elif subcmd == "bird-workbench":
         return cmd_bird_workbench(subargs)
     elif subcmd == "gdpval-langgraph":
@@ -736,7 +824,7 @@ def main() -> int:
     else:
         log("db_check", "main", status="fail", message=f"Unknown subcommand: {subcmd}")
         print(f"Unknown subcommand: {subcmd}")
-        print("Subcommands: validate, validate-queries, format, qa, qa-suite, integrity, compliance, source-checks, schema-postgresql-validate, repo-health, test, full, rotate, check-commit, debug, qa-claude, bird-workbench, gdpval-langgraph, export, label-studio")
+        print("Subcommands: validate, validate-queries, qa, qa-suite, build, integrity, compliance, source-checks, schema-postgresql-validate, repo-health, test, full, rotate, check-commit, debug, qa-claude, bird-workbench, gdpval-langgraph, export, label-studio")
         return 1
 
 

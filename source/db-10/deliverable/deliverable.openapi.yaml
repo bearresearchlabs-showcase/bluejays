@@ -173,50 +173,50 @@ info:
     \ on predicted stockout dates, and handles NULL values for products without sufficient\
     \ his\n\nBusiness Value: Inventory availability predictions with confidence scores,\
     \ restocking recommendations, and geographic distribution analysis\n\nComplexity:\
-    \ challenging\n\n---\n\nUse Case: Can you show me a market share analysis with\
-    \ competitive positioning and temporal trends?\n\nDescription: The market intelligence\
-    \ team needs to understand how retailers are performing relative to competitors\
-    \ across different product categories over time. Market dynamics are shifting,\
-    \ and leadership requires visibility into which retailers are gaining or losing\
-    \ market share and how competitive positions are evolving. Generate a market share\
-    \ report that displays retailer rankings, calculates share percentages, provides\
-    \ competitive positioning metrics, and reveals temporal trends segmented by product\
-    \ category. The query aggregates sales or revenue data across retailers and product\
-    \ categories, computes total market size by category and time period, calculates\
-    \ each retailer's market share percentage, applies window functions to rank retailers\
-    \ within each category and compute period-over-period share changes, groups by\
-    \ product category and time dimensions to enable trend analysis, identifies market\
-    \ leaders and challengers using quartile-based positioning, and handles edg\n\n\
-    Business Value: Market share report showing retailer rankings, share percentages,\
-    \ competitive positioning, and temporal trends by product category\n\nComplexity:\
-    \ moderate\n\n---\n\nUse Case: Can you show me deal detection and alert generation\
-    \ based on temporal patterns?\n\nDescription: The consumer insights team monitors\
-    \ pricing across retailers to identify deals and promotional opportunities that\
-    \ drive purchase decisions. Customers respond to price drops and limited-time\
-    \ offers, and the business needs automated detection of significant deals with\
-    \ alert generation to capitalize on competitive promotions. Generate a deal detection\
-    \ and alert analysis report that identifies significant price drops, recognizes\
-    \ promotional patterns, creates alert triggers, and characterizes temporal deal\
-    \ patterns. The query compares current prices against historical baselines by\
-    \ product and retailer, calculates percentage and absolute price changes using\
-    \ window functions with lag comparisons, applies threshold logic to flag significant\
-    \ price drops as deals (e.g., >15% reduction), groups by temporal dimensions to\
-    \ identify recurring promotional patterns (weekly, monthly cycles), computes deal\
-    \ duration and frequency metrics, generates alert priority scores based on d\n\
-    \nBusiness Value: Detailed analysis report with metrics and insights\n\nComplexity:\
-    \ challenging\n\n---\n\nUse Case: Can you show me product category trend analysis\
-    \ with seasonal decomposition?\n\nDescription: The merchandising and planning\
-    \ teams need to understand product category performance trends and seasonal demand\
-    \ patterns to optimize inventory buying and promotional calendar planning. Sales\
-    \ exhibit strong seasonality and cyclical patterns that vary by category, requiring\
-    \ decomposition of trends from seasonal effects. Generate a product category trend\
-    \ analysis report that decomposes seasonal patterns, calculates growth metrics,\
-    \ identifies cyclical components, and provides demand forecasts. The query aggregates\
-    \ sales or transaction data by product category and time period, calculates period-over-period\
-    \ growth rates and year-over-year comparisons, applies time-series decomposition\
-    \ logic using window functions to separate trend, seasonal, and residual components,\
-    \ groups by category and temporal dimensions (month, quarter, year) to reveal\
-    \ cyclical patterns, computes seasonal indices for each period to quantify seasonality\
+    \ moderate\n\n---\n\nUse Case: Can you show me a market share analysis with competitive\
+    \ positioning and temporal trends?\n\nDescription: The market intelligence team\
+    \ needs to understand how retailers are performing relative to competitors across\
+    \ different product categories over time. Market dynamics are shifting, and leadership\
+    \ requires visibility into which retailers are gaining or losing market share\
+    \ and how competitive positions are evolving. Generate a market share report that\
+    \ displays retailer rankings, calculates share percentages, provides competitive\
+    \ positioning metrics, and reveals temporal trends segmented by product category.\
+    \ The query aggregates sales or revenue data across retailers and product categories,\
+    \ computes total market size by category and time period, calculates each retailer's\
+    \ market share percentage, applies window functions to rank retailers within each\
+    \ category and compute period-over-period share changes, groups by product category\
+    \ and time dimensions to enable trend analysis, identifies market leaders and\
+    \ challengers using quartile-based positioning, and handles edg\n\nBusiness Value:\
+    \ Market share report showing retailer rankings, share percentages, competitive\
+    \ positioning, and temporal trends by product category\n\nComplexity: moderate\n\
+    \n---\n\nUse Case: Can you show me deal detection and alert generation based on\
+    \ temporal patterns?\n\nDescription: The consumer insights team monitors pricing\
+    \ across retailers to identify deals and promotional opportunities that drive\
+    \ purchase decisions. Customers respond to price drops and limited-time offers,\
+    \ and the business needs automated detection of significant deals with alert generation\
+    \ to capitalize on competitive promotions. Generate a deal detection and alert\
+    \ analysis report that identifies significant price drops, recognizes promotional\
+    \ patterns, creates alert triggers, and characterizes temporal deal patterns.\
+    \ The query compares current prices against historical baselines by product and\
+    \ retailer, calculates percentage and absolute price changes using window functions\
+    \ with lag comparisons, applies threshold logic to flag significant price drops\
+    \ as deals (e.g., >15% reduction), groups by temporal dimensions to identify recurring\
+    \ promotional patterns (weekly, monthly cycles), computes deal duration and frequency\
+    \ metrics, generates alert priority scores based on d\n\nBusiness Value: Detailed\
+    \ analysis report with metrics and insights\n\nComplexity: moderate\n\n---\n\n\
+    Use Case: Can you show me product category trend analysis with seasonal decomposition?\n\
+    \nDescription: The merchandising and planning teams need to understand product\
+    \ category performance trends and seasonal demand patterns to optimize inventory\
+    \ buying and promotional calendar planning. Sales exhibit strong seasonality and\
+    \ cyclical patterns that vary by category, requiring decomposition of trends from\
+    \ seasonal effects. Generate a product category trend analysis report that decomposes\
+    \ seasonal patterns, calculates growth metrics, identifies cyclical components,\
+    \ and provides demand forecasts. The query aggregates sales or transaction data\
+    \ by product category and time period, calculates period-over-period growth rates\
+    \ and year-over-year comparisons, applies time-series decomposition logic using\
+    \ window functions to separate trend, seasonal, and residual components, groups\
+    \ by category and temporal dimensions (month, quarter, year) to reveal cyclical\
+    \ patterns, computes seasonal indices for each period to quantify seasonality\
     \ strength, generates trend-based forward pro\n\nBusiness Value: Detailed analysis\
     \ report with metrics and insights\n\nComplexity: moderate\n\n---\n\nUse Case:\
     \ Can you generate the marketing intelligence analysis report for query 6?\n\n\
@@ -596,7 +596,7 @@ info:
     \ this database are designed to work across multiple database platforms:\n\n-\
     \ PostgreSQL: Full support with standard SQL features\n\nQueries use standard\
     \ SQL syntax and avoid platform-specific features to ensure compatibility.\n\n\
-    ---\n\nDocument Information:\n\n- Generated: 20260218-0146\n- Database: db-10\n\
+    ---\n\nDocument Information:\n\n- Generated: 20260218-0255\n- Database: db-10\n\
     - Type: Marketing Intelligence Database\n- Queries: 30 production queries\n- Status:\
     \ ✅ Complete Comprehensive Deliverable"
   version: 1.0.0

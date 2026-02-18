@@ -280,7 +280,7 @@ info:
     \ (area, perimeter, administrative level) at each level, applies window functions\
     \ to calculate cumulative statistics rolling up from lowest to highest administrative\
     \ units, aggregates weather station cou\n\nBusiness Value: Query results\n\nComplexity:\
-    \ challenging\n\n---\n\nUse Case: Can you show me a correlation analysis between\
+    \ moderate\n\n---\n\nUse Case: Can you show me a correlation analysis between\
     \ multiple weather parameters with cross-parameter temporal patterns?\n\nDescription:\
     \ Actuaries require understanding of how different weather parameters (temperature,\
     \ humidity, wind speed, precipitation) correlate with each other over time to\
@@ -627,9 +627,9 @@ info:
     \ compute movement trends and acceleration patterns over rolling time windows,\
     \ and handles cases where radar coverage gaps or data quality flags exist. The\
     \ output provides a time-series dataset of tracked storm cells w\n\nBusiness Value:\
-    \ Query results\n\nComplexity: challenging\n\n---\n\nUse Case: Can you generate\
-    \ a US-wide cloud composite image from satellite imagery data?\n\nDescription:\
-    \ A national weather service provider needs to create synoptic-scale cloud coverage\
+    \ Query results\n\nComplexity: moderate\n\n---\n\nUse Case: Can you generate a\
+    \ US-wide cloud composite image from satellite imagery data?\n\nDescription: A\
+    \ national weather service provider needs to create synoptic-scale cloud coverage\
     \ products for media broadcast and public dissemination. Satellite imagery from\
     \ multiple sensors captures cloud formations across different spectral bands,\
     \ and these need to be merged into a seamless US-wide composite that shows current\
@@ -726,7 +726,7 @@ info:
     \ are designed to work across multiple database platforms:\n\n- PostgreSQL: Full\
     \ support with standard SQL features\n\nQueries use standard SQL syntax and avoid\
     \ platform-specific features to ensure compatibility.\n\n---\n\nDocument Information:\n\
-    \n- Generated: 20260218-0146\n- Database: db-6\n- Type: Weather Data Pipeline\
+    \n- Generated: 20260218-0255\n- Database: db-6\n- Type: Weather Data Pipeline\
     \ System\n- Queries: 30 production queries\n- Status: ✅ Complete Comprehensive\
     \ Deliverable"
   version: 1.0.0

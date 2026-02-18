@@ -9,7 +9,18 @@ import re
 from pathlib import Path
 
 BASE = Path(__file__).parent.parent
-SRC = BASE / "source" / "db-16" / "app" / "QUERIES" / "queries.json"
+try:
+    from db_paths import SOURCE, get_queries_dir
+except ImportError:
+    SOURCE = BASE / "source"
+
+    def get_queries_dir(db_dir: Path) -> Path:
+        if (db_dir / "QUERIES").exists():
+            return db_dir / "QUERIES"
+        app = db_dir / "app"
+        if app.exists() and (app / "QUERIES").exists():
+            return app / "QUERIES"
+        return db_dir / "queries"
 
 # db-16: description = context only; evidence = technical justification only
 # Descriptions kept as-is (already context-focused); evidence extracted from "The query" onwards
@@ -100,10 +111,13 @@ def fix_db16(path: Path) -> bool:
 
 
 def main():
-    if SRC.exists():
-        fix_db16(SRC)
+    db_dir = SOURCE / "db-16"
+    qd = get_queries_dir(db_dir)
+    src = qd / "queries.json"
+    if src.exists():
+        fix_db16(src)
     else:
-        print(f"Not found: {SRC}")
+        print(f"Not found: {src}")
 
 
 if __name__ == "__main__":

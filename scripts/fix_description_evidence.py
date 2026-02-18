@@ -10,6 +10,18 @@ import sys
 from pathlib import Path
 
 BASE = Path(__file__).parent.parent
+try:
+    from db_paths import SOURCE, get_queries_dir
+except ImportError:
+    SOURCE = BASE / "source"
+
+    def get_queries_dir(db_dir: Path) -> Path:
+        if (db_dir / "QUERIES").exists():
+            return db_dir / "QUERIES"
+        app = db_dir / "app"
+        if app.exists() and (app / "QUERIES").exists():
+            return app / "QUERIES"
+        return db_dir / "queries"
 
 # Primary: "The query" is the clearest boundary for technical content
 # Secondary: "Produce/Generate/Conduct/Perform" at sentence start (after ". ")
@@ -1278,7 +1290,9 @@ def main():
         dbs = [n for n in dbs if n != 1]
     any_changed = False
     for n in dbs:
-        src = BASE / "source" / f"db-{n}" / "app" / "QUERIES" / "queries.json"
+        db_dir = SOURCE / f"db-{n}"
+        qd = get_queries_dir(db_dir)
+        src = qd / "queries.json"
         if not src.exists():
             continue
         if n == 1:

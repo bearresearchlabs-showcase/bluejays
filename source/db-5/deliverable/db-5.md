@@ -254,7 +254,7 @@ This database includes **30 production SQL queries**, each designed to solve spe
 
 **Business Value:** Daily aggregated sales metrics with rolling averages and trend indicators
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -323,7 +323,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for customer purchase frequency segmentation
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -408,7 +408,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for employee performance quartile ranking
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -493,7 +493,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for payment type revenue distribution
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -578,7 +578,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for location-based sales velocity
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -663,7 +663,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for hourly sales pattern detection
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -748,7 +748,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for invoice gap analysis
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -833,7 +833,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for suspended transaction anomaly detection
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -918,7 +918,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for customer recency-frequency analysis
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1003,7 +1003,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for multi-period cohort retention
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1088,7 +1088,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for sales acceleration rate computation
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1173,7 +1173,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for cross-location revenue benchmarking
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1258,7 +1258,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for time-weighted moving average
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1343,7 +1343,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for peak hour identification and staffing
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1428,7 +1428,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for customer lifetime value estimation
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1513,7 +1513,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for yoy growth rate with seasonal adjustment
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1598,7 +1598,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for transaction velocity heatmap data
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1683,7 +1683,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for running percentile sales distribution
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1768,7 +1768,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for employee cross-sell effectiveness
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1853,7 +1853,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for deleted transaction forensic analysis
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -1938,7 +1938,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for multi-metric dashboard aggregation
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2023,7 +2023,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for sequential purchase pattern mining
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2108,7 +2108,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for revenue concentration index
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2193,7 +2193,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for anomaly score computation
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2278,7 +2278,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for fiscal period comparative analysis
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2363,7 +2363,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for transaction throughput optimization
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2448,7 +2448,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for store account payment trend analysis
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2533,7 +2533,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for multi-dimensional pivot analysis
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2618,7 +2618,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for sales funnel stage progression
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2703,7 +2703,7 @@ LIMIT 100
 
 **Business Value:** Aggregated metrics for outlier detection with iqr method
 
-**Complexity:** challenging
+**Complexity:** moderate
 
 ```sql
 WITH cte_level_1 AS (
@@ -2798,7 +2798,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260218-0146
+- **Generated**: 20260218-0255
 - **Database**: db-5
 - **Type**: POS Retail (Lucasa)
 - **Queries**: 30 production queries

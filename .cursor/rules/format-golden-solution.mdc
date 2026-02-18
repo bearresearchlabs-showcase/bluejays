@@ -7,7 +7,9 @@ alwaysApply: true
 
 ## Overview
 
-**db-6** (`db-6/deliverable/db6-weather-consulting-insurance/`) serves as the **golden solution** and reference implementation for what the `/format` command should produce for all databases. All databases formatted with `/format` should match this structure exactly.
+**Note**: The standalone `/format` command is deprecated; use `/build` instead. Format runs as step 2 of build. The golden solution structure below applies to the format step.
+
+**db-6** (`db-6/deliverable/db6-weather-consulting-insurance/`) serves as the **golden solution** and reference implementation for what the format step (build step 2) should produce for all databases. All databases formatted should match this structure exactly.
 
 ## Golden Solution Structure
 
