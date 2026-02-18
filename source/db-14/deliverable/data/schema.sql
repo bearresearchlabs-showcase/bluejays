@@ -12,7 +12,7 @@ CREATE TABLE cloud_providers (
     pricing_api_endpoint VARCHAR(500),
     documentation_url VARCHAR(500),
     data_source VARCHAR(100),  -- 'vantage.sh', 'official_api', 'scraped'
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_frequency VARCHAR(50),  -- 'daily', 'weekly', 'monthly'
     data_quality_score NUMERIC(5, 2)
 );
@@ -32,7 +32,7 @@ CREATE TABLE cloud_regions (
     launch_date DATE,
     data_center_count INTEGER,
     availability_zones_count INTEGER,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (provider_id) REFERENCES cloud_providers(provider_id)
 );
 
@@ -46,7 +46,7 @@ CREATE TABLE instance_families (
     family_description TEXT,
     use_case_category VARCHAR(100),
     target_workloads TEXT,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (provider_id) REFERENCES cloud_providers(provider_id)
 );
 
@@ -82,7 +82,7 @@ CREATE TABLE cloud_instances (
     is_available BOOLEAN DEFAULT TRUE,
     launch_date DATE,
     deprecation_date DATE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (provider_id) REFERENCES cloud_providers(provider_id),
     FOREIGN KEY (instance_family_id) REFERENCES instance_families(family_id),
     FOREIGN KEY (region_id) REFERENCES cloud_regions(region_id)
@@ -103,7 +103,7 @@ CREATE TABLE instance_performance_metrics (
     sample_size INTEGER,
     confidence_level NUMERIC(5, 2),
     source VARCHAR(100),  -- 'vantage.sh', 'official', 'third_party'
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (instance_id) REFERENCES cloud_instances(instance_id)
 );
 
@@ -129,7 +129,7 @@ CREATE TABLE instance_pricing (
     pricing_effective_date DATE,
     pricing_end_date DATE,
     is_current BOOLEAN DEFAULT TRUE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (instance_id) REFERENCES cloud_instances(instance_id),
     FOREIGN KEY (region_id) REFERENCES cloud_regions(region_id)
 );
@@ -148,7 +148,7 @@ CREATE TABLE historical_pricing (
     effective_date DATE NOT NULL,
     change_type VARCHAR(50),  -- 'price_increase', 'price_decrease', 'new_instance'
     change_reason TEXT,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (instance_id) REFERENCES cloud_instances(instance_id),
     FOREIGN KEY (region_id) REFERENCES cloud_regions(region_id)
 );
@@ -170,8 +170,8 @@ CREATE TABLE cost_optimization_recommendations (
     risk_level VARCHAR(50),  -- 'low', 'medium', 'high'
     estimated_migration_time_hours INTEGER,
     workload_compatibility_score NUMERIC(5, 2),
-    created_date TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (instance_id) REFERENCES cloud_instances(instance_id),
     FOREIGN KEY (target_instance_id) REFERENCES cloud_instances(instance_id)
 );
@@ -191,7 +191,7 @@ CREATE TABLE instance_comparison_matrix (
     storage_match BOOLEAN,
     network_match BOOLEAN,
     comparison_date DATE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (instance_id_1) REFERENCES cloud_instances(instance_id),
     FOREIGN KEY (instance_id_2) REFERENCES cloud_instances(instance_id)
 );
@@ -207,13 +207,13 @@ CREATE TABLE data_extraction_log (
     records_extracted INTEGER DEFAULT 0,
     records_successful INTEGER DEFAULT 0,
     records_failed INTEGER DEFAULT 0,
-    extraction_start_time TIMESTAMP_NTZ NOT NULL,
-    extraction_end_time TIMESTAMP_NTZ,
+    extraction_start_time TIMESTAMP NOT NULL,
+    extraction_end_time TIMESTAMP,
     extraction_duration_seconds INTEGER,
     data_size_mb NUMERIC(10, 2),
     extraction_status VARCHAR(50),  -- 'success', 'failed', 'partial'
     error_message TEXT,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (provider_id) REFERENCES cloud_providers(provider_id)
 );
 
@@ -238,7 +238,7 @@ CREATE TABLE cost__analytics (
     min_value NUMERIC(15, 4),
     max_value NUMERIC(15, 4),
     std_deviation NUMERIC(15, 4),
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (provider_id) REFERENCES cloud_providers(provider_id),
     FOREIGN KEY (region_id) REFERENCES cloud_regions(region_id),
     FOREIGN KEY (instance_family_id) REFERENCES instance_families(family_id)

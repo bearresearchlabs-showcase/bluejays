@@ -712,6 +712,7 @@ All queries in `queries.md` must meet these requirements:
 
 - **Fix Verification**: Must pass all checks
 - **Syntax Validation**: All queries must parse on all available databases
+- **Zero Warnings**: Validation output must have zero warnings; see `qa-workflow-cursor.mdc` Zero Warnings Policy
 - **Execution Testing**: >90% success rate on available databases
 - **Evaluation**: All requirements must be met
 
@@ -799,9 +800,11 @@ jobs:
 
 ## Dependencies
 
+**Environment**: Always use **brew** or **.venv**—run validation with `.venv/bin/python`; use `brew` for PostgreSQL client and system tools.
+
 ### Python Packages
 
-Required packages (install via `pip install -r requirements.txt`):
+Required packages (install via `.venv/bin/pip install -r requirements.txt`):
 
 ```
 psycopg2-binary>=2.9.0  # PostgreSQL

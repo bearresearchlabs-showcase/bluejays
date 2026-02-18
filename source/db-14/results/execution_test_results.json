@@ -1,9 +1,0 @@
-{
-  "database": "db-14",
-  "database_number": 14,
-  "test_timestamp": "2026-02-14T00:04:08.058043",
-  "postgresql": {
-    "available": false,
-    "queries": []
-  }
-}

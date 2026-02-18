@@ -43,12 +43,9 @@ for dir in "$ROOT"/db-*/deliverable/db*-*/ "$ROOT"/source/db-*/deliverable/db*-*
 
   # Copy schema.sql (usually small)
   if [ -d "${dir}data" ]; then
-    for schema in schema.sql schema_postgresql.sql; do
-      if [ -f "${dir}data/${schema}" ]; then
-        cp "${dir}data/${schema}" "${PUBLIC}/${db_dir}/data/"
-        break
-      fi
-    done
+    if [ -f "${dir}data/schema.sql" ]; then
+      cp "${dir}data/schema.sql" "${PUBLIC}/${db_dir}/data/"
+    fi
 
     # data.sql: embed if small, else create download link
     if [ -f "${dir}data/data.sql" ]; then

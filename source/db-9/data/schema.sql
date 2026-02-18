@@ -15,8 +15,8 @@ CREATE TABLE shipping_carriers (
     commercial_pricing_available BOOLEAN DEFAULT FALSE,
     requires_account BOOLEAN DEFAULT FALSE,
     active_status BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Shipping Zones Table
@@ -33,7 +33,7 @@ CREATE TABLE shipping_zones (
     transit_days_max INTEGER,
     effective_date DATE NOT NULL,
     expiration_date DATE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (carrier_id) REFERENCES shipping_carriers(carrier_id)
 );
 
@@ -55,7 +55,7 @@ CREATE TABLE shipping_service_types (
     insurance_available BOOLEAN DEFAULT FALSE,
     signature_required BOOLEAN DEFAULT FALSE,
     active_status BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (carrier_id) REFERENCES shipping_carriers(carrier_id)
 );
 
@@ -80,7 +80,7 @@ CREATE TABLE shipping_rates (
     effective_date DATE NOT NULL,
     expiration_date DATE,
     rate_source VARCHAR(100),  -- 'API', 'Manual', 'Bulk Import'
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (carrier_id) REFERENCES shipping_carriers(carrier_id),
     FOREIGN KEY (service_id) REFERENCES shipping_service_types(service_id),
     FOREIGN KEY (zone_id) REFERENCES shipping_zones(zone_id)
@@ -102,8 +102,8 @@ CREATE TABLE packages (
     package_type VARCHAR(50),  -- 'Envelope', 'Box', 'Tube', 'Flat'
     package_value NUMERIC(10, 2),
     contents_description VARCHAR(500),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Shipments Table
@@ -135,11 +135,11 @@ CREATE TABLE shipments (
     signature_cost NUMERIC(10, 2) DEFAULT 0,
     total_cost NUMERIC(10, 2) NOT NULL,
     shipment_status VARCHAR(50),  -- 'Pending', 'Label Created', 'In Transit', 'Delivered', 'Exception'
-    label_created_at TIMESTAMP_NTZ,
+    label_created_at TIMESTAMP,
     estimated_delivery_date DATE,
     actual_delivery_date DATE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     FOREIGN KEY (carrier_id) REFERENCES shipping_carriers(carrier_id),
     FOREIGN KEY (service_id) REFERENCES shipping_service_types(service_id),
@@ -153,7 +153,7 @@ CREATE TABLE tracking_events (
     event_id VARCHAR(255) PRIMARY KEY,
     shipment_id VARCHAR(255) NOT NULL,
     tracking_number VARCHAR(255) NOT NULL,
-    event_timestamp TIMESTAMP_NTZ NOT NULL,
+    event_timestamp TIMESTAMP NOT NULL,
     event_type VARCHAR(100),  -- 'Label Created', 'In Transit', 'Out for Delivery', 'Delivered', 'Exception'
     event_status VARCHAR(100),
     event_location VARCHAR(255),
@@ -164,7 +164,7 @@ CREATE TABLE tracking_events (
     event_description VARCHAR(1000),
     carrier_status_code VARCHAR(50),
     raw_event_data JSONB,  -- JSON data from carrier API (PostgreSQL; use JSONB)
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (shipment_id) REFERENCES shipments(shipment_id)
 );
 
@@ -175,7 +175,7 @@ CREATE TABLE rate_comparison_results (
     package_id VARCHAR(255) NOT NULL,
     origin_zip_code VARCHAR(10) NOT NULL,
     destination_zip_code VARCHAR(10) NOT NULL,
-    comparison_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    comparison_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     cheapest_carrier_id VARCHAR(50),
     cheapest_service_id VARCHAR(255),
     cheapest_rate NUMERIC(10, 2),
@@ -184,7 +184,7 @@ CREATE TABLE rate_comparison_results (
     fastest_transit_days INTEGER,
     total_options_count INTEGER,
     comparison_metadata JSONB,  -- JSON with all rate options (PostgreSQL; use JSONB)
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     FOREIGN KEY (cheapest_carrier_id) REFERENCES shipping_carriers(carrier_id),
     FOREIGN KEY (fastest_carrier_id) REFERENCES shipping_carriers(carrier_id)
@@ -212,8 +212,8 @@ CREATE TABLE address_validation_results (
     cmra_flag BOOLEAN,
     vacant_flag BOOLEAN,
     residential_flag BOOLEAN,
-    validation_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    validation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Shipping Adjustments Table
@@ -229,7 +229,7 @@ CREATE TABLE shipping_adjustments (
     adjustment_reason VARCHAR(500),
     adjustment_status VARCHAR(50),  -- 'Pending', 'Applied', 'Disputed', 'Resolved'
     adjustment_date DATE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (shipment_id) REFERENCES shipments(shipment_id)
 );
 
@@ -248,8 +248,8 @@ CREATE TABLE bulk_shipping_presets (
     default_carrier_id VARCHAR(50),
     default_insurance_amount NUMERIC(10, 2),
     default_signature_required BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (default_service_id) REFERENCES shipping_service_types(service_id),
     FOREIGN KEY (default_carrier_id) REFERENCES shipping_carriers(carrier_id)
 );
@@ -270,7 +270,7 @@ CREATE TABLE shipping_analytics (
     on_time_delivery_rate NUMERIC(5, 2),
     exception_rate NUMERIC(5, 2),
     average_package_value NUMERIC(10, 2),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (carrier_id) REFERENCES shipping_carriers(carrier_id),
     FOREIGN KEY (service_id) REFERENCES shipping_service_types(service_id)
 );
@@ -292,7 +292,7 @@ CREATE TABLE international_customs (
     total_customs_amount NUMERIC(10, 2),
     customs_status VARCHAR(50),  -- 'Pending', 'Cleared', 'Held', 'Returned'
     customs_cleared_date DATE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (shipment_id) REFERENCES shipments(shipment_id)
 );
 
@@ -305,13 +305,13 @@ CREATE TABLE api_rate_request_log (
     origin_zip_code VARCHAR(10),
     destination_zip_code VARCHAR(10),
     weight_lbs NUMERIC(10, 4),
-    request_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    request_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     response_time_ms INTEGER,
     response_status_code INTEGER,
     rate_returned NUMERIC(10, 2),
     error_message VARCHAR(1000),
     api_endpoint VARCHAR(500),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (carrier_id) REFERENCES shipping_carriers(carrier_id)
 );
 

@@ -11,34 +11,6 @@ database: db-7
 
 ---
 
-## Purpose
-
-This database supports analytics for maritime shipping intelligence. It models carriers, ports, vessels, routes, sailings, voyages, port calls, vessel tracking, and carrier performance. Queries use geography types, spatial operations, and window functions for route analysis, port statistics, voyage tracking, and carrier benchmarking.
-
----
-
-## Use Case
-
-Target use cases for db-7:
-
-- **Route analytics:** Port pairs, transit times, service frequency, direct vs transshipment
-- **Port statistics:** Vessel calls, container throughput, berth utilization, dwell times
-- **Vessel tracking:** AIS positions, navigation status, ETA, voyage progress
-- **Carrier performance:** On-time departure/arrival, capacity utilization, customer satisfaction
-
----
-
-## Business Value
-
-Maritime shipping databases represent high-value domains for text-to-SQL because:
-
-- Queries require spatial reasoning (port locations, vessel positions, geography joins)
-- Data spans carriers, vessels, routes, and port calls with complex relationships
-- Stakeholders need supply chain and logistics analytics (shippers, carriers, ports)
-- Evidence bridges natural-language questions to schema-grounded SQL
-
----
-
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -59,20 +31,20 @@ createdb -U postgres db_7
 
 ### Step 3: Load Schema
 
-From the database directory, load `schema.sql` to create tables, indexes, and constraints. PostGIS required for geography columns.
+Load schema.sql to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_7 -f DATABASE/schema.sql
+psql -U postgres -d db_7 -f schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from `data.sql` if available.
+Load sample data from data.sql if available.
 
 ```bash
-psql -U postgres -d db_7 -f DATABASE/data.sql
+psql -U postgres -d db_7 -f data.sql
 ```
 
 ---
@@ -84,7 +56,7 @@ psql -U postgres -d db_7 -f DATABASE/data.sql
 - **Memory:** 256 MB minimum
 - **Platforms:** PostgreSQL
 
-PostgreSQL 14+ with PostGIS for geography columns. Disk: 500 MB minimum for spatial data.
+Standard PostgreSQL. No extensions required unless noted.
 
 ---
 
@@ -105,7 +77,9 @@ PostgreSQL 14+ with PostGIS for geography columns. Disk: 500 MB minimum for spat
 - `voyage_port_calls` — (see data dictionary)
 - `vessel_tracking` — (see data dictionary)
 - `port_statistics` — (see data dictionary)
-- `carrier_performance` — (see data dictionary)---
+- `carrier_performance` — (see data dictionary)
+
+---
 
 ## Data Dictionary
 
@@ -372,12 +346,6 @@ PostgreSQL 14+ with PostGIS for geography columns. Disk: 500 MB minimum for spat
 - `route_coverage_count` INTEGER 
 - `customer_satisfaction_score` NUMERIC(5, 2) 
 - `created_at` TIMESTAMP 
-
----
-
-## Query Documentation
-
-See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover route analytics, port statistics, vessel tracking, voyage analysis, and carrier performance.
 
 ---
 

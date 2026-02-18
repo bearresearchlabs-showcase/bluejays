@@ -257,6 +257,8 @@ All metadata files are stored in JSON format for:
 
 ## Best Practices
 
+**Environment**: Always use **brew** or **.venv**—run notebooks and Python scripts with `.venv`; use `brew` for system tools.
+
 ### Research Directory
 
 1. **Notebook Organization**

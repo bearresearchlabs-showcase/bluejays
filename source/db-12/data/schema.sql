@@ -17,7 +17,7 @@ CREATE TABLE credit_card_issuers (
     cfpb_complaint_count INTEGER DEFAULT 0,
     cfpb_complaint_resolution_rate NUMERIC(5, 2),
     data_source VARCHAR(50) DEFAULT 'CFPB_API',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Credit Cards Table
@@ -49,7 +49,7 @@ CREATE TABLE credit_cards (
     launch_date DATE,
     discontinued_date DATE,
     data_source VARCHAR(50) DEFAULT 'CFPB_AGREEMENT_DB',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_card_issuer FOREIGN KEY (issuer_id) REFERENCES credit_card_issuers(issuer_id)
 );
 
@@ -65,7 +65,7 @@ CREATE TABLE rewards_categories (
     is_bonus_category BOOLEAN DEFAULT FALSE,
     typical_multiplier NUMERIC(4, 2) DEFAULT 1.0,
     data_source VARCHAR(50) DEFAULT 'MANUAL',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_parent_category FOREIGN KEY (parent_category_id) REFERENCES rewards_categories(category_id)
 );
 
@@ -87,7 +87,7 @@ CREATE TABLE card_rewards_structure (
     is_active BOOLEAN DEFAULT TRUE,
     promotion_description TEXT,
     data_source VARCHAR(50) DEFAULT 'CARD_AGREEMENT',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_reward_card FOREIGN KEY (card_id) REFERENCES credit_cards(card_id),
     CONSTRAINT fk_reward_category FOREIGN KEY (category_id) REFERENCES rewards_categories(category_id)
 );
@@ -116,7 +116,7 @@ CREATE TABLE bank_offers (
     eligibility_criteria TEXT,
     activation_required BOOLEAN DEFAULT TRUE,
     data_source VARCHAR(50) DEFAULT 'BANK_API',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_offer_issuer FOREIGN KEY (issuer_id) REFERENCES credit_card_issuers(issuer_id)
 );
 
@@ -132,7 +132,7 @@ CREATE TABLE card_offer_eligibility (
     redemption_count INTEGER DEFAULT 0,
     total_savings NUMERIC(10, 2) DEFAULT 0,
     data_source VARCHAR(50) DEFAULT 'BANK_API',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_eligibility_offer FOREIGN KEY (offer_id) REFERENCES bank_offers(offer_id),
     CONSTRAINT fk_eligibility_card FOREIGN KEY (card_id) REFERENCES credit_cards(card_id)
 );
@@ -149,7 +149,7 @@ CREATE TABLE merchants (
     is_chain BOOLEAN DEFAULT FALSE,
     chain_location_count INTEGER,
     data_source VARCHAR(50) DEFAULT 'MANUAL',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_parent_merchant FOREIGN KEY (parent_merchant_id) REFERENCES merchants(merchant_id)
 );
 
@@ -171,7 +171,7 @@ CREATE TABLE merchant_locations (
     phone_number VARCHAR(50),
     is_active BOOLEAN DEFAULT TRUE,
     data_source VARCHAR(50) DEFAULT 'GOOGLE_PLACES_API',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_location_merchant FOREIGN KEY (merchant_id) REFERENCES merchants(merchant_id)
 );
 
@@ -189,8 +189,8 @@ CREATE TABLE user_profiles (
     location_geom GEOGRAPHY,
     notification_preferences JSON,
     data_source VARCHAR(50) DEFAULT 'APP_DB',
-    created_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- User Cards Table
@@ -210,8 +210,8 @@ CREATE TABLE user_cards (
     is_primary_card BOOLEAN DEFAULT FALSE,
     chase_5_24_status INTEGER,  -- Chase 5/24 rule tracking
     data_source VARCHAR(50) DEFAULT 'USER_INPUT',
-    created_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_user_card_user FOREIGN KEY (user_id) REFERENCES user_profiles(user_id),
     CONSTRAINT fk_user_card_card FOREIGN KEY (card_id) REFERENCES credit_cards(card_id)
 );
@@ -225,7 +225,7 @@ CREATE TABLE spending_transactions (
     merchant_id VARCHAR(255),
     location_id VARCHAR(255),
     transaction_date DATE NOT NULL,
-    transaction_time TIMESTAMP_NTZ NOT NULL,
+    transaction_time TIMESTAMP NOT NULL,
     transaction_amount NUMERIC(10, 2) NOT NULL,
     currency_code VARCHAR(3) DEFAULT 'USD',
     category_id VARCHAR(255),
@@ -239,7 +239,7 @@ CREATE TABLE spending_transactions (
     potential_rewards_lost NUMERIC(10, 2),
     transaction_description VARCHAR(500),
     data_source VARCHAR(50) DEFAULT 'BANK_API',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_transaction_user FOREIGN KEY (user_id) REFERENCES user_profiles(user_id),
     CONSTRAINT fk_transaction_user_card FOREIGN KEY (user_card_id) REFERENCES user_cards(user_card_id),
     CONSTRAINT fk_transaction_merchant FOREIGN KEY (merchant_id) REFERENCES merchants(merchant_id),
@@ -263,7 +263,7 @@ CREATE TABLE card_recommendations (
     applicable_offer_id VARCHAR(255),
     offer_savings NUMERIC(10, 2),
     recommendation_score NUMERIC(5, 2),  -- 0-100 score
-    recommendation_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    recommendation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     recommendation_type VARCHAR(50),  -- 'Merchant', 'Category', 'Location', 'Offer'
     is_active BOOLEAN DEFAULT TRUE,
     CONSTRAINT fk_recommendation_user FOREIGN KEY (user_id) REFERENCES user_profiles(user_id),
@@ -299,7 +299,7 @@ CREATE TABLE cfpb_consumer_complaints (
     date_sent_to_company DATE,
     company_public_response TEXT,
     data_source VARCHAR(50) DEFAULT 'CFPB_API',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Federal Reserve Credit Data Table
@@ -316,7 +316,7 @@ CREATE TABLE federal_reserve_credit_data (
     interest_rate_avg NUMERIC(5, 2),
     interest_rate_weighted_avg NUMERIC(5, 2),
     data_source VARCHAR(50) DEFAULT 'FED_G19',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Rewards Optimization Analytics Table
@@ -335,7 +335,7 @@ CREATE TABLE rewards_optimization_analytics (
     top_card_rewards NUMERIC(10, 2),
     offers_activated_count INTEGER DEFAULT 0,
     offers_savings_total NUMERIC(10, 2) DEFAULT 0,
-    analysis_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    analysis_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_analytics_user FOREIGN KEY (user_id) REFERENCES user_profiles(user_id),
     CONSTRAINT fk_analytics_category FOREIGN KEY (top_category_id) REFERENCES rewards_categories(category_id),
     CONSTRAINT fk_analytics_card FOREIGN KEY (top_card_id) REFERENCES credit_cards(card_id)

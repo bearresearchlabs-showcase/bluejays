@@ -1,34 +1,12 @@
 #!/usr/bin/env python3
 """
-PostgreSQL-Compatible Schema Loader
-Converts SQL syntax to PostgreSQL
+PostgreSQL Schema Loader
+Loads schema SQL into PostgreSQL (schema is already PostgreSQL-only).
 """
 
-import re
 import psycopg2
 from pathlib import Path
 from typing import Tuple
-
-def convert_to_postgresql(sql: str) -> str:
-    """Convert SQL to PostgreSQL syntax"""
-    
-    # Replace TIMESTAMP_NTZ with TIMESTAMP
-    sql = re.sub(r'\bTIMESTAMP_NTZ\b', 'TIMESTAMP', sql, flags=re.IGNORECASE)
-    
-    # Replace CURRENT_TIMESTAMP() with CURRENT_TIMESTAMP (remove parentheses)
-    sql = re.sub(r'\bCURRENT_TIMESTAMP\s*\(\s*\)', 'CURRENT_TIMESTAMP', sql, flags=re.IGNORECASE)
-    
-    # Replace GEOGRAPHY with PostGIS GEOGRAPHY (if PostGIS extension is available)
-    # For now, we'll use TEXT and add PostGIS extension if needed
-    # sql = re.sub(r'\bGEOGRAPHY\b', 'GEOGRAPHY', sql, flags=re.IGNORECASE)
-    
-    # Remove trailing commas before closing parentheses in CREATE TABLE statements
-    sql = re.sub(r',\s*\)', '\n)', sql)
-    
-    # Fix any double commas
-    sql = re.sub(r',\s*,', ',', sql)
-    
-    return sql
 
 def load_schema_postgresql(db_name: str, schema_file: Path, enable_postgis: bool = False) -> Tuple[bool, str]:
     """Load schema SQL file into PostgreSQL database with syntax conversion"""
@@ -59,12 +37,9 @@ def load_schema_postgresql(db_name: str, schema_file: Path, enable_postgis: bool
             except Exception as e:
                 print(f"  Note: PostGIS extension not available: {e}")
         
-        # Read schema file
+        # Read schema file (schema is already PostgreSQL-only)
         with open(schema_file, 'r', encoding='utf-8') as f:
             schema_sql = f.read()
-        
-        # Convert to PostgreSQL syntax
-        schema_sql = convert_to_postgresql(schema_sql)
         
         # Split by semicolons and execute each statement
         # More sophisticated splitting to handle semicolons in strings/functions

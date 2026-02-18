@@ -29,9 +29,9 @@ CREATE TABLE user_profiles (
     salary_expectation_min INTEGER,
     salary_expectation_max INTEGER,
     preferred_locations VARCHAR(16777216),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    last_active_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_active_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     profile_completeness_score NUMERIC(5, 2),
     is_active BOOLEAN DEFAULT TRUE
 );
@@ -55,8 +55,8 @@ CREATE TABLE companies (
     is_federal_agency BOOLEAN DEFAULT FALSE,
     agency_code VARCHAR(50),
     data_source VARCHAR(50),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     company_rating NUMERIC(3, 2),
     total_reviews INTEGER DEFAULT 0
 );
@@ -79,8 +79,8 @@ CREATE TABLE job_postings (
     salary_max INTEGER,
     salary_currency VARCHAR(3) DEFAULT 'USD',
     salary_type VARCHAR(50),
-    posted_date TIMESTAMP_NTZ NOT NULL,
-    expiration_date TIMESTAMP_NTZ,
+    posted_date TIMESTAMP NOT NULL,
+    expiration_date TIMESTAMP,
     application_url VARCHAR(1000),
     application_method VARCHAR(50),
     is_active BOOLEAN DEFAULT TRUE,
@@ -91,8 +91,8 @@ CREATE TABLE job_postings (
     grade_level VARCHAR(50),
     data_source VARCHAR(50) NOT NULL,
     source_url VARCHAR(1000),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     view_count INTEGER DEFAULT 0,
     application_count INTEGER DEFAULT 0,
     match_score_avg NUMERIC(5, 2),
@@ -109,7 +109,7 @@ CREATE TABLE skills (
     parent_skill_id VARCHAR(255),
     description VARCHAR(16777216),
     popularity_score NUMERIC(10, 2),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (parent_skill_id) REFERENCES skills(skill_id)
 );
 
@@ -122,7 +122,7 @@ CREATE TABLE job_skills_requirements (
     importance_score NUMERIC(5, 2),
     years_experience_required NUMERIC(4, 1),
     extracted_from_description BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (skill_id) REFERENCES skills(skill_id),
     UNIQUE(job_id, skill_id, requirement_type)
 );
@@ -137,8 +137,8 @@ CREATE TABLE user_skills (
     years_experience NUMERIC(4, 1),
     last_used_date DATE,
     verified BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user_profiles(user_id),
     FOREIGN KEY (skill_id) REFERENCES skills(skill_id),
     UNIQUE(user_id, skill_id)
@@ -150,17 +150,17 @@ CREATE TABLE job_applications (
     user_id VARCHAR(255) NOT NULL,
     job_id VARCHAR(255) NOT NULL,
     application_status VARCHAR(50),
-    application_date TIMESTAMP_NTZ,
-    submitted_at TIMESTAMP_NTZ,
-    status_updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    application_date TIMESTAMP,
+    submitted_at TIMESTAMP,
+    status_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     cover_letter_text VARCHAR(16777216),
     resume_version VARCHAR(255),
     match_score NUMERIC(5, 2),
     application_method VARCHAR(50),
     application_reference_id VARCHAR(255),
     notes VARCHAR(16777216),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user_profiles(user_id),
     PRIMARY KEY (application_id, submitted_at)
 );
@@ -181,9 +181,9 @@ CREATE TABLE job_recommendations (
     is_liked BOOLEAN DEFAULT FALSE,
     is_applied BOOLEAN DEFAULT FALSE,
     is_dismissed BOOLEAN DEFAULT FALSE,
-    recommendation_date TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    expires_at TIMESTAMP_NTZ,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    recommendation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user_profiles(user_id),
     PRIMARY KEY (recommendation_id, recommendation_date)
 );
@@ -209,7 +209,7 @@ CREATE TABLE market_trends (
     competition_index NUMERIC(5, 2),
     growth_rate NUMERIC(10, 4),
     data_source VARCHAR(50),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (trend_id, trend_date)
 );
 
@@ -234,7 +234,7 @@ CREATE TABLE job_market_analytics (
     salary_trends VARCHAR(16777216),
     job_type_distribution VARCHAR(16777216),
     work_model_distribution VARCHAR(16777216),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Data Source Metadata Table
@@ -242,7 +242,7 @@ CREATE TABLE data_source_metadata (
     metadata_id VARCHAR(255) PRIMARY KEY,
     source_name VARCHAR(100) NOT NULL,
     source_type VARCHAR(50),
-    extraction_date TIMESTAMP_NTZ NOT NULL,
+    extraction_date TIMESTAMP NOT NULL,
     extraction_method VARCHAR(100),
     records_extracted INTEGER,
     records_new INTEGER,
@@ -253,7 +253,7 @@ CREATE TABLE data_source_metadata (
     api_endpoint VARCHAR(1000),
     api_response_code INTEGER,
     extraction_duration_seconds INTEGER,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- User Job Search History Table (Will be partitioned)
@@ -269,7 +269,7 @@ CREATE TABLE user_job_search_history (
     job_type_filter VARCHAR(50),
     industry_filter VARCHAR(100),
     results_count INTEGER,
-    search_date TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    search_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user_profiles(user_id),
     PRIMARY KEY (search_id, search_date)
 );

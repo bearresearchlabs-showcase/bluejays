@@ -1,12 +1,12 @@
 ---
-title: Filling Station Retail / POS (phppos) — Documentation
+title: Filling Station Retail / POS — Documentation
 description: Installation guide, specifications, schema, data dictionary.
 database: db-2
 ---
 
-# Filling Station Retail / POS (phppos) — Documentation
+# Filling Station Retail / POS — Documentation
 
-**Database:** db-2
+**Database:** db-2  
 **Content:** Installation guide, specifications, schema, data dictionary.
 
 ---
@@ -34,7 +34,7 @@ createdb -U postgres db_2
 Load schema.sql to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_2 -f DATABASE/schema.sql
+psql -U postgres -d db_2 -f schema.sql
 ```
 
 ---
@@ -44,7 +44,7 @@ psql -U postgres -d db_2 -f DATABASE/schema.sql
 Load sample data from data.sql if available.
 
 ```bash
-psql -U postgres -d db_2 -f DATABASE/data.sql
+psql -U postgres -d db_2 -f data.sql
 ```
 
 ---
@@ -70,75 +70,77 @@ Standard PostgreSQL. No extensions required unless noted.
 - `phppos_locations` — (see data dictionary)
 - `phppos_employees_locations` — (see data dictionary)
 - `phppos_location_items` — (see data dictionary)
-- `phppos_sales` — (see data dictionary)---
+- `phppos_sales` — (see data dictionary)
+
+---
 
 ## Data Dictionary
 
 ### `phppos_people`
 
-- `first_name` VARCHAR(255)
-- `last_name` VARCHAR(255)
-- `phone_number` VARCHAR(50)
-- `email` VARCHAR(255)
-- `address_1` VARCHAR(255)
-- `address_2` VARCHAR(255)
-- `city` VARCHAR(255)
-- `state` VARCHAR(50)
-- `zip` VARCHAR(20)
-- `country` VARCHAR(100)
-- `comments` TEXT
+- `first_name` VARCHAR(255) 
+- `last_name` VARCHAR(255) 
+- `phone_number` VARCHAR(50) 
+- `email` VARCHAR(255) 
+- `address_1` VARCHAR(255) 
+- `address_2` VARCHAR(255) 
+- `city` VARCHAR(255) 
+- `state` VARCHAR(50) 
+- `zip` VARCHAR(20) 
+- `country` VARCHAR(100) 
+- `comments` TEXT 
 - `person_id` INTEGER PRIMARY KEY
 
 ### `phppos_employees`
 
 - `person_id` INTEGER PRIMARY KEY, FOREIGN KEY
-- `username` VARCHAR(255)
-- `password` VARCHAR(255)
-- `balance` NUMERIC(15,2)
-- `deleted` INTEGER
-- `hide_from_switch_user` INTEGER
+- `username` VARCHAR(255) 
+- `password` VARCHAR(255) 
+- `balance` NUMERIC(15,2) 
+- `deleted` INTEGER 
+- `hide_from_switch_user` INTEGER 
 
 ### `phppos_items`
 
-- `name` VARCHAR(255)
-- `category` VARCHAR(255)
-- `description` TEXT
-- `cost_price` NUMERIC(15,2)
-- `unit_price` NUMERIC(15,2)
+- `name` VARCHAR(255) 
+- `category` VARCHAR(255) 
+- `description` TEXT 
+- `cost_price` NUMERIC(15,2) 
+- `unit_price` NUMERIC(15,2) 
 - `item_id` INTEGER PRIMARY KEY
-- `allow_alt_description` INTEGER
-- `is_serialized` INTEGER
-- `override_default_tax` INTEGER
-- `is_service` INTEGER
-- `deleted` INTEGER
+- `allow_alt_description` INTEGER 
+- `is_serialized` INTEGER 
+- `override_default_tax` INTEGER 
+- `is_service` INTEGER 
+- `deleted` INTEGER 
 
 ### `phppos_locations`
 
 - `location_id` INTEGER PRIMARY KEY
-- `name` VARCHAR(255)
-- `address` TEXT
-- `phone` VARCHAR(50)
-- `fax` VARCHAR(50)
-- `email` VARCHAR(255)
-- `receive_stock_alert` VARCHAR(10)
-- `stock_alert_email` VARCHAR(255)
-- `timezone` VARCHAR(100)
-- `mailchimp_api_key` VARCHAR(255)
-- `enable_credit_card_processing` VARCHAR(10)
-- `merchant_id` VARCHAR(255)
-- `merchant_password` VARCHAR(255)
-- `default_tax_1_rate` NUMERIC(10,2)
-- `default_tax_1_name` VARCHAR(255)
-- `default_tax_2_rate` NUMERIC(10,2)
-- `default_tax_2_name` VARCHAR(255)
-- `default_tax_2_cumulative` VARCHAR(10)
-- `default_tax_3_rate` NUMERIC(10,2)
-- `default_tax_3_name` VARCHAR(255)
-- `default_tax_4_rate` NUMERIC(10,2)
-- `default_tax_4_name` VARCHAR(255)
-- `default_tax_5_rate` NUMERIC(10,2)
-- `default_tax_5_name` VARCHAR(255)
-- `deleted` INTEGER
+- `name` VARCHAR(255) 
+- `address` TEXT 
+- `phone` VARCHAR(50) 
+- `fax` VARCHAR(50) 
+- `email` VARCHAR(255) 
+- `receive_stock_alert` VARCHAR(10) 
+- `stock_alert_email` VARCHAR(255) 
+- `timezone` VARCHAR(100) 
+- `mailchimp_api_key` VARCHAR(255) 
+- `enable_credit_card_processing` VARCHAR(10) 
+- `merchant_id` VARCHAR(255) 
+- `merchant_password` VARCHAR(255) 
+- `default_tax_1_rate` NUMERIC(10,2) 
+- `default_tax_1_name` VARCHAR(255) 
+- `default_tax_2_rate` NUMERIC(10,2) 
+- `default_tax_2_name` VARCHAR(255) 
+- `default_tax_2_cumulative` VARCHAR(10) 
+- `default_tax_3_rate` NUMERIC(10,2) 
+- `default_tax_3_name` VARCHAR(255) 
+- `default_tax_4_rate` NUMERIC(10,2) 
+- `default_tax_4_name` VARCHAR(255) 
+- `default_tax_5_rate` NUMERIC(10,2) 
+- `default_tax_5_name` VARCHAR(255) 
+- `deleted` INTEGER 
 
 ### `phppos_employees_locations`
 
@@ -149,15 +151,15 @@ Standard PostgreSQL. No extensions required unless noted.
 
 - `location_id` INTEGER FOREIGN KEY
 - `item_id` INTEGER FOREIGN KEY
-- `quantity` NUMERIC(15,2)
+- `quantity` NUMERIC(15,2) 
 
 ### `phppos_sales`
 
 - `sale_id` INTEGER PRIMARY KEY
 - `employee_id` INTEGER FOREIGN KEY
-- `sale_time` TIMESTAMP
-- `customer_id` INTEGER
-- `payment_type` VARCHAR(50)
+- `sale_time` TIMESTAMP 
+- `customer_id` INTEGER 
+- `payment_type` VARCHAR(50) 
 - `location_id` INTEGER FOREIGN KEY
 
 ---

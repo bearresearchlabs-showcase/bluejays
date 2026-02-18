@@ -160,7 +160,7 @@ Build a platform that supports:
 
 ### Task 5.1: Redundancy Analysis
 **Subtasks:**
-- [ ] analyze_source_redundancy.py
+- [x] analyze_source_redundancy.py (archived to scripts/archive/legacy-deliverable/)
 - [ ] Report required vs redundant per db-N
 
 **User Stories:**
@@ -168,7 +168,7 @@ Build a platform that supports:
 
 ### Task 5.2: Archive Redundant
 **Subtasks:**
-- [ ] archive_source_redundant.py
+- [x] archive_source_redundant.py (archived to scripts/archive/legacy-deliverable/)
 - [ ] Archive research/, results/, docs/, metadata/, scripts/, etc.
 - [ ] archive/source-redundant/README.md
 

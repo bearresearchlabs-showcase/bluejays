@@ -11,15 +11,20 @@ Usage:
     python3 scripts/db_check.py full db-1            # all checks
     python3 scripts/db_check.py qa-suite [db-1] [-a] # QA suite (client audit + compliance + integrity)
     python3 scripts/db_check.py bird-workbench [db-1] [db-5] | -a  # BIRD benchmark + ACID/BASE + workbench assertions
+    python3 scripts/db_check.py test [schema-data|repo-health|queries-md|source-checks|all] [-v] [--lenient]  # BDD/TDD/DDD test suites
     python3 scripts/db_check.py gdpval-langgraph [db-1] [db-5] | -a  # GDPval-style: prompt + reference(SQL) + deliverable(queries.md), .env harness, LangGraph
     python3 scripts/db_check.py rotate [--max-lines 10000] # Rotate/trim logs
     python3 scripts/db_check.py check-commit  # Report if ~1%+ of repo changed (commit discipline)
+    python3 scripts/db_check.py schema-postgresql-validate [db-1] [db-5] | -a  # Validate schema files are PostgreSQL-only
 """
 
+import io
+import os
 import sys
 import json
 import time
 import subprocess
+from contextlib import redirect_stdout
 from pathlib import Path
 from typing import List, Optional
 
@@ -77,13 +82,16 @@ def parse_db_args(args: List[str]) -> List[int]:
 
 
 def cmd_validate(args: List[str]) -> int:
-    """Run validation suite (Phase 0-5)."""
+    """Run validation suite (Phase 0-5). Use --no-overwrite and --pass-fail-only for reruns."""
+    no_overwrite = "--no-overwrite" in args or "-n" in args
+    pass_fail_only = "--pass-fail-only" in args or "-q" in args
+    subargs = [a for a in args if a not in ("--no-overwrite", "-n", "--pass-fail-only", "-q")]
     start = time.perf_counter()
-    log("db_check", "validate", status="start", data={"args": args})
+    log("db_check", "validate", status="start", data={"args": subargs})
     try:
         from validate import ValidationRunner
-        runner = ValidationRunner(root_dir)
-        result = runner.run(args)
+        runner = ValidationRunner(root_dir, no_overwrite=no_overwrite, pass_fail_only=pass_fail_only)
+        result = runner.run(subargs)
         s = result.get("summary", {})
         status = "ok" if s.get("overall_status") == "PASS" else "fail"
         record_telemetry("db_check", "validate", passed=s.get("passed", 0), failed=s.get("failed", 0), skipped=s.get("skipped", 0), extra={"overall": s.get("overall_status")})
@@ -211,10 +219,10 @@ def cmd_compliance(args: List[str]) -> int:
         if not qm.exists():
             result["Pass"] = 0
 
-        # schema.sql or schema_postgresql.sql
+        # schema.sql (PostgreSQL-only, canonical)
         from db_paths import get_data_dir
         data_dir = get_data_dir(db_dir)
-        schema = (data_dir / "schema.sql").exists() or (data_dir / "schema_postgresql.sql").exists()
+        schema = (data_dir / "schema.sql").exists()
         result["checks"].append(("schema exists", schema))
         if not schema:
             result["Pass"] = 0
@@ -254,10 +262,11 @@ def cmd_compliance(args: List[str]) -> int:
     print(f"\nSummary: {report['summary']['passed']} passed, {report['summary']['failed']} failed")
     print("=" * 70)
 
-    out_file = root_dir / "results" / "compliance_report.json"
-    out_file.parent.mkdir(parents=True, exist_ok=True)
-    out_file.write_text(json.dumps(report, indent=2))
-    print(f"Report saved to: {out_file}")
+    if os.environ.get("VALIDATE_NO_OVERWRITE") != "1":
+        out_file = root_dir / "results" / "compliance_report.json"
+        out_file.parent.mkdir(parents=True, exist_ok=True)
+        out_file.write_text(json.dumps(report, indent=2))
+        print(f"Report saved to: {out_file}")
 
     s = report["summary"]
     record_telemetry("db_check", "compliance", passed=s["passed"], failed=s["failed"])
@@ -265,80 +274,165 @@ def cmd_compliance(args: List[str]) -> int:
     return 1 if s["failed"] > 0 else 0
 
 
-def cmd_qa_suite(args: List[str]) -> int:
-    """Run QA suite: populate app (from @template), format, resync, audit, compliance, integrity."""
+def cmd_schema_postgresql_validate(args: List[str]) -> int:
+    """Validate schema files are PostgreSQL-only (no TIMESTAMP_NTZ, VARIANT, etc)."""
+    start = time.perf_counter()
     db_args = args if args else ["-a"]
-    print("\n" + "=" * 70)
-    print("QA SUITE (populate app → format → resync → audit + compliance + integrity)")
-    print("=" * 70)
-
-    print("\n[0/6] Populate source/db-N/app/ (from data/, deliverable/, @template/)...")
+    log("db_check", "schema-postgresql-validate", status="start", data={"args": db_args})
     try:
-        from populate_app_trifecta import main as populate_main
-        import sys as _sys
-        old = _sys.argv
-        pop_nums = parse_db_args(db_args)
-        _sys.argv = ["populate_app_trifecta.py"] + (["-a"] if len(pop_nums) >= 16 else [f"db-{n}" for n in pop_nums])
+        sys.path.insert(0, str(scripts_dir))
+        from generate_postgresql_sql_files import main as validator_main
+        sys.argv = ["generate_postgresql_sql_files.py"] + db_args
+        ec = validator_main()
+        log("db_check", "schema-postgresql-validate", status="ok" if ec == 0 else "fail", duration_ms=(time.perf_counter() - start) * 1000)
+        return ec
+    except Exception as e:
+        log("db_check", "schema-postgresql-validate", status="fail", message=str(e)[:200])
+        raise
+
+
+def cmd_source_checks(args: List[str]) -> int:
+    """Run source material validation (queries.json, queries_header, schema, data, queries.md)."""
+    start = time.perf_counter()
+    db_args = args if args else ["-a"]
+    log("db_check", "source-checks", status="start", data={"args": db_args})
+    try:
+        sys.path.insert(0, str(scripts_dir))
+        from source_material_checks import main as source_checks_main
+        sys.argv = ["source_material_checks.py"] + db_args
+        ec = source_checks_main()
+        log("db_check", "source-checks", status="ok" if ec == 0 else "fail", duration_ms=(time.perf_counter() - start) * 1000)
+        return ec
+    except Exception as e:
+        log("db_check", "source-checks", status="fail", message=str(e)[:200])
+        raise
+
+
+def cmd_repo_health(args: List[str]) -> int:
+    """Run repo health check (data size, schema, naming, unnecessary files) and compile MDX."""
+    start = time.perf_counter()
+    log("db_check", "repo-health", status="start")
+    try:
+        sys.path.insert(0, str(scripts_dir))
+        orig_argv = sys.argv
+        sys.argv = ["repo_health_check.py"] + (["--lenient"] if "--lenient" in args or "-l" in args else [])
         try:
-            ec_pop = populate_main()
+            from repo_health_check import main as repo_health_main
+            ec = repo_health_main()
         finally:
-            _sys.argv = old
-        if ec_pop != 0:
-            print("  WARNING: populate_app had errors")
-        else:
-            print("  OK")
+            sys.argv = orig_argv
+        sys.argv = ["compile_repo_health_mdx.py"]
+        try:
+            from compile_repo_health_mdx import main as compile_mdx_main
+            compile_mdx_main()
+        finally:
+            sys.argv = orig_argv
+        log("db_check", "repo-health", status="ok" if ec == 0 else "fail", duration_ms=(time.perf_counter() - start) * 1000)
+        return ec
     except Exception as e:
-        print(f"  WARNING: populate_app failed: {e}")
+        log("db_check", "repo-health", status="fail", message=str(e)[:200])
+        raise
 
-    print("\n[0b/6] Validate documentation config (YAML vs JSON schema)...")
-    try:
-        gen_args = ["-a"] if len(pop_nums) >= 16 else [f"db-{n}" for n in pop_nums]
-        proc = subprocess.run(
-            [sys.executable, str(scripts_dir / "generate_documentation_readme.py"), "--validate"] + gen_args,
-            cwd=str(root_dir),
-            capture_output=True,
-            text=True,
-            timeout=60,
-        )
-        if proc.returncode != 0:
-            print(f"  WARNING: doc validation had errors")
-        else:
-            print("  OK")
-    except Exception as e:
-        print(f"  WARNING: doc validation failed: {e}")
 
-    print("\n[1/6] Format deliverables (queries, schema, docs)...")
-    ec_format = cmd_format(db_args)
-    if ec_format != 0:
-        print("  WARNING: format had errors")
+def cmd_qa_suite(args: List[str]) -> int:
+    """Run QA suite: populate app (from @template), format, resync, audit, compliance, integrity.
+    Use --check-only to skip populate/format/resync (no overwrites, audit+compliance+integrity only)."""
+    check_only = "--check-only" in args or "-c" in args
+    args = [a for a in args if a not in ("--check-only", "-c")]
+    db_args = args if args else ["-a"]
+    pop_nums = parse_db_args(db_args)
 
-    print("\n[2/6] Resync source/ → client/db (with byte-for-byte verify)...")
-    try:
-        proc = subprocess.run(
-            [sys.executable, str(scripts_dir / "resync_client_db.py"), "--verify"],
-            cwd=str(root_dir),
-            capture_output=True,
-            text=True,
-            timeout=120,
-        )
-        if proc.returncode != 0:
-            print(f"  WARNING: resync failed: {proc.stderr[:500]}")
-        else:
-            print("  OK")
-    except Exception as e:
-        print(f"  WARNING: resync failed: {e}")
+    if check_only:
+        print("\nQA SUITE (check-only: audit + compliance + integrity, no overwrites)")
+    else:
+        print("\n" + "=" * 70)
+        print("QA SUITE (populate app → format → resync → audit + compliance + integrity)")
+        print("=" * 70)
 
-    print("\n[3/6] QA (client/db audit)...")
-    ec1 = cmd_qa([])
+    if not check_only:
+        print("\n[0/6] Populate source/db-N/ (from data/, deliverable/, @template/)...")
+        try:
+            from populate_app_trifecta import main as populate_main
+            import sys as _sys
+            old = _sys.argv
+            _sys.argv = ["populate_app_trifecta.py"] + (["-a"] if len(pop_nums) >= 16 else [f"db-{n}" for n in pop_nums])
+            try:
+                ec_pop = populate_main()
+            finally:
+                _sys.argv = old
+            if ec_pop != 0:
+                print("  WARNING: populate_app had errors")
+            else:
+                print("  OK")
+        except Exception as e:
+            print(f"  WARNING: populate_app failed: {e}")
 
-    print("\n[4/6] Compliance...")
-    ec2 = cmd_compliance(db_args)
+        print("\n[0b/6] Validate documentation config (YAML vs JSON schema)...")
+        try:
+            gen_args = ["-a"] if len(pop_nums) >= 16 else [f"db-{n}" for n in pop_nums]
+            proc = subprocess.run(
+                [sys.executable, str(scripts_dir / "generate_documentation_readme.py"), "--validate"] + gen_args,
+                cwd=str(root_dir),
+                capture_output=True,
+                text=True,
+                timeout=60,
+            )
+            if proc.returncode != 0:
+                print(f"  WARNING: doc validation had errors")
+            else:
+                print("  OK")
+        except Exception as e:
+            print(f"  WARNING: doc validation failed: {e}")
 
-    print("\n[5/6] Integrity...")
-    ec3 = cmd_integrity(db_args)
+        print("\n[1/6] Format deliverables (queries, schema, docs)...")
+        ec_format = cmd_format(db_args)
+        if ec_format != 0:
+            print("  WARNING: format had errors")
+
+        print("\n[2/6] Resync source/ → client/db (with byte-for-byte verify)...")
+        try:
+            proc = subprocess.run(
+                [sys.executable, str(scripts_dir / "resync_client_db.py"), "--verify"],
+                cwd=str(root_dir),
+                capture_output=True,
+                text=True,
+                timeout=120,
+            )
+            if proc.returncode != 0:
+                print(f"  WARNING: resync failed: {proc.stderr[:500]}")
+            else:
+                print("  OK")
+        except Exception as e:
+            print(f"  WARNING: resync failed: {e}")
+    else:
+        ec_format = 0
+
+    if check_only:
+        prev = os.environ.get("VALIDATE_NO_OVERWRITE")
+        os.environ["VALIDATE_NO_OVERWRITE"] = "1"
+        try:
+            with redirect_stdout(io.StringIO()):
+                ec1 = cmd_qa([])
+                ec2 = cmd_compliance(db_args)
+                ec3 = cmd_integrity(db_args)
+        finally:
+            if prev is None:
+                os.environ.pop("VALIDATE_NO_OVERWRITE", None)
+            else:
+                os.environ["VALIDATE_NO_OVERWRITE"] = prev
+    else:
+        print("\n[3/6] QA (client/db audit)...")
+        ec1 = cmd_qa([])
+        print("\n[4/6] Compliance...")
+        ec2 = cmd_compliance(db_args)
+        print("\n[5/6] Integrity...")
+        ec3 = cmd_integrity(db_args)
 
     overall = 1 if any(c != 0 for c in [ec_format, ec1, ec2, ec3]) else 0
-    print(f"\nQA Suite Overall: {'FAIL' if overall else 'PASS'}")
+    if check_only:
+        print("PASS" if overall == 0 else "FAIL")
+    else:
+        print(f"\nQA Suite Overall: {'FAIL' if overall else 'PASS'}")
     return overall
 
 
@@ -495,6 +589,57 @@ def cmd_check_commit(_args: List[str]) -> int:
         return 1
 
 
+# Test groups: pytest file(s) for each BDD/TDD/DDD test suite
+TEST_GROUPS = {
+    "schema-data": ["tests/test_schema_data_validation_tdd_bdd.py"],
+    "repo-health": ["tests/test_repo_health.py"],
+    "queries-md": ["tests/test_queries_md_compile_tdd_bdd.py"],
+    "source-checks": ["tests/test_source_material_checks.py"],
+    "all": [
+        "tests/test_schema_data_validation_tdd_bdd.py",
+        "tests/test_repo_health.py",
+        "tests/test_queries_md_compile_tdd_bdd.py",
+        "tests/test_source_material_checks.py",
+        "tests/test_single_source_of_truth.py",
+        "tests/test_queries_md_human_text.py",
+        "tests/test_agentic_data_agent_mount_tdd_bdd.py",
+        "tests/test_qa_suite.py",
+        "tests/test_docker_postgres_qa.py",
+        "tests/test_bird_workbench_acid.py",
+        "tests/test_scripts_refactor.py",
+    ],
+}
+
+
+def cmd_test(args: List[str]) -> int:
+    """Run BDD/TDD/DDD test suites. Usage: db_check test [schema-data|repo-health|queries-md|source-checks|all] [-v] [--lenient]."""
+    import argparse
+    ap = argparse.ArgumentParser(prog="db_check test")
+    ap.add_argument("group", nargs="?", default="all", choices=list(TEST_GROUPS), help="Test group to run")
+    ap.add_argument("-v", "--verbose", action="store_true", help="Verbose pytest output")
+    ap.add_argument("--lenient", action="store_true", help="Set REPO_HEALTH_LENIENT=1 for migration")
+    ap.add_argument("--tb", default="short", help="Pytest traceback style (short, line, long)")
+    parsed, rest = ap.parse_known_args(args)
+    group = parsed.group
+    files = TEST_GROUPS[group]
+    if parsed.lenient:
+        os.environ["REPO_HEALTH_LENIENT"] = "1"
+    pytest_args = [sys.executable, "-m", "pytest"] + files + rest + (["-v"] if parsed.verbose else ["-q"]) + ["--tb", parsed.tb]
+    start = time.perf_counter()
+    log("db_check", "test", status="start", data={"group": group, "files": files})
+    try:
+        r = subprocess.run(pytest_args, cwd=str(root_dir), timeout=300)
+        status = "ok" if r.returncode == 0 else "fail"
+        log("db_check", "test", status=status, duration_ms=(time.perf_counter() - start) * 1000, data={"group": group, "exit_code": r.returncode})
+        return r.returncode
+    except subprocess.TimeoutExpired:
+        log("db_check", "test", status="fail", message="pytest timeout")
+        return 1
+    except Exception as e:
+        log("db_check", "test", status="fail", message=str(e)[:200])
+        raise
+
+
 def cmd_full(args: List[str]) -> int:
     """Run all checks: validate, format, qa, integrity, compliance."""
     db_nums = parse_db_args(args)
@@ -530,7 +675,7 @@ def cmd_full(args: List[str]) -> int:
 def main() -> int:
     if len(sys.argv) < 2:
         print(__doc__)
-        print("\nSubcommands: validate, validate-queries, format, qa, qa-suite, integrity, compliance, full, rotate, check-commit, bird-workbench")
+        print("\nSubcommands: validate, validate-queries, format, qa, qa-suite, integrity, compliance, source-checks, schema-postgresql-validate, repo-health, test, full, rotate, check-commit, bird-workbench")
         return 1
 
     subcmd = sys.argv[1].lower()
@@ -557,6 +702,12 @@ def main() -> int:
         return cmd_integrity(subargs)
     elif subcmd == "compliance":
         return cmd_compliance(subargs)
+    elif subcmd == "schema-postgresql-validate":
+        return cmd_schema_postgresql_validate(subargs)
+    elif subcmd == "source-checks":
+        return cmd_source_checks(subargs)
+    elif subcmd == "repo-health":
+        return cmd_repo_health(subargs)
     elif subcmd == "qa-suite":
         return cmd_qa_suite(subargs)
     elif subcmd == "bird-workbench":
@@ -569,6 +720,8 @@ def main() -> int:
         return cmd_rotate(subargs)
     elif subcmd == "check-commit":
         return cmd_check_commit(subargs)
+    elif subcmd == "test":
+        return cmd_test(subargs)
     elif subcmd == "debug":
         return cmd_debug(subargs)
     elif subcmd == "qa-claude":
@@ -583,7 +736,7 @@ def main() -> int:
     else:
         log("db_check", "main", status="fail", message=f"Unknown subcommand: {subcmd}")
         print(f"Unknown subcommand: {subcmd}")
-        print("Subcommands: validate, validate-queries, format, qa, qa-suite, integrity, compliance, full, rotate, check-commit, debug, qa-claude, bird-workbench, gdpval-langgraph, export, label-studio")
+        print("Subcommands: validate, validate-queries, format, qa, qa-suite, integrity, compliance, source-checks, schema-postgresql-validate, repo-health, test, full, rotate, check-commit, debug, qa-claude, bird-workbench, gdpval-langgraph, export, label-studio")
         return 1
 
 

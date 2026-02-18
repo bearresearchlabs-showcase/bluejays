@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-13
-domain: AI, marketing, benchmarks
-source: synthetic
-license_type: Open
-license_cost: $0
-tables: 11
-total_rows: ~50K
+domain: Database domain
+source: [synthetic / open / commercial]
+license_type: [Commercial / Open / Academic]
+license_cost: [Annual cost if applicable]
+tables: 0
+total_rows: ~0
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,35 +17,26 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for AI-driven marketing benchmarks: model performance, campaign metrics, and AI attribution.
+This database supports analytics for db-13.
 ```
 
 ## Use Case
 
 ```text
-Target use cases: AI model benchmarks, campaign performance, attribution analytics, AI dashboards.
+Target use cases for db-13: analytics, reporting, dashboards.
 ```
 
 ## Business Value
 
 ```text
-Enables marketing teams to benchmark AI models and measure AI-driven campaign impact ($1M+ ARR).
+Business value for db-13.
 ```
 
 ## Schema
 
 ```sql
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:12
--- Database: db-13
--- 
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
 -- AI Benchmark Marketing Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
+-- Compatible with PostgreSQL
 -- Production schema for AI model benchmark tracking and marketing intelligence system
 -- Integrates data from Artificial Analysis, NIST, NSF, Data.gov, and other reputable sources
 -- Target data volume: ~2GB
@@ -74,14 +65,19 @@ CREATE TABLE ai_models (
     supports_streaming BOOLEAN DEFAULT TRUE,
     supports_function_calling BOOLEAN DEFAULT FALSE,
     supports_vision BOOLEAN DEFAULT FALSE,
-    supports_audio BOOLEAN 
+    supports_audio BOOLEAN DEFAULT FALSE,
+    model_status VARCHAR(50) DEFAULT 'active', -- 'active', 'deprecated', 'preview', 'experimental'
+    data_source VARCHAR(100) DEFAULT 'ARTIFICIAL_ANALYSIS',
+    source_url VARCHAR(1000),
+    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    
 -- ...
 ```
 
 ## Domain Knowledge
 
 ```text
-AI models, campaigns, benchmarks. Model performance metrics, attribution.
+Domain-specific concepts for this database.
 ```
 
 ## Query Difficulty Distribution

@@ -4,6 +4,7 @@ Shared fix verification - conceptual checks per query-validation-suite rules.
 Works for all db-1..db-16. Uses db_paths.get_queries_dir for canonical queries.md location.
 """
 
+import os
 import re
 import json
 import sys
@@ -174,6 +175,7 @@ def verify_db(db_num: int, root_dir: Path) -> bool:
     queries_dir = get_queries_dir(db_dir)
     queries_file = queries_dir / "queries.md"
     results_file = db_dir / "results" / "fix_verification.json"
+    no_overwrite = os.environ.get("VALIDATE_NO_OVERWRITE") == "1"
 
     if not queries_file.exists():
         print(f"Error: {queries_file} not found")
@@ -188,8 +190,9 @@ def verify_db(db_num: int, root_dir: Path) -> bool:
         print(f"  {icon} {fix_name}: {fix_result['status']}")
     print(f"\nOverall: {results['overall_status']}")
 
-    results_file.parent.mkdir(parents=True, exist_ok=True)
-    results_file.write_text(json.dumps(results, indent=2))
+    if not no_overwrite:
+        results_file.parent.mkdir(parents=True, exist_ok=True)
+        results_file.write_text(json.dumps(results, indent=2))
     return results['overall_status'] == 'PASS'
 
 

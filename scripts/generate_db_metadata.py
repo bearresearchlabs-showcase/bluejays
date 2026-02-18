@@ -58,7 +58,7 @@ def generate_metadata(db_num: int) -> Dict[str, Any]:
     # Schema file
     schema_path = data_dir / "schema.sql"
     if not schema_path.exists():
-        schema_path = data_dir / "schema_postgresql.sql"
+        schema_path = data_dir / "schema.sql"
     schema_hash = sha256_file(schema_path) if schema_path.exists() else ""
 
     # Queries
@@ -74,7 +74,7 @@ def generate_metadata(db_num: int) -> Dict[str, Any]:
 
     # Deliverable files present
     deliverable_files: List[str] = []
-    for name in ["schema.sql", "schema_postgresql.sql", "data.sql", "queries.json", "queries.md"]:
+    for name in ["schema.sql", "data.sql", "queries.json", "queries.md"]:
         if name.endswith(".sql"):
             p = data_dir / name
         else:

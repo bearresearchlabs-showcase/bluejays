@@ -3,7 +3,7 @@
     "id": "db-2",
     "name": "Filling Station Retail / POS (phppos)",
     "description": "Real-world retail Point-of-Sale (POS) database from a family business in Kenya, featuring complete transactional history, inventory management, and multi-location operations. Includes phppos schema with sales, line items, payments, inventory, products, and suppliers.\n\n- Sales transactions and line items\n- Payment records and inventory movements\n- Product catalog and purchase orders\n- Supplier receivings and multi-location support\n\n- PostgreSQL: Full support\n\n---",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

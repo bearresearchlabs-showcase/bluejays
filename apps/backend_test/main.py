@@ -211,7 +211,7 @@ async def bird_validate(body: dict):
     qj = _repo_root / f"db-{db_num}" / "queries" / "queries.json"
     schema_path = _repo_root / f"db-{db_num}" / "data" / "schema.sql"
     if not schema_path.exists():
-        schema_path = _repo_root / f"db-{db_num}" / "data" / "schema_postgresql.sql"
+        schema_path = _repo_root / f"db-{db_num}" / "data" / "schema.sql"
     checks = []
     if qj.exists():
         data = json.loads(qj.read_text(encoding="utf-8"))

@@ -1,0 +1,69 @@
+milestone: "Commit 38ce1cd vs HEAD — source/ and client/ verification"
+base_commit: "38ce1cd1aa03012979e6a85b5ca9299449f76ad6"
+target: "HEAD"
+scope:
+  - source/
+  - client/
+
+todos:
+  - id: todo-1
+    content: "Run git diff 38ce1cd HEAD -- source/ client/ and save raw output"
+    status: completed
+  - id: todo-2
+    content: "Create verify_commit_diff.py with per-DB per-section categorization"
+    status: completed
+  - id: todo-3
+    content: "Generate comprehensive report: each key, each section, each db-1..db-16"
+    status: completed
+  - id: todo-4
+    content: "Compare source/db-N/app/DATABASE/ files (schema.sql, data.sql) per DB"
+    status: completed
+  - id: todo-5
+    content: "Compare source/db-N/app/DOCUMENTATION/ (README, html, json) per DB"
+    status: completed
+  - id: todo-6
+    content: "Compare source/db-N/app/QUERIES/ (queries.json keys, queries.md) per DB"
+    status: completed
+  - id: todo-7
+    content: "Compare client/db/db-N/DATABASE/ per DB"
+    status: completed
+  - id: todo-8
+    content: "Compare client/db/db-N/DOCUMENTATION/ per DB"
+    status: completed
+  - id: todo-9
+    content: "Compare client/db/db-N/QUERIES/ (queries.json keys) per DB"
+    status: completed
+  - id: todo-10
+    content: "Run /validate --no-overwrite and /QA --check-only, record per-DB pass/fail"
+    status: completed
+  - id: todo-11
+    content: "Byte-for-byte source/app vs client/db for DATABASE and QUERIES per DB"
+    status: completed
+  - id: todo-12
+    content: "Document removed/added files per section per DB"
+    status: completed
+  - id: todo-13
+    content: "Add pytest test_commit_diff_verification.py"
+    status: completed
+  - id: todo-14
+    content: "Create .cursor/plans/commit_diff_38ce1cd_milestone.yaml with 15 todos"
+    status: completed
+  - id: todo-15
+    content: "Update docs/ROADMAP.md with link to milestone and diff report"
+    status: completed
+  - id: todo-16
+    content: "Compile report JSON to MDX"
+    status: completed
+  - id: todo-17
+    content: "Add TDD/BDD tests for compile"
+    status: completed
+
+artifacts:
+  report_json: results/commit_diff_38ce1cd_report.json
+  report_md: results/commit_diff_38ce1cd_report.md
+  report_mdx: results/commit_diff_38ce1cd_report.mdx
+  raw_diff: results/commit_diff_38ce1cd_raw.txt
+  script: scripts/verify_commit_diff.py
+  compile_script: scripts/compile_commit_diff_report.py
+  test: tests/test_commit_diff_verification.py
+  compile_test: tests/test_commit_diff_report_compile_tdd_bdd.py

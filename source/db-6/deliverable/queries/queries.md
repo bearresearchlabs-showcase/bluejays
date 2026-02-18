@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-6
-domain: weather, geospatial, insurance, NWS, PostGIS
-source: open
-license_type: Open
-license_cost: $0
-tables: 34
-total_rows: ~500K
+domain: Database domain
+source: [synthetic / open / commercial]
+license_type: [Commercial / Open / Academic]
+license_cost: [Annual cost if applicable]
+tables: 0
+total_rows: ~0
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,39 +17,37 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for weather consulting and insurance: GRIB2 forecasts, shapefile boundaries, NWS observations, NEXRAD, and insurance risk mapping.
+This database supports analytics for db-6.
 ```
 
 ## Use Case
 
 ```text
-Target use cases: forecast accuracy analytics, spatial aggregations, insurance risk dashboards, weather-alert reporting.
+Target use cases for db-6: analytics, reporting, dashboards.
 ```
 
 ## Business Value
 
 ```text
-Enables weather consulting and insurance firms to assess risk, validate forecasts, and price policies ($1M+ ARR).
+Business value for db-6.
 ```
 
 ## Schema
 
 ```sql
 -- Weather Data Pipeline Database Schema
--- Compatible with PostgreSQL + PostGIS
+-- Compatible with PostgreSQL
 -- Production schema for weather data pipeline system
-
-CREATE EXTENSION IF NOT EXISTS postgis;
 
 -- GRIB2 Forecasts Table
 -- Stores gridded forecast data from NDFD (National Digital Forecast Database)
 CREATE TABLE grib2_forecasts (
     forecast_id VARCHAR(255) PRIMARY KEY,
     parameter_name VARCHAR(100) NOT NULL,
-    forecast_time TIMESTAMP NOT NULL,
+    forecast_time TIMESTAMP_NTZ NOT NULL,
     grid_cell_latitude NUMERIC(10, 7) NOT NULL,
     grid_cell_longitude NUMERIC(10, 7) NOT NULL,
-    grid_cell_geom GEOGRAPHY(POINT),  -- Point geometry for grid cell center (PostGIS)
+    grid_cell_geom GEOGRAPHY,  -- Point geometry for grid cell center (PostgreSQL)
     parameter_value NUMERIC(10, 2),
     source_file VARCHAR(500),
     source_crs VARCHAR(50),
@@ -60,7 +58,7 @@ CREATE TABLE grib2_forecasts (
     spatial_extent_south NUMERIC(10, 6),
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
     transformation_status VARCHAR(50)
 );
 
@@ -71,7 +69,7 @@ CREATE TABLE shapefile_boundaries (
     feature_type VARCHAR(50) NOT NULL,  -- 'CWA', 'FireZone', 'MarineZone', 'RiverBasin', 'County'
     feature_name VARCHAR(255),
     feature_identifier VARCHAR(100),
-    boundary_geom GEOGRAPHY,  -- Polygon geometry (PostGIS)
+    boundary_geom GEOGRAPHY,  -- Polygon geometry
     source_shapefile VARCHAR(500),
     source_crs VARCHAR(50),
     target_crs VARCHAR(50),
@@ -80,21 +78,23 @@ CREATE TABLE shapefile_boundaries (
     spatial_extent_south NUMERIC(10, 6),
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
     transformation_status VARCHAR(50),
     state_code VARCHAR(2),
     office_code VARCHAR(10)
 );
 
 -- Real-Time Weather Observations Table
--- Stores point observations from NWS
+-- Stores point observations from NWS API
+CREATE TABLE weather_observations (
+    obse
 -- ...
 ```
 
 ## Domain Knowledge
 
 ```text
-grib2_forecasts, shapefile_boundaries, weather_observations, weather_stations. PostGIS ST_DISTANCE, ST_WITHIN. CWA, NEXRAD, insurance_rate_tables.
+Domain-specific concepts for this database.
 ```
 
 ## Query Difficulty Distribution
@@ -233,7 +233,7 @@ Target distribution across 30 queries:
   "db_id": "db-6",
   "question_id": 5,
   "question": "Can you show me a coverage analysis of the weather station network with spatial gap detection and optimization recommendations?",
-  "SQL": "WITH station_coverage_base AS (\n    -- First CTE: Base station coverage metrics\n    SELECT\n        ws.station_id,\n        ws.station_name,\n        ws.station_latitude,\n        ws.station_longitude,\n        ws.station_geom,\n        ws.state_code,\n        ws.county_name,\n        ws.cwa_code,\n        ws.station_type,\n        ws.active_status,\n        ws.elevation_meters,\n        -- Count recent observations\n        (\n            SELECT COUNT(*)\n            FROM weather_observations wo\n            WHERE wo.station_id = ws.station_id\n                AND wo.observation_time >= CURRENT_TIMESTAMP - INTERVAL '7 days'\n        ) AS recent_observations_count,\n        -- Latest observation time\n        (\n            SELECT MAX(wo.observation_time)\n            FROM weather_observations wo\n            WHERE wo.station_id = ws.station_id\n        ) AS latest_observation_time\n    FROM weather_stations ws\n    WHERE ws.active_status = TRUE\n),\nstation_density_analysis AS (\n    -- Second CTE: Calculate station density metrics\n    SELECT\n        scb.station_id,\n        scb.station_name,\n        scb.station_latitude,\n        scb.station_longitude,\n        scb.station_geom,\n        scb.state_code,\n        scb.cwa_code,\n        scb.recent_observations_count,\n        scb.latest_observation_time,\n        -- Count nearby stations within 50km\n        (\n            SELECT COUNT(*)\n            FROM station_coverage_base scb2\n            WHERE scb2.station_id != scb.station_id\n                AND scb2.station_geom IS NOT NULL\n                AND scb.station_geom IS NOT NULL\n                AND ST_DISTANCE(scb.station_geom, scb2.station_geom) < 50000\n        ) AS nearby_stations_50km,\n        -- Count nearby stations within 100km\n        (\n            SELECT COUNT(*)\n            FROM station_coverage_base scb2\n            WHERE scb2.station_id != scb.station_id\n                AND scb2.station_geom IS NOT NULL\n                AND scb.station_geom IS NOT NULL\n                AND ST_DISTANCE(scb.station_geom, scb2.station_geom) < 100000\n        ) AS nearby_stations_100km,\n        -- Minimum distance to nearest station\n        (\n            SELECT MIN(ST_DISTANCE(scb.station_geom, scb2.station_geom))\n            FROM station_coverage_base scb2\n            WHERE scb2.station_id != scb.station_id\n                AND scb2.station_geom IS NOT NULL\n                AND scb.station_geom IS NOT NULL\n        ) AS min_distance_to_nearest_station\n    FROM station_coverage_base scb\n),\ncoverage_gap_analysis AS (\n    -- Third CTE: Identify coverage gaps\n    SELECT\n        sda.station_id,\n        sda.station_name,\n        sda.station_latitude,\n        sda.station_longitude,\n        sda.state_code,\n        sda.cwa_code,\n        sda.recent_observations_count,\n        sda.nearby_stations_50km,\n        sda.nearby_stations_100km,\n        ROUND(CAST(sda.min_distance_to_nearest_station AS NUMERIC), 2) AS min_distance_to_nearest_station,\n        -- Coverage classification\n        CASE\n            WHEN sda.nearby_stations_50km >= 5 THEN 'High Density'\n            WHEN sda.nearby_stations_50km >= 2 THEN 'Medium Density'\n            WHEN sda.nearby_stations_50km >= 1 THEN 'Low Density'\n            ELSE 'Isolated'\n        END AS density_classification,\n        -- Gap indicators\n        CASE\n            WHEN sda.min_distance_to_nearest_station > 100000 THEN 'Large Gap'\n            WHEN sda.min_distance_to_nearest_station > 50000 THEN 'Medium Gap'\n            WHEN sda.min_distance_to_nearest_station > 25000 THEN 'Small Gap'\n            ELSE 'No Gap'\n        END AS gap_classification\n    FROM station_density_analysis sda\n),\nboundary_coverage_analysis AS (\n    -- Fourth CTE: Analyze coverage by boundary\n    SELECT\n        cga.station_id,\n        cga.station_name,\n        cga.state_code,\n        cga.cwa_code,\n        cga.density_classification,\n        cga.gap_classification,\n        sb.boundary_id,\n        sb.feature_type,\n        sb.feature_name,\n        -- Check if station is within boundary\n        CASE\n            WHEN sda.station_geom IS NOT NULL AND sb.boundary_geom IS NOT NULL THEN\n                CASE\n                    WHEN ST_WITHIN(sda.station_geom, sb.boundary_geom) THEN TRUE\n                    ELSE FALSE\n                END\n            ELSE NULL\n        END AS is_within_boundary,\n        -- Count stations in same boundary\n        (\n            SELECT COUNT(*)\n            FROM station_coverage_base scb2\n            WHERE scb2.station_geom IS NOT NULL\n                AND sb.boundary_geom IS NOT NULL\n                AND ST_WITHIN(scb2.station_geom, sb.boundary_geom)\n        ) AS stations_in_boundary\n    FROM coverage_gap_analysis cga\n    INNER JOIN station_density_analysis sda ON cga.station_id = sda.station_id\n    LEFT JOIN shapefile_boundaries sb ON (\n        sb.feature_type = 'CWA'\n        AND sda.station_geom IS NOT NULL\n        AND sb.boundary_geom IS NOT NULL\n        AND ST_DISTANCE(sda.station_geom, sb.boundary_geom) < 100000\n    )\n),\nboundary_coverage_summary AS (\n    -- Fifth CTE: Summarize coverage by boundary\n    SELECT\n        bca.boundary_id,\n        bca.feature_type,\n        bca.feature_name,\n        COUNT(DISTINCT bca.station_id) AS station_count,\n        COUNT(CASE WHEN bca.is_within_boundary = TRUE THEN 1 END) AS stations_within,\n        COUNT(CASE WHEN bca.gap_classification = 'Large Gap' THEN 1 END) AS large_gap_stations,\n        COUNT(CASE WHEN bca.gap_classification = 'No Gap' THEN 1 END) AS no_gap_stations,\n        AVG(CASE WHEN bca.is_within_boundary = TRUE THEN 1 ELSE 0 END) * 100 AS coverage_percentage,\n        -- Window functions for comparison\n        AVG(bca.stations_in_boundary) OVER (\n            PARTITION BY bca.feature_type\n        ) AS avg_stations_per_boundary_type\n    FROM boundary_coverage_analysis bca\n    GROUP BY\n        bca.boundary_id,\n        bca.feature_type,\n        bca.feature_name,\n        bca.stations_in_boundary\n),\ninterpolation_opportunity_analysis AS (\n    -- Sixth CTE: Identify interpolation opportunities\n    SELECT\n        cga.station_id,\n        cga.station_name,\n        cga.state_code,\n        cga.cwa_code,\n        cga.density_classification,\n        cga.gap_classification,\n        cga.min_distance_to_nearest_station,\n        -- Count forecast grid cells near station\n        (\n            SELECT COUNT(*)\n            FROM grib2_forecasts gf\n            WHERE gf.grid_cell_geom IS NOT NULL\n                AND sda.station_geom IS NOT NULL\n                AND ST_DISTANCE(gf.grid_cell_geom, sda.station_geom) < 25000\n        ) AS nearby_forecast_cells,\n        -- Interpolation quality score\n        CASE\n            WHEN cga.nearby_stations_50km >= 3 AND cga.min_distance_to_nearest_station < 25000 THEN 'Excellent'\n            WHEN cga.nearby_stations_50km >= 2 AND cga.min_distance_to_nearest_station < 50000 THEN 'Good'\n            WHEN cga.nearby_stations_50km >= 1 THEN 'Fair'\n            ELSE 'Poor'\n        END AS interpolation_quality\n    FROM coverage_gap_analysis cga\n    INNER JOIN station_density_analysis sda ON cga.station_id = sda.station_id\n    WHERE sda.station_geom IS NOT NULL\n),\nfinal_coverage_report AS (\n    -- Seventh CTE: Final coverage report\n    SELECT\n        ioa.station_id,\n        ioa.station_name,\n        ioa.state_code,\n        ioa.cwa_code,\n        ioa.density_classification,\n        ioa.gap_classification,\n        ioa.min_distance_to_nearest_station,\n        ioa.nearby_forecast_cells,\n        ioa.interpolation_quality,\n        -- Coverage recommendations\n        CASE\n            WHEN ioa.gap_classification = 'Large Gap' THEN 'Add Station Recommended'\n            WHEN ioa.interpolation_quality = 'Poor' THEN 'Improve Station Density'\n            WHEN ioa.nearby_forecast_cells = 0 THEN 'No Forecast Coverage'\n            ELSE 'Adequate Coverage'\n        END AS coverage_recommendation,\n        -- Rankings\n        ROW_NUMBER() OVER (\n            ORDER BY ioa.min_distance_to_nearest_station DESC\n        ) AS isolation_rank,\n        PERCENT_RANK() OVER (\n            ORDER BY ioa.nearby_forecast_cells DESC\n        ) AS forecast_coverage_percentile\n    FROM interpolation_opportunity_analysis ioa\n)\nSELECT\n    station_id,\n    station_name,\n    state_code,\n    cwa_code,\n    density_classification,\n    gap_classification,\n    min_distance_to_nearest_station,\n    nearby_forecast_cells,\n    interpolation_quality,\n    coverage_recommendation,\n    isolation_rank,\n    ROUND(CAST(forecast_coverage_percentile * 100 AS NUMERIC), 2) AS forecast_coverage_percentile\nFROM final_coverage_report\nORDER BY isolation_rank\nLIMIT 200;",
+  "SQL": "WITH station_coverage_base AS (\n    -- First CTE: Base station coverage metrics\n    SELECT\n        ws.station_id,\n        ws.station_name,\n        ws.station_latitude,\n        ws.station_longitude,\n        ws.station_geom,\n        ws.state_code,\n        ws.county_name,\n        ws.cwa_code,\n        ws.station_type,\n        ws.active_status,\n        ws.elevation_meters,\n        -- Count recent observations\n        (\n            SELECT COUNT(*)\n            FROM weather_observations wo\n            WHERE wo.station_id = ws.station_id\n                AND wo.observation_time >= CURRENT_TIMESTAMP - INTERVAL '7 days'\n        ) AS recent_observations_count,\n        -- Latest observation time\n        (\n            SELECT MAX(wo.observation_time)\n            FROM weather_observations wo\n            WHERE wo.station_id = ws.station_id\n        ) AS latest_observation_time\n    FROM weather_stations ws\n    WHERE ws.active_status = TRUE\n),\nstation_density_analysis AS (\n    -- Second CTE: Calculate station density metrics\n    SELECT\n        scb.station_id,\n        scb.station_name,\n        scb.station_latitude,\n        scb.station_longitude,\n        scb.station_geom,\n        scb.state_code,\n        scb.cwa_code,\n        scb.recent_observations_count,\n        scb.latest_observation_time,\n        -- Count nearby stations within 50km\n        (\n            SELECT COUNT(*)\n            FROM station_coverage_base scb2\n            WHERE scb2.station_id != scb.station_id\n                AND scb2.station_geom IS NOT NULL\n                AND scb.station_geom IS NOT NULL\n                AND ST_DISTANCE(scb.station_geom, scb2.station_geom) < 50000\n        ) AS nearby_stations_50km,\n        -- Count nearby stations within 100km\n        (\n            SELECT COUNT(*)\n            FROM station_coverage_base scb2\n            WHERE scb2.station_id != scb.station_id\n                AND scb2.station_geom IS NOT NULL\n                AND scb.station_geom IS NOT NULL\n                AND ST_DISTANCE(scb.station_geom, scb2.station_geom) < 100000\n        ) AS nearby_stations_100km,\n        -- Minimum distance to nearest station\n        (\n            SELECT MIN(ST_DISTANCE(scb.station_geom, scb2.station_geom))\n            FROM station_coverage_base scb2\n            WHERE scb2.station_id != scb.station_id\n                AND scb2.station_geom IS NOT NULL\n                AND scb.station_geom IS NOT NULL\n        ) AS min_distance_to_nearest_station\n    FROM station_coverage_base scb\n),\ncoverage_gap_analysis AS (\n    -- Third CTE: Identify coverage gaps\n    SELECT\n        sda.station_id,\n        sda.station_name,\n        sda.station_latitude,\n        sda.station_longitude,\n        sda.state_code,\n        sda.cwa_code,\n        sda.recent_observations_count,\n        sda.nearby_stations_50km,\n        sda.nearby_stations_100km,\n        ROUND(CAST(sda.min_distance_to_nearest_station AS NUMERIC), 2) AS min_distance_to_nearest_station,\n        -- Coverage classification\n        CASE\n            WHEN sda.nearby_stations_50km >= 5 THEN 'High Density'\n            WHEN sda.nearby_stations_50km >= 2 THEN 'Medium Density'\n            WHEN sda.nearby_stations_50km >= 1 THEN 'Low Density'\n            ELSE 'Isolated'\n        END AS density_classification,\n        -- Gap indicators\n        CASE\n            WHEN sda.min_distance_to_nearest_station > 100000 THEN 'Large Gap'\n            WHEN sda.min_distance_to_nearest_station > 50000 THEN 'Medium Gap'\n            WHEN sda.min_distance_to_nearest_station > 25000 THEN 'Small Gap'\n            ELSE 'No Gap'\n        END AS gap_classification\n    FROM station_density_analysis sda\n),\nboundary_coverage_analysis AS (\n    -- Fourth CTE: Analyze coverage by boundary\n    SELECT\n        cga.station_id,\n        cga.station_name,\n        cga.state_code,\n        cga.cwa_code,\n        cga.density_classification,\n        cga.gap_classification,\n        sb.boundary_id,\n        sb.feature_type,\n        sb.feature_name,\n        -- Check if station is within boundary\n        CASE\n            WHEN sda.station_geom IS NOT NULL AND sb.boundary_geom IS NOT NULL THEN\n                CASE\n                    WHEN ST_WITHIN(sda.station_geom, sb.boundary_geom) THEN TRUE\n                    ELSE FALSE\n                END\n            ELSE NULL\n        END AS is_within_boundary,\n        -- Count stations in same boundary\n        (\n            SELECT COUNT(*)\n            FROM station_coverage_base scb2\n            WHERE scb2.station_geom IS NOT NULL\n                AND sb.boundary_geom IS NOT NULL\n                AND ST_WITHIN(scb2.station_geom, sb.boundary_geom)\n        ) AS stations_in_boundary\n    FROM coverage_gap_analysis cga\n    INNER JOIN station_density_analysis sda ON cga.station_id = sda.station_id\n    LEFT JOIN shapefile_boundaries sb ON (\n        sb.feature_type = 'CWA'\n        AND sda.station_geom IS NOT NULL\n        AND sb.boundary_geom IS NOT NULL\n        AND ST_DISTANCE(sda.station_geom, sb.boundary_geom) < 100000\n    )\n),\nboundary_coverage_summary AS (\n    -- Fifth CTE: Summarize coverage by boundary\n    SELECT\n        bca.boundary_id,\n        bca.feature_type,\n        bca.feature_name,\n        COUNT(DISTINCT bca.station_id) AS station_count,\n        COUNT(CASE WHEN bca.is_within_boundary = TRUE THEN 1 END) AS stations_within,\n        COUNT(CASE WHEN bca.gap_classification = 'Large Gap' THEN 1 END) AS large_gap_stations,\n        COUNT(CASE WHEN bca.gap_classification = 'No Gap' THEN 1 END) AS no_gap_stations,\n        AVG(CASE WHEN bca.is_within_boundary = TRUE THEN 1 ELSE 0 END) * 100 AS coverage_percentage,\n        -- Window functions for comparison\n        AVG(bca.stations_in_boundary) OVER (\n            PARTITION BY bca.feature_type\n        ) AS avg_stations_per_boundary_type\n    FROM boundary_coverage_analysis bca\n    GROUP BY\n        bca.boundary_id,\n        bca.feature_type,\n        bca.feature_name,\n        bca.stations_in_boundary\n),\ninterpolation_opportunity_analysis AS (\n    -- Sixth CTE: Identify interpolation opportunities\n    SELECT\n        cga.station_id,\n        cga.station_name,\n        cga.state_code,\n        cga.cwa_code,\n        cga.density_classification,\n        cga.gap_classification,\n        cga.min_distance_to_nearest_station,\n        -- Count forecast grid cells near station\n        (\n            SELECT COUNT(*)\n            FROM grib2_forecasts gf\n            WHERE gf.grid_cell_geom IS NOT NULL\n                AND cga.station_geom IS NOT NULL\n                AND ST_DISTANCE(gf.grid_cell_geom, cga.station_geom) < 25000\n        ) AS nearby_forecast_cells,\n        -- Interpolation quality score\n        CASE\n            WHEN cga.nearby_stations_50km >= 3 AND cga.min_distance_to_nearest_station < 25000 THEN 'Excellent'\n            WHEN cga.nearby_stations_50km >= 2 AND cga.min_distance_to_nearest_station < 50000 THEN 'Good'\n            WHEN cga.nearby_stations_50km >= 1 THEN 'Fair'\n            ELSE 'Poor'\n        END AS interpolation_quality\n    FROM coverage_gap_analysis cga\n    INNER JOIN station_density_analysis sda ON cga.station_id = sda.station_id\n    WHERE sda.station_geom IS NOT NULL\n),\nfinal_coverage_report AS (\n    -- Seventh CTE: Final coverage report\n    SELECT\n        ioa.station_id,\n        ioa.station_name,\n        ioa.state_code,\n        ioa.cwa_code,\n        ioa.density_classification,\n        ioa.gap_classification,\n        ioa.min_distance_to_nearest_station,\n        ioa.nearby_forecast_cells,\n        ioa.interpolation_quality,\n        -- Coverage recommendations\n        CASE\n            WHEN ioa.gap_classification = 'Large Gap' THEN 'Add Station Recommended'\n            WHEN ioa.interpolation_quality = 'Poor' THEN 'Improve Station Density'\n            WHEN ioa.nearby_forecast_cells = 0 THEN 'No Forecast Coverage'\n            ELSE 'Adequate Coverage'\n        END AS coverage_recommendation,\n        -- Rankings\n        ROW_NUMBER() OVER (\n            ORDER BY ioa.min_distance_to_nearest_station DESC\n        ) AS isolation_rank,\n        PERCENT_RANK() OVER (\n            ORDER BY ioa.nearby_forecast_cells DESC\n        ) AS forecast_coverage_percentile\n    FROM interpolation_opportunity_analysis ioa\n)\nSELECT\n    station_id,\n    station_name,\n    state_code,\n    cwa_code,\n    density_classification,\n    gap_classification,\n    min_distance_to_nearest_station,\n    nearby_forecast_cells,\n    interpolation_quality,\n    coverage_recommendation,\n    isolation_rank,\n    ROUND(CAST(forecast_coverage_percentile * 100 AS NUMERIC), 2) AS forecast_coverage_percentile\nFROM final_coverage_report\nORDER BY isolation_rank\nLIMIT 200;",
   "evidence": "The operations team is responsible for maintaining an adequate weather observation network to validate forecasts and trigger parametric insurance payouts, but recent coverage audits revealed potential gaps in rural and high-risk areas where station density may be insufficient for accurate local weather monitoring. Produce a weather station network coverage analysis with spatial gap detection and coverage optimization to ensure adequate observation density across all insured regions. The query creates CTEs to calculate Voronoi polygons or buffer zones around each weather_station location to define coverage areas, spatially joins these coverage areas with shapefile_boundaries to identify regions with insufficient station density (areas beyond threshold distance from nearest station), computes coverage statistics including percentage of each boundary covered by station buffers, station density per square kilometer, and average distance to nearest station, applies ",
   "difficulty": "moderate",
   "query_category": "aggregation",

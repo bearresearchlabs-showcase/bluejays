@@ -11,39 +11,11 @@ database: db-4
 
 ---
 
-## Purpose
-
-This database supports analytics for SharedAI (Seydam AI), an AI/ML model management platform. It models deployed models, user attribution, and creation timelines. Queries use window functions, CTEs, and aggregations for model lifecycle analytics, user cohort analysis, trend detection, and operational dashboards across model inventory and usage patterns.
-
----
-
-## Use Case
-
-Target use cases for db-4:
-
-- **Model lifecycle analytics:** Creation trends, model counts by user, temporal distribution
-- **User attribution:** Models per user, user cohort comparisons, recency and frequency scoring
-- **Operational dashboards:** Quartile distributions, rolling averages, outlier detection
-- **Text-to-SQL training:** Schema-grounded queries for model management and analytics
-
----
-
-## Business Value
-
-SharedAI model databases represent high-value domains for text-to-SQL because:
-
-- Queries require understanding of model–user relationships and temporal patterns
-- Data supports model inventory, usage analytics, and user attribution reporting
-- Stakeholders need self-serve analytics (product, growth, platform teams)
-- Evidence bridges natural-language questions to schema-grounded SQL
-
----
-
 ## Installation Guide
 
 ### Step 1: Prerequisites
 
-Ensure PostgreSQL 14+ is installed. See specifications for version requirements.
+Ensure PostgreSQL is installed. See specifications for version requirements.
 
 ---
 
@@ -59,20 +31,20 @@ createdb -U postgres db_4
 
 ### Step 3: Load Schema
 
-From the database directory, load `schema.sql` to create tables, indexes, and constraints.
+Load schema.sql to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_4 -f DATABASE/schema.sql
+psql -U postgres -d db_4 -f schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from `data.sql` to populate the models table for query execution.
+Load sample data from data.sql if available.
 
 ```bash
-psql -U postgres -d db_4 -f DATABASE/data.sql
+psql -U postgres -d db_4 -f data.sql
 ```
 
 ---
@@ -92,13 +64,7 @@ Standard PostgreSQL. No extensions required unless noted.
 
 **Total tables:** 1
 
-- `models` — AI/ML model registry; stores model identifier, name, owner (user_id), and creation timestamp. Used for model lifecycle analytics, user attribution, and temporal aggregations.
-
-**Indexes:**
-
-- `idx_models_created_at` — Temporal filtering and time-series queries
-- `idx_models_user_id` — User attribution and cohort analysis
-- `idx_models_name` — Model name lookups and grouping
+- `models` — (see data dictionary)
 
 ---
 
@@ -106,24 +72,10 @@ Standard PostgreSQL. No extensions required unless noted.
 
 ### `models`
 
-AI/ML model registry. Each row represents a deployed or registered model with owner attribution and creation time.
-
-- `id` BIGINT PRIMARY KEY — Unique model identifier
-- `name` VARCHAR(255) — Model name or display label (e.g., model_1, model_2)
-- `user_id` BIGINT — Owner/creator user identifier; used for user attribution and cohort grouping
-- `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP — Creation timestamp; used for temporal filtering, rolling windows, and trend analysis
-
----
-
-## Query Documentation
-
-See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover:
-
-- Daily, weekly, and monthly aggregations by model name and user
-- Rolling averages, quartiles, and outlier detection
-- Recency and frequency scoring for maintenance prioritization
-- Cohort-style retention and distribution analysis
-- Cross-user percentile benchmarking
+- `id` BIGINT PRIMARY KEY
+- `name` VARCHAR(255) 
+- `user_id` BIGINT 
+- `created_at` TIMESTAMP 
 
 ---
 

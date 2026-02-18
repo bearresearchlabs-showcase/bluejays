@@ -3,7 +3,7 @@
     "id": "db-5",
     "name": "POS Retail (Lucasa)",
     "description": "Lucasa POS database - anonymized retail Point-of-Sale dataset from a family business in Kenya. Complete transactional history, inventory management, and multi-location operations with phppos schema.\n\n- Sales transactions and line items\n- Payment records and inventory\n- Product catalog and suppliers\n- eTIMS tax integration support\n\n- PostgreSQL: Full support\n- Databricks: Compatible with Delta Lake\n\n---",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

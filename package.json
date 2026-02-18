@@ -2,7 +2,7 @@
   "name": "db",
   "version": "1.0.0",
   "private": true,
-  "description": "Source → Ingest → Client: ingests source/ and converts to client/",
+  "description": "Source \u2192 Ingest \u2192 Client: ingests source/ and converts to client/",
   "scripts": {
     "dev": "npm run dev --prefix apps/ingest",
     "dev:test": "npm run dev:test --prefix apps/ingest",
@@ -11,9 +11,10 @@
     "dev:web": "npm run dev --prefix apps/web",
     "start": "npm run start --prefix apps/ingest",
     "lint": "npm run lint --prefix apps/ingest",
-    "test": "npm run test --prefix apps/ingest",
+    "test": "npm run test --prefix apps/ingest && npm run test:agentic",
+    "test:agentic": "python3 -m pytest tests/test_agentic_data_agent_mount_tdd_bdd.py -q --tb=line",
     "test:build": "npm run test:build --prefix apps/ingest",
-    "test:quality": "npm run test:quality --prefix apps/ingest",
+    "test:quality": "npm run test:quality --prefix apps/ingest && npm run test --prefix packages/db-utils && python3 scripts/db_check.py schema-postgresql-validate -a && python3 scripts/db_check.py source-checks -a && REPO_HEALTH_LENIENT=1 python3 scripts/db_check.py test all -q --tb=line",
     "test:watch": "npm run test:watch --prefix apps/ingest",
     "test:integration": "npm run test:integration --prefix apps/ingest",
     "test:e2e": "npm run test:e2e --prefix apps/ingest",
@@ -26,7 +27,10 @@
     "queries:md-to-json": "npm run queries:md-to-json --prefix apps/ingest",
     "queries:json-to-md": "npm run queries:json-to-md --prefix apps/ingest",
     "log:session": "node scripts/app-session-logger.js --from-git",
-    "pre-commit:root": "bash scripts/pre-commit-root.sh"
+    "pre-commit:root": "bash scripts/pre-commit-root.sh",
+    "test:regression": "REPO_HEALTH_LENIENT=1 python3 scripts/db_check.py test all -q --tb=line",
+    "test:schema-postgresql": "python3 scripts/db_check.py schema-postgresql-validate -a",
+    "test:source-checks": "python3 scripts/db_check.py source-checks -a"
   },
   "workspaces": [
     "apps/*",

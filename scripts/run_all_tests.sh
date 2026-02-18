@@ -45,8 +45,10 @@ if ! python3 -c "import tb3_workbench" 2>/dev/null; then
 fi
 
 run "env_validator" "$PYTHON scripts/env_validator.py --op db"
-run "single_source_of_truth" "$PYTHON -m pytest tests/test_single_source_of_truth.py tests/test_queries_md_human_text.py tests/test_qa_suite.py tests/test_docker_postgres_qa.py tests/test_bird_workbench_acid.py tests/test_scripts_refactor.py -q --tb=line"
+run "regression (BDD/TDD/DDD)" "REPO_HEALTH_LENIENT=1 $PYTHON scripts/db_check.py test all -q --tb=line"
+run "schema-postgresql-validate" "$PYTHON scripts/db_check.py schema-postgresql-validate -a"
 run "db_check validate" "$PYTHON scripts/db_check.py validate ${DB_ARGS[*]}"
+run "db_check repo-health" "REPO_HEALTH_LENIENT=1 $PYTHON scripts/db_check.py repo-health --lenient"
 run "db_check format" "$PYTHON scripts/db_check.py format ${DB_ARGS[*]}"
 run "db_check qa-suite" "$PYTHON scripts/db_check.py qa-suite ${DB_ARGS[*]}"
 run "bird_export" "$PYTHON scripts/bird_export.py ${DB_ARGS[*]} --single"

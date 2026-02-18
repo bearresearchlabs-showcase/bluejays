@@ -11,75 +11,6 @@ database: db-13
 
 ---
 
-## Purpose
-
-```text
-This database supports analytics for AI model benchmarking and marketing intelligence. It models
-LLM metadata (ai_models), performance metrics, benchmark evaluations, pricing history, adoption
-metrics, government benchmark data, and data pipeline metadata. It is designed to support
-text-to-SQL training across model comparison, market analysis, and compliance query types.
-```
-
-## Use Case
-
-```text
-Target use cases for db-13:
-- Model comparison: intelligence scores, pricing, speed, benchmark rankings
-- Market intelligence: market share, competitive positioning, trend analysis
-- Government compliance: NIST, NSF, DARPA benchmark scores and compliance levels
-- Adoption analytics: API usage, developer sentiment, enterprise penetration
-- Pricing analysis: price history, blended vs reasoning pricing, tier comparison
-```
-
-## Business Value
-
-```text
-AI benchmark databases represent high-value domains for text-to-SQL because:
-- Queries require understanding of model taxonomy (creator, family, type, status)
-- Metrics are multi-dimensional (intelligence, coding, agentic, speed, price)
-- Stakeholders need self-serve analytics (product, research, procurement teams)
-- Government benchmarks add compliance and regulatory context.
-```
-
-## Domain Knowledge
-
-```text
-Key domain concepts required to write correct queries against this database:
-
-AI MODELS:
-- model_id, model_slug: identifiers; creator_company (OpenAI, Anthropic, Google, Meta)
-- model_family: GPT, Claude, Gemini, Llama; model_type: dense, moe, reasoning
-- creator_type: open_source, proprietary, hybrid; license_type: open, proprietary, commercial_restricted
-- context_window: tokens; total_parameters_billions, active_parameters_billions (MoE)
-- is_reasoning_model, is_multimodal, supports_vision, supports_audio
-- model_status: active, deprecated, preview, experimental
-
-PERFORMANCE METRICS:
-- intelligence_index_score: Artificial Analysis Intelligence Index v4.0
-- coding_index_score, agentic_index_score: domain-specific scores
-- output_speed_tokens_per_sec, latency_seconds: speed metrics
-- input_price_per_million_tokens, output_price_per_million_tokens: USD per 1M tokens
-- blended_price_per_million_tokens: 3:1 input:output ratio
-- omniscience_index: AA-Omniscience (-100 to 100); openness_index: 0-100
-
-BENCHMARKS:
-- benchmark_name: GDPval-AA, Terminal-Bench Hard, SciCode, etc.
-- benchmark_category: intelligence, coding, reasoning, knowledge, agentic
-- score, normalized_score, percentile_rank, accuracy_percentage
-
-GOVERNMENT:
-- source_agency: NIST, NSF, DARPA, NIST_AI_RMF
-- compliance_level: compliant, partially_compliant, non_compliant
-- safety_score, robustness_score, bias_score, efficiency_score
-
-MARKETING:
-- market_segment: high_intelligence, cost_effective, fast, open_source
-- market_position: leader, challenger, follower, niche
-- adoption_trend: growing, stable, declining
-```
-
----
-
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -100,20 +31,20 @@ createdb -U postgres db_13
 
 ### Step 3: Load Schema
 
-From the database directory, load `schema.sql` to create tables, indexes, and constraints.
+Load schema.sql to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_13 -f DATABASE/schema.sql
+psql -U postgres -d db_13 -f schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from `data.sql` if available.
+Load sample data from data.sql if available.
 
 ```bash
-psql -U postgres -d db_13 -f DATABASE/data.sql
+psql -U postgres -d db_13 -f data.sql
 ```
 
 ---
@@ -143,7 +74,9 @@ Standard PostgreSQL. No extensions required unless noted.
 - `model_pricing_history` — (see data dictionary)
 - `model_performance_history` — (see data dictionary)
 - `data_sources` — (see data dictionary)
-- `pipeline_metadata` — (see data dictionary)---
+- `pipeline_metadata` — (see data dictionary)
+
+---
 
 ## Data Dictionary
 
@@ -371,12 +304,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `start_time` TIMESTAMP NOT NULL
 - `end_time` TIMESTAMP 
 - `data_volume_bytes` BIGINT  — Data volume processed in bytes
-
----
-
-## Query Documentation
-
-See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover model comparison, market intelligence, government compliance, adoption analytics, and pricing history.
 
 ---
 

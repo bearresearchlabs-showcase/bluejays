@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS insurance_policy_areas (
     effective_date DATE NOT NULL,
     expiration_date DATE,
     is_active BOOLEAN DEFAULT TRUE,
-    created_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Insurance Risk Factors Table
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS insurance_risk_factors (
     overall_risk_score NUMERIC(5, 2),
     risk_category VARCHAR(50),  -- 'Low', 'Moderate', 'High', 'Very High', 'Extreme'
     -- Metadata
-    calculation_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    calculation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     forecast_model VARCHAR(100),  -- 'GFS', 'HRRR', 'Ensemble', etc.
     data_quality_score NUMERIC(5, 2)
 );
@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS insurance_rate_tables (
     confidence_level NUMERIC(5, 2),  -- Confidence in forecast (0-100)
     effective_date DATE NOT NULL,
     expiration_date DATE,
-    created_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Insurance Claims History Table
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS insurance_claims_history (
     forecast_day INTEGER,  -- Days ahead forecast was made
     forecast_error NUMERIC(10, 2),  -- Forecast vs actual error
     -- Metadata
-    created_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Forecast-to-Rate Mapping Table
@@ -130,12 +130,12 @@ CREATE TABLE IF NOT EXISTS forecast_rate_mapping (
     policy_area_id VARCHAR(255) NOT NULL,  -- References insurance_policy_areas
     forecast_date DATE NOT NULL,
     forecast_day INTEGER NOT NULL,  -- 7-14 days ahead
-    forecast_time TIMESTAMP_NTZ NOT NULL,
+    forecast_time TIMESTAMP NOT NULL,
     parameter_name VARCHAR(100) NOT NULL,
     parameter_value NUMERIC(10, 2),
     risk_contribution NUMERIC(10, 4),  -- Contribution to overall risk score
     rate_impact NUMERIC(10, 4),  -- Impact on rate calculation
-    mapping_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    mapping_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Rate Table Comparison Table
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS rate_table_comparison (
     recommended_rate NUMERIC(10, 2),
     recommended_forecast_day INTEGER,  -- Which forecast day to use
     confidence_score NUMERIC(5, 2),
-    comparison_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    comparison_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create indexes for performance

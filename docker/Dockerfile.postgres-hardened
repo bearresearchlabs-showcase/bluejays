@@ -1,7 +1,10 @@
 # Hardened PostgreSQL/PostGIS base for db-1..db-16
 # Security: non-root, minimal layers, pinned versions
 # Use with docker-compose.hardened.yml (security_opt: no-new-privileges)
-
+#
+# DB-level CDC: wal_level=logical set via compose command. Enables logical
+# replication slots for pg_logical_slot_get_changes, pg_recvlogical.
+# Optional wal2json plugin: add if needed for JSON output (build from source on Alpine).
 FROM postgis/postgis:15-3.4-alpine
 
 # Ensure we run as postgres (default in official image)

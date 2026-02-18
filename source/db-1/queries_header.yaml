@@ -1,0 +1,180 @@
+# Extracted from source/db-1/app/QUERIES/queries.md
+db_name: "Chat/Messaging System"
+
+database_overview: |
+  db_id: db-1
+  domain: Chat / Messaging
+  source: [commercial]
+  license_type: [Commercial]
+  license_cost: [NDA]
+  tables: 12
+  total_rows: ~65
+  date_range: 2020-01-01 to 2026-12-31
+  sql_dialect: PostgreSQL
+
+purpose: |
+  This database supports analytics for chat and messaging platforms. It models user profiles,
+  conversations, messages, friend networks, notifications, file attachments, and anonymous
+  chat flows. It is designed to support text-to-SQL training across engagement, retention,
+  and operational query types commonly encountered in messaging product analytics.
+
+use_case: |
+  Target use cases for db-1:
+  - Engagement analytics: active users, message volume, chat participation rates
+  - Retention: friend networks, invitation flows, re-engagement patterns
+  - Operations: notification delivery, file attachment usage, anonymous chat metrics
+  - Product dashboards: conversation growth, AI vs human message mix, peak usage
+
+business_value: |
+  Messaging platforms represent high-value domains for text-to-SQL because:
+  - Queries require understanding of social graphs (friends, participants, invitations)
+  - Data relationships are complex (profile → chat → message → attachment chains)
+  - Stakeholders need self-serve analytics (product, growth, support teams)
+  - Evidence bridges natural-language questions to schema-grounded SQL.
+
+schema: |
+  -- Chat Messaging Platform Schema (db-1)
+  -- Compatible with PostgreSQL
+  -- ACID-compliant: PKs and FKs for referential integrity
+  
+  CREATE TABLE profiles (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      username VARCHAR(255) NOT NULL UNIQUE,
+      email VARCHAR(255),
+      display_name VARCHAR(255),
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  
+  CREATE TABLE chats (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      created_by UUID REFERENCES profiles(id),
+      title VARCHAR(255),
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  
+  CREATE TABLE messages (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      chat_id UUID NOT NULL REFERENCES chats(id),
+      sender_id UUID NOT NULL REFERENCES profiles(id),
+      is_ai BOOLEAN NOT NULL DEFAULT FALSE,
+      content TEXT,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  
+  CREATE TABLE chat_participants (
+      chat_id UUID NOT NULL REFERENCES chats(id),
+      user_id UUID NOT NULL REFERENCES profiles(id),
+      joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (chat_id, user_id)
+  );
+  
+  CREATE TABLE friends (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      user_id UUID NOT NULL REFERENCES profiles(id),
+      friend_id UUID NOT NULL REFERENCES profiles(id),
+      status VARCHAR(50) NOT NULL DEFAULT 'pending',
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  
+  CREATE TABLE notifications (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      user_id UUID NOT NULL REFERENCES profiles(id),
+      type VARCHAR(100),
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      read BOOLEAN DEFAULT FALSE,
+      seen_at TIMESTAMP
+  );
+  
+  CREATE TABLE file_attachments (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      chat_id UUID NOT NULL REFERENCES chats(id),
+      user_id UUID NOT NULL REFERENCES profiles(id),
+      file_name VARCHAR(255),
+      file_type VARCHAR(100),
+      file_size BIGINT,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  
+  CREATE TABLE anonymous_chats (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      join_code VARCHAR(50),
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      expires_at TIMESTAMP
+  );
+  
+  CREATE TABLE anonymous_chat_users (
+      guest_id UUID NOT NULL,
+      chat_id UUID NOT NULL REFERENCES anonymous_chats(id),
+      PRIMARY KEY (guest_id, chat_id)
+  );
+  
+  CREATE TABLE anonymous_messages (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      chat_id UUID NOT NULL REFERENCES anonymous_chats(id),
+      guest_id UUID NOT NULL,
+      content TEXT,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  
+  CREATE TABLE chat_invitations (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      inviting_user_id UUID NOT NULL REFERENCES profiles(id),
+      invited_user_id UUID NOT NULL REFERENCES profiles(id),
+      chat_id UUID NOT NULL REFERENCES chats(id),
+      status VARCHAR(50) NOT NULL DEFAULT 'pending',
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  
+  -- Aircraft position history (for time-series analytics queries)
+  CREATE TABLE aircraft_position_history (
+      id SERIAL PRIMARY KEY,
+      hex VARCHAR(20) NOT NULL,
+      speed NUMERIC(10, 2),
+      altitude NUMERIC(10, 2),
+      timestamp TIMESTAMP NOT NULL
+  );
+  CREATE INDEX idx_aircraft_position_hex ON aircraft_position_history(hex);
+  CREATE INDEX idx_aircraft_position_timestamp ON aircraft_position_history(timestamp);
+  
+  CREATE INDEX idx_messages_chat_id ON messages(chat_id);
+  CREATE INDEX idx_messages_sender_id ON messages(sender_id);
+  CREATE INDEX idx_messages_created_at ON messages(created_at);
+  CREATE INDEX idx_chat_participants_user_id ON chat_participants(user_id);
+  CREATE INDEX idx_friends_user_id ON friends(user_id);
+  CREATE INDEX idx_friends_friend_id ON friends(friend_id);
+  CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+  CREATE INDEX idx_file_attachments_chat_id ON file_attachments(chat_id);
+
+domain_knowledge: |
+  Key domain concepts required to write correct queries against this database:
+  
+  CHAT AND MESSAGING:
+  - profiles: user accounts with username, email, display_name; id is UUID
+  - chats: conversation containers; created_by references profiles
+  - messages: individual messages in a chat; sender_id references profiles; is_ai flags AI-generated content
+  - chat_participants: many-to-many (chat_id, user_id); users must join to participate
+  - friends: bidirectional relationship; status is pending | accepted | declined
+  
+  ANONYMOUS FLOWS:
+  - anonymous_chats: ephemeral chats without identity
+  - anonymous_chat_users: participants in anonymous chats
+  - anonymous_messages: messages in anonymous chats
+  
+  INVITATIONS AND NOTIFICATIONS:
+  - chat_invitations: invite users to join chats
+  - notifications: delivery of alerts to users
+  
+  ATTACHMENTS:
+  - file_attachments: links messages to uploaded files
+  
+  AVIATION (aircraft_position_history):
+  - hex: ICAO 24-bit transponder code identifying aircraft
+  - altitude: feet; speed: knots (groundspeed)
+  - timestamp: when the position was recorded
+  - Rolling averages, z-scores, and quartiles are used for anomaly detection.
+
+query_difficulty_distribution: |
+  Target distribution across 30 queries:
+  - simple (10): Single-table, basic aggregation
+  - moderate (12): 2-3 table joins, GROUP BY
+  - challenging (8): CTEs, window functions

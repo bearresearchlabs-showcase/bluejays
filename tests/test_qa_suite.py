@@ -110,7 +110,7 @@ class TestIntegrityCheck:
         assert meta.exists(), "integrity.json should be created"
         data = json.loads(meta.read_text(encoding="utf-8"))
         assert "timestamp" in data
-        assert any(k in data for k in ("schema.sql", "schema_postgresql.sql", "queries.json"))
+        assert any(k in data for k in ("schema.sql", "queries.json"))
 
 
 class TestQASuiteFlow:

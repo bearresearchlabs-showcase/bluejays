@@ -136,7 +136,7 @@ CREATE TABLE table_name (
     column_id VARCHAR(255) PRIMARY KEY,
     column_name VARCHAR(100) NOT NULL,
     -- Additional columns
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Indexes
@@ -354,16 +354,17 @@ data/
 ├── schema.sql                    # Core schema
 ├── schema_extensions.sql         # Schema extensions (if applicable)
 ├── {domain}_schema.sql          # Domain-specific schemas (e.g., insurance_schema.sql)
-├── schema_postgresql.sql        # PostgreSQL-specific extensions (if needed)
 └── data.sql                     # Sample data
 ```
 
-### Cross-Database Compatibility
+### PostgreSQL-Only Schema
 
-**CRITICAL**: All schemas must be compatible with PostgreSQL:
+**CRITICAL**: All schemas must be PostgreSQL-only (repo uses PostgreSQL exclusively):
 
 - Use standard SQL data types
-- Use `TIMESTAMP_NTZ` instead of `TIMESTAMP` (for compatibility)
+- Use `TIMESTAMP` (not TIMESTAMP_NTZ)
+- Use `JSONB` for JSON data (not VARIANT)
+- Use `CURRENT_TIMESTAMP` (not CURRENT_TIMESTAMP())
 - Use `GEOGRAPHY` for spatial data (PostgreSQL PostGIS)
 - Avoid database-specific features when possible
 - Document any required database-specific extensions
@@ -779,6 +780,8 @@ Create `docs/SCHEMA.md` with:
 9. **Consistency**: Follow patterns from existing databases (db-6, db-1, etc.)
 10. **Web-Deployable Deliverable**: **REQUIRED** - Create `db{N}-{descriptive-name}/` folder with HTML, JSON, and Vercel config following db-6 pattern
 11. **Deliverable**: Package deliverable only when database is complete
+12. **Zero Warnings**: All scripts (source-checks, validate, QA) must produce zero warnings, zero errors, no misfit in sizes; see `qa-workflow-cursor.mdc`
+13. **Environment**: Always use **brew** or **.venv**—use `.venv/bin/python` and `.venv/bin/pip` for Python; use `brew` for system tools (Docker, PostgreSQL, Node)
 
 ## Common Patterns
 

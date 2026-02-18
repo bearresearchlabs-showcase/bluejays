@@ -31,13 +31,13 @@ def get_question(q: dict) -> str:
 
 
 def load_schema(db_dir: Path) -> str:
-    """Load schema SQL (schema.sql or schema_postgresql.sql)."""
+    """Load schema SQL (schema.sql, PostgreSQL-only canonical)."""
     try:
         from db_paths import get_data_dir
         data_dir = get_data_dir(db_dir)
     except ImportError:
         data_dir = db_dir / "data"
-    for name in ("schema.sql", "schema_postgresql.sql"):
+    for name in ("schema.sql",):
         p = data_dir / name
         if p.exists():
             return p.read_text(encoding="utf-8")

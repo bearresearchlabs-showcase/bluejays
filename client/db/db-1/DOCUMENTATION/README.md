@@ -34,7 +34,7 @@ createdb -U postgres db_1
 Load schema.sql to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_1 -f DATABASE/schema.sql
+psql -U postgres -d db_1 -f schema.sql
 ```
 
 ---
@@ -44,7 +44,7 @@ psql -U postgres -d db_1 -f DATABASE/schema.sql
 Load sample data from data.sql if available.
 
 ```bash
-psql -U postgres -d db_1 -f DATABASE/data.sql
+psql -U postgres -d db_1 -f data.sql
 ```
 
 ---
@@ -75,7 +75,9 @@ Standard PostgreSQL. No extensions required unless noted.
 - `anonymous_chat_users` — (see data dictionary)
 - `anonymous_messages` — (see data dictionary)
 - `chat_invitations` — (see data dictionary)
-- `aircraft_position_history` — (see data dictionary)---
+- `aircraft_position_history` — (see data dictionary)
+
+---
 
 ## Data Dictionary
 

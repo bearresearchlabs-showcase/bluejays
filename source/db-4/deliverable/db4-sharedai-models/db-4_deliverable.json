@@ -3,7 +3,7 @@
     "id": "db-4",
     "name": "SharedAI Models (Seydam AI)",
     "description": "Seydam AI database with SharedAI application schema. Includes core application data, user profiles, payment records, generated reports, and AI model metadata. Exported from Supabase PostgreSQL.\n\n- User profiles and reports\n- Payment and token usage tracking\n- AI model management\n- JSON report content\n\n- PostgreSQL: Full support\n- Databricks: Compatible with Delta Lake\n- Databricks: Full support\n\n---",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

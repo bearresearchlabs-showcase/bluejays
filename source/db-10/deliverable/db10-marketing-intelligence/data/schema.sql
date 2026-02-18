@@ -23,8 +23,8 @@ CREATE TABLE products (
     dimensions_height NUMERIC(8, 2),
     color VARCHAR(100),
     size VARCHAR(100),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     is_active BOOLEAN DEFAULT TRUE,
     data_source VARCHAR(50) DEFAULT 'MANUAL'
 );
@@ -49,8 +49,8 @@ CREATE TABLE retailers (
     employee_count INTEGER,
     annual_revenue_usd NUMERIC(15, 2),
     data_source VARCHAR(50) DEFAULT 'MANUAL',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Stores Table
@@ -76,8 +76,8 @@ CREATE TABLE stores (
     phone_number VARCHAR(20),
     store_status VARCHAR(50) DEFAULT 'open', -- 'open', 'closed', 'temporary_closed'
     data_source VARCHAR(50) DEFAULT 'MANUAL',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (retailer_id) REFERENCES retailers(retailer_id)
 );
 
@@ -92,12 +92,12 @@ CREATE TABLE product_inventory (
     available_quantity INTEGER,
     reserved_quantity INTEGER DEFAULT 0,
     reorder_point INTEGER,
-    last_checked_at TIMESTAMP_NTZ NOT NULL,
-    last_restocked_at TIMESTAMP_NTZ,
+    last_checked_at TIMESTAMP NOT NULL,
+    last_restocked_at TIMESTAMP,
     data_source VARCHAR(50) NOT NULL, -- 'api', 'scraper', 'manual', 'census'
     confidence_score NUMERIC(5, 2), -- Data quality confidence (0-100)
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(product_id),
     FOREIGN KEY (store_id) REFERENCES stores(store_id)
 );
@@ -113,16 +113,16 @@ CREATE TABLE product_pricing (
     original_price NUMERIC(10, 2),
     sale_price NUMERIC(10, 2),
     discount_percentage NUMERIC(5, 2),
-    price_effective_date TIMESTAMP_NTZ NOT NULL,
-    price_expiry_date TIMESTAMP_NTZ,
+    price_effective_date TIMESTAMP NOT NULL,
+    price_expiry_date TIMESTAMP,
     price_type VARCHAR(50), -- 'regular', 'sale', 'clearance', 'promotional'
     price_source VARCHAR(50) NOT NULL, -- 'api', 'scraper', 'manual', 'census'
     price_confidence_score NUMERIC(5, 2), -- Data quality confidence (0-100)
     currency VARCHAR(3) DEFAULT 'USD',
     is_online_price BOOLEAN DEFAULT FALSE,
     shipping_cost NUMERIC(8, 2),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(product_id),
     FOREIGN KEY (retailer_id) REFERENCES retailers(retailer_id),
     FOREIGN KEY (store_id) REFERENCES stores(store_id)
@@ -147,8 +147,8 @@ CREATE TABLE market_intelligence (
     total_stores_checked INTEGER,
     intelligence_date DATE NOT NULL,
     data_quality_score NUMERIC(5, 2), -- Overall data quality score (0-100)
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
@@ -164,15 +164,15 @@ CREATE TABLE deal_alerts (
     discount_amount NUMERIC(10, 2),
     deal_price NUMERIC(10, 2) NOT NULL,
     original_price NUMERIC(10, 2) NOT NULL,
-    deal_start_date TIMESTAMP_NTZ NOT NULL,
-    deal_end_date TIMESTAMP_NTZ,
+    deal_start_date TIMESTAMP NOT NULL,
+    deal_end_date TIMESTAMP,
     deal_status VARCHAR(50) DEFAULT 'active', -- 'active', 'expired', 'cancelled'
     deal_description VARCHAR(2000),
     deal_source VARCHAR(50) NOT NULL, -- 'api', 'scraper', 'manual', 'census'
     is_online_deal BOOLEAN DEFAULT FALSE,
     quantity_limit INTEGER,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(product_id),
     FOREIGN KEY (retailer_id) REFERENCES retailers(retailer_id),
     FOREIGN KEY (store_id) REFERENCES stores(store_id)
@@ -193,8 +193,8 @@ CREATE TABLE census_retail_data (
     sales_change_percent NUMERIC(6, 2), -- Month-over-month percentage change
     inventory_change_percent NUMERIC(6, 2),
     data_source VARCHAR(50) DEFAULT 'CENSUS_MRTS',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- BLS Price Data Table
@@ -211,8 +211,8 @@ CREATE TABLE bls_price_data (
     base_period VARCHAR(20), -- Base period for index (e.g., '1982-84=100')
     index_type VARCHAR(50), -- 'CPI', 'PPI', 'CPI_U', 'CPI_W'
     data_source VARCHAR(50) DEFAULT 'BLS_API',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Geographic Markets Table
@@ -231,8 +231,8 @@ CREATE TABLE geographic_markets (
     county_name VARCHAR(100),
     msa_code VARCHAR(10), -- Metropolitan Statistical Area code
     data_source VARCHAR(50) DEFAULT 'CENSUS',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Data Sources Table
@@ -245,13 +245,13 @@ CREATE TABLE data_sources (
     api_key_required BOOLEAN DEFAULT FALSE,
     rate_limit_per_hour INTEGER,
     rate_limit_per_day INTEGER,
-    last_sync_at TIMESTAMP_NTZ,
+    last_sync_at TIMESTAMP,
     sync_frequency VARCHAR(50), -- 'hourly', 'daily', 'weekly', 'monthly', 'manual'
     data_quality_score NUMERIC(5, 2), -- Overall data quality score (0-100)
     is_active BOOLEAN DEFAULT TRUE,
     notes VARCHAR(2000),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Pipeline Metadata Table
@@ -259,7 +259,7 @@ CREATE TABLE data_sources (
 CREATE TABLE pipeline_metadata (
     pipeline_id VARCHAR(255) PRIMARY KEY,
     source_id VARCHAR(255) NOT NULL,
-    extraction_date TIMESTAMP_NTZ NOT NULL,
+    extraction_date TIMESTAMP NOT NULL,
     pipeline_type VARCHAR(50) NOT NULL, -- 'extract', 'transform', 'load', 'full'
     records_processed INTEGER DEFAULT 0,
     records_successful INTEGER DEFAULT 0,
@@ -267,9 +267,9 @@ CREATE TABLE pipeline_metadata (
     processing_duration_seconds INTEGER,
     error_log VARCHAR(16777216),
     status VARCHAR(50) DEFAULT 'running', -- 'running', 'success', 'failed', 'partial'
-    start_time TIMESTAMP_NTZ NOT NULL,
-    end_time TIMESTAMP_NTZ,
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    start_time TIMESTAMP NOT NULL,
+    end_time TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (source_id) REFERENCES data_sources(source_id)
 );
 

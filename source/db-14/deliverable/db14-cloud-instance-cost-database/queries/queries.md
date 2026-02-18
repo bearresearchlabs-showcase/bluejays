@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-14
-domain: cloud, cost optimization, AWS, infrastructure
-source: open
-license_type: Open
-license_cost: $0
-tables: 11
-total_rows: ~40K
+domain: Database domain
+source: [synthetic / open / commercial]
+license_type: [Commercial / Open / Academic]
+license_cost: [Annual cost if applicable]
+tables: 0
+total_rows: ~0
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,35 +17,26 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for cloud instance costs: instance types, pricing, regions, and cost optimization.
+This database supports analytics for db-14.
 ```
 
 ## Use Case
 
 ```text
-Target use cases: cost analytics, instance comparison, optimization recommendations, cloud dashboards.
+Target use cases for db-14: analytics, reporting, dashboards.
 ```
 
 ## Business Value
 
 ```text
-Enables cloud teams to reduce spend, right-size instances, and optimize infrastructure ($1M+ ARR).
+Business value for db-14.
 ```
 
 ## Schema
 
 ```sql
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:13
--- Database: db-14
---
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
 -- Cloud Instance Cost Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
+-- Compatible with PostgreSQL
 -- Production schema for cloud instance cost analysis and optimization system
 
 -- Cloud Providers Table
@@ -58,7 +49,7 @@ CREATE TABLE cloud_providers (
     pricing_api_endpoint VARCHAR(500),
     documentation_url VARCHAR(500),
     data_source VARCHAR(100),  -- 'vantage.sh', 'official_api', 'scraped'
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
     update_frequency VARCHAR(50),  -- 'daily', 'weekly', 'monthly'
     data_quality_score NUMERIC(5, 2)
 );
@@ -78,7 +69,7 @@ CREATE TABLE cloud_regions (
     launch_date DATE,
     data_center_count INTEGER,
     availability_zones_count INTEGER,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
     FOREIGN KEY (provider_id) REFERENCES cloud_providers(provider_id)
 );
 
@@ -88,14 +79,19 @@ CREATE TABLE instance_families (
     family_id VARCHAR(255) PRIMARY KEY,
     provider_id VARCHAR(50) NOT NULL,
     family_name VARCHAR(100) NOT NULL,  -- 'General Purpose', 'Compute Optimized', 'Memory Optimized'
-    family_code VARC
+    family_code VARCHAR(50),  -- 'm5', 'c5', 'r5' for AWS
+    family_description TEXT,
+    use_case_category VARCHAR(100),
+    target_workloads TEXT,
+    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    FOREIGN KEY (provider_id) REFERENCES cloud_providers(provide
 -- ...
 ```
 
 ## Domain Knowledge
 
 ```text
-Instance types, regions, pricing. vCPU, memory, storage. Reserved vs on-demand.
+Domain-specific concepts for this database.
 ```
 
 ## Query Difficulty Distribution

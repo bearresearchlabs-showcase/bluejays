@@ -4204,7 +4204,7 @@ Queries use standard SQL syntax and avoid platform-specific features to ensure c
 
 **Document Information:**
 
-- **Generated**: 20260216-2243
+- **Generated**: 20260218-0146
 - **Database**: db-9
 - **Type**: Shipping Intelligence Database
 - **Queries**: 30 production queries

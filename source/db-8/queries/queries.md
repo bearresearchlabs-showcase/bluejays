@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-8
-domain: HR, jobs, labor market, recruiting
-source: synthetic
-license_type: Open
-license_cost: $0
-tables: 12
-total_rows: ~80K
+domain: Database domain
+source: [synthetic / open / commercial]
+license_type: [Commercial / Open / Academic]
+license_cost: [Annual cost if applicable]
+tables: 0
+total_rows: ~0
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,36 +17,27 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for job market intelligence: job postings, companies, skills, and labor market trends.
+This database supports analytics for db-8.
 ```
 
 ## Use Case
 
 ```text
-Target use cases: job analytics, skill demand, salary benchmarks, recruiting dashboards.
+Target use cases for db-8: analytics, reporting, dashboards.
 ```
 
 ## Business Value
 
 ```text
-Enables HR and recruiting platforms to provide market insights and salary benchmarks ($1M+ ARR).
+Business value for db-8.
 ```
 
 ## Schema
 
 ```sql
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:05
--- Database: db-8
---
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
--- Job Market Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
--- Production schema for job market and targeted application system
+-- Job Market Intelligence Database Schema
+-- Compatible with PostgreSQL
+-- Production schema for job market intelligence and targeted application system
 -- Integrates data from USAJobs.gov, BLS, Department of Labor, and state employment boards
 
 -- User Profiles Table
@@ -72,9 +63,9 @@ CREATE TABLE user_profiles (
     salary_expectation_min INTEGER,
     salary_expectation_max INTEGER,
     preferred_locations VARCHAR(16777216), -- JSON array of preferred locations
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
-    last_active_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_active_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
     profile_completeness_score NUMERIC(5, 2),
     is_active BOOLEAN DEFAULT TRUE
 );
@@ -87,14 +78,20 @@ CREATE TABLE companies (
     company_name_normalized VARCHAR(255), -- Normalized name for matching
     industry VARCHAR(100),
     company_size VARCHAR(50), -- 'startup', 'small', 'medium', 'large', 'enterprise'
-
+    headquarters_city VARCHAR(100),
+    headquarters_state VARCHAR(2),
+    headquarters_country VARCHAR(2) DEFAULT 'US',
+    website_url VARCHAR(500),
+    linkedin_url VARCHAR(500),
+    description VARCHAR(16777216),
+    founded_ye
 -- ...
 ```
 
 ## Domain Knowledge
 
 ```text
-Jobs, companies, skills, applicants. Labor market metrics, salary bands.
+Domain-specific concepts for this database.
 ```
 
 ## Query Difficulty Distribution
@@ -874,7 +871,7 @@ Target distribution across 30 queries:
   "db_id": "db-8",
   "question_id": 29,
   "question": "Can you perform cross-database job matching that integrates multiple data sources with redundancy handling and unified result attribution?",
-  "SQL": "WITH multi_source_job_aggregation AS (\n    -- First CTE: Aggregate jobs from all sources\n    SELECT\n        jp.job_id,\n        jp.job_title,\n        jp.company_id,\n        jp.industry,\n        jp.location_state,\n        jp.location_city,\n        jp.work_model,\n        jp.salary_min,\n        jp.salary_max,\n        jp.posted_date,\n        jp.data_source,\n        jp.usajobs_id,\n        jp.is_federal_job,\n        c.company_name,\n        -- Normalize job title for matching\n        LOWER(TRIM(jp.job_title)) AS normalized_title,\n        -- Create composite key for deduplication\n        MD5(CONCAT(jp.job_title, jp.company_id, jp.location_state, jp.location_city)) AS job_fingerprint\n    FROM job_postings jp\n    INNER JOIN companies c ON jp.company_id = c.company_id\n    WHERE jp.is_active = TRUE\n),\nsource_deduplication AS (\n    -- Second CTE: Deduplicate across sources\n    SELECT\n        msja.job_id,\n        msja.job_title,\n        msja.company_id,\n        msja.industry,\n        msja.location_state,\n        msja.location_city,\n        msja.work_model,\n        msja.salary_min,\n        msja.salary_max,\n        msja.posted_date,\n        msja.data_source,\n        msja.usajobs_id,\n        msja.is_federal_job,\n        msja.company_name,\n        msja.normalized_title,\n        msja.job_fingerprint,\n        -- Source priority (federal jobs from USAJobs have priority)\n        CASE\n            WHEN msja.is_federal_job = TRUE AND msja.data_source = 'usajobs' THEN 1\n            WHEN msja.data_source = 'usajobs' THEN 2\n            WHEN msja.data_source = 'bls' THEN 3\n            ELSE 4\n        END AS source_priority,\n        -- Count sources for same job\n        COUNT(*) OVER (PARTITION BY msja.job_fingerprint) AS source_count,\n        -- Primary source\n        FIRST_VALUE(msja.data_source) OVER (\n            PARTITION BY msja.job_fingerprint\n            ORDER BY \n                CASE\n                    WHEN msja.is_federal_job = TRUE AND msja.data_source = 'usajobs' THEN 1\n                    WHEN msja.data_source = 'usajobs' THEN 2\n                    WHEN msja.data_source = 'bls' THEN 3\n                    ELSE 4\n                END\n        ) AS primary_source\n    FROM multi_source_job_aggregation msja\n),\nunified_job_matching AS (\n    -- Third CTE: Unified matching across sources\n    SELECT\n        sd.job_id,\n        sd.job_title,\n        sd.job_fingerprint,\n        sd.company_id,\n        sd.company_name,\n        sd.industry,\n        sd.location_state,\n        sd.location_city,\n        sd.work_model,\n        sd.salary_min,\n        sd.salary_max,\n        sd.posted_date,\n        sd.data_source,\n        sd.primary_source,\n        sd.source_count,\n        sd.is_federal_job,\n        sd.usajobs_id,\n        -- User matching (if user_id provided)\n        (\n            SELECT COUNT(*)\n            FROM user_skills us\n            INNER JOIN job_skills_requirements jsr ON us.skill_id = jsr.skill_id\n            WHERE jsr.job_id = sd.job_id\n                AND us.user_id = 'USER_ID_PLACEHOLDER'  -- Replace with actual user_id\n        ) AS user_skill_matches,\n        -- Match score components\n        CASE\n            WHEN sd.source_count > 1 THEN 10  -- Bonus for multi-source confirmation\n            ELSE 0\n        END AS redundancy_bonus\n    FROM source_deduplication sd\n    WHERE sd.source_priority = (\n        SELECT MIN(sd2.source_priority)\n        FROM source_deduplication sd2\n        WHERE sd2.job_fingerprint = sd.job_fingerprint\n    )\n),\ncross_source_analytics AS (\n    -- Fourth CTE: Analyze cross-source patterns\n    SELECT\n        ujm.job_id,\n        ujm.job_title,\n        ujm.company_name,\n        ujm.industry,\n        ujm.location_state,\n        ujm.work_model,\n        ujm.salary_min,\n        ujm.salary_max,\n        ujm.posted_date,\n        ujm.data_source,\n        ujm.primary_source,\n        ujm.source_count,\n        ujm.is_federal_job,\n        ujm.user_skill_matches,\n        ujm.redundancy_bonus,\n        -- Source coverage\n        (\n            SELECT COUNT(DISTINCT jp2.data_source)\n            FROM job_postings jp2\n            WHERE MD5(CONCAT(jp2.job_title, jp2.company_id, jp2.location_state, jp2.location_city)) = ujm.job_fingerprint\n        ) AS source_coverage_count,\n        -- Unified match score\n        (\n            ujm.user_skill_matches * 5 +\n            ujm.redundancy_bonus +\n            CASE WHEN ujm.is_federal_job = TRUE THEN 5 ELSE 0 END\n        ) AS unified_match_score\n    FROM unified_job_matching ujm\n)\nSELECT\n    csa.job_id,\n    csa.job_title,\n    csa.company_name,\n    csa.industry,\n    csa.location_state,\n    csa.work_model,\n    csa.salary_min,\n    csa.salary_max,\n    csa.posted_date,\n    csa.data_source,\n    csa.primary_source,\n    csa.source_count,\n    csa.source_coverage_count,\n    csa.is_federal_job,\n    csa.user_skill_matches,\n    csa.unified_match_score,\n    RANK() OVER (ORDER BY csa.unified_match_score DESC) AS match_rank\nFROM cross_source_analytics csa\nORDER BY csa.unified_match_score DESC, csa.posted_date DESC\nLIMIT 100;",
+  "SQL": "WITH multi_source_job_aggregation AS (\n    -- First CTE: Aggregate jobs from all sources\n    SELECT\n        jp.job_id,\n        jp.job_title,\n        jp.company_id,\n        jp.industry,\n        jp.location_state,\n        jp.location_city,\n        jp.work_model,\n        jp.salary_min,\n        jp.salary_max,\n        jp.posted_date,\n        jp.data_source,\n        jp.usajobs_id,\n        jp.is_federal_job,\n        c.company_name,\n        -- Normalize job title for matching\n        LOWER(TRIM(jp.job_title)) AS normalized_title,\n        -- Create composite key for deduplication\n        MD5(CONCAT(jp.job_title, jp.company_id, jp.location_state, jp.location_city)) AS job_fingerprint\n    FROM job_postings jp\n    INNER JOIN companies c ON jp.company_id = c.company_id\n    WHERE jp.is_active = TRUE\n),\nsource_deduplication AS (\n    -- Second CTE: Deduplicate across sources\n    SELECT\n        msja.job_id,\n        msja.job_title,\n        msja.company_id,\n        msja.industry,\n        msja.location_state,\n        msja.location_city,\n        msja.work_model,\n        msja.salary_min,\n        msja.salary_max,\n        msja.posted_date,\n        msja.data_source,\n        msja.usajobs_id,\n        msja.is_federal_job,\n        msja.company_name,\n        msja.normalized_title,\n        msja.job_fingerprint,\n        -- Source priority (federal jobs from USAJobs have priority)\n        CASE\n            WHEN msja.is_federal_job = TRUE AND msja.data_source = 'usajobs' THEN 1\n            WHEN msja.data_source = 'usajobs' THEN 2\n            WHEN msja.data_source = 'bls' THEN 3\n            ELSE 4\n        END AS source_priority,\n        -- Count sources for same job\n        COUNT(*) OVER (PARTITION BY msja.job_fingerprint) AS source_count,\n        -- Primary source\n        FIRST_VALUE(msja.data_source) OVER (\n            PARTITION BY msja.job_fingerprint\n            ORDER BY \n                CASE\n                    WHEN msja.is_federal_job = TRUE AND msja.data_source = 'usajobs' THEN 1\n                    WHEN msja.data_source = 'usajobs' THEN 2\n                    WHEN msja.data_source = 'bls' THEN 3\n                    ELSE 4\n                END\n        ) AS primary_source\n    FROM multi_source_job_aggregation msja\n),\nunified_job_matching AS (\n    -- Third CTE: Unified matching across sources\n    SELECT\n        sd.job_id,\n        sd.job_title,\n        sd.job_fingerprint,\n        sd.company_id,\n        sd.company_name,\n        sd.industry,\n        sd.location_state,\n        sd.location_city,\n        sd.work_model,\n        sd.salary_min,\n        sd.salary_max,\n        sd.posted_date,\n        sd.data_source,\n        sd.primary_source,\n        sd.source_count,\n        sd.is_federal_job,\n        sd.usajobs_id,\n        -- User matching (if user_id provided)\n        (\n            SELECT COUNT(*)\n            FROM user_skills us\n            INNER JOIN job_skills_requirements jsr ON us.skill_id = jsr.skill_id\n            WHERE jsr.job_id = sd.job_id\n                AND us.user_id = 'USER_ID_PLACEHOLDER'  -- Replace with actual user_id\n        ) AS user_skill_matches,\n        -- Match score components\n        CASE\n            WHEN sd.source_count > 1 THEN 10  -- Bonus for multi-source confirmation\n            ELSE 0\n        END AS redundancy_bonus\n    FROM source_deduplication sd\n    WHERE sd.source_priority = (\n        SELECT MIN(sd2.source_priority)\n        FROM source_deduplication sd2\n        WHERE sd2.job_fingerprint = sd.job_fingerprint\n    )\n),\ncross_source_analytics AS (\n    -- Fourth CTE: Analyze cross-source patterns\n    SELECT\n        ujm.job_id,\n        ujm.job_title,\n        ujm.company_name,\n        ujm.industry,\n        ujm.location_state,\n        ujm.work_model,\n        ujm.salary_min,\n        ujm.salary_max,\n        ujm.posted_date,\n        ujm.data_source,\n        ujm.primary_source,\n        ujm.source_count,\n        ujm.is_federal_job,\n        ujm.user_skill_matches,\n        ujm.redundancy_bonus,\n        -- Source coverage\n        (\n            SELECT COUNT(DISTINCT jp2.data_source)\n            FROM job_postings jp2\n            WHERE jp2.job_fingerprint = ujm.job_fingerprint\n        ) AS source_coverage_count,\n        -- Unified match score\n        (\n            ujm.user_skill_matches * 5 +\n            ujm.redundancy_bonus +\n            CASE WHEN ujm.is_federal_job = TRUE THEN 5 ELSE 0 END\n        ) AS unified_match_score\n    FROM unified_job_matching ujm\n)\nSELECT\n    csa.job_id,\n    csa.job_title,\n    csa.company_name,\n    csa.industry,\n    csa.location_state,\n    csa.work_model,\n    csa.salary_min,\n    csa.salary_max,\n    csa.posted_date,\n    csa.data_source,\n    csa.primary_source,\n    csa.source_count,\n    csa.source_coverage_count,\n    csa.is_federal_job,\n    csa.user_skill_matches,\n    csa.unified_match_score,\n    RANK() OVER (ORDER BY csa.unified_match_score DESC) AS match_rank\nFROM cross_source_analytics csa\nORDER BY csa.unified_match_score DESC, csa.posted_date DESC\nLIMIT 100;",
   "evidence": "As a data integration specialist in the Job Market Intelligence domain, I need to match job seekers with opportunities across multiple databases to maximize coverage and accuracy. The organization maintains data in multiple systems: primary user_profiles and job_postings tables, supplementary skills databases with extended taxonomies, a legacy applications system, and external partner feeds, all containing overlapping but not identical information requiring deduplication and source tracking. Build a cross-database job matching system that queries multiple data sources simultaneously, unifies matching results into a coherent set, attributes each match to its originating source(s), and handles redundancy when the same job or candidate appears in multiple databases. The query uses UNION or UNION ALL operations to combine results from multiple database sources, applies standardization logic to normalize job titles, skill names, and location formats across systems, ",
   "difficulty": "moderate",
   "query_category": "aggregation",

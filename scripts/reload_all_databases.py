@@ -178,13 +178,9 @@ class DatabaseReloader:
             
             cursor = conn.cursor()
             
-            # Read and execute data file
+            # Read and execute data file (data SQL is already PostgreSQL-compatible)
             with open(data_file, 'r', encoding='utf-8') as f:
                 data_sql = f.read()
-            
-            # Convert to PostgreSQL syntax
-            from postgresql_schema_loader import convert_to_postgresql
-            data_sql = convert_to_postgresql(data_sql)
             
             # Split by semicolons and execute each statement
             statements = [s.strip() for s in data_sql.split(';') if s.strip()]

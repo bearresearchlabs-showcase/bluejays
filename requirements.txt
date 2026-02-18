@@ -12,3 +12,6 @@ anthropic>=0.39.0
 
 # JSON Schema (required for validate_queries_json)
 jsonschema>=4.20.0
+
+# File-based CDC (watch_source_and_sync)
+watchdog>=4.0.0

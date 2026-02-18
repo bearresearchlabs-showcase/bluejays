@@ -106,7 +106,7 @@ def load_task(db_num: int) -> GDPvalState:
     # schema
     schema_path = data_dir / "schema.sql"
     if not schema_path.exists():
-        schema_path = data_dir / "schema_postgresql.sql"
+        schema_path = data_dir / "schema.sql"
 
     return GDPvalState(
         db_num=db_num,

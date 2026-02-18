@@ -11,34 +11,6 @@ database: db-11
 
 ---
 
-## Purpose
-
-This database supports analytics for parking intelligence. It models metropolitan areas, cities, airports, stadiums/venues, parking facilities, pricing, traffic volume, events, utilization, competitive analysis, business districts, and data source metadata. Queries use geography types, aggregations, and window functions for facility utilization, pricing trends, and market intelligence.
-
----
-
-## Use Case
-
-Target use cases for db-11:
-
-- **Facility utilization:** Occupancy rates, traffic volume, event-driven demand
-- **Pricing analytics:** Facility pricing, competitive analysis, market intelligence metrics
-- **Geographic analysis:** Metropolitan areas, cities, airports, business districts
-- **Event impact:** Stadium/venue events, utilization spikes, demand forecasting
-
----
-
-## Business Value
-
-Parking intelligence databases represent high-value domains for text-to-SQL because:
-
-- Queries span facilities, pricing, traffic, events, and geographic hierarchy
-- Stakeholders need utilization and competitive pricing analytics
-- Spatial and temporal patterns require complex aggregations
-- Evidence bridges natural-language questions to schema-grounded SQL
-
----
-
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -59,20 +31,20 @@ createdb -U postgres db_11
 
 ### Step 3: Load Schema
 
-From the database directory, load `schema.sql` to create tables, indexes, and constraints. PostGIS required if geography columns are used.
+Load schema.sql to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_11 -f DATABASE/schema.sql
+psql -U postgres -d db_11 -f schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from `data.sql` if available.
+Load sample data from data.sql if available.
 
 ```bash
-psql -U postgres -d db_11 -f DATABASE/data.sql
+psql -U postgres -d db_11 -f data.sql
 ```
 
 ---
@@ -105,7 +77,9 @@ Standard PostgreSQL. No extensions required unless noted.
 - `competitive_analysis` — (see data dictionary)
 - `business_districts` — (see data dictionary)
 - `facility_district_mapping` — (see data dictionary)
-- `data_source_metadata` — (see data dictionary)---
+- `data_source_metadata` — (see data dictionary)
+
+---
 
 ## Data Dictionary
 
@@ -352,12 +326,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `completeness_pct` NUMERIC(5, 2) 
 - `error_count` INTEGER 
 - `load_timestamp` TIMESTAMP 
-
----
-
-## Query Documentation
-
-See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover facility utilization, pricing analytics, competitive analysis, event impact, and geographic markets.
 
 ---
 

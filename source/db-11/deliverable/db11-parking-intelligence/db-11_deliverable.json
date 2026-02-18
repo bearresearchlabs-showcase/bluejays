@@ -3,7 +3,7 @@
     "id": "db-11",
     "name": "Parking Intelligence Database",
     "description": "This database implements a comprehensive parking intelligence system for marketing analysis, mirroring SpotHero's business model. The database aggregates parking facility data, demographics, traffic patterns, airport statistics, venue information, and market intelligence metrics from government sources to support parking marketplace operations across 400+ cities in North America.\n\n- Parking Facility Intelligence: Comprehensive database of parking facilities (lots, garages, structures) with prici",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

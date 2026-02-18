@@ -70,17 +70,17 @@ for n in $DB_NUMS; do
     dbname="db${n}"
     port=$((DB_PORTS_START + n - 1))
 
-    # Find schema/data: client/db/db-N/DATABASE/ or source/db-N/app/DATABASE/
+    # Find schema/data: source-first (app/DATABASE), then client, then legacy data/
+    source_app="$BASE_DIR/source/db-${n}/app/DATABASE"
     client_data="$BASE_DIR/client/db/db-${n}/DATABASE"
-    source_data="$BASE_DIR/source/db-${n}/app/DATABASE"
-    source_data_legacy="$BASE_DIR/source/db-${n}/data"
+    source_legacy="$BASE_DIR/source/db-${n}/data"
     data_dir=""
-    if [ -d "$client_data" ]; then
+    if [ -d "$source_app" ]; then
+        data_dir="$source_app"
+    elif [ -d "$client_data" ]; then
         data_dir="$client_data"
-    elif [ -d "$source_data" ]; then
-        data_dir="$source_data"
-    elif [ -d "$source_data_legacy" ]; then
-        data_dir="$source_data_legacy"
+    elif [ -d "$source_legacy" ]; then
+        data_dir="$source_legacy"
     fi
 
     if [ -z "$data_dir" ]; then
@@ -89,8 +89,7 @@ for n in $DB_NUMS; do
     fi
 
     schema=""
-    [ -f "$data_dir/schema_postgresql.sql" ] && schema="$data_dir/schema_postgresql.sql"
-    [ -z "$schema" ] && [ -f "$data_dir/schema.sql" ] && schema="$data_dir/schema.sql"
+    [ -f "$data_dir/schema.sql" ] && schema="$data_dir/schema.sql"
 
     if [ -n "$schema" ]; then
         if docker exec -i "$container" psql -U postgres -d "$dbname" -f - < "$schema" 2>/dev/null; then

@@ -1,1 +1,0 @@
-schema_postgresql.sql

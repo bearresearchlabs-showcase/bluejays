@@ -109,30 +109,21 @@ def load_schema(conn, db_path: Path, db_num: int) -> Tuple[bool, str]:
         except Exception as e:
             conn.rollback()
 
-    # Schema files to load - use main schema for PostGIS dbs (GEOGRAPHY), else schema_postgresql
-    if db_num in (6, 7, 10, 12, 16) and (data_dir / 'schema.sql').exists():
-        schema_files.append(data_dir / 'schema.sql')  # Use GEOGRAPHY with PostGIS
-    elif (data_dir / 'schema_postgresql.sql').exists():
-        schema_files.append(data_dir / 'schema_postgresql.sql')
-    else:
+    # Schema files to load - schema.sql is canonical (PostgreSQL-only)
+    if (data_dir / 'schema.sql').exists():
         schema_files.append(data_dir / 'schema.sql')
 
-    # Extensions and domain schemas
-    for ext in ['schema_extensions.sql', 'schema_extensions_postgresql.sql',
-                'insurance_schema.sql', 'insurance_schema_postgresql.sql',
-                'nexrad_satellite_schema.sql', 'nexrad_satellite_schema_postgresql.sql']:
+    # Extensions and domain schemas (no _postgresql variants)
+    for ext in ['schema_extensions.sql', 'insurance_schema.sql', 'nexrad_satellite_schema.sql']:
         if (data_dir / ext).exists():
             schema_files.append(data_dir / ext)
 
     for f in schema_files:
         try:
             sql = f.read_text(encoding='utf-8')
-            # Compatibility fixes for PostgreSQL
-            sql = sql.replace('TIMESTAMP_NTZ', 'TIMESTAMP')
-            sql = sql.replace('CURRENT_TIMESTAMP()', 'CURRENT_TIMESTAMP')
+            # Schema is already PostgreSQL-only; VARCHAR size fixes for compatibility
             sql = re.sub(r'VARCHAR\(16777216\)', 'TEXT', sql, flags=re.I)
             sql = re.sub(r'VARCHAR\(10485760\)', 'TEXT', sql, flags=re.I)
-            sql = re.sub(r'\bVARIANT\b', 'JSONB', sql, flags=re.I)
             # Execute statement by statement
             with conn.cursor() as cur:
                 for stmt in _split_sql_statements(sql):
@@ -143,8 +134,8 @@ def load_schema(conn, db_path: Path, db_num: int) -> Tuple[bool, str]:
             conn.rollback()
             # Try replacing GEOGRAPHY with TEXT for compatibility
             if 'geography' in str(e).lower() or 'type "geography"' in str(e).lower():
-                try:
-                    sql = sql.replace('GEOGRAPHY', 'TEXT').replace('TIMESTAMP_NTZ', 'TIMESTAMP')
+            try:
+                sql = sql.replace('GEOGRAPHY', 'TEXT')
                     for stmt in _split_sql_statements(sql):
                         if stmt.strip():
                             with conn.cursor() as cur:

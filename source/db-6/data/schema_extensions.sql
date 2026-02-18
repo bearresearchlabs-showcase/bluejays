@@ -11,9 +11,9 @@ CREATE TABLE IF NOT EXISTS aws_data_source_log (
     bucket_name VARCHAR(255) NOT NULL,
     file_path VARCHAR(1000) NOT NULL,
     format VARCHAR(50),  -- 'grib2', 'netcdf', 'binary', etc.
-    ingestion_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    ingestion_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(50) DEFAULT 'Success',  -- 'Success', 'Failed', 'Pending'
-    metadata VARIANT,  -- JSON metadata JSONB (PostgreSQL) - Use OBJECT for cross-database compatibility
+    metadata JSONB,  -- PostgreSQL JSONB (repo is PostgreSQL-only)
     file_size_bytes BIGINT,
     forecast_date DATE,
     forecast_cycle VARCHAR(2),  -- '00', '06', '12', '18'
@@ -25,11 +25,11 @@ CREATE TABLE IF NOT EXISTS aws_data_source_log (
 CREATE TABLE IF NOT EXISTS nws_api_observation_log (
     log_id VARCHAR(255) PRIMARY KEY,
     station_id VARCHAR(50) NOT NULL,
-    observation_time TIMESTAMP_NTZ NOT NULL,
+    observation_time TIMESTAMP NOT NULL,
     api_endpoint VARCHAR(500),
     response_status INTEGER,
     data_freshness_minutes INTEGER,
-    ingestion_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    ingestion_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(50) DEFAULT 'Success',
     error_message VARCHAR(2000)
 );
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS geoplatform_dataset_log (
     description VARCHAR(2000),
     url VARCHAR(1000),
     search_term VARCHAR(100),
-    ingestion_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    ingestion_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(50) DEFAULT 'Discovered',  -- 'Discovered', 'Ingested', 'Failed'
     dataset_type VARCHAR(100),  -- 'boundary', 'elevation', 'imagery', etc.
     spatial_extent_west NUMERIC(10, 6),
@@ -75,17 +75,17 @@ CREATE TABLE IF NOT EXISTS weather_alerts (
     headline VARCHAR(500),
     description TEXT,
     instruction TEXT,
-    effective_time TIMESTAMP_NTZ,
-    expires_time TIMESTAMP_NTZ,
-    onset_time TIMESTAMP_NTZ,
-    ends_time TIMESTAMP_NTZ,
+    effective_time TIMESTAMP,
+    expires_time TIMESTAMP,
+    onset_time TIMESTAMP,
+    ends_time TIMESTAMP,
     area_description VARCHAR(1000),
     geocode_type VARCHAR(50),  -- 'FIPS', 'UGC', etc.
     geocode_value VARCHAR(100),
     state_code VARCHAR(2),
     county_code VARCHAR(5),
     cwa_code VARCHAR(10),
-    ingestion_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    ingestion_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     alert_geometry GEOGRAPHY  -- Polygon geometry for alert area
 );
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS weather_alerts (
 -- Compares forecasts from different models
 CREATE TABLE IF NOT EXISTS model_forecast_comparison (
     comparison_id VARCHAR(255) PRIMARY KEY,
-    forecast_time TIMESTAMP_NTZ NOT NULL,
+    forecast_time TIMESTAMP NOT NULL,
     parameter_name VARCHAR(100) NOT NULL,
     grid_cell_latitude NUMERIC(10, 7) NOT NULL,
     grid_cell_longitude NUMERIC(10, 7) NOT NULL,
@@ -103,12 +103,12 @@ CREATE TABLE IF NOT EXISTS model_forecast_comparison (
     gefs_mean_value NUMERIC(10, 2),
     gefs_stddev_value NUMERIC(10, 2),
     observation_value NUMERIC(10, 2),
-    observation_time TIMESTAMP_NTZ,
+    observation_time TIMESTAMP,
     gfs_error NUMERIC(10, 2),
     hrrr_error NUMERIC(10, 2),
     rap_error NUMERIC(10, 2),
     best_model VARCHAR(50),  -- Model with smallest error
-    comparison_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    comparison_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Data Source Statistics Table
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS data_source_statistics (
     success_rate NUMERIC(5, 2),
     avg_latency_seconds NUMERIC(10, 2),
     error_count INTEGER DEFAULT 0,
-    calculation_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    calculation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create indexes for performance

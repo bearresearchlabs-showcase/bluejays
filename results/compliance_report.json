@@ -1,5 +1,5 @@
 {
-  "check_date": "20260216-2314",
+  "check_date": "20260218-0215",
   "databases": {
     "db-1": {
       "checks": [
@@ -25,43 +25,14 @@
         ],
         [
           "metadata/db_metadata.json",
-          true
-        ]
-      ],
-      "Pass": 1
-    },
-    "db-2": {
-      "checks": [
-        [
-          "queries.json 30 queries",
-          true
-        ],
-        [
-          "queries.md exists",
-          true
-        ],
-        [
-          "schema exists",
-          true
-        ],
-        [
-          "data.sql exists",
-          true
-        ],
-        [
-          "client DOCUMENTATION/ (README.md only)",
-          true
-        ],
-        [
-          "metadata/db_metadata.json",
-          true
+          false
         ]
       ],
       "Pass": 1
     }
   },
   "summary": {
-    "passed": 2,
+    "passed": 1,
     "failed": 0
   }
 }

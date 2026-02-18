@@ -79,6 +79,11 @@ class TestComposeHardened:
         content = (DOCKER / "docker-compose.hardened.yml").read_text(encoding="utf-8")
         assert "pg_isready" in content or "healthcheck" in content
 
+    def test_compose_has_wal_level_logical_for_cdc(self):
+        """DB-level CDC: wal_level=logical enables logical replication slots."""
+        content = (DOCKER / "docker-compose.hardened.yml").read_text(encoding="utf-8")
+        assert "wal_level=logical" in content
+
 
 class TestDockerPostgresQAScript:
     """docker_postgres_qa.sh must parse args and reference compose."""

@@ -38,6 +38,9 @@ Build: `make build-bin` or `cd scripts/bin && cargo build --release`
 
 - **remove_databricks.py** – Superseded by `scrub_keywords.py`
 - **remove_non_postgres_vendors.py** – Superseded by `scrub_keywords.py`
+- **sync_to_client_db.py** – Superseded by `resync_client_db.py` (single source: data/, queries/, docs/)
+- **consolidate_queries_to_app.py**, **standardize_deliverable_structure.py**, **standardize_db_data.py** – Moved to `archive/legacy-deliverable/`
+- **analyze_source_redundancy.py**, **archive_source_redundant.py** – Moved to `archive/legacy-deliverable/`
 - **fix_*.py** (one-off) – Moved to `archive/one-off-fixes/`
 - **update_*.py** (one-off) – Moved to `archive/one-off-updates/` (update_table_of_contents, update_sourced_language, update_docker_compose_streamlit, update_client_dashboards_paths, update_html_with_*)
 
@@ -67,6 +70,22 @@ scripts/
 | **Python** (pytest) | `tests/test_scripts_refactor.py` | `pytest tests/test_scripts_refactor.py -v` |
 
 Included in `run_all_tests.sh` and `make test`.
+
+## Queries.md Workflow
+
+`queries.md` is built from two sources:
+
+1. **Header** (lines 1–200): `source/db-N/queries_header.yaml` or `queries_header.json` (top level, NOT in app)
+2. **Queries**: `queries.json` (from app/QUERIES or queries/)
+
+| Script | Purpose |
+|--------|---------|
+| `rewrite_queries_md_to_template.py` | Build queries.md from header + queries.json |
+| `extract_queries_header_to_yaml.py` | Extract header from existing queries.md → queries_header.yaml (migration) |
+| `load_queries_header.py` | Load header from YAML/JSON (used by rewrite) |
+| `update_queries_md_from_json.py` | Sync query blocks (### Query N) from queries.json into existing queries.md |
+
+When `populate_app_trifecta` runs, it builds `queries.md` from `queries_header` + `queries.json` when the header file exists.
 
 ## Single Responsibility
 

@@ -11,34 +11,6 @@ database: db-10
 
 ---
 
-## Purpose
-
-This database supports analytics for marketing intelligence. It models products, retailers, stores, inventory, pricing, market intelligence, deal alerts, census retail data, BLS price data, geographic markets, and pipeline metadata. Queries use aggregations, window functions, and joins for price benchmarking, market share, and data source provenance.
-
----
-
-## Use Case
-
-Target use cases for db-10:
-
-- **Price benchmarking:** Product pricing across retailers, stores, geographic markets
-- **Market intelligence:** Deal alerts, census retail data, BLS price trends
-- **Inventory analytics:** Product availability, stock levels, store-level data
-- **Pipeline monitoring:** Extraction metadata, data sources, load status
-
----
-
-## Business Value
-
-Marketing intelligence databases represent high-value domains for text-to-SQL because:
-
-- Queries span products, retailers, pricing, census, and BLS data
-- Stakeholders need competitive pricing and market share analytics
-- Multi-source integration requires complex joins and aggregations
-- Evidence bridges natural-language questions to schema-grounded SQL
-
----
-
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -59,20 +31,20 @@ createdb -U postgres db_10
 
 ### Step 3: Load Schema
 
-From the database directory, load `schema.sql` to create tables, indexes, and constraints.
+Load schema.sql to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_10 -f DATABASE/schema.sql
+psql -U postgres -d db_10 -f schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from `data.sql` if available.
+Load sample data from data.sql if available.
 
 ```bash
-psql -U postgres -d db_10 -f DATABASE/data.sql
+psql -U postgres -d db_10 -f data.sql
 ```
 
 ---
@@ -103,7 +75,9 @@ Standard PostgreSQL. No extensions required unless noted.
 - `bls_price_data` — (see data dictionary)
 - `geographic_markets` — (see data dictionary)
 - `data_sources` — (see data dictionary)
-- `pipeline_metadata` — (see data dictionary)---
+- `pipeline_metadata` — (see data dictionary)
+
+---
 
 ## Data Dictionary
 
@@ -341,12 +315,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `start_time` TIMESTAMP NOT NULL
 - `end_time` TIMESTAMP 
 - `created_at` TIMESTAMP 
-
----
-
-## Query Documentation
-
-See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover price benchmarking, market intelligence, inventory analytics, deal alerts, and pipeline metadata.
 
 ---
 

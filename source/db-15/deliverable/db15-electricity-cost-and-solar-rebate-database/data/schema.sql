@@ -12,7 +12,7 @@ CREATE TABLE states (
     division VARCHAR(50),  -- Census division
     timezone VARCHAR(50),
     is_active BOOLEAN DEFAULT TRUE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Counties Table
@@ -25,7 +25,7 @@ CREATE TABLE counties (
     county_seat VARCHAR(100),
     population INTEGER,
     area_sq_miles NUMERIC(10, 2),
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (state_id) REFERENCES states(state_id)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE zip_codes (
     latitude NUMERIC(10, 7),  -- WGS84
     longitude NUMERIC(10, 7),  -- WGS84
     timezone VARCHAR(50),
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (state_id) REFERENCES states(state_id),
     FOREIGN KEY (county_id) REFERENCES counties(county_id)
 );
@@ -60,7 +60,7 @@ CREATE TABLE utility_companies (
     total_customers INTEGER,
     total_mwh_sold NUMERIC(15, 2),
     is_active BOOLEAN DEFAULT TRUE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (state_id) REFERENCES states(state_id)
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE rate_codes (
     sector VARCHAR(50),  -- 'Residential', 'Commercial', 'Industrial', 'Lighting'
     rate_structure_type VARCHAR(100),  -- 'Flat', 'Tiered', 'Time-of-Use', 'Demand', 'Hybrid'
     is_active BOOLEAN DEFAULT TRUE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Rate Structures Table
@@ -91,7 +91,7 @@ CREATE TABLE rate_structures (
     regulatory_authority VARCHAR(255),  -- State PUC/PSC
     tariff_filing_number VARCHAR(100),
     is_current BOOLEAN DEFAULT TRUE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (utility_id) REFERENCES utility_companies(utility_id),
     FOREIGN KEY (rate_code_id) REFERENCES rate_codes(rate_code_id)
 );
@@ -116,7 +116,7 @@ CREATE TABLE electricity_rates (
     expiration_date DATE,
     is_current BOOLEAN DEFAULT TRUE,
     data_source VARCHAR(100),  -- 'openei', 'eia', 'state_commission', 'poweroutage_us'
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rate_structure_id) REFERENCES rate_structures(rate_structure_id),
     FOREIGN KEY (utility_id) REFERENCES utility_companies(utility_id),
     FOREIGN KEY (rate_code_id) REFERENCES rate_codes(rate_code_id),
@@ -135,7 +135,7 @@ CREATE TABLE tiered_rate_tiers (
     energy_charge_usd_per_kwh NUMERIC(10, 6) NOT NULL,
     effective_date DATE NOT NULL,
     expiration_date DATE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rate_structure_id) REFERENCES rate_structures(rate_structure_id)
 );
 
@@ -152,7 +152,7 @@ CREATE TABLE time_of_use_periods (
     energy_charge_usd_per_kwh NUMERIC(10, 6) NOT NULL,
     effective_date DATE NOT NULL,
     expiration_date DATE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rate_structure_id) REFERENCES rate_structures(rate_structure_id)
 );
 
@@ -172,7 +172,7 @@ CREATE TABLE geographic_rate_areas (
     longitude_max NUMERIC(10, 7),
     effective_date DATE NOT NULL,
     expiration_date DATE,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rate_structure_id) REFERENCES rate_structures(rate_structure_id),
     FOREIGN KEY (state_id) REFERENCES states(state_id),
     FOREIGN KEY (county_id) REFERENCES counties(county_id),
@@ -195,7 +195,7 @@ CREATE TABLE historical_electricity_rates (
     change_percentage NUMERIC(8, 4),
     change_amount NUMERIC(10, 6),
     change_reason TEXT,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rate_id) REFERENCES electricity_rates(rate_id),
     FOREIGN KEY (utility_id) REFERENCES utility_companies(utility_id),
     FOREIGN KEY (rate_code_id) REFERENCES rate_codes(rate_code_id),
@@ -223,7 +223,7 @@ CREATE TABLE federal_incentives (
     program_website_url VARCHAR(500),
     program_contact_info TEXT,
     data_source VARCHAR(100),  -- 'doe', 'dsire', 'irs'
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- State Incentives Table
@@ -249,7 +249,7 @@ CREATE TABLE state_incentives (
     program_contact_info TEXT,
     regulatory_authority VARCHAR(255),  -- State agency administering program
     data_source VARCHAR(100),  -- 'dsire', 'state_commission', 'state_energy_office'
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (state_id) REFERENCES states(state_id)
 );
 
@@ -278,7 +278,7 @@ CREATE TABLE utility_incentives (
     program_website_url VARCHAR(500),
     program_contact_info TEXT,
     data_source VARCHAR(100),  -- 'dsire', 'utility_website', 'state_commission'
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (utility_id) REFERENCES utility_companies(utility_id),
     FOREIGN KEY (state_id) REFERENCES states(state_id)
 );
@@ -299,7 +299,7 @@ CREATE TABLE solar_rebate_aggregations (
     utility_incentive_count INTEGER DEFAULT 0,
     total_incentive_count INTEGER DEFAULT 0,
     calculation_date DATE NOT NULL,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (state_id) REFERENCES states(state_id),
     FOREIGN KEY (utility_id) REFERENCES utility_companies(utility_id),
     FOREIGN KEY (zip_code) REFERENCES zip_codes(zip_code)
@@ -318,7 +318,7 @@ CREATE TABLE rate_comparison_matrix (
     cost_difference_usd NUMERIC(15, 2),
     cost_difference_percentage NUMERIC(8, 4),
     comparison_date DATE NOT NULL,
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rate_id_1) REFERENCES electricity_rates(rate_id),
     FOREIGN KEY (rate_id_2) REFERENCES electricity_rates(rate_id)
 );
@@ -334,12 +334,12 @@ CREATE TABLE data_extraction_log (
     records_extracted INTEGER DEFAULT 0,
     records_loaded INTEGER DEFAULT 0,
     records_failed INTEGER DEFAULT 0,
-    extraction_start_time TIMESTAMP_NTZ NOT NULL,
-    extraction_end_time TIMESTAMP_NTZ,
+    extraction_start_time TIMESTAMP NOT NULL,
+    extraction_end_time TIMESTAMP,
     extraction_duration_seconds INTEGER,
     error_message TEXT,
     extraction_metadata JSON,  -- Additional extraction metadata
-    last_updated TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Indexes for performance optimization

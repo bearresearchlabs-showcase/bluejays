@@ -11,67 +11,6 @@ database: db-16
 
 ---
 
-## Purpose
-
-```text
-This database supports flood risk analytics for real estate M&A due diligence. It integrates
-FEMA flood zones, NOAA sea level rise projections, USGS streamflow data, and NASA flood models
-to assess physical climate risk for property portfolios. It is designed to support text-to-SQL
-training across spatial, multi-source, and risk-scoring query types for investment analysts.
-```
-
-## Use Case
-
-```text
-Target use cases for db-16:
-- M&A due diligence: pre-acquisition flood risk assessment for property portfolios
-- Portfolio analytics: geographic risk hotspots, cluster patterns, exposure by state/county
-- Risk scoring: composite scores from FEMA, sea level rise, streamflow, NASA models
-- Financial impact: estimated damage, annual loss, insurance premium estimates
-```
-
-## Business Value
-
-```text
-Flood risk databases represent high-value domains for text-to-SQL because:
-- Queries require spatial reasoning (ST_Distance, ST_DWithin, geography joins)
-- Multi-source integration (FEMA, NOAA, USGS, NASA) demands complex CTEs
-- Stakeholders are investment analysts and underwriters needing self-serve analytics
-- Errors affect acquisition decisions and insurance pricing.
-```
-
-## Domain Knowledge
-
-```text
-Key domain concepts required to write correct queries against this database:
-
-FEMA FLOOD ZONES:
-- zone_code: 'A', 'AE', 'AH', 'AO', 'V', 'VE', 'X', 'D', 'X500' — V/VE = velocity (highest risk)
-- base_flood_elevation (BFE): feet above sea level; property elevation - BFE = elevation_above_bfe
-- zone_geom: polygon geography; property_geom: point geography
-
-SEA LEVEL RISE (NOAA):
-- scenario: 'Low', 'Intermediate-Low', 'Intermediate', 'Intermediate-High', 'High', 'Extreme'
-- sea_level_rise_feet: projected rise; high_tide_flooding_days: annual flooding days
-- projection_year: 2030, 2050, 2100, etc.
-
-STREAMFLOW (USGS):
-- discharge_cfs: cubic feet per second; gage_height_feet, stage_feet
-- flood_category: 'None', 'Action', 'Minor', 'Moderate', 'Major'
-- flood_stage_feet, moderate_flood_stage_feet, major_flood_stage_feet
-
-NASA FLOOD MODELS:
-- model_name: 'GFMS', 'LIS', 'VIIRS', 'MODIS', 'FloodPlanet'
-- inundation_depth_feet, flood_probability (0-100), flood_severity
-
-RISK SCORING:
-- Risk scores 0-100; risk_category: 'Low', 'Moderate', 'High', 'Extreme'
-- overall_risk_score: weighted composite; estimated_annual_loss (EAL)
-- Spatial: ST_DISTANCE, ST_DWithin for nearest-neighbor and containment
-```
-
----
-
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -92,20 +31,20 @@ createdb -U postgres db_16
 
 ### Step 3: Load Schema
 
-From the database directory, load `schema.sql` to create tables, indexes, and constraints. PostGIS required for geography columns.
+Load schema.sql to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_16 -f DATABASE/schema.sql
+psql -U postgres -d db_16 -f schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from `data.sql` if available.
+Load sample data from data.sql if available.
 
 ```bash
-psql -U postgres -d db_16 -f DATABASE/data.sql
+psql -U postgres -d db_16 -f data.sql
 ```
 
 ---
@@ -136,7 +75,9 @@ Standard PostgreSQL. No extensions required unless noted.
 - `historical_flood_events` — (see data dictionary)
 - `model_performance_metrics` — (see data dictionary)
 - `portfolio_risk_summaries` — (see data dictionary)
-- `data_quality_metrics` — (see data dictionary)---
+- `data_quality_metrics` — (see data dictionary)
+
+---
 
 ## Data Dictionary
 
@@ -378,12 +319,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `temporal_coverage_days` INTEGER 
 - `data_freshness_hours` INTEGER 
 - `calculation_timestamp` TIMESTAMP 
-
----
-
-## Query Documentation
-
-See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover M&A due diligence, portfolio analytics, risk scoring, FEMA/NOAA/USGS/NASA integration, and spatial flood analysis.
 
 ---
 

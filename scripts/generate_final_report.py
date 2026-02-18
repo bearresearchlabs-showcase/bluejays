@@ -74,9 +74,10 @@ def main():
         report["Pass"] = 0
 
     output_file = results_dir / "final_comprehensive_validation_report.json"
-    output_file.parent.mkdir(parents=True, exist_ok=True)
-    output_file.write_text(json.dumps(report, indent=2, default=str))
-    print(f"Report saved to {output_file}")
+    if __import__("os").environ.get("VALIDATE_NO_OVERWRITE") != "1":
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+        output_file.write_text(json.dumps(report, indent=2, default=str))
+        print(f"Report saved to {output_file}")
 
 
 if __name__ == "__main__":

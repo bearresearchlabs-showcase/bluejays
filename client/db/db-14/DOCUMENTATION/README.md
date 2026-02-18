@@ -11,62 +11,6 @@ database: db-14
 
 ---
 
-## Purpose
-
-```text
-This database supports analytics for cloud instance cost comparison and optimization across
-AWS, GCP, and Azure. It models providers, regions, instance families, pricing models,
-performance benchmarks, and cost optimization recommendations. It is designed to support
-text-to-SQL training across FinOps, cost allocation, and rightsizing query types.
-```
-
-## Use Case
-
-```text
-Target use cases for db-14:
-- Cost comparison: on-demand vs reserved vs spot pricing across providers
-- Rightsizing: match workload specs to instance families and regions
-- Optimization: cost_optimization_recommendations, instance_comparison_matrix
-- FinOps dashboards: historical pricing, cost-per-vCPU, performance-per-dollar
-```
-
-## Business Value
-
-```text
-Cloud cost databases represent high-value domains for text-to-SQL because:
-- Queries require understanding of pricing models (on_demand, reserved_1yr, spot, savings_plan)
-- Data relationships span providers, regions, families, and instances
-- Stakeholders need self-serve cost analytics (FinOps, engineering, finance)
-- Evidence bridges natural-language questions to schema-grounded SQL.
-```
-
-## Domain Knowledge
-
-```text
-Key domain concepts required to write correct queries against this database:
-
-CLOUD PROVIDERS AND REGIONS:
-- cloud_providers: AWS, GCP, Azure; provider_id, data_source (vantage.sh, official_api)
-- cloud_regions: region_code (us-east-1, us-central1, eastus), country_code, continent
-
-INSTANCE HIERARCHY:
-- instance_families: General Purpose, Compute Optimized, Memory Optimized; family_code (m5, c5, r5)
-- cloud_instances: instance_name (m5.large, n1-standard-4), vcpus, memory_gb, architecture (x86_64, arm64)
-
-PRICING MODELS:
-- instance_pricing: pricing_model (on_demand, reserved_1yr, reserved_3yr, spot, savings_plan)
-- operating_system: Linux, Windows, RHEL, SUSE
-- payment_option: no_upfront, partial_upfront, all_upfront (for reserved)
-- effective_hourly_cost: calculated cost for reserved instances
-
-PERFORMANCE AND OPTIMIZATION:
-- instance_performance_metrics: CoreMark, FFmpeg FPS, benchmark_score_normalized
-- cost_optimization_recommendations: optimization_type (rightsizing, reserved_instance, spot_instance, region_change)
-- instance_comparison_matrix: similarity_score, price_difference_percentage
-```
-
----
-
 ## Installation Guide
 
 ### Step 1: Prerequisites
@@ -87,20 +31,20 @@ createdb -U postgres db_14
 
 ### Step 3: Load Schema
 
-From the database directory, load `schema.sql` to create tables, indexes, and constraints.
+Load schema.sql to create tables, indexes, and constraints.
 
 ```bash
-psql -U postgres -d db_14 -f DATABASE/schema.sql
+psql -U postgres -d db_14 -f schema.sql
 ```
 
 ---
 
 ### Step 4: Load Data (Optional)
 
-Load sample data from `data.sql` if available.
+Load sample data from data.sql if available.
 
 ```bash
-psql -U postgres -d db_14 -f DATABASE/data.sql
+psql -U postgres -d db_14 -f data.sql
 ```
 
 ---
@@ -130,7 +74,9 @@ Standard PostgreSQL. No extensions required unless noted.
 - `cost_optimization_recommendations` — (see data dictionary)
 - `instance_comparison_matrix` — (see data dictionary)
 - `data_extraction_log` — (see data dictionary)
-- `cost__analytics` — (see data dictionary)---
+- `cost__analytics` — (see data dictionary)
+
+---
 
 ## Data Dictionary
 
@@ -335,12 +281,6 @@ Standard PostgreSQL. No extensions required unless noted.
 - `max_value` NUMERIC(15, 4) 
 - `std_deviation` NUMERIC(15, 4) 
 - `last_updated` TIMESTAMP 
-
----
-
-## Query Documentation
-
-See `QUERIES/queries.md` for 30 production SQL queries with full business context, evidence, and expected output. Queries cover cost comparison, rightsizing, optimization recommendations, and FinOps analytics.
 
 ---
 

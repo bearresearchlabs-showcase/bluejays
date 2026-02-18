@@ -3,7 +3,7 @@
     "id": "db-15",
     "name": "Electricity Cost and Solar Rebate Database",
     "description": "The Electricity Cost and Solar Rebate Database (db-15) provides comprehensive data on electricity rates across the United States, organized by rate codes, utilities, and geographic regions. The database also includes extensive solar panel rebate and incentive information from federal, state, and utility sources.\n\nThis database is designed to mirror and index the electricity rate and solar rebate data available from poweroutage.us and other reputable sources, providing marketing insights and comp",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

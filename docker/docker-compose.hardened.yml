@@ -9,6 +9,7 @@ services:
       dockerfile: Dockerfile.postgres-hardened
     image: db-postgres-hardened:base
     container_name: postgres-db-1
+    command: ["postgres", "-c", "wal_level=logical"]
     security_opt:
       - no-new-privileges:true
     read_only: false
@@ -30,6 +31,7 @@ services:
 
   postgres-db-2:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-2
     security_opt:
       - no-new-privileges:true
@@ -51,6 +53,7 @@ services:
 
   postgres-db-3:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-3
     security_opt:
       - no-new-privileges:true
@@ -72,6 +75,7 @@ services:
 
   postgres-db-4:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-4
     security_opt:
       - no-new-privileges:true
@@ -93,6 +97,7 @@ services:
 
   postgres-db-5:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-5
     security_opt:
       - no-new-privileges:true
@@ -114,6 +119,7 @@ services:
 
   postgres-db-6:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-6
     security_opt:
       - no-new-privileges:true
@@ -135,6 +141,7 @@ services:
 
   postgres-db-7:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-7
     security_opt:
       - no-new-privileges:true
@@ -156,6 +163,7 @@ services:
 
   postgres-db-8:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-8
     security_opt:
       - no-new-privileges:true
@@ -177,6 +185,7 @@ services:
 
   postgres-db-9:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-9
     security_opt:
       - no-new-privileges:true
@@ -198,6 +207,7 @@ services:
 
   postgres-db-10:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-10
     security_opt:
       - no-new-privileges:true
@@ -219,6 +229,7 @@ services:
 
   postgres-db-11:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-11
     security_opt:
       - no-new-privileges:true
@@ -240,6 +251,7 @@ services:
 
   postgres-db-12:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-12
     security_opt:
       - no-new-privileges:true
@@ -261,6 +273,7 @@ services:
 
   postgres-db-13:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-13
     security_opt:
       - no-new-privileges:true
@@ -282,6 +295,7 @@ services:
 
   postgres-db-14:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-14
     security_opt:
       - no-new-privileges:true
@@ -303,6 +317,7 @@ services:
 
   postgres-db-15:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-15
     security_opt:
       - no-new-privileges:true
@@ -324,6 +339,7 @@ services:
 
   postgres-db-16:
     image: db-postgres-hardened:base
+    command: ["postgres", "-c", "wal_level=logical"]
     container_name: postgres-db-16
     security_opt:
       - no-new-privileges:true

@@ -547,7 +547,7 @@ def main():
         queries = qj.get('queries', [])
 
         # Load schema (prefer PostgreSQL version)
-        schema_path = db_dir / 'data' / 'schema_postgresql.sql'
+        schema_path = db_dir / 'data' / 'schema.sql'
         if not schema_path.exists():
             schema_path = db_dir / 'data' / 'schema.sql'
         schema_sql = schema_path.read_text() if schema_path.exists() else ""

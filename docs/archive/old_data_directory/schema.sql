@@ -7,7 +7,7 @@
 CREATE TABLE grib2_forecasts (
     forecast_id VARCHAR(255) PRIMARY KEY,
     parameter_name VARCHAR(100) NOT NULL,
-    forecast_time TIMESTAMP_NTZ NOT NULL,
+    forecast_time TIMESTAMP NOT NULL,
     grid_cell_latitude NUMERIC(10, 7) NOT NULL,
     grid_cell_longitude NUMERIC(10, 7) NOT NULL,
     grid_cell_geom GEOGRAPHY,  -- Point geometry for grid cell center (PostgreSQL/Databricks)
@@ -21,7 +21,7 @@ CREATE TABLE grib2_forecasts (
     spatial_extent_south NUMERIC(10, 6),
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     transformation_status VARCHAR(50)
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE shapefile_boundaries (
     spatial_extent_south NUMERIC(10, 6),
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     transformation_status VARCHAR(50),
     state_code VARCHAR(2),
     office_code VARCHAR(10)
@@ -53,7 +53,7 @@ CREATE TABLE weather_observations (
     observation_id VARCHAR(255) PRIMARY KEY,
     station_id VARCHAR(50) NOT NULL,
     station_name VARCHAR(255),
-    observation_time TIMESTAMP_NTZ NOT NULL,
+    observation_time TIMESTAMP NOT NULL,
     station_latitude NUMERIC(10, 7) NOT NULL,
     station_longitude NUMERIC(10, 7) NOT NULL,
     station_geom GEOGRAPHY,  -- Point geometry
@@ -67,7 +67,7 @@ CREATE TABLE weather_observations (
     sky_cover VARCHAR(50),
     precipitation_amount NUMERIC(8, 2),
     data_freshness_minutes INTEGER,
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_source VARCHAR(50) DEFAULT 'NWS_API'
 );
 
@@ -78,7 +78,7 @@ CREATE TABLE grib2_transformation_log (
     file_name VARCHAR(500) NOT NULL,
     source_path VARCHAR(1000),
     parameter_name VARCHAR(100) NOT NULL,
-    forecast_time TIMESTAMP_NTZ,
+    forecast_time TIMESTAMP,
     source_crs VARCHAR(50),
     target_crs VARCHAR(50),
     gdal_command VARCHAR(2000),
@@ -91,7 +91,7 @@ CREATE TABLE grib2_transformation_log (
     spatial_extent_north NUMERIC(10, 6),
     transformation_status VARCHAR(50),
     target_table VARCHAR(255),
-    load_timestamp TIMESTAMP_NTZ,
+    load_timestamp TIMESTAMP,
     processing_duration_seconds INTEGER,
     records_processed INTEGER,
     error_message VARCHAR(2000)
@@ -115,7 +115,7 @@ CREATE TABLE shapefile_integration_log (
     spatial_extent_north NUMERIC(10, 6),
     transformation_status VARCHAR(50),
     target_table VARCHAR(255),
-    load_timestamp TIMESTAMP_NTZ,
+    load_timestamp TIMESTAMP,
     processing_duration_seconds INTEGER,
     error_message VARCHAR(2000)
 );
@@ -132,7 +132,7 @@ CREATE TABLE spatial_join_results (
     features_total INTEGER,
     match_percentage NUMERIC(5, 2),
     output_file VARCHAR(1000),
-    join_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    join_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     forecast_id VARCHAR(255),
     boundary_id VARCHAR(255)
 );
@@ -172,7 +172,7 @@ CREATE TABLE data_quality_metrics (
     spatial_coverage_km2 NUMERIC(15, 2),
     temporal_coverage_hours INTEGER,
     data_freshness_minutes INTEGER,
-    calculation_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    calculation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 - Load Status Table
@@ -181,8 +181,8 @@ CREATE TABLE load_status (
     load_id VARCHAR(255) PRIMARY KEY,
     source_file VARCHAR(1000),
     target_table VARCHAR(255) NOT NULL,
-    load_start_time TIMESTAMP_NTZ NOT NULL,
-    load_end_time TIMESTAMP_NTZ,
+    load_start_time TIMESTAMP NOT NULL,
+    load_end_time TIMESTAMP,
     load_duration_seconds INTEGER,
     records_loaded INTEGER DEFAULT 0,
     file_size_mb NUMERIC(10, 2),
@@ -198,7 +198,7 @@ CREATE TABLE load_status (
 CREATE TABLE weather_forecast_aggregations (
     aggregation_id VARCHAR(255) PRIMARY KEY,
     parameter_name VARCHAR(100) NOT NULL,
-    forecast_time TIMESTAMP_NTZ NOT NULL,
+    forecast_time TIMESTAMP NOT NULL,
     boundary_id VARCHAR(255),
     feature_type VARCHAR(50),
     feature_name VARCHAR(255),
@@ -208,7 +208,7 @@ CREATE TABLE weather_forecast_aggregations (
     median_value NUMERIC(10, 2),
     std_dev_value NUMERIC(10, 2),
     grid_cells_count INTEGER,
-    aggregation_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    aggregation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Weather Station Metadata Table

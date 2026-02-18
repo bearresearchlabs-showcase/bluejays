@@ -3,7 +3,7 @@
     "id": "db-8",
     "name": "Job Market Intelligence Database",
     "description": "This database implements a comprehensive Job Market Intelligence and Targeted Application System integrating data from .gov sources (USAJobs.gov, BLS, Department of Labor) and aggregated sources. Supports targeted job applications, market analytics, skill demand analysis, and AI-powered job recommendations mirroring jobright.ai functionality.\n\n- AI-Powered Job Matching: Multi-dimensional scoring algorithm with skill alignment analysis\n- Market Intelligence: Comprehensive trend analysis with time",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

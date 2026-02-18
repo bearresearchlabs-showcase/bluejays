@@ -1,0 +1,54 @@
+# Commit Diff Report Schema — JSON ↔ MDX structure
+# Defines required sections and field order for compile_commit_diff_report.py
+# Mirrors queries_format_schema.yaml pattern
+
+version: "1.0"
+description: "Canonical schema for commit_diff_38ce1cd_report.json and .mdx output"
+
+# Required top-level keys in JSON report
+required_keys:
+  - base_commit
+  - target
+  - generated_at
+  - databases
+  - summary
+
+# MDX output sections (order)
+mdx_sections:
+  - id: frontmatter
+    level: 0
+    fields:
+      - title
+      - description
+      - base_commit
+      - target
+      - generated_at
+  - id: summary
+    level: 2
+    header: "## Summary"
+  - id: per_db_report
+    level: 2
+    header: "## Per-DB Report"
+  - id: raw_diff
+    level: 2
+    header: "## Raw Diff"
+
+# Per-DB section structure
+per_db_structure:
+  source_sections:
+    - "app/DATABASE"
+    - "app/DOCUMENTATION"
+    - "app/QUERIES"
+  client_sections:
+    - "DATABASE"
+    - "DOCUMENTATION"
+    - "QUERIES"
+  sync_sections:
+    - "DATABASE"
+    - "QUERIES"
+
+# File entry structure (at_base, at_head, changed)
+file_entry_keys:
+  - at_base
+  - at_head
+  - changed

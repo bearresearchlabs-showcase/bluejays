@@ -114,6 +114,27 @@ jobs:
         env:
           BASE_URL: http://localhost:3007
 
+  regression:
+    name: Auto-regression (BDD/TDD/DDD)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install --quiet pytest psycopg2-binary pyyaml jsonschema
+
+      - name: Run auto-regression tests
+        run: REPO_HEALTH_LENIENT=1 python3 scripts/db_check.py test all -q --tb=line
+        env:
+          REPO_HEALTH_LENIENT: "1"
+
   pre-commit:
     name: Pre-commit (structure + integrity)
     runs-on: ubuntu-latest

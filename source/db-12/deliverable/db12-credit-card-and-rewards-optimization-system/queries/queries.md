@@ -4,12 +4,12 @@
 
 ```yaml
 db_id: db-12
-domain: fintech, banking, credit cards, rewards
-source: synthetic
-license_type: Open
-license_cost: $0
-tables: 15
-total_rows: ~120K
+domain: Database domain
+source: [synthetic / open / commercial]
+license_type: [Commercial / Open / Academic]
+license_cost: [Annual cost if applicable]
+tables: 0
+total_rows: ~0
 date_range: 2020-01-01 to 2026-12-31
 sql_dialect: PostgreSQL
 ```
@@ -17,42 +17,30 @@ sql_dialect: PostgreSQL
 ## Purpose
 
 ```text
-This database supports analytics for credit card and rewards programs: transactions, rewards, categories, and cardholder behavior.
+This database supports analytics for db-12.
 ```
 
 ## Use Case
 
 ```text
-Target use cases: rewards analytics, category optimization, cardholder segmentation, redemption dashboards.
+Target use cases for db-12: analytics, reporting, dashboards.
 ```
 
 ## Business Value
 
 ```text
-Enables issuers to optimize rewards programs, increase engagement, and reduce churn ($1M+ ARR).
+Business value for db-12.
 ```
 
 ## Schema
 
 ```sql
--- PostgreSQL-specific schema file
--- Generated from schema.sql
--- Generated: 2026-02-05 19:10:11
--- Database: db-12
---
--- This file contains PostgreSQL-specific SQL syntax.
--- Use this file when setting up the database in PostgreSQL.
---
-
 -- Credit Card Database Schema
--- Compatible with PostgreSQL, Databricks, and Snowflake
+-- Compatible with PostgreSQL
 -- Production schema for credit card and rewards optimization system
 
 -- Credit Card Issuers Table
 -- Stores information about credit card issuing banks and financial institutions
--- Enable PostGIS extension for spatial data
-CREATE EXTENSION IF NOT EXISTS postgis;
-
 CREATE TABLE credit_card_issuers (
     issuer_id VARCHAR(255) PRIMARY KEY,
     issuer_name VARCHAR(255) NOT NULL,
@@ -66,7 +54,7 @@ CREATE TABLE credit_card_issuers (
     cfpb_complaint_count INTEGER DEFAULT 0,
     cfpb_complaint_resolution_rate NUMERIC(5, 2),
     data_source VARCHAR(50) DEFAULT 'CFPB_API',
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
 );
 
 -- Credit Cards Table
@@ -87,14 +75,20 @@ CREATE TABLE credit_cards (
     apr_cash_advance NUMERIC(5, 2),
     foreign_transaction_fee_percentage NUMERIC(5, 2),
     credit_score_min INTEGER,
-
+    credit_score_max INTEGER,
+    card_network VARCHAR(50),  -- 'Visa', 'Mastercard', 'Amex', 'Discover'
+    card_level VARCHAR(50),  -- 'Standard', 'Gold', 'Platinum', 'Signature', 'Infinite'
+    metal_card BOOLEAN DEFAULT FALSE,
+    authorized_user_fee NUMERIC(10, 2) DEFAULT 0,
+    card_agreement_url VARCHAR(500),
+    card_image_url VARCHAR(500)
 -- ...
 ```
 
 ## Domain Knowledge
 
 ```text
-Cards, transactions, rewards, categories. Points, redemption, merchant categories.
+Domain-specific concepts for this database.
 ```
 
 ## Query Difficulty Distribution

@@ -64,6 +64,7 @@ def find_deliverable_json(db_dir: Path, db_num: int) -> Path | None:
     prefix = f"db{db_num}-"
     deliverable_dir = db_dir / "deliverable"
     candidates = [
+        db_dir / "DOCUMENTATION" / f"db-{db_num}_deliverable.json",
         db_dir / "app" / "DOCUMENTATION" / f"db-{db_num}_deliverable.json",
         db_dir / "deliverable" / f"db-{db_num}_deliverable.json",
     ]

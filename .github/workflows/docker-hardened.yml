@@ -86,8 +86,7 @@ jobs:
             [ -z "$data_dir" ] && [ -d "$source_legacy" ] && data_dir="$source_legacy"
             [ -z "$data_dir" ] && continue
             schema=""
-            [ -f "$data_dir/schema_postgresql.sql" ] && schema="$data_dir/schema_postgresql.sql"
-            [ -z "$schema" ] && [ -f "$data_dir/schema.sql" ] && schema="$data_dir/schema.sql"
+            [ -f "$data_dir/schema.sql" ] && schema="$data_dir/schema.sql"
             [ -n "$schema" ] && docker exec -i -e PGPASSWORD=postgres "$container" psql -U postgres -d "$dbname" -f - < "$schema" 2>/dev/null || true
             [ -f "$data_dir/data.sql" ] && docker exec -i -e PGPASSWORD=postgres "$container" psql -U postgres -d "$dbname" -f - < "$data_dir/data.sql" 2>/dev/null || true
           done

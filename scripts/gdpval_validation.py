@@ -38,8 +38,6 @@ def run_step(db_num: int, step: int, root: Path) -> Dict[str, Any]:
         # Schema parse (syntax)
         schema = db_dir / "data" / "schema.sql"
         if not schema.exists():
-            schema = db_dir / "data" / "schema_postgresql.sql"
-        if not schema.exists():
             result["status"] = "FAIL"
             result["message"] = "No schema file found"
             return result
@@ -95,7 +93,7 @@ def run_step(db_num: int, step: int, root: Path) -> Dict[str, Any]:
     elif step == 5:
         # Deliverable completeness
         required = [
-            ("schema", (db_dir / "data" / "schema.sql").exists() or (db_dir / "data" / "schema_postgresql.sql").exists()),
+            ("schema", (db_dir / "data" / "schema.sql").exists()),
             ("queries.json", (db_dir / "queries" / "queries.json").exists()),
             ("queries.md", (db_dir / "queries" / "queries.md").exists()),
         ]

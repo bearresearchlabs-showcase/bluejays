@@ -54,11 +54,10 @@ def check_db_structure(db_name: str) -> Tuple[bool, List[str]]:
     if not db_dir.exists():
         return False, [f"{db_name} directory not found"]
 
-    # schema.sql or schema_postgresql.sql
+    # schema.sql (PostgreSQL-only, canonical)
     schema = db_dir / "data" / "schema.sql"
-    schema_pg = db_dir / "data" / "schema_postgresql.sql"
-    if not schema.exists() and not schema_pg.exists():
-        issues.append(f"{db_name}: No schema.sql or schema_postgresql.sql")
+    if not schema.exists():
+        issues.append(f"{db_name}: No schema.sql")
 
     # queries.json
     qj = db_dir / "queries" / "queries.json"

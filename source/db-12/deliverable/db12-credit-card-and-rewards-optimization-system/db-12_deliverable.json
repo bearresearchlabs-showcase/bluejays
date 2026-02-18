@@ -3,7 +3,7 @@
     "id": "db-12",
     "name": "Credit Card and Rewards Optimization System",
     "description": "This database contains comprehensive credit card data for rewards optimization, card management, and portfolio analysis. The database mirrors the functionality of CardPointers for Credit Cards app, providing data-driven insights for maximizing credit card rewards and optimizing card portfolios.\n\n- Multi-Dimensional Rewards Optimization: Analyzes card portfolios across multiple dimensions (categories, merchants, offers, time periods)\n- Location-Based Recommendations: Uses geospatial data to recom",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

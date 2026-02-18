@@ -178,9 +178,10 @@ def main():
     results["evaluation"]["cte_usage"] = evaluator.evaluate_cte_usage(queries)
     results["evaluation"]["complexity"] = evaluator.evaluate_complexity(queries)
 
-    results_file.parent.mkdir(parents=True, exist_ok=True)
-    results_file.write_text(json.dumps(results, indent=2, default=str))
-    print(f"Results saved to {results_file}")
+    if os.environ.get("VALIDATE_NO_OVERWRITE") != "1":
+        results_file.parent.mkdir(parents=True, exist_ok=True)
+        results_file.write_text(json.dumps(results, indent=2, default=str))
+        print(f"Results saved to {results_file}")
 
 
 if __name__ == "__main__":

@@ -1,15 +1,16 @@
 {
-  "validation_date": "20260215-1803",
+  "validation_date": "20260218-0117",
   "databases": {
     "db-1": {
       "database": "db-1",
-      "start_time": "20260215-1803",
+      "start_time": "20260218-0117",
       "phases": {
         "phase_0_extraction": {
           "status": "PASS"
         },
         "phase_1_fix_verification": {
-          "status": "PASS"
+          "status": "FAIL",
+          "error": "\nVerification Results:\n  \u2713 query_2_array_syntax: PASS\n  \u2713 query_26_recursive_cte: PASS\n  \u2717 query_title_uniqueness: FAIL\n  \u2713 header_formatting: PASS\n\nOverall: FAIL\n"
         },
         "phase_2_4_validation": {
           "status": "PASS"
@@ -21,16 +22,16 @@
           "status": "PASS"
         }
       },
-      "status": "PASS",
-      "end_time": "20260215-1803"
+      "status": "FAIL",
+      "end_time": "20260218-0117"
     }
   },
   "summary": {
     "total_databases": 1,
-    "passed": 1,
-    "failed": 0,
+    "passed": 0,
+    "failed": 1,
     "partial": 0,
     "skipped": 0,
-    "overall_status": "PASS"
+    "overall_status": "FAIL"
   }
 }

@@ -108,12 +108,14 @@ Each database: 30+ complex SQL queries, PostgreSQL schema, sample/large data, we
 ## 5. Source Cleanup & Analysis
 
 ### 5.1 Redundancy Analysis
-- **analyze_source_redundancy.py**: Identifies files not needed for app/ generation
+- **analyze_source_redundancy.py** (archived): Identifies files not needed for app/ generation
 - Reports required vs redundant per db-N
+- Moved to `scripts/archive/legacy-deliverable/`; single source is data/, queries/, docs/
 
 ### 5.2 Archive Redundant
-- **archive_source_redundant.py**: Moves research/, results/, docs/, metadata/, scripts/, etc. to `archive/source-redundant/`
+- **archive_source_redundant.py** (archived): Moves research/, results/, docs/, metadata/, scripts/, etc. to `archive/source-redundant/`
 - Dry-run support
+- Moved to `scripts/archive/legacy-deliverable/`
 
 ---
 
@@ -275,7 +277,18 @@ See [.cursor/plans/roadmap_rules_skills_and_features_*.plan.md](.cursor/plans/) 
 
 ---
 
-## 11. Future Considerations
+## 11. Maintenance
+
+### 11.1 Commit Diff Verification (38ce1cd vs HEAD)
+
+- **Milestone**: [.cursor/plans/commit_diff_38ce1cd_milestone.yaml](.cursor/plans/commit_diff_38ce1cd_milestone.yaml)
+- **Report**: [results/commit_diff_38ce1cd_report.json](results/commit_diff_38ce1cd_report.json), [results/commit_diff_38ce1cd_report.md](results/commit_diff_38ce1cd_report.md)
+- **Script**: `python3 scripts/verify_commit_diff.py` — per-DB, per-section, per-key comparison of source/ and client/ between base commit and HEAD
+- **Tests**: `pytest tests/test_commit_diff_verification.py -v`
+
+---
+
+## 12. Future Considerations
 
 - **Platform**: Unified web UI for labeling, annotation, evaluation, and export
 - **Customer portal**: Self-service export, API keys, usage analytics

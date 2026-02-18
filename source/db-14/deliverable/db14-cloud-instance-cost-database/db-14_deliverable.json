@@ -3,7 +3,7 @@
     "id": "db-14",
     "name": "Cloud Instance Cost Database",
     "description": "This database provides comprehensive cloud instance cost analysis and optimization across AWS, GCP, and Azure. The database enables cost optimization, cross-cloud comparisons, and intelligent recommendations for cloud infrastructure decisions. It includes instance specifications, pricing data, performance metrics, historical pricing trends, and cost optimization recommendations.\n\n- Multi-Cloud Support: Comprehensive data for AWS, GCP, and Azure instances\n- Pricing Models: On-demand, reserved ins",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

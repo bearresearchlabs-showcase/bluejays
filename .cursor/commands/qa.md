@@ -23,6 +23,7 @@ Use `@db/db-{N}/` to scope /QA to specific databases. Cursor resolves @-referenc
 3. **QA (client/db audit)** - Checks DATABASE/, DOCUMENTATION/, QUERIES/ structure in client/db
 4. **Compliance** - Strict checklist: queries.json (30), queries.md, schema, client DOCUMENTATION/
 5. **Integrity** - CRC-32, CRC-64, SHA-256 on schema.sql, queries.json; updates metadata/integrity.json
+6. **Repo health** - Data size (1GB total), schema PostgreSQL compliance, naming, unnecessary files; outputs repo_health.json and repo_health.mdx
 
 ## Workbench Installation
 
@@ -44,6 +45,9 @@ Use `@db/db-{N}/` to scope /QA to specific databases. Cursor resolves @-referenc
 
 ## Test Suites
 
+- **/test** - BDD/TDD/DDD tests: schema-data, repo-health, queries-md, source-checks
+- **/repo-health** - Repo health check (outputs repo_health.json, repo_health.mdx)
+- **/source-checks** - Source material validation (queries.json, schema, data)
 - **Pytest**: `pytest tests/test_qa_suite.py tests/test_docker_postgres_qa.py tests/test_bird_workbench_acid.py -v`
 - **Full run**: `./scripts/run_all_tests.sh [db-1] | -a` (mirrors Jenkins)
 
@@ -53,4 +57,6 @@ See `.cursor/rules/qa-workflow-cursor.mdc` for end-to-end workflow and Cursor te
 
 - Console: Pass/Fail per database
 - `results/compliance_report.json` - Compliance results
+- `results/repo_health.json` - Repo health (data size, schema, naming, flagged files)
+- `results/repo_health.mdx` - Human-readable repo health report
 - `db-{N}/metadata/integrity.json` - Integrity checksums

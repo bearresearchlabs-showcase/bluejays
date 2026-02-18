@@ -3,7 +3,7 @@
     "id": "db-9",
     "name": "Shipping Intelligence Database",
     "description": "This database implements a comprehensive shipping intelligence and rate comparison system designed to mirror the functionality of Pirate Ship (https://www.pirateship.com/). The system provides multi-carrier rate comparison, zone analysis, tracking analytics, address validation, and cost optimization capabilities. The database integrates with USPS Developer Portal, UPS Developer Portal, U.S. Census Bureau International Trade Data, and Data.gov to provide shipping intelligence and analytics.\n\n- Mu",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

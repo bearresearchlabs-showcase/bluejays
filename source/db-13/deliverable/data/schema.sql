@@ -32,8 +32,8 @@ CREATE TABLE ai_models (
     model_status VARCHAR(50) DEFAULT 'active', -- 'active', 'deprecated', 'preview', 'experimental'
     data_source VARCHAR(100) DEFAULT 'ARTIFICIAL_ANALYSIS',
     source_url VARCHAR(1000),
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     metadata_json TEXT -- Additional JSON metadata
 );
 
@@ -60,8 +60,8 @@ CREATE TABLE model_performance_metrics (
     omniscience_hallucination_rate NUMERIC(5, 2), -- Hallucination rate percentage
     evaluation_version VARCHAR(50), -- Evaluation framework version
     data_source VARCHAR(100) DEFAULT 'ARTIFICIAL_ANALYSIS',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (model_id) REFERENCES ai_models(model_id)
 );
 
@@ -84,8 +84,8 @@ CREATE TABLE benchmark_evaluations (
     benchmark_version VARCHAR(50), -- Benchmark version
     evaluation_metadata TEXT, -- JSON metadata with detailed results
     data_source VARCHAR(100) DEFAULT 'ARTIFICIAL_ANALYSIS',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (model_id) REFERENCES ai_models(model_id)
 );
 
@@ -104,7 +104,7 @@ CREATE TABLE model_comparisons (
     score_difference_percent NUMERIC(5, 2), -- Percentage difference
     comparison_context VARCHAR(500), -- Context of comparison
     data_source VARCHAR(100) DEFAULT 'ARTIFICIAL_ANALYSIS',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (model_id_1) REFERENCES ai_models(model_id),
     FOREIGN KEY (model_id_2) REFERENCES ai_models(model_id),
     FOREIGN KEY (winner_model_id) REFERENCES ai_models(model_id)
@@ -130,8 +130,8 @@ CREATE TABLE marketing_intelligence (
     competitive_advantage VARCHAR(500), -- Key competitive advantages
     market_insights TEXT, -- Detailed insights JSON
     data_source VARCHAR(100) DEFAULT 'CALCULATED',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Government Benchmark Data Table
@@ -157,8 +157,8 @@ CREATE TABLE government_benchmark_data (
     benchmark_metadata TEXT, -- JSON metadata
     source_url VARCHAR(1000),
     data_source VARCHAR(100) DEFAULT 'GOVERNMENT',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (model_id) REFERENCES ai_models(model_id)
 );
 
@@ -180,8 +180,8 @@ CREATE TABLE model_adoption_metrics (
     adoption_trend VARCHAR(50), -- 'growing', 'stable', 'declining'
     adoption_metadata TEXT, -- JSON metadata
     data_source VARCHAR(100) DEFAULT 'AGGREGATED',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (model_id) REFERENCES ai_models(model_id)
 );
 
@@ -201,7 +201,7 @@ CREATE TABLE model_pricing_history (
     pricing_tier VARCHAR(50), -- 'free', 'tier_1', 'tier_2', 'enterprise', etc.
     pricing_region VARCHAR(50) DEFAULT 'US', -- Pricing region
     data_source VARCHAR(100) DEFAULT 'ARTIFICIAL_ANALYSIS',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (model_id) REFERENCES ai_models(model_id)
 );
 
@@ -217,7 +217,7 @@ CREATE TABLE model_performance_history (
     performance_change_percent NUMERIC(5, 2), -- Performance change from previous period
     benchmark_scores_json TEXT, -- JSON with all benchmark scores
     data_source VARCHAR(100) DEFAULT 'ARTIFICIAL_ANALYSIS',
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (model_id) REFERENCES ai_models(model_id)
 );
 
@@ -233,13 +233,13 @@ CREATE TABLE data_sources (
     rate_limit_per_hour INTEGER,
     rate_limit_per_day INTEGER,
     authentication_type VARCHAR(50), -- 'none', 'api_key', 'oauth', 'bearer_token'
-    last_sync_at TIMESTAMP_NTZ,
+    last_sync_at TIMESTAMP,
     sync_frequency VARCHAR(50), -- 'hourly', 'daily', 'weekly', 'monthly', 'manual'
     data_quality_score NUMERIC(5, 2), -- Data quality score (0-100)
     is_active BOOLEAN DEFAULT TRUE,
     source_metadata TEXT, -- JSON metadata
-    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
-    updated_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Pipeline Metadata Table
@@ -247,7 +247,7 @@ CREATE TABLE data_sources (
 CREATE TABLE pipeline_metadata (
     pipeline_id VARCHAR(255) PRIMARY KEY,
     source_id VARCHAR(255) NOT NULL,
-    extraction_date TIMESTAMP_NTZ NOT NULL,
+    extraction_date TIMESTAMP NOT NULL,
     pipeline_type VARCHAR(50), -- 'extract', 'transform', 'load', 'full', 'incremental'
     records_processed INTEGER DEFAULT 0,
     records_successful INTEGER DEFAULT 0,
@@ -255,8 +255,8 @@ CREATE TABLE pipeline_metadata (
     processing_duration_seconds INTEGER,
     error_log TEXT,
     status VARCHAR(50) DEFAULT 'running', -- 'running', 'success', 'failed', 'partial'
-    start_time TIMESTAMP_NTZ NOT NULL,
-    end_time TIMESTAMP_NTZ,
+    start_time TIMESTAMP NOT NULL,
+    end_time TIMESTAMP,
     data_volume_bytes BIGINT, -- Data volume processed in bytes
     FOREIGN KEY (source_id) REFERENCES data_sources(source_id)
 );

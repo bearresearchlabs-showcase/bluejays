@@ -48,8 +48,7 @@ class TestSourceStructure:
         q = SOURCE / f"db-{n}"
         data = (q / "app" / "DATABASE") if (q / "app" / "DATABASE").exists() else (q / "data")
         schema = data / "schema.sql"
-        schema_pg = data / "schema_postgresql.sql"
-        assert schema.exists() or schema_pg.exists(), f"source/db-{n} must have schema.sql or schema_postgresql.sql"
+        assert schema.exists(), f"source/db-{n} must have schema.sql"
 
 
 class TestExtraction:

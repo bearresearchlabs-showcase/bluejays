@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Resync main db deliverables to client/db using DATABASE/DOCUMENTATION/QUERIES structure.
-Faithful to source: db-N/data is primary for *.sql; db-N/queries for queries; deliverable/dbN-*/ for docs.
+Resync source/db-N to client/db/db-N. Source mirrors client: DATABASE/, DOCUMENTATION/, QUERIES/.
+Single source of truth: data/ -> DATABASE/, docs/ -> DOCUMENTATION/, queries/ -> QUERIES/.
 Uses shutil.copy2 (byte-preserving) and verifies bit-for-bit after sync when --verify is set.
 
 Usage:
     python3 scripts/resync_client_db.py              # Sync all db-1 through db-16
     python3 scripts/resync_client_db.py --dbs 1 6 10  # Sync specific dbs
     python3 scripts/resync_client_db.py --dry-run    # Show what would be copied
-    python3 scripts/resync_client_db.py --verify    # Sync then verify byte-for-byte
+    python3 scripts/resync_client_db.py --verify     # Sync then verify byte-for-byte
 """
 
 import argparse
@@ -17,38 +17,11 @@ import shutil
 import sys
 from pathlib import Path
 
+from db_paths import get_primary_data_file
+
 BASE_DIR = Path(__file__).parent.parent
 SOURCE_DB = BASE_DIR / "source"  # Source of truth: source/db-1..db-16
 CLIENT_DB = BASE_DIR / "client" / "db"
-
-
-def find_deliverable_data(db_dir: Path, db_num: int) -> Path | None:
-    """Find data/ folder: deliverable/data or deliverable/dbN-*/data."""
-    deliverable_dir = db_dir / "deliverable"
-    if not deliverable_dir.exists():
-        return None
-    data = deliverable_dir / "data"
-    if data.exists() and data.is_dir():
-        return data
-    prefix = f"db{db_num}-"
-    for item in deliverable_dir.iterdir():
-        if item.is_dir() and item.name.startswith(prefix):
-            candidate = item / "data"
-            if candidate.exists():
-                return candidate
-    return None
-
-
-def find_web_deliverable(db_dir: Path, db_num: int) -> Path | None:
-    """Find web-deployable folder dbN-* with documentation."""
-    deliverable_dir = db_dir / "deliverable"
-    if not deliverable_dir.exists():
-        return None
-    prefix = f"db{db_num}-"
-    for item in deliverable_dir.iterdir():
-        if item.is_dir() and item.name.startswith(prefix):
-            return item
-    return None
 
 
 def _file_sha256(path: Path) -> str | None:
@@ -62,10 +35,20 @@ def _file_sha256(path: Path) -> str | None:
     return h.hexdigest()
 
 
+def _get_canonical_src(db_dir: Path) -> Path | None:
+    """Return path to canonical structure: root or app/. Backwards compat."""
+    if (db_dir / "DATABASE").exists():
+        return db_dir
+    app_dir = db_dir / "app"
+    if app_dir.exists() and (app_dir / "DATABASE").exists():
+        return app_dir
+    return None
+
+
 def _verify_synced(db_num: int, db_root: Path, client_root: Path) -> list[tuple[str, bool]]:
     """Verify client files are byte-for-byte identical to source. Returns [(rel_path, match), ...]."""
     db_dir = db_root / f"db-{db_num}"
-    app_dir = db_dir / "app"
+    src_base = _get_canonical_src(db_dir)
     client_db_dir = client_root / f"db-{db_num}"
     results = []
 
@@ -74,30 +57,27 @@ def _verify_synced(db_num: int, db_root: Path, client_root: Path) -> list[tuple[
             return False
         return _file_sha256(src) == _file_sha256(dest)
 
-    # Iron-triangle path: source is app/
-    if app_dir.exists() and (app_dir / "DATABASE").exists():
+    # Canonical path: source has DATABASE/, DOCUMENTATION/, QUERIES/ at root or app/
+    if src_base is not None:
         for subdir, name in [("DATABASE", "DATABASE"), ("DOCUMENTATION", "DOCUMENTATION"), ("QUERIES", "QUERIES")]:
-            src_dir = app_dir / subdir
+            src_dir = src_base / subdir
             dest_dir = client_db_dir / name
             if not src_dir.exists() or not dest_dir.exists():
                 continue
             for f in dest_dir.iterdir():
                 if f.is_file():
-                    if subdir == "DOCUMENTATION" and f.name != "README.md":
-                        continue  # we remove non-README in sync
                     src = src_dir / f.name
+                    if subdir == "DOCUMENTATION" and f.name != "README.md":
+                        continue  # README-only in DOCUMENTATION
                     if src.exists():
                         ok = compare(src, f)
                         results.append((f"{name}/{f.name}", ok))
-        # vercel.json
-        web_d = app_dir.parent / "deliverable"
-        for item in (web_d.iterdir() if web_d.exists() else []):
-            if item.is_dir() and item.name.startswith(f"db{db_num}-"):
-                v_src = item / "vercel.json"
-                v_dest = client_db_dir / "vercel.json"
-                if v_src.exists() and v_dest.exists():
-                    results.append(("vercel.json", compare(v_src, v_dest)))
-                break
+        # vercel.json — README.md only
+        expected = '{"rewrites":[{"source":"/","destination":"/DOCUMENTATION/README.md"}]}'
+        v_dest = client_db_dir / "vercel.json"
+        if v_dest.exists():
+            ok = v_dest.read_text(encoding="utf-8").strip() == expected
+            results.append(("vercel.json", ok))
         return results
 
     # Legacy path: compare client files to their sources
@@ -111,38 +91,29 @@ def _verify_synced(db_num: int, db_root: Path, client_root: Path) -> list[tuple[
             src = None
             if subdir == "DATABASE":
                 db_data = db_dir / "data"
-                deliv = find_deliverable_data(db_dir, db_num)
-                for d in (db_data, deliv) if deliv else (db_data,):
-                    if d and (d / f.name).exists():
-                        src = d / f.name
-                        break
-                web_d = find_web_deliverable(db_dir, db_num)
-                if not src and web_d and (web_d / "data" / f.name).exists():
-                    src = web_d / "data" / f.name
+                if db_data.exists() and (db_data / f.name).exists():
+                    src = db_data / f.name
             elif subdir == "DOCUMENTATION":
-                web_d = find_web_deliverable(db_dir, db_num) or db_dir / "deliverable"
-                if (web_d / f.name).exists():
-                    src = web_d / f.name
+                if (db_dir / "docs" / f.name).exists():
+                    src = db_dir / "docs" / f.name
             elif subdir == "QUERIES":
                 qsrc = db_dir / "queries"
-                if not qsrc.exists():
-                    qsrc = db_dir / "deliverable" / "queries"
                 if qsrc.exists() and (qsrc / f.name).exists():
                     src = qsrc / f.name
             if src:
                 results.append((f"{subdir}/{f.name}", compare(src, f)))
-    # vercel.json
-    web_d = find_web_deliverable(db_dir, db_num)
+    # vercel.json — README-only config
     v_dest = client_db_dir / "vercel.json"
-    if web_d and (web_d / "vercel.json").exists() and v_dest.exists():
-        results.append(("vercel.json", compare(web_d / "vercel.json", v_dest)))
+    expected = '{"rewrites":[{"source":"/","destination":"/DOCUMENTATION/README.md"}]}'
+    if v_dest.exists():
+        ok = v_dest.read_text(encoding="utf-8").strip() == expected
+        results.append(("vercel.json", ok))
     return results
 
 
-def _sync_from_app(app_dir: Path, client_db_dir: Path, db_num: int, dry_run: bool) -> dict:
-    """Sync from source/db-N/app/ (iron triangle) to client/db/db-N/.
-    Strict alignment: only DATABASE/, DOCUMENTATION/, QUERIES/, vercel.json.
-    Removes extraneous dbN-* folders (legacy web-deployable structure)."""
+def _sync_from_canonical(src_base: Path, client_db_dir: Path, db_num: int, dry_run: bool) -> dict:
+    """Sync from source/db-N/ (DATABASE/, DOCUMENTATION/, QUERIES/) to client/db/db-N/.
+    Source mirrors client structure. Removes extraneous dbN-* folders (legacy web-deployable)."""
     result = {"db": f"db-{db_num}", "synced": [], "errors": []}
 
     # Prune extraneous dbN-* folders (legacy web-deployable) for strict alignment
@@ -159,14 +130,19 @@ def _sync_from_app(app_dir: Path, client_db_dir: Path, db_num: int, dry_run: boo
                     except Exception as e:
                         result["errors"].append(f"Remove {item.name}: {e}")
 
-    def copy_dir(src_dir: Path, dest_dir: Path, name: str) -> None:
+    def copy_dir(src_dir: Path, dest_dir: Path, name: str, remove_extras: bool = False) -> None:
         if not src_dir.exists():
             return
+        src_files = {f.name for f in src_dir.iterdir() if f.is_file()}
         if dry_run:
-            count = len([f for f in src_dir.iterdir() if f.is_file()])
-            result["synced"].append(f"Would copy {name}/ ({count} files)")
+            result["synced"].append(f"Would copy {name}/ ({len(src_files)} files)")
             return
         dest_dir.mkdir(parents=True, exist_ok=True)
+        if remove_extras and dest_dir.exists():
+            for f in list(dest_dir.iterdir()):
+                if f.is_file() and f.name not in src_files:
+                    f.unlink()
+                    result["synced"].append(f"Removed obsolete: {name}/{f.name}")
         for f in src_dir.iterdir():
             if f.is_file():
                 shutil.copy2(f, dest_dir / f.name)
@@ -184,41 +160,31 @@ def _sync_from_app(app_dir: Path, client_db_dir: Path, db_num: int, dry_run: boo
         result["synced"].append(desc)
         return True
 
-    copy_dir(app_dir / "DATABASE", client_db_dir / "DATABASE", "DATABASE")
-    # DOCUMENTATION — README.md only
-    copy_dir(app_dir / "DOCUMENTATION", client_db_dir / "DOCUMENTATION", "DOCUMENTATION")
+    copy_dir(src_base / "DATABASE", client_db_dir / "DATABASE", "DATABASE", remove_extras=True)
+    # DOCUMENTATION — README.md only (no HTML)
+    copy_dir(src_base / "DOCUMENTATION", client_db_dir / "DOCUMENTATION", "DOCUMENTATION")
     if not dry_run:
         doc_dest = client_db_dir / "DOCUMENTATION"
         for f in list(doc_dest.iterdir()):
             if f.is_file() and f.name != "README.md":
                 f.unlink()
                 result["synced"].append(f"Removed DOCUMENTATION/{f.name}")
-    copy_dir(app_dir / "QUERIES", client_db_dir / "QUERIES", "QUERIES")
+    copy_dir(src_base / "QUERIES", client_db_dir / "QUERIES", "QUERIES")
 
-    # vercel.json - from app/DOCUMENTATION parent or create minimal
-    web_d = app_dir.parent / "deliverable"
-    prefix = f"db{db_num}-"
-    for item in (web_d.iterdir() if web_d.exists() else []):
-        if item.is_dir() and item.name.startswith(prefix):
-            vercel_src = item / "vercel.json"
-            if vercel_src.exists():
-                copy_file(vercel_src, client_db_dir / "vercel.json", "vercel.json")
-                break
-    if not dry_run and not (client_db_dir / "vercel.json").exists():
-        (client_db_dir / "vercel.json").write_text(
-            f'{{"rewrites":[{{"source":"/","destination":"/DOCUMENTATION/README.md"}}]}}',
-            encoding="utf-8",
-        )
-        result["synced"].append("vercel.json (created)")
+    # vercel.json — points to README.md only
+    if not dry_run:
+        vercel_content = '{"rewrites":[{"source":"/","destination":"/DOCUMENTATION/README.md"}]}'
+        (client_db_dir / "vercel.json").write_text(vercel_content, encoding="utf-8")
+        result["synced"].append("vercel.json")
 
     return result
 
 
 def sync_database(db_num: int, db_root: Path, client_root: Path, dry_run: bool = False) -> dict:
-    """Sync one database to client using DATABASE/, DOCUMENTATION/, QUERIES/ structure.
-    Source: source/db-N/app/ (iron triangle) when app/ exists; else legacy data/, deliverable/, queries/."""
+    """Sync one database to client. Source mirrors client: DATABASE/, DOCUMENTATION/, QUERIES/.
+    Uses canonical structure at root or app/ when present; else data/, docs/, queries/ (single source)."""
     db_dir = db_root / f"db-{db_num}"
-    app_dir = db_dir / "app"
+    src_base = _get_canonical_src(db_dir)
     client_db_dir = client_root / f"db-{db_num}"
 
     result = {"db": f"db-{db_num}", "synced": [], "errors": []}
@@ -227,9 +193,9 @@ def sync_database(db_num: int, db_root: Path, client_root: Path, dry_run: bool =
         result["errors"].append(f"db dir not found: {db_dir}")
         return result
 
-    # When app/ exists (iron triangle), copy directly from app/ to client
-    if app_dir.exists() and (app_dir / "DATABASE").exists():
-        return _sync_from_app(app_dir, client_db_dir, db_num, dry_run)
+    # When canonical structure exists (root or app/), copy directly to client
+    if src_base is not None:
+        return _sync_from_canonical(src_base, client_db_dir, db_num, dry_run)
 
     def copy_file(src: Path, dest: Path, desc: str) -> bool:
         if not src.exists() or not src.is_file():
@@ -248,23 +214,16 @@ def sync_database(db_num: int, db_root: Path, client_root: Path, dry_run: bool =
             result["errors"].append(f"{desc}: {e}")
             return False
 
-    # 1. DATABASE/ - PostgreSQL-only SQL: schema, data.sql, data_large (full 1GB)
+    # 1. DATABASE/ - from data/ only (single source of truth)
     db_data = db_dir / "data"
-    deliv_data = find_deliverable_data(db_dir, db_num)
-
     db_dest = client_db_dir / "DATABASE"
-    all_sql = {}  # name -> path
+    all_sql = {}
     if db_data.exists():
         for f in db_data.iterdir():
             if f.is_file() and f.suffix.lower() == ".sql":
                 all_sql[f.name] = f
-    if deliv_data and deliv_data.exists():
-        for f in deliv_data.iterdir():
-            if f.is_file() and f.suffix.lower() == ".sql" and f.name not in all_sql:
-                all_sql[f.name] = f
 
-    # Filter: PostgreSQL-only SQL. Output: schema.sql, data.sql, data_large.sql (>= 1GB)
-    GB = 1024**3
+    # Filter: PostgreSQL-only SQL. Output: schema.sql, primary data (data_large >= 1GB or data.sql)
     collected_sql = {}  # dest_name -> src_path
 
     def add_schema(dest: str, pg_src: str | None, base_src: str) -> None:
@@ -272,23 +231,16 @@ def sync_database(db_num: int, db_root: Path, client_root: Path, dry_run: bool =
         if src:
             collected_sql[dest] = all_sql[src]
 
-    add_schema("schema.sql", "schema_postgresql.sql", "schema.sql")
-    add_schema("schema_extensions.sql", "schema_extensions_postgresql.sql", "schema_extensions.sql")
-    add_schema("insurance_schema.sql", "insurance_schema_postgresql.sql", "insurance_schema.sql")
-    add_schema("nexrad_satellite_schema.sql", "nexrad_satellite_schema_postgresql.sql", "nexrad_satellite_schema.sql")
-    if "schema_postgresql_large.sql" in all_sql:
-        collected_sql["schema_postgresql_large.sql"] = all_sql["schema_postgresql_large.sql"]
+    add_schema("schema.sql", "schema.sql", "schema.sql")
+    add_schema("schema_extensions.sql", "schema_extensions.sql", "schema_extensions.sql")
+    add_schema("insurance_schema.sql", "insurance_schema.sql", "insurance_schema.sql")
+    add_schema("nexrad_satellite_schema.sql", "nexrad_satellite_schema.sql", "nexrad_satellite_schema.sql")
 
-    if "data.sql" in all_sql:
-        collected_sql["data.sql"] = all_sql["data.sql"]
-
-    # data_large.sql: must be >= 1GB. Prefer PostgreSQL variant.
-    if "data_large_postgresql.sql" in all_sql and all_sql["data_large_postgresql.sql"].stat().st_size >= GB:
-        collected_sql["data_large.sql"] = all_sql["data_large_postgresql.sql"]
-    elif "data_large.sql" in all_sql and all_sql["data_large.sql"].stat().st_size >= GB:
-        collected_sql["data_large.sql"] = all_sql["data_large.sql"]
-    elif "data.sql" in all_sql and all_sql["data.sql"].stat().st_size >= GB:
-        collected_sql["data_large.sql"] = all_sql["data.sql"]  # db-16: data.sql is 2.5GB
+    # Only primary data file: prefer data_large >= 1GB, else data.sql
+    primary = get_primary_data_file(all_sql)
+    if primary:
+        dest_name, src_path = primary
+        collected_sql[dest_name] = src_path
 
     if collected_sql:
         if dry_run:
@@ -305,28 +257,20 @@ def sync_database(db_num: int, db_root: Path, client_root: Path, dry_run: bool =
                 shutil.copy2(src_path, db_dest / name)
             result["synced"].append(f"DATABASE/ ({len(collected_sql)} files including data_large.sql)" if "data_large.sql" in collected_sql else f"DATABASE/ ({len(collected_sql)} files)")
 
-    # 2. DOCUMENTATION/ - html, json, md from deliverable/dbN-*/
-    web_d = find_web_deliverable(db_dir, db_num)
-    if not web_d:
-        web_d = db_dir / "deliverable"
+    # 2. DOCUMENTATION/ — README.md only (from docs/ or generate)
     doc_dest = client_db_dir / "DOCUMENTATION"
-    for fname in (f"db-{db_num}_documentation.html", f"db-{db_num}_deliverable.json", f"db-{db_num}.md"):
-        for src in (web_d / fname, db_dir / "deliverable" / fname):
-            if src.exists():
-                if copy_file(src, doc_dest / fname, f"DOCUMENTATION/{fname}"):
-                    break
-        # Also copy .gitignore if present
-        gitignore = web_d / ".gitignore"
-        if gitignore.exists():
-            copy_file(gitignore, doc_dest / ".gitignore", "DOCUMENTATION/.gitignore")
-
+    readme_src = db_dir / "docs" / "README.md"
+    if readme_src.exists():
+        copy_file(readme_src, doc_dest / "README.md", "DOCUMENTATION/README.md")
+    if not dry_run and doc_dest.exists():
+        for f in list(doc_dest.iterdir()):
+            if f.is_file() and f.name != "README.md":
+                f.unlink()
     if not dry_run and doc_dest.exists() and any(doc_dest.iterdir()):
         result["synced"].append("DOCUMENTATION/")
 
-    # 3. QUERIES/ - queries.md, queries.json
+    # 3. QUERIES/ - from queries/ only (single source of truth)
     queries_src = db_dir / "queries"
-    if not queries_src.exists():
-        queries_src = db_dir / "deliverable" / "queries"
     qdest = client_db_dir / "QUERIES"
     if queries_src.exists():
         for fname in ("queries.md", "queries.json"):
@@ -337,54 +281,34 @@ def sync_database(db_num: int, db_root: Path, client_root: Path, dry_run: bool =
             if "QUERIES/" not in " ".join(result["synced"]):
                 result["synced"].append("QUERIES/")
 
-    # 4. Legacy dbN-*/data - sync same PostgreSQL-only SQL from web deliverable
-    if web_d and web_d.exists():
-        web_data = web_d / "data"
-        if web_data.exists():
-            prefix = f"db{db_num}-"
-            client_items = list(client_db_dir.iterdir()) if client_db_dir.exists() else []
-            for client_item in client_items:
-                if client_item.is_dir() and client_item.name.startswith(prefix):
-                    legacy_data_dest = client_item / "data"
-                    if legacy_data_dest.exists() or not dry_run:
-                        web_sql = {f.name: f for f in web_data.iterdir() if f.is_file() and f.suffix.lower() == ".sql"}
-                        legacy_collected = {}
-                        for dest_name, src_path in collected_sql.items():
-                            if src_path.name in web_sql:
-                                legacy_collected[dest_name] = web_sql[src_path.name]
-                            elif dest_name in web_sql:
-                                legacy_collected[dest_name] = web_sql[dest_name]
-                        if not legacy_collected:
-                            legacy_collected = web_sql
-                        if legacy_collected:
-                            if dry_run:
-                                result["synced"].append(f"Would sync {client_item.name}/data/ ({len(legacy_collected)} files)")
-                            else:
-                                legacy_data_dest.mkdir(parents=True, exist_ok=True)
-                                for f in list(legacy_data_dest.iterdir()):
-                                    if f.is_file() and f.suffix.lower() == ".sql" and f.name not in legacy_collected:
-                                        f.unlink()
-                                        result["synced"].append(f"Removed obsolete: {client_item.name}/data/{f.name}")
-                                for name, src_path in legacy_collected.items():
-                                    shutil.copy2(src_path, legacy_data_dest / name)
-                                result["synced"].append(f"{client_item.name}/data/ ({len(legacy_collected)} files)")
-                    break  # only sync first matching legacy folder
+    # 4. Legacy dbN-*/data - sync same SQL from data/ (single source of truth)
+    if collected_sql:
+        prefix = f"db{db_num}-"
+        client_items = list(client_db_dir.iterdir()) if client_db_dir.exists() else []
+        for client_item in client_items:
+            if client_item.is_dir() and client_item.name.startswith(prefix):
+                legacy_data_dest = client_item / "data"
+                if legacy_data_dest.exists() or not dry_run:
+                    if dry_run:
+                        result["synced"].append(f"Would sync {client_item.name}/data/ ({len(collected_sql)} files)")
+                    else:
+                        legacy_data_dest.mkdir(parents=True, exist_ok=True)
+                        for f in list(legacy_data_dest.iterdir()):
+                            if f.is_file() and f.suffix.lower() == ".sql" and f.name not in collected_sql:
+                                f.unlink()
+                                result["synced"].append(f"Removed obsolete: {client_item.name}/data/{f.name}")
+                        for name, src_path in collected_sql.items():
+                            shutil.copy2(src_path, legacy_data_dest / name)
+                        result["synced"].append(f"{client_item.name}/data/ ({len(collected_sql)} files)")
+                break  # only sync first matching legacy folder
 
-    # 5. vercel.json - from web deliverable or template
-    vercel_src = web_d / "vercel.json" if web_d and web_d.exists() else None
-    if not vercel_src or not vercel_src.exists():
-        vercel_src = client_db_dir / "vercel.json"  # keep existing
-    if vercel_src and vercel_src.exists():
-        copy_file(vercel_src, client_db_dir / "vercel.json", "vercel.json")
-    else:
-        # Create minimal vercel.json if missing
-        if not dry_run and not (client_db_dir / "vercel.json").exists():
-            vercel_content = '''{
-  "rewrites": [{"source": "/", "destination": "/DOCUMENTATION/db-''' + str(db_num) + '''_documentation.html"}]
-}
-'''
-            (client_db_dir / "vercel.json").write_text(vercel_content, encoding="utf-8")
-            result["synced"].append("vercel.json (created)")
+    # 5. vercel.json — README.md only
+    if not dry_run:
+        (client_db_dir / "vercel.json").write_text(
+            '{"rewrites":[{"source":"/","destination":"/DOCUMENTATION/README.md"}]}',
+            encoding="utf-8",
+        )
+        result["synced"].append("vercel.json")
 
     return result
 

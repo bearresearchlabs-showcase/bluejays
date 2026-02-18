@@ -78,11 +78,11 @@ def _queries_from_json(queries_data: Dict, db_id: str) -> List[Dict]:
 
 
 def _parse_schema_for_deliverable(db_dir: Path) -> List[Dict]:
-    """Parse schema.sql to extract table definitions for deliverable JSON."""
-    for base in (db_dir / "app" / "DATABASE", db_dir / "data", db_dir / "deliverable" / "data"):
+    """Parse schema.sql to extract table definitions for deliverable JSON. Single source: data/."""
+    for base in (db_dir / "data", db_dir / "DATABASE", db_dir / "app" / "DATABASE"):
         if not base.exists():
             continue
-        for name in ("schema.sql", "schema_postgresql.sql"):
+        for name in ("schema.sql",):
             p = base / name
             if p.exists():
                 return _parse_schema_tables(p.read_text(encoding="utf-8"))
@@ -155,11 +155,11 @@ def _parse_schema_tables(sql_content: str) -> List[Dict]:
 
 
 def _load_schema_snippet(db_dir: Path, db_num: int) -> str:
-    """Load first 2000 chars of schema.sql."""
-    for base in (db_dir / "app" / "DATABASE", db_dir / "data", db_dir / "deliverable" / "data"):
+    """Load first 2000 chars of schema.sql. Single source: data/."""
+    for base in (db_dir / "data", db_dir / "DATABASE", db_dir / "app" / "DATABASE"):
         if not base.exists():
             continue
-        for name in ("schema.sql", "schema_postgresql.sql"):
+        for name in ("schema.sql",):
             p = base / name
             if p.exists():
                 txt = p.read_text(encoding="utf-8").strip()
@@ -171,8 +171,10 @@ def _get_db_name_for_queries(db_dir: Path, db_id: str) -> str:
     """Get database name for queries.md title."""
     for candidate in (
         db_dir / "deliverable" / f"{db_id}.md",
+        db_dir / "DOCUMENTATION" / f"{db_id}.md",
         db_dir / "app" / "DOCUMENTATION" / f"{db_id}.md",
         db_dir / "DELIVERABLE.md",
+        db_dir / "QUERIES" / "queries.md",
         db_dir / "app" / "QUERIES" / "queries.md",
         db_dir / "queries" / "queries.md",
     ):
@@ -423,8 +425,13 @@ class DeliverableFormatter:
                 qdest.mkdir(parents=True, exist_ok=True)
                 for fname in ('queries.md', 'queries.json'):
                     src = queries_dir / fname
+                    dst = qdest / fname
                     if src.exists():
-                        shutil.copy2(src, qdest / fname)
+                        try:
+                            if src.resolve() != dst.resolve():
+                                shutil.copy2(src, dst)
+                        except (OSError, shutil.SameFileError):
+                            pass  # same file on case-insensitive FS (queries/ == QUERIES/)
 
             # Generate db-N_deliverable.json with full query objects (question, normal_query, evidence)
             # so apps/web and BIRD-style consumers receive correct data
@@ -447,9 +454,7 @@ class DeliverableFormatter:
             json_bytes = json.dumps(json_deliverable, indent=2, ensure_ascii=False).encode("utf-8")
             for web_dir in web_dirs:
                 (web_dir / f'db-{db_num}_deliverable.json').write_bytes(json_bytes)
-            app_doc = db_dir / "app" / "DOCUMENTATION"
-            if app_doc.exists():
-                (app_doc / f'db-{db_num}_deliverable.json').write_bytes(json_bytes)
+            # Write deliverable JSON only to web-deployable; DOCUMENTATION stays README-only
 
             result = {
                 'status': 'SUCCESS',

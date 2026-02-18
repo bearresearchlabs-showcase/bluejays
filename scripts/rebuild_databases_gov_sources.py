@@ -454,7 +454,7 @@ def keep_only_data_schema():
     """Remove all files except data.sql and schema.sql from each db data directory."""
     import shutil
     kept = {"data.sql", "schema.sql", "schema_models.sql"}
-    schema_fallbacks = ["schema_complete.sql", "schema_postgresql.sql", "schema_working.sql"]
+    schema_fallbacks = ["schema_complete.sql", "schema_working.sql"]
     for n in range(1, 6):
         data_dir = BASE / f"db-{n}" / "data"
         if not data_dir.exists():

@@ -3,7 +3,7 @@
     "id": "db-13",
     "name": "AI Benchmark Marketing Database",
     "description": "This database implements a comprehensive AI benchmark marketing system that mirrors and extends Artificial Analysis (artificialanalysis.ai) functionality for comprehensive AI model benchmark tracking, competitive analysis, and marketing insights. The database integrates data from Artificial Analysis, U.S. government sources (NIST, NSF, Data.gov, DARPA), Papers with Code, Hugging Face, GitHub, and other reputable sources, providing comprehensive benchmark evaluations, performance tracking, pricin",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

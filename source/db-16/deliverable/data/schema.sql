@@ -24,7 +24,7 @@ CREATE TABLE fema_flood_zones (
     spatial_extent_south NUMERIC(10, 6),
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     transformation_status VARCHAR(50)
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE real_estate_properties (
     portfolio_id VARCHAR(255),
     portfolio_name VARCHAR(255),
     acquisition_date DATE,
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- NOAA Sea Level Rise Projections Table
@@ -69,7 +69,7 @@ CREATE TABLE noaa_sea_level_rise (
     confidence_level VARCHAR(50),  -- 'Low', 'Medium', 'High'
     high_tide_flooding_days INTEGER,  -- Projected annual high tide flooding days
     data_source VARCHAR(100) DEFAULT 'NOAA_CO-OPS',
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- USGS Streamflow Gauges Table
@@ -91,7 +91,7 @@ CREATE TABLE usgs_streamflow_gauges (
     first_observation_date DATE,
     last_observation_date DATE,
     update_frequency_minutes INTEGER,
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- USGS Streamflow Observations Table
@@ -99,14 +99,14 @@ CREATE TABLE usgs_streamflow_gauges (
 CREATE TABLE usgs_streamflow_observations (
     observation_id VARCHAR(255) PRIMARY KEY,
     gauge_id VARCHAR(50) NOT NULL,
-    observation_time TIMESTAMP_NTZ NOT NULL,
+    observation_time TIMESTAMP NOT NULL,
     gage_height_feet NUMERIC(8, 2),
     discharge_cfs NUMERIC(12, 2),  -- Discharge in cubic feet per second
     stage_feet NUMERIC(8, 2),
     flood_category VARCHAR(50),  -- 'None', 'Action', 'Minor', 'Moderate', 'Major'
     percentile_rank NUMERIC(5, 2),  -- Percentile relative to historical records
     data_quality_code VARCHAR(10),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- NASA Flood Model Outputs Table
@@ -114,7 +114,7 @@ CREATE TABLE usgs_streamflow_observations (
 CREATE TABLE nasa_flood_models (
     model_id VARCHAR(255) PRIMARY KEY,
     model_name VARCHAR(100),  -- 'GFMS', 'LIS', 'VIIRS', 'MODIS', 'FloodPlanet'
-    forecast_time TIMESTAMP_NTZ NOT NULL,
+    forecast_time TIMESTAMP NOT NULL,
     grid_cell_latitude NUMERIC(10, 7) NOT NULL,
     grid_cell_longitude NUMERIC(10, 7) NOT NULL,
     grid_cell_geom GEOGRAPHY,  -- Point geometry for grid cell center
@@ -127,7 +127,7 @@ CREATE TABLE nasa_flood_models (
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
     source_file VARCHAR(500),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Flood Risk Assessments Table
@@ -179,7 +179,7 @@ CREATE TABLE flood_risk_assessments (
     confidence_level VARCHAR(50),
     assessment_notes TEXT,
     created_by VARCHAR(255),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Property-Flood Zone Intersections Table
@@ -192,7 +192,7 @@ CREATE TABLE property_flood_zone_intersections (
     distance_to_zone_feet NUMERIC(10, 2),
     elevation_difference_feet NUMERIC(10, 2),  -- Property elevation - BFE
     intersection_geom GEOGRAPHY,  -- Intersection geometry if applicable
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Historical Flood Events Table
@@ -212,7 +212,7 @@ CREATE TABLE historical_flood_events (
     state_code VARCHAR(2),
     county_fips VARCHAR(5),
     data_source VARCHAR(100),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Model Performance Metrics Table
@@ -238,7 +238,7 @@ CREATE TABLE model_performance_metrics (
     spatial_resolution_meters INTEGER,
     temporal_resolution_hours INTEGER,
     evaluation_notes TEXT,
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Portfolio Risk Summaries Table
@@ -258,7 +258,7 @@ CREATE TABLE portfolio_risk_summaries (
     at_risk_property_value NUMERIC(18, 2),
     estimated_annual_loss NUMERIC(15, 2),
     portfolio_risk_category VARCHAR(50),
-    load_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Data Quality Metrics Table
@@ -277,7 +277,7 @@ CREATE TABLE data_quality_metrics (
     spatial_coverage_km2 NUMERIC(15, 2),
     temporal_coverage_days INTEGER,
     data_freshness_hours INTEGER,
-    calculation_timestamp TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+    calculation_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create indexes for performance

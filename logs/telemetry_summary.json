@@ -2,27 +2,27 @@
   "db_check:validate": {
     "component": "db_check",
     "action": "validate",
-    "passed": 1,
-    "failed": 0,
+    "passed": 0,
+    "failed": 1,
     "skipped": 0,
-    "ts": 1771196627.886657,
-    "overall": "PASS"
+    "ts": 1771395452.7856371,
+    "overall": "FAIL"
   },
   "db_check:compliance": {
     "component": "db_check",
     "action": "compliance",
-    "passed": 2,
+    "passed": 1,
     "failed": 0,
     "skipped": 0,
-    "ts": 1771301684.5680268
+    "ts": 1771398906.595168
   },
   "db_check:qa": {
     "component": "db_check",
     "action": "qa",
-    "passed": 0,
-    "failed": 16,
+    "passed": 16,
+    "failed": 0,
     "skipped": 0,
-    "ts": 1771301684.554262
+    "ts": 1771398887.954438
   },
   "bird_export:run": {
     "component": "bird_export",
@@ -32,5 +32,14 @@
     "skipped": 0,
     "ts": 1771212808.373204,
     "db_count": 16
+  },
+  "bird_workbench:run": {
+    "component": "bird_workbench",
+    "action": "run",
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0,
+    "ts": 1771395450.500749,
+    "total": 30
   }
 }

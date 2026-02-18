@@ -41,9 +41,11 @@ def _db_script_env() -> dict:
 class ValidationRunner:
     """Run validation suite for database repositories"""
 
-    def __init__(self, root_dir: Path):
+    def __init__(self, root_dir: Path, no_overwrite: bool = False, pass_fail_only: bool = False):
         self.root_dir = root_dir.resolve()
         self.results = {}
+        self.no_overwrite = no_overwrite
+        self.pass_fail_only = pass_fail_only
 
     def parse_arguments(self, args: List[str]) -> List[int]:
         """Parse command line arguments and return list of database numbers"""
@@ -116,9 +118,10 @@ class ValidationRunner:
                 'error': f'db-{db_num} directory not found'
             }
 
-        print(f"\n{'='*70}")
-        print(f"Validating db-{db_num}")
-        print(f"{'='*70}")
+        if not self.pass_fail_only:
+            print(f"\n{'='*70}")
+            print(f"Validating db-{db_num}")
+            print(f"{'='*70}")
 
         result = {
             'database': f'db-{db_num}',
@@ -126,52 +129,67 @@ class ValidationRunner:
             'phases': {}
         }
 
-        # Phase 0: Extract queries to JSON (REQUIRED)
-        print(f"\n[Phase 0] Extracting queries.md to queries.json...")
-        try:
-            extract_script = self.root_dir / 'scripts' / 'extract_queries_to_json.py'
-            if not extract_script.exists():
-                extract_script = scripts_dir / 'extract_queries_to_json.py'
+        env = _db_script_env()
+        if self.no_overwrite:
+            env["VALIDATE_NO_OVERWRITE"] = "1"
 
-            if extract_script.exists():
-                proc = subprocess.run(
-                    [sys.executable, str(extract_script), str(db_num)],
-                    cwd=str(self.root_dir),
-                    capture_output=True,
-                    text=True
-                )
-                if proc.returncode == 0:
-                    print("  ✓ Phase 0: Query extraction completed")
-                    result['phases']['phase_0_extraction'] = {'status': 'PASS'}
+        # Phase 0: Extract queries to JSON (REQUIRED unless --no-overwrite)
+        if not self.no_overwrite:
+            if not self.pass_fail_only:
+                print(f"\n[Phase 0] Extracting queries.md to queries.json...")
+            try:
+                extract_script = self.root_dir / 'scripts' / 'extract_queries_to_json.py'
+                if not extract_script.exists():
+                    extract_script = scripts_dir / 'extract_queries_to_json.py'
+
+                if extract_script.exists():
+                    proc = subprocess.run(
+                        [sys.executable, str(extract_script), str(db_num)],
+                        cwd=str(self.root_dir),
+                        capture_output=True,
+                        text=True,
+                        env=env,
+                    )
+                    if proc.returncode == 0:
+                        if not self.pass_fail_only:
+                            print("  ✓ Phase 0: Query extraction completed")
+                        result['phases']['phase_0_extraction'] = {'status': 'PASS'}
+                    else:
+                        if not self.pass_fail_only:
+                            print(f"  ✗ Phase 0: Query extraction failed")
+                            print(f"    Error: {proc.stderr}")
+                        result['phases']['phase_0_extraction'] = {
+                            'status': 'FAIL',
+                            'error': proc.stderr
+                        }
                 else:
-                    print(f"  ✗ Phase 0: Query extraction failed")
-                    print(f"    Error: {proc.stderr}")
-                    result['phases']['phase_0_extraction'] = {
-                        'status': 'FAIL',
-                        'error': proc.stderr
-                    }
-            else:
-                print(f"  ⚠️  Phase 0: Extraction script not found")
-                result['phases']['phase_0_extraction'] = {'status': 'SKIPPED'}
-        except Exception as e:
-            print(f"  ✗ Phase 0: Error - {e}")
-            result['phases']['phase_0_extraction'] = {
-                'status': 'ERROR',
-                'error': str(e)
-            }
+                    if not self.pass_fail_only:
+                        print(f"  ⚠️  Phase 0: Extraction script not found")
+                    result['phases']['phase_0_extraction'] = {'status': 'SKIPPED'}
+            except Exception as e:
+                if not self.pass_fail_only:
+                    print(f"  ✗ Phase 0: Error - {e}")
+                result['phases']['phase_0_extraction'] = {
+                    'status': 'ERROR',
+                    'error': str(e)
+                }
+        else:
+            result['phases']['phase_0_extraction'] = {'status': 'SKIPPED'}
 
         # Check if queries.json exists (required)
         queries_json = queries_dir / 'queries.json'
         if not queries_json.exists():
-            print(f"\n  ✗ CRITICAL: queries.json not found!")
-            print(f"    Phase 0 must complete successfully before validation can proceed.")
+            if not self.pass_fail_only:
+                print(f"\n  ✗ CRITICAL: queries.json not found!")
+                print(f"    Phase 0 must complete successfully before validation can proceed.")
             result['status'] = 'FAIL'
             result['error'] = 'queries.json missing - Phase 0 extraction required'
             result['end_time'] = get_est_timestamp()  # EST format: YYYYMMDD-HHMM
             return result
 
         # Phase 1: Fix Verification (use shared conceptual verify_fixes)
-        print(f"\n[Phase 1] Verifying fixes...")
+        if not self.pass_fail_only:
+            print(f"\n[Phase 1] Verifying fixes...")
         try:
             shared_verify = self.root_dir / 'scripts' / 'verify_fixes.py'
             db_verify = scripts_dir / 'verify_fixes.py'
@@ -182,7 +200,7 @@ class ValidationRunner:
                     proc = subprocess.run(
                         [sys.executable, str(verify_script), str(db_num)],
                         cwd=str(self.root_dir),
-                        env=_db_script_env(),
+                        env=env,
                         capture_output=True,
                         text=True
                     )
@@ -190,15 +208,17 @@ class ValidationRunner:
                     proc = subprocess.run(
                         [sys.executable, str(verify_script)],
                         cwd=str(db_dir),
-                        env=_db_script_env(),
+                        env=env,
                         capture_output=True,
                         text=True
                     )
                 if proc.returncode == 0:
-                    print("  ✓ Phase 1: Fix verification completed")
+                    if not self.pass_fail_only:
+                        print("  ✓ Phase 1: Fix verification completed")
                     result['phases']['phase_1_fix_verification'] = {'status': 'PASS'}
                 else:
-                    print(f"  ✗ Phase 1: Fix verification failed")
+                    if not self.pass_fail_only:
+                        print(f"  ✗ Phase 1: Fix verification failed")
                     result['phases']['phase_1_fix_verification'] = {
                         'status': 'FAIL',
                         'error': (proc.stderr or proc.stdout or 'Unknown error')[:500]
@@ -214,7 +234,8 @@ class ValidationRunner:
             }
 
         # Phase 2 & 4: Syntax Validation and Comprehensive Evaluation
-        print(f"\n[Phase 2 & 4] Syntax validation and comprehensive evaluation...")
+        if not self.pass_fail_only:
+            print(f"\n[Phase 2 & 4] Syntax validation and comprehensive evaluation...")
         try:
             # Prefer root shared validator (uses queries.json, db_paths)
             root_validator = self.root_dir / 'scripts' / 'comprehensive_validator.py'
@@ -224,15 +245,17 @@ class ValidationRunner:
                 proc = subprocess.run(
                     args,
                     cwd=str(self.root_dir if validator_script == root_validator else db_dir),
-                    env=_db_script_env(),
+                    env=env,
                     capture_output=True,
                     text=True
                 )
                 if proc.returncode == 0:
-                    print("  ✓ Phase 2 & 4: Validation completed")
+                    if not self.pass_fail_only:
+                        print("  ✓ Phase 2 & 4: Validation completed")
                     result['phases']['phase_2_4_validation'] = {'status': 'PASS'}
                 else:
-                    print(f"  ✗ Phase 2 & 4: Validation failed")
+                    if not self.pass_fail_only:
+                        print(f"  ✗ Phase 2 & 4: Validation failed")
                     result['phases']['phase_2_4_validation'] = {
                         'status': 'FAIL',
                         'error': proc.stderr[:500] if proc.stderr else 'Unknown error'
@@ -248,7 +271,8 @@ class ValidationRunner:
             }
 
         # Phase 3: Execution Testing (optional - requires database connections)
-        print(f"\n[Phase 3] Execution testing (optional)...")
+        if not self.pass_fail_only:
+            print(f"\n[Phase 3] Execution testing (optional)...")
         try:
             exec_script = scripts_dir / 'execution_tester.py'
             if exec_script.exists():
@@ -300,15 +324,17 @@ class ValidationRunner:
                     proc = subprocess.run(
                         [sys.executable, str(exec_script)],
                         cwd=str(db_dir),
-                        env=_db_script_env(),
+                        env=env,
                         capture_output=True,
                         text=True
                     )
                     if proc.returncode == 0:
-                        print("  ✓ Phase 3: Execution testing completed")
+                        if not self.pass_fail_only:
+                            print("  ✓ Phase 3: Execution testing completed")
                         result['phases']['phase_3_execution'] = {'status': 'PASS'}
                     else:
-                        print(f"  ✗ Phase 3: Execution testing failed")
+                        if not self.pass_fail_only:
+                            print(f"  ✗ Phase 3: Execution testing failed")
                         result['phases']['phase_3_execution'] = {
                             'status': 'FAIL',
                             'error': proc.stderr[:500] if proc.stderr else 'Unknown error'
@@ -327,22 +353,25 @@ class ValidationRunner:
             }
 
         # Phase 5: Generate Final Report
-        print(f"\n[Phase 5] Generating final report...")
+        if not self.pass_fail_only:
+            print(f"\n[Phase 5] Generating final report...")
         try:
             report_script = scripts_dir / 'generate_final_report.py'
             if report_script.exists():
                 proc = subprocess.run(
                     [sys.executable, str(report_script)],
                     cwd=str(db_dir),
-                    env=_db_script_env(),
+                    env=env,
                     capture_output=True,
                     text=True
                 )
                 if proc.returncode == 0:
-                    print("  ✓ Phase 5: Report generation completed")
+                    if not self.pass_fail_only:
+                        print("  ✓ Phase 5: Report generation completed")
                     result['phases']['phase_5_report'] = {'status': 'PASS'}
                 else:
-                    print(f"  ✗ Phase 5: Report generation failed")
+                    if not self.pass_fail_only:
+                        print(f"  ✗ Phase 5: Report generation failed")
                     result['phases']['phase_5_report'] = {
                         'status': 'FAIL',
                         'error': proc.stderr[:500] if proc.stderr else 'Unknown error'
@@ -370,9 +399,10 @@ class ValidationRunner:
 
         result['end_time'] = get_est_timestamp()  # EST format: YYYYMMDD-HHMM
 
-        print(f"\n{'='*70}")
-        print(f"db-{db_num} Validation Status: {result['status']}")
-        print(f"{'='*70}")
+        if not self.pass_fail_only:
+            print(f"\n{'='*70}")
+            print(f"db-{db_num} Validation Status: {result['status']}")
+            print(f"{'='*70}")
 
         return result
 
@@ -383,10 +413,11 @@ class ValidationRunner:
         if not db_nums:
             return {'error': 'No valid databases specified'}
 
-        print(f"\n{'='*70}")
-        print(f"Validation Suite - Running for {len(db_nums)} database(s)")
-        print(f"Databases: {', '.join(f'db-{n}' for n in db_nums)}")
-        print(f"{'='*70}")
+        if not self.pass_fail_only:
+            print(f"\n{'='*70}")
+            print(f"Validation Suite - Running for {len(db_nums)} database(s)")
+            print(f"Databases: {', '.join(f'db-{n}' for n in db_nums)}")
+            print(f"{'='*70}")
 
         all_results = {
             'validation_date': get_est_timestamp(),  # EST format: YYYYMMDD-HHMM
@@ -410,22 +441,27 @@ class ValidationRunner:
         }
 
         # Print summary
-        print(f"\n{'='*70}")
-        print("Validation Summary")
-        print(f"{'='*70}")
-        print(f"Total Databases: {all_results['summary']['total_databases']}")
-        print(f"Passed: {all_results['summary']['passed']}")
-        print(f"Failed: {all_results['summary']['failed']}")
-        print(f"Partial: {all_results['summary']['partial']}")
-        print(f"Skipped: {all_results['summary']['skipped']}")
-        print(f"Overall Status: {all_results['summary']['overall_status']}")
-        print(f"{'='*70}\n")
+        if self.pass_fail_only:
+            print(all_results['summary']['overall_status'])
+        else:
+            print(f"\n{'='*70}")
+            print("Validation Summary")
+            print(f"{'='*70}")
+            print(f"Total Databases: {all_results['summary']['total_databases']}")
+            print(f"Passed: {all_results['summary']['passed']}")
+            print(f"Failed: {all_results['summary']['failed']}")
+            print(f"Partial: {all_results['summary']['partial']}")
+            print(f"Skipped: {all_results['summary']['skipped']}")
+            print(f"Overall Status: {all_results['summary']['overall_status']}")
+            print(f"{'='*70}\n")
 
-        # Save summary to file
-        summary_file = self.root_dir / 'results' / 'validation_summary.json'
-        summary_file.parent.mkdir(parents=True, exist_ok=True)
-        summary_file.write_text(json.dumps(all_results, indent=2))
-        print(f"Summary saved to: {summary_file}")
+        # Save summary to file (skip when --no-overwrite)
+        if not self.no_overwrite:
+            summary_file = self.root_dir / 'results' / 'validation_summary.json'
+            summary_file.parent.mkdir(parents=True, exist_ok=True)
+            summary_file.write_text(json.dumps(all_results, indent=2))
+            if not self.pass_fail_only:
+                print(f"Summary saved to: {summary_file}")
 
         return all_results
 
@@ -434,10 +470,13 @@ def main():
     script_dir = Path(__file__).parent
     root_dir = script_dir.parent
 
-    runner = ValidationRunner(root_dir)
-
-    # Get arguments from command line (skip script name)
+    # Parse flags
     args = sys.argv[1:] if len(sys.argv) > 1 else []
+    no_overwrite = "--no-overwrite" in args or "-n" in args
+    pass_fail_only = "--pass-fail-only" in args or "-q" in args
+    args = [a for a in args if a not in ("--no-overwrite", "-n", "--pass-fail-only", "-q")]
+
+    runner = ValidationRunner(root_dir, no_overwrite=no_overwrite, pass_fail_only=pass_fail_only)
 
     result = runner.run(args)
 

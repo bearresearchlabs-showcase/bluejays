@@ -3,7 +3,7 @@
     "id": "db-3",
     "name": "Hierarchical Orders (LinkWay)",
     "description": "LinkWay Live database export with hierarchical order structure. Structured export from PostgreSQL (Django backend) with schema and data for local analysis, backups, and migrations.\n\n- Hierarchical order management\n- Django backend schema\n- Full schema and data export\n\n- PostgreSQL: Full support\n- Databricks: Compatible with Delta Lake\n- Databricks: Full support\n\n---",
-    "created_date": "2026-02-16",
+    "created_date": "2026-02-18",
     "version": "1.0"
   },
   "schema": {

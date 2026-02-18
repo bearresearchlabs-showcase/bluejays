@@ -30,19 +30,8 @@ except ImportError:
     print("ERROR: psycopg2 required. Run: pip install psycopg2-binary")
     sys.exit(1)
 
-try:
-    from postgresql_schema_loader import convert_to_postgresql
-except ImportError:
-    def convert_to_postgresql(s: str) -> str:
-        s = re.sub(r'\bTIMESTAMP_NTZ\b', 'TIMESTAMP', s, flags=re.IGNORECASE)
-        s = re.sub(r'\bCURRENT_TIMESTAMP\s*\(\s*\)', 'CURRENT_TIMESTAMP', s, flags=re.IGNORECASE)
-        return s
-
-
 def convert_schema_for_postgres(sql: str) -> str:
-    """Apply PostgreSQL-specific conversions to schema SQL."""
-    sql = convert_to_postgresql(sql)
-    sql = re.sub(r'\bVARIANT\b', 'JSONB', sql, flags=re.IGNORECASE)
+    """Apply PostgreSQL-specific handling (schema is already PostgreSQL-only)."""
     # Skip GIST indexes on TEXT columns (PostgreSQL needs GEOGRAPHY or gist_trgm_ops)
     sql = re.sub(
         r'CREATE\s+INDEX\s+(?:IF\s+NOT\s+EXISTS\s+)?\w+\s+ON\s+\w+\s+USING\s+GIST\s*\(\s*\w+\s*\)',
@@ -86,25 +75,18 @@ def get_schema_files(db_dir: Path, db_num: int) -> list[Path]:
     data_dir = db_dir / 'data'
     if not data_dir.exists():
         return []
-    # DB-specific schema order (prefer PostgreSQL variants)
+    # DB-specific schema order (schema.sql is canonical, PostgreSQL-only)
     if db_num == 6:
         candidates = [
-            'schema_postgresql.sql',
-            'schema_extensions_postgresql.sql',
-            'insurance_schema_postgresql.sql',
-            'nexrad_satellite_schema_postgresql.sql',
+            'schema.sql',
+            'schema_extensions.sql',
+            'insurance_schema.sql',
+            'nexrad_satellite_schema.sql',
         ]
     elif db_num == 4:
         candidates = ['schema.sql', 'schema_models.sql']
     else:
-        pg_schema = data_dir / 'schema_postgresql.sql'
-        std_schema = data_dir / 'schema.sql'
-        if pg_schema.exists():
-            candidates = ['schema_postgresql.sql']
-        elif std_schema.exists():
-            candidates = ['schema.sql']
-        else:
-            candidates = []
+        candidates = ['schema.sql'] if (data_dir / 'schema.sql').exists() else []
     files = []
     for name in candidates:
         p = data_dir / name
@@ -116,24 +98,18 @@ def get_schema_files(db_dir: Path, db_num: int) -> list[Path]:
 
 
 def get_data_file(db_dir: Path, db_num: int) -> Path | None:
-    """Return data.sql to load (prefer sample for large files)."""
-    data_dir = db_dir / 'data'
-    data_sql = data_dir / 'data.sql'
+    """Return primary data file to load: prefer data_large >= 1GB, else data.sql."""
+    from db_paths import get_data_dir, get_primary_data_path
+    data_dir = get_data_dir(db_dir)
+    primary = get_primary_data_path(data_dir)
+    if primary:
+        return primary[1]
     # db-10, db-14: source data has malformed VALUES; use deliverable data if available
     if db_num in (10, 14):
         deliverable_data = db_dir / 'deliverable' / 'data' / 'data.sql'
         if deliverable_data.exists():
             return deliverable_data
-    if not data_sql.exists():
-        return None
-    # db-16: use package/data.sql if data.sql is huge
-    if db_num == 16:
-        sample = db_dir / 'package' / 'data.sql'
-        if sample.exists() and data_sql.exists():
-            size_mb = data_sql.stat().st_size / (1024 * 1024)
-            if size_mb > 500:
-                return sample
-    return data_sql
+    return None
 
 
 def split_statements(content: str) -> list[str]:

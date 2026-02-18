@@ -27,9 +27,8 @@ except ImportError:
         return datetime.now().strftime('%Y%m%d-%H%M')
 
 try:
-    from postgresql_schema_loader import load_schema_postgresql, convert_to_postgresql
+    from postgresql_schema_loader import load_schema_postgresql
 except ImportError:
-    convert_to_postgresql = None
     load_schema_postgresql = None
 
 try:
@@ -129,8 +128,6 @@ def _load_schema_direct(db_name: str, schema_file: Path, enable_postgis: bool) -
                 pass  # May fail if no PostGIS
         with open(schema_file) as f:
             sql = f.read()
-        if convert_to_postgresql:
-            sql = convert_to_postgresql(sql)
         # PostgreSQL VARCHAR max 10485760
         import re
         sql = re.sub(r'VARCHAR\s*\(\s*16777216\s*\)', 'VARCHAR(10485760)', sql, flags=re.IGNORECASE)

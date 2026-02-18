@@ -70,8 +70,9 @@ def main():
     except Exception as e:
         print(f"PostgreSQL connection failed: {e}")
         results = {"available": False, "queries": [], "error": str(e)}
-        results_file.parent.mkdir(parents=True, exist_ok=True)
-        results_file.write_text(json.dumps({"postgresql": results, "test_date": get_est_timestamp()}, indent=2))
+        if os.environ.get("VALIDATE_NO_OVERWRITE") != "1":
+            results_file.parent.mkdir(parents=True, exist_ok=True)
+            results_file.write_text(json.dumps({"postgresql": results, "test_date": get_est_timestamp()}, indent=2))
         sys.exit(0)
 
     results = {"available": True, "queries": []}
@@ -87,9 +88,10 @@ def main():
     conn.close()
 
     output = {"postgresql": results, "test_date": get_est_timestamp()}
-    results_file.parent.mkdir(parents=True, exist_ok=True)
-    results_file.write_text(json.dumps(output, indent=2))
-    print(f"Results saved to {results_file}")
+    if os.environ.get("VALIDATE_NO_OVERWRITE") != "1":
+        results_file.parent.mkdir(parents=True, exist_ok=True)
+        results_file.write_text(json.dumps(output, indent=2))
+        print(f"Results saved to {results_file}")
 
 
 if __name__ == "__main__":

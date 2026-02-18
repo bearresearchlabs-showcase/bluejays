@@ -31,7 +31,7 @@ def get_db_port(db_num: int) -> int:
 def get_table_names_from_schema(db_dir: Path) -> list[str]:
     """Extract table names from schema.sql."""
     tables = []
-    for name in ("schema.sql", "schema_postgresql.sql"):
+    for name in ("schema.sql",):
         p = db_dir / "data" / name
         if p.exists():
             text = p.read_text(encoding="utf-8")

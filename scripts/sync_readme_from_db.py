@@ -2,7 +2,7 @@
 """
 Sync source/db-{N}/app/DOCUMENTATION/README.md with the actual database:
 - Title from queries.md (first # line)
-- Table count and names from app/DATABASE/schema.sql (or schema_postgresql.sql)
+- Table count and names from app/DATABASE/schema.sql
 - Correct psql paths: DATABASE/schema.sql, DATABASE/data.sql
 - Preserves existing Data Dictionary and other sections when possible
 """
@@ -16,11 +16,11 @@ SOURCE = ROOT / "source"
 
 
 def get_tables_from_schema(db_dir: Path) -> list[str]:
-    """Extract table names from schema.sql or schema_postgresql.sql."""
+    """Extract table names from schema.sql."""
     data_dir = db_dir / "app" / "DATABASE"
     if not data_dir.exists():
         return []
-    for name in ("schema.sql", "schema_postgresql.sql"):
+    for name in ("schema.sql",):
         path = data_dir / name
         if path.exists():
             content = path.read_text(encoding="utf-8")

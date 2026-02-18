@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Populate source/db-N/app/ with DATABASE/, DOCUMENTATION/, QUERIES/ (iron triangle trifecta).
-Builds app/ from existing data/, deliverable/, queries/ so app/ becomes the canonical source.
+Populate source/db-N/ with DATABASE/, DOCUMENTATION/, QUERIES/ (mirrors client structure).
+Builds from existing data/, deliverable/, queries/ so source directly mirrors client/db/db-N/.
 
 Usage:
     python3 scripts/populate_app_trifecta.py [db-1] [db-5] | -a
@@ -15,69 +15,32 @@ from pathlib import Path
 ROOT = Path(__file__).parent.parent
 SOURCE = ROOT / "source"
 TEMPLATE = ROOT / "template"  # Canonical template: @template/queries.md, queries.json
-GB = 1024**3
 
-
-def find_deliverable_data(db_dir: Path, db_num: int) -> Path | None:
-    """Find data/ folder: deliverable/data or deliverable/dbN-*/data."""
-    deliverable_dir = db_dir / "deliverable"
-    if not deliverable_dir.exists():
-        return None
-    data = deliverable_dir / "data"
-    if data.exists() and data.is_dir():
-        return data
-    prefix = f"db{db_num}-"
-    for item in deliverable_dir.iterdir():
-        if item.is_dir() and item.name.startswith(prefix):
-            candidate = item / "data"
-            if candidate.exists():
-                return candidate
-    return None
-
-
-def find_web_deliverable(db_dir: Path, db_num: int) -> Path | None:
-    """Find web-deployable folder dbN-* with documentation."""
-    deliverable_dir = db_dir / "deliverable"
-    if not deliverable_dir.exists():
-        return None
-    prefix = f"db{db_num}-"
-    for item in deliverable_dir.iterdir():
-        if item.is_dir() and item.name.startswith(prefix):
-            return item
-    return None
+from db_paths import get_primary_data_file
 
 
 def populate_app(db_num: int) -> bool:
-    """Populate source/db-N/app/ with DATABASE/, DOCUMENTATION/, QUERIES/."""
+    """Populate source/db-N/ with DATABASE/, DOCUMENTATION/, QUERIES/ (mirrors client)."""
     db_dir = SOURCE / f"db-{db_num}"
-    app_dir = db_dir / "app"
     if not db_dir.exists():
         print(f"  db-{db_num}: SKIP (no source dir)")
         return False
 
-    app_dir.mkdir(parents=True, exist_ok=True)
+    # Single source of truth: data/ and queries/ only. Output: DATABASE/, DOCUMENTATION/, QUERIES/
+    dest_base = db_dir
     db_data = db_dir / "data"
-    deliv_data = find_deliverable_data(db_dir, db_num)
-    web_d = find_web_deliverable(db_dir, db_num)
-    if not web_d:
-        web_d = db_dir / "deliverable"
-    queries_src = db_dir / "QUERIES"  # prefer uppercase (iron triangle)
+    # Source: queries/ only (single source of truth)
+    queries_src = db_dir / "queries"
     if not queries_src.exists() or not (queries_src / "queries.json").exists():
-        queries_src = db_dir / "queries"
-    if not queries_src.exists() or not (queries_src / "queries.json").exists():
-        queries_src = db_dir / "deliverable" / "queries"
+        queries_src = db_dir / "QUERIES"  # fallback when queries/ missing
 
-    # 1. DATABASE/
-    db_dest = app_dir / "DATABASE"
+    # 1. DATABASE/ — from data/ only
+    db_dest = dest_base / "DATABASE"
     db_dest.mkdir(parents=True, exist_ok=True)
     all_sql = {}
     if db_data.exists():
         for f in db_data.iterdir():
             if f.is_file() and f.suffix.lower() == ".sql":
-                all_sql[f.name] = f
-    if deliv_data and deliv_data.exists():
-        for f in deliv_data.iterdir():
-            if f.is_file() and f.suffix.lower() == ".sql" and f.name not in all_sql:
                 all_sql[f.name] = f
 
     collected_sql = {}
@@ -87,65 +50,82 @@ def populate_app(db_num: int) -> bool:
         if src:
             collected_sql[dest] = all_sql[src]
 
-    add_schema("schema.sql", "schema_postgresql.sql", "schema.sql")
-    add_schema("schema_extensions.sql", "schema_extensions_postgresql.sql", "schema_extensions.sql")
-    add_schema("insurance_schema.sql", "insurance_schema_postgresql.sql", "insurance_schema.sql")
-    add_schema("nexrad_satellite_schema.sql", "nexrad_satellite_schema_postgresql.sql", "nexrad_satellite_schema.sql")
-    if "schema_postgresql_large.sql" in all_sql:
-        collected_sql["schema_postgresql_large.sql"] = all_sql["schema_postgresql_large.sql"]
-    if "data.sql" in all_sql:
-        collected_sql["data.sql"] = all_sql["data.sql"]
-    if "data_large_postgresql.sql" in all_sql and all_sql["data_large_postgresql.sql"].stat().st_size >= GB:
-        collected_sql["data_large.sql"] = all_sql["data_large_postgresql.sql"]
-    elif "data_large.sql" in all_sql and all_sql["data_large.sql"].stat().st_size >= GB:
-        collected_sql["data_large.sql"] = all_sql["data_large.sql"]
-    elif "data.sql" in all_sql and all_sql["data.sql"].stat().st_size >= GB:
-        collected_sql["data_large.sql"] = all_sql["data.sql"]
+    add_schema("schema.sql", "schema.sql", "schema.sql")
+    add_schema("schema_extensions.sql", "schema_extensions.sql", "schema_extensions.sql")
+    add_schema("insurance_schema.sql", "insurance_schema.sql", "insurance_schema.sql")
+    add_schema("nexrad_satellite_schema.sql", "nexrad_satellite_schema.sql", "nexrad_satellite_schema.sql")
+    # Only primary data file: prefer data_large >= 1GB, else data.sql
+    primary = get_primary_data_file(all_sql)
+    if primary:
+        dest_name, src_path = primary
+        collected_sql[dest_name] = src_path
 
     for name, src_path in collected_sql.items():
         shutil.copy2(src_path, db_dest / name)
 
     # 2. DOCUMENTATION/ — README.md only (no html, json, .gitignore)
-    doc_dest = app_dir / "DOCUMENTATION"
+    doc_dest = dest_base / "DOCUMENTATION"
     doc_dest.mkdir(parents=True, exist_ok=True)
     # Remove any non-README files to enforce README-only
     for f in list(doc_dest.iterdir()):
         if f.is_file() and f.name != "README.md":
             f.unlink()
-    # README.md — always regenerate from single source (config + deliverable JSON)
+    # README.md — write directly to DOCUMENTATION (no docs/ intermediate)
     scripts_dir = Path(__file__).parent
     subprocess.run(
-        [sys.executable, str(scripts_dir / "generate_documentation_readme.py"), str(db_num)],
+        [sys.executable, str(scripts_dir / "generate_documentation_readme.py"), str(db_num),
+         "-o", str(doc_dest / "README.md")],
         cwd=ROOT,
         capture_output=True,
         check=False,
     )
-    readme_src = db_dir / "docs" / "README.md"
-    if readme_src.exists():
-        shutil.copy2(readme_src, doc_dest / "README.md")
 
-    # 3. QUERIES/ - from queries_src, else @template/ as fallback
-    qdest = app_dir / "QUERIES"
+    # 3. QUERIES/ - queries.json from queries_src; queries.md built from header + json
+    qdest = dest_base / "QUERIES"
     qdest.mkdir(parents=True, exist_ok=True)
-    if queries_src.exists():
-        for fname in ("queries.md", "queries.json"):
-            src = queries_src / fname
-            if src.exists():
-                shutil.copy2(src, qdest / fname)
-    if not (qdest / "queries.json").exists():
-        alt_q = db_dir / "QUERIES"
-        if alt_q.exists():
-            for fname in ("queries.md", "queries.json"):
-                src = alt_q / fname
-                if src.exists():
-                    shutil.copy2(src, qdest / fname)
-    if not (qdest / "queries.json").exists() and TEMPLATE.exists():
-        for fname in ("queries.md", "queries.json"):
-            src = TEMPLATE / fname
-            if src.exists():
-                shutil.copy2(src, qdest / fname)
+    # Copy queries.json first (skip if src == dest, e.g. case-insensitive FS: queries/ == QUERIES/)
+    if queries_src.exists() and (queries_src / "queries.json").exists():
+        src_qj = queries_src / "queries.json"
+        dst_qj = qdest / "queries.json"
+        try:
+            if src_qj.resolve() != dst_qj.resolve():
+                shutil.copy2(src_qj, dst_qj)
+        except shutil.SameFileError:
+            pass  # same file on case-insensitive FS
+    elif (db_dir / "QUERIES" / "queries.json").exists():
+        shutil.copy2(db_dir / "QUERIES" / "queries.json", qdest / "queries.json")
+    elif TEMPLATE.exists() and (TEMPLATE / "queries.json").exists():
+        shutil.copy2(TEMPLATE / "queries.json", qdest / "queries.json")
 
-    print(f"  db-{db_num}: OK app/ (DATABASE/{len(collected_sql)} files, DOCUMENTATION/, QUERIES/)")
+    # Build queries.md from source/db-N/queries_header.yaml|.json + queries.json when header exists
+    if (db_dir / "queries_header.yaml").exists() or (db_dir / "queries_header.json").exists():
+        subprocess.run(
+            [sys.executable, str(scripts_dir / "rewrite_queries_md_to_template.py"), f"db-{db_num}"],
+            cwd=ROOT,
+            capture_output=True,
+            check=False,
+        )
+    else:
+        # No header file: copy queries.md from source or template (skip if src == dest)
+        if queries_src.exists() and (queries_src / "queries.md").exists():
+            src_qm = queries_src / "queries.md"
+            dst_qm = qdest / "queries.md"
+            try:
+                if src_qm.resolve() != dst_qm.resolve():
+                    shutil.copy2(src_qm, dst_qm)
+            except shutil.SameFileError:
+                pass  # same file on case-insensitive FS
+        elif (qdest / "queries.json").exists():
+            subprocess.run(
+                [sys.executable, str(scripts_dir / "rewrite_queries_md_to_template.py"), f"db-{db_num}"],
+                cwd=ROOT,
+                capture_output=True,
+                check=False,
+            )
+        elif TEMPLATE.exists() and (TEMPLATE / "queries.md").exists():
+            shutil.copy2(TEMPLATE / "queries.md", qdest / "queries.md")
+
+    print(f"  db-{db_num}: OK (DATABASE/{len(collected_sql)} files, DOCUMENTATION/, QUERIES/)")
     return True
 
 
@@ -168,7 +148,7 @@ def main() -> int:
         if len(db_nums) == 2 and db_nums[0] < db_nums[1]:
             db_nums = list(range(db_nums[0], db_nums[1] + 1))
         db_nums = sorted(set(db_nums))
-    print("Populating source/db-N/app/ (DATABASE/, DOCUMENTATION/, QUERIES/)...")
+    print("Populating source/db-N/ (DATABASE/, DOCUMENTATION/, QUERIES/)...")
     ok = sum(1 for n in db_nums if populate_app(n))
     print(f"\nDone: {ok}/{len(db_nums)} databases")
     return 0 if ok == len(db_nums) else 1

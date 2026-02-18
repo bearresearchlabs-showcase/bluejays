@@ -1,0 +1,4088 @@
+{
+  "base_commit": "38ce1cd1aa03012979e6a85b5ca9299449f76ad6",
+  "target": "HEAD",
+  "generated_at": "20260218-0053",
+  "databases": {
+    "db-1": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "b0e7d6785fb475fe",
+              "hash_head": "d4b899661c27bfc1",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "b8172f3b2de9a22b",
+              "hash_head": "b8172f3b2de9a22b",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "88fb2f9de4b8ded3",
+              "hash_head": "88fb2f9de4b8ded3",
+              "changed": false
+            },
+            "db-1_deliverable.json": {
+              "at_base": "present",
+              "at_head": "absent",
+              "hash_base": "1fc3a91b45305f89",
+              "hash_head": "",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6e7427a6d4998d26",
+              "hash_head": "1e397aef6133600d",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "3c693fdb65877584",
+              "hash_head": "ab1c2ba326818bb7",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "evidence": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 966,
+            "line_count_head": 952
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "b0e7d6785fb475fe",
+              "hash_head": "d4b899661c27bfc1",
+              "changed": true
+            },
+            "data_large.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "ca9ff2636b95af9f",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "b8172f3b2de9a22b",
+              "hash_head": "b8172f3b2de9a22b",
+              "changed": false
+            }
+          },
+          "summary": "2 files changed of 3 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "88fb2f9de4b8ded3",
+              "hash_head": "88fb2f9de4b8ded3",
+              "changed": false
+            }
+          },
+          "summary": "0 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6e7427a6d4998d26",
+              "hash_head": "1e397aef6133600d",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "3c693fdb65877584",
+              "hash_head": "ab1c2ba326818bb7",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "evidence": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 966,
+            "line_count_head": 952
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-2": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "e7e86689658aec30",
+              "hash_head": "b788ce8dcf56e88c",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6c5317d4bb17c783",
+              "hash_head": "6c5317d4bb17c783",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "0cb512a05db4c857",
+              "hash_head": "b76264b80c0a9afc",
+              "changed": true
+            },
+            "db-2_deliverable.json": {
+              "at_base": "present",
+              "at_head": "absent",
+              "hash_base": "52de47e90866bba2",
+              "hash_head": "",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "a198cca167b114f9",
+              "hash_head": "f4f4c7fc2478c824",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "8c474b1489132121",
+              "hash_head": "042e6defe338ce35",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 30,
+              "evidence": 30,
+              "title": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 962,
+            "line_count_head": 871
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "e7e86689658aec30",
+              "hash_head": "b788ce8dcf56e88c",
+              "changed": true
+            },
+            "data_large.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "254ed8f8f308b1fa",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6c5317d4bb17c783",
+              "hash_head": "6c5317d4bb17c783",
+              "changed": false
+            }
+          },
+          "summary": "2 files changed of 3 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "0cb512a05db4c857",
+              "hash_head": "b76264b80c0a9afc",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "a198cca167b114f9",
+              "hash_head": "f4f4c7fc2478c824",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "8c474b1489132121",
+              "hash_head": "042e6defe338ce35",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 30,
+              "evidence": 30,
+              "title": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 962,
+            "line_count_head": 871
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-3": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "651a5f8c1e606cb1",
+              "hash_head": "0d9035ad869cacb1",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "d390890af8552cbb",
+              "hash_head": "d390890af8552cbb",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "4b5185702932ebcf",
+              "hash_head": "8d9e6e7c49865e50",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "31f2e4bd71f02f80",
+              "hash_head": "4b776cdba1b07852",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "8342884a3bff98b4",
+              "hash_head": "f300fd5bd3a02f3c",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 30,
+              "evidence": 30,
+              "title": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 943,
+            "line_count_head": 854
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "651a5f8c1e606cb1",
+              "hash_head": "0d9035ad869cacb1",
+              "changed": true
+            },
+            "data_large.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "1b42eed62e5019a0",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "d390890af8552cbb",
+              "hash_head": "d390890af8552cbb",
+              "changed": false
+            }
+          },
+          "summary": "2 files changed of 3 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "4b5185702932ebcf",
+              "hash_head": "8d9e6e7c49865e50",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "31f2e4bd71f02f80",
+              "hash_head": "4b776cdba1b07852",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "8342884a3bff98b4",
+              "hash_head": "f300fd5bd3a02f3c",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 30,
+              "evidence": 30,
+              "title": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 943,
+            "line_count_head": 854
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-4": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "cac716fb5cbf8c66",
+              "hash_head": "84dcbed267441699",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "cd2e8f531e49bd96",
+              "hash_head": "cd2e8f531e49bd96",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "ff496a97f18f7cb3",
+              "hash_head": "75789fe38d8003b8",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "14cb273cdbd6ccba",
+              "hash_head": "282e7910cca8e80f",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "ef4c08926f2861b9",
+              "hash_head": "a372df6c441fefb6",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 30,
+              "evidence": 30,
+              "title": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 901,
+            "line_count_head": 819
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "cac716fb5cbf8c66",
+              "hash_head": "84dcbed267441699",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "cd2e8f531e49bd96",
+              "hash_head": "cd2e8f531e49bd96",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "ff496a97f18f7cb3",
+              "hash_head": "75789fe38d8003b8",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "14cb273cdbd6ccba",
+              "hash_head": "282e7910cca8e80f",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "ef4c08926f2861b9",
+              "hash_head": "a372df6c441fefb6",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 30,
+              "evidence": 30,
+              "title": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 901,
+            "line_count_head": 819
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-5": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "1f6b664cf2f0b4f5",
+              "hash_head": "a00ba520112a5a81",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "7dd4f6081d212569",
+              "hash_head": "7dd4f6081d212569",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "07c3a2ec3fa48c83",
+              "hash_head": "8467ce7f5e96ffce",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "251f6855d2465420",
+              "hash_head": "e02a6c87fb3127ef",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6173abfddf61f697",
+              "hash_head": "7863a93aaf7a1248",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 30,
+              "evidence": 30,
+              "title": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 961,
+            "line_count_head": 870
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "1f6b664cf2f0b4f5",
+              "hash_head": "a00ba520112a5a81",
+              "changed": true
+            },
+            "data_large.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "f1cea9a677d8d19f",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "7dd4f6081d212569",
+              "hash_head": "7dd4f6081d212569",
+              "changed": false
+            }
+          },
+          "summary": "2 files changed of 3 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "07c3a2ec3fa48c83",
+              "hash_head": "8467ce7f5e96ffce",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "251f6855d2465420",
+              "hash_head": "e02a6c87fb3127ef",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6173abfddf61f697",
+              "hash_head": "7863a93aaf7a1248",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 30,
+              "evidence": 30,
+              "title": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 961,
+            "line_count_head": 870
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-6": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "9f0c4e74664ffef6",
+              "hash_head": "acc09d21f35ac469",
+              "changed": true
+            },
+            "db6_complete_dump.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "426c4e55ebbc4db5",
+              "changed": true
+            },
+            "insurance_schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "98fb0d9427624b99",
+              "hash_head": "98fb0d9427624b99",
+              "changed": false
+            },
+            "nexrad_satellite_schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "62d95717185bc54f",
+              "hash_head": "62d95717185bc54f",
+              "changed": false
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "eb10e4b56a098ea3",
+              "hash_head": "eb10e4b56a098ea3",
+              "changed": false
+            },
+            "schema_extensions.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "f97c88683ea98ecd",
+              "hash_head": "f97c88683ea98ecd",
+              "changed": false
+            },
+            "schema_postgresql.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "8a9f1ceb7de00e44",
+              "changed": true
+            }
+          },
+          "summary": "3 files changed of 7 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "d97b0231dbb08f3e",
+              "hash_head": "4c341eb2456db840",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "65095349b563442b",
+              "hash_head": "5fce10cbd341b97e",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "5c7c8244b218e44d",
+              "hash_head": "ee4bda49d0dd9e0e",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "line_number": 30,
+              "complexity": 2,
+              "evidence": 30,
+              "expected_output": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1031,
+            "line_count_head": 940
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "9f0c4e74664ffef6",
+              "hash_head": "acc09d21f35ac469",
+              "changed": true
+            },
+            "db6_complete_dump.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "426c4e55ebbc4db5",
+              "changed": true
+            },
+            "insurance_schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "98fb0d9427624b99",
+              "hash_head": "98fb0d9427624b99",
+              "changed": false
+            },
+            "nexrad_satellite_schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "62d95717185bc54f",
+              "hash_head": "62d95717185bc54f",
+              "changed": false
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "eb10e4b56a098ea3",
+              "hash_head": "eb10e4b56a098ea3",
+              "changed": false
+            },
+            "schema_extensions.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "f97c88683ea98ecd",
+              "hash_head": "f97c88683ea98ecd",
+              "changed": false
+            },
+            "schema_postgresql.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "8a9f1ceb7de00e44",
+              "changed": true
+            }
+          },
+          "summary": "3 files changed of 7 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "d97b0231dbb08f3e",
+              "hash_head": "4c341eb2456db840",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "65095349b563442b",
+              "hash_head": "5fce10cbd341b97e",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "5c7c8244b218e44d",
+              "hash_head": "ee4bda49d0dd9e0e",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "line_number": 30,
+              "complexity": 2,
+              "evidence": 30,
+              "expected_output": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1031,
+            "line_count_head": 940
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-7": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "4679e191d2db08d9",
+              "hash_head": "08d94800f82e7fd0",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "52ba2135fa46c789",
+              "hash_head": "52ba2135fa46c789",
+              "changed": false
+            },
+            "schema_postgresql.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "52ba2135fa46c789",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 3 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "8949987fb777949b",
+              "hash_head": "d666eb13c8703cbc",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "9be392d9b041846b",
+              "hash_head": "dfe2d3f1c445e796",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "947ea66b1a90d71e",
+              "hash_head": "cbe62546990fe0d6",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 3,
+              "evidence": 30,
+              "title": 3,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1083,
+            "line_count_head": 986
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "4679e191d2db08d9",
+              "hash_head": "08d94800f82e7fd0",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "52ba2135fa46c789",
+              "hash_head": "52ba2135fa46c789",
+              "changed": false
+            },
+            "schema_postgresql.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "52ba2135fa46c789",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 3 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "8949987fb777949b",
+              "hash_head": "d666eb13c8703cbc",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "9be392d9b041846b",
+              "hash_head": "dfe2d3f1c445e796",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "947ea66b1a90d71e",
+              "hash_head": "cbe62546990fe0d6",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 3,
+              "evidence": 30,
+              "title": 3,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1083,
+            "line_count_head": 986
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-8": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "bc9e1e889e7b2c48",
+              "hash_head": "af03ccf75b6e6e79",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "a26a9938f7c6885f",
+              "hash_head": "a26a9938f7c6885f",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "55a98a7973790e30",
+              "hash_head": "2828b81bb66ce335",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "0ae2f3dac4d96a56",
+              "hash_head": "b4782a93903fe167",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "b54d55e36ae3201f",
+              "hash_head": "8e0e0f24a1c88789",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 2,
+              "evidence": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1026,
+            "line_count_head": 931
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "bc9e1e889e7b2c48",
+              "hash_head": "af03ccf75b6e6e79",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "a26a9938f7c6885f",
+              "hash_head": "a26a9938f7c6885f",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "55a98a7973790e30",
+              "hash_head": "2828b81bb66ce335",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "0ae2f3dac4d96a56",
+              "hash_head": "b4782a93903fe167",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "b54d55e36ae3201f",
+              "hash_head": "8e0e0f24a1c88789",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 2,
+              "evidence": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1026,
+            "line_count_head": 931
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-9": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "ca265c518ee4c051",
+              "changed": true
+            },
+            "data_large.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "0557dda4e95e01a7",
+              "changed": true
+            },
+            "data_mini.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "a49d50b79d03f071",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6f032ddc7dd33c56",
+              "hash_head": "6f032ddc7dd33c56",
+              "changed": false
+            }
+          },
+          "summary": "3 files changed of 4 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6a55cfbc93f5adf4",
+              "hash_head": "2905848c28b80a56",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "043abc168ec1fdcb",
+              "hash_head": "a279c9181c45aae7",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "019b54e50f590c09",
+              "hash_head": "9bd525cf91c87f8c",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 2,
+              "evidence": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1024,
+            "line_count_head": 920
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "ca265c518ee4c051",
+              "changed": true
+            },
+            "data_large.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "0557dda4e95e01a7",
+              "changed": true
+            },
+            "data_mini.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "a49d50b79d03f071",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6f032ddc7dd33c56",
+              "hash_head": "6f032ddc7dd33c56",
+              "changed": false
+            }
+          },
+          "summary": "3 files changed of 4 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6a55cfbc93f5adf4",
+              "hash_head": "2905848c28b80a56",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "043abc168ec1fdcb",
+              "hash_head": "a279c9181c45aae7",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "019b54e50f590c09",
+              "hash_head": "9bd525cf91c87f8c",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 2,
+              "evidence": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1024,
+            "line_count_head": 920
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-10": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "49c8df1d9f896377",
+              "hash_head": "6b9fc211bc166e97",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "251b152a9ef74122",
+              "hash_head": "251b152a9ef74122",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "c40e387d6388352f",
+              "hash_head": "5d22226b7b108720",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "e54b48808a3bcf7a",
+              "hash_head": "475c1c3b53f6c4d9",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "bfe0f9156ec9bf5e",
+              "hash_head": "0fd72890776e4f78",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 2,
+              "evidence": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1141,
+            "line_count_head": 899
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "49c8df1d9f896377",
+              "hash_head": "6b9fc211bc166e97",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "251b152a9ef74122",
+              "hash_head": "251b152a9ef74122",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "c40e387d6388352f",
+              "hash_head": "5d22226b7b108720",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "e54b48808a3bcf7a",
+              "hash_head": "475c1c3b53f6c4d9",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "bfe0f9156ec9bf5e",
+              "hash_head": "0fd72890776e4f78",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 2,
+              "evidence": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1141,
+            "line_count_head": 899
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-11": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "16a85eaa9417d3fe",
+              "hash_head": "8fd423a8b8b21e51",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6a45ffde759ef24f",
+              "hash_head": "6a45ffde759ef24f",
+              "changed": false
+            },
+            "schema_postgresql.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "4214966f642381ca",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 3 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "8dc85f76eb543052",
+              "hash_head": "3977b7cf6e9722e0",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "c8e9b03b4f5a216b",
+              "hash_head": "0c97466cdf118ea5",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "68f85beb3e65f022",
+              "hash_head": "fb07cff5f2233297",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "evidence": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1130,
+            "line_count_head": 1031
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "16a85eaa9417d3fe",
+              "hash_head": "8fd423a8b8b21e51",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6a45ffde759ef24f",
+              "hash_head": "6a45ffde759ef24f",
+              "changed": false
+            },
+            "schema_postgresql.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "4214966f642381ca",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 3 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "8dc85f76eb543052",
+              "hash_head": "3977b7cf6e9722e0",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "c8e9b03b4f5a216b",
+              "hash_head": "0c97466cdf118ea5",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "68f85beb3e65f022",
+              "hash_head": "fb07cff5f2233297",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "evidence": 30,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1130,
+            "line_count_head": 1031
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-12": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "61374b647769f72e",
+              "hash_head": "ecc827e53f88856d",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "3a504d19155a1012",
+              "hash_head": "3a504d19155a1012",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "90ab92b67d52b337",
+              "hash_head": "2d4c56ba17dbaa0a",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "3d3412082a1704de",
+              "hash_head": "4fa25f39fb329120",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "572e3a4394bc0ae2",
+              "hash_head": "0cc0ca3839b5d535",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 3,
+              "evidence": 30,
+              "title": 3,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1161,
+            "line_count_head": 1066
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "61374b647769f72e",
+              "hash_head": "ecc827e53f88856d",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "3a504d19155a1012",
+              "hash_head": "3a504d19155a1012",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "90ab92b67d52b337",
+              "hash_head": "2d4c56ba17dbaa0a",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "3d3412082a1704de",
+              "hash_head": "4fa25f39fb329120",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "572e3a4394bc0ae2",
+              "hash_head": "0cc0ca3839b5d535",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 3,
+              "evidence": 30,
+              "title": 3,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1161,
+            "line_count_head": 1066
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-13": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "e8d80a8288cb4af6",
+              "hash_head": "cc4fa520b912f063",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "9632fbff58177279",
+              "hash_head": "9632fbff58177279",
+              "changed": false
+            },
+            "schema_postgresql.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "84a3f306fdcc433f",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 3 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "2f0b2691da160aa9",
+              "hash_head": "a814c8ec66655734",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "20bf95c1405c2d1f",
+              "hash_head": "5ad4314ee4bb7cfa",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "b5e32a3366695bd2",
+              "hash_head": "56fe324249ff7711",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 2,
+              "evidence": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 986,
+            "line_count_head": 883
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "e8d80a8288cb4af6",
+              "hash_head": "cc4fa520b912f063",
+              "changed": true
+            },
+            "data_large.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "0a7b3723596c81fd",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "9632fbff58177279",
+              "hash_head": "9632fbff58177279",
+              "changed": false
+            },
+            "schema_postgresql.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "84a3f306fdcc433f",
+              "changed": true
+            }
+          },
+          "summary": "3 files changed of 4 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "2f0b2691da160aa9",
+              "hash_head": "a814c8ec66655734",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "20bf95c1405c2d1f",
+              "hash_head": "5ad4314ee4bb7cfa",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "b5e32a3366695bd2",
+              "hash_head": "56fe324249ff7711",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 2,
+              "evidence": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 986,
+            "line_count_head": 883
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-14": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "643f2420c673098a",
+              "hash_head": "920a5960d11f9983",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "b3c47dd4ea9a7779",
+              "hash_head": "b3c47dd4ea9a7779",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "46b77c6b889deae7",
+              "hash_head": "64fc4d7138ab84b2",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "d8a93a352e34d782",
+              "hash_head": "ab1068d2b80981ef",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "96489ff526235b93",
+              "hash_head": "16cbee9ac1bd564d",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 3,
+              "evidence": 30,
+              "title": 3,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 909,
+            "line_count_head": 819
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "643f2420c673098a",
+              "hash_head": "920a5960d11f9983",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "b3c47dd4ea9a7779",
+              "hash_head": "b3c47dd4ea9a7779",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "46b77c6b889deae7",
+              "hash_head": "64fc4d7138ab84b2",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "d8a93a352e34d782",
+              "hash_head": "ab1068d2b80981ef",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "96489ff526235b93",
+              "hash_head": "16cbee9ac1bd564d",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 3,
+              "evidence": 30,
+              "title": 3,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 909,
+            "line_count_head": 819
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-15": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "98804ee9371d3d68",
+              "hash_head": "528d85648b922ffe",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "833268f987da75a3",
+              "hash_head": "833268f987da75a3",
+              "changed": false
+            }
+          },
+          "summary": "1 files changed of 2 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "08d56231c16e8bb3",
+              "hash_head": "aad2839a0e6a24e2",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "9bcdff35b1d58c98",
+              "hash_head": "cf29533cf8cf3d96",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "122f9ef9970ffe8a",
+              "hash_head": "a7ad2884ea2f28b9",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 2,
+              "evidence": 30,
+              "expected_output": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1002,
+            "line_count_head": 908
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "98804ee9371d3d68",
+              "hash_head": "528d85648b922ffe",
+              "changed": true
+            },
+            "data_large.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "efebb2aa16f1ff0e",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "833268f987da75a3",
+              "hash_head": "833268f987da75a3",
+              "changed": false
+            }
+          },
+          "summary": "2 files changed of 3 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "08d56231c16e8bb3",
+              "hash_head": "aad2839a0e6a24e2",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "9bcdff35b1d58c98",
+              "hash_head": "cf29533cf8cf3d96",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "122f9ef9970ffe8a",
+              "hash_head": "a7ad2884ea2f28b9",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "complexity": 2,
+              "evidence": 30,
+              "expected_output": 30,
+              "title": 2,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 1002,
+            "line_count_head": 908
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    },
+    "db-16": {
+      "source": {
+        "app/DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "389fe764885e45f6",
+              "changed": true
+            },
+            "data_mini.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "d0571b0a9f14de96",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "0aa46039c1156993",
+              "hash_head": "0aa46039c1156993",
+              "changed": false
+            },
+            "schema_postgresql_large.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "0aa46039c1156993",
+              "hash_head": "0aa46039c1156993",
+              "changed": false
+            }
+          },
+          "summary": "2 files changed of 4 total"
+        },
+        "app/DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "92de3e210def144d",
+              "hash_head": "c077acf719efae23",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "app/QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "488ddf80879c601c",
+              "hash_head": "7de89a8ef3ab5607",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6d23b23943176171",
+              "hash_head": "084e548863b79eee",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "line_number": 30,
+              "complexity": 1,
+              "evidence": 30,
+              "expected_output": 30,
+              "title": 1,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 979,
+            "line_count_head": 884
+          }
+        }
+      },
+      "client": {
+        "DATABASE": {
+          "files": {
+            "data.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "389fe764885e45f6",
+              "changed": true
+            },
+            "data_large.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "a0852d444c770876",
+              "changed": true
+            },
+            "data_mini.sql": {
+              "at_base": "absent",
+              "at_head": "present",
+              "hash_base": "",
+              "hash_head": "d0571b0a9f14de96",
+              "changed": true
+            },
+            "schema.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "0aa46039c1156993",
+              "hash_head": "0aa46039c1156993",
+              "changed": false
+            },
+            "schema_postgresql_large.sql": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "0aa46039c1156993",
+              "hash_head": "0aa46039c1156993",
+              "changed": false
+            }
+          },
+          "summary": "3 files changed of 5 total"
+        },
+        "DOCUMENTATION": {
+          "files": {
+            "README.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "92de3e210def144d",
+              "hash_head": "c077acf719efae23",
+              "changed": true
+            }
+          },
+          "summary": "1 files changed of 1 total"
+        },
+        "QUERIES": {
+          "files": {
+            "queries.json": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "488ddf80879c601c",
+              "hash_head": "7de89a8ef3ab5607",
+              "changed": true
+            },
+            "queries.md": {
+              "at_base": "present",
+              "at_head": "present",
+              "hash_base": "6d23b23943176171",
+              "hash_head": "084e548863b79eee",
+              "changed": true
+            }
+          },
+          "summary": "2 files changed of 2 total",
+          "queries.json": {
+            "keys_per_query": [
+              "line_number",
+              "question",
+              "number",
+              "complexity",
+              "business_value",
+              "evidence",
+              "purpose",
+              "normal_query",
+              "sql",
+              "expected_output",
+              "use_case",
+              "title",
+              "description"
+            ],
+            "queries_changed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "key_diff_summary": {
+              "line_number": 30,
+              "complexity": 1,
+              "evidence": 30,
+              "expected_output": 30,
+              "title": 1,
+              "description": 30
+            },
+            "total_queries_base": 30,
+            "total_queries_head": 30
+          },
+          "queries.md": {
+            "line_count_base": 979,
+            "line_count_head": 884
+          }
+        }
+      },
+      "source_vs_client_sync": {
+        "DATABASE": {
+          "in_sync": true,
+          "mismatched_files": []
+        },
+        "QUERIES": {
+          "in_sync": true,
+          "mismatched_files": []
+        }
+      }
+    }
+  },
+  "summary": {
+    "total_dbs": 16,
+    "dbs_with_errors": [],
+    "validation_pass": {
+      "db-1": -1,
+      "db-2": -1,
+      "db-3": -1,
+      "db-4": -1,
+      "db-5": -1,
+      "db-6": -1,
+      "db-7": -1,
+      "db-8": -1,
+      "db-9": -1,
+      "db-10": -1,
+      "db-11": -1,
+      "db-12": -1,
+      "db-13": -1,
+      "db-14": -1,
+      "db-15": -1,
+      "db-16": -1
+    },
+    "qa_pass": {
+      "db-1": -1,
+      "db-2": -1,
+      "db-3": -1,
+      "db-4": -1,
+      "db-5": -1,
+      "db-6": -1,
+      "db-7": -1,
+      "db-8": -1,
+      "db-9": -1,
+      "db-10": -1,
+      "db-11": -1,
+      "db-12": -1,
+      "db-13": -1,
+      "db-14": -1,
+      "db-15": -1,
+      "db-16": -1
+    }
+  }
+}

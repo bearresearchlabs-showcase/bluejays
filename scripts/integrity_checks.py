@@ -112,7 +112,7 @@ def run_integrity_checks(root_dir: Path, db_nums: List[int]) -> int:
     root_dir = root_dir.resolve()
     all_ok = True
 
-    from db_paths import get_data_dir, get_queries_dir
+    from db_paths import get_data_dir, get_queries_dir, get_primary_data_path
 
     for db_num in db_nums:
         db_dir = root_dir / "source" / f"db-{db_num}"
@@ -128,10 +128,12 @@ def run_integrity_checks(root_dir: Path, db_nums: List[int]) -> int:
 
         files_to_check = [
             ("schema.sql", data_dir / "schema.sql"),
-            ("schema_postgresql.sql", data_dir / "schema_postgresql.sql"),
             ("queries.json", queries_dir / "queries.json"),
-            ("data.sql", data_dir / "data.sql"),
         ]
+        primary_data = get_primary_data_path(data_dir)
+        if primary_data:
+            key, path = primary_data
+            files_to_check.append((key, path))
 
         for name, path in files_to_check:
             if path.exists():
@@ -139,17 +141,15 @@ def run_integrity_checks(root_dir: Path, db_nums: List[int]) -> int:
                 if checksums:
                     integrity[name] = checksums
 
-        # Prefer schema.sql if both exist; otherwise use whichever exists
-        if "schema_postgresql.sql" in integrity and "schema.sql" in integrity:
-            integrity["schema_primary"] = "schema.sql"
-        elif "schema_postgresql.sql" in integrity:
-            integrity["schema_primary"] = "schema_postgresql.sql"
-        elif "schema.sql" in integrity:
+        if "schema.sql" in integrity:
             integrity["schema_primary"] = "schema.sql"
 
         out_file = meta_dir / "integrity.json"
-        out_file.write_text(json.dumps(integrity, indent=2))
-        print(f"  db-{db_num}: OK (integrity.json updated)")
+        if __import__("os").environ.get("VALIDATE_NO_OVERWRITE") != "1":
+            out_file.write_text(json.dumps(integrity, indent=2))
+            print(f"  db-{db_num}: OK (integrity.json updated)")
+        else:
+            print(f"  db-{db_num}: OK")
 
     duration_ms = (time.perf_counter() - start) * 1000
     log("integrity", "run", status="ok" if all_ok else "fail", duration_ms=duration_ms, data={"count": len(db_nums)})
@@ -173,16 +173,21 @@ def verify_integrity(root_dir: Path, db_num: int) -> bool:
     except (json.JSONDecodeError, OSError):
         return False
 
+    from db_paths import get_data_dir, get_queries_dir, get_primary_data_path
+    data_dir = get_data_dir(db_dir)
+    queries_dir = get_queries_dir(db_dir)
     path_map = {
-        "schema.sql": db_dir / "data" / "schema.sql",
-        "schema_postgresql.sql": db_dir / "data" / "schema_postgresql.sql",
-        "queries.json": db_dir / "queries" / "queries.json",
-        "data.sql": db_dir / "data" / "data.sql",
+        "schema.sql": data_dir / "schema.sql",
+        "queries.json": queries_dir / "queries.json",
     }
+    primary = get_primary_data_path(data_dir)
+    if primary:
+        key, path = primary
+        path_map[key] = path
     for key, val in stored.items():
         if key in ("timestamp", "schema_primary") or not isinstance(val, dict):
             continue
-        path = path_map.get(key, db_dir / "data" / key)
+        path = path_map.get(key, data_dir / key)
         if not path.exists():
             continue
         current = compute_file_checksums(path)

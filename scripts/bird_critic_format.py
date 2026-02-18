@@ -16,7 +16,7 @@ BIRD_EXPORT_DIR = root_dir / "bird_export"
 
 def load_schema(db_dir: Path) -> str:
     """Load schema SQL."""
-    for name in ("schema.sql", "schema_postgresql.sql"):
+    for name in ("schema.sql",):
         p = db_dir / "data" / name
         if p.exists():
             return p.read_text(encoding="utf-8")

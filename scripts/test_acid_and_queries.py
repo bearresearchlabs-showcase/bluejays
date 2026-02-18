@@ -53,7 +53,7 @@ def test_database(db_num: int) -> dict:
     db_name = f"db{db_num}_acid_test"
     db_dir = BASE / f"db-{db_num}"
     data_dir = db_dir / "data"
-    schema_file = data_dir / "schema_postgresql.sql" if (data_dir / "schema_postgresql.sql").exists() else data_dir / "schema.sql"
+    schema_file = data_dir / "schema.sql"
     data_file = data_dir / "data.sql"
     queries_file = db_dir / "queries" / "queries.json"
 

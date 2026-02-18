@@ -49,34 +49,26 @@ def audit_database(db_name: str) -> dict:
     result["database_dir"]["exists"] = db_folder.exists()
     if db_folder.exists():
         schema = db_folder / "schema.sql"
-        schema_pg = db_folder / "schema_postgresql.sql"
-        data = db_folder / "data.sql"
+        data_sql = db_folder / "data.sql"
+        data_large = db_folder / "data_large.sql"
+        has_data = data_sql.exists() or data_large.exists()
         result["database_dir"]["schema.sql"] = schema.exists()
-        result["database_dir"]["schema_postgresql.sql"] = schema_pg.exists()
-        result["database_dir"]["data.sql"] = data.exists()
-        if not schema.exists() and not schema_pg.exists():
-            result["issues"].append("No schema.sql or schema_postgresql.sql")
+        result["database_dir"]["data.sql"] = has_data  # primary data: data.sql or data_large.sql
+        if not schema.exists():
+            result["issues"].append("No schema.sql")
             result["Pass"] = 0
     else:
         result["issues"].append("DATABASE/ missing")
         result["Pass"] = 0
 
-    # DOCUMENTATION/ folder
+    # DOCUMENTATION/ folder — README.md only (no HTML)
     doc_folder = db_dir / "DOCUMENTATION"
     result["documentation_dir"]["exists"] = doc_folder.exists()
     if doc_folder.exists():
-        db_num = db_name.replace("db-", "")
-        html = doc_folder / f"db-{db_num}_documentation.html"
-        json_doc = doc_folder / f"db-{db_num}_deliverable.json"
-        md = doc_folder / f"db-{db_num}.md"
-        result["documentation_dir"]["html"] = html.exists()
-        result["documentation_dir"]["json"] = json_doc.exists()
-        result["documentation_dir"]["md"] = md.exists()
-        if not html.exists():
-            result["issues"].append("_documentation.html missing")
-            result["Pass"] = 0
-        if not json_doc.exists():
-            result["issues"].append("_deliverable.json missing")
+        readme = doc_folder / "README.md"
+        result["documentation_dir"]["readme"] = readme.exists()
+        if not readme.exists():
+            result["issues"].append("DOCUMENTATION/README.md missing")
             result["Pass"] = 0
     else:
         result["issues"].append("DOCUMENTATION/ missing")
@@ -149,25 +141,24 @@ def main():
         db_ok = "✓" if r["database_dir"].get("exists") else "✗"
         doc_ok = "✓" if r["documentation_dir"].get("exists") else "✗"
         q_ok = "✓" if r["queries_dir"].get("exists") else "✗"
-        schema_ok = "✓" if r["database_dir"].get("schema.sql") or r["database_dir"].get("schema_postgresql.sql") else "✗"
+        schema_ok = "✓" if r["database_dir"].get("schema.sql") else "✗"
         data_ok = "✓" if r["database_dir"].get("data.sql") else "✗"
         vercel_ok = "✓" if r["structure"].get("vercel.json") else "✗"
         print(f"│ {db:<6} │ {db_ok:^8} │ {doc_ok:^11} │ {q_ok:^15} │ {schema_ok:^11} │ {data_ok:^8} │ {vercel_ok:^12} │")
     print("└────────┴──────────┴─────────────┴─────────────────┴─────────────┴──────────┴──────────────┘")
 
     # Table 2: Documentation & Queries
-    print("\n┌────────┬────────────────────┬────────────────────┬──────────┬──────────────┬───────┐")
-    print("│ DB     │ html               │ json               │ queries  │ with SQL     │ Pass  │")
-    print("├────────┼────────────────────┼────────────────────┼──────────┼──────────────┼───────┤")
+    print("\n┌────────┬──────────────┬──────────┬──────────────┬───────┐")
+    print("│ DB     │ README.md    │ queries  │ with SQL     │ Pass  │")
+    print("├────────┼──────────────┼──────────┼──────────────┼───────┤")
     for r in results:
         db = r["database"]
-        html_ok = "✓" if r["documentation_dir"].get("html") else "✗"
-        json_ok = "✓" if r["documentation_dir"].get("json") else "✗"
+        readme_ok = "✓" if r["documentation_dir"].get("readme") else "✗"
         q_cnt = r["queries_count"]
         sql_cnt = r["queries_with_sql"]
         pass_icon = "✓" if r["Pass"] == 1 else "✗"
-        print(f"│ {db:<6} │ {html_ok:^18} │ {json_ok:^18} │ {q_cnt:>8} │ {sql_cnt:>12} │ {pass_icon:^5} │")
-    print("└────────┴────────────────────┴────────────────────┴──────────┴──────────────┴───────┘")
+        print(f"│ {db:<6} │ {readme_ok:^12} │ {q_cnt:>8} │ {sql_cnt:>12} │ {pass_icon:^5} │")
+    print("└────────┴──────────────┴──────────┴──────────────┴───────┘")
 
     # Issues summary
     has_issues = [r for r in results if r["issues"]]

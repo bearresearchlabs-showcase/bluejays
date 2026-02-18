@@ -19,7 +19,7 @@ db/
 ├── packages/        # Shared packages (ui, config-eslint, config-typescript, db-utils)
 ├── components/      # Shared React components (legacy; migrate to packages/ui)
 ├── lib/              # Shared libraries (legacy; migrate to packages/db-utils)
-├── source/           # Database sources (db-1..db-16) — canonical
+├── source/           # Database sources (db-1..db-16) — canonical, mirrors client structure
 ├── template/         # Templates for new databases
 ├── scripts/          # Reusable tools and orchestration only
 │   ├── bin/          # Compiled binaries
@@ -40,6 +40,13 @@ db/
 ├── research/         # Research and experimentation
 └── workbench/        # Workbench services
 ```
+
+## Environment: Always Use brew or .venv
+
+**CRITICAL**: Use **brew** or **.venv** for all tooling—never mix system Python with project dependencies.
+
+- **.venv**: Run Python scripts with `.venv/bin/python` or `source .venv/bin/activate`; use `.venv/bin/pip` for installs. Jupyter notebooks should use the .venv kernel.
+- **brew**: Use Homebrew for system tools (Docker, PostgreSQL, Node). Prefer `brew install` over system packages.
 
 ## No Extraneous Files
 

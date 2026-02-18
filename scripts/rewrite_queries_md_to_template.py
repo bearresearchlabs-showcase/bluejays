@@ -2,9 +2,13 @@
 """
 Rewrite queries.md to template format (bit-for-bit match with @template/queries.md).
 
-Reads queries.json, converts to template format if needed, writes queries.md
-using queries_md_template_formatter. Ensures all source/db-N/app/QUERIES/queries.md
-match template structure exactly.
+Reads queries.json and (optionally) source/db-N/queries_header.yaml or .json,
+builds queries.md using queries_md_template_formatter.
+
+Header source: source/db-N/queries_header.yaml or queries_header.json (top level, NOT in app).
+If present, header sections (Database Overview, Purpose, Use Case, Business Value,
+Schema, Domain Knowledge, Query Difficulty Distribution) are ported from that file.
+Otherwise falls back to schema snippet and inferred db_name.
 
 Usage:
     python3 scripts/rewrite_queries_md_to_template.py [db-1] [db-5] | -a
@@ -32,11 +36,11 @@ except ImportError:
 
 
 def _load_schema_snippet(db_dir: Path, db_num: int) -> str:
-    """Load first 50 lines of schema.sql as schema snippet."""
+    """Load schema.sql as schema snippet (fallback when no queries_header)."""
     for base in (db_dir / "app" / "DATABASE", db_dir / "data", db_dir / "deliverable" / "data"):
         if not base.exists():
             continue
-        for name in ("schema.sql", "schema_postgresql.sql"):
+        for name in ("schema.sql",):
             p = base / name
             if p.exists():
                 txt = p.read_text(encoding="utf-8").strip()
@@ -83,18 +87,29 @@ def rewrite_db(db_num: int) -> bool:
         return False
 
     from queries_md_template_formatter import format_queries_md_template
+    from load_queries_header import load_queries_header, header_to_format_args
 
-    schema_sql = _load_schema_snippet(db_dir, db_num)
-    db_name = _get_db_name(db_dir, db_id)
+    # Build format args: prefer source/db-N/queries_header.yaml or .json (top level, NOT in app)
+    header = load_queries_header(db_dir)
+    if header:
+        fmt_args = header_to_format_args(header)
+        db_name = fmt_args.pop("db_name") or _get_db_name(db_dir, db_id)
+        schema_sql = fmt_args.pop("schema_sql") or _load_schema_snippet(db_dir, db_num)
+    else:
+        db_name = _get_db_name(db_dir, db_id)
+        schema_sql = _load_schema_snippet(db_dir, db_num)
+        fmt_args = {}
 
     content = format_queries_md_template(
         queries,
         db_id=db_id,
         db_name=db_name,
         schema_sql=schema_sql,
+        **{k: v for k, v in fmt_args.items() if v},
     )
     qm.write_text(content, encoding="utf-8")
-    print(f"  {db_id}: OK ({len(queries)} queries, template format)")
+    src = "queries_header" if header else "fallback"
+    print(f"  {db_id}: OK ({len(queries)} queries, header from {src})")
     return True
 
 

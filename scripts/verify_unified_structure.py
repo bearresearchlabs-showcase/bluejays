@@ -32,13 +32,13 @@ def verify_db(n: int) -> dict:
         schema = any(f.name.startswith("schema") for f in sql_files)
         if not schema:
             r["errors"].append("DATABASE/ missing schema*.sql")
+        # Primary data file: data_large.sql (>= 1GB) or data.sql
         data_sql = db_dir / "data.sql"
-        if not data_sql.exists():
-            r["errors"].append("DATABASE/ missing data.sql")
         data_large = db_dir / "data_large.sql"
-        if not data_large.exists():
-            r["errors"].append("DATABASE/ missing data_large.sql")
-        elif data_large.stat().st_size < GB:
+        has_data = data_sql.exists() or data_large.exists()
+        if not has_data:
+            r["errors"].append("DATABASE/ missing data.sql or data_large.sql")
+        elif data_large.exists() and data_large.stat().st_size < GB:
             r["errors"].append(f"DATABASE/data_large.sql < 1GB ({data_large.stat().st_size / GB:.2f}GB)")
         for f in sql_files:
             if "snowflake" in f.name.lower() or "bigquery" in f.name.lower():

@@ -33,7 +33,7 @@ CREATE TABLE metropolitan_areas (
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
     data_year INTEGER,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Cities Table
@@ -56,7 +56,7 @@ CREATE TABLE cities (
     city_longitude NUMERIC(10, 7),
     timezone VARCHAR(50),
     data_year INTEGER,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (msa_id) REFERENCES metropolitan_areas(msa_id)
 );
 
@@ -79,7 +79,7 @@ CREATE TABLE airports (
     long_term_parking BOOLEAN,
     short_term_parking BOOLEAN,
     data_year INTEGER,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (city_id) REFERENCES cities(city_id)
 );
 
@@ -101,7 +101,7 @@ CREATE TABLE stadiums_venues (
     annual_events_count INTEGER,
     peak_attendance INTEGER,
     data_year INTEGER,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (city_id) REFERENCES cities(city_id)
 );
 
@@ -131,7 +131,7 @@ CREATE TABLE parking_facilities (
     accepts_reservations BOOLEAN DEFAULT FALSE,
     payment_methods VARCHAR(255),  -- Comma-separated: 'Cash', 'Credit', 'Mobile', 'App'
     amenities VARCHAR(500),  -- Comma-separated amenities
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (city_id) REFERENCES cities(city_id),
     FOREIGN KEY (airport_id) REFERENCES airports(airport_id),
     FOREIGN KEY (venue_id) REFERENCES stadiums_venues(venue_id)
@@ -155,7 +155,7 @@ CREATE TABLE parking_pricing (
     time_range_start TIME,
     time_range_end TIME,
     is_active BOOLEAN DEFAULT TRUE,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (facility_id) REFERENCES parking_facilities(facility_id)
 );
 
@@ -175,7 +175,7 @@ CREATE TABLE traffic_volume_data (
     direction VARCHAR(20),  -- 'Northbound', 'Southbound', 'Eastbound', 'Westbound', 'Both'
     data_year INTEGER,
     data_month INTEGER,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (city_id) REFERENCES cities(city_id)
 );
 
@@ -193,7 +193,7 @@ CREATE TABLE events (
     parking_demand_multiplier NUMERIC(5, 2),  -- Multiplier for parking demand
     is_recurring BOOLEAN DEFAULT FALSE,
     recurrence_pattern VARCHAR(100),  -- 'Weekly', 'Monthly', 'Seasonal'
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (venue_id) REFERENCES stadiums_venues(venue_id),
     FOREIGN KEY (city_id) REFERENCES cities(city_id)
 );
@@ -212,7 +212,7 @@ CREATE TABLE market_intelligence_metrics (
     time_period VARCHAR(50),  -- 'Daily', 'Weekly', 'Monthly', 'Quarterly', 'Annual'
     data_year INTEGER,
     data_month INTEGER,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (city_id) REFERENCES cities(city_id),
     FOREIGN KEY (msa_id) REFERENCES metropolitan_areas(msa_id)
 );
@@ -231,7 +231,7 @@ CREATE TABLE parking_utilization (
     reservation_count INTEGER,
     walk_in_count INTEGER,
     data_source VARCHAR(50),  -- 'Sensor', 'Manual', 'App', 'Estimated'
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (facility_id) REFERENCES parking_facilities(facility_id)
 );
 
@@ -247,7 +247,7 @@ CREATE TABLE competitive_analysis (
     utilization_difference_pct NUMERIC(5, 2),
     amenity_comparison VARCHAR(500),
     competitive_score NUMERIC(5, 2),  -- 0-100
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (facility_id) REFERENCES parking_facilities(facility_id),
     FOREIGN KEY (competitor_facility_id) REFERENCES parking_facilities(facility_id)
 );
@@ -270,7 +270,7 @@ CREATE TABLE business_districts (
     spatial_extent_east NUMERIC(10, 6),
     spatial_extent_north NUMERIC(10, 6),
     data_year INTEGER,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (city_id) REFERENCES cities(city_id)
 );
 
@@ -281,7 +281,7 @@ CREATE TABLE facility_district_mapping (
     district_id VARCHAR(50) NOT NULL,
     distance_miles NUMERIC(8, 2),
     is_primary_district BOOLEAN DEFAULT FALSE,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (facility_id) REFERENCES parking_facilities(facility_id),
     FOREIGN KEY (district_id) REFERENCES business_districts(district_id)
 );
@@ -300,7 +300,7 @@ CREATE TABLE data_source_metadata (
     data_quality_score NUMERIC(5, 2),  -- 0-100
     completeness_pct NUMERIC(5, 2),
     error_count INTEGER,
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Indexes for performance optimization

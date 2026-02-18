@@ -39,6 +39,7 @@ This rule documents the complete QA workflow for db-workbench, workbench install
 4. **Audit** - Validate client/db structure (DATABASE/, DOCUMENTATION/, QUERIES/)
 5. **Compliance** - Strict checklist: queries.json (30), queries.md, schema, client DOCUMENTATION/
 6. **Integrity** - CRC-32, CRC-64, SHA-256; updates `metadata/integrity.json`
+7. **Repo health** - Data size (1GB total), schema PostgreSQL compliance, naming, unnecessary files; outputs `results/repo_health.json` and `results/repo_health.mdx`
 
 ### 3. Hardened PostgreSQL + Docker Hub
 
@@ -150,20 +151,37 @@ Use @-references to scope context and commands without switching workspaces:
 
 | Purpose | Path |
 |---------|------|
-| Source of truth | `source/db-{N}/` |
+| Source of truth | `source/db-{N}/` (mirrors client structure) |
 | Client output | `client/db/db-{N}/` |
 | Template (canonical) | `template/` (@template/queries.md, queries.json) |
-| Queries (iron triangle) | `source/db-{N}/app/QUERIES/` or `queries/` |
-| Schema/data | `source/db-{N}/app/DATABASE/` or `data/` |
+| Queries (canonical) | `source/db-{N}/QUERIES/` or `queries/` (inputs) |
+| Schema/data (canonical) | `source/db-{N}/DATABASE/` or `data/` (inputs) |
+
 | Compliance report | `results/compliance_report.json` |
 | Integrity metadata | `source/db-{N}/metadata/integrity.json` |
 | BIRD report | `bird_export/bird_workbench_report.json` |
 
+**Source mirrors client**: `source/db-{N}/` has `DATABASE/`, `DOCUMENTATION/`, `QUERIES/` at root, matching `client/db/db-{N}/`. Resync copies directly. Backwards compat: legacy `app/` structure still supported.
+
 ## Environment
 
+**CRITICAL**: Always use **brew** or **.venv** for tooling—never mix system Python with project dependencies.
+
+- **.venv**: Use `.venv/bin/python`, `.venv/bin/pip`, `.venv/bin/pytest` for all Python scripts, tests, and notebooks. Activate with `source .venv/bin/activate` or call executables directly.
+- **brew**: Use Homebrew for system tools (Docker, PostgreSQL client, Node, etc.). Prefer `brew install` over system packages.
 - **PG_***: PostgreSQL (required for validate, execution)
 - **DOCKER_HUB_USER**: For `--push` to Docker Hub
 - **.env** / **client/.env**: Loaded by run_all_tests.sh, qa.sh
+
+## Zero Warnings Policy
+
+**CRITICAL**: When running any scripts (source-checks, validate, QA, format, etc.), there must be **zero warnings, zero errors, and no misfit in sizes**.
+
+- **No warnings**: Optional items (queries_header.yaml, data.sql) when absent must pass silently; validation scripts must not emit WARN.
+- **No errors**: Required items must pass; fix or add missing files before considering a run successful.
+- **No misfit in sizes**: Query counts (30), schema expectations, and file structure must match exactly.
+
+Scripts that enforce this: `source_material_checks.py`, `db_check.py source-checks`, validation phases. All must exit 0 with no WARN output.
 
 ---
 **Last Updated**: 2026-02-14
