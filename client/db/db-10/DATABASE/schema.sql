@@ -3,6 +3,8 @@
 -- Production schema for marketing intelligence and retail inventory tracking system
 -- Integrates data from U.S. Census Bureau, BLS, FTC, Data.gov, and retail sources
 
+CREATE EXTENSION IF NOT EXISTS postgis;
+
 -- Products Table
 -- Product catalog with SKUs, UPCs, categories, and brand information
 CREATE TABLE products (

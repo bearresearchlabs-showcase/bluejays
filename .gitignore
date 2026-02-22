@@ -91,12 +91,25 @@ source/db-*/**/data.sql
 source/db-*/**/data_large*.sql
 source/db-*/**/data_mini.sql
 client/db/**/data.sql
-client/db/**/data_large*.sql
 client/db/**/data_mini.sql
+# db-9, db-16 data_large.sql exceed GitHub 2GB LFS limit — exclude from repo
+client/db/db-9/DATABASE/data_large.sql
+client/db/db-16/DATABASE/data_large.sql
 # Large data directories
 source/db-8/data/internet_pulled/
 source/db-8/data/internet_transformed/
 source/db-9/data/raw_datasets/
 source/db-9/data/transformed_datasets/
+
+# db-1, db-4, db-5 — exclude data.sql/data_mini; data_large.sql allowed (LFS)
+source/db-1/**/data*.sql
+source/db-4/**/data*.sql
+source/db-5/**/data*.sql
+client/db/db-1/DATABASE/data.sql
+client/db/db-1/DATABASE/data_mini.sql
+client/db/db-4/DATABASE/data.sql
+client/db/db-4/DATABASE/data_mini.sql
+client/db/db-5/DATABASE/data.sql
+client/db/db-5/DATABASE/data_mini.sql
 
 # lib/sources-manifest.json — COMMITTED for Vercel (regenerate with: node scripts/generate-sources-manifest.js)

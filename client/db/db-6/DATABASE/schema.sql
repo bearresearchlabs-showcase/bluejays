@@ -2,6 +2,8 @@
 -- Compatible with PostgreSQL
 -- Production schema for weather data pipeline system
 
+CREATE EXTENSION IF NOT EXISTS postgis;
+
 -- GRIB2 Forecasts Table
 -- Stores gridded forecast data from NDFD (National Digital Forecast Database)
 CREATE TABLE grib2_forecasts (

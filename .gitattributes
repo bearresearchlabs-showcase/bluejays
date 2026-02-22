@@ -1,9 +1,10 @@
+# Source: package and data SQL
 source/db-*/package/data filter=lfs diff=lfs merge=lfs -text
 source/db-*/package/data.sql filter=lfs diff=lfs merge=lfs -text
-# Exclude db-9, db-16 (>2GB, exceeds GitHub LFS limit) — in .gitignore
 source/db-*/**/data_large*.sql filter=lfs diff=lfs merge=lfs -text
 source/db-*/**/data.sql filter=lfs diff=lfs merge=lfs -text
 
-# Client mirror (synced from source)
-client/db/**/data.sql filter=lfs diff=lfs merge=lfs -text
-client/db/**/data_large*.sql filter=lfs diff=lfs merge=lfs -text
+# Client: DATABASE data (LFS for large files; schema.sql stays in git)
+# db-9, db-16 data_large.sql exceed GitHub 2GB LFS limit — in .gitignore
+client/db/db-*/DATABASE/data.sql filter=lfs diff=lfs merge=lfs -text
+client/db/db-*/DATABASE/data_large*.sql filter=lfs diff=lfs merge=lfs -text
