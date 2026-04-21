@@ -1,7 +1,7 @@
 # Root requirements for db repo scripts
 # Core (required)
 psycopg2-binary>=2.9.0
-python-dotenv>=1.0.0
+python-dotenv>=1.2.2
 pytest>=8.0.0
 
 # LangGraph (required for gdpval-langgraph harness)
