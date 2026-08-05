@@ -81,7 +81,7 @@
   <div class="kpi"><div class="kpi-value">480 / 390</div><div class="kpi-label">Gold pairs: corpus / shipped</div></div>
   <div class="kpi"><div class="kpi-value">19.4 GB</div><div class="kpi-label">Generated data, real-modeled schemas</div></div>
   <div class="kpi"><div class="kpi-value">30</div><div class="kpi-label">Queries per database</div></div>
-  <div class="kpi"><div class="kpi-value">300/300</div><div class="kpi-label">Gold queries pass (db-6..15 run)</div></div>
+  <div class="kpi"><div class="kpi-value">288/480</div><div class="kpi-label">Gold queries executed live (schema-only, 2026-08-05)</div></div>
   <div class="kpi"><div class="kpi-value">16</div><div class="kpi-label">Hardened containers (5436–5451)</div></div>
 </div>
 
@@ -160,7 +160,8 @@
   <tr><td>Schemas &amp; SQL semantics grounded in real systems</td><td><code>docs/provenance/STORY.md</code> §5, §10 — mirrors of named commercial products, public/gov data models</td><td><span class="badge b-green">VERIFIED</span></td></tr>
   <tr><td>Shipped bulk rows are real production data</td><td><code>docs/provenance/STORY.md</code> §7, §10 — rows generated to a ~1 GiB floor per DB</td><td><span class="badge b-amber">SYNTHETIC</span></td></tr>
   <tr><td>Workbench benchmark run</td><td><code>bird_workbench_report.json</code> — 30/30 "passed" but all 30 <code>skipped: true</code></td><td><span class="badge b-amber">VACUOUS PASS</span></td></tr>
-  <tr><td>Agentic evaluation loop</td><td><code>bird_critic_results_db1.json</code> — 0/3, connection refused; never executed live</td><td><span class="badge b-red">NOT YET CLOSED</span></td></tr>
+  <tr><td>Agentic evaluation loop (inherited evidence)</td><td><code>bird_critic_results_db1.json</code> — 0/3, connection refused; never executed live</td><td><span class="badge b-red">WAS NEVER CLOSED</span></td></tr>
+  <tr><td>Execution loop, closed live (2026-08-05)</td><td><code>results/gold_query_execution_20260805.json</code> — all 480 gold queries run on fresh PG&nbsp;16 instances: <strong>288 pass</strong>, 9 DBs at 30/30; 6 DBs PostGIS-blocked; db-8 blocked by a real <code>VARCHAR(16777216)</code> Snowflake-residue defect (ledger in <code>docs/TECHNICAL_EXECUTION.md</code>)</td><td><span class="badge b-green">PARTIALLY CLOSED</span></td></tr>
 </table>
 <p style="font-size: 0.85rem; color: var(--muted);">The two non-green rows are shown deliberately: the environment is specified and wired; closing the loop is the next act, and pretending otherwise would not survive a technical reader.</p>
 </div>
@@ -195,7 +196,7 @@
       <li><strong>Feb 5, 2026</strong> — OpenAI announces <strong>Frontier</strong>: enterprise agents onboarded and managed like employees, with feedback loops. Frontier labs (incl. Meta Superintelligence Labs' agent-focused Muse line) define the category through 2026</li>
       <li><strong>Feb 14–18, 2026</strong> — the same month, this engagement's SOW positions against BIRD-SQL/LiveSQLBench and the environment factory industrializes</li>
       <li><strong>The claim, soberly:</strong> an ask scoped as data sourcing produced the exact substrate the frontier-agent category consumes — private RL environments with gold actions, executable reward, and curriculum structure. Contemporaneous with the platform wave, not derivative of it</li>
-      <li><strong>The named gap is the frontier gap:</strong> the record itself states that annotation alone cannot prove data trains agents — execution-accuracy harnesses and BIRD/Spider ablations can. That is roadmap P0</li>
+      <li><strong>The named gap is the frontier gap:</strong> the record itself states that annotation alone cannot prove data trains agents — execution-accuracy harnesses and BIRD/Spider ablations can. That is roadmap P0 — <strong>partially closed 2026-08-05</strong>: 288/480 gold queries executed live on fresh instances, with the failure taxonomy and defect ledger in <code>docs/TECHNICAL_EXECUTION.md</code></li>
     </ul>
   </div>
 </div>

@@ -1,0 +1,3626 @@
+{
+  "run_id": "gold-query-execution-20260805",
+  "environment": {
+    "postgres": "PostgreSQL 16.13 (Ubuntu), local cluster, port 5436",
+    "mode": "schema-only (data_large.sql are Git LFS pointers in this checkout; client/README.md quick-test mode: queries may return 0 rows)",
+    "postgis": "not installed - spatial databases expected to fail at schema load or query time",
+    "source": "client/db/db-N/DATABASE/schema.sql + client/db/db-N/QUERIES/queries.json"
+  },
+  "databases": [
+    {
+      "db": "db-1",
+      "queries": [
+        {
+          "n": 1,
+          "status": "pass",
+          "ms": 3.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 2,
+          "status": "pass",
+          "ms": 0.9,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 3,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 4,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 5,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 6,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 7,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 8,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 9,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 10,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 11,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 12,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 13,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 14,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 15,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 16,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 17,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 20,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 21,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 25,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 26,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 27,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 28,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 29,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 30,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        }
+      ],
+      "schema_load": {
+        "errors": 0,
+        "sample": []
+      },
+      "passed": 30,
+      "failed": 0,
+      "categories": {},
+      "tables_created": 12
+    },
+    {
+      "db": "db-2",
+      "queries": [
+        {
+          "n": 1,
+          "status": "pass",
+          "ms": 2.3,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 2,
+          "status": "pass",
+          "ms": 1.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 3,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 4,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 5,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 6,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 7,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 8,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 9,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 10,
+          "status": "pass",
+          "ms": 0.4,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 11,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 12,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 13,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 14,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 15,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 16,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 17,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 20,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 21,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 25,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 26,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 27,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 28,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 29,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 30,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        }
+      ],
+      "schema_load": {
+        "errors": 0,
+        "sample": []
+      },
+      "passed": 30,
+      "failed": 0,
+      "categories": {},
+      "tables_created": 7
+    },
+    {
+      "db": "db-3",
+      "queries": [
+        {
+          "n": 1,
+          "status": "pass",
+          "ms": 2.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 2,
+          "status": "pass",
+          "ms": 1.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 3,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 4,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 5,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 6,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 7,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 8,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 9,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 10,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 11,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 12,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 13,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 14,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 15,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 16,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 17,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 20,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 21,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 25,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 26,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 27,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 28,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 29,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 30,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        }
+      ],
+      "schema_load": {
+        "errors": 0,
+        "sample": []
+      },
+      "passed": 30,
+      "failed": 0,
+      "categories": {},
+      "tables_created": 4
+    },
+    {
+      "db": "db-4",
+      "queries": [
+        {
+          "n": 1,
+          "status": "pass",
+          "ms": 3.9,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 2,
+          "status": "pass",
+          "ms": 1.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 3,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 4,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 5,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 6,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 7,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 8,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 9,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 10,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 11,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 12,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 13,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 14,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 15,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 16,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 17,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 20,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 21,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 25,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 26,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 27,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 28,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 29,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 30,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        }
+      ],
+      "schema_load": {
+        "errors": 0,
+        "sample": []
+      },
+      "passed": 30,
+      "failed": 0,
+      "categories": {},
+      "tables_created": 1
+    },
+    {
+      "db": "db-5",
+      "queries": [
+        {
+          "n": 1,
+          "status": "pass",
+          "ms": 2.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 2,
+          "status": "pass",
+          "ms": 1.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 3,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 4,
+          "status": "pass",
+          "ms": 0.9,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 5,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 6,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 7,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 8,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 9,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 10,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 11,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 12,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 13,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 14,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 15,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 16,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 17,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 20,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 21,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "pass",
+          "ms": 0.4,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 25,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 26,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 27,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 28,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 29,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 30,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        }
+      ],
+      "schema_load": {
+        "errors": 0,
+        "sample": []
+      },
+      "passed": 30,
+      "failed": 0,
+      "categories": {},
+      "tables_created": 7
+    },
+    {
+      "db": "db-6",
+      "queries": [
+        {
+          "n": 1,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"grib2_forecasts\" does not exist"
+        },
+        {
+          "n": 2,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"shapefile_boundaries\" does not exist"
+        },
+        {
+          "n": 3,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"grib2_forecasts\" does not exist"
+        },
+        {
+          "n": 4,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"shapefile_boundaries\" does not exist"
+        },
+        {
+          "n": 5,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"weather_stations\" does not exist"
+        },
+        {
+          "n": 6,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"grib2_forecasts\" does not exist"
+        },
+        {
+          "n": 7,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"grib2_forecasts\" does not exist"
+        },
+        {
+          "n": 8,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"weather_observations\" does not exist"
+        },
+        {
+          "n": 9,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"shapefile_boundaries\" does not exist"
+        },
+        {
+          "n": 10,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"grib2_forecasts\" does not exist"
+        },
+        {
+          "n": 11,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"grib2_forecasts\" does not exist"
+        },
+        {
+          "n": 12,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"grib2_forecasts\" does not exist"
+        },
+        {
+          "n": 13,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"grib2_forecasts\" does not exist"
+        },
+        {
+          "n": 14,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"shapefile_boundaries\" does not exist"
+        },
+        {
+          "n": 15,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"shapefile_boundaries\" does not exist"
+        },
+        {
+          "n": 16,
+          "status": "pass",
+          "ms": 5.0,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 17,
+          "status": "pass",
+          "ms": 2.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 1.9,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 20,
+          "status": "pass",
+          "ms": 1.3,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 21,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"grib2_forecasts\" does not exist"
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 1.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "pass",
+          "ms": 2.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 25,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"nexrad_radar_sites\" does not exist"
+        },
+        {
+          "n": 26,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"nexrad_storm_cells\" does not exist"
+        },
+        {
+          "n": 27,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"satellite_imagery_products\" does not exist"
+        },
+        {
+          "n": 28,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"nexrad_reflectivity_grid\" does not exist"
+        },
+        {
+          "n": 29,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"satellite_imagery_products\" does not exist"
+        },
+        {
+          "n": 30,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"nexrad_reflectivity_grid\" does not exist"
+        }
+      ],
+      "schema_load": {
+        "errors": 45,
+        "sample": [
+          "psql:/home/user/db/client/db/db-6/DATABASE/schema.sql:5: ERROR:  extension \"postgis\" is not available",
+          "psql:/home/user/db/client/db/db-6/DATABASE/schema.sql:28: ERROR:  type \"geography\" does not exist",
+          "psql:/home/user/db/client/db/db-6/DATABASE/schema.sql:50: ERROR:  type \"geography\" does not exist"
+        ]
+      },
+      "passed": 8,
+      "failed": 22,
+      "categories": {
+        "missing_relation": 22
+      },
+      "tables_created": 21
+    },
+    {
+      "db": "db-7",
+      "queries": [
+        {
+          "n": 1,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"vessel_tracking\" does not exist"
+        },
+        {
+          "n": 2,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 3,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 4,
+          "status": "pass",
+          "ms": 5.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 5,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 6,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 7,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 8,
+          "status": "pass",
+          "ms": 2.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 9,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 10,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 11,
+          "status": "pass",
+          "ms": 3.0,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 12,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"vessel_tracking\" does not exist"
+        },
+        {
+          "n": 13,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 14,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 15,
+          "status": "pass",
+          "ms": 2.3,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 16,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 17,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 3.4,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 20,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 21,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 1.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 2.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 25,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 26,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 27,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        },
+        {
+          "n": 28,
+          "status": "pass",
+          "ms": 1.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 29,
+          "status": "pass",
+          "ms": 2.0,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 30,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"ports\" does not exist"
+        }
+      ],
+      "schema_load": {
+        "errors": 9,
+        "sample": [
+          "psql:/home/user/db/client/db/db-7/DATABASE/schema.sql:42: ERROR:  type \"geography\" does not exist",
+          "psql:/home/user/db/client/db/db-7/DATABASE/schema.sql:69: ERROR:  type \"geography\" does not exist",
+          "psql:/home/user/db/client/db/db-7/DATABASE/schema.sql:257: ERROR:  type \"geography\" does not exist"
+        ]
+      },
+      "passed": 9,
+      "failed": 21,
+      "categories": {
+        "missing_relation": 21
+      },
+      "tables_created": 11
+    },
+    {
+      "db": "db-8",
+      "queries": [
+        {
+          "n": 1,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_profiles\" does not exist"
+        },
+        {
+          "n": 2,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"skills\" does not exist"
+        },
+        {
+          "n": 3,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"market_trends\" does not exist"
+        },
+        {
+          "n": 4,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_applications\" does not exist"
+        },
+        {
+          "n": 5,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"companies\" does not exist"
+        },
+        {
+          "n": 6,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 7,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 8,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_profiles\" does not exist"
+        },
+        {
+          "n": 9,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_skills_requirements\" does not exist"
+        },
+        {
+          "n": 10,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 11,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_job_search_history\" does not exist"
+        },
+        {
+          "n": 12,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_applications\" does not exist"
+        },
+        {
+          "n": 13,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_skills_requirements\" does not exist"
+        },
+        {
+          "n": 14,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 15,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 16,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"data_source_metadata\" does not exist"
+        },
+        {
+          "n": 17,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 18,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_applications\" does not exist"
+        },
+        {
+          "n": 19,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 20,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_skills_requirements\" does not exist"
+        },
+        {
+          "n": 21,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_applications\" does not exist"
+        },
+        {
+          "n": 22,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_profiles\" does not exist"
+        },
+        {
+          "n": 23,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 24,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 25,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_profiles\" does not exist"
+        },
+        {
+          "n": 26,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 27,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 28,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 29,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        },
+        {
+          "n": 30,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"job_postings\" does not exist"
+        }
+      ],
+      "schema_load": {
+        "errors": 43,
+        "sample": [
+          "psql:/home/user/db/client/db/db-8/DATABASE/schema.sql:34: ERROR:  length for type varchar cannot exceed 10485760",
+          "psql:/home/user/db/client/db/db-8/DATABASE/schema.sql:60: ERROR:  length for type varchar cannot exceed 10485760",
+          "psql:/home/user/db/client/db/db-8/DATABASE/schema.sql:101: ERROR:  length for type varchar cannot exceed 10485760"
+        ]
+      },
+      "passed": 0,
+      "failed": 30,
+      "categories": {
+        "missing_relation": 30
+      },
+      "tables_created": 0
+    },
+    {
+      "db": "db-9",
+      "queries": [
+        {
+          "n": 1,
+          "status": "pass",
+          "ms": 7.3,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 2,
+          "status": "pass",
+          "ms": 1.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 3,
+          "status": "pass",
+          "ms": 5.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 4,
+          "status": "pass",
+          "ms": 1.0,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 5,
+          "status": "pass",
+          "ms": 1.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 6,
+          "status": "pass",
+          "ms": 1.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 7,
+          "status": "pass",
+          "ms": 1.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 8,
+          "status": "pass",
+          "ms": 1.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 9,
+          "status": "pass",
+          "ms": 1.4,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 10,
+          "status": "pass",
+          "ms": 1.3,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 11,
+          "status": "pass",
+          "ms": 1.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 12,
+          "status": "pass",
+          "ms": 0.9,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 13,
+          "status": "pass",
+          "ms": 1.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 14,
+          "status": "pass",
+          "ms": 1.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 15,
+          "status": "pass",
+          "ms": 0.9,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 16,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 17,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 20,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 21,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 25,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 26,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 27,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 28,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 29,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 30,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        }
+      ],
+      "schema_load": {
+        "errors": 0,
+        "sample": []
+      },
+      "passed": 30,
+      "failed": 0,
+      "categories": {},
+      "tables_created": 14
+    },
+    {
+      "db": "db-10",
+      "queries": [
+        {
+          "n": 1,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"product_pricing\" does not exist"
+        },
+        {
+          "n": 2,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"product_inventory\" does not exist"
+        },
+        {
+          "n": 3,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"product_pricing\" does not exist"
+        },
+        {
+          "n": 4,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"deal_alerts\" does not exist"
+        },
+        {
+          "n": 5,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 6,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 7,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 8,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 9,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 10,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 11,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 12,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 13,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 14,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 15,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 16,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 17,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 18,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 19,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 20,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 21,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 22,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 23,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 24,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 25,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 26,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 27,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 28,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 29,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        },
+        {
+          "n": 30,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"products\" does not exist"
+        }
+      ],
+      "schema_load": {
+        "errors": 33,
+        "sample": [
+          "psql:/home/user/db/client/db/db-10/DATABASE/schema.sql:6: ERROR:  extension \"postgis\" is not available",
+          "psql:/home/user/db/client/db/db-10/DATABASE/schema.sql:32: ERROR:  length for type varchar cannot exceed 10485760",
+          "psql:/home/user/db/client/db/db-10/DATABASE/schema.sql:84: ERROR:  type \"geography\" does not exist"
+        ]
+      },
+      "passed": 0,
+      "failed": 30,
+      "categories": {
+        "missing_relation": 30
+      },
+      "tables_created": 4
+    },
+    {
+      "db": "db-11",
+      "queries": [
+        {
+          "n": 1,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"cities\" does not exist"
+        },
+        {
+          "n": 2,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 3,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"events\" does not exist"
+        },
+        {
+          "n": 4,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"airports\" does not exist"
+        },
+        {
+          "n": 5,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"traffic_volume_data\" does not exist"
+        },
+        {
+          "n": 6,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"cities\" does not exist"
+        },
+        {
+          "n": 7,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"cities\" does not exist"
+        },
+        {
+          "n": 8,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_utilization\" does not exist"
+        },
+        {
+          "n": 9,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"cities\" does not exist"
+        },
+        {
+          "n": 10,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 11,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 12,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 13,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 14,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 15,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 16,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 17,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 18,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 19,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 20,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 21,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 22,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 23,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 24,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 25,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 26,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 27,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 28,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 29,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        },
+        {
+          "n": 30,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"parking_facilities\" does not exist"
+        }
+      ],
+      "schema_load": {
+        "errors": 25,
+        "sample": [
+          "psql:/home/user/db/client/db/db-11/DATABASE/schema.sql:25: ERROR:  type \"geography\" does not exist",
+          "psql:/home/user/db/client/db/db-11/DATABASE/schema.sql:49: ERROR:  type \"geography\" does not exist",
+          "psql:/home/user/db/client/db/db-11/DATABASE/schema.sql:72: ERROR:  type \"geography\" does not exist"
+        ]
+      },
+      "passed": 0,
+      "failed": 30,
+      "categories": {
+        "missing_relation": 30
+      },
+      "tables_created": 1
+    },
+    {
+      "db": "db-12",
+      "queries": [
+        {
+          "n": 1,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"spending_transactions\" does not exist"
+        },
+        {
+          "n": 2,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_profiles\" does not exist"
+        },
+        {
+          "n": 3,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 4,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 5,
+          "status": "pass",
+          "ms": 2.9,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 6,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 7,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 8,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 9,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"spending_transactions\" does not exist"
+        },
+        {
+          "n": 10,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 11,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 12,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 13,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 14,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 15,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 16,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 17,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 18,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 19,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 20,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 21,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 22,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 23,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 24,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 25,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 26,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 27,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 28,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 29,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        },
+        {
+          "n": 30,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"user_cards\" does not exist"
+        }
+      ],
+      "schema_load": {
+        "errors": 20,
+        "sample": [
+          "psql:/home/user/db/client/db/db-12/DATABASE/schema.sql:176: ERROR:  type \"geography\" does not exist",
+          "psql:/home/user/db/client/db/db-12/DATABASE/schema.sql:194: ERROR:  type \"geography\" does not exist",
+          "psql:/home/user/db/client/db/db-12/DATABASE/schema.sql:217: ERROR:  relation \"user_profiles\" does not exist"
+        ]
+      },
+      "passed": 1,
+      "failed": 29,
+      "categories": {
+        "missing_relation": 29
+      },
+      "tables_created": 9
+    },
+    {
+      "db": "db-13",
+      "queries": [
+        {
+          "n": 1,
+          "status": "pass",
+          "ms": 3.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 2,
+          "status": "pass",
+          "ms": 2.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 3,
+          "status": "pass",
+          "ms": 1.4,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 4,
+          "status": "pass",
+          "ms": 1.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 5,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 6,
+          "status": "pass",
+          "ms": 1.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 7,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 8,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 9,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 10,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 11,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 12,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 13,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 14,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 15,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 16,
+          "status": "pass",
+          "ms": 0.8,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 17,
+          "status": "pass",
+          "ms": 0.9,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 20,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 21,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 25,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 26,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 27,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 28,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 29,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 30,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        }
+      ],
+      "schema_load": {
+        "errors": 0,
+        "sample": []
+      },
+      "passed": 30,
+      "failed": 0,
+      "categories": {},
+      "tables_created": 11
+    },
+    {
+      "db": "db-14",
+      "queries": [
+        {
+          "n": 1,
+          "status": "pass",
+          "ms": 23.0,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 2,
+          "status": "pass",
+          "ms": 2.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 3,
+          "status": "pass",
+          "ms": 0.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 4,
+          "status": "pass",
+          "ms": 0.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 5,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 6,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 7,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 8,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 9,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 10,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 11,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 12,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 13,
+          "status": "pass",
+          "ms": 0.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 14,
+          "status": "pass",
+          "ms": 0.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 15,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 16,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 17,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 20,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 21,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 25,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 26,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 27,
+          "status": "pass",
+          "ms": 0.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 28,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 29,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 30,
+          "status": "pass",
+          "ms": 0.1,
+          "rows": 0,
+          "error": null
+        }
+      ],
+      "schema_load": {
+        "errors": 0,
+        "sample": []
+      },
+      "passed": 30,
+      "failed": 0,
+      "categories": {},
+      "tables_created": 11
+    },
+    {
+      "db": "db-15",
+      "queries": [
+        {
+          "n": 1,
+          "status": "pass",
+          "ms": 5.0,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 2,
+          "status": "pass",
+          "ms": 4.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 3,
+          "status": "pass",
+          "ms": 4.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 4,
+          "status": "pass",
+          "ms": 1.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 5,
+          "status": "pass",
+          "ms": 1.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 6,
+          "status": "pass",
+          "ms": 1.4,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 7,
+          "status": "pass",
+          "ms": 1.1,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 8,
+          "status": "pass",
+          "ms": 2.3,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 9,
+          "status": "pass",
+          "ms": 1.0,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 10,
+          "status": "pass",
+          "ms": 2.3,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 11,
+          "status": "pass",
+          "ms": 1.4,
+          "rows": 3,
+          "error": null
+        },
+        {
+          "n": 12,
+          "status": "pass",
+          "ms": 1.9,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 13,
+          "status": "pass",
+          "ms": 1.2,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 14,
+          "status": "pass",
+          "ms": 1.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 15,
+          "status": "pass",
+          "ms": 0.9,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 16,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 17,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 18,
+          "status": "pass",
+          "ms": 0.3,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 19,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 20,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 21,
+          "status": "pass",
+          "ms": 0.4,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 22,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 23,
+          "status": "pass",
+          "ms": 0.7,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 24,
+          "status": "pass",
+          "ms": 0.4,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 25,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 26,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 27,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 28,
+          "status": "pass",
+          "ms": 0.5,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 29,
+          "status": "pass",
+          "ms": 0.4,
+          "rows": 0,
+          "error": null
+        },
+        {
+          "n": 30,
+          "status": "pass",
+          "ms": 0.6,
+          "rows": 0,
+          "error": null
+        }
+      ],
+      "schema_load": {
+        "errors": 0,
+        "sample": []
+      },
+      "passed": 30,
+      "failed": 0,
+      "categories": {},
+      "tables_created": 17
+    },
+    {
+      "db": "db-16",
+      "queries": [
+        {
+          "n": 1,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 2,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 3,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"historical_flood_events\" does not exist"
+        },
+        {
+          "n": 4,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"noaa_sea_level_rise\" does not exist"
+        },
+        {
+          "n": 5,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"usgs_streamflow_gauges\" does not exist"
+        },
+        {
+          "n": 6,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 7,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 8,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 9,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 10,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 11,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 12,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 13,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 14,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 15,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 16,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 17,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 18,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 19,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 20,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 21,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 22,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 23,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 24,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 25,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 26,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 27,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 28,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 29,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        },
+        {
+          "n": 30,
+          "status": "fail",
+          "ms": null,
+          "rows": null,
+          "error": "relation \"real_estate_properties\" does not exist"
+        }
+      ],
+      "schema_load": {
+        "errors": 23,
+        "sample": [
+          "psql:/home/user/db/client/db/db-16/DATABASE/schema.sql:29: ERROR:  type \"geography\" does not exist",
+          "psql:/home/user/db/client/db/db-16/DATABASE/schema.sql:55: ERROR:  type \"geography\" does not exist",
+          "psql:/home/user/db/client/db/db-16/DATABASE/schema.sql:73: ERROR:  type \"geography\" does not exist"
+        ]
+      },
+      "passed": 0,
+      "failed": 30,
+      "categories": {
+        "missing_relation": 30
+      },
+      "tables_created": 5
+    }
+  ],
+  "summary": {
+    "total_queries": 480,
+    "passed": 288,
+    "failed": 192
+  }
+}

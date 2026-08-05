@@ -283,7 +283,8 @@ See [.cursor/plans/roadmap_rules_skills_and_features_*.plan.md](.cursor/plans/) 
 | 10.2 Stakeholder Showcase | `mdp-tuple-architecture.html` — dark-theme single-file narrative (ask → shipped → tuple → roadmap) |
 | 10.3 Worked Example | db-6 episode walkthrough (`mdp-architecture-db6.html`, consolidated into this repo 2026-08-05) |
 | 10.4 Provenance Package | [docs/provenance/](provenance/README.md) — forensic record of the shipped 13-DB/390-pair package: STORY.md, timeline, remediation work order; authoritative for shipped figures |
-| 10.5 User Stories | US-10.1: Stakeholder reads the ask-vs-shipped story with honest gaps; US-10.2: ML engineer maps every tuple element to a cited artifact; US-10.3: Reviewer traces every shipped figure to the provenance record |
+| 10.5 Technical Execution | [docs/TECHNICAL_EXECUTION.md](TECHNICAL_EXECUTION.md) — factory inventory + first closed execution loop (2026-08-05: 288/480 gold queries live on fresh PG16 instances; defect ledger T1–T3); artifact `results/gold_query_execution_20260805.json` |
+| 10.6 User Stories | US-10.1: Stakeholder reads the ask-vs-shipped story with honest gaps; US-10.2: ML engineer maps every tuple element to a cited artifact; US-10.3: Reviewer traces every shipped figure to the provenance record; US-10.4: Designer styles the execution record from its design brief without changing a number |
 
 ---
 
