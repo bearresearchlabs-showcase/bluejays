@@ -281,8 +281,9 @@ See [.cursor/plans/roadmap_rules_skills_and_features_*.plan.md](.cursor/plans/) 
 |---------|-------------|
 | 10.1 Technical Doc | [docs/MDP_TUPLE_ARCHITECTURE.md](MDP_TUPLE_ARCHITECTURE.md) — formal (S, A, P, R, γ) mapping of corpus artifacts; benchmark lineage Spider 1 → BIRD → Spider 2.0 |
 | 10.2 Stakeholder Showcase | `mdp-tuple-architecture.html` — dark-theme single-file narrative (ask → shipped → tuple → roadmap) |
-| 10.3 Worked Example | db-6 episode walkthrough (`mdp-architecture.html` in db-6-weather-documentation deployment) |
-| 10.4 User Stories | US-10.1: Stakeholder reads the ask-vs-shipped story with honest gaps; US-10.2: ML engineer maps every tuple element to a cited artifact |
+| 10.3 Worked Example | db-6 episode walkthrough (`mdp-architecture-db6.html`, consolidated into this repo 2026-08-05) |
+| 10.4 Provenance Package | [docs/provenance/](provenance/README.md) — forensic record of the shipped 13-DB/390-pair package: STORY.md, timeline, remediation work order; authoritative for shipped figures |
+| 10.5 User Stories | US-10.1: Stakeholder reads the ask-vs-shipped story with honest gaps; US-10.2: ML engineer maps every tuple element to a cited artifact; US-10.3: Reviewer traces every shipped figure to the provenance record |
 
 ---
 

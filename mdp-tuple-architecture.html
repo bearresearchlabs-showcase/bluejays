@@ -73,13 +73,13 @@
 <p class="subtitle">From "Just Source Databases" to an RL Environment Factory &bull; Between Text2SQL and Spider 2.0 &bull; Prepared Aug 5, 2026 &bull; CONFIDENTIAL</p>
 
 <div class="summary-box">
-<strong>Executive Summary:</strong> The ask was database sourcing — estimated at <strong>8–12 hours</strong>. What shipped is a private, contamination-free <strong>reinforcement-learning environment suite</strong> for text-to-SQL agents: every artifact in the corpus maps onto an element of the MDP tuple <strong>(S, A, P, R, &gamma;)</strong>, a mapping the project's own documents have been writing field-by-field without ever naming it. Formally named, the corpus sits between BIRD (whose annotation schema it extends) and Spider&nbsp;2.0 (the agentic frontier its roadmap targets). Full technical account: <code>docs/MDP_TUPLE_ARCHITECTURE.md</code>.
+<strong>Executive Summary:</strong> The ask was database sourcing — estimated at <strong>8–12 hours</strong>. What shipped is a private, contamination-free <strong>reinforcement-learning environment suite</strong> for text-to-SQL agents: every artifact in the corpus maps onto an element of the MDP tuple <strong>(S, A, P, R, &gamma;)</strong>, a mapping the project's own documents have been writing field-by-field without ever naming it. Formally named, the corpus sits between BIRD (whose annotation schema it extends) and Spider&nbsp;2.0 (the agentic frontier its roadmap targets) — and its design center is exactly the substrate the <strong>frontier-agent platforms announced the same month</strong> (OpenAI Frontier, Feb&nbsp;5, 2026) now presuppose. Full technical account: <code>docs/MDP_TUPLE_ARCHITECTURE.md</code> · forensic record: <code>docs/provenance/</code>.
 </div>
 
 <div class="kpi-grid">
-  <div class="kpi"><div class="kpi-value">16</div><div class="kpi-label">PostgreSQL databases</div></div>
-  <div class="kpi"><div class="kpi-value">480</div><div class="kpi-label">Gold question–SQL pairs</div></div>
-  <div class="kpi"><div class="kpi-value">~14 GB</div><div class="kpi-label">Real data (Git LFS)</div></div>
+  <div class="kpi"><div class="kpi-value">16 / 13</div><div class="kpi-label">Databases: corpus / shipped</div></div>
+  <div class="kpi"><div class="kpi-value">480 / 390</div><div class="kpi-label">Gold pairs: corpus / shipped</div></div>
+  <div class="kpi"><div class="kpi-value">19.4 GB</div><div class="kpi-label">Generated data, real-modeled schemas</div></div>
   <div class="kpi"><div class="kpi-value">30</div><div class="kpi-label">Queries per database</div></div>
   <div class="kpi"><div class="kpi-value">300/300</div><div class="kpi-label">Gold queries pass (db-6..15 run)</div></div>
   <div class="kpi"><div class="kpi-value">16</div><div class="kpi-label">Hardened containers (5436–5451)</div></div>
@@ -156,7 +156,9 @@
   <tr><td>Gold actions are executable</td><td><code>notebooks/TEST_RESULTS_SUMMARY.md</code> — 300/300 pass (db-6..db-15, 2026-02-08)</td><td><span class="badge b-green">VERIFIED</span></td></tr>
   <tr><td>16 live environment instances</td><td><code>docker/docker-compose.hardened.yml</code> — ports 5436–5451</td><td><span class="badge b-green">VERIFIED</span></td></tr>
   <tr><td>480 episodes exported in BIRD format</td><td><code>bird_export/all_bird.json</code></td><td><span class="badge b-green">VERIFIED</span></td></tr>
-  <tr><td>Contamination-free provenance</td><td>Sourcing rules + extraction metadata + integrity hashes</td><td><span class="badge b-green">BY CONSTRUCTION</span></td></tr>
+  <tr><td>Private, non-webcrawlable content (contamination-free)</td><td>Sourcing rules + extraction metadata + integrity hashes</td><td><span class="badge b-green">BY CONSTRUCTION</span></td></tr>
+  <tr><td>Schemas &amp; SQL semantics grounded in real systems</td><td><code>docs/provenance/STORY.md</code> §5, §10 — mirrors of named commercial products, public/gov data models</td><td><span class="badge b-green">VERIFIED</span></td></tr>
+  <tr><td>Shipped bulk rows are real production data</td><td><code>docs/provenance/STORY.md</code> §7, §10 — rows generated to a ~1 GiB floor per DB</td><td><span class="badge b-amber">SYNTHETIC</span></td></tr>
   <tr><td>Workbench benchmark run</td><td><code>bird_workbench_report.json</code> — 30/30 "passed" but all 30 <code>skipped: true</code></td><td><span class="badge b-amber">VACUOUS PASS</span></td></tr>
   <tr><td>Agentic evaluation loop</td><td><code>bird_critic_results_db1.json</code> — 0/3, connection refused; never executed live</td><td><span class="badge b-red">NOT YET CLOSED</span></td></tr>
 </table>
@@ -172,6 +174,30 @@
 </div>
 <div class="card">
 <p><strong>The honest position:</strong> no Spider 2.0 integration exists in this repository — the term appears nowhere before this narrative. What exists is the unique property public benchmarks cannot keep: <strong>the corpus can never have been in a model's pretraining data</strong>, because not being webcrawlable was a sourcing rule, not an afterthought. The seeds of Spider2-grade structure are already in the original spec: query chaining (multi-step episodes) and the query graph (Dijkstra-reducible transition structure).</p>
+</div>
+
+<h2>Act VI — Provenance &amp; the Frontier Moment</h2>
+<div class="grid2">
+  <div class="card card-purple">
+    <h3>What actually shipped (forensic record)</h3>
+    <ul>
+      <li><strong>13 databases, 390 pairs, 19.4 GB</strong> delivered March 2026 (db-2, db-3, db-6…db-16)</li>
+      <li><strong>The provenance pivot:</strong> real production exports (db-1/4/5) were cut; from db-6 on, databases were purpose-built mirrors of named commercial systems fed by public/government sources</li>
+      <li><strong>Rows synthetic, schemas real</strong> — "No row of shipped data is real production data; no schema is arbitrary"</li>
+      <li><strong>Industrialization day, Feb 18, 2026:</strong> 9 schemas at 06:54; thirteen 1&nbsp;GiB datasets written in a two-minute window</li>
+      <li>Client verdict: <em>"Databases look good, only comment: the descriptions are AI-generated"</em> → measured (mean 193 chars, 0/390 name intent) → active remediation with acceptance criteria</li>
+      <li>Full record: <code>docs/provenance/</code> — every figure recomputed from shipped files, 2026-08-05</li>
+    </ul>
+  </div>
+  <div class="card card-green">
+    <h3>How frontier was this, actually</h3>
+    <ul>
+      <li><strong>Feb 5, 2026</strong> — OpenAI announces <strong>Frontier</strong>: enterprise agents onboarded and managed like employees, with feedback loops. Frontier labs (incl. Meta Superintelligence Labs' agent-focused Muse line) define the category through 2026</li>
+      <li><strong>Feb 14–18, 2026</strong> — the same month, this engagement's SOW positions against BIRD-SQL/LiveSQLBench and the environment factory industrializes</li>
+      <li><strong>The claim, soberly:</strong> an ask scoped as data sourcing produced the exact substrate the frontier-agent category consumes — private RL environments with gold actions, executable reward, and curriculum structure. Contemporaneous with the platform wave, not derivative of it</li>
+      <li><strong>The named gap is the frontier gap:</strong> the record itself states that annotation alone cannot prove data trains agents — execution-accuracy harnesses and BIRD/Spider ablations can. That is roadmap P0</li>
+    </ul>
+  </div>
 </div>
 
 <h2>Roadmap — Verified Today vs. Spider2-Grade</h2>
@@ -198,7 +224,7 @@
 </div>
 
 <div class="footer">
-CONFIDENTIAL &bull; Technical source of truth: <code>docs/MDP_TUPLE_ARCHITECTURE.md</code> &bull; Worked example: <code>mdp-architecture.html</code> in the db-6-weather-documentation deployment &bull; Prepared 2026-08-05
+CONFIDENTIAL &bull; Technical source of truth: <code>docs/MDP_TUPLE_ARCHITECTURE.md</code> &bull; Worked example: <code>mdp-architecture-db6.html</code> (this repo) &bull; Provenance: <code>docs/provenance/</code> &bull; Prepared 2026-08-05 (rev. 2)
 </div>
 
 </body>

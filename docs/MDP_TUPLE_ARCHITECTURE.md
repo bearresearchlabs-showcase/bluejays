@@ -10,15 +10,17 @@ The engagement ask was database sourcing: *"Acquire real-world databases and acc
 
 | Metric | Value | Source |
 |--------|-------|--------|
-| Databases sourced | 16 (db-1 … db-16), PostgreSQL | [docs/ROADMAP.md](ROADMAP.md) §1 |
-| Gold question–SQL pairs | 480 (30 per database) | `bird_export/all_bird.json` (`count: 480`) |
-| Real data tracked | ~14 GB via Git LFS (14 of 16 `data_large.sql`; db-9/db-16 exceed the LFS limit and ship out-of-band) | `.gitattributes`, `.gitignore` |
+| Working corpus | 16 databases (db-1 … db-16), PostgreSQL; 480 gold pairs (30 per DB) | [docs/ROADMAP.md](ROADMAP.md) §1; `bird_export/all_bird.json` (`count: 480`) |
+| **Shipped client package** | **13 databases (db-2, db-3, db-6 … db-16), 390 pairs, 19.4 GB generated data** | [docs/provenance/](provenance/README.md), verified 2026-08-05 |
+| Bulk data tracked | ~14 GB via Git LFS (14 of 16 `data_large.sql`; db-9/db-16 exceed the LFS limit and ship out-of-band). Rows are generated to a ~1 GiB floor; schemas/semantics are real-modeled — see Act VI | `.gitattributes`, `.gitignore`; [provenance STORY.md §7, §10](provenance/STORY.md) |
 | Live environment instances | 16 hardened PostgreSQL containers, host ports 5436–5451 | `docker/docker-compose.hardened.yml` |
 | Gold-action feasibility | 300/300 queries pass in the documented run (db-6 … db-15, 2026-02-08) | [notebooks/TEST_RESULTS_SUMMARY.md](../notebooks/TEST_RESULTS_SUMMARY.md) |
 | Benchmark exports | 23 JSON files: BIRD, BIRD-CRITIC, workbench formats | `bird_export/` |
-| Contamination status | Zero synthetic data; sources must not be webcrawlable | `.cursor/rules/project-requirements.mdc` |
+| Contamination status | Private, non-webcrawlable content by rule; schemas modeled on real systems; shipped rows synthetic (see Act VI) | `.cursor/rules/project-requirements.mdc`; [provenance STORY.md §10](provenance/STORY.md) |
 
 The claim of this document, stated once and defended below: **the corpus is a private, contamination-free POMDP environment suite for text-to-SQL agents, positioned between BIRD (whose annotation schema it is a superset of) and Spider 2.0 (whose agentic, long-horizon demands its roadmap targets). No Spider 2.0 integration exists in this repository today — that absence is part of the story, not a footnote.**
+
+Two scopes run through this document and are kept distinct throughout: the **working corpus** (16 databases / 480 pairs, this repository) and the **shipped client package** (13 databases / 390 pairs, delivered March 2026 and forensically documented in [docs/provenance/](provenance/README.md)). Act VI tells the provenance story and corrects earlier claims where the shipped evidence demanded it.
 
 ---
 
@@ -69,7 +71,7 @@ Sixteen production-domain PostgreSQL databases (full table in [docs/ROADMAP.md](
 
 - **480 gold pairs** exported in BIRD format (`bird_export/all_bird.json`), plus BIRD-CRITIC task formats and a workbench adapter report — 23 JSON files total.
 - **16 hardened PostgreSQL containers** (`docker/docker-compose.hardened.yml`, host ports 5436–5451), one isolated environment instance per database, plus K8s validation jobs (`k8s/`).
-- **~14 GB of real extracted data** tracked via Git LFS.
+- **~14 GB of bulk data** tracked via Git LFS — generated to a ~1 GiB-per-database floor over real-modeled schemas (see Act VI for the provenance of the rows vs. the schemas).
 - **Validation harnesses**: per-database query-testing notebooks (`notebooks/`), a 4-phase validation suite, integrity hashes (`source/db-N/metadata/integrity.json`), and a metadata schema that includes — note the field name — `rl_ready: boolean` (`scripts/db_metadata_schema.yaml:19`).
 - **Five applications** (ingest, web documentation, annotator, backend test API, sources API) and a deployed documentation site.
 
@@ -147,7 +149,9 @@ An MDP is only useful if its reward function is well-defined and its gold action
 | Gold actions are executable | `notebooks/TEST_RESULTS_SUMMARY.md`: 300/300 queries pass (db-6 … db-15, run of 2026-02-08) | ✅ Verified for 10 of 16 DBs in the documented run |
 | Environment instances are reproducible | `docker/docker-compose.hardened.yml`: 16 containers, ports 5436–5451; `client/scripts/setup_docker.sh` | ✅ Verified (16 services in compose) |
 | Episodes are exportable in benchmark format | `bird_export/all_bird.json`: 480 entries | ✅ Verified |
-| Provenance is real and contamination-free | `.cursor/rules/project-requirements.mdc:18-22`; per-DB `source_metadata.json` extraction histories; integrity hashes | ✅ By construction and by rule |
+| Content is private and non-webcrawlable (contamination-free) | `.cursor/rules/project-requirements.mdc:18-22`; per-DB `source_metadata.json` extraction histories; integrity hashes | ✅ By construction and by rule |
+| Schemas and query semantics are grounded in real systems | [provenance STORY.md §5, §10](provenance/STORY.md): purpose-built to mirror named commercial products, fed by public/government data models | ✅ Verified |
+| Shipped bulk rows are real production data | [provenance STORY.md §6.5, §7, §10](provenance/STORY.md): rows generated by `generate_large_dataset.py` to a ~1 GiB floor | ❌ **Synthetic — corrected in Act VI** |
 | Agentic mount works end-to-end | `scripts/agentic_mount.py` (`get_bird_pairs()`); `tests/features/agentic_data_agent_mount.feature` | ✅ Specified and tested at the interface level |
 
 ### Caveats — read before citing this document
@@ -156,8 +160,11 @@ Honesty is load-bearing here; a technically literate reader will check.
 
 1. **The workbench "pass" is vacuous.** `bird_export/bird_workbench_report.json` reports 30/30 passed, accuracy 1.0 — but every one of the 30 results is marked `"skipped": true`. It was a gates-only run with no live database.
 2. **The agentic evaluation loop has never executed.** `bird_export/bird_critic_results_db1.json`: 3 tasks, 0 passed — every task failed with `connection … port 5436 … Connection refused`. The export format is complete and the harness is wired; the loop has not yet closed against a live container.
-3. **300/300 ≠ 480/480.** The documented validation run covers db-6 … db-15. The corpus-wide 480 pairs are exported, not all covered by that run's evidence.
+3. **300/300 ≠ 480/480.** The documented validation run covers db-6 … db-15. The corpus-wide 480 pairs are exported, not all covered by that run's evidence. The provenance package adds a sharper version of this caveat: the shipped audits ran against small seed datasets, not the gigabyte `data_large.sql` files — syntax and execution were validated, correctness-at-scale was not ([STORY.md §6.4](provenance/STORY.md)).
 4. **`client/README.md` cites ports 5436–5448** (a 13-DB-era remnant); the compose file, which is authoritative, maps 5436–5451.
+5. **In the shipped package, `complexity` carries no signal** — constant `"moderate"` across all 390 items ([STORY.md §6.3](provenance/STORY.md)). The curriculum row in the tuple table above therefore describes the *design*, not the shipped labels; difficulty must be derived from the SQL itself (CTE depth, joins, window functions, schema breadth 3–34 tables). Artifact revisions differ: the db-6 web deliverable JSON carries 28 moderate / 2 challenging.
+6. **1,053 near-duplicate query pairs** at ≥0.99 normalized similarity in 8 of 13 shipped databases ([STORY.md §6.2](provenance/STORY.md)); db-6, db-7, db-8, db-9, db-15 are clean. Deduplicate before training or the effective action distribution is far narrower than 30 per database.
+7. **`expected_output` is prose, not rows** — a description of the result shape, not an executed result set ([STORY.md §11](provenance/STORY.md)). The EX reward defined in Act IV must be *materialized*: load schema + data, execute the gold SQL, persist real rows. This is roadmap item P0.
 
 ---
 
@@ -236,10 +243,52 @@ This roadmap extends [docs/ROADMAP.md](ROADMAP.md) Epic 5 (LiveSQLBench) and §3
 
 ---
 
+## Act VI — Provenance: What Actually Shipped
+
+*Source for this entire act: the [provenance package](provenance/README.md), whose every figure was recomputed from the shipped files on 2026-08-05. Where this act corrects earlier sections, the shipped evidence wins.*
+
+### The timeline behind the tuple
+
+The engagement's arc, from [provenance STORY.md](provenance/STORY.md) and [story-timeline.json](provenance/story-timeline.json):
+
+| Date | Event |
+|------|-------|
+| 2025-09-17 | Intake: a *coding-agent evaluation* rubric — 9 scoring dimensions, 16-code failure taxonomy. The buyer's bar was structured judgment from day one |
+| 2025-10-29 | NDA + Data Submission Agreement execute together — the expert *submits* data; ownership had to be contracted |
+| 2026-02-01–09 | Apprentice deliveries establish the house format: `database/ + documentation/ + README + one-command bring-up`, then the Description/SQL/Expected-Output triad |
+| 2026-02-14 | Statement of Work: positioned explicitly against **BIRD-SQL / LiveSQLBench**; 11 databases, Full-Service tier |
+| 2026-02-18 | **Industrialization day**: 9 schemas at 06:54, all 13 documentation sets at 17:39, all 13 gigabyte datasets written inside a two-minute window at 19:19–19:20 |
+| 2026-03-09 | `client-db.zip` ships: 13 databases, 390 pairs, 21.5 GB extracted |
+| *undated* | Client feedback: *"Databases look good, only comment: the descriptions are AI-generated"* → active remediation ([REMEDIATION.md](provenance/REMEDIATION.md)) |
+| 2026-08-05 | Provenance reconstruction; every claim measured against the shipped files |
+
+### The provenance pivot — the story's honest core
+
+The first five databases were **exports of real production systems** (a live ADS-B receiver, a Kenyan POS instance, live Django/Supabase apps). Maximum authenticity, maximum provenance risk. From db-6 onward the method inverted: databases **purpose-built to mirror named commercial products** (Linescape, jobright.ai, Pirate Ship, Brickseek, SpotHero, CardPointers, Artificial Analysis), populated from public and government sources (NOAA, USCG, BLS, USPS, Census, FEMA, NIST). db-1, db-4, db-5 were cut, not failed — their audits pass; they were never migrated to the new method ([STORY.md §5](provenance/STORY.md)).
+
+The materially honest statement about the data, from [STORY.md §10](provenance/STORY.md), quoted because it corrects this document's own earlier drafts: *"No row of shipped data is real production data; no schema is arbitrary."* Rows were generated (`generate_large_dataset.py`, ~1 GiB floor per database — twelve of thirteen files land within kilobytes of exactly 1 GiB); schemas and query semantics are the real-modeled parts. For the MDP framing this means: **the environment's transition dynamics (schema, constraints, SQL semantics) are grounded; its state distribution is synthetic.** Conclusions about real-world data distributions do not transfer; conclusions about SQL competence over realistic schema structure do.
+
+### The feedback loop as reward signal
+
+The client's one-sentence review — *"the descriptions are AI-generated"* — is, in this document's own vocabulary, a **reward signal on the annotation policy**, and the provenance package did the right thing with it: measured it (mean description length 193 chars; 0/390 descriptions name user intent; the 1,053 near-duplicates are the objective form of the same finding) and converted it into a bounded work order with acceptance criteria ([REMEDIATION.md](provenance/REMEDIATION.md)). The recoverable asset: four-lens intent documentation (Use Case / What it does / Business Value / Purpose) already exists in the working tree for 11 of 13 shipped databases — remediation is recovery plus editing, not authoring ([STORY.md §15](provenance/STORY.md)).
+
+### Frontier context — how frontier was this, actually
+
+On **February 5, 2026**, OpenAI announced **Frontier**, its enterprise platform for building and managing AI agents — agents onboarded and managed "the same way companies manage human employees," with feedback loops for improvement. Meta Superintelligence Labs spent 2026 training its Muse model line specifically for agentic capability. That is the market moment this engagement sits inside: the SOW positioning the work against BIRD-SQL/LiveSQLBench predates the Frontier announcement by nine days in the artifact record's framing week (SOW 2026-02-14; industrialization 2026-02-18), and the corpus's design center — **private, contamination-free environments with gold actions, executable reward, and curriculum structure for training and evaluating data agents** — is precisely the substrate the frontier-agent category consumes.
+
+Three sober observations, in the package's own plain register:
+
+1. **The architecture anticipated the category.** An engagement scoped as data sourcing produced, by February 2026, the environment structure (state/action/reward/curriculum, live instances, benchmark alignment) that frontier-agent platforms announced that same month now presuppose. That is the substantive sense in which the architecture was frontier — contemporaneous with, not derivative of, the platform wave.
+2. **The strategic gap the record itself names is the frontier gap.** The Slack record's counter-position ([sources/keeping-track-of-things.txt](provenance/sources/keeping-track-of-things.txt)): a language model cannot certify that data is good for training — that takes execution-accuracy harnesses, ablations against BIRD/Spider, downstream product metrics. Closing that gap (roadmap P0) is what converts a data vendor into infrastructure for frontier agents.
+3. **No client identity is asserted here.** This repository's documents refer to the engagement's counterparties as they appear in the artifacts. The frontier-agent context above cites public announcements only.
+
+---
+
 ## Companion Artifacts
 
 - **Stakeholder showcase (this repo):** [`mdp-tuple-architecture.html`](../mdp-tuple-architecture.html) — the story version, dark-theme single file.
-- **Worked example (db-6 repo):** `mdp-architecture.html` in `db-6-weather-documentation` — one full episode (Query 26, NEXRAD storm-cell tracking) rendered as observation → gold action → reward target.
+- **Worked example (this repo):** [`mdp-architecture-db6.html`](../mdp-architecture-db6.html) — one full db-6 episode (Query 26, NEXRAD storm-cell tracking) rendered as observation → gold action → reward target. Originally deployed from the `db-6-weather-documentation` repository; consolidated here 2026-08-05.
+- **Provenance package (this repo):** [`docs/provenance/`](provenance/README.md) — the forensic record of what shipped, and the authority this document defers to on shipped figures.
 
 ---
 
@@ -251,7 +300,9 @@ This roadmap extends [docs/ROADMAP.md](ROADMAP.md) Epic 5 (LiveSQLBench) and §3
 - Sutton, R. S., & Barto, A. G. (2018). *Reinforcement Learning: An Introduction* (2nd ed.). MIT Press.
 - Kaelbling, L. P., Littman, M. L., & Cassandra, A. R. (1998). *Planning and acting in partially observable stochastic domains.* Artificial Intelligence, 101(1-2).
 - Sequeda, J., et al. (2023). *A Benchmark to Understand the Role of Knowledge Graphs on Large Language Model's Accuracy for Question Answering on Enterprise SQL Databases.* arXiv:2311.07509.
+- TechCrunch (2026-02-05). *OpenAI launches a way for enterprises to build and manage AI agents* — the OpenAI Frontier platform announcement. https://techcrunch.com/2026/02/05/openai-launches-a-way-for-enterprises-to-build-and-manage-ai-agents/
+- Provenance package (2026-08-05). [docs/provenance/](provenance/README.md) — STORY.md, story-timeline.json, REMEDIATION.md; all shipped-package figures re-verified from the delivered files.
 
 ---
 
-**Last Updated:** 2026-08-05
+**Last Updated:** 2026-08-05 (rev. 2 — provenance package incorporated, shipped-scope corrections, frontier context)
