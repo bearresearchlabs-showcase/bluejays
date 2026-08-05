@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <title>MDP Environment Architecture — db-6 Worked Example</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-primary: #ffffff; --bg-secondary: #fafafa; --text-primary: #000000; --text-secondary: #6b7280; --border: #e5e7eb; --code-bg: #000000; --code-text: #ffffff; --code-border: #333333; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.65; color: var(--text-primary); background: var(--bg-primary); display: flex; min-height: 100vh; }
+        .sidebar { width: 280px; background: var(--bg-primary); border-right: 1px solid var(--border); height: 100vh; position: fixed; overflow-y: auto; padding: 2rem 0; }
+        .sidebar-header { padding: 0 1.5rem 1rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem; }
+        .sidebar-header h1 { font-size: 0.9375rem; font-weight: 600; }
+        .main-content { margin-left: 280px; padding: 2rem 3rem; max-width: 900px; line-height: 1.8; }
+        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; margin-top: 2rem; }
+        h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+        h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        pre { background: var(--code-bg); color: var(--code-text); padding: 1.5rem; border-radius: 0.5rem; overflow-x: auto; margin: 1rem 0; border: 1px solid var(--code-border); }
+        code { font-family: Monaco, Menlo, monospace; font-size: 0.875rem; }
+        .nav-link { display: block; padding: 0.5rem 1.5rem; color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; }
+        .nav-link:hover { color: var(--text-primary); background: var(--bg-secondary); }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { font-weight: 600; background: var(--bg-secondary); }
+        .mermaid { margin: 2rem 0; background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; }
+        p { margin-bottom: 0.75rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        blockquote { border-left: 3px solid var(--border); padding-left: 1rem; color: var(--text-secondary); margin: 1rem 0; }
+        .callout { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem 1.25rem; margin: 1rem 0; font-size: 0.9375rem; }
+        a { color: #2563eb; }
+        .inline-code { background: var(--bg-secondary); border: 1px solid var(--border); color: var(--text-primary); padding: 1px 5px; border-radius: 4px; font-family: Monaco, Menlo, monospace; font-size: 0.8125rem; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>db-6 · MDP Architecture</h1>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">Worked Example</p>
+        </div>
+        <nav>
+            <a href="#overview" class="nav-link">Overview</a>
+            <a href="#formal-tuple" class="nav-link">The Formal Tuple</a>
+            <a href="#db6-as-environment" class="nav-link">db-6 as Environment</a>
+            <a href="#episode-walkthrough" class="nav-link">Episode Walkthrough (Query 26)</a>
+            <a href="#curriculum" class="nav-link">Curriculum &amp; Coverage</a>
+            <a href="#benchmark-position" class="nav-link">Benchmark Position</a>
+            <a href="#road-to-spider2" class="nav-link">Road to Spider2-Grade</a>
+            <a href="https://github.com/1digitaldesign-archive/db-6-weather-documentation/blob/main/db-6_documentation.html" class="nav-link" style="border-top: 1px solid var(--border); margin-top: 0.75rem; padding-top: 0.75rem;">↗ db-6 Documentation</a>
+            <a href="https://github.com/1digitaldesign-archive/db-6-weather-documentation/blob/main/db-6_deliverable.json" class="nav-link">↗ db-6 Deliverable JSON</a>
+        </nav>
+    </div>
+    <div class="main-content">
+
+        <h1 id="overview">MDP Environment Architecture — db-6 Worked Example</h1>
+        <p>The db-6 deliverable (<a href="https://github.com/1digitaldesign-archive/db-6-weather-documentation/blob/main/db-6_documentation.html">Weather Data Pipeline System</a>) documents a database, a schema, and 30 production-grade SQL queries. This page reads the same deliverable through a different lens: as <strong>one instance of a reinforcement-learning environment</strong>, in which each documented query is an episode of a partially observable Markov decision process (POMDP). Nothing here modifies the deliverable — every fact below is drawn from <a href="https://github.com/1digitaldesign-archive/db-6-weather-documentation/blob/main/db-6_deliverable.json"><span class="inline-code">db-6_deliverable.json</span></a> and the db-6 source tree.</p>
+        <p>The engagement's original ask was database sourcing: <em>"Acquire real-world databases and accompanying query notebooks to support downstream evaluation and training."</em> The sourcing rules attached to that ask — zero synthetic data, sources that must not be webcrawlable, 30 extremely complex queries per database, queries modelable as a chainable graph — are precisely the requirements of an RL-grade corpus. db-6 is the golden reference of that corpus, and this page walks one full episode through the formalism.</p>
+
+        <h2 id="formal-tuple">The Formal Tuple</h2>
+        <p>A Markov Decision Process is the tuple <strong>(S, A, P, R, γ)</strong>. Because the agent observes a task and a schema subset — never the full database state — the honest formalism is a <strong>POMDP (S, A, P, R, γ, Ω, O)</strong>. One <strong>episode</strong> is one (database, question) pair; db-6 contributes 30 episodes to a 480-episode corpus.</p>
+        <table>
+            <tr><th>Element</th><th>Instantiation in db-6</th><th>Deliverable JSON key</th></tr>
+            <tr><td><strong>S</strong> — state</td><td>The live PostgreSQL/PostGIS instance loaded from the db-6 schema and data, plus the natural-language task</td><td><span class="inline-code">database.id</span>, schema + data SQL</td></tr>
+            <tr><td><strong>Ω, O</strong> — observation</td><td>What the agent actually sees: the question, the domain evidence, and the documented schema surface — not the full database state</td><td><span class="inline-code">question</span>, <span class="inline-code">evidence</span>, <span class="inline-code">description</span></td></tr>
+            <tr><td><strong>A</strong> — action</td><td>Executable PostgreSQL (with PostGIS). The gold action a* is the annotated SQL</td><td><span class="inline-code">sql</span></td></tr>
+            <tr><td><strong>P</strong> — transition</td><td>Query execution against the instance; the episode terminates on execution (single-turn today; the corpus spec defines the multi-step agentic loop: Plan → Act → Observe → Reflect → Iterate)</td><td>—</td></tr>
+            <tr><td><strong>R</strong> — reward</td><td>Execution success and result-set match. In this deliverable, <span class="inline-code">expected_output</span> is a summary descriptor; the corpus-level template defines the full execution-accuracy (EX) reward as a match against the gold result set, with gold-SQL match (EM) as a secondary signal</td><td><span class="inline-code">expected_output</span></td></tr>
+            <tr><td><strong>γ</strong> — discount</td><td>Irrelevant at horizon 1; becomes meaningful when chained queries form multi-step episodes (roadmap)</td><td>—</td></tr>
+            <tr><td><em>Curriculum</em> (outside the tuple)</td><td>Difficulty-based sampling across the 30-episode set</td><td><span class="inline-code">complexity</span>, <span class="inline-code">title</span></td></tr>
+        </table>
+        <div class="callout"><strong>Where the naming comes from.</strong> The tuple mapping is not retrofitted: the corpus repo's own client documentation instructs engineers to "use <span class="inline-code">question</span> as the user utterance (state/observation), <span class="inline-code">sql</span> as the gold action" and to "use execution success, result correctness… as reward signals," and its template defines a five-stage training pipeline (input prompt → golden output → reward signal → curriculum → evaluation). The formal source of truth is <span class="inline-code">docs/MDP_TUPLE_ARCHITECTURE.md</span> in the db repository.</div>
+
+        <h2 id="db6-as-environment">db-6 as Environment</h2>
+        <p>db-6 is the largest and most spatially complex environment in the 16-database suite:</p>
+        <ul>
+            <li><strong>Schema.</strong> The source schema (<span class="inline-code">db-6/data/schema.sql</span>) defines <strong>34 tables</strong> spanning weather pipeline, insurance underwriting, and NEXRAD/satellite ingestion. The documented query surface of this deliverable covers <strong>11 core tables and 173 columns</strong> (<span class="inline-code">schema.total_tables</span> in the deliverable JSON) — the agent's observable schema is deliberately a subset of the environment's full state, which is exactly the POMDP property.</li>
+            <li><strong>Spatial state.</strong> PostGIS <span class="inline-code">GEOGRAPHY</span> types throughout; gold actions use <span class="inline-code">ST_WITHIN</span>, <span class="inline-code">ST_DISTANCE</span>, <span class="inline-code">ST_INTERSECTS</span>, recursive CTEs, and window frames.</li>
+            <li><strong>Provenance.</strong> Real NOAA sources — GFS, HRRR, NDFD, RAP, GEFS via AWS Open Data, NEXRAD Level 2, NWS shapefiles and observations (see <span class="inline-code">db-6/docs/DATA_SOURCES.md</span>). The sourcing rules require zero synthetic data and non-webcrawlable sources, making the environment <strong>contamination-free by construction</strong>: it cannot have appeared in any model's pretraining corpus.</li>
+        </ul>
+        <pre class="mermaid">
+flowchart LR
+    AG[Agent policy] -- "SQL action a" --> ENV[(db-6\nPostgreSQL + PostGIS)]
+    ENV -- "result set" --> OBS[Observation]
+    OBS -- "match vs expected_output" --> RW[Reward EX]
+    RW --> AG
+    Q[question + evidence\npartial schema] -. "initial observation Ω" .-> AG
+        </pre>
+
+        <h2 id="episode-walkthrough">Episode Walkthrough — Query 26</h2>
+        <p>One full episode, rendered element by element. Query 26 is one of the two <span class="inline-code">challenging</span>-tier episodes in db-6.</p>
+
+        <h3>Observation — <span class="inline-code">question</span></h3>
+        <blockquote>"Can you show me the storm cell tracking and movement analysis from NEXRAD radar data?"</blockquote>
+
+        <h3>Policy context — <span class="inline-code">evidence</span></h3>
+        <p>The evidence field carries the domain knowledge without which the gold action is underdetermined — the BIRD lineage's <em>external knowledge</em>, here doing the work of grounding an insurance-risk use case:</p>
+        <blockquote>"A weather consulting firm providing insurance risk assessment needs to analyze severe weather events. NEXRAD radar systems track storm cells in real-time, and the firm must monitor storm movement patterns, intensity changes, and trajectories to assess potential property damage and issue timely warnings to insured clients. […] The query joins NEXRAD radar observations with spatial boundaries to identify affected regions, groups storm cells by unique identifiers and time intervals, calculates aggregate metrics including maximum reflectivity and cell velocity vectors, applies window functions to compute movement trends and acceleration patterns over rolling time windows, and handles cases where radar coverage gaps or data quality flags exist."</blockquote>
+
+        <h3>Gold action a* — <span class="inline-code">sql</span></h3>
+        <p>The full annotated gold action (10,235 characters), exactly as shipped in the deliverable:</p>
+        <pre><code class="language-sql">WITH time_window AS (
+    -- First CTE: Define time window for tracking (last 2 hours)
+    SELECT
+        CURRENT_TIMESTAMP - INTERVAL &#x27;2 hours&#x27; AS window_start,
+        CURRENT_TIMESTAMP AS window_end
+),
+storm_cells_by_scan AS (
+    -- Second CTE: Get storm cells detected at each scan time
+    SELECT
+        nsc.storm_cell_id,
+        nsc.site_id,
+        nsc.first_detection_time,
+        nsc.last_detection_time,
+        nsc.storm_center_latitude,
+        nsc.storm_center_longitude,
+        nsc.storm_center_geom,
+        nsc.max_reflectivity_dbz,
+        nsc.storm_area_km2,
+        nsc.storm_severity,
+        nsc.storm_type,
+        DATE_TRUNC(&#x27;minute&#x27;, nsc.first_detection_time) AS scan_time_minute,
+        -- Calculate scan number (sequential)
+        ROW_NUMBER() OVER (
+            PARTITION BY nsc.site_id
+            ORDER BY nsc.first_detection_time
+        ) AS scan_number
+    FROM nexrad_storm_cells nsc
+    WHERE nsc.first_detection_time BETWEEN (
+        SELECT window_start FROM time_window
+    ) AND (
+        SELECT window_end FROM time_window
+    )
+        AND nsc.tracking_status = &#x27;Active&#x27;
+        AND nsc.storm_center_geom IS NOT NULL
+),
+storm_cell_movement AS (
+    -- Third CTE: Calculate storm cell movement between scans
+    SELECT
+        scbs1.storm_cell_id AS storm_cell_id_1,
+        scbs1.site_id AS site_id_1,
+        scbs1.scan_time_minute AS scan_time_1,
+        scbs1.storm_center_latitude AS lat_1,
+        scbs1.storm_center_longitude AS lon_1,
+        scbs1.storm_center_geom AS geom_1,
+        scbs1.max_reflectivity_dbz AS reflectivity_1,
+        scbs1.storm_area_km2 AS area_1,
+        scbs1.scan_number AS scan_num_1,
+        scbs2.storm_cell_id AS storm_cell_id_2,
+        scbs2.site_id AS site_id_2,
+        scbs2.scan_time_minute AS scan_time_2,
+        scbs2.storm_center_latitude AS lat_2,
+        scbs2.storm_center_longitude AS lon_2,
+        scbs2.storm_center_geom AS geom_2,
+        scbs2.max_reflectivity_dbz AS reflectivity_2,
+        scbs2.storm_area_km2 AS area_2,
+        scbs2.scan_number AS scan_num_2,
+        -- Distance between storm centers
+        ST_DISTANCE(scbs1.storm_center_geom, scbs2.storm_center_geom) / 1000.0 AS distance_km,
+        -- Time difference in minutes
+        EXTRACT(EPOCH FROM (scbs2.scan_time_minute - scbs1.scan_time_minute)) / 60.0 AS time_diff_minutes,
+        -- Movement speed (km/h)
+        CASE
+            WHEN EXTRACT(EPOCH FROM (scbs2.scan_time_minute - scbs1.scan_time_minute)) &gt; 0 THEN
+                (ST_DISTANCE(scbs1.storm_center_geom, scbs2.storm_center_geom) / 1000.0) /
+                (EXTRACT(EPOCH FROM (scbs2.scan_time_minute - scbs1.scan_time_minute)) / 3600.0)
+            ELSE NULL
+        END AS movement_speed_kmh,
+        -- Movement direction (degrees from north)
+        DEGREES(
+            ATAN2(
+                ST_X(scbs2.storm_center_geom::GEOMETRY) - ST_X(scbs1.storm_center_geom::GEOMETRY),
+                ST_Y(scbs2.storm_center_geom::GEOMETRY) - ST_Y(scbs1.storm_center_geom::GEOMETRY)
+            )
+        ) AS movement_direction_deg,
+        -- Reflectivity change
+        scbs2.max_reflectivity_dbz - scbs1.max_reflectivity_dbz AS reflectivity_change_dbz,
+        -- Area change
+        scbs2.storm_area_km2 - scbs1.storm_area_km2 AS area_change_km2
+    FROM storm_cells_by_scan scbs1
+    INNER JOIN storm_cells_by_scan scbs2 ON (
+        scbs1.site_id = scbs2.site_id
+        AND scbs2.scan_number = scbs1.scan_number + 1
+    )
+),
+storm_cell_association AS (
+    -- Fourth CTE: Associate storm cells across sites (same storm detected by multiple radars)
+    SELECT
+        scm.storm_cell_id_1,
+        scm.site_id_1,
+        scm.scan_time_1,
+        scm.lat_1,
+        scm.lon_1,
+        scm.reflectivity_1,
+        scm.area_1,
+        scm.storm_cell_id_2,
+        scm.site_id_2,
+        scm.scan_time_2,
+        scm.lat_2,
+        scm.lon_2,
+        scm.reflectivity_2,
+        scm.area_2,
+        scm.distance_km,
+        scm.time_diff_minutes,
+        ROUND(CAST(scm.movement_speed_kmh AS NUMERIC), 2) AS movement_speed_kmh,
+        ROUND(CAST(scm.movement_direction_deg AS NUMERIC), 2) AS movement_direction_deg,
+        ROUND(CAST(scm.reflectivity_change_dbz AS NUMERIC), 2) AS reflectivity_change_dbz,
+        ROUND(CAST(scm.area_change_km2 AS NUMERIC), 2) AS area_change_km2,
+        -- Association confidence (same storm if close in space and time)
+        CASE
+            WHEN scm.distance_km &lt; 20 AND scm.time_diff_minutes &lt; 10 THEN &#x27;High Confidence&#x27;
+            WHEN scm.distance_km &lt; 50 AND scm.time_diff_minutes &lt; 20 THEN &#x27;Moderate Confidence&#x27;
+            WHEN scm.distance_km &lt; 100 AND scm.time_diff_minutes &lt; 30 THEN &#x27;Low Confidence&#x27;
+            ELSE &#x27;Unlikely Same Storm&#x27;
+        END AS association_confidence
+    FROM storm_cell_movement scm
+    WHERE scm.distance_km &lt; 100  -- Only consider storms within 100km
+        AND scm.time_diff_minutes BETWEEN 0 AND 30  -- Within 30 minutes
+),
+storm_track_aggregation AS (
+    -- Fifth CTE: Aggregate storm tracks
+    SELECT
+        sca.storm_cell_id_1,
+        sca.site_id_1,
+        COUNT(DISTINCT sca.storm_cell_id_2) AS track_length,
+        MIN(sca.scan_time_1) AS track_start_time,
+        MAX(sca.scan_time_2) AS track_end_time,
+        AVG(sca.movement_speed_kmh) AS avg_movement_speed_kmh,
+        AVG(sca.movement_direction_deg) AS avg_movement_direction_deg,
+        MAX(sca.reflectivity_1) AS max_reflectivity_dbz,
+        MIN(sca.reflectivity_1) AS min_reflectivity_dbz,
+        AVG(sca.reflectivity_1) AS avg_reflectivity_dbz,
+        MAX(sca.reflectivity_change_dbz) AS max_intensification_dbz,
+        MIN(sca.reflectivity_change_dbz) AS max_weakening_dbz,
+        SUM(sca.area_change_km2) AS total_area_change_km2,
+        -- Track distance
+        SUM(sca.distance_km) AS total_track_distance_km,
+        -- Track duration
+        EXTRACT(EPOCH FROM (MAX(sca.scan_time_2) - MIN(sca.scan_time_1))) / 60.0 AS track_duration_minutes
+    FROM storm_cell_association sca
+    WHERE sca.association_confidence IN (&#x27;High Confidence&#x27;, &#x27;Moderate Confidence&#x27;)
+    GROUP BY
+        sca.storm_cell_id_1,
+        sca.site_id_1
+),
+storm_development_analysis AS (
+    -- Sixth CTE: Analyze storm development patterns
+    SELECT
+        sta.storm_cell_id_1,
+        sta.site_id_1,
+        sta.track_length,
+        sta.track_start_time,
+        sta.track_end_time,
+        ROUND(CAST(sta.avg_movement_speed_kmh AS NUMERIC), 2) AS avg_movement_speed_kmh,
+        ROUND(CAST(sta.avg_movement_direction_deg AS NUMERIC), 2) AS avg_movement_direction_deg,
+        ROUND(CAST(sta.max_reflectivity_dbz AS NUMERIC), 2) AS max_reflectivity_dbz,
+        ROUND(CAST(sta.min_reflectivity_dbz AS NUMERIC), 2) AS min_reflectivity_dbz,
+        ROUND(CAST(sta.avg_reflectivity_dbz AS NUMERIC), 2) AS avg_reflectivity_dbz,
+        ROUND(CAST(sta.max_intensification_dbz AS NUMERIC), 2) AS max_intensification_dbz,
+        ROUND(CAST(sta.max_weakening_dbz AS NUMERIC), 2) AS max_weakening_dbz,
+        ROUND(CAST(sta.total_area_change_km2 AS NUMERIC), 2) AS total_area_change_km2,
+        ROUND(CAST(sta.total_track_distance_km AS NUMERIC), 2) AS total_track_distance_km,
+        ROUND(CAST(sta.track_duration_minutes AS NUMERIC), 2) AS track_duration_minutes,
+        -- Development trend
+        CASE
+            WHEN sta.max_intensification_dbz &gt; 10 THEN &#x27;Rapidly Intensifying&#x27;
+            WHEN sta.max_intensification_dbz &gt; 5 THEN &#x27;Intensifying&#x27;
+            WHEN sta.max_weakening_dbz &lt; -10 THEN &#x27;Rapidly Weakening&#x27;
+            WHEN sta.max_weakening_dbz &lt; -5 THEN &#x27;Weakening&#x27;
+            ELSE &#x27;Stable&#x27;
+        END AS development_trend,
+        -- Severity classification
+        CASE
+            WHEN sta.max_reflectivity_dbz &gt;= 60 THEN &#x27;Extreme&#x27;
+            WHEN sta.max_reflectivity_dbz &gt;= 50 THEN &#x27;Severe&#x27;
+            WHEN sta.max_reflectivity_dbz &gt;= 40 THEN &#x27;Strong&#x27;
+            WHEN sta.max_reflectivity_dbz &gt;= 30 THEN &#x27;Moderate&#x27;
+            ELSE &#x27;Weak&#x27;
+        END AS severity_classification
+    FROM storm_track_aggregation sta
+),
+predicted_storm_path AS (
+    -- Seventh CTE: Predict storm path based on movement
+    SELECT
+        sda.storm_cell_id_1,
+        sda.site_id_1,
+        sda.track_length,
+        sda.track_start_time,
+        sda.track_end_time,
+        sda.avg_movement_speed_kmh,
+        sda.avg_movement_direction_deg,
+        sda.max_reflectivity_dbz,
+        sda.avg_reflectivity_dbz,
+        sda.development_trend,
+        sda.severity_classification,
+        -- Predicted position in 1 hour (using average movement)
+        CASE
+            WHEN sda.avg_movement_speed_kmh IS NOT NULL AND sda.avg_movement_direction_deg IS NOT NULL THEN
+                ST_TRANSLATE(
+                    (SELECT storm_center_geom FROM nexrad_storm_cells WHERE storm_cell_id = sda.storm_cell_id_1),
+                    sda.avg_movement_speed_kmh * 1.0 * SIN(RADIANS(sda.avg_movement_direction_deg)) * 1000.0,
+                    sda.avg_movement_speed_kmh * 1.0 * COS(RADIANS(sda.avg_movement_direction_deg)) * 1000.0
+                )
+            ELSE NULL
+        END AS predicted_position_1h_geom,
+        -- Predicted position in 2 hours
+        CASE
+            WHEN sda.avg_movement_speed_kmh IS NOT NULL AND sda.avg_movement_direction_deg IS NOT NULL THEN
+                ST_TRANSLATE(
+                    (SELECT storm_center_geom FROM nexrad_storm_cells WHERE storm_cell_id = sda.storm_cell_id_1),
+                    sda.avg_movement_speed_kmh * 2.0 * SIN(RADIANS(sda.avg_movement_direction_deg)) * 1000.0,
+                    sda.avg_movement_speed_kmh * 2.0 * COS(RADIANS(sda.avg_movement_direction_deg)) * 1000.0
+                )
+            ELSE NULL
+        END AS predicted_position_2h_geom
+    FROM storm_development_analysis sda
+)
+SELECT
+    storm_cell_id_1,
+    site_id_1,
+    track_length,
+    track_start_time,
+    track_end_time,
+    avg_movement_speed_kmh,
+    avg_movement_direction_deg,
+    max_reflectivity_dbz,
+    avg_reflectivity_dbz,
+    development_trend,
+    severity_classification,
+    predicted_position_1h_geom,
+    predicted_position_2h_geom
+FROM predicted_storm_path
+WHERE track_length &gt;= 2  -- At least 2 scans for tracking
+ORDER BY max_reflectivity_dbz DESC, track_start_time DESC
+LIMIT 1000;</code></pre>
+
+        <h3>Reward target — <span class="inline-code">expected_output</span></h3>
+        <p>Executing a* against the loaded db-6 instance produces the storm-cell time-series result set; an agent action earns full execution-accuracy reward when its result set matches. (In this deliverable JSON the field is the summary descriptor <span class="inline-code">"Query results"</span>; the corpus-level template specifies the stringified gold result set as the EX reward target.)</p>
+
+        <h3>Curriculum contrast — Query 1</h3>
+        <p>For the span of the curriculum, compare the entry-point episode: Query 1, <span class="inline-code">moderate</span> tier — <em>"Can you show me a production-grade spatial analysis of weather forecasts that uses nested CTEs and geospatial aggregations?"</em> (gold action: 15,265 characters of nested-CTE spatial aggregation; see <a href="https://github.com/1digitaldesign-archive/db-6-weather-documentation/blob/main/db-6_documentation.html">the full documentation</a>, Query 1). Same environment, same observation structure, different difficulty stratum.</p>
+
+        <h2 id="curriculum">Curriculum &amp; Coverage</h2>
+        <p>Complexity distribution across db-6's 30 episodes, computed from the deliverable JSON:</p>
+        <table>
+            <tr><th>Complexity tier</th><th>Episodes</th><th>Share</th></tr>
+            <tr><td>moderate</td><td>28</td><td>93.3%</td></tr>
+            <tr><td>challenging</td><td>2</td><td>6.7%</td></tr>
+        </table>
+        <p>All 30 db-6 episodes carry the <span class="inline-code">aggregation</span> category label in this deliverable; skill diversity within the set comes from the SQL surface itself — spatial joins, recursive boundary traversal, statistical profiling, insurance rate modeling (Queries 15–24), and NEXRAD/satellite fusion (Queries 25–30).</p>
+
+        <h2 id="benchmark-position">Benchmark Position</h2>
+        <table>
+            <tr><th>Dimension</th><th>Spider 1.0 (2018)</th><th>BIRD (2023)</th><th><strong>This corpus (2026)</strong></th><th>Spider 2.0 (2024)</th></tr>
+            <tr><td>Turn structure</td><td>Single-turn</td><td>Single-turn</td><td>Single-turn gold + agentic-loop spec</td><td>Multi-step agentic</td></tr>
+            <tr><td>External knowledge</td><td>—</td><td><span class="inline-code">evidence</span></td><td><span class="inline-code">evidence</span> + docs</td><td>Dispersed project docs</td></tr>
+            <tr><td>Primary metric</td><td>Exact match</td><td>Execution accuracy</td><td>Execution accuracy</td><td>Task success</td></tr>
+            <tr><td>Dialect</td><td>SQLite</td><td>SQLite</td><td>PostgreSQL (+ PostGIS)</td><td>BigQuery, Snowflake, DuckDB, PostgreSQL</td></tr>
+            <tr><td>Observability</td><td>Full schema</td><td>Full schema</td><td><strong>Partial by design</strong></td><td>Partial by reality</td></tr>
+            <tr><td>Contamination</td><td>Public since 2018</td><td>Public since 2023</td><td><strong>Private, non-webcrawlable by rule</strong></td><td>Public tasks</td></tr>
+        </table>
+        <p>Spider 2.0 (Lei et al., 2024) is the frontier this architecture is built toward — ~632 real enterprise workflow tasks solved agentically, with state-of-the-art success around 20–30%. <strong>No Spider 2.0 integration exists in this project today</strong>; the positioning above describes structure, not a benchmark result.</p>
+
+        <h2 id="road-to-spider2">Road to Spider2-Grade</h2>
+        <p>What separates this environment from the frontier, stated plainly:</p>
+        <ul>
+            <li><strong>Horizon.</strong> Episodes are single-turn. The seed of multi-step structure is already a project requirement: queries must be chainable ("one query's output feeds into another query's input") and modelable as an undirected graph reducible by shortest-path algorithms — a transition structure over the action space, specified before it was named.</li>
+            <li><strong>Closed loop.</strong> The corpus-level agent-evaluation harness is wired but has not yet executed against live containers; closing that loop is the first roadmap item.</li>
+            <li><strong>Dialects and ambiguity.</strong> PostgreSQL-only today; Spider2-grade requires multi-dialect environments and under-specified tasks.</li>
+        </ul>
+        <p>For db-6 specifically, the natural next step is chaining the insurance-rate arc (Queries 15–24) into a single multi-step episode: forecast risk factors → rate table generation → rate comparison → claims validation — four gold actions, one trajectory, intermediate rewards at each step.</p>
+
+        <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 3rem;"><strong>Last Updated:</strong> 2026-08-05 · Technical source of truth: <span class="inline-code">docs/MDP_TUPLE_ARCHITECTURE.md</span> (db repository) · This page is additive documentation; it modifies no deliverable artifact. Consolidated into the db repository 2026-08-05; source deliverable lives in db-6-weather-documentation.</p>
+
+    </div>
+    <script>if (typeof Prism !== 'undefined') Prism.highlightAll();</script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+</body>
+</html>

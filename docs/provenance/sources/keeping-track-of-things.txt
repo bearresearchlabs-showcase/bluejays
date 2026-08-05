@@ -1,0 +1,116 @@
+# Keeping track of things
+
+Slack-exported working document. Source of STORY.md Part IV.
+Extracted 2026-08-05.
+
+---
+
+Keeping track of things
+Price point $3.5k for 16 DBs.
+Meeting 1 Feedback:
+Okay talked with Spencer —
+● He said client will send SOW later after finishing this initial 14
+● To just rework the SQL descriptions for these existing ones until
+then
+● Client is super super super important because this is the only
+thing we're doing for them at the moment, so Spencer's willing
+to pay your $3k-4k ish average db rate if this scales up, even if
+this is at a loss to us so please don't worry about that part !
+● Client doesn't want complexity, quality to diminish as it scales
+up
+For the queries
+● He just emphasized human-made rewrite/edits and that the
+descriptions of the queries should be more detailed about the
+intent of the query (not a summary)
+● Also looks like some of the jsons don't match the .md in terms of
+description and detail so they might have been talking about
+that too
+● — (db-2, db-3, db-6, db-7, db-10 json files were missing
+intent/purpose fields)
+● Have longer descriptions per query (more deeply
+contextualized)
+Pasting from Spencer
+Feedback from client
+Databases look good, only comment: the descriptions are AI-
+generated
+● To-do: Need to go in and make the descriptions all 100%
+human made
+
+● To-do: Query descriptions: should be updated to talk about
+query intent / what they are aiming to do rather than a
+summary of the query
+● Next steps
+● Client to send over a file format to ingest data
+● Client concerned about us increasing complexity of the
+databases / queries as we scale up
+● Have longer descriptions per query (more deeply
+contextualized)
+Meeting 2:
+● Client Meeting Prep Sheet For Spencer — compiled by Alan
+Open with alignment
+● "Before we dive in, can you walk us through what your ideal final
+deliverable looks like end to end?"
+● "Is there a written rubric or spec we can reference for quality
+reviews going forward?"
+● Requirements
+● What defines a 5/5 query description versus a 1/5? Can you
+show us an example of each?
+● Is the primary concern SQL correctness, natural language
+quality, or both?
+● When you flag something as AI-generated — what specifically
+does that mean to you? Generic language, missing context,
+something else?
+● Are you comparing this dataset against an existing benchmark
+like BIRD or Spider? What methodologies will you use to test it?
+● Process
+● Who is the final sign-off on delivery acceptance — is that you or
+someone else on your team?
+● What does your internal review process look like — who
+reviews, what tool, in what order?
+● How much lead time do you need to review a delivery before a
+Wednesday meeting?
+● Success criteria
+● What is your target execution accuracy or F1 score?
+
+● How many queries per batch and what's the expected
+turnaround?
+● What would make you confident enough to scale this
+engagement?
+● Close with a boundary (friendly)
+● "We have a senior expert on this who is operating at a level
+that's hard to find — to protect turnaround time and quality, it
+would really help us to lock in a written spec after this call so
+she can execute cleanly without mid-cycle pivots. Can we do
+that today?"
+● Upsell — Future Opportunity
+Plant the seed, don't pitch hard. The goal is to get them thinking
+bigger.
+● "As we're locking in quality standards here — are you thinking
+about scaling this dataset beyond the current batch?"
+● "What does your roadmap look like for the data agent — are you
+at the build phase or still validating?"
+● "One thing worth knowing is that the expert we have on this
+built the entire pipeline from scratch including the
+infrastructure, SQL logic, and benchmark alignment. Most
+vendors can't offer that in one person. If you're thinking about
+scaling, that's a significant advantage to have on your side."
+● "If quality and consistency are the priority as you scale — we can
+build a rubric together now that becomes the standard for every
+future batch. That protects you and makes reviews faster on
+your end."
+https://bird-bench.github.io/
+MEDDPICC - Clearly client is LLMs cannot determine what
+not happy with you. good quality data that can be
+used in benchmarks or training
+or substitute actual ML/DS
+expertise with shipping an
+actual product like an
+multilingual weather translation
+model and cannot provide the
+actual metrics of ML/DS
+workloads that indicate the
+data is good for training,
+benchmark, etc or developing
+
+any product like their terminus
+agent.

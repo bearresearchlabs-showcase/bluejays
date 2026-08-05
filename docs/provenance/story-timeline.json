@@ -1,0 +1,616 @@
+{
+  "$comment": "Machine-readable companion to STORY.md. Designed to be dropped straight into a visual story tool. Every fact here is recomputed from the shipped package or sourced to a named artifact.",
+  "generated": "2026-08-05",
+  "subject": "13-database BIRD-style text-to-SQL package",
+  "package": {
+    "databases": 13,
+    "database_ids": [
+      "db-2",
+      "db-3",
+      "db-6",
+      "db-7",
+      "db-8",
+      "db-9",
+      "db-10",
+      "db-11",
+      "db-12",
+      "db-13",
+      "db-14",
+      "db-15",
+      "db-16"
+    ],
+    "query_pairs": 390,
+    "queries_per_database": 30,
+    "tables": 176,
+    "foreign_keys": 171,
+    "indexes": 303,
+    "extracted_bytes": 21525194003,
+    "zipped_bytes": 2424282003,
+    "zip_name": "client-db.zip",
+    "file_count": 97
+  },
+  "phases": [
+    {
+      "id": "intake",
+      "label": "Intake",
+      "span": [
+        "2025-09-17",
+        "2026-01-25"
+      ],
+      "one_liner": "Five months of qualification, contracting and onboarding before a single table existed.",
+      "color_hint": "cool"
+    },
+    {
+      "id": "apprentice",
+      "label": "Apprentice deliveries",
+      "span": [
+        "2026-02-01",
+        "2026-02-09"
+      ],
+      "one_liner": "Small deliveries that turned out to be the specification.",
+      "color_hint": "cool"
+    },
+    {
+      "id": "pathfinder",
+      "label": "Pathfinders",
+      "span": [
+        "2026-02-04",
+        "2026-02-10"
+      ],
+      "one_liner": "db-6 and db-9 invent the format the other eleven inherit.",
+      "color_hint": "warm"
+    },
+    {
+      "id": "sow",
+      "label": "Statement of Work",
+      "span": [
+        "2026-02-14",
+        "2026-02-15"
+      ],
+      "one_liner": "Participant becomes vendor: 11 databases, $5,500 each.",
+      "color_hint": "accent"
+    },
+    {
+      "id": "factory",
+      "label": "Industrialization",
+      "span": [
+        "2026-02-16",
+        "2026-02-18"
+      ],
+      "one_liner": "Thirteen databases built in a single day of batch execution.",
+      "color_hint": "hot"
+    },
+    {
+      "id": "delivery",
+      "label": "Delivery",
+      "span": [
+        "2026-03-09",
+        "2026-03-11"
+      ],
+      "one_liner": "2.42 GB packaged and shipped.",
+      "color_hint": "accent"
+    },
+    {
+      "id": "feedback",
+      "label": "Feedback loop",
+      "span": [
+        "2026-03-11",
+        "2026-08-05"
+      ],
+      "one_liner": "Client accepts the databases, rejects the descriptions. The complaint gets measured.",
+      "color_hint": "alert"
+    }
+  ],
+  "events": [
+    {
+      "date": "2025-09-17",
+      "phase": "intake",
+      "title": "First spec arrives",
+      "detail": "[AfterQuery] Code Eval Requirements — coding-agent evaluation rubric: 5 prompt gates, 9 scored dimensions, 16 error codes.",
+      "artifact": "[AfterQuery] Code Eval Requirements (1).pdf",
+      "significance": "high"
+    },
+    {
+      "date": "2025-10-29",
+      "phase": "intake",
+      "title": "NDA + Data Submission Agreement executed",
+      "detail": "Two agreements, signed together. The pairing signals a program where the expert submits data rather than receiving it.",
+      "artifact": "AfterQuery_NDA_Betty_Betty (Executed).pdf",
+      "significance": "high"
+    },
+    {
+      "date": "2025-11-20",
+      "phase": "intake",
+      "title": "Counterparty diligence",
+      "detail": "Crunchbase company profile and funding history pulled on the buyer.",
+      "artifact": "AfterQuery - Crunchbase Company Profile & Funding.pdf",
+      "significance": "medium"
+    },
+    {
+      "date": "2025-11-29",
+      "phase": "intake",
+      "title": "Financial and privacy terms reviewed",
+      "detail": "Financial details and privacy documents collected.",
+      "artifact": "AfterQuery - Financial Details.pdf",
+      "significance": "low"
+    },
+    {
+      "date": "2026-01-14",
+      "phase": "intake",
+      "title": "Project Excel onboarding",
+      "detail": "Eight steps: Slack, platform login, sign legal, Stripe as Individual, training, meet your administrator. Rate not stated.",
+      "artifact": "AfterQuery Experts Project Excel Onboarding Document.pdf",
+      "significance": "medium"
+    },
+    {
+      "date": "2026-01-17",
+      "phase": "intake",
+      "title": "Project Green onboarding",
+      "detail": "Byte-identical to the Excel document except three lines. Still asks for 'quality Excel experts'.",
+      "artifact": "AfterQuery Experts Project Green Onboarding Document.pdf",
+      "significance": "medium"
+    },
+    {
+      "date": "2026-02-01",
+      "phase": "apprentice",
+      "title": "food_delivery_db delivered",
+      "detail": "8 files, 307 KB: README + docker-compose + database/{schema,data,full_dump}.sql + documentation/{SCHEMA,DATA_DICTIONARY}.md. This shape becomes the house format.",
+      "artifact": "AfterQuery_final_delivery_food_delivery_db.zip",
+      "significance": "high"
+    },
+    {
+      "date": "2026-02-02",
+      "phase": "apprentice",
+      "title": "AFTERQUERY bundle",
+      "detail": "Same skeleton at 8 MB, with DATABASE_README.md.",
+      "artifact": "AFTERQUERY-20260202T192519Z-3-001.zip",
+      "significance": "medium"
+    },
+    {
+      "date": "2026-02-04",
+      "phase": "pathfinder",
+      "title": "db-9 pathfinder created",
+      "detail": "Shipping Intelligence, modeled on Pirate Ship. deliverable.json created_date 2026-02-04; first validation report stamped 20260204-2021.",
+      "artifact": "db-9_deliverable.json",
+      "significance": "high"
+    },
+    {
+      "date": "2026-02-06",
+      "phase": "pathfinder",
+      "title": "db-6 weather pipeline built",
+      "detail": "34 tables merged from four separate schema files — the most complex database in the package.",
+      "artifact": "db6-weather-consulting-insurance/",
+      "significance": "medium"
+    },
+    {
+      "date": "2026-02-08",
+      "phase": "pathfinder",
+      "title": "QC catches duplicate queries",
+      "detail": "qc_additional_checks.json @ 20260208-2110: duplicates passed 15, failed 15 — 'Query 16 appears to be duplicate' through Query 30. db-9 is rewritten. The fix never propagates to the other databases.",
+      "artifact": "db-9/results/qc_additional_checks.json",
+      "significance": "critical"
+    },
+    {
+      "date": "2026-02-09",
+      "phase": "apprentice",
+      "title": "The annotation schema is inherited",
+      "detail": "SQL Queries_AfterQuery.docx documents 30 queries as Description/Purpose → SQL → Expected Output. The shipped queries.json uses description / sql / expected_output.",
+      "artifact": "SQL Queries_AfterQuery.docx",
+      "significance": "critical"
+    },
+    {
+      "date": "2026-02-10",
+      "phase": "pathfinder",
+      "title": "Working tree consolidated",
+      "detail": "16 candidates present: db-1 through db-16. db-1, db-4, db-5 will not ship.",
+      "artifact": "Downloads/db/",
+      "significance": "high"
+    },
+    {
+      "date": "2026-02-14",
+      "phase": "sow",
+      "title": "Statement of Work",
+      "detail": "BIRD-SQL / LiveSQLBench program. Full-Service $5,500/db vs Introductory $2,000/db. Initial engagement 11 databases, $60,500, 6–8 weeks, 50/25/25 payment.",
+      "artifact": "AQ_Client_SOW_BIRD-SQL.docx",
+      "significance": "critical"
+    },
+    {
+      "date": "2026-02-15",
+      "phase": "sow",
+      "title": "Agreements re-executed; db-2 schema authored",
+      "detail": "NDA and DSA re-executed the same week the SOW is dated.",
+      "artifact": "db-2/DATABASE/schema.sql",
+      "significance": "medium"
+    },
+    {
+      "date": "2026-02-16",
+      "phase": "factory",
+      "title": "Batch extraction",
+      "detail": "Eleven queries.json files extracted in one run, stamped 20260216-2320.",
+      "artifact": "queries.json extraction_timestamp",
+      "significance": "high"
+    },
+    {
+      "date": "2026-02-17",
+      "phase": "factory",
+      "title": "Two reruns",
+      "detail": "db-6 re-extracted at 20260217-0009 and db-16 at 20260217-0146 — the two most complex databases. db-3 schema authored.",
+      "artifact": "queries.json extraction_timestamp",
+      "significance": "medium"
+    },
+    {
+      "date": "2026-02-18",
+      "phase": "factory",
+      "title": "Industrialization day",
+      "detail": "06:54 nine schemas · 07:03 db-6 consolidated to 34 tables · 08:28 first queries.json · 17:17 all queries.md · 17:39 all documentation · 17:49 root README · 19:19–19:20 all thirteen ~1 GiB datasets.",
+      "artifact": "file mtimes",
+      "significance": "critical"
+    },
+    {
+      "date": "2026-03-09",
+      "phase": "delivery",
+      "title": "Package shipped",
+      "detail": "client-db.zip — 2,424,282,003 bytes, 97 files, 21 GB extracted.",
+      "artifact": "client-db.zip",
+      "significance": "critical"
+    },
+    {
+      "date": "2026-03-11",
+      "phase": "delivery",
+      "title": "SOW revision",
+      "detail": "Second version of the statement of work.",
+      "artifact": "AQ_Client_SOW_BIRD-SQL (1).docx",
+      "significance": "low"
+    },
+    {
+      "date": null,
+      "phase": "feedback",
+      "title": "Meeting 1 — the client's verdict",
+      "detail": "'Databases look good, only comment: the descriptions are AI-generated.' To-do: make descriptions 100% human-made; express query intent rather than summarize the SQL; longer and more deeply contextualized. Some JSONs do not match their .md. Client to send an ingest file format. Standing concern: complexity and quality must not diminish as the engagement scales.",
+      "artifact": "sources/keeping-track-of-things.pdf",
+      "significance": "critical",
+      "undated": true
+    },
+    {
+      "date": null,
+      "phase": "feedback",
+      "title": "Meeting 2 — convert the complaint into a spec",
+      "detail": "Prep sheet: what defines a 5/5 description vs a 1/5? Is the concern SQL correctness, natural-language quality, or both? What does 'AI-generated' specifically mean? Benchmarking against BIRD or Spider? Who signs off? Target execution accuracy or F1? Close by locking a written rubric.",
+      "artifact": "sources/keeping-track-of-things.pdf",
+      "significance": "high",
+      "undated": true
+    },
+    {
+      "date": "2026-08-05",
+      "phase": "feedback",
+      "title": "The complaint, measured",
+      "detail": "Mean description 193 chars. 0 of 390 descriptions use the words intent or purpose. db-2 diverges from its markdown on queries 17 and 20-30. 1,053 near-duplicate SQL pairs found independently — the objective form of the same complaint.",
+      "artifact": "STORY.md §14",
+      "significance": "critical"
+    },
+    {
+      "date": "2026-08-05",
+      "phase": "feedback",
+      "title": "The regression located",
+      "detail": "Use Case / Business Value / Purpose blocks exist for 11 of 13 databases in the working tree db-N.md files and never shipped. The Feb 18 industrialization optimized for uniformity and regressed the deliverable's richest field. Remediation is recovery plus editing, not authoring from scratch.",
+      "artifact": "STORY.md §15",
+      "significance": "critical"
+    }
+  ],
+  "databases": [
+    {
+      "id": "db-2",
+      "name": "Filling Station Retail / POS",
+      "tables": 7,
+      "fks": 7,
+      "indexes": 0,
+      "data_bytes": 1080786098,
+      "method": "export",
+      "source": "PHP Point of Sale instance, closed family business (Kenya)",
+      "shipped": true,
+      "near_dup_pairs": 50,
+      "extra_keys": false
+    },
+    {
+      "id": "db-3",
+      "name": "Hierarchical Orders (LinkWay)",
+      "tables": 3,
+      "fks": 4,
+      "indexes": 6,
+      "data_bytes": 1086687152,
+      "method": "export",
+      "source": "LinkWay Ecommerce, live Django backend — anonymized to table1/table2/table3",
+      "shipped": true,
+      "near_dup_pairs": 141,
+      "extra_keys": false
+    },
+    {
+      "id": "db-6",
+      "name": "Weather Data Pipeline System",
+      "tables": 34,
+      "fks": 14,
+      "indexes": 44,
+      "data_bytes": 1076717064,
+      "method": "built",
+      "source": "NOAA GRIB2, NEXRAD, shapefiles, NWS API",
+      "shipped": true,
+      "near_dup_pairs": 0,
+      "extra_keys": true
+    },
+    {
+      "id": "db-7",
+      "name": "Maritime Shipping Intelligence",
+      "tables": 14,
+      "fks": 0,
+      "indexes": 36,
+      "data_bytes": 1077441845,
+      "method": "built",
+      "source": "Modeled on Linescape; NOAA, US Coast Guard, MARAD",
+      "shipped": true,
+      "near_dup_pairs": 0,
+      "extra_keys": true
+    },
+    {
+      "id": "db-8",
+      "name": "Job Market Intelligence",
+      "tables": 12,
+      "fks": 11,
+      "indexes": 30,
+      "data_bytes": 1073743745,
+      "method": "built",
+      "source": "Modeled on jobright.ai; USAJobs.gov, BLS, Dept. of Labor",
+      "shipped": true,
+      "near_dup_pairs": 0,
+      "extra_keys": true
+    },
+    {
+      "id": "db-9",
+      "name": "Shipping Intelligence",
+      "tables": 14,
+      "fks": 21,
+      "indexes": 14,
+      "data_bytes": 4793732133,
+      "method": "built",
+      "source": "Modeled on Pirate Ship; USPS Developer Portal, UPS, Census, Data.gov",
+      "shipped": true,
+      "near_dup_pairs": 0,
+      "extra_keys": false,
+      "note": "Pathfinder. Rewritten after QC flagged duplicates on 2026-02-08."
+    },
+    {
+      "id": "db-10",
+      "name": "Marketing Intelligence",
+      "tables": 12,
+      "fks": 11,
+      "indexes": 30,
+      "data_bytes": 1073742402,
+      "method": "built",
+      "source": "Modeled on Brickseek; Census MRTS, BLS CPI/PPI, FTC",
+      "shipped": true,
+      "near_dup_pairs": 212,
+      "extra_keys": false
+    },
+    {
+      "id": "db-11",
+      "name": "Parking Intelligence",
+      "tables": 14,
+      "fks": 18,
+      "indexes": 19,
+      "data_bytes": 1073742341,
+      "method": "built",
+      "source": "Modeled on SpotHero; municipal parking data",
+      "shipped": true,
+      "near_dup_pairs": 210,
+      "extra_keys": false
+    },
+    {
+      "id": "db-12",
+      "name": "Credit Card & Rewards Optimization",
+      "tables": 15,
+      "fks": 28,
+      "indexes": 32,
+      "data_bytes": 1073743330,
+      "method": "built",
+      "source": "Modeled on CardPointers; public card and rewards terms",
+      "shipped": true,
+      "near_dup_pairs": 136,
+      "extra_keys": false
+    },
+    {
+      "id": "db-13",
+      "name": "AI Benchmark Marketing",
+      "tables": 11,
+      "fks": 10,
+      "indexes": 23,
+      "data_bytes": 1073766531,
+      "method": "built",
+      "source": "Modeled on Artificial Analysis; NIST, NSF, DARPA, Papers with Code, Hugging Face, GitHub",
+      "shipped": true,
+      "near_dup_pairs": 57,
+      "extra_keys": true
+    },
+    {
+      "id": "db-14",
+      "name": "Cloud Instance Cost",
+      "tables": 11,
+      "fks": 18,
+      "indexes": 16,
+      "data_bytes": 1079171827,
+      "method": "built",
+      "source": "AWS / GCP / Azure public pricing",
+      "shipped": true,
+      "near_dup_pairs": 80,
+      "extra_keys": false
+    },
+    {
+      "id": "db-15",
+      "name": "Electricity Cost & Solar Rebate",
+      "tables": 17,
+      "fks": 29,
+      "indexes": 29,
+      "data_bytes": 1073742313,
+      "method": "built",
+      "source": "US electricity rates; federal, state and utility solar rebates",
+      "shipped": true,
+      "near_dup_pairs": 0,
+      "extra_keys": true
+    },
+    {
+      "id": "db-16",
+      "name": "Flood Risk Assessment (M&A DD)",
+      "tables": 12,
+      "fks": 0,
+      "indexes": 24,
+      "data_bytes": 2728033725,
+      "method": "built",
+      "source": "FEMA, NOAA, USGS, NASA",
+      "shipped": true,
+      "near_dup_pairs": 167,
+      "extra_keys": false
+    },
+    {
+      "id": "db-1",
+      "name": "Airplane Tracking (ADS-B)",
+      "method": "export",
+      "source": "Supabase; Raspberry Pi running dump1090, receiver labgpspi",
+      "shipped": false,
+      "fate": "Built under the export method. Audits pass 30/30 at 100%. Cut — never migrated to the purpose-built format."
+    },
+    {
+      "id": "db-4",
+      "name": "Seydam AI",
+      "method": "export",
+      "source": "Live Django + Supabase application",
+      "shipped": false,
+      "fate": "Built under the export method. Audits pass 30/30. Cut."
+    },
+    {
+      "id": "db-5",
+      "name": "SharedAI",
+      "method": "export",
+      "source": "Live Supabase chat application, project mwjdnauqugpdagkhzmef",
+      "shipped": false,
+      "fate": "Built under the export method. Audits pass 30/30. Cut."
+    }
+  ],
+  "known_gaps": [
+    {
+      "id": "6.1",
+      "severity": "high",
+      "title": "Promised notebook does not ship",
+      "detail": "Root README promises 'a notebook for ingest, validation, and environment setup'. find client/ -name '*.ipynb' returns 0. The notebooks exist in the working tree for db-6..db-16 only."
+    },
+    {
+      "id": "6.2",
+      "severity": "critical",
+      "title": "1,053 near-duplicate query pairs",
+      "detail": "At >=0.99 normalized similarity, in 8 of 13 databases. db-6, db-7, db-8, db-9 and db-15 are clean. Caught in db-9 on 2026-02-08 and fixed there only."
+    },
+    {
+      "id": "6.3",
+      "severity": "medium",
+      "title": "complexity field carries no signal",
+      "detail": "All 390 queries tagged 'moderate'. Cannot support the curriculum sampling the README suggests."
+    },
+    {
+      "id": "6.4",
+      "severity": "high",
+      "title": "Audits ran against seed data",
+      "detail": "db9_dq_audit reports 80 rows across 14 tables; the shipped dataset is 4.79 GB. All perf audits report cache_hit_ratio 100.0 and every query returns row_count 0."
+    },
+    {
+      "id": "6.5",
+      "severity": "medium",
+      "title": "Pipelines configured, never executed",
+      "detail": "pipeline_metadata.json: every pipeline status 'Configured', execution_count 0, empty execution_logs. Shipped bulk data is synthetic."
+    },
+    {
+      "id": "6.6",
+      "severity": "low",
+      "title": "Template leakage",
+      "detail": "db-9/deliverable.openapi.yaml still carries db-1 examples: database_name db-1, database_type Chat/Messaging System, total_tables 11."
+    },
+    {
+      "id": "6.7",
+      "severity": "medium",
+      "title": "Self-contradicting validation report",
+      "detail": "db-9 final_comprehensive_validation_report.json records Pass: 1 while logging 'relation \"packages\" does not exist' and an empty phase-3 block stamped database db-6."
+    },
+    {
+      "id": "14.1",
+      "severity": "critical",
+      "title": "Descriptions read as AI-generated",
+      "detail": "Client's only stated objection. Mean 193 chars, 0/390 naming user intent. Corroborated by 1,053 near-duplicate SQL pairs. Remediation plan in REMEDIATION.md."
+    },
+    {
+      "id": "14.3",
+      "severity": "medium",
+      "title": "db-2 queries.json diverges from queries.md",
+      "detail": "Queries 17 and 20-30: descriptions in the JSON do not appear in the markdown. db-6 and db-11 are 29/30; all others 30/30."
+    },
+    {
+      "id": "15.0",
+      "severity": "high",
+      "title": "Four-lens intent documentation never shipped",
+      "detail": "db-N.md files for db-6..db-16 carry 30 Use Case / Business Value / Purpose blocks each. Not included in the client package. db-2 and db-3 have no such file."
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "Q1",
+      "question": "Why were db-1, db-4 and db-5 cut?",
+      "evidence": "No file states a reason. All three pass their audits. All three are exports of live third-party production systems. None were migrated to the purpose-built format.",
+      "inference": "Provenance risk — db-1/docs/manual-review-checklist.md contains an unticked Provenance Check requiring the source not be publicly available or webcrawlable."
+    },
+    {
+      "id": "Q2",
+      "question": "How did 11 scoped databases become 13 shipped?",
+      "evidence": "SOW dated 2026-02-14 scopes 11 at $5,500/db = $60,500. Thirteen shipped. No change order in the tree.",
+      "inference": "Not determined. At Standard-tier pricing the difference is $11,000."
+    },
+    {
+      "id": "Q3",
+      "question": "Which artifact did the client review when flagging db-2, db-3, db-6, db-7, db-10 as missing intent/purpose fields?",
+      "evidence": "No shipped queries.json has an intent or purpose field — the gap is universal, not specific to those five. db-N_deliverable.json drops question and evidence entirely.",
+      "inference": "The complaint likely describes db-N_deliverable.json or an earlier revision. Confirm before remediating."
+    },
+    {
+      "id": "Q4",
+      "question": "How many databases is this engagement actually for, and at what rate?",
+      "evidence": "Four counts appear: 11 (SOW), 13 (shipped), 14 ('this initial 14'), 16 (stated price point). Two rates: $5,500/db in the SOW, $3,500/db in the working record with $3,000-4,000 indicated at scale.",
+      "inference": "Unreconciled. The spread across a 13-16 database batch is roughly $26,000-32,000."
+    },
+    {
+      "id": "Q5",
+      "question": "What is the acceptance rubric?",
+      "evidence": "Meeting 2 prep asks for a written spec, a 5/5 vs 1/5 example, and a target execution accuracy or F1. None appear in any artifact.",
+      "inference": "Acceptance is currently defined by one sentence of client impression. A rewrite without a rubric is a guess with a cost attached."
+    }
+  ],
+  "commercial": {
+    "sow_2026_02_14": {
+      "databases": 11,
+      "rate_per_db": 5500,
+      "total": 60500,
+      "duration": "6-8 weeks"
+    },
+    "working_record": {
+      "databases": 16,
+      "rate_per_db": 3500,
+      "total": 56000,
+      "scale_rate_range": [
+        3000,
+        4000
+      ]
+    },
+    "shipped": {
+      "databases": 13
+    },
+    "referenced_batch": {
+      "databases": 14,
+      "note": "'client will send SOW later after finishing this initial 14'"
+    },
+    "account_posture": "Characterized internally as the only active engagement with this client; stated willingness to fund the higher rate even at a loss if it scales. Retention pressure, not margin pressure.",
+    "client_sow_status": "Deferred until the initial batch is finished. Contract terms follow quality remediation."
+  }
+}
