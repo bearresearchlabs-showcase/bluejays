@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The MDP Tuple Architecture — From "Just Source Databases" to an RL Environment Factory</title>
+<style>
+  :root {
+    --bg: #0d1117; --surface: #161b22; --border: #30363d;
+    --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff;
+    --red: #f85149; --orange: #d29922; --green: #3fb950; --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; padding: 2rem; max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
+  h2 { font-size: 1.3rem; color: var(--accent); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+  h3 { font-size: 1.1rem; color: var(--purple); margin: 1.2rem 0 0.6rem; }
+  .subtitle { color: var(--muted); margin-bottom: 2rem; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; }
+  .card-red { border-left: 4px solid var(--red); }
+  .card-orange { border-left: 4px solid var(--orange); }
+  .card-green { border-left: 4px solid var(--green); }
+  .card-purple { border-left: 4px solid var(--purple); }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-right: 6px; }
+  .tag-red { background: rgba(248,81,73,0.15); color: var(--red); }
+  .tag-orange { background: rgba(210,153,34,0.15); color: var(--orange); }
+  .tag-green { background: rgba(63,185,80,0.15); color: var(--green); }
+  .tag-purple { background: rgba(188,140,255,0.15); color: var(--purple); }
+  table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.9rem; }
+  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; }
+  .quote { border-left: 3px solid var(--purple); padding-left: 1rem; color: var(--muted); font-style: italic; margin: 0.5rem 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 768px) { .grid2 { grid-template-columns: 1fr; } }
+  .summary-box { background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.3); border-radius: 8px; padding: 1.2rem; margin: 1rem 0; }
+  strong { color: var(--text); }
+  p { margin-bottom: 0.6rem; }
+  ul { padding-left: 1.2rem; margin-bottom: 0.6rem; }
+  li { margin-bottom: 0.3rem; }
+  code { font-family: 'SF Mono', 'Fira Code', Consolas, monospace; font-size: 0.85em; background: rgba(110,118,129,0.2); padding: 1px 5px; border-radius: 4px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 18px; }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .kpi-value { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+  .kpi-label { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+  /* Tuple band */
+  .tuple-band { display: flex; gap: 10px; margin: 1rem 0; flex-wrap: wrap; }
+  .tuple-tile { flex: 1; min-width: 150px; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 8px; padding: 14px; position: relative; }
+  .tuple-letter { font-size: 1.5rem; font-weight: 800; color: var(--accent); font-family: Georgia, 'Times New Roman', serif; }
+  .tuple-name { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .tuple-field { font-size: 0.8rem; }
+  .tuple-badge { position: absolute; top: 10px; right: 10px; font-size: 0.65rem; font-weight: 700; color: var(--purple); background: rgba(188,140,255,0.15); padding: 1px 7px; border-radius: 10px; }
+  /* Pipeline band */
+  .pipe-band { display: flex; gap: 6px; margin: 1rem 0; flex-wrap: wrap; align-items: stretch; }
+  .pipe-step { flex: 1; min-width: 140px; background: rgba(88,166,255,0.06); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-size: 0.78rem; }
+  .pipe-step b { color: var(--accent); display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 3px; }
+  .pipe-arrow { align-self: center; color: var(--muted); font-size: 1rem; }
+  /* Timeline */
+  .timeline { display: flex; gap: 8px; margin: 1.2rem 0; flex-wrap: wrap; }
+  .tl-node { flex: 1; min-width: 170px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; font-size: 0.8rem; }
+  .tl-node.hl { border: 1px solid var(--green); background: rgba(63,185,80,0.08); }
+  .tl-year { color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tl-title { font-weight: 700; margin: 2px 0 4px; }
+  .badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 0.72rem; font-weight: 700; }
+  .b-green { background: rgba(63,185,80,0.15); color: var(--green); }
+  .b-amber { background: rgba(210,153,34,0.15); color: var(--orange); }
+  .b-red { background: rgba(248,81,73,0.15); color: var(--red); }
+  .footer { color: var(--muted); font-size: 0.75rem; margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--border); text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>The MDP Tuple Architecture</h1>
+<p class="subtitle">From "Just Source Databases" to an RL Environment Factory &bull; Between Text2SQL and Spider 2.0 &bull; Prepared Aug 5, 2026 &bull; CONFIDENTIAL</p>
+
+<div class="summary-box">
+<strong>Executive Summary:</strong> The ask was database sourcing — estimated at <strong>8–12 hours</strong>. What shipped is a private, contamination-free <strong>reinforcement-learning environment suite</strong> for text-to-SQL agents: every artifact in the corpus maps onto an element of the MDP tuple <strong>(S, A, P, R, &gamma;)</strong>, a mapping the project's own documents have been writing field-by-field without ever naming it. Formally named, the corpus sits between BIRD (whose annotation schema it extends) and Spider&nbsp;2.0 (the agentic frontier its roadmap targets). Full technical account: <code>docs/MDP_TUPLE_ARCHITECTURE.md</code>.
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi"><div class="kpi-value">16</div><div class="kpi-label">PostgreSQL databases</div></div>
+  <div class="kpi"><div class="kpi-value">480</div><div class="kpi-label">Gold question–SQL pairs</div></div>
+  <div class="kpi"><div class="kpi-value">~14 GB</div><div class="kpi-label">Real data (Git LFS)</div></div>
+  <div class="kpi"><div class="kpi-value">30</div><div class="kpi-label">Queries per database</div></div>
+  <div class="kpi"><div class="kpi-value">300/300</div><div class="kpi-label">Gold queries pass (db-6..15 run)</div></div>
+  <div class="kpi"><div class="kpi-value">16</div><div class="kpi-label">Hardened containers (5436–5451)</div></div>
+</div>
+
+<h2>Act I — The Ask</h2>
+<div class="card card-purple">
+<p class="quote">"Acquire real-world databases and accompanying query notebooks to support downstream evaluation and training. All assets must reflect authentic, real-world usage (no synthetic datasets, no synthetic queries)."</p>
+<p class="quote">"10 databases = 8-12 hours of work (per expert consultant)"</p>
+<p>But the attached hard requirements quietly describe something else: <strong>zero synthetic data</strong> (with forensic validation), sources that <strong>must not be webcrawlable</strong> (contamination-free by construction), <strong>30 extremely complex queries per database</strong>, queries that <strong>chain into workflows</strong>, and queries modelable as a <strong>graph reducible by shortest-path algorithms</strong>. That is not a sourcing spec. That is the raw material of a training environment.</p>
+</div>
+
+<h2>Act II — What Shipped</h2>
+<div class="grid2">
+  <div class="card card-orange">
+    <h3>The ask, at face value</h3>
+    <ul>
+      <li>~10 databases</li>
+      <li>Query notebooks</li>
+      <li>8–12 hours of sourcing</li>
+    </ul>
+  </div>
+  <div class="card card-green">
+    <h3>The delivered system</h3>
+    <ul>
+      <li>16 production-domain PostgreSQL databases, ~14 GB real extracted data</li>
+      <li>480 gold pairs with BIRD-superset annotation (question, evidence, schema_context, expected_output)</li>
+      <li>16 hardened Postgres containers — one live environment instance per database</li>
+      <li>BIRD / BIRD-CRITIC / workbench export pipeline (23 files)</li>
+      <li>Validation notebooks, integrity hashes, K8s jobs, 5 apps, deployed docs site</li>
+      <li>A metadata schema with a field named <code>rl_ready</code></li>
+    </ul>
+  </div>
+</div>
+<div class="card">
+<p><span class="tag tag-orange">The objection</span> This scope was called overengineering — "a cost center." <span class="tag tag-green">The answer</span> It is the minimum viable structure of an RL-environment-grade corpus — the exact product category positioned as the frontier-lab differentiator ("RL Environments — Unique"). Acts III–IV show the structure was there all along.</p>
+</div>
+
+<h2>Act III — The Tuple Nobody Named</h2>
+<div class="card">
+<p>Three project documents independently wrote the RL framing without ever saying "MDP" or "Markov" (neither word appears anywhere in the repo before this narrative):</p>
+<ul>
+  <li><code>client/README.md</code> — "Use <code>question</code> as the user utterance (state/observation), <code>sql</code> as the gold action… Use execution success, result correctness… as reward signals."</li>
+  <li><code>template/queries.md</code> — a five-stage training pipeline: input prompt &rarr; golden output &rarr; reward signal &rarr; curriculum control &rarr; evaluation (EX/EM).</li>
+  <li><code>client/doc/README.md</code> — "Agentic loop: Plan &rarr; Act (run SQL) &rarr; Observe &rarr; Reflect (verify) &rarr; Iterate."</li>
+</ul>
+</div>
+
+<div class="tuple-band">
+  <div class="tuple-tile"><span class="tuple-badge">&Omega;, O partial</span><div class="tuple-letter">S</div><div class="tuple-name">State</div><div class="tuple-field">DB instance + NL task + history. Agent observes <code>question</code> + <code>schema_context</code> + <code>evidence</code> — partial by design.</div></div>
+  <div class="tuple-tile"><div class="tuple-letter">A</div><div class="tuple-name">Action</div><div class="tuple-field">Executable PostgreSQL. Gold action a* = <code>sql</code>.</div></div>
+  <div class="tuple-tile"><div class="tuple-letter">P</div><div class="tuple-name">Transition</div><div class="tuple-field">One-step today (execute &rarr; terminate). Multi-step extension = the documented agentic loop.</div></div>
+  <div class="tuple-tile"><div class="tuple-letter">R</div><div class="tuple-name">Reward</div><div class="tuple-field">Execution accuracy (EX) vs <code>expected_output</code>; gold match (EM) secondary.</div></div>
+  <div class="tuple-tile"><div class="tuple-letter">&gamma;</div><div class="tuple-name">Discount</div><div class="tuple-field">Irrelevant at horizon 1; prices exploration once episodes go multi-step (roadmap).</div></div>
+</div>
+
+<div class="pipe-band">
+  <div class="pipe-step"><b>1 · Input prompt</b>question + schema_context + evidence</div>
+  <div class="pipe-arrow">&rarr;</div>
+  <div class="pipe-step"><b>2 · Golden output</b>SQL</div>
+  <div class="pipe-arrow">&rarr;</div>
+  <div class="pipe-step"><b>3 · Reward signal</b>expected_output (execution match)</div>
+  <div class="pipe-arrow">&rarr;</div>
+  <div class="pipe-step"><b>4 · Curriculum</b>difficulty + query_category + tables_used</div>
+  <div class="pipe-arrow">&rarr;</div>
+  <div class="pipe-step"><b>5 · Evaluation</b>schema-linking, EX, EM</div>
+</div>
+<p style="color: var(--muted); font-size: 0.8rem;">One episode = one (db_id, question) pair &rarr; 480 episodes across 16 environment instances.</p>
+
+<h2>Act IV — Evidence, Including the Gaps</h2>
+<div class="card">
+<table>
+  <tr><th>Claim</th><th>Artifact</th><th>Status</th></tr>
+  <tr><td>Gold actions are executable</td><td><code>notebooks/TEST_RESULTS_SUMMARY.md</code> — 300/300 pass (db-6..db-15, 2026-02-08)</td><td><span class="badge b-green">VERIFIED</span></td></tr>
+  <tr><td>16 live environment instances</td><td><code>docker/docker-compose.hardened.yml</code> — ports 5436–5451</td><td><span class="badge b-green">VERIFIED</span></td></tr>
+  <tr><td>480 episodes exported in BIRD format</td><td><code>bird_export/all_bird.json</code></td><td><span class="badge b-green">VERIFIED</span></td></tr>
+  <tr><td>Contamination-free provenance</td><td>Sourcing rules + extraction metadata + integrity hashes</td><td><span class="badge b-green">BY CONSTRUCTION</span></td></tr>
+  <tr><td>Workbench benchmark run</td><td><code>bird_workbench_report.json</code> — 30/30 "passed" but all 30 <code>skipped: true</code></td><td><span class="badge b-amber">VACUOUS PASS</span></td></tr>
+  <tr><td>Agentic evaluation loop</td><td><code>bird_critic_results_db1.json</code> — 0/3, connection refused; never executed live</td><td><span class="badge b-red">NOT YET CLOSED</span></td></tr>
+</table>
+<p style="font-size: 0.85rem; color: var(--muted);">The two non-green rows are shown deliberately: the environment is specified and wired; closing the loop is the next act, and pretending otherwise would not survive a technical reader.</p>
+</div>
+
+<h2>Act V — Between Text2SQL and Spider 2.0</h2>
+<div class="timeline">
+  <div class="tl-node"><div class="tl-year">2018</div><div class="tl-title">Spider 1.0</div>Single-turn, exact match. Now saturated (~90%+); no longer discriminates.</div>
+  <div class="tl-node"><div class="tl-year">2023</div><div class="tl-title">BIRD</div>Adds <code>evidence</code> + execution accuracy over large, dirty DBs.</div>
+  <div class="tl-node hl"><div class="tl-year">2026</div><div class="tl-title">THIS CORPUS</div>BIRD-superset fields, live containers, engineered partial observability, private &amp; contamination-free. PostgreSQL-only.</div>
+  <div class="tl-node"><div class="tl-year">2024</div><div class="tl-title">Spider 2.0</div>~632 enterprise workflow tasks, 1,000+ column schemas, multi-step agentic solving. SOTA ~20–30%. The frontier.</div>
+</div>
+<div class="card">
+<p><strong>The honest position:</strong> no Spider 2.0 integration exists in this repository — the term appears nowhere before this narrative. What exists is the unique property public benchmarks cannot keep: <strong>the corpus can never have been in a model's pretraining data</strong>, because not being webcrawlable was a sourcing rule, not an afterthought. The seeds of Spider2-grade structure are already in the original spec: query chaining (multi-step episodes) and the query graph (Dijkstra-reducible transition structure).</p>
+</div>
+
+<h2>Roadmap — Verified Today vs. Spider2-Grade</h2>
+<div class="grid2">
+  <div class="card card-green">
+    <h3>Verified today</h3>
+    <ul>
+      <li>Single-turn episodes, executable gold actions</li>
+      <li>16 live PostgreSQL environments</li>
+      <li>BIRD-superset annotation + exports</li>
+      <li>Partial-observability by design (<code>schema_context</code>)</li>
+      <li>Contamination-free provenance</li>
+    </ul>
+  </div>
+  <div class="card card-orange">
+    <h3>Spider2-grade (forward-looking)</h3>
+    <ul>
+      <li><strong>P0</strong> — Close the evaluation loop: run CRITIC/workbench live (fix the 0/3)</li>
+      <li><strong>P1</strong> — Chain queries into multi-step episodes via the query graph</li>
+      <li><strong>P2</strong> — Cross-database workflow tasks (weather &harr; flood &harr; maritime)</li>
+      <li><strong>P3</strong> — Dialect expansion (Snowflake/BigQuery) + ambiguity injection</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">
+CONFIDENTIAL &bull; Technical source of truth: <code>docs/MDP_TUPLE_ARCHITECTURE.md</code> &bull; Worked example: <code>mdp-architecture.html</code> in the db-6-weather-documentation deployment &bull; Prepared 2026-08-05
+</div>
+
+</body>
+</html>

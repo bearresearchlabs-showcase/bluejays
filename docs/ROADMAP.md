@@ -275,6 +275,15 @@ See [.cursor/plans/roadmap_rules_skills_and_features_*.plan.md](.cursor/plans/) 
 | 9.3 Material View | Execution results panel; materialized view detection and validation |
 | 9.4 User Stories | US-9.1: Staff validates queries per role/view; US-9.2: Side panel shows results and MV status |
 
+### Epic 10: MDP Tuple Architecture Narrative
+
+| Feature | Description |
+|---------|-------------|
+| 10.1 Technical Doc | [docs/MDP_TUPLE_ARCHITECTURE.md](MDP_TUPLE_ARCHITECTURE.md) — formal (S, A, P, R, γ) mapping of corpus artifacts; benchmark lineage Spider 1 → BIRD → Spider 2.0 |
+| 10.2 Stakeholder Showcase | `mdp-tuple-architecture.html` — dark-theme single-file narrative (ask → shipped → tuple → roadmap) |
+| 10.3 Worked Example | db-6 episode walkthrough (`mdp-architecture.html` in db-6-weather-documentation deployment) |
+| 10.4 User Stories | US-10.1: Stakeholder reads the ask-vs-shipped story with honest gaps; US-10.2: ML engineer maps every tuple element to a cited artifact |
+
 ---
 
 ## 11. Maintenance
