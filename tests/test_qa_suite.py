@@ -41,10 +41,16 @@ class TestQASuiteCommands:
 
 
 class TestFormatCommand:
-    """Format command must produce deliverables."""
+    """Format was folded into build (step 2 of build). The CLI must say so,
+    and the build-produced deliverable must be present in the tree.
+
+    Note: `build` itself is intentionally NOT invoked here — it mutates the
+    working tree (populate → format → resync source→client), which in a
+    checkout without LFS content deletes data_large.sql pointers.
+    """
 
     @pytest.mark.parametrize("n", [1])
-    def test_format_produces_deliverable(self, n: int):
+    def test_format_redirects_to_build(self, n: int):
         proc = subprocess.run(
             [sys.executable, str(ROOT / "scripts" / "db_check.py"), "format", str(n)],
             cwd=str(ROOT),
@@ -52,9 +58,15 @@ class TestFormatCommand:
             text=True,
             timeout=60,
         )
-        assert proc.returncode == 0, f"Format failed for db-{n}: {proc.stderr}"
+        assert proc.returncode != 0, "Removed 'format' subcommand must exit non-zero"
+        assert "build" in proc.stderr.lower(), (
+            f"'format' must point users at 'build': {proc.stderr}"
+        )
+
+    @pytest.mark.parametrize("n", [1])
+    def test_build_deliverable_exists(self, n: int):
         deliverable = SOURCE / f"db-{n}" / "deliverable" / f"db-{n}.md"
-        assert deliverable.exists(), f"Deliverable not created: {deliverable}"
+        assert deliverable.exists(), f"Build deliverable missing: {deliverable}"
 
 
 class TestComplianceCheck:

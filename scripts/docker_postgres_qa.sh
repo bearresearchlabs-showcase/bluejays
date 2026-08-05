@@ -15,6 +15,11 @@ PUSH=false
 DB_NUMS=""
 for arg in "$@"; do
     case "$arg" in
+        -h|--help)
+            echo "Usage: ./scripts/docker_postgres_qa.sh [--push] [db-1] [db-5] | -a"
+            echo "Start hardened PostgreSQL containers, load schema+data, run QA."
+            echo "Env: DOCKER_HUB_USER (required for --push), DOCKER_HUB_TOKEN or docker login"
+            exit 0 ;;
         --push) PUSH=true ;;
         -a|--all) DB_NUMS=$(seq 1 16) ;;
         *db-*) DB_NUMS="${DB_NUMS} $(echo "$arg" | sed 's/.*db-\([0-9]*\).*/\1/' | grep -E '^[0-9]+$' || true)" ;;
@@ -29,6 +34,12 @@ if [ "$(echo "$DB_NUMS" | wc -l)" = "2" ]; then
     [ "$A" -lt "$B" ] 2>/dev/null && DB_NUMS=$(seq "$A" "$B")
 fi
 [ -z "$DB_NUMS" ] && DB_NUMS=$(seq 1 16)
+
+# Fail fast when the Docker daemon is unreachable instead of hanging in compose
+if ! docker info >/dev/null 2>&1; then
+    echo "ERROR: Docker daemon unavailable. Start Docker and retry." >&2
+    exit 2
+fi
 
 echo "=========================================="
 echo "PostgreSQL QA: hardened images, load schema, ${PUSH:+push to Docker Hub}"

@@ -20,8 +20,10 @@ DEV_PID=$!
 
 echo "Waiting for $BASE_URL/login to respond..."
 for i in $(seq 1 60); do
-  if curl -s -o /dev/null -w "%{http_code}" "$BASE_URL/login" 2>/dev/null | grep -q 200; then
-    echo "Server ready."
+  # Any 2xx/3xx means the server is up (in dev:test /login answers 307)
+  CODE=$(curl -s -o /dev/null -w "%{http_code}" "$BASE_URL/login" 2>/dev/null)
+  if echo "$CODE" | grep -qE "^[23][0-9][0-9]$"; then
+    echo "Server ready (HTTP $CODE)."
     break
   fi
   sleep 1

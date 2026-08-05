@@ -109,15 +109,18 @@ class TestDockerPostgresQAScriptExecution:
     """Script must run (dry/invocation test - may skip if Docker unavailable)."""
 
     def test_script_invocation_help_or_exit(self):
+        # --help must print usage and exit 0 fast, never touching Docker.
+        # (A bare invocation starts a full 16-database compose run — far too
+        # heavy for a smoke test and the source of 60 s timeouts in CI.)
         proc = subprocess.run(
-            ["bash", str(SCRIPTS / "docker_postgres_qa.sh")],
+            ["bash", str(SCRIPTS / "docker_postgres_qa.sh"), "--help"],
             cwd=str(ROOT),
             capture_output=True,
             text=True,
             timeout=60,
         )
-        # Script may exit 0 (success) or non-zero (Docker down, etc.) but must not hang
-        assert proc.returncode is not None
+        assert proc.returncode == 0, f"--help must exit 0: {proc.stderr}"
+        assert "Usage" in proc.stdout, "--help must print usage"
 
     def test_script_references_transaction_integrity(self):
         content = (SCRIPTS / "docker_postgres_qa.sh").read_text(encoding="utf-8")
