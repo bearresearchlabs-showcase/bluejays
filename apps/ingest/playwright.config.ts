@@ -20,7 +20,9 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run dev:test',
-    url: BASE_URL,
+    // Page routes 307-redirect through the auth flow, which the readiness
+    // probe never accepts — poll the unauthenticated health route instead.
+    url: `${BASE_URL}/api/health`,
     reuseExistingServer: !process.env.CI,
     timeout: 90_000,
   },

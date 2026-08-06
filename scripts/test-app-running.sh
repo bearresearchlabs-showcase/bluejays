@@ -18,11 +18,11 @@ echo "Starting dev server on port 3007..."
 npm run dev:test &
 DEV_PID=$!
 
-echo "Waiting for $BASE_URL/login to respond..."
+echo "Waiting for $BASE_URL/api/health to respond..."
 for i in $(seq 1 60); do
-  # Any 2xx/3xx means the server is up (in dev:test /login answers 307).
+  # /api/health returns 200 unauthenticated (page routes 307 through auth).
   # `|| true` keeps set -e from aborting while the server is still starting.
-  CODE=$(curl -s -o /dev/null -w "%{http_code}" "$BASE_URL/login" 2>/dev/null || true)
+  CODE=$(curl -s -o /dev/null -w "%{http_code}" "$BASE_URL/api/health" 2>/dev/null || true)
   if echo "$CODE" | grep -qE "^[23][0-9][0-9]$"; then
     echo "Server ready (HTTP $CODE)."
     break
