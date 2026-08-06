@@ -1,0 +1,84 @@
+{
+  "verification_date": "2026-02-04T01:40:48.668777",
+  "file": "/Users/machine/Documents/AQ/db/db-3/queries/queries.md",
+  "fixes": {
+    "query_2_array_syntax": {
+      "query_number": 2,
+      "fix": "Array slicing syntax replacement",
+      "status": "FAIL",
+      "checks": [
+        {
+          "check": "path_preview_cte CTE exists",
+          "status": "FAIL"
+        },
+        {
+          "check": "No array slicing syntax [start:end]",
+          "status": "PASS"
+        },
+        {
+          "check": "ARRAY_LENGTH bounds checking present",
+          "status": "FAIL"
+        }
+      ]
+    },
+    "query_26_recursive_cte": {
+      "query_number": 26,
+      "fix": "Recursive CTE addition",
+      "status": "FAIL",
+      "checks": [
+        {
+          "check": "Query 26 section found",
+          "status": "FAIL"
+        }
+      ]
+    },
+    "query_title_uniqueness": {
+      "fix": "Query title uniqueness",
+      "status": "FAIL",
+      "checks": [
+        {
+          "check": "Query 26 found",
+          "status": "FAIL"
+        },
+        {
+          "check": "Query 27 found",
+          "status": "FAIL"
+        },
+        {
+          "check": "Query 28 found",
+          "status": "FAIL"
+        },
+        {
+          "check": "Query 29 found",
+          "status": "FAIL"
+        },
+        {
+          "check": "Query 30 found",
+          "status": "FAIL"
+        },
+        {
+          "check": "No duplicate titles",
+          "status": "PASS"
+        }
+      ]
+    },
+    "header_formatting": {
+      "fix": "Header formatting consistency",
+      "status": "FAIL",
+      "checks": [
+        {
+          "check": "All queries use ## Query N: format",
+          "status": "FAIL",
+          "found": 1,
+          "expected": 30
+        },
+        {
+          "check": "No queries with --- prefix",
+          "status": "FAIL",
+          "found": 29
+        }
+      ]
+    }
+  },
+  "overall_status": "FAIL"
+}

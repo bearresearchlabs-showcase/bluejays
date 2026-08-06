@@ -1,0 +1,99 @@
+{
+  "database": "db-3",
+  "name": "Linkway Ecommerce",
+  "apis": [
+    {
+      "name": "Stripe API",
+      "url": "https://stripe.com/docs/api",
+      "description": "Payment processing (sandbox mode)",
+      "endpoints": [
+        "/v1/charges",
+        "/v1/customers",
+        "/v1/products"
+      ],
+      "auth": "API key (test mode)",
+      "rate_limit": "100 requests/second (test mode)"
+    },
+    {
+      "name": "USPS Shipping API",
+      "url": "https://www.usps.com/business/web-tools-apis/",
+      "description": "Shipping rates and tracking",
+      "endpoints": [
+        "/ShippingAPI",
+        "/TrackAndConfirm"
+      ],
+      "auth": "User ID required",
+      "rate_limit": "Unknown"
+    },
+    {
+      "name": "Fake Store API",
+      "url": "https://fakestoreapi.com/",
+      "description": "Fake e-commerce data for testing",
+      "endpoints": [
+        "/products",
+        "/carts",
+        "/users"
+      ],
+      "auth": "None (public)",
+      "rate_limit": "Unknown"
+    }
+  ],
+  "data_sources": [],
+  "last_updated": "2026-02-09T12:47:24.221417",
+  "gov_sources": [
+    {
+      "name": "Census E-Commerce Statistics",
+      "url": "https://www.census.gov/data/tables/time-series/econ/e-stats.html",
+      "type": "government",
+      "description": "Census Bureau e-commerce statistics",
+      "data_types": [
+        "ecommerce_sales",
+        "online_retail",
+        "digital_commerce"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Quarterly"
+    },
+    {
+      "name": "BLS Consumer Expenditure Survey",
+      "url": "https://www.bls.gov/cex/",
+      "type": "government",
+      "description": "Consumer spending patterns and e-commerce",
+      "data_types": [
+        "consumer_spending",
+        "purchase_patterns"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Annual"
+    },
+    {
+      "name": "USPS Shipping Data",
+      "url": "https://www.usps.com/business/web-tools-apis/",
+      "type": "government",
+      "description": "USPS shipping rates and tracking",
+      "data_types": [
+        "shipping_rates",
+        "delivery_times",
+        "tracking"
+      ],
+      "access": "api",
+      "rate_limit": "Varies",
+      "update_frequency": "Real-time"
+    },
+    {
+      "name": "Census Retail Trade",
+      "url": "https://www.census.gov/retail/",
+      "type": "government",
+      "description": "Retail trade statistics including e-commerce",
+      "data_types": [
+        "retail_sales",
+        "ecommerce_growth"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Monthly"
+    }
+  ]
+}

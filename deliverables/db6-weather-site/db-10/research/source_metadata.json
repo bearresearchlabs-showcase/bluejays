@@ -1,0 +1,218 @@
+{
+  "database": "db-10",
+  "description": "Marketing Intelligence Database - Comprehensive Source Metadata Tracking",
+  "last_updated": "2026-02-04",
+  "source_metadata": [
+    {
+      "source_id": "SRC001",
+      "source_name": "Census Bureau MRTS API",
+      "source_category": "government_api",
+      "authority": "U.S. Census Bureau",
+      "api_configuration": {
+        "base_url": "http://api.census.gov/data/timeseries/eits",
+        "endpoint": "/mrts",
+        "full_url": "http://api.census.gov/data/timeseries/eits/mrts",
+        "http_method": "GET",
+        "authentication_method": "none",
+        "headers_required": [],
+        "query_parameters": [
+          "get",
+          "for",
+          "in",
+          "time",
+          "key"
+        ],
+        "response_format": "JSON",
+        "pagination": false
+      },
+      "data_format_specifications": {
+        "format": "JSON",
+        "encoding": "UTF-8",
+        "schema_available": true,
+        "schema_url": "https://api.census.gov/data/timeseries/eits/mrts.json"
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "Census Bureau Economic Indicators",
+        "data_collection_method": "Monthly surveys",
+        "processing_steps": [
+          "Survey collection",
+          "Data validation",
+          "Seasonal adjustment",
+          "API publication"
+        ],
+        "update_schedule": "Monthly, typically 2-3 weeks after month end"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": "census-gov",
+        "data_gov_tags": [
+          "retail",
+          "trade",
+          "sales",
+          "inventory",
+          "economic-indicators"
+        ]
+      }
+    },
+    {
+      "source_id": "SRC002",
+      "source_name": "BLS Public Data API",
+      "source_category": "government_api",
+      "authority": "U.S. Bureau of Labor Statistics",
+      "api_configuration": {
+        "base_url": "https://api.bls.gov/publicAPI/v2",
+        "endpoint": "/timeseries/data",
+        "full_url": "https://api.bls.gov/publicAPI/v2/timeseries/data",
+        "http_method": "POST",
+        "authentication_method": "optional_registration",
+        "headers_required": [
+          "Content-Type: application/json"
+        ],
+        "request_body_required": true,
+        "request_body_format": "JSON",
+        "response_format": "JSON",
+        "pagination": false
+      },
+      "data_format_specifications": {
+        "format": "JSON",
+        "encoding": "UTF-8",
+        "schema_available": true,
+        "schema_url": "https://www.bls.gov/developers/api_signature_v2.htm"
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "BLS Economic Data",
+        "data_collection_method": "Monthly price surveys and employment surveys",
+        "processing_steps": [
+          "Price collection",
+          "Index calculation",
+          "Seasonal adjustment",
+          "API publication"
+        ],
+        "update_schedule": "Monthly, typically mid-month for previous month"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": "bls-gov",
+        "data_gov_tags": [
+          "cpi",
+          "ppi",
+          "price-index",
+          "inflation",
+          "employment"
+        ]
+      }
+    },
+    {
+      "source_id": "SRC003",
+      "source_name": "Data.gov CKAN API",
+      "source_category": "government_api",
+      "authority": "General Services Administration",
+      "api_configuration": {
+        "base_url": "https://catalog.data.gov/api/3/action",
+        "endpoints": [
+          "/package_search",
+          "/package_show",
+          "/resource_show"
+        ],
+        "http_method": "GET",
+        "authentication_method": "none",
+        "headers_required": [],
+        "query_parameters": [
+          "q",
+          "fq",
+          "rows",
+          "start"
+        ],
+        "response_format": "JSON",
+        "pagination": true
+      },
+      "data_format_specifications": {
+        "format": "JSON",
+        "encoding": "UTF-8",
+        "schema_available": true,
+        "schema_url": "https://catalog.data.gov/api/3/action/help"
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "Federal Open Data Portal",
+        "data_collection_method": "Aggregated from federal agencies",
+        "processing_steps": [
+          "Agency data publication",
+          "CKAN catalog indexing",
+          "API exposure"
+        ],
+        "update_schedule": "Varies by dataset"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": "multiple",
+        "data_gov_tags": [
+          "retail",
+          "consumer",
+          "economic",
+          "market"
+        ]
+      }
+    },
+    {
+      "source_id": "SRC004",
+      "source_name": "FTC Consumer Sentinel Network",
+      "source_category": "government_dataset",
+      "authority": "Federal Trade Commission",
+      "api_configuration": null,
+      "data_format_specifications": {
+        "format": "CSV, JSON",
+        "encoding": "UTF-8",
+        "schema_available": true,
+        "schema_location": "Dataset documentation"
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source_system": "FTC Consumer Complaint Database",
+        "data_collection_method": "Consumer complaint submissions",
+        "processing_steps": [
+          "Complaint intake",
+          "Categorization",
+          "Data validation",
+          "Quarterly publication"
+        ],
+        "update_schedule": "Quarterly"
+      },
+      "ngda_theme": null,
+      "catalog_information": {
+        "data_gov_organization": "ftc-gov",
+        "data_gov_tags": [
+          "consumer",
+          "complaints",
+          "fraud",
+          "retail"
+        ]
+      }
+    }
+  ],
+  "extraction_tracking": {
+    "last_full_extraction": null,
+    "extraction_frequency": "daily",
+    "incremental_extraction": true,
+    "extraction_window_days": 30
+  },
+  "data_quality_tracking": {
+    "overall_quality_score": null,
+    "source_quality_scores": {},
+    "quality_metrics": [
+      "completeness",
+      "accuracy",
+      "timeliness",
+      "consistency"
+    ]
+  },
+  "notes": [
+    "Source metadata should be updated after each extraction",
+    "Track extraction timestamps for data lineage",
+    "Monitor API rate limits and adjust extraction schedules",
+    "Document any API changes or deprecations",
+    "Track data quality scores over time"
+  ]
+}

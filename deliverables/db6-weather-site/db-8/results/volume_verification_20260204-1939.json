@@ -1,0 +1,256 @@
+{
+  "verification_date": "20260204-1939",
+  "requirement": {
+    "min_gb": 1.0,
+    "max_gb": null,
+    "description": "Data volume must be at least 1 GB"
+  },
+  "file_volumes": {
+    "generated_files": {},
+    "transformed_files": {},
+    "internet_pulled_files": {
+      "datagov_34466936-ad5c-462d-a062-e71b6b255730_3f8e3adf.csv": {
+        "size_mb": 100.48,
+        "size_gb": 0.1,
+        "path": "internet_pulled/datagov_34466936-ad5c-462d-a062-e71b6b255730_3f8e3adf.csv"
+      },
+      "datagov_7401571a-9009-44d1-96ad-b7003221ec72_d46078b8.csv": {
+        "size_mb": 0.04,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_7401571a-9009-44d1-96ad-b7003221ec72_d46078b8.csv"
+      },
+      "datagov_7401571a-9009-44d1-96ad-b7003221ec72_8026bd67.csv": {
+        "size_mb": 0.0,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_7401571a-9009-44d1-96ad-b7003221ec72_8026bd67.csv"
+      },
+      "datagov_34466936-ad5c-462d-a062-e71b6b255730_9ffd1b35.csv": {
+        "size_mb": 0.0,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_34466936-ad5c-462d-a062-e71b6b255730_9ffd1b35.csv"
+      },
+      "datagov_a41ab606-8480-4eeb-a208-4d52c4779e30_44aa39a4.json": {
+        "size_mb": 5.35,
+        "size_gb": 0.01,
+        "path": "internet_pulled/datagov_a41ab606-8480-4eeb-a208-4d52c4779e30_44aa39a4.json"
+      },
+      "datagov_a41ab606-8480-4eeb-a208-4d52c4779e30_f5688702.csv": {
+        "size_mb": 2.57,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_a41ab606-8480-4eeb-a208-4d52c4779e30_f5688702.csv"
+      },
+      "datagov_2e519953-2741-460f-a590-9fbd2c7a54b0_f6b18044.json": {
+        "size_mb": 134.8,
+        "size_gb": 0.13,
+        "path": "internet_pulled/datagov_2e519953-2741-460f-a590-9fbd2c7a54b0_f6b18044.json"
+      },
+      "datagov_7401571a-9009-44d1-96ad-b7003221ec72_9d4d160a.csv": {
+        "size_mb": 0.0,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_7401571a-9009-44d1-96ad-b7003221ec72_9d4d160a.csv"
+      },
+      "datagov_7401571a-9009-44d1-96ad-b7003221ec72_66d54e88.csv": {
+        "size_mb": 0.1,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_7401571a-9009-44d1-96ad-b7003221ec72_66d54e88.csv"
+      },
+      "datagov_32d75c34-fc7a-4fd5-b3d5-e0f94c0436a0_3a09abf7.csv": {
+        "size_mb": 116.44,
+        "size_gb": 0.11,
+        "path": "internet_pulled/datagov_32d75c34-fc7a-4fd5-b3d5-e0f94c0436a0_3a09abf7.csv"
+      },
+      "datagov_a41ab606-8480-4eeb-a208-4d52c4779e30_e5f6403b.csv": {
+        "size_mb": 2.57,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_a41ab606-8480-4eeb-a208-4d52c4779e30_e5f6403b.csv"
+      },
+      "datagov_55ec5670-e3da-4469-9a95-825878a382a5_26bb14f8.csv": {
+        "size_mb": 67.33,
+        "size_gb": 0.07,
+        "path": "internet_pulled/datagov_55ec5670-e3da-4469-9a95-825878a382a5_26bb14f8.csv"
+      },
+      "datagov_8971bd20-619f-477a-8501-c07daf7b8c6d_1b5b04da.csv": {
+        "size_mb": 0.0,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_8971bd20-619f-477a-8501-c07daf7b8c6d_1b5b04da.csv"
+      },
+      "datagov_34466936-ad5c-462d-a062-e71b6b255730_e06b7471.csv": {
+        "size_mb": 100.48,
+        "size_gb": 0.1,
+        "path": "internet_pulled/datagov_34466936-ad5c-462d-a062-e71b6b255730_e06b7471.csv"
+      },
+      "datagov_9fdb4aee-7d25-41fd-9d0b-0cb83b333867_9e4f71c7.json": {
+        "size_mb": 17.47,
+        "size_gb": 0.02,
+        "path": "internet_pulled/datagov_9fdb4aee-7d25-41fd-9d0b-0cb83b333867_9e4f71c7.json"
+      },
+      "datagov_5ec933b7-de0c-479a-8c0b-b4712b580e9c_2d94a0a3.csv": {
+        "size_mb": 2.73,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_5ec933b7-de0c-479a-8c0b-b4712b580e9c_2d94a0a3.csv"
+      },
+      "datagov_9fdb4aee-7d25-41fd-9d0b-0cb83b333867_e1671ce8.csv": {
+        "size_mb": 16.63,
+        "size_gb": 0.02,
+        "path": "internet_pulled/datagov_9fdb4aee-7d25-41fd-9d0b-0cb83b333867_e1671ce8.csv"
+      },
+      "datagov_361f6e22-af6e-4432-a987-843f1f147b14_6b0e9180.csv": {
+        "size_mb": 0.0,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_361f6e22-af6e-4432-a987-843f1f147b14_6b0e9180.csv"
+      },
+      "datagov_a41ab606-8480-4eeb-a208-4d52c4779e30_0207850c.json": {
+        "size_mb": 5.35,
+        "size_gb": 0.01,
+        "path": "internet_pulled/datagov_a41ab606-8480-4eeb-a208-4d52c4779e30_0207850c.json"
+      },
+      "datagov_547d5506-d2cb-4052-8e9b-220793da1495_038b83a2.csv": {
+        "size_mb": 43.69,
+        "size_gb": 0.04,
+        "path": "internet_pulled/datagov_547d5506-d2cb-4052-8e9b-220793da1495_038b83a2.csv"
+      },
+      "datagov_c5f53aa3-78a2-4b3b-acc2-57396fa30b6e_db03fa1d.json": {
+        "size_mb": 3.72,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_c5f53aa3-78a2-4b3b-acc2-57396fa30b6e_db03fa1d.json"
+      },
+      "datagov_34466936-ad5c-462d-a062-e71b6b255730_8f2d743c.csv": {
+        "size_mb": 0.0,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_34466936-ad5c-462d-a062-e71b6b255730_8f2d743c.csv"
+      },
+      "datagov_55ec5670-e3da-4469-9a95-825878a382a5_a8976d1d.csv": {
+        "size_mb": 68.96,
+        "size_gb": 0.07,
+        "path": "internet_pulled/datagov_55ec5670-e3da-4469-9a95-825878a382a5_a8976d1d.csv"
+      },
+      "datagov_361f6e22-af6e-4432-a987-843f1f147b14_c03c84c2.csv": {
+        "size_mb": 0.0,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_361f6e22-af6e-4432-a987-843f1f147b14_c03c84c2.csv"
+      },
+      "datagov_c5f53aa3-78a2-4b3b-acc2-57396fa30b6e_aa441b4e.csv": {
+        "size_mb": 1.95,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_c5f53aa3-78a2-4b3b-acc2-57396fa30b6e_aa441b4e.csv"
+      },
+      "datagov_547d5506-d2cb-4052-8e9b-220793da1495_5b9008ff.csv": {
+        "size_mb": 0.0,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_547d5506-d2cb-4052-8e9b-220793da1495_5b9008ff.csv"
+      },
+      "datagov_7401571a-9009-44d1-96ad-b7003221ec72_bf00818f.csv": {
+        "size_mb": 0.1,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_7401571a-9009-44d1-96ad-b7003221ec72_bf00818f.csv"
+      },
+      "datagov_361f6e22-af6e-4432-a987-843f1f147b14_2d1e9904.csv": {
+        "size_mb": 1.49,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_361f6e22-af6e-4432-a987-843f1f147b14_2d1e9904.csv"
+      },
+      "bls_LAUCN040010000000006_2021_2026.json": {
+        "size_mb": 0.01,
+        "size_gb": 0.0,
+        "path": "internet_pulled/bls_LAUCN040010000000006_2021_2026.json"
+      },
+      "datagov_547d5506-d2cb-4052-8e9b-220793da1495_8ee7d144.csv": {
+        "size_mb": 0.0,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_547d5506-d2cb-4052-8e9b-220793da1495_8ee7d144.csv"
+      },
+      "datagov_2e519953-2741-460f-a590-9fbd2c7a54b0_8dde5af1.csv": {
+        "size_mb": 51.9,
+        "size_gb": 0.05,
+        "path": "internet_pulled/datagov_2e519953-2741-460f-a590-9fbd2c7a54b0_8dde5af1.csv"
+      },
+      "datagov_547d5506-d2cb-4052-8e9b-220793da1495_7a64e871.csv": {
+        "size_mb": 43.69,
+        "size_gb": 0.04,
+        "path": "internet_pulled/datagov_547d5506-d2cb-4052-8e9b-220793da1495_7a64e871.csv"
+      },
+      "datagov_7401571a-9009-44d1-96ad-b7003221ec72_ab29e74f.csv": {
+        "size_mb": 0.04,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_7401571a-9009-44d1-96ad-b7003221ec72_ab29e74f.csv"
+      },
+      "bls_LAUCN040010000000004_2021_2026.json": {
+        "size_mb": 0.01,
+        "size_gb": 0.0,
+        "path": "internet_pulled/bls_LAUCN040010000000004_2021_2026.json"
+      },
+      "bls_LAUCN040010000000003_2021_2026.json": {
+        "size_mb": 0.01,
+        "size_gb": 0.0,
+        "path": "internet_pulled/bls_LAUCN040010000000003_2021_2026.json"
+      },
+      "datagov_55ec5670-e3da-4469-9a95-825878a382a5_d9473024.csv": {
+        "size_mb": 0.0,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_55ec5670-e3da-4469-9a95-825878a382a5_d9473024.csv"
+      },
+      "datagov_32d75c34-fc7a-4fd5-b3d5-e0f94c0436a0_04d82333.csv": {
+        "size_mb": 116.74,
+        "size_gb": 0.11,
+        "path": "internet_pulled/datagov_32d75c34-fc7a-4fd5-b3d5-e0f94c0436a0_04d82333.csv"
+      },
+      "datagov_5ec933b7-de0c-479a-8c0b-b4712b580e9c_1da7d351.json": {
+        "size_mb": 6.93,
+        "size_gb": 0.01,
+        "path": "internet_pulled/datagov_5ec933b7-de0c-479a-8c0b-b4712b580e9c_1da7d351.json"
+      },
+      "datagov_361f6e22-af6e-4432-a987-843f1f147b14_ec2e4bba.csv": {
+        "size_mb": 1.49,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_361f6e22-af6e-4432-a987-843f1f147b14_ec2e4bba.csv"
+      },
+      "datagov_c5f53aa3-78a2-4b3b-acc2-57396fa30b6e_d61a89fa.csv": {
+        "size_mb": 1.95,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_c5f53aa3-78a2-4b3b-acc2-57396fa30b6e_d61a89fa.csv"
+      },
+      "datagov_32d75c34-fc7a-4fd5-b3d5-e0f94c0436a0_13618b08.csv": {
+        "size_mb": 115.0,
+        "size_gb": 0.11,
+        "path": "internet_pulled/datagov_32d75c34-fc7a-4fd5-b3d5-e0f94c0436a0_13618b08.csv"
+      },
+      "datagov_c5f53aa3-78a2-4b3b-acc2-57396fa30b6e_9f284d2c.json": {
+        "size_mb": 3.72,
+        "size_gb": 0.0,
+        "path": "internet_pulled/datagov_c5f53aa3-78a2-4b3b-acc2-57396fa30b6e_9f284d2c.json"
+      },
+      "datagov_e9944174-3118-4a6b-9fdb-1b8a0bd4325f_533efff8.csv": {
+        "size_mb": 14.63,
+        "size_gb": 0.01,
+        "path": "internet_pulled/datagov_e9944174-3118-4a6b-9fdb-1b8a0bd4325f_533efff8.csv"
+      }
+    },
+    "internet_transformed_files": {},
+    "total_generated_mb": 0.0,
+    "total_transformed_mb": 0.0,
+    "total_internet_pulled_mb": 1048.3866920471191,
+    "total_internet_transformed_mb": 0.0,
+    "meets_requirement": true,
+    "total_generated_gb": 0.0,
+    "total_transformed_gb": 0.0,
+    "total_internet_pulled_gb": 1.02,
+    "total_internet_transformed_gb": 0.0,
+    "total_all_sources_gb": 1.02
+  },
+  "database_volumes": {
+    "database_available": false,
+    "tables": {},
+    "total_size_mb": 0.0,
+    "total_size_gb": 0.0,
+    "error": "connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  database \"db_8_validation\" does not exist\n"
+  },
+  "summary": {
+    "file_data_gb": 1.02,
+    "internet_pulled_gb": 1.02,
+    "total_file_data_gb": 2.04,
+    "database_data_gb": 0.0,
+    "total_data_gb": 2.04,
+    "meets_requirement": true,
+    "status": "PASS"
+  }
+}

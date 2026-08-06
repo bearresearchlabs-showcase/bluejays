@@ -1,0 +1,206 @@
+{
+  "database": "db-8",
+  "description": "Comprehensive source metadata tracking for Job Market Intelligence Database",
+  "metadata_version": "1.0",
+  "last_updated": "2026-02-04",
+  "source_systems": {
+    "usajobs_gov": {
+      "system_name": "USAJobs.gov API",
+      "system_type": "Federal Job Postings API",
+      "authority": "U.S. Office of Personnel Management",
+      "api_endpoint_config": {
+        "base_url": "https://data.usajobs.gov/api",
+        "version": "v1",
+        "protocol": "HTTPS",
+        "authentication_method": "API Key + User-Agent Header",
+        "content_type": "application/json"
+      },
+      "authentication_details": {
+        "api_key_location": "Header: Authorization",
+        "user_agent_required": true,
+        "user_agent_format": "Host: data.usajobs.gov",
+        "api_key_source": "https://developer.usajobs.gov/APIRequest/Index"
+      },
+      "data_format_specifications": {
+        "request_format": "JSON (query parameters)",
+        "response_format": "JSON",
+        "encoding": "UTF-8",
+        "date_format": "ISO 8601",
+        "job_description_format": "HTML"
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source": "USAJobs.gov Federal Job Postings Database",
+        "extraction_method": "REST API calls",
+        "transformation_steps": [
+          "Parse JSON response",
+          "Extract job fields (title, description, location, salary, etc.)",
+          "Normalize location data (city, state, ZIP)",
+          "Extract skills from job descriptions",
+          "Map to db-8 schema (job_postings, companies, skills tables)"
+        ],
+        "target_tables": [
+          "job_postings",
+          "companies",
+          "job_skills_requirements",
+          "data_source_metadata"
+        ]
+      },
+      "source_system_categorization": {
+        "category": "Federal Government",
+        "subcategory": "Job Postings",
+        "data_classification": "Public",
+        "update_frequency": "Real-time (as jobs are posted)",
+        "data_retention": "Historical data available"
+      }
+    },
+    "bls_public_data": {
+      "system_name": "BLS Public Data API",
+      "system_type": "Labor Statistics API",
+      "authority": "U.S. Bureau of Labor Statistics",
+      "api_endpoint_config": {
+        "base_url": "https://api.bls.gov/publicAPI/v2",
+        "version": "v2",
+        "protocol": "HTTPS",
+        "authentication_method": "Registration Key (optional)",
+        "content_type": "application/json"
+      },
+      "authentication_details": {
+        "registration_key_location": "Request parameter: registrationkey",
+        "registration_key_required": false,
+        "registration_key_source": "https://www.bls.gov/developers/api_signature.htm",
+        "benefits_with_key": "Higher rate limits (50,000/day vs 500/day)"
+      },
+      "data_format_specifications": {
+        "request_format": "JSON (POST body)",
+        "response_format": "JSON",
+        "encoding": "UTF-8",
+        "date_format": "YYYY-MM-DD",
+        "series_id_format": "BLS standard (e.g., LAUCN040010000000003)"
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source": "BLS Employment Statistics Database",
+        "extraction_method": "REST API POST requests with series IDs",
+        "transformation_steps": [
+          "Parse JSON time series response",
+          "Extract employment statistics (unemployment rate, employment level, labor force)",
+          "Map geographic codes (FIPS state/county codes)",
+          "Normalize time series data",
+          "Map to db-8 schema (market_trends, job_market_analytics tables)"
+        ],
+        "target_tables": [
+          "market_trends",
+          "job_market_analytics"
+        ]
+      },
+      "source_system_categorization": {
+        "category": "Federal Government",
+        "subcategory": "Labor Statistics",
+        "data_classification": "Public",
+        "update_frequency": "Monthly (with 1-2 month lag)",
+        "data_retention": "Historical time series data available"
+      }
+    },
+    "dol_open_data": {
+      "system_name": "Department of Labor Open Data Portal",
+      "system_type": "CKAN API (Data.gov)",
+      "authority": "U.S. Department of Labor via Data.gov",
+      "api_endpoint_config": {
+        "base_url": "https://catalog.data.gov/api/3/action",
+        "version": "v3",
+        "protocol": "HTTPS",
+        "authentication_method": "API Key (optional)",
+        "content_type": "application/json"
+      },
+      "authentication_details": {
+        "api_key_location": "Header: X-API-Key",
+        "api_key_required": false,
+        "api_key_source": "https://api.data.gov/signup/",
+        "benefits_with_key": "Higher rate limits (100,000/day vs 10,000/day)"
+      },
+      "data_format_specifications": {
+        "request_format": "JSON (query parameters)",
+        "response_format": "JSON (metadata), CSV/JSON/XML (data files)",
+        "encoding": "UTF-8",
+        "dataset_formats": ["CSV", "JSON", "XML", "XLSX"]
+      },
+      "extraction_history": [],
+      "data_lineage": {
+        "source": "DOL Open Data Portal via Data.gov CKAN API",
+        "extraction_method": "CKAN API calls + file downloads",
+        "transformation_steps": [
+          "Search DOL datasets via CKAN API",
+          "Download dataset resources (CSV/JSON/XML)",
+          "Parse employment statistics and job market data",
+          "Normalize geographic and temporal data",
+          "Map to db-8 schema (market_trends, job_market_analytics tables)"
+        ],
+        "target_tables": [
+          "market_trends",
+          "job_market_analytics",
+          "data_source_metadata"
+        ]
+      },
+      "source_system_categorization": {
+        "category": "Federal Government",
+        "subcategory": "Open Data Portal",
+        "data_classification": "Public",
+        "update_frequency": "Varies by dataset",
+        "data_retention": "Historical datasets available"
+      }
+    }
+  },
+  "extraction_tracking": {
+    "note": "This section tracks actual data extraction runs with timestamps",
+    "extractions": []
+  },
+  "data_lineage_summary": {
+    "description": "Overall data flow from sources to target database",
+    "flow": [
+      {
+        "step": 1,
+        "source": "USAJobs.gov API",
+        "action": "Extract federal job postings",
+        "output": "Raw JSON job data",
+        "target": "job_postings, companies tables"
+      },
+      {
+        "step": 2,
+        "source": "BLS Public Data API",
+        "action": "Extract employment statistics",
+        "output": "Time series employment data",
+        "target": "market_trends table"
+      },
+      {
+        "step": 3,
+        "source": "DOL Open Data Portal",
+        "action": "Extract job market trends",
+        "output": "Analytics and trend data",
+        "target": "job_market_analytics table"
+      },
+      {
+        "step": 4,
+        "source": "All sources",
+        "action": "Extract and store source metadata",
+        "output": "Extraction metadata",
+        "target": "data_source_metadata table"
+      }
+    ]
+  },
+  "ngda_theme_associations": {
+    "note": "National Geospatial Data Asset themes (if applicable to geospatial job market data)",
+    "applicable_themes": []
+  },
+  "catalog_information": {
+    "data_gov": {
+      "organization": "dol-gov",
+      "datasets": [
+        "Employment statistics",
+        "Wage data",
+        "Job market trends",
+        "Labor force statistics"
+      ]
+    }
+  }
+}

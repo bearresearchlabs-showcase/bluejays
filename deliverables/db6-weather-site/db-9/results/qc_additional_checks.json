@@ -1,0 +1,108 @@
+{
+  "database": "db-9",
+  "check_timestamp": "20260208-2110",
+  "code_quality": {
+    "cte_usage": {
+      "passed": 30,
+      "failed": 0,
+      "details": []
+    },
+    "formatting": {
+      "passed": 30,
+      "failed": 0,
+      "details": []
+    },
+    "complexity": {
+      "passed": 30,
+      "failed": 0,
+      "details": []
+    },
+    "duplicates": {
+      "passed": 15,
+      "failed": 15,
+      "details": [
+        "Query 16 appears to be duplicate",
+        "Query 17 appears to be duplicate",
+        "Query 18 appears to be duplicate",
+        "Query 19 appears to be duplicate",
+        "Query 20 appears to be duplicate",
+        "Query 21 appears to be duplicate",
+        "Query 22 appears to be duplicate",
+        "Query 23 appears to be duplicate",
+        "Query 24 appears to be duplicate",
+        "Query 25 appears to be duplicate",
+        "Query 26 appears to be duplicate",
+        "Query 27 appears to be duplicate",
+        "Query 28 appears to be duplicate",
+        "Query 29 appears to be duplicate",
+        "Query 30 appears to be duplicate"
+      ]
+    }
+  },
+  "documentation_completeness": {
+    "metadata_completeness": {
+      "passed": 0,
+      "failed": 30,
+      "details": [
+        "Query 1 missing: use_case, business_value, purpose",
+        "Query 2 missing: use_case, business_value, purpose",
+        "Query 3 missing: use_case, business_value, purpose",
+        "Query 4 missing: use_case, business_value, purpose",
+        "Query 5 missing: use_case, business_value, purpose",
+        "Query 6 missing: use_case, business_value, purpose",
+        "Query 7 missing: use_case, business_value, purpose",
+        "Query 8 missing: use_case, business_value, purpose",
+        "Query 9 missing: use_case, business_value, purpose",
+        "Query 10 missing: use_case, business_value, purpose",
+        "Query 11 missing: use_case, business_value, purpose",
+        "Query 12 missing: use_case, business_value, purpose",
+        "Query 13 missing: use_case, business_value, purpose",
+        "Query 14 missing: use_case, business_value, purpose",
+        "Query 15 missing: use_case, business_value, purpose",
+        "Query 16 missing: use_case, business_value, purpose",
+        "Query 17 missing: use_case, business_value, purpose",
+        "Query 18 missing: use_case, business_value, purpose",
+        "Query 19 missing: use_case, business_value, purpose",
+        "Query 20 missing: use_case, business_value, purpose",
+        "Query 21 missing: use_case, business_value, purpose",
+        "Query 22 missing: use_case, business_value, purpose",
+        "Query 23 missing: use_case, business_value, purpose",
+        "Query 24 missing: use_case, business_value, purpose",
+        "Query 25 missing: use_case, business_value, purpose",
+        "Query 26 missing: use_case, business_value, purpose",
+        "Query 27 missing: use_case, business_value, purpose",
+        "Query 28 missing: use_case, business_value, purpose",
+        "Query 29 missing: use_case, business_value, purpose",
+        "Query 30 missing: use_case, business_value, purpose"
+      ]
+    },
+    "json_structure": {
+      "passed": 1,
+      "failed": 0,
+      "details": []
+    }
+  },
+  "compliance": {
+    "query_count": {
+      "passed": 1,
+      "failed": 0,
+      "details": []
+    },
+    "timestamp_format": {
+      "passed": 1,
+      "failed": 0,
+      "details": []
+    },
+    "json_status_format": {
+      "passed": 1,
+      "failed": 1,
+      "details": [
+        "comprehensive_validation_report.json uses string status"
+      ]
+    }
+  },
+  "Pass": 0,
+  "notes": [
+    "Some QC checks failed - see details"
+  ]
+}

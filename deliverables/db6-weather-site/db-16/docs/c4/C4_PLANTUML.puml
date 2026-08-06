@@ -1,0 +1,60 @@
+@startuml db16_complete_c4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
+
+LAYOUT_WITH_LEGEND()
+
+title db-16 Complete C4 Model - Flood Risk Assessment for M&A Due Diligence
+
+' ==========================================
+' Level 1: System Context
+' ==========================================
+
+Person(m_a_analyst, "M&A Analyst", "Conducts flood risk due diligence\non acquisition targets")
+Person(m_a_manager, "M&A Manager", "Makes acquisition decisions\nbased on risk assessments")
+Person(portfolio_manager, "Portfolio Manager", "Manages real estate\ninvestment portfolios")
+
+System(db16_system, "Flood Risk Assessment System", "Comprehensive flood risk assessment\nfor M&A due diligence workflows")
+
+System_Ext(fema_api, "FEMA API", "National Flood Hazard Layer\nflood zone data")
+System_Ext(noaa_api, "NOAA API", "Sea level rise projections\nand high tide flooding data")
+System_Ext(usgs_api, "USGS API", "Streamflow data from\n7,000+ gauges")
+System_Ext(nasa_api, "NASA API", "Flood model predictions\nand inundation extents")
+
+Rel(m_a_analyst, db16_system, "Conducts pre-acquisition\nrisk assessments", "HTTPS")
+Rel(m_a_manager, db16_system, "Reviews risk reports\nfor acquisition decisions", "HTTPS")
+Rel(portfolio_manager, db16_system, "Analyzes portfolio-level\nrisk metrics", "HTTPS")
+
+Rel(db16_system, fema_api, "Retrieves flood zone\nboundaries and BFEs", "REST API")
+Rel(db16_system, noaa_api, "Retrieves sea level rise\nprojections", "REST API")
+Rel(db16_system, usgs_api, "Retrieves streamflow\nobservations", "REST API")
+Rel(db16_system, nasa_api, "Retrieves flood model\npredictions", "REST API")
+
+' ==========================================
+' Level 2: Container
+' ==========================================
+
+Container(web_app, "Web Application", "React/TypeScript", "Provides M&A risk assessment\ninterface and dashboards")
+Container(api_service, "API Service", "Python/FastAPI", "RESTful API for risk assessment\nqueries and data operations")
+Container(spatial_engine, "Spatial Analysis Engine", "PostGIS/GeoPandas", "Performs spatial joins and\ngeographic analysis")
+Container(risk_calculator, "Risk Calculator", "Python", "Multi-factor risk scoring\nand financial impact modeling")
+ContainerDb(database, "Flood Risk Database", "PostgreSQL/Databricks/Databricks", "Stores flood risk data:\nFEMA zones, NOAA projections,\nUSGS streamflow, NASA models")
+ContainerDb(blob_storage, "Blob Storage", "S3/Azure Blob/GCS", "Stores spatial data files\nand flood model outputs")
+
+Rel(m_a_analyst, web_app, "Uses", "HTTPS")
+Rel(m_a_manager, web_app, "Uses", "HTTPS")
+Rel(web_app, api_service, "Makes API calls", "HTTPS/REST")
+Rel(api_service, spatial_engine, "Uses for spatial analysis", "Python API")
+Rel(api_service, risk_calculator, "Uses for risk scoring", "Python API")
+Rel(api_service, database, "Reads and writes", "SQL")
+Rel(spatial_engine, database, "Queries spatial data", "PostGIS/SQL")
+Rel(risk_calculator, database, "Reads risk data", "SQL")
+Rel(api_service, blob_storage, "Stores/retrieves files", "S3 API")
+Rel(api_service, fema_api, "Retrieves flood zones", "REST API")
+Rel(api_service, noaa_api, "Retrieves sea level data", "REST API")
+Rel(api_service, usgs_api, "Retrieves streamflow", "REST API")
+Rel(api_service, nasa_api, "Retrieves flood models", "REST API")
+
+@enduml

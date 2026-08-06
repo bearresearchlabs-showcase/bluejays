@@ -1,0 +1,376 @@
+title Diagram 1: Overall ETL Architecture
+
+direction right
+
+"CSV Files (db-17)" [icon: aws-s3, color: gray]
+"Document Management System (db-17)" [icon: aws-ec2, color: blue]
+"ETL Pipeline Orchestrator" [icon: aws-lambda]
+"Extract Service" [icon: aws-lambda]
+"Transform Service" [icon: aws-lambda]
+"Load Service" [icon: aws-lambda]
+"PostgreSQL Database (db-16)" [icon: aws-rds, color: green]
+"Data Quality Monitor" [icon: aws-cloudwatch]
+"Error Handler" [icon: aws-lambda]
+
+"CSV Files (db-17)" > "Document Management System (db-17)": "Stores CSV files"
+"Document Management System (db-17)" > "ETL Pipeline Orchestrator": "Triggers ETL pipeline"
+"ETL Pipeline Orchestrator" > "Extract Service": "Coordinates extraction"
+"Extract Service" > "Document Management System (db-17)": "Reads CSV files"
+"Extract Service" > "Transform Service": "Sends raw data"
+"Transform Service" > "Load Service": "Sends transformed data"
+"Load Service" > "PostgreSQL Database (db-16)": "Loads data"
+"ETL Pipeline Orchestrator" > "Data Quality Monitor": "Monitors pipeline"
+"Error Handler" > "ETL Pipeline Orchestrator": "Handles errors"
+"Data Quality Monitor" > "PostgreSQL Database (db-16)": "Validates data"
+
+
+title Diagram 2: Extract Phase - CSV File Sources
+
+direction right
+
+"Document Management System (db-17)" [icon: aws-ec2, color: blue]
+"FEMA Flood Zones CSV" [icon: aws-s3, color: gray]
+"NOAA Sea Level Rise CSV" [icon: aws-s3, color: gray]
+"USGS Streamflow CSV" [icon: aws-s3, color: gray]
+"NASA Flood Models CSV" [icon: aws-s3, color: gray]
+"Historical Flood Events CSV" [icon: aws-s3, color: gray]
+"CSV Reader Service" [icon: aws-lambda]
+"Data Validator" [icon: aws-lambda]
+"Raw Data Buffer" [icon: aws-s3]
+
+"Document Management System (db-17)" > "FEMA Flood Zones CSV": "Stores CSV"
+"Document Management System (db-17)" > "NOAA Sea Level Rise CSV": "Stores CSV"
+"Document Management System (db-17)" > "USGS Streamflow CSV": "Stores CSV"
+"Document Management System (db-17)" > "NASA Flood Models CSV": "Stores CSV"
+"Document Management System (db-17)" > "Historical Flood Events CSV": "Stores CSV"
+"FEMA Flood Zones CSV" > "CSV Reader Service": "Reads CSV"
+"NOAA Sea Level Rise CSV" > "CSV Reader Service": "Reads CSV"
+"USGS Streamflow CSV" > "CSV Reader Service": "Reads CSV"
+"NASA Flood Models CSV" > "CSV Reader Service": "Reads CSV"
+"Historical Flood Events CSV" > "CSV Reader Service": "Reads CSV"
+"CSV Reader Service" > "Data Validator": "Validates structure"
+"Data Validator" > "Raw Data Buffer": "Stores validated raw data"
+
+
+title Diagram 3: Transform Phase - Data Cleaning and Transformation
+
+direction right
+
+"Raw Data Buffer" [icon: aws-s3]
+"Data Cleaner" [icon: aws-lambda]
+"Coordinate Transformer" [icon: aws-lambda]
+"Data Enricher" [icon: aws-lambda]
+"Schema Mapper" [icon: aws-lambda]
+"Data Normalizer" [icon: aws-lambda]
+"Transformed Data Buffer" [icon: aws-s3]
+"Transformation Rules Engine" [icon: aws-lambda]
+
+"Raw Data Buffer" > "Data Cleaner": "Reads raw data"
+"Data Cleaner" > "Coordinate Transformer": "Cleaned data"
+"Coordinate Transformer" > "Data Enricher": "Transformed coordinates"
+"Data Enricher" > "Schema Mapper": "Enriched data"
+"Schema Mapper" > "Data Normalizer": "Mapped to schema"
+"Data Normalizer" > "Transformed Data Buffer": "Normalized data"
+"Transformation Rules Engine" > "Data Cleaner": "Provides cleaning rules"
+"Transformation Rules Engine" > "Coordinate Transformer": "Provides CRS rules"
+"Transformation Rules Engine" > "Schema Mapper": "Provides mapping rules"
+
+
+title Diagram 4: Load Phase - PostgreSQL Loading
+
+direction right
+
+"Transformed Data Buffer" [icon: aws-s3]
+"Batch Loader" [icon: aws-lambda]
+"PostgreSQL Connection Pool" [icon: aws-rds]
+"PostgreSQL Database (db-16)" [icon: aws-rds, color: green]
+"fema_flood_zones Table" [icon: aws-rds]
+"noaa_sea_level_rise Table" [icon: aws-rds]
+"usgs_streamflow_gauges Table" [icon: aws-rds]
+"usgs_streamflow_observations Table" [icon: aws-rds]
+"nasa_flood_models Table" [icon: aws-rds]
+"historical_flood_events Table" [icon: aws-rds]
+"Load Monitor" [icon: aws-cloudwatch]
+
+"Transformed Data Buffer" > "Batch Loader": "Reads transformed data"
+"Batch Loader" > "PostgreSQL Connection Pool": "Gets connection"
+"PostgreSQL Connection Pool" > "PostgreSQL Database (db-16)": "Manages connections"
+"Batch Loader" > "fema_flood_zones Table": "INSERT/UPDATE"
+"Batch Loader" > "noaa_sea_level_rise Table": "INSERT/UPDATE"
+"Batch Loader" > "usgs_streamflow_gauges Table": "INSERT/UPDATE"
+"Batch Loader" > "usgs_streamflow_observations Table": "INSERT/UPDATE"
+"Batch Loader" > "nasa_flood_models Table": "INSERT/UPDATE"
+"Batch Loader" > "historical_flood_events Table": "INSERT/UPDATE"
+"Load Monitor" > "Batch Loader": "Monitors load progress"
+"Load Monitor" > "PostgreSQL Database (db-16)": "Validates load"
+
+
+title Diagram 5: FEMA Flood Zones ETL Pipeline
+
+direction right
+
+"FEMA Flood Zones CSV" [icon: aws-s3, color: gray]
+"CSV Parser" [icon: aws-lambda]
+"Zone Code Validator" [icon: aws-lambda]
+"Geometry Converter" [icon: aws-lambda]
+"CRS Transformer" [icon: aws-lambda]
+"BFE Calculator" [icon: aws-lambda]
+"PostgreSQL Loader" [icon: aws-lambda]
+"fema_flood_zones Table" [icon: aws-rds]
+
+"FEMA Flood Zones CSV" > "CSV Parser": "Parses CSV columns"
+"CSV Parser" > "Zone Code Validator": "Validates zone codes (A, AE, V, etc.)"
+"Zone Code Validator" > "Geometry Converter": "Converts to GEOGRAPHY"
+"Geometry Converter" > "CRS Transformer": "Transforms to EPSG:4326"
+"CRS Transformer" > "BFE Calculator": "Calculates Base Flood Elevation"
+"BFE Calculator" > "PostgreSQL Loader": "Prepares INSERT statement"
+"PostgreSQL Loader" > "fema_flood_zones Table": "Bulk INSERT"
+
+
+title Diagram 6: NOAA Sea Level Rise ETL Pipeline
+
+direction right
+
+"NOAA Sea Level Rise CSV" [icon: aws-s3, color: gray]
+"CSV Parser" [icon: aws-lambda]
+"Station Validator" [icon: aws-lambda]
+"Projection Calculator" [icon: aws-lambda]
+"Scenario Mapper" [icon: aws-lambda]
+"Coordinate Transformer" [icon: aws-lambda]
+"PostgreSQL Loader" [icon: aws-lambda]
+"noaa_sea_level_rise Table" [icon: aws-rds]
+
+"NOAA Sea Level Rise CSV" > "CSV Parser": "Parses station data"
+"CSV Parser" > "Station Validator": "Validates station IDs"
+"Station Validator" > "Projection Calculator": "Calculates SLR projections"
+"Projection Calculator" > "Scenario Mapper": "Maps scenarios (Low, Intermediate, High)"
+"Scenario Mapper" > "Coordinate Transformer": "Transforms coordinates to GEOGRAPHY"
+"Coordinate Transformer" > "PostgreSQL Loader": "Prepares INSERT statement"
+"PostgreSQL Loader" > "noaa_sea_level_rise Table": "Bulk INSERT"
+
+
+title Diagram 7: USGS Streamflow ETL Pipeline
+
+direction right
+
+"USGS Streamflow CSV" [icon: aws-s3, color: gray]
+"CSV Parser" [icon: aws-lambda]
+"Gauge Validator" [icon: aws-lambda]
+"Observation Parser" [icon: aws-lambda]
+"Flood Stage Calculator" [icon: aws-lambda]
+"Coordinate Transformer" [icon: aws-lambda]
+"PostgreSQL Loader" [icon: aws-lambda]
+"usgs_streamflow_gauges Table" [icon: aws-rds]
+"usgs_streamflow_observations Table" [icon: aws-rds]
+
+"USGS Streamflow CSV" > "CSV Parser": "Parses gauge and observation data"
+"CSV Parser" > "Gauge Validator": "Validates gauge IDs"
+"Gauge Validator" > "Observation Parser": "Parses observation records"
+"Observation Parser" > "Flood Stage Calculator": "Calculates flood categories"
+"Flood Stage Calculator" > "Coordinate Transformer": "Transforms coordinates"
+"Coordinate Transformer" > "PostgreSQL Loader": "Prepares INSERT statements"
+"PostgreSQL Loader" > "usgs_streamflow_gauges Table": "Bulk INSERT gauges"
+"PostgreSQL Loader" > "usgs_streamflow_observations Table": "Bulk INSERT observations"
+
+
+title Diagram 8: Data Quality and Validation Pipeline
+
+direction right
+
+"Raw Data Buffer" [icon: aws-s3]
+"Transformed Data Buffer" [icon: aws-s3]
+"Data Quality Validator" [icon: aws-lambda]
+"Completeness Checker" [icon: aws-lambda]
+"Consistency Checker" [icon: aws-lambda]
+"Accuracy Validator" [icon: aws-lambda]
+"Quality Metrics Calculator" [icon: aws-lambda]
+"PostgreSQL Database (db-16)" [icon: aws-rds, color: green]
+"data_quality_metrics Table" [icon: aws-rds]
+"Quality Dashboard" [icon: aws-quicksight]
+
+"Raw Data Buffer" > "Data Quality Validator": "Validates raw data"
+"Transformed Data Buffer" > "Data Quality Validator": "Validates transformed data"
+"Data Quality Validator" > "Completeness Checker": "Checks data completeness"
+"Completeness Checker" > "Consistency Checker": "Checks data consistency"
+"Consistency Checker" > "Accuracy Validator": "Validates data accuracy"
+"Accuracy Validator" > "Quality Metrics Calculator": "Calculates metrics"
+"Quality Metrics Calculator" > "data_quality_metrics Table": "Stores metrics"
+"Quality Metrics Calculator" > "Quality Dashboard": "Displays metrics"
+"PostgreSQL Database (db-16)" > "Quality Metrics Calculator": "Provides validation data"
+
+
+title Diagram 9: Error Handling and Retry Logic
+
+direction right
+
+"ETL Pipeline Orchestrator" [icon: aws-lambda]
+"Extract Service" [icon: aws-lambda]
+"Transform Service" [icon: aws-lambda]
+"Load Service" [icon: aws-lambda]
+"Error Handler" [icon: aws-lambda]
+"Retry Manager" [icon: aws-lambda]
+"Dead Letter Queue" [icon: aws-sqs]
+"Error Logger" [icon: aws-cloudwatch]
+"Notification Service" [icon: aws-sns]
+
+"ETL Pipeline Orchestrator" > "Extract Service": "Triggers extraction"
+"Extract Service" > "Error Handler": "Reports extraction errors"
+"Transform Service" > "Error Handler": "Reports transformation errors"
+"Load Service" > "Error Handler": "Reports load errors"
+"Error Handler" > "Retry Manager": "Manages retries"
+"Retry Manager" > "Extract Service": "Retries extraction"
+"Retry Manager" > "Transform Service": "Retries transformation"
+"Retry Manager" > "Load Service": "Retries loading"
+"Error Handler" > "Dead Letter Queue": "Stores failed records"
+"Error Handler" > "Error Logger": "Logs errors"
+"Error Handler" > "Notification Service": "Sends alerts"
+
+
+title Diagram 10: Monitoring and Observability
+
+direction right
+
+"ETL Pipeline Orchestrator" [icon: aws-lambda]
+"Extract Service" [icon: aws-lambda]
+"Transform Service" [icon: aws-lambda]
+"Load Service" [icon: aws-lambda]
+"CloudWatch Metrics" [icon: aws-cloudwatch]
+"CloudWatch Logs" [icon: aws-cloudwatch]
+"X-Ray Tracer" [icon: aws-xray]
+"Performance Monitor" [icon: aws-cloudwatch]
+"ETL Dashboard" [icon: aws-quicksight]
+
+"ETL Pipeline Orchestrator" > "CloudWatch Metrics": "Publishes metrics"
+"Extract Service" > "CloudWatch Metrics": "Publishes extract metrics"
+"Transform Service" > "CloudWatch Metrics": "Publishes transform metrics"
+"Load Service" > "CloudWatch Metrics": "Publishes load metrics"
+"Extract Service" > "CloudWatch Logs": "Writes logs"
+"Transform Service" > "CloudWatch Logs": "Writes logs"
+"Load Service" > "CloudWatch Logs": "Writes logs"
+"ETL Pipeline Orchestrator" > "X-Ray Tracer": "Traces pipeline"
+"Performance Monitor" > "CloudWatch Metrics": "Monitors performance"
+"CloudWatch Metrics" > "ETL Dashboard": "Displays metrics"
+"CloudWatch Logs" > "ETL Dashboard": "Displays logs"
+
+
+title Diagram 11: NASA Flood Models ETL Pipeline
+
+direction right
+
+"NASA Flood Models CSV" [icon: aws-s3, color: gray]
+"CSV Parser" [icon: aws-lambda]
+"Model Validator" [icon: aws-lambda]
+"Grid Cell Processor" [icon: aws-lambda]
+"Inundation Calculator" [icon: aws-lambda]
+"Probability Calculator" [icon: aws-lambda]
+"Coordinate Transformer" [icon: aws-lambda]
+"PostgreSQL Loader" [icon: aws-lambda]
+"nasa_flood_models Table" [icon: aws-rds]
+
+"NASA Flood Models CSV" > "CSV Parser": "Parses model output data"
+"CSV Parser" > "Model Validator": "Validates model IDs"
+"Model Validator" > "Grid Cell Processor": "Processes grid cells"
+"Grid Cell Processor" > "Inundation Calculator": "Calculates inundation depth"
+"Inundation Calculator" > "Probability Calculator": "Calculates flood probability"
+"Probability Calculator" > "Coordinate Transformer": "Transforms coordinates to GEOGRAPHY"
+"Coordinate Transformer" > "PostgreSQL Loader": "Prepares INSERT statement"
+"PostgreSQL Loader" > "nasa_flood_models Table": "Bulk INSERT"
+
+
+title Diagram 12: Historical Flood Events ETL Pipeline
+
+direction right
+
+"Historical Flood Events CSV" [icon: aws-s3, color: gray]
+"CSV Parser" [icon: aws-lambda]
+"Event Validator" [icon: aws-lambda]
+"Date Parser" [icon: aws-lambda]
+"Severity Classifier" [icon: aws-lambda]
+"Geometry Converter" [icon: aws-lambda]
+"Coordinate Transformer" [icon: aws-lambda]
+"PostgreSQL Loader" [icon: aws-lambda]
+"historical_flood_events Table" [icon: aws-rds]
+
+"Historical Flood Events CSV" > "CSV Parser": "Parses event data"
+"CSV Parser" > "Event Validator": "Validates event IDs"
+"Event Validator" > "Date Parser": "Parses event dates"
+"Date Parser" > "Severity Classifier": "Classifies severity (Minor, Moderate, Major)"
+"Severity Classifier" > "Geometry Converter": "Converts to GEOGRAPHY"
+"Geometry Converter" > "Coordinate Transformer": "Transforms to EPSG:4326"
+"Coordinate Transformer" > "PostgreSQL Loader": "Prepares INSERT statement"
+"PostgreSQL Loader" > "historical_flood_events Table": "Bulk INSERT"
+
+
+title Diagram 13: Complete Data Flow - CSV to PostgreSQL
+
+direction right
+
+"CSV Files (db-17)" [icon: aws-s3, color: gray]
+"Document Management System (db-17)" [icon: aws-ec2, color: blue]
+"ETL Pipeline Orchestrator" [icon: aws-lambda]
+"Extract Phase" [icon: aws-lambda]
+"Transform Phase" [icon: aws-lambda]
+"Load Phase" [icon: aws-lambda]
+"PostgreSQL Database (db-16)" [icon: aws-rds, color: green]
+"Data Quality Metrics" [icon: aws-rds]
+"ETL Metadata" [icon: aws-dynamodb]
+
+"CSV Files (db-17)" > "Document Management System (db-17)": "Stores CSV files"
+"Document Management System (db-17)" > "ETL Pipeline Orchestrator": "Triggers ETL"
+"ETL Pipeline Orchestrator" > "Extract Phase": "Coordinates extraction"
+"Extract Phase" > "Transform Phase": "Sends raw data"
+"Transform Phase" > "Load Phase": "Sends transformed data"
+"Load Phase" > "PostgreSQL Database (db-16)": "Loads into tables"
+"ETL Pipeline Orchestrator" > "ETL Metadata": "Tracks pipeline execution"
+"Load Phase" > "Data Quality Metrics": "Stores quality metrics"
+"PostgreSQL Database (db-16)" > "Data Quality Metrics": "Validates loaded data"
+
+
+title Diagram 14: Spatial Data Transformation Pipeline
+
+direction right
+
+"CSV Coordinate Data" [icon: aws-s3, color: gray]
+"Coordinate Parser" [icon: aws-lambda]
+"CRS Detector" [icon: aws-lambda]
+"CRS Transformer" [icon: aws-lambda]
+"Geometry Builder" [icon: aws-lambda]
+"PostGIS Validator" [icon: aws-lambda]
+"GEOGRAPHY Converter" [icon: aws-lambda]
+"PostgreSQL Database (db-16)" [icon: aws-rds, color: green]
+"Spatial Index Builder" [icon: aws-lambda]
+
+"CSV Coordinate Data" > "Coordinate Parser": "Parses lat/lon coordinates"
+"Coordinate Parser" > "CRS Detector": "Detects source CRS"
+"CRS Detector" > "CRS Transformer": "Transforms to EPSG:4326"
+"CRS Transformer" > "Geometry Builder": "Builds PostGIS geometries"
+"Geometry Builder" > "PostGIS Validator": "Validates geometries"
+"PostGIS Validator" > "GEOGRAPHY Converter": "Converts to GEOGRAPHY type"
+"GEOGRAPHY Converter" > "PostgreSQL Database (db-16)": "Stores spatial data"
+"Spatial Index Builder" > "PostgreSQL Database (db-16)": "Creates spatial indexes"
+
+
+title Diagram 15: Batch Processing and Parallelization
+
+direction right
+
+"ETL Pipeline Orchestrator" [icon: aws-lambda]
+"Batch Splitter" [icon: aws-lambda]
+"Parallel Extract Workers" [icon: aws-lambda]
+"Parallel Transform Workers" [icon: aws-lambda]
+"Parallel Load Workers" [icon: aws-lambda]
+"Batch Coordinator" [icon: aws-lambda]
+"PostgreSQL Database (db-16)" [icon: aws-rds, color: green]
+"Batch Monitor" [icon: aws-cloudwatch]
+
+"ETL Pipeline Orchestrator" > "Batch Splitter": "Splits CSV into batches"
+"Batch Splitter" > "Parallel Extract Workers": "Distributes extraction"
+"Parallel Extract Workers" > "Parallel Transform Workers": "Distributes transformation"
+"Parallel Transform Workers" > "Parallel Load Workers": "Distributes loading"
+"Batch Coordinator" > "Parallel Extract Workers": "Coordinates batches"
+"Batch Coordinator" > "Parallel Transform Workers": "Coordinates batches"
+"Batch Coordinator" > "Parallel Load Workers": "Coordinates batches"
+"Parallel Load Workers" > "PostgreSQL Database (db-16)": "Parallel INSERT operations"
+"Batch Monitor" > "Batch Coordinator": "Monitors batch progress"
+"Batch Monitor" > "PostgreSQL Database (db-16)": "Validates batch completion"
+

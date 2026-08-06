@@ -1,0 +1,405 @@
+---
+description: Format database deliverables using OpenAPI/Swagger specification format
+alwaysApply: true
+---
+
+# Deliverable Formatting Suite
+
+## Overview
+
+This formatting suite provides OpenAPI/Swagger specification formatting for database deliverables **and generates web-deployable HTML websites**. The suite converts database documentation (db-{N}.md files) into:
+1. Machine-readable OpenAPI 3.0 specifications for API documentation, code generation, and integration with development tools
+2. Web-deployable HTML websites with anti-robot protection and Vercel Analytics integration
+
+## Format Command
+
+The `/format` command packages database deliverables into `/deliverable` folder with complete documentation **and generates web-deployable HTML websites**:
+
+```bash
+
+# Format single database
+
+/format @db/db-1/
+
+# Format range of databases
+
+/format @db/db-1/ @db/db-5/
+
+# Format all databases
+
+/format -a
+
+# Format by database number
+
+/format db-1
+
+# Format range by database numbers
+
+/format db-1 db-5
+```
+
+**Key Principle**: The `/format` command creates a `deliverable/` folder containing:
+1. **db-{N}.md** - Complete comprehensive markdown file containing:
+   - Complete database documentation (schema, tables, ER diagrams)
+   - **ALL 30 SQL queries embedded inline** with full business context
+   - Table of contents with natural language descriptions
+   - Business context explaining queries come from $1M+ ARR companies
+   - What each query does and what business case it accomplishes
+
+2. **Web-Deployable Website** (`db{N}-{descriptive-name}/` folder):
+   - **HTML Documentation** (`db-{N}_documentation.html`) - Standalone HTML file with embedded CSS/JS, Prism.js syntax highlighting, sidebar navigation, anti-robot meta tags, and Vercel Analytics
+   - **JSON Deliverable** (`db-{N}_deliverable.json`) - Machine-readable JSON with complete database metadata, schema, and queries
+   - **Vercel Config** (`vercel.json`) - Deployment configuration for Vercel hosting
+   - **Data Files** (`data/` folder) - Schema and data SQL files
+
+**Single File Structure**: The deliverable is ONE comprehensive markdown file that explains every query, every aspect of the database, with a table of contents using natural language to specify what each query does and what business case it has accomplished. These databases were sourced from businesses with at least $1M ARR per year.
+
+**Website Generation**: The `/format` command automatically generates a web-deployable HTML website with:
+- Anti-robot meta tags (noindex, nofollow, noarchive, nosnippet, noimageindex) for search engine protection
+- Vercel Analytics integration (script tag for static HTML, with comment noting Next.js import syntax: `import { Analytics } from "@vercel/analytics/next"`)
+- Prism.js syntax highlighting for SQL and JSON code blocks
+- Responsive sidebar navigation
+- Dark theme optimized for code readability
+
+## Format Requirements
+
+**CRITICAL**: All formatted deliverables must follow OpenAPI 3.0.3 specification format.
+
+### Output Format
+
+- **Format**: OpenAPI 3.0.3 YAML specification
+- **File Location**: `db-{N}/deliverable.openapi.yaml`
+- **Encoding**: UTF-8
+- **Structure**: Must include all required OpenAPI components (info, servers, paths, components)
+
+### Required OpenAPI Components
+
+All formatted deliverables must include:
+
+1. **Info Section**:
+   - `title`: Database name and type
+   - `description`: Database description
+   - `version`: Version number (e.g., 1.0.0)
+   - `contact`: Contact information
+   - `license`: License information
+
+2. **Servers Section**:
+   - PostgreSQL server URL
+    server URL
+
+3. **Tags Section**:
+   - `schema`: Database schema information
+   - `tables`: Table definitions
+   - `queries`: SQL query definitions
+   - `relationships`: Table relationships
+   - `spatial`: Spatial operations (for spatial databases)
+
+4. **Paths Section**:
+   - `/schema`: Get schema overview
+   - `/tables`: List all tables
+   - `/tables/{tableName}`: Get table details
+   - `/queries`: List all queries
+   - `/queries/{queryNumber}`: Get query details
+   - `/spatial/operations`: List spatial operations (if applicable)
+
+5. **Components Section**:
+   - `schemas`: All data models (SchemaOverview, Table, Column, Query, etc.)
+   - `examples`: Example data structures
+
+### Schema Components
+
+All formatted deliverables must define these schemas:
+
+- **SchemaOverview**: Database overview information
+- **TableGroup**: Logical grouping of tables
+- **Table**: Table structure with columns, indexes, constraints
+- **Column**: Column definition with type, nullable, default, description
+- **Index**: Index definition with columns and type
+- **Constraint**: Constraint definition (PRIMARY KEY, UNIQUE, etc.)
+- **ForeignKey**: Foreign key relationship definition
+- **Query**: SQL query metadata and code
+- **SpatialColumn**: Spatial column definition (for spatial databases)
+- **SpatialOperation**: Spatial function definition (for spatial databases)
+
+### Query Metadata
+
+Each query in the OpenAPI spec must include:
+
+- `number`: Query number (1-30)
+- `title`: Query title
+- `description`: Query description (explains what the SQL does technically - describes SQL operations, joins, CTEs, aggregations, window functions, spatial operations, etc.)
+- `complexity`: Complexity description
+- `sql`: Complete SQL code
+- `expected_output`: Expected output description
+- `categories`: Query categories
+- `database_compatibility`: Platform compatibility flags
+- `useCase`: Use case description (was "Business Use Case" - describes the business use case for the query)
+- `businessValue`: Business value description (was "Client Deliverable" - describes the business value/deliverable)
+- `purpose`: Purpose description (was "Business Value" - describes the purpose/reason for the query)
+- `spatial_operations`: List of spatial operations used (if applicable)
+
+## Formatting Process
+
+### Phase 0: Read Deliverable
+
+1. Read `db-{N}/deliverable/db-{N}.md` file
+2. Parse database overview information
+3. Extract schema documentation
+4. Extract query references
+
+### Phase 1: Extract Schema Information
+
+1. Parse table definitions from DELIVERABLE.md
+2. Extract column definitions (name, type, nullable, default, description)
+3. Extract index definitions
+4. Extract constraint definitions
+5. Extract foreign key relationships
+6. Extract spatial column information (if applicable)
+
+### Phase 2: Extract Query Information
+
+1. Read `db-{N}/queries/queries.json` file
+2. Extract query metadata for all 30 queries
+3. Map query information to OpenAPI Query schema
+4. Categorize queries by type
+
+### Phase 3: Generate OpenAPI Specification
+
+1. Generate OpenAPI 3.0.3 YAML structure
+2. Populate info section with database metadata
+3. Define servers for all supported platforms
+4. Define tags for organization
+5. Define paths for API endpoints
+6. Define components/schemas with all data models
+7. Populate examples section
+
+### Phase 4: Validate OpenAPI Specification
+
+1. Validate YAML syntax
+2. Validate OpenAPI 3.0.3 compliance
+3. Check required fields are present
+4. Verify schema references are valid
+5. Check for circular references
+
+### Phase 5: Package Deliverable (Following db-6 Golden Solution)
+
+1. Create `db-{N}/deliverable/` directory
+2. Generate `db-{N}.md` in `deliverable/` directory (single markdown file)
+3. Create `DELIVERABLE.md` as copy of `db-{N}.md` (for compatibility, matching db-6 structure)
+4. Copy `data/` folder to `deliverable/data/` (database component - all SQL files including extensions)
+5. Generate OpenAPI spec to `deliverable/deliverable.openapi.yaml` (optional)
+6. Generate `database_deliverable.json` in main deliverable folder (matching db-6 structure)
+7. Ensure UTF-8 encoding for all files
+8. Format YAML with proper indentation
+
+**Reference**: Follow `db-6/deliverable/` structure exactly as the golden solution.
+
+### Phase 6: Generate Web-Deployable Website (Following db-6 Golden Solution)
+
+1. Create `db{N}-{descriptive-name}/` folder in `deliverable/` directory (following db-6 naming pattern)
+2. Generate `db-{N}_documentation.html` from `db-{N}.md`:
+   - Convert markdown to HTML with proper formatting
+   - Include Prism.js syntax highlighting for SQL and JSON code blocks
+   - Add embedded CSS for styling (sidebar navigation, dark theme, copy-to-clipboard buttons)
+   - Add JavaScript for sidebar navigation, smooth scrolling, and copy functionality
+   - Add **anti-robot meta tags** (noindex, nofollow, noarchive, nosnippet, noimageindex) for robots, googlebot, and bingbot
+   - Add **Vercel Analytics script tag** (with comment noting Next.js import: `import { Analytics } from "@vercel/analytics/next"`)
+   - Follow db-6 HTML structure and styling patterns exactly
+3. Generate `db-{N}_deliverable.json` from queries.json and schema (web-deployable version)
+4. Create `vercel.json` with deployment configuration (rewrites and headers matching db-6 pattern)
+5. Create `.gitignore` file (standard patterns matching db-6)
+6. Copy `db-{N}.md` to web-deployable folder
+7. Copy entire `data/` folder to web-deployable folder (including all SQL files: schema.sql, data.sql, and any extensions)
+8. Ensure all files are ready for static hosting deployment (Vercel, Netlify, GitHub Pages)
+
+**Reference**: Follow `db-6/deliverable/db6-weather-consulting-insurance/` structure exactly as the golden solution.
+
+## Output File Structure
+
+The `/format` command creates a `deliverable/` folder following the **db-6 golden solution structure**:
+
+```
+db-{N}/
+├── deliverable/
+    ├── db-{N}.md                     # Complete documentation (single markdown file)
+    ├── DELIVERABLE.md                 # Copy of db-{N}.md (for compatibility)
+    ├── deliverable.openapi.yaml       # OpenAPI specification (optional, for API tools)
+    ├── database_deliverable.json      # JSON deliverable (main deliverable folder)
+    ├── data/                          # Database component: Schema and data
+    │   ├── schema.sql                 # Database schema
+    │   ├── data.sql                   # Sample data (if applicable)
+    │   └── *.sql                      # Additional SQL files (e.g., schema_extensions.sql, insurance_schema.sql)
+    └── db{N}-{descriptive-name}/     # Web-deployable website (REQUIRED - follows db-6 pattern)
+        ├── db-{N}_documentation.html  # HTML documentation with anti-robot tags & Analytics
+        ├── db-{N}_deliverable.json    # JSON deliverable (web-deployable version)
+        ├── db-{N}.md                  # Markdown source (copy)
+        ├── vercel.json                # Vercel deployment config
+        ├── .gitignore                 # Git ignore file
+        ├── afterquery-logo.png        # Logo/branding (optional)
+        └── data/                      # Database component (copied from main deliverable/data/)
+            ├── schema.sql
+            ├── data.sql
+            └── *.sql                  # All additional SQL files
+```
+
+**Reference Implementation**: `db-6/deliverable/db6-weather-consulting-insurance/` serves as the **golden solution** for web-deployable structure.
+
+**Deliverable Structure**: Two essential components:
+1. **db-{N}.md** - Single comprehensive markdown file with all documentation
+2. **Database Components** - All database files (data/ folder with SQL files)
+
+**Website Structure**: Web-deployable folder (`db{N}-{descriptive-name}/`) containing:
+1. **HTML Documentation** (`db-{N}_documentation.html`) - Standalone HTML file with:
+   - Complete database documentation converted from markdown
+   - Prism.js syntax highlighting for SQL and JSON code blocks
+   - Sidebar navigation with smooth scrolling
+   - Dark theme styling optimized for code readability
+   - Copy-to-clipboard functionality for code blocks
+   - **Anti-robot meta tags** (noindex, nofollow, noarchive, nosnippet, noimageindex)
+   - **Vercel Analytics integration** (script tag for static HTML, with comment noting Next.js import: `import { Analytics } from "@vercel/analytics/next"`)
+2. **JSON Deliverable** (`db-{N}_deliverable.json`) - Machine-readable database metadata with complete schema and queries
+3. **Vercel Config** (`vercel.json`) - Deployment configuration with rewrites and headers
+4. **Data Files** (`data/` folder) - Complete copy of all schema and data SQL files
+5. **Markdown Source** (`db-{N}.md`) - Copy of the main documentation markdown file
+6. **Git Ignore** (`.gitignore`) - Standard git ignore patterns
+7. **Optional Assets** - Logo files, images, etc.
+
+## Validation
+
+The formatting process validates:
+
+1. **YAML Syntax**: Valid YAML format
+2. **OpenAPI Compliance**: Conforms to OpenAPI 3.0.3 specification
+3. **Required Fields**: All required OpenAPI fields are present
+4. **Schema References**: All `$ref` references are valid
+5. **Data Completeness**: All tables and queries are included
+6. **Type Consistency**: Data types are consistent across schemas
+
+## Integration with Tools
+
+The formatted OpenAPI specifications can be used with:
+
+- **Swagger UI**: Generate interactive API documentation
+- **Swagger Editor**: Edit and validate specifications
+- **Swagger Codegen**: Generate client libraries and server stubs
+- **Postman**: Import specifications for API testing
+- **OpenAPI Generator**: Generate code in various languages
+- **API Documentation Tools**: Various tools that consume OpenAPI specs
+
+## Usage Examples
+
+### Format Single Database
+
+```bash
+/format @db/db-1/
+```
+
+Creates: `db-1/deliverable/` folder following **db-6 golden solution structure**:
+- `db-1.md` - Complete documentation (markdown)
+- `DELIVERABLE.md` - Copy of db-1.md (for compatibility)
+- `deliverable.openapi.yaml` - OpenAPI spec (optional)
+- `database_deliverable.json` - JSON deliverable (main folder)
+- `data/` - Schema and data files (all SQL files)
+- `db1-{descriptive-name}/` - Web-deployable website (following db-6 pattern):
+  - `db-1_documentation.html` - HTML documentation (with anti-robot tags & Analytics, Prism.js highlighting, sidebar navigation)
+  - `db-1_deliverable.json` - JSON deliverable (web-deployable version)
+  - `db-1.md` - Markdown source (copy)
+  - `vercel.json` - Vercel deployment config (rewrites and headers)
+  - `.gitignore` - Git ignore file
+  - `data/` - Complete copy of all SQL files (schema.sql, data.sql, extensions)
+  - Optional: Logo/images if applicable
+
+**Reference**: See `db-6/deliverable/db6-weather-consulting-insurance/` for exact structure.
+
+### Format Multiple Databases
+
+```bash
+/format @db/db-1/ @db/db-6/
+```
+
+Creates deliverable folders for:
+- `db-1/deliverable/`
+- `db-6/deliverable/`
+
+### Format All Databases
+
+```bash
+/format -a
+```
+
+Creates deliverable folders for db-1 through db-15.
+
+## Error Handling
+
+The formatting process handles:
+
+- **Missing Files**: Reports error if db-{N}.md or queries.json is missing
+- **Invalid YAML**: Reports syntax errors in output
+- **OpenAPI Violations**: Reports specification compliance errors
+- **Missing Data**: Reports if required schema information is missing
+- **Invalid References**: Reports if schema references are invalid
+
+## Best Practices
+
+1. **Keep Specs Updated**: Re-run formatting after changes to db-{N}.md
+2. **Validate Output**: Always validate generated OpenAPI specs and HTML files
+3. **Version Control**: Commit OpenAPI specs and HTML websites to version control
+4. **Documentation**: Keep db-{N}.md, OpenAPI spec, and HTML website in sync
+5. **Examples**: Include comprehensive examples in OpenAPI spec
+6. **Descriptions**: Provide detailed descriptions for all components
+7. **Website Deployment**: HTML websites are ready for immediate deployment to Vercel, Netlify, or GitHub Pages
+8. **Anti-Robot Protection**: All generated HTML files include anti-robot meta tags to prevent search engine indexing
+9. **Analytics**: All generated HTML files include Vercel Analytics for tracking page views
+
+## ER Diagrams
+
+**CRITICAL**: All formatted deliverables must include Mermaid.js ER diagrams showing table relationships.
+
+### ER Diagram Requirements
+
+- **Location**: Included in db-{N}.md in "Database Schema Documentation" section
+- **Format**: Mermaid.js ER diagram syntax
+- **Content**: All tables, primary keys, foreign keys, and relationships
+- **Cardinality**: Correct relationship cardinality (one-to-many, many-to-many, etc.)
+
+### ER Diagram Example
+
+```mermaid
+erDiagram
+    profiles {
+        uuid id PK "Primary key"
+        varchar username UK "Unique username"
+    }
+
+    chats {
+        uuid id PK "Primary key"
+        uuid created_by FK "Creator user"
+    }
+
+    profiles ||--o{ chats : "creates"
+```
+
+See `.cursor/rules/database-er-diagrams.mdc` for complete ER diagram requirements and examples.
+
+## Golden Solution Reference
+
+**CRITICAL**: The `/format` command must follow the **db-6 golden solution** structure exactly:
+
+- **Reference Implementation**: `db-6/deliverable/db6-weather-consulting-insurance/`
+- **Main Deliverable**: `db-6/deliverable/` contains markdown, JSON, OpenAPI spec, and data folder
+- **Web-Deployable**: `db-6/deliverable/db6-weather-consulting-insurance/` contains HTML, JSON, Vercel config, and data folder
+- **Structure**: All format outputs must match db-6's exact folder structure, file naming, and content organization
+
+When implementing or updating the format command, always reference `db-6/deliverable/` as the authoritative structure.
+
+## Related Rules
+
+- See `.cursor/rules/database-er-diagrams.mdc` for ER diagram requirements and examples
+- See `.cursor/rules/query-validation-suite.mdc` for query validation
+- See `.cursor/rules/database-compatibility.mdc` for database compatibility requirements
+- See `.cursor/rules/query-abstraction-requirement.mdc` for query JSON requirements
+- See `.cursor/rules/database-creation-workflow.mdc` for complete database creation workflow
+
+---
+**Last Updated**: 2026-02-04
+**Version**: 2.0 (Updated to reflect db-6 golden solution structure)

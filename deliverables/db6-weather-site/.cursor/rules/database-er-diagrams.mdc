@@ -1,0 +1,322 @@
+---
+description: Entity-Relationship (ER) diagrams using Mermaid.js for database schema visualization
+alwaysApply: true
+---
+
+# Database ER Diagrams with Mermaid.js
+
+## Overview
+
+All database deliverables must include Entity-Relationship (ER) diagrams using Mermaid.js syntax. ER diagrams provide visual representation of database schemas, table relationships, and foreign key constraints.
+
+## ER Diagram Requirements
+
+**CRITICAL**: All database deliverables must include Mermaid.js ER diagrams showing:
+
+1. **All Tables**: Every table in the database
+2. **Primary Keys**: Clearly marked primary key columns
+3. **Foreign Keys**: All foreign key relationships
+4. **Cardinality**: Relationship cardinality (one-to-many, many-to-many)
+5. **Key Attributes**: Important columns for each table
+6. **Spatial Columns**: Spatial data types (for spatial databases)
+
+## Mermaid.js ER Diagram Syntax
+
+### Basic Entity Definition
+
+```mermaid
+erDiagram
+    TABLE_NAME {
+        column_type column_name PK "Description"
+        column_type column_name FK "Description"
+        column_type column_name "Description"
+    }
+```
+
+### Relationship Definition
+
+```mermaid
+erDiagram
+    TABLE1 ||--o{ TABLE2 : "relationship_name"
+    TABLE1 ||--|| TABLE3 : "one_to_one"
+    TABLE4 }o--o{ TABLE5 : "many_to_many"
+```
+
+### Relationship Cardinality
+
+- `||--||` : One-to-One (1:1)
+- `||--o{` : One-to-Many (1:N)
+- `}o--o{` : Many-to-Many (N:M)
+- `||--o|` : One-to-Zero-or-One (1:0..1)
+- `}o--||` : Many-to-One (N:1)
+
+## ER Diagram Structure
+
+### Standard Database (db-1 example)
+
+```mermaid
+erDiagram
+    profiles {
+        uuid id PK "Primary key"
+        varchar username UK "Unique username"
+        varchar email UK "Unique email"
+        varchar display_name "Display name"
+        timestamp created_at "Account creation"
+    }
+
+    chats {
+        uuid id PK "Primary key"
+        uuid created_by FK "Creator user"
+        varchar title "Chat title"
+        timestamp created_at "Creation time"
+    }
+
+    messages {
+        uuid id PK "Primary key"
+        uuid chat_id FK "Chat room"
+        uuid sender_id FK "Sender user"
+        varchar content "Message content"
+        boolean is_ai "AI message flag"
+        timestamp created_at "Message time"
+    }
+
+    chat_participants {
+        uuid chat_id PK,FK "Chat room"
+        uuid user_id PK,FK "Participant user"
+        timestamp joined_at "Join time"
+    }
+
+    friends {
+        uuid id PK "Primary key"
+        uuid user_id FK "Requester user"
+        uuid friend_id FK "Friend user"
+        varchar status "Status: pending/accepted/declined"
+    }
+
+    profiles ||--o{ chats : "creates"
+    profiles ||--o{ messages : "sends"
+    profiles ||--o{ chat_participants : "participates"
+    profiles ||--o{ friends : "user"
+    profiles ||--o{ friends : "friend"
+    chats ||--o{ messages : "contains"
+    chats ||--o{ chat_participants : "has"
+```
+
+### Spatial Database (db-6 example)
+
+```mermaid
+erDiagram
+    grib2_forecasts {
+        varchar forecast_id PK "Primary key"
+        varchar parameter_name "Parameter name"
+        timestamp forecast_time "Forecast time"
+        geography grid_cell_geom SPATIAL "Point geometry"
+        numeric parameter_value "Forecast value"
+    }
+
+    shapefile_boundaries {
+        varchar boundary_id PK "Primary key"
+        varchar feature_type "Feature type"
+        varchar feature_name "Feature name"
+        geography boundary_geom SPATIAL "Polygon geometry"
+        varchar office_code "NWS office code"
+    }
+
+    weather_stations {
+        varchar station_id PK "Primary key"
+        varchar station_name "Station name"
+        geography station_geom SPATIAL "Point geometry"
+        varchar cwa_code "CWA code"
+    }
+
+    weather_observations {
+        varchar observation_id PK "Primary key"
+        varchar station_id FK "Weather station"
+        timestamp observation_time "Observation time"
+        geography station_geom SPATIAL "Point geometry"
+        numeric temperature "Temperature"
+    }
+
+    spatial_join_results {
+        varchar join_id PK "Primary key"
+        varchar forecast_id FK "Forecast"
+        varchar boundary_id FK "Boundary"
+        varchar join_type "Join type"
+        integer features_matched "Matched features"
+    }
+
+    weather_forecast_aggregations {
+        varchar aggregation_id PK "Primary key"
+        varchar boundary_id FK "Boundary"
+        varchar parameter_name "Parameter"
+        timestamp forecast_time "Forecast time"
+        numeric avg_value "Average value"
+    }
+
+    grib2_forecasts ||--o{ spatial_join_results : "forecast"
+    shapefile_boundaries ||--o{ spatial_join_results : "boundary"
+    shapefile_boundaries ||--o{ weather_forecast_aggregations : "aggregated_by"
+    weather_stations ||--o{ weather_observations : "observes"
+```
+
+## ER Diagram Location
+
+ER diagrams must be included in:
+
+1. **db-{N}.md**: In the "Database Schema Documentation" section
+2. **deliverable.openapi.yaml**: As part of the OpenAPI specification (in description fields)
+3. **Documentation Files**: Any schema documentation files
+
+## ER Diagram Best Practices
+
+### 1. Group Related Tables
+
+Group tables by logical domain:
+- User Management tables together
+- Chat System tables together
+- Spatial tables together (for spatial databases)
+
+### 2. Show Key Relationships
+
+- Always show primary key relationships
+- Show foreign key relationships with cardinality
+- Indicate self-referential relationships (e.g., friends table)
+
+### 3. Include Important Attributes
+
+- Primary keys (marked with PK)
+- Foreign keys (marked with FK)
+- Unique constraints (marked with UK)
+- Spatial columns (marked with SPATIAL)
+- Important business columns
+
+### 4. Use Clear Naming
+
+- Use descriptive relationship names
+- Use table names that match actual database tables
+- Use column names that match actual column names
+
+### 5. Handle Complex Relationships
+
+- Many-to-many relationships via junction tables
+- Self-referential relationships (friends table)
+- Optional relationships (nullable foreign keys)
+
+## ER Diagram Examples
+
+### Example 1: Simple One-to-Many
+
+```mermaid
+erDiagram
+    profiles {
+        uuid id PK
+        varchar username
+    }
+
+    chats {
+        uuid id PK
+        uuid created_by FK
+    }
+
+    profiles ||--o{ chats : "creates"
+```
+
+### Example 2: Many-to-Many via Junction Table
+
+```mermaid
+erDiagram
+    profiles {
+        uuid id PK
+    }
+
+    chats {
+        uuid id PK
+    }
+
+    chat_participants {
+        uuid chat_id PK,FK
+        uuid user_id PK,FK
+    }
+
+    profiles ||--o{ chat_participants : "participates"
+    chats ||--o{ chat_participants : "has"
+```
+
+### Example 3: Self-Referential Relationship
+
+```mermaid
+erDiagram
+    profiles {
+        uuid id PK
+    }
+
+    friends {
+        uuid id PK
+        uuid user_id FK
+        uuid friend_id FK
+    }
+
+    profiles ||--o{ friends : "user"
+    profiles ||--o{ friends : "friend"
+```
+
+### Example 4: Spatial Relationships
+
+```mermaid
+erDiagram
+    grib2_forecasts {
+        varchar forecast_id PK
+        geography grid_cell_geom SPATIAL
+    }
+
+    shapefile_boundaries {
+        varchar boundary_id PK
+        geography boundary_geom SPATIAL
+    }
+
+    spatial_join_results {
+        varchar join_id PK
+        varchar forecast_id FK
+        varchar boundary_id FK
+    }
+
+    grib2_forecasts ||--o{ spatial_join_results : "forecast"
+    shapefile_boundaries ||--o{ spatial_join_results : "boundary"
+```
+
+## ER Diagram Validation
+
+ER diagrams must:
+
+1. **Match Schema**: All tables and relationships must match actual database schema
+2. **Show All Foreign Keys**: Every foreign key relationship must be shown
+3. **Correct Cardinality**: Cardinality must match actual relationships
+4. **Valid Mermaid Syntax**: Must be valid Mermaid.js syntax
+5. **Render Correctly**: Must render correctly in Mermaid-compatible viewers
+
+## Tools for Viewing ER Diagrams
+
+- **GitHub**: Renders Mermaid diagrams in markdown files
+- **GitLab**: Renders Mermaid diagrams in markdown files
+- **Mermaid Live Editor**: https://mermaid.live/
+- **VS Code**: Mermaid Preview extension
+- **Documentation Sites**: MkDocs, Docusaurus, etc. support Mermaid
+
+## Integration with Documentation
+
+ER diagrams should be:
+
+1. **Included in db-{N}.md**: After schema overview section
+2. **Referenced in OpenAPI Spec**: In schema descriptions
+3. **Updated with Schema Changes**: When tables or relationships change
+4. **Version Controlled**: Committed with schema documentation
+
+## Related Rules
+
+- See `.cursor/rules/deliverable-formatting.mdc` for deliverable formatting requirements
+- See `.cursor/rules/database-compatibility.mdc` for database compatibility requirements
+- See `.cursor/rules/query-validation-suite.mdc` for query validation
+
+---
+**Last Updated**: 2026-02-03
+**Version**: 1.0

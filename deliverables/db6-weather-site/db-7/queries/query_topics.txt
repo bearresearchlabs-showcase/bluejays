@@ -1,0 +1,32 @@
+Query Topics for db-7 (Supply Chain Management):
+
+1. Enterprise Supplier Performance Analysis ✓ (Completed)
+2. Multi-Warehouse Inventory Optimization Analysis
+3. Purchase Order Lifecycle Analytics with Trend Detection
+4. Quality Inspection Defect Pattern Analysis
+5. ABC Inventory Classification with Cost Analysis
+6. Supplier Lead Time Variance Analysis
+7. Inventory Turnover and Days of Supply Calculation
+8. Purchase Order Cost Variance Analysis
+9. Multi-Period Demand Forecasting Accuracy
+10. Supplier Risk Assessment with Performance Scoring
+11. Inventory Reorder Point Optimization
+12. Shipment Delivery Performance Analytics
+13. Cross-Warehouse Inventory Transfer Optimization
+14. Product Category Performance Analysis
+15. Supplier Payment Terms Impact Analysis
+16. Inventory Carrying Cost Calculation
+17. Purchase Order Approval Workflow Analytics
+18. Quality Score Trend Analysis
+19. Logistics Route Cost Optimization
+20. Inventory Aging Analysis
+21. Supplier Consolidation Opportunity Analysis
+22. Purchase Order Discount Impact Analysis
+23. Multi-Warehouse Stock Level Comparison
+24. Supplier Performance Trend Prediction
+25. Inventory Movement Pattern Analysis
+26. Purchase Order Line Item Variance Analysis
+27. Supplier Geographic Performance Comparison
+28. Inventory Cycle Count Accuracy Analysis
+29. Purchase Order Status Transition Analytics
+30. Comprehensive Supply Chain KPI Dashboard

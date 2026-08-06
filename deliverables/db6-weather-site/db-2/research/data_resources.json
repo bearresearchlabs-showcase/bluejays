@@ -1,0 +1,110 @@
+{
+  "database": "db-2",
+  "name": "Filling Station POS",
+  "apis": [
+    {
+      "name": "GasBuddy API",
+      "url": "https://www.gasbuddy.com/api",
+      "description": "Gas station locations and fuel prices",
+      "endpoints": [
+        "/stations",
+        "/prices"
+      ],
+      "auth": "API key required",
+      "rate_limit": "Varies by plan"
+    },
+    {
+      "name": "Alternative Fuel Data Center API",
+      "url": "https://afdc.energy.gov/data_download",
+      "description": "Alternative fuel station locations",
+      "endpoints": [
+        "/api/stations"
+      ],
+      "auth": "None (public)",
+      "rate_limit": "Unknown"
+    },
+    {
+      "name": "EIA Petroleum Price API",
+      "url": "https://www.eia.gov/opendata/",
+      "description": "Petroleum price data",
+      "endpoints": [
+        "/api/petroleum/"
+      ],
+      "auth": "API key required",
+      "rate_limit": "5000 requests/day"
+    }
+  ],
+  "data_sources": [],
+  "last_updated": "2026-02-09T12:47:24.221148",
+  "gov_sources": [
+    {
+      "name": "EIA Petroleum Price Data",
+      "url": "https://www.eia.gov/petroleum/data.php",
+      "type": "government",
+      "description": "Energy Information Administration petroleum price data",
+      "data_types": [
+        "gasoline_prices",
+        "diesel_prices",
+        "crude_oil_prices"
+      ],
+      "access": "api_download",
+      "rate_limit": "5000 requests/day",
+      "update_frequency": "Weekly"
+    },
+    {
+      "name": "Alternative Fuel Data Center",
+      "url": "https://afdc.energy.gov/data_download",
+      "type": "government",
+      "description": "DOE Alternative Fuel Data Center station locations",
+      "data_types": [
+        "station_locations",
+        "fuel_types",
+        "station_info"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Monthly"
+    },
+    {
+      "name": "BLS Consumer Price Index - Gasoline",
+      "url": "https://www.bls.gov/data/",
+      "type": "government",
+      "description": "Bureau of Labor Statistics CPI for gasoline",
+      "data_types": [
+        "price_indices",
+        "inflation_data"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Monthly"
+    },
+    {
+      "name": "Census Business Patterns - Gas Stations",
+      "url": "https://www.census.gov/data/developers/data-sets/cbp-nonemp.html",
+      "type": "government",
+      "description": "Census business statistics for gas stations",
+      "data_types": [
+        "business_counts",
+        "employment",
+        "revenue"
+      ],
+      "access": "api",
+      "rate_limit": "None",
+      "update_frequency": "Annual"
+    },
+    {
+      "name": "FHWA Highway Statistics",
+      "url": "https://www.fhwa.dot.gov/policyinformation/statistics.cfm",
+      "type": "government",
+      "description": "Federal Highway Administration traffic and fuel data",
+      "data_types": [
+        "traffic_volume",
+        "fuel_consumption",
+        "vehicle_miles"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Annual"
+    }
+  ]
+}

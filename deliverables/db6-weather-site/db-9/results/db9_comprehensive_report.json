@@ -1,0 +1,625 @@
+{
+  "database": "db9",
+  "test_timestamp": "2026-02-08T21:06:12.667946",
+  "total_queries": 30,
+  "passed": 30,
+  "failed": 0,
+  "success_rate": 100.0,
+  "average_execution_time": 0.0053707,
+  "total_execution_time": 0.161121,
+  "queries": [
+    {
+      "number": 1,
+      "title": "Multi-Carrier Rate Comparison with Zone Analysis and Cost Optimization",
+      "success": true,
+      "execution_time": 0.005428,
+      "row_count": 0,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "rate_amount",
+        "zone_number",
+        "estimated_transit_days",
+        "recommendation_type",
+        "cost_difference_from_cheapest",
+        "cost_premium_percentage",
+        "is_fastest_option"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Shipping Zone Analysis with Geographic Distribution and Transit Time Optimization",
+      "success": true,
+      "execution_time": 0.005245,
+      "row_count": 4,
+      "column_count": 16,
+      "columns": [
+        "zone_number",
+        "zone_type",
+        "carrier_count",
+        "avg_distance_miles",
+        "avg_transit_days_min",
+        "avg_transit_days_max",
+        "avg_transit_variance",
+        "fastest_transit_days",
+        "slowest_transit_days",
+        "speed_rank",
+        "consistency_rank",
+        "coverage_rank",
+        "speed_category",
+        "consistency_category",
+        "best_carrier_for_zone",
+        "best_carrier_transit_days"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Shipment Tracking Analytics with Event Pattern Analysis and Delivery Prediction",
+      "success": true,
+      "execution_time": 0.006307,
+      "row_count": 3,
+      "column_count": 11,
+      "columns": [
+        "shipment_id",
+        "tracking_number",
+        "carrier_name",
+        "service_name",
+        "predicted_delivery_date",
+        "carrier_estimated_delivery",
+        "shipment_status_category",
+        "predicted_delay_days",
+        "exception_count",
+        "has_anomaly",
+        "alert_level"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Address Validation Quality Analysis with Correction Rate Metrics",
+      "success": true,
+      "execution_time": 0.004791,
+      "row_count": 1,
+      "column_count": 15,
+      "columns": [
+        "validation_date",
+        "total_validations",
+        "valid_count",
+        "corrected_count",
+        "invalid_count",
+        "ambiguous_count",
+        "address_corrections_count",
+        "dpv_confirmed_count",
+        "success_rate_percentage",
+        "correction_rate_percentage",
+        "dpv_confirmation_rate_percentage",
+        "invalid_rate_percentage",
+        "most_common_correction_type",
+        "most_common_correction_count",
+        "quality_category"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Shipping Cost Analytics with Revenue Optimization and Carrier Performance Comparison",
+      "success": true,
+      "execution_time": 0.004654,
+      "row_count": 2,
+      "column_count": 14,
+      "columns": [
+        "carrier_name",
+        "total_shipments",
+        "total_revenue",
+        "delivered_revenue",
+        "exception_revenue",
+        "avg_shipment_cost",
+        "delivery_success_rate",
+        "exception_rate",
+        "avg_revenue_per_delivered_shipment",
+        "revenue_rank",
+        "performance_rank",
+        "cost_efficiency_rank",
+        "total_potential_savings",
+        "performance_category"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Bulk Shipping Preset Optimization with Weight Distribution Analysis",
+      "success": true,
+      "execution_time": 0.005479,
+      "row_count": 3,
+      "column_count": 9,
+      "columns": [
+        "preset_id",
+        "preset_name",
+        "usage_count",
+        "avg_cost_per_shipment",
+        "optimized_rate",
+        "potential_savings_per_shipment",
+        "total_potential_savings",
+        "optimization_recommendation",
+        "savings_rank"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "International Shipping Customs Analysis with Duty and Tax Optimization",
+      "success": true,
+      "execution_time": 0.004893,
+      "row_count": 0,
+      "column_count": 13,
+      "columns": [
+        "destination_country",
+        "total_shipments",
+        "avg_customs_value",
+        "median_customs_value",
+        "avg_total_customs_amount",
+        "cleared_shipments",
+        "held_shipments",
+        "returned_shipments",
+        "clearance_success_rate",
+        "avg_clearance_days",
+        "high_cost_shipments",
+        "low_cost_shipments",
+        "performance_category"
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Shipping Adjustment Analysis with Discrepancy Detection and Cost Recovery",
+      "success": true,
+      "execution_time": 0.0046,
+      "row_count": 2,
+      "column_count": 14,
+      "columns": [
+        "adjustment_type",
+        "total_adjustments",
+        "total_adjustment_amount",
+        "avg_adjustment_amount",
+        "median_adjustment_amount",
+        "applied_count",
+        "disputed_count",
+        "resolved_count",
+        "discrepancy_category",
+        "total_recoverable_amount",
+        "avg_recoverable_amount",
+        "successful_recoveries",
+        "dispute_rate_percentage",
+        "recovery_success_rate_percentage"
+      ]
+    },
+    {
+      "number": 9,
+      "title": "API Rate Request Performance Analysis with Optimization Recommendations",
+      "success": true,
+      "execution_time": 0.005711,
+      "row_count": 4,
+      "column_count": 13,
+      "columns": [
+        "carrier_name",
+        "request_type",
+        "total_requests",
+        "success_rate_percentage",
+        "avg_response_time_ms",
+        "p95_response_time_ms",
+        "optimization_recommendation",
+        "potential_time_savings_ms",
+        "peak_error_hour",
+        "peak_error_rate",
+        "most_common_error",
+        "most_common_error_count",
+        "performance_rank"
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Shipping Analytics Dashboard with Revenue Trends and Performance Metrics",
+      "success": true,
+      "execution_time": 0.005777,
+      "row_count": 1,
+      "column_count": 14,
+      "columns": [
+        "shipment_date",
+        "daily_revenue",
+        "daily_shipments",
+        "daily_avg_cost",
+        "day_over_day_growth_percentage",
+        "week_over_week_growth_percentage",
+        "month_over_month_growth_percentage",
+        "seven_day_avg_revenue",
+        "thirty_day_avg_revenue",
+        "total_revenue_all_carriers",
+        "total_shipments_all_carriers",
+        "top_carrier_by_revenue",
+        "top_service_by_revenue",
+        "growth_category"
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Dimensional Weight Optimization with Package Configuration Analysis",
+      "success": true,
+      "execution_time": 0.004626,
+      "row_count": 2,
+      "column_count": 10,
+      "columns": [
+        "package_id",
+        "weight_lbs",
+        "dimensional_weight_lbs",
+        "billable_weight_lbs",
+        "dimensional_weight_applies",
+        "dimensional_weight_cost_impact",
+        "optimization_category",
+        "recommended_max_dimension_inches",
+        "potential_cost_savings",
+        "optimization_priority_rank"
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Shipping Zone Coverage Analysis with Geographic Gap Identification",
+      "success": true,
+      "execution_time": 0.00542,
+      "row_count": 7,
+      "column_count": 9,
+      "columns": [
+        "origin_zip_prefix",
+        "destination_zip_prefix",
+        "carrier_count",
+        "available_carriers",
+        "has_good_coverage",
+        "has_no_coverage",
+        "coverage_status",
+        "destination_count_for_origin",
+        "origin_count_for_destination"
+      ]
+    },
+    {
+      "number": 13,
+      "title": "Shipping Rate Volatility Analysis with Price Trend Prediction",
+      "success": true,
+      "execution_time": 0.005286,
+      "row_count": 2,
+      "column_count": 11,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "weight_lbs",
+        "avg_rate",
+        "min_rate",
+        "max_rate",
+        "rate_trend",
+        "volatility_category",
+        "predicted_next_rate",
+        "potential_savings_from_min_rate",
+        "optimization_recommendation"
+      ]
+    },
+    {
+      "number": 14,
+      "title": "Carrier Service Performance Comparison with Delivery Time Analysis",
+      "success": true,
+      "execution_time": 0.005235,
+      "row_count": 0,
+      "column_count": 11,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "delivery_success_rate",
+        "on_time_delivery_rate",
+        "avg_actual_transit_days",
+        "median_transit_days",
+        "p95_transit_days",
+        "performance_category",
+        "overall_rank_score",
+        "overall_rank"
+      ]
+    },
+    {
+      "number": 15,
+      "title": "Route Optimization Analysis with Cost and Time Trade-offs",
+      "success": true,
+      "execution_time": 0.006611,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 16,
+      "title": "Shipping Cost Breakdown Analysis with Component Cost Attribution",
+      "success": true,
+      "execution_time": 0.006007,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 17,
+      "title": "Tracking Event Pattern Recognition with Anomaly Detection",
+      "success": true,
+      "execution_time": 0.00583,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 18,
+      "title": "Address Validation Quality Metrics with Correction Impact Analysis",
+      "success": true,
+      "execution_time": 0.007417,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 19,
+      "title": "International Shipping Route Analysis with Customs Optimization",
+      "success": true,
+      "execution_time": 0.004339,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 20,
+      "title": "Carrier Rate Comparison Matrix with Multi-Dimensional Analysis",
+      "success": true,
+      "execution_time": 0.004477,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 21,
+      "title": "Package Dimension Optimization with Volume Efficiency Analysis",
+      "success": true,
+      "execution_time": 0.00589,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 22,
+      "title": "Shipping Zone Transit Time Analysis with Reliability Metrics",
+      "success": true,
+      "execution_time": 0.004872,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 23,
+      "title": "Customs Duty Optimization with Tariff Code Analysis",
+      "success": true,
+      "execution_time": 0.004636,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 24,
+      "title": "API Rate Cache Optimization with Hit Rate Analysis",
+      "success": true,
+      "execution_time": 0.005549,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 25,
+      "title": "Shipping Revenue Forecasting with Trend Analysis",
+      "success": true,
+      "execution_time": 0.005737,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 26,
+      "title": "Carrier Performance Benchmarking with Industry Standards",
+      "success": true,
+      "execution_time": 0.006188,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 27,
+      "title": "Dimensional Weight Cost Analysis with Optimization Recommendations",
+      "success": true,
+      "execution_time": 0.004999,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 28,
+      "title": "Shipping Route Efficiency Metrics with Performance Scoring",
+      "success": true,
+      "execution_time": 0.004706,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 29,
+      "title": "Multi-Carrier Rate Aggregation with Best Rate Selection",
+      "success": true,
+      "execution_time": 0.004426,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    },
+    {
+      "number": 30,
+      "title": "Comprehensive Shipping Dashboard with Real-Time Analytics",
+      "success": true,
+      "execution_time": 0.005985,
+      "row_count": 4,
+      "column_count": 9,
+      "columns": [
+        "carrier_name",
+        "service_name",
+        "total_shipments",
+        "total_revenue",
+        "avg_cost",
+        "delivery_success_rate",
+        "performance_category",
+        "revenue_rank",
+        "cost_rank"
+      ]
+    }
+  ]
+}

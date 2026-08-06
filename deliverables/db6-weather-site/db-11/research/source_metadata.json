@@ -1,0 +1,301 @@
+{
+  "database": "db-11",
+  "description": "Parking Intelligence Database - Comprehensive Source Metadata Tracking",
+  "last_updated": "2026-02-04",
+  "source_systems": {
+    "data_gov_ckan": {
+      "system_name": "Data.gov CKAN API",
+      "system_type": "Open Data Portal",
+      "authority": "U.S. General Services Administration",
+      "base_url": "https://catalog.data.gov/api/3/action",
+      "api_version": "3",
+      "authentication_method": "API Key (optional)",
+      "authentication_details": {
+        "header": "X-API-Key",
+        "key_location": "https://api.data.gov/signup/",
+        "required": false,
+        "rate_limit_impact": "Increases from 1,000/hour to 10,000/hour"
+      },
+      "rate_limits": {
+        "without_key": {
+          "requests_per_hour": 1000,
+          "requests_per_day": 10000
+        },
+        "with_key": {
+          "requests_per_hour": 10000,
+          "requests_per_day": 100000
+        }
+      },
+      "data_format": "JSON (metadata), CSV/JSON/GeoJSON/Shapefile (data files)",
+      "coordinate_system": "WGS84 (EPSG:4326)",
+      "extraction_history": [],
+      "data_lineage": {
+        "parking_facilities": {
+          "source": "data_gov_ckan",
+          "transformation": "Extract from GeoJSON/Shapefile to parking_facilities table",
+          "target_tables": ["parking_facilities", "parking_pricing"]
+        }
+      },
+      "catalog_information": {
+        "total_parking_datasets": 23,
+        "update_frequency": "Varies by dataset (daily to monthly)",
+        "geographic_coverage": "Multiple cities across USA"
+      }
+    },
+    "census_bureau_api": {
+      "system_name": "U.S. Census Bureau Data API",
+      "system_type": "Federal Statistical Agency API",
+      "authority": "U.S. Census Bureau",
+      "base_url": "https://api.census.gov/data",
+      "api_version": "v1",
+      "authentication_method": "API Key (optional but recommended)",
+      "authentication_details": {
+        "parameter": "key",
+        "key_location": "https://api.census.gov/data/key_signup.html",
+        "required": false,
+        "rate_limit_impact": "Increases from 500/day to 5,000/day"
+      },
+      "rate_limits": {
+        "without_key": {
+          "requests_per_day": 500
+        },
+        "with_key": {
+          "requests_per_day": 5000
+        }
+      },
+      "data_format": "JSON",
+      "coordinate_system": "N/A (geographic identifiers: FIPS codes, MSA codes)",
+      "extraction_history": [],
+      "data_lineage": {
+        "metropolitan_areas": {
+          "source": "census_bureau_api",
+          "transformation": "Extract MSA population and demographic data",
+          "target_tables": ["metropolitan_areas", "cities"]
+        },
+        "cities": {
+          "source": "census_bureau_api",
+          "transformation": "Extract city-level demographics and economic data",
+          "target_tables": ["cities"]
+        }
+      },
+      "catalog_information": {
+        "datasets_available": [
+          "American Community Survey (ACS) 5-year estimates",
+          "Population Estimates Program (PEP)",
+          "Economic Census",
+          "Metropolitan and Micropolitan Statistical Area datasets"
+        ],
+        "update_frequency": "Annual (ACS), Monthly (PEP estimates)",
+        "geographic_coverage": "Nationwide - all MSAs, cities, counties"
+      }
+    },
+    "bts_transtats": {
+      "system_name": "Bureau of Transportation Statistics TranStats",
+      "system_type": "Federal Transportation Database",
+      "authority": "U.S. Department of Transportation - BTS",
+      "base_url": "https://www.transtats.bts.gov",
+      "api_version": "N/A (web interface)",
+      "authentication_method": "None required",
+      "authentication_details": {
+        "required": false,
+        "note": "Public access, no authentication required"
+      },
+      "rate_limits": {
+        "note": "No official limits, but be respectful of server resources"
+      },
+      "data_format": "HTML tables, CSV downloads",
+      "coordinate_system": "N/A",
+      "extraction_history": [],
+      "data_lineage": {
+        "airports": {
+          "source": "bts_transtats",
+          "transformation": "Extract airport passenger and cargo statistics",
+          "target_tables": ["airports"]
+        }
+      },
+      "catalog_information": {
+        "data_coverage": "December 2006 to present",
+        "update_frequency": "Monthly",
+        "geographic_coverage": "All major commercial airports in USA",
+        "data_types": [
+          "Passenger volumes (enplanements)",
+          "Cargo statistics",
+          "Operational metrics",
+          "Airport rankings"
+        ]
+      }
+    },
+    "faa_airport_data": {
+      "system_name": "FAA Air Carrier Activity Database",
+      "system_type": "Federal Aviation Administration Database",
+      "authority": "Federal Aviation Administration",
+      "base_url": "https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger",
+      "api_version": "N/A (reports)",
+      "authentication_method": "None required",
+      "authentication_details": {
+        "required": false,
+        "note": "Public access via reports"
+      },
+      "rate_limits": {
+        "note": "Manual download - no API rate limits"
+      },
+      "data_format": "PDF, Excel",
+      "coordinate_system": "N/A",
+      "extraction_history": [],
+      "data_lineage": {
+        "airports": {
+          "source": "faa_airport_data",
+          "transformation": "Extract passenger boarding data and airport rankings",
+          "target_tables": ["airports"]
+        }
+      },
+      "catalog_information": {
+        "data_coverage": "Calendar year data",
+        "update_frequency": "Annual (released in September)",
+        "geographic_coverage": "All commercial airports",
+        "report_formats": [
+          "PDF by airport rank order",
+          "Excel by airport rank order",
+          "PDF by state",
+          "Excel by state"
+        ]
+      }
+    },
+    "fhwa_traffic": {
+      "system_name": "Federal Highway Administration Traffic Data",
+      "system_type": "Federal Transportation Database",
+      "authority": "Federal Highway Administration",
+      "base_url": "https://www.fhwa.dot.gov/policyinformation",
+      "api_version": "N/A (reports and data files)",
+      "authentication_method": "None required",
+      "authentication_details": {
+        "required": false,
+        "note": "Public access via reports and data files"
+      },
+      "rate_limits": {
+        "note": "Manual download - no API rate limits"
+      },
+      "data_format": "PDF, Excel, CSV",
+      "coordinate_system": "N/A",
+      "extraction_history": [],
+      "data_lineage": {
+        "traffic_volume_data": {
+          "source": "fhwa_traffic",
+          "transformation": "Extract traffic volume statistics and monitoring location data",
+          "target_tables": ["traffic_volume_data"]
+        }
+      },
+      "catalog_information": {
+        "data_types": [
+          "Traffic Volume Trends (monthly)",
+          "U.S. Traffic Monitoring Location Data",
+          "Highway Statistics (annual)"
+        ],
+        "update_frequency": "Monthly (trends), Annual (statistics)",
+        "geographic_coverage": "Nationwide highway and arterial road network"
+      }
+    },
+    "city_open_data_portals": {
+      "system_name": "City Open Data Portals",
+      "system_type": "Municipal Open Data Portals",
+      "authority": "Various city governments",
+      "base_urls": {
+        "seattle": "https://data.seattle.gov",
+        "san_francisco": "https://data.sfgov.org",
+        "austin": "https://data.austintexas.gov",
+        "philadelphia": "https://www.opendataphilly.org"
+      },
+      "api_types": ["CKAN", "Socrata", "ArcGIS"],
+      "authentication_method": "Varies by city",
+      "authentication_details": {
+        "note": "Most portals use CKAN API or Socrata API",
+        "api_keys": "Some cities require API keys for higher rate limits"
+      },
+      "rate_limits": {
+        "note": "Varies by city and API type"
+      },
+      "data_format": "CSV, JSON, GeoJSON, Shapefile",
+      "coordinate_system": "WGS84 (EPSG:4326)",
+      "extraction_history": [],
+      "data_lineage": {
+        "parking_facilities": {
+          "source": "city_open_data_portals",
+          "transformation": "Extract city-specific parking facility data",
+          "target_tables": ["parking_facilities", "parking_pricing", "parking_utilization"]
+        },
+        "parking_utilization": {
+          "source": "city_open_data_portals",
+          "transformation": "Extract real-time parking utilization data",
+          "target_tables": ["parking_utilization"]
+        }
+      },
+      "catalog_information": {
+        "data_types": [
+          "Parking facility locations",
+          "Parking pricing",
+          "Real-time parking utilization",
+          "Parking transactions",
+          "Parking citations"
+        ],
+        "update_frequency": "Varies: Real-time to monthly",
+        "geographic_coverage": "City-specific coverage",
+        "data_availability": "Varies significantly by city"
+      }
+    }
+  },
+  "ngda_themes": {
+    "note": "Not applicable - parking intelligence data spans multiple domains",
+    "relevant_themes": [
+      "Transportation",
+      "Demographics",
+      "Economic"
+    ]
+  },
+  "data_collection_metadata": {
+    "target_data_size_gb": 6.0,
+    "estimated_records": {
+      "metropolitan_areas": 400,
+      "cities": 4000,
+      "airports": 500,
+      "stadiums_venues": 1000,
+      "parking_facilities": 50000,
+      "parking_pricing": 100000,
+      "traffic_volume_data": 10000,
+      "events": 50000,
+      "parking_utilization": 1000000,
+      "market_intelligence_metrics": 100000
+    },
+    "collection_strategy": {
+      "phase_1": {
+        "description": "Core infrastructure data",
+        "sources": ["census_bureau_api", "bts_transtats", "faa_airport_data"],
+        "tables": ["metropolitan_areas", "cities", "airports"],
+        "estimated_size_gb": 0.1
+      },
+      "phase_2": {
+        "description": "Parking facility data",
+        "sources": ["data_gov_ckan", "city_open_data_portals"],
+        "tables": ["parking_facilities", "parking_pricing"],
+        "estimated_size_gb": 0.5
+      },
+      "phase_3": {
+        "description": "Traffic and utilization data",
+        "sources": ["fhwa_traffic", "city_open_data_portals"],
+        "tables": ["traffic_volume_data", "parking_utilization"],
+        "estimated_size_gb": 1.0
+      },
+      "phase_4": {
+        "description": "Events and intelligence metrics",
+        "sources": ["city_open_data_portals", "calculated"],
+        "tables": ["events", "market_intelligence_metrics", "competitive_analysis"],
+        "estimated_size_gb": 0.4
+      }
+    }
+  },
+  "source_tracking": {
+    "extraction_timestamps": [],
+    "data_freshness": {},
+    "quality_metrics": {},
+    "error_logs": []
+  }
+}

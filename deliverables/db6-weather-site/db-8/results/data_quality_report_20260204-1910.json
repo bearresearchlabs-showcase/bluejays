@@ -1,0 +1,11 @@
+{
+  "validation_date": "20260204-1910",
+  "database": "db-8",
+  "Pass": 0,
+  "checks": {},
+  "profiles": {},
+  "summary": {},
+  "notes": [
+    "Failed to connect to database"
+  ]
+}

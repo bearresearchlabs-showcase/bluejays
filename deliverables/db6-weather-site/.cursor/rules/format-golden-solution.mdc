@@ -1,0 +1,327 @@
+---
+description: Format command golden solution based on db-6 structure
+alwaysApply: true
+---
+
+# Format Command Golden Solution - db-6 Reference
+
+## Overview
+
+**db-6** (`db-6/deliverable/db6-weather-consulting-insurance/`) serves as the **golden solution** and reference implementation for what the `/format` command should produce for all databases. All databases formatted with `/format` should match this structure exactly.
+
+## Golden Solution Structure
+
+The `/format` command must generate the following structure for each database:
+
+```
+db-{N}/
+├── deliverable/
+│   ├── db-{N}.md                          # Comprehensive markdown documentation (REQUIRED)
+│   ├── deliverable.openapi.yaml            # OpenAPI 3.0.3 specification (REQUIRED)
+│   ├── queries/                            # Database component (if applicable)
+│   │   ├── queries.md
+│   │   └── queries.json
+│   ├── data/                               # Database component (REQUIRED)
+│   │   ├── schema.sql
+│   │   ├── data.sql
+│   │   └── *.sql                           # Additional schema files
+│   └── db{N}-{descriptive-name}/           # Web-deployable website (REQUIRED)
+│       ├── db-{N}_documentation.html       # HTML documentation (REQUIRED)
+│       ├── db-{N}_deliverable.json         # JSON deliverable (REQUIRED)
+│       ├── db-{N}.md                       # Markdown source (REQUIRED)
+│       ├── vercel.json                     # Vercel deployment config (REQUIRED)
+│       ├── .gitignore                      # Git ignore file (REQUIRED)
+│       ├── afterquery-logo.png             # Logo/branding (optional)
+│       └── data/                            # Database component (REQUIRED)
+│           ├── schema.sql
+│           ├── data.sql
+│           └── *.sql                       # Additional schema files
+```
+
+## Required Files
+
+### 1. Markdown Documentation (`db-{N}.md`)
+
+**Location**: `deliverable/db-{N}.md`
+
+**Content**:
+- Complete database documentation
+- All 30 SQL queries embedded inline with full business context
+- Schema documentation with ER diagrams (Mermaid.js)
+- Table of contents with natural language descriptions
+- Business context ($1M+ ARR companies)
+
+**Format**: Single comprehensive markdown file
+
+### 2. OpenAPI Specification (`deliverable.openapi.yaml`)
+
+**Location**: `deliverable/deliverable.openapi.yaml`
+
+**Content**:
+- OpenAPI 3.0.3 specification
+- Complete schema definitions
+- All queries as API endpoints
+- Machine-readable format for API tools
+
+### 3. Web-Deployable Website (`db{N}-{descriptive-name}/`)
+
+**Naming Convention**: `db{N}-{descriptive-name}` (e.g., `db6-weather-consulting-insurance`, `db8-job-market-intelligence`)
+
+**Required Files**:
+
+#### 3.1 HTML Documentation (`db-{N}_documentation.html`)
+
+**Location**: `deliverable/db{N}-{name}/db-{N}_documentation.html`
+
+**Features**:
+- Standalone HTML file (all CSS/JS embedded)
+- Prism.js syntax highlighting for SQL and JSON
+- Sidebar navigation
+- Dark theme optimized for code readability
+- **Anti-robot meta tags** (noindex, nofollow, noarchive, nosnippet, noimageindex)
+- **Vercel Analytics** integration (script tag for static HTML, with comment noting Next.js import: `import { Analytics } from "@vercel/analytics/next"`)
+- Complete database documentation converted from markdown
+- All 30 SQL queries embedded inline
+
+**HTML Structure**:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Anti-robot / crawl protection -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <title>{Database Name} - Documentation</title>
+    <!-- Prism.js Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <style>
+        /* Embedded CSS styles */
+        /* OpenAI-style sidebar navigation */
+        /* Dark theme for code blocks */
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>{Database Name}</h1>
+            <p>db-{N} Documentation</p>
+        </div>
+    </div>
+    <div class="main-content">
+        <!-- Converted markdown content -->
+    </div>
+    <script>
+        // Initialize Prism.js syntax highlighting
+        if (typeof Prism !== 'undefined') {
+            Prism.highlightAll();
+        }
+    </script>
+    <!-- Vercel Analytics -->
+    <script>
+        // For Next.js: import { Analytics } from "@vercel/analytics/next"
+        // For static HTML: Use script tag approach
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://va.vercel-scripts.com/v1/script.js';
+            script.defer = true;
+            script.setAttribute('data-api', '/api/event');
+            document.head.appendChild(script);
+        })();
+    </script>
+</body>
+</html>
+```
+
+#### 3.2 JSON Deliverable (`db-{N}_deliverable.json`)
+
+**Location**: `deliverable/db{N}-{name}/db-{N}_deliverable.json`
+
+**Structure**:
+```json
+{
+  "database": {
+    "id": "db-{N}",
+    "name": "{Database Name}",
+    "description": "{Database description}",
+    "created_date": "{YYYY-MM-DD}",
+    "version": "1.0"
+  },
+  "schema": {
+    "total_tables": {N},
+    "tables": [
+      {
+        "name": "table_name",
+        "description": "Table description",
+        "columns": [
+          {
+            "name": "column_name",
+            "data_type": "VARCHAR(255)",
+            "constraints": "PRIMARY KEY",
+            "description": "Column description"
+          }
+        ]
+      }
+    ]
+  },
+  "queries": [
+    {
+      "number": 1,
+      "title": "Query Title",
+      "description": "Query description",
+      "use_case": "Use case",
+      "business_value": "Business value",
+      "purpose": "Purpose",
+      "complexity": "Complexity",
+      "expected_output": "Expected output",
+      "sql": "SQL query code"
+    }
+  ]
+}
+```
+
+#### 3.3 Vercel Configuration (`vercel.json`)
+
+**Location**: `deliverable/db{N}-{name}/vercel.json`
+
+**Content**:
+```json
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/db-{N}_documentation.html"
+    },
+    {
+      "source": "/db-{N}_deliverable.json",
+      "destination": "/db-{N}_deliverable.json"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*\\.html)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.json)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    }
+  ]
+}
+```
+
+#### 3.4 Git Ignore (`.gitignore`)
+
+**Location**: `deliverable/db{N}-{name}/.gitignore`
+
+**Content**:
+```gitignore
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+```
+
+#### 3.5 Data Files (`data/` folder)
+
+**Location**: `deliverable/db{N}-{name}/data/`
+
+**Content**:
+- Copy all SQL files from `db-{N}/data/` to `deliverable/db{N}-{name}/data/`
+- Include: `schema.sql`, `data.sql`, and any additional schema files
+
+## Format Command Implementation
+
+The `/format` command must:
+
+1. **Generate Markdown**: Create `deliverable/db-{N}.md` with comprehensive documentation
+2. **Generate OpenAPI**: Create `deliverable/deliverable.openapi.yaml` with OpenAPI 3.0.3 spec
+3. **Generate Website**: Create `deliverable/db{N}-{descriptive-name}/` folder with:
+   - HTML documentation (with anti-robot tags and Analytics)
+   - JSON deliverable
+   - Markdown source
+   - Vercel config
+   - Git ignore
+   - Data files
+
+## Database Naming Conventions
+
+**Web-Deployable Folder Names**:
+- Format: `db{N}-{descriptive-name}`
+- Use lowercase with hyphens
+- Descriptive of database domain
+- Examples:
+  - `db6-weather-consulting-insurance`
+  - `db8-job-market-intelligence`
+  - `db7-maritime-shipping-intelligence`
+  - `db9-shipping-intelligence`
+  - `db11-parking-intelligence`
+
+## Reference Implementation
+
+**Golden Solution**: `db-6/deliverable/db6-weather-consulting-insurance/`
+
+All databases formatted with `/format` should match this structure exactly.
+
+## Validation
+
+After running `/format`, verify:
+
+1. ✅ `deliverable/db-{N}.md` exists and contains all queries
+2. ✅ `deliverable/deliverable.openapi.yaml` exists and is valid YAML
+3. ✅ `deliverable/db{N}-{name}/` folder exists
+4. ✅ `deliverable/db{N}-{name}/db-{N}_documentation.html` exists with anti-robot tags and Analytics
+5. ✅ `deliverable/db{N}-{name}/db-{N}_deliverable.json` exists and is valid JSON
+6. ✅ `deliverable/db{N}-{name}/vercel.json` exists
+7. ✅ `deliverable/db{N}-{name}/.gitignore` exists
+8. ✅ `deliverable/db{N}-{name}/data/` folder contains all SQL files
+9. ✅ HTML file includes anti-robot meta tags
+10. ✅ HTML file includes Vercel Analytics script
+
+## Related Rules
+
+- See `.cursor/rules/deliverable-formatting.mdc` for format command documentation
+- See `.cursor/rules/database-creation-workflow.mdc` for web-deployable deliverable requirements
+
+---
+**Last Updated**: 2026-02-04
+**Version**: 1.0
+**Golden Solution**: db-6

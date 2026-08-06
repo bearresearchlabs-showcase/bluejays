@@ -1,0 +1,26 @@
+# Python requirements for db-9 Shipping Intelligence Database
+# Created: 2026-02-04
+
+# Database connectors
+psycopg2-binary>=2.9.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# API requests
+requests>=2.31.0
+urllib3>=2.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+pytz>=2023.3
+
+# SQLAlchemy for database operations
+sqlalchemy>=2.0.0
+
+# Geospatial data processing
+geopandas>=0.13.0
+shapely>=2.0.0
+fiona>=1.9.0
+pyproj>=3.6.0

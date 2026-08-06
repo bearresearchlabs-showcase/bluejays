@@ -1,0 +1,13 @@
+{
+  "database": "db-6",
+  "database_number": 6,
+  "test_timestamp": "2026-02-04T20:21:39.958736",
+  "postgresql": {
+    "available": true,
+    "queries": []
+  },
+  "snowflake": {
+    "available": true,
+    "queries": []
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "database": "db-1",
+  "name": "Airplane Tracking",
+  "apis": [
+    {
+      "name": "OpenSky Network API",
+      "url": "https://opensky-network.org/API",
+      "description": "Real-time and historical flight tracking data",
+      "endpoints": [
+        "/states/all",
+        "/states/own",
+        "/flights/all",
+        "/flights/aircraft"
+      ],
+      "auth": "None (public)",
+      "rate_limit": "Unlimited for public API"
+    },
+    {
+      "name": "FAA Aircraft Registry",
+      "url": "https://registry.faa.gov/aircraftinquiry/",
+      "description": "Aircraft registration and ownership data",
+      "endpoints": [
+        "/AircraftInquiry.aspx"
+      ],
+      "auth": "None (public)",
+      "rate_limit": "Unknown"
+    },
+    {
+      "name": "ADS-B Exchange",
+      "url": "https://www.adsbexchange.com/",
+      "description": "ADS-B flight tracking data",
+      "endpoints": [
+        "/api/aircraft/"
+      ],
+      "auth": "API key required",
+      "rate_limit": "Varies by plan"
+    }
+  ],
+  "data_sources": [],
+  "last_updated": "2026-02-09T12:47:24.220909",
+  "gov_sources": [
+    {
+      "name": "FAA Aircraft Registry",
+      "url": "https://registry.faa.gov/aircraftinquiry/",
+      "type": "government",
+      "description": "Official FAA aircraft registration database",
+      "data_types": [
+        "aircraft_registration",
+        "ownership",
+        "airworthiness"
+      ],
+      "access": "web_scraping",
+      "rate_limit": "Respectful scraping",
+      "update_frequency": "Daily"
+    },
+    {
+      "name": "FAA Airport Data",
+      "url": "https://www.faa.gov/airports/airport_safety/airportdata_5010",
+      "type": "government",
+      "description": "Airport information and statistics",
+      "data_types": [
+        "airport_info",
+        "runway_data",
+        "airport_statistics"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Monthly"
+    },
+    {
+      "name": "FAA Flight Data",
+      "url": "https://www.faa.gov/data_research/aviation_data_statistics/",
+      "type": "government",
+      "description": "Aviation statistics and flight data",
+      "data_types": [
+        "flight_statistics",
+        "traffic_data",
+        "safety_data"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Monthly"
+    },
+    {
+      "name": "BTS Airline On-Time Performance",
+      "url": "https://www.transtats.bts.gov/",
+      "type": "government",
+      "description": "Bureau of Transportation Statistics airline on-time data",
+      "data_types": [
+        "flight_delays",
+        "on_time_performance",
+        "cancellations"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Monthly"
+    },
+    {
+      "name": "NASA Aviation Safety Reporting System",
+      "url": "https://asrs.arc.nasa.gov/",
+      "type": "government",
+      "description": "Aviation safety incident reports",
+      "data_types": [
+        "safety_reports",
+        "incidents",
+        "near_misses"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Quarterly"
+    },
+    {
+      "name": "OpenSky Network API",
+      "url": "https://opensky-network.org/API",
+      "type": "academic",
+      "description": "Real-time and historical flight tracking (ETH Zurich)",
+      "data_types": [
+        "real_time_tracking",
+        "historical_flights",
+        "aircraft_states"
+      ],
+      "access": "api",
+      "rate_limit": "Unlimited (public)",
+      "update_frequency": "Real-time"
+    }
+  ]
+}

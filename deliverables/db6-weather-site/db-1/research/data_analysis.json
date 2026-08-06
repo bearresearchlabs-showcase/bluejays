@@ -1,0 +1,87 @@
+{
+  "database": "db-1",
+  "extracted_files": [
+    "/Users/machine/Documents/AQ/db/db-1/research/opensky_extract.csv",
+    "/Users/machine/Documents/AQ/db/db-1/data/data_gov_extract.sql"
+  ],
+  "data_patterns": {
+    "opensky_extract.csv": {
+      "row_count": 11515,
+      "columns": [
+        "hex",
+        "flight",
+        "lat",
+        "lon",
+        "altitude",
+        "speed",
+        "track",
+        "vertical_rate",
+        "timestamp",
+        "created_at"
+      ],
+      "date_range": {
+        "min": "2026-02-09 12:47:27",
+        "max": "2026-02-09 12:47:27"
+      },
+      "numeric_ranges": {
+        "lat": {
+          "min": -172.2142,
+          "max": 177.4099,
+          "mean": -57.61501932037135,
+          "std": 61.445333334265364
+        },
+        "lon": {
+          "min": -45.7245,
+          "max": 69.8639,
+          "mean": 36.136085698020665,
+          "std": 13.228742543858793
+        },
+        "altitude": {
+          "min": -121.0,
+          "max": 26121.0,
+          "mean": 6333.592792792792,
+          "std": 4496.174812479095
+        },
+        "speed": {
+          "min": 0.0,
+          "max": 1629.0,
+          "mean": 153.0778921220724,
+          "std": 86.62023537872965
+        },
+        "track": {
+          "min": 0.0,
+          "max": 359.0,
+          "mean": 180.58558480041833,
+          "std": 101.99269719523072
+        },
+        "vertical_rate": {
+          "min": -165.0,
+          "max": 42.0,
+          "mean": -0.16410553783705423,
+          "std": 6.017786123092189
+        }
+      }
+    }
+  },
+  "query_suggestions": [
+    {
+      "type": "altitude_analysis",
+      "description": "Analyze altitude distributions and patterns",
+      "columns": [
+        "altitude",
+        "hex",
+        "timestamp"
+      ]
+    },
+    {
+      "type": "movement_analysis",
+      "description": "Analyze aircraft speed and direction patterns",
+      "columns": [
+        "speed",
+        "track",
+        "lat",
+        "lon"
+      ]
+    }
+  ]
+}

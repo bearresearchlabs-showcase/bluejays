@@ -1,0 +1,121 @@
+---
+description: Mandatory requirement for query abstraction to queries.json before validation
+alwaysApply: true
+---
+
+# Query Abstraction Requirement
+
+## Overview
+
+**MANDATORY**: All queries from `queries.md` must be abstracted into `queries.json` before any validation can proceed. This is a hard requirement enforced by validation scripts.
+
+## Requirement
+
+- **queries.json must exist**: All validation scripts check for `queries.json` and will fail if missing
+- **queries.json must be current**: Extraction timestamp should match recent edits to `queries.md`
+- **queries.json must be valid**: Must contain all required fields and valid JSON structure
+- **Extraction is Phase 0**: Query abstraction is Phase 0 of the validation workflow and must complete before all other phases
+
+## Extraction Script
+
+**File**: `db-{N}/scripts/extract_queries_to_json.py` or `/path/to/db/scripts/extract_queries_to_json.py`
+
+## Usage
+
+```bash
+
+# Extract queries for specific database
+
+cd db-{N}
+python3 scripts/extract_queries_to_json.py
+
+# Or extract for multiple databases from root
+
+cd /path/to/db
+python3 scripts/extract_queries_to_json.py [db-number]
+```
+
+## Validation Check
+
+Before running any validation phase, scripts must verify:
+1. `queries.json` exists in `db-{N}/queries/`
+2. `queries.json` contains valid JSON
+3. `queries.json` has `total_queries` matching expected count (30)
+4. `queries.json` extraction timestamp is recent (within last 24 hours or after last `queries.md` edit)
+
+## Failure Behavior
+
+If `queries.json` is missing or invalid:
+- Validation scripts **MUST FAIL** with clear error message
+- Error message must instruct user to run extraction script first
+- No other validation phases should proceed
+
+## queries.json Structure
+
+```json
+{
+  "source_file": "path/to/queries.md",
+  "extraction_timestamp": "ISO timestamp",
+  "total_queries": 30,
+ "queries": [
+ {
+ "number": 1,
+ "title": "Query title",
+ "description": "Query description (explains what the SQL does technically)",
+ "use_case": "Use case description (was Business Use Case)",
+ "business_value": "Business value description (was Client Deliverable)",
+ "purpose": "Purpose description (was Business Value)",
+ "complexity": "Complexity description",
+ "expected_output": "Expected output description",
+ "sql": "Full SQL query text",
+ "line_number": 152
+ }
+ ]
+}
+```
+
+## Required Fields
+
+- **number**: Query number (1-30)
+- **title**: Query title from header
+- **description**: Query description text (explains what the SQL does technically - describes SQL operations, joins, CTEs, aggregations, window functions, spatial operations, etc.)
+- **use_case**: Use case description (was "Business Use Case" - describes the business use case for the query)
+- **business_value**: Business value description (was "Client Deliverable" - describes the business value/deliverable)
+- **purpose**: Purpose description (was "Business Value" - describes the purpose/reason for the query)
+- **complexity**: Complexity description
+- **expected_output**: Expected output description
+- **sql**: Complete SQL query text
+- **line_number**: Line number where query starts in queries.md
+
+## When to Extract
+
+- **Before any validation**: Always extract before running validation suite
+- **After editing queries.md**: Extract immediately after any edits to `queries.md`
+- **In CI/CD pipelines**: Include extraction as first step (Phase 0) in validation workflow
+- **After fixing queries**: Extract after applying fixes to ensure JSON is current
+
+## Integration with Validation
+
+All validation phases use `queries.json` as the source of truth:
+- Faster query access (no markdown parsing)
+- Programmatic query manipulation
+- Easier integration with tools
+- Consistent metadata structure
+- Validation scripts read from `queries.json`, not parse `queries.md`
+
+## Enforcement
+
+This requirement is enforced by:
+- Validation scripts checking for `queries.json` existence
+- CI/CD pipelines including Phase 0 extraction as first step
+- Documentation requiring extraction before validation
+- Error messages directing users to run extraction script
+
+## Related Rules
+
+- See `.cursor/rules/query-validation-suite.mdc` for complete validation workflow
+- See `.cursor/rules/database-compatibility.mdc` for query requirements
+
+---
+**Last Updated**: 2026-02-03
+**Version**: 1.0

@@ -1,0 +1,103 @@
+{
+  "verification_date": "20260203-2148",
+  "file": "/Users/machine/Documents/AQ/db/db-1/queries/queries.md",
+  "fixes": {
+    "query_2_array_syntax": {
+      "query_number": 2,
+      "fix": "Array slicing syntax replacement",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "path_preview_cte CTE exists",
+          "status": "PASS"
+        },
+        {
+          "check": "No array slicing syntax [start:end]",
+          "status": "PASS"
+        },
+        {
+          "check": "ARRAY_LENGTH bounds checking present",
+          "status": "PASS"
+        },
+        {
+          "check": "FROM clause uses path_preview_cte",
+          "status": "PASS"
+        }
+      ]
+    },
+    "query_26_recursive_cte": {
+      "query_number": 26,
+      "fix": "Recursive CTE addition",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "WITH RECURSIVE present for recursive CTE",
+          "status": "PASS"
+        },
+        {
+          "check": "Anchor query selects from file_type_stats",
+          "status": "PASS"
+        },
+        {
+          "check": "Recursive step with UNION ALL",
+          "status": "PASS"
+        },
+        {
+          "check": "Termination condition (hierarchy_level < 5)",
+          "status": "PASS"
+        }
+      ]
+    },
+    "query_title_uniqueness": {
+      "fix": "Query title uniqueness",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "Query 26 has unique title",
+          "status": "PASS",
+          "title": "Production-Grade File Type Hierarchy Analysis with Recursive CTE and Advanced Ra"
+        },
+        {
+          "check": "Query 27 has unique title",
+          "status": "PASS",
+          "title": "Production-Grade Cumulative File Size Analysis with Advanced Time-Series Analyti"
+        },
+        {
+          "check": "Query 28 has unique title",
+          "status": "PASS",
+          "title": "Production-Grade Cross-Table File Relationship Analysis with Advanced Join Analy"
+        },
+        {
+          "check": "Query 29 has unique title",
+          "status": "PASS",
+          "title": "Production-Grade Deeply Nested File Type Analysis with Advanced Hierarchical Ana"
+        },
+        {
+          "check": "Query 30 has unique title",
+          "status": "PASS",
+          "title": "Production-Grade Advanced Window Function Aggregation Analysis with Multi-Dimens"
+        },
+        {
+          "check": "No duplicate titles",
+          "status": "PASS"
+        }
+      ]
+    },
+    "header_formatting": {
+      "fix": "Header formatting consistency",
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "All queries use ## Query N: format",
+          "status": "PASS",
+          "count": 30
+        },
+        {
+          "check": "No queries with --- prefix",
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "overall_status": "PASS"
+}

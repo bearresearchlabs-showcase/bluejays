@@ -1,0 +1,17 @@
+# Python requirements for db-16 flood risk assessment database
+# Created: 2026-02-06
+
+# Database connectors
+psycopg2-binary>=2.9.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Geospatial
+geopandas>=0.13.0
+shapely>=2.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+openpyxl>=3.1.0

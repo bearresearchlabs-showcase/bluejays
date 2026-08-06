@@ -1,0 +1,741 @@
+{
+  "report_date": "20260204-1909",
+  "database": "db-8",
+  "query_patterns": {
+    "table_access": {
+      "user_profiles": 18,
+      "user_skills": 9,
+      "skills": 12,
+      "job_postings": 43,
+      "companies": 5,
+      "job_skills_requirements": 17,
+      "UNNEST": 10,
+      "user_profile_analysis": 3,
+      "active_job_postings": 2,
+      "user_skills_aggregated": 1,
+      "job_skills_aggregated": 1,
+      "user_job_skill_matching": 1,
+      "location_matching": 1,
+      "salary_matching": 1,
+      "experience_matching": 1,
+      "final_match_scoring": 1,
+      "skill_hierarchy": 2,
+      "target_job_skills": 1,
+      "user_skill_gaps": 2,
+      "missing_skill_dependencies": 1,
+      "learning_path_recommendations": 1,
+      "mt": 2,
+      "market_trends": 1,
+      "market_trend_base": 1,
+      "trend_aggregations": 1,
+      "time_series_analysis": 1,
+      "active": 1,
+      "growth_metrics": 1,
+      "skill_demand_projection": 1,
+      "forecast_projections": 2,
+      "ja": 5,
+      "job_applications": 21,
+      "application_cohorts": 1,
+      "application_timeline": 2,
+      "cohort_aggregations": 2,
+      "conversion_funnel": 1,
+      "cohort_comparison": 1,
+      "success_factor_analysis": 1,
+      "company_job_metrics": 2,
+      "industry_market_share": 1,
+      "company_application_metrics": 1,
+      "company_skill_demand": 1,
+      "company_competitive_position": 2,
+      "employer_brand_score": 1,
+      "location_job_aggregations": 1,
+      "location_application_metrics": 1,
+      "location_competition_analysis": 2,
+      "state_level_aggregations": 1,
+      "location_attractiveness_scoring": 1,
+      "final_location_ranking": 1,
+      "salary_data_normalization": 5,
+      "role_salary_aggregations": 4,
+      "industry_salary_benchmarks": 1,
+      "role_market_positioning": 3,
+      "location_salary_benchmarks": 1,
+      "role_industry_comparison": 1,
+      "role_location_comparison": 1,
+      "up": 3,
+      "user_registration_cohorts": 3,
+      "user_application_activity": 1,
+      "cohort_retention_analysis": 1,
+      "cohort_progression_metrics": 1,
+      "job": 2,
+      "user": 1,
+      "skill_demand_aggregation": 1,
+      "skill_supply_aggregation": 1,
+      "demand_supply_comparison": 1,
+      "market_imbalance_calculation": 1,
+      "skill_opportunity_scoring": 1,
+      "federal_job_aggregations": 5,
+      "pay_plan_analysis": 1,
+      "grade_level_analysis": 1,
+      "geographic_federal_distribution": 1,
+      "agency_hiring_patterns": 1,
+      "ujsh": 2,
+      "user_job_search_history": 3,
+      "user_search_activity": 1,
+      "job_recommendations": 3,
+      "search_pattern_analysis": 1,
+      "recommendation_engagement": 1,
+      "search_recommendation_correlation": 1,
+      "user_behavior_segmentation": 1,
+      "application_stages": 2,
+      "previous": 2,
+      "start": 1,
+      "funnel_stage_counts": 1,
+      "funnel_conversion_rates": 1,
+      "stage_time_analysis": 1,
+      "funnel_optimization_insights": 1,
+      "job_skill_combinations": 1,
+      "skill_pair_co_occurrence": 1,
+      "individual_skill_metrics": 2,
+      "skill_pair_value_analysis": 1,
+      "skill_pair_scoring": 1,
+      "job_posting_lifecycle": 1,
+      "time_to_fill_metrics": 2,
+      "industry_time_analysis": 1,
+      "market_efficiency_indicators": 1,
+      "work_model_distribution": 3,
+      "monthly_work_model_trends": 1,
+      "geographic_remote_distribution": 1,
+      "industry_remote_adoption": 1,
+      "work_model_trend_analysis": 1,
+      "data_source_metadata": 3,
+      "data_source_extraction_summary": 1,
+      "source_quality_metrics": 1,
+      "source_freshness_analysis": 1,
+      "source_reliability_scoring": 1,
+      "job_title_variations": 2,
+      "title_frequency_analysis": 2,
+      "title_similarity_clustering": 1,
+      "title_normalization_mapping": 1,
+      "application_features": 1,
+      "feature_engineering": 1,
+      "success_probability_scoring": 1,
+      "company_hiring_timeline": 1,
+      "company_growth_metrics": 1,
+      "company_growth_analysis": 1,
+      "company_summary_metrics": 1,
+      "company_growth_scoring": 1,
+      "skill_demand_timeline": 1,
+      "skill_trend_analysis": 1,
+      "skill_growth_metrics": 1,
+      "skill_lifecycle_detection": 1,
+      "emerging_skills_identification": 1,
+      "application_timing_features": 1,
+      "timing_success_analysis": 1,
+      "optimal_timing_recommendations": 1,
+      "user_industry_history": 1,
+      "industry_transition_matrix": 1,
+      "transition_path_analysis": 1,
+      "market_salary_benchmarks": 1,
+      "user_market_positioning": 1,
+      "negotiation_leverage_factors": 1,
+      "negotiation_recommendations": 1,
+      "market_opportunity_density": 1,
+      "competition_intensity_analysis": 1,
+      "market_saturation_scoring": 1,
+      "user_journey_events": 1,
+      "journey_stage_analysis": 1,
+      "journey_funnel_metrics": 1,
+      "job_hierarchy_base": 3,
+      "career_path_analysis": 1,
+      "multi_dimensional_job_features": 1,
+      "dimension_aggregations": 1,
+      "segment_profiling": 2,
+      "segment_comparison": 1,
+      "historical_market_trends": 1,
+      "trend_calculations": 1,
+      "all": 1,
+      "USAJobs": 1,
+      "multi_source_job_aggregation": 1,
+      "source_deduplication": 2,
+      "unified_job_matching": 1,
+      "cross_source_analytics": 1,
+      "industry_breakdown": 1,
+      "geographic_breakdown": 1,
+      "data_source_health": 1,
+      "market_overview_metrics": 1,
+      "user_engagement_metrics": 1,
+      "skill_market_metrics": 1,
+      "executive_summary": 1
+    },
+    "join_patterns": {},
+    "filter_patterns": {},
+    "aggregation_patterns": {},
+    "window_function_usage": {},
+    "cte_depth": [
+      {
+        "query_number": 1,
+        "cte_count": 1
+      },
+      {
+        "query_number": 2,
+        "cte_count": 0
+      },
+      {
+        "query_number": 3,
+        "cte_count": 1
+      },
+      {
+        "query_number": 4,
+        "cte_count": 1
+      },
+      {
+        "query_number": 5,
+        "cte_count": 1
+      },
+      {
+        "query_number": 6,
+        "cte_count": 1
+      },
+      {
+        "query_number": 7,
+        "cte_count": 1
+      },
+      {
+        "query_number": 8,
+        "cte_count": 1
+      },
+      {
+        "query_number": 9,
+        "cte_count": 1
+      },
+      {
+        "query_number": 10,
+        "cte_count": 1
+      },
+      {
+        "query_number": 11,
+        "cte_count": 1
+      },
+      {
+        "query_number": 12,
+        "cte_count": 1
+      },
+      {
+        "query_number": 13,
+        "cte_count": 1
+      },
+      {
+        "query_number": 14,
+        "cte_count": 1
+      },
+      {
+        "query_number": 15,
+        "cte_count": 1
+      },
+      {
+        "query_number": 16,
+        "cte_count": 1
+      },
+      {
+        "query_number": 17,
+        "cte_count": 1
+      },
+      {
+        "query_number": 18,
+        "cte_count": 1
+      },
+      {
+        "query_number": 19,
+        "cte_count": 1
+      },
+      {
+        "query_number": 20,
+        "cte_count": 1
+      },
+      {
+        "query_number": 21,
+        "cte_count": 1
+      },
+      {
+        "query_number": 22,
+        "cte_count": 1
+      },
+      {
+        "query_number": 23,
+        "cte_count": 1
+      },
+      {
+        "query_number": 24,
+        "cte_count": 1
+      },
+      {
+        "query_number": 25,
+        "cte_count": 1
+      },
+      {
+        "query_number": 26,
+        "cte_count": 0
+      },
+      {
+        "query_number": 27,
+        "cte_count": 1
+      },
+      {
+        "query_number": 28,
+        "cte_count": 1
+      },
+      {
+        "query_number": 29,
+        "cte_count": 1
+      },
+      {
+        "query_number": 30,
+        "cte_count": 1
+      }
+    ]
+  },
+  "index_recommendations": [
+    {
+      "type": "composite_index",
+      "table": "job_postings",
+      "columns": [
+        "posted_date",
+        "location_state",
+        "is_active"
+      ],
+      "priority": "high",
+      "usage_count": "high",
+      "sql": "CREATE INDEX IF NOT EXISTS idx_job_postings_date_location_active ON job_postings(posted_date DESC, location_state, is_active) WHERE is_active = TRUE;"
+    },
+    {
+      "type": "composite_index",
+      "table": "user_skills",
+      "columns": [
+        "user_id",
+        "skill_id"
+      ],
+      "priority": "high",
+      "usage_count": "high",
+      "sql": "CREATE INDEX IF NOT EXISTS idx_user_skills_user_skill ON user_skills(user_id, skill_id);"
+    },
+    {
+      "type": "composite_index",
+      "table": "job_skills_requirements",
+      "columns": [
+        "job_id",
+        "requirement_type"
+      ],
+      "priority": "high",
+      "usage_count": "high",
+      "sql": "CREATE INDEX IF NOT EXISTS idx_job_skills_req_job_type ON job_skills_requirements(job_id, requirement_type);"
+    }
+  ],
+  "complexity_analysis": {
+    "queries": [
+      {
+        "query_number": 1,
+        "title": "Production-Grade AI Job Matching Engine with Multi-Dimensional Scoring and Skill Alignment Analysis",
+        "cte_count": 1,
+        "join_count": 8,
+        "subquery_count": 0,
+        "window_function_count": 1,
+        "aggregation_count": 15,
+        "sql_length": 13132,
+        "estimated_complexity": "very_high",
+        "complexity_score": 31.0
+      },
+      {
+        "query_number": 2,
+        "title": "Recursive Skill Gap Analysis with Hierarchical Skill Dependencies and Learning Path Recommendations",
+        "cte_count": 0,
+        "join_count": 9,
+        "subquery_count": 0,
+        "window_function_count": 3,
+        "aggregation_count": 5,
+        "sql_length": 5711,
+        "estimated_complexity": "very_high",
+        "complexity_score": 24.5
+      },
+      {
+        "query_number": 3,
+        "title": "Market Trend Analysis with Time-Series Forecasting and Skill Demand Projections",
+        "cte_count": 1,
+        "join_count": 4,
+        "subquery_count": 0,
+        "window_function_count": 8,
+        "aggregation_count": 17,
+        "sql_length": 9881,
+        "estimated_complexity": "very_high",
+        "complexity_score": 41.0
+      },
+      {
+        "query_number": 4,
+        "title": "Application Success Rate Analysis with Cohort Segmentation and Conversion Funnel Analytics",
+        "cte_count": 1,
+        "join_count": 3,
+        "subquery_count": 0,
+        "window_function_count": 6,
+        "aggregation_count": 23,
+        "sql_length": 7563,
+        "estimated_complexity": "very_high",
+        "complexity_score": 41.5
+      },
+      {
+        "query_number": 5,
+        "title": "Company Competitive Intelligence with Market Share Analysis and Employer Branding Metrics",
+        "cte_count": 1,
+        "join_count": 8,
+        "subquery_count": 0,
+        "window_function_count": 6,
+        "aggregation_count": 25,
+        "sql_length": 8222,
+        "estimated_complexity": "very_high",
+        "complexity_score": 51.0
+      },
+      {
+        "query_number": 6,
+        "title": "Geographic Job Market Analysis with Location Intelligence and Remote Work Trends",
+        "cte_count": 1,
+        "join_count": 3,
+        "subquery_count": 0,
+        "window_function_count": 2,
+        "aggregation_count": 27,
+        "sql_length": 8705,
+        "estimated_complexity": "very_high",
+        "complexity_score": 37.5
+      },
+      {
+        "query_number": 7,
+        "title": "Salary Benchmarking Analysis with Percentile Rankings and Market Positioning",
+        "cte_count": 1,
+        "join_count": 4,
+        "subquery_count": 3,
+        "window_function_count": 1,
+        "aggregation_count": 29,
+        "sql_length": 9242,
+        "estimated_complexity": "very_high",
+        "complexity_score": 43.5
+      },
+      {
+        "query_number": 8,
+        "title": "User Cohort Analysis with Retention Metrics and Career Progression Tracking",
+        "cte_count": 1,
+        "join_count": 5,
+        "subquery_count": 0,
+        "window_function_count": 2,
+        "aggregation_count": 31,
+        "sql_length": 7831,
+        "estimated_complexity": "very_high",
+        "complexity_score": 44.5
+      },
+      {
+        "query_number": 9,
+        "title": "Skill Demand vs Supply Analysis with Market Imbalance Detection",
+        "cte_count": 1,
+        "join_count": 5,
+        "subquery_count": 0,
+        "window_function_count": 3,
+        "aggregation_count": 20,
+        "sql_length": 8445,
+        "estimated_complexity": "very_high",
+        "complexity_score": 35.5
+      },
+      {
+        "query_number": 10,
+        "title": "Federal Job Opportunities Analysis with USAJobs.gov Integration and Agency Intelligence",
+        "cte_count": 1,
+        "join_count": 1,
+        "subquery_count": 0,
+        "window_function_count": 4,
+        "aggregation_count": 45,
+        "sql_length": 6883,
+        "estimated_complexity": "very_high",
+        "complexity_score": 56.5
+      },
+      {
+        "query_number": 11,
+        "title": "Job Search Behavior Analysis with Search Pattern Recognition and Recommendation Optimization",
+        "cte_count": 1,
+        "join_count": 2,
+        "subquery_count": 0,
+        "window_function_count": 4,
+        "aggregation_count": 24,
+        "sql_length": 7823,
+        "estimated_complexity": "very_high",
+        "complexity_score": 37.0
+      },
+      {
+        "query_number": 12,
+        "title": "Application Funnel Optimization with Conversion Rate Analysis and Drop-off Identification",
+        "cte_count": 1,
+        "join_count": 2,
+        "subquery_count": 0,
+        "window_function_count": 8,
+        "aggregation_count": 11,
+        "sql_length": 7221,
+        "estimated_complexity": "very_high",
+        "complexity_score": 32.0
+      },
+      {
+        "query_number": 13,
+        "title": "Skill Combination Analysis with Co-occurrence Patterns and Market Value Optimization",
+        "cte_count": 1,
+        "join_count": 7,
+        "subquery_count": 0,
+        "window_function_count": 3,
+        "aggregation_count": 12,
+        "sql_length": 7053,
+        "estimated_complexity": "very_high",
+        "complexity_score": 30.5
+      },
+      {
+        "query_number": 14,
+        "title": "Time-to-Fill Analysis with Hiring Velocity Metrics and Market Efficiency Indicators",
+        "cte_count": 1,
+        "join_count": 1,
+        "subquery_count": 0,
+        "window_function_count": 3,
+        "aggregation_count": 20,
+        "sql_length": 7185,
+        "estimated_complexity": "very_high",
+        "complexity_score": 29.5
+      },
+      {
+        "query_number": 15,
+        "title": "Remote Work Trends Analysis with Geographic Distribution and Work Model Evolution",
+        "cte_count": 1,
+        "join_count": 0,
+        "subquery_count": 0,
+        "window_function_count": 8,
+        "aggregation_count": 32,
+        "sql_length": 7464,
+        "estimated_complexity": "very_high",
+        "complexity_score": 50.0
+      },
+      {
+        "query_number": 16,
+        "title": "Data Source Quality Analysis with Extraction Metrics and Data Freshness Tracking",
+        "cte_count": 1,
+        "join_count": 1,
+        "subquery_count": 0,
+        "window_function_count": 4,
+        "aggregation_count": 18,
+        "sql_length": 9321,
+        "estimated_complexity": "very_high",
+        "complexity_score": 29.5
+      },
+      {
+        "query_number": 17,
+        "title": "Job Title Normalization and Clustering with Similarity Analysis",
+        "cte_count": 1,
+        "join_count": 0,
+        "subquery_count": 0,
+        "window_function_count": 3,
+        "aggregation_count": 7,
+        "sql_length": 5071,
+        "estimated_complexity": "medium",
+        "complexity_score": 15.0
+      },
+      {
+        "query_number": 18,
+        "title": "Application Success Prediction with Machine Learning Features and Probability Scoring",
+        "cte_count": 1,
+        "join_count": 4,
+        "subquery_count": 0,
+        "window_function_count": 1,
+        "aggregation_count": 7,
+        "sql_length": 8800,
+        "estimated_complexity": "high",
+        "complexity_score": 17.0
+      },
+      {
+        "query_number": 19,
+        "title": "Company Growth Analysis with Hiring Trends and Expansion Patterns",
+        "cte_count": 1,
+        "join_count": 1,
+        "subquery_count": 0,
+        "window_function_count": 7,
+        "aggregation_count": 18,
+        "sql_length": 8922,
+        "estimated_complexity": "very_high",
+        "complexity_score": 35.5
+      },
+      {
+        "query_number": 20,
+        "title": "Skill Evolution Tracking with Emerging Skills Detection and Trend Analysis",
+        "cte_count": 1,
+        "join_count": 2,
+        "subquery_count": 0,
+        "window_function_count": 8,
+        "aggregation_count": 28,
+        "sql_length": 7442,
+        "estimated_complexity": "very_high",
+        "complexity_score": 49.0
+      },
+      {
+        "query_number": 21,
+        "title": "Application Timing Optimization with Best Time-to-Apply Analysis",
+        "cte_count": 1,
+        "join_count": 1,
+        "subquery_count": 0,
+        "window_function_count": 1,
+        "aggregation_count": 6,
+        "sql_length": 3648,
+        "estimated_complexity": "medium",
+        "complexity_score": 11.5
+      },
+      {
+        "query_number": 22,
+        "title": "Industry Transition Analysis with Career Path Mapping and Transition Success Rates",
+        "cte_count": 1,
+        "join_count": 3,
+        "subquery_count": 0,
+        "window_function_count": 2,
+        "aggregation_count": 7,
+        "sql_length": 3070,
+        "estimated_complexity": "high",
+        "complexity_score": 17.5
+      },
+      {
+        "query_number": 23,
+        "title": "Salary Negotiation Intelligence with Market Positioning and Negotiation Leverage Analysis",
+        "cte_count": 1,
+        "join_count": 4,
+        "subquery_count": 0,
+        "window_function_count": 0,
+        "aggregation_count": 10,
+        "sql_length": 5488,
+        "estimated_complexity": "high",
+        "complexity_score": 18.0
+      },
+      {
+        "query_number": 24,
+        "title": "Job Market Saturation Analysis with Competition Intensity and Opportunity Density Metrics",
+        "cte_count": 1,
+        "join_count": 1,
+        "subquery_count": 0,
+        "window_function_count": 2,
+        "aggregation_count": 9,
+        "sql_length": 3843,
+        "estimated_complexity": "high",
+        "complexity_score": 16.5
+      },
+      {
+        "query_number": 25,
+        "title": "User Journey Analysis with Engagement Funnels and Conversion Optimization",
+        "cte_count": 1,
+        "join_count": 3,
+        "subquery_count": 0,
+        "window_function_count": 3,
+        "aggregation_count": 24,
+        "sql_length": 5656,
+        "estimated_complexity": "very_high",
+        "complexity_score": 36.5
+      },
+      {
+        "query_number": 26,
+        "title": "Recursive Career Path Analysis with Hierarchical Job Progression and Path Optimization",
+        "cte_count": 0,
+        "join_count": 1,
+        "subquery_count": 0,
+        "window_function_count": 1,
+        "aggregation_count": 10,
+        "sql_length": 4505,
+        "estimated_complexity": "medium",
+        "complexity_score": 13.5
+      },
+      {
+        "query_number": 27,
+        "title": "Multi-Dimensional Market Segmentation with Cluster Analysis and Segment Profiling",
+        "cte_count": 1,
+        "join_count": 3,
+        "subquery_count": 0,
+        "window_function_count": 2,
+        "aggregation_count": 11,
+        "sql_length": 4825,
+        "estimated_complexity": "very_high",
+        "complexity_score": 21.5
+      },
+      {
+        "query_number": 28,
+        "title": "Predictive Market Forecasting with Time-Series Projections and Trend Extrapolation",
+        "cte_count": 1,
+        "join_count": 0,
+        "subquery_count": 0,
+        "window_function_count": 4,
+        "aggregation_count": 7,
+        "sql_length": 4175,
+        "estimated_complexity": "high",
+        "complexity_score": 17.0
+      },
+      {
+        "query_number": 29,
+        "title": "Cross-Database Job Matching with Redundancy Architecture and Multi-Source Integration",
+        "cte_count": 1,
+        "join_count": 2,
+        "subquery_count": 0,
+        "window_function_count": 3,
+        "aggregation_count": 5,
+        "sql_length": 4925,
+        "estimated_complexity": "high",
+        "complexity_score": 16.0
+      },
+      {
+        "query_number": 30,
+        "title": "Comprehensive Market Intelligence Dashboard with Multi-Dimensional Analytics and Executive Summary",
+        "cte_count": 1,
+        "join_count": 7,
+        "subquery_count": 0,
+        "window_function_count": 0,
+        "aggregation_count": 32,
+        "sql_length": 6651,
+        "estimated_complexity": "very_high",
+        "complexity_score": 44.5
+      }
+    ],
+    "summary": {
+      "total_queries": 30,
+      "avg_complexity_score": 31.466666666666665,
+      "high_complexity_count": 27
+    }
+  },
+  "optimization_priority": {
+    "high": [
+      {
+        "type": "composite_index",
+        "table": "job_postings",
+        "columns": [
+          "posted_date",
+          "location_state",
+          "is_active"
+        ],
+        "priority": "high",
+        "usage_count": "high",
+        "sql": "CREATE INDEX IF NOT EXISTS idx_job_postings_date_location_active ON job_postings(posted_date DESC, location_state, is_active) WHERE is_active = TRUE;"
+      },
+      {
+        "type": "composite_index",
+        "table": "user_skills",
+        "columns": [
+          "user_id",
+          "skill_id"
+        ],
+        "priority": "high",
+        "usage_count": "high",
+        "sql": "CREATE INDEX IF NOT EXISTS idx_user_skills_user_skill ON user_skills(user_id, skill_id);"
+      },
+      {
+        "type": "composite_index",
+        "table": "job_skills_requirements",
+        "columns": [
+          "job_id",
+          "requirement_type"
+        ],
+        "priority": "high",
+        "usage_count": "high",
+        "sql": "CREATE INDEX IF NOT EXISTS idx_job_skills_req_job_type ON job_skills_requirements(job_id, requirement_type);"
+      }
+    ],
+    "medium": [],
+    "low": []
+  }
+}

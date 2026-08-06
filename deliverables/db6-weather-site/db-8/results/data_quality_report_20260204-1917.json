@@ -1,0 +1,16 @@
+{
+  "validation_date": "20260204-1917",
+  "database": "db-8",
+  "Pass": 1,
+  "checks": {},
+  "profiles": {},
+  "summary": {
+    "total_checks": 0,
+    "passed_checks": 0,
+    "failed_checks": 0,
+    "pass_rate": 0
+  },
+  "notes": [
+    "Database connection not available - data quality checks skipped. Set up database connection for full validation."
+  ]
+}

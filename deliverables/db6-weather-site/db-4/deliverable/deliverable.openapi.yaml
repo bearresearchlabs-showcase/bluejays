@@ -1,0 +1,1106 @@
+openapi: 3.0.3
+info:
+  title: Database db-4 - Database API Specification
+  description: 'Seydam AI database with SharedAI application schema. Includes core
+    application data, user profiles, payment records, generated reports, and AI model
+    metadata. Exported from Supabase PostgreSQL.
+
+
+    - User profiles and reports
+
+    - Payment and token usage tracking
+
+    - AI model management
+
+    - JSON report content
+
+
+    - PostgreSQL: Full support
+
+
+    ---
+
+
+    ---
+
+
+    This section provides a comprehensive data dictionary for all tables in the database,
+    including column names, data types, constraints, and descriptions. Tables are
+    organized by functional category for easier navigation.
+
+
+    See `docs/SCHEMA.md` for table relationships. Includes `models` table and application
+    schema.
+
+
+    ---
+
+
+    ---
+
+
+    ---
+
+
+    This database includes 30 production SQL queries, each designed to solve specific
+    business problems for companies with $1M+ ARR. Each query includes:
+
+
+    - Business Use Case: The specific business problem this query solves
+
+    - Description: Technical explanation of what the query does
+
+    - Client Deliverable: What output or report this query generates
+
+    - Business Value: The business impact and value delivered
+
+    - Complexity: Technical complexity indicators
+
+    - SQL Code: Complete, production-ready SQL query
+
+
+    ---
+
+
+    Use Case: Business analytics for multi-window time-series analysis with rolling
+    aggregates
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for multi-window time-series analysis with rolling aggregates.
+
+    Use Case: Business analytics for multi-window time-series analysis with rolling
+    aggregates
+
+
+    Business Value: Actionable insights from multi-window time-series analysis with
+    rolling aggregates
+
+
+    Purpose: Production multi-window time-series analysis with rolling aggregates
+    analysis
+
+
+    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and name
+
+
+    ---
+
+
+    Use Case: Business analytics for segmentation analysis with decile ranking
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    week-level grouping for segmentation analysis with decile ranking.
+
+    Use Case: Business analytics for segmentation analysis with decile ranking
+
+
+    Business Value: Actionable insights from segmentation analysis with decile ranking
+
+
+    Purpose: Production segmentation analysis with decile ranking analysis
+
+
+    Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by week and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for performance quartile distribution
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    month-level grouping for performance quartile distribution.
+
+    Use Case: Business analytics for performance quartile distribution
+
+
+    Business Value: Actionable insights from performance quartile distribution
+
+
+    Purpose: Production performance quartile distribution analysis
+
+
+    Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by month and name
+
+
+    ---
+
+
+    Use Case: Business analytics for revenue distribution by category
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for revenue distribution by category.
+
+    Use Case: Business analytics for revenue distribution by category
+
+
+    Business Value: Actionable insights from revenue distribution by category
+
+
+    Purpose: Production revenue distribution by category analysis
+
+
+    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for velocity and acceleration metrics
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    week-level grouping for velocity and acceleration metrics.
+
+    Use Case: Business analytics for velocity and acceleration metrics
+
+
+    Business Value: Actionable insights from velocity and acceleration metrics
+
+
+    Purpose: Production velocity and acceleration metrics analysis
+
+
+    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by week and name
+
+
+    ---
+
+
+    Use Case: Business analytics for hourly pattern detection and clustering
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for hourly pattern detection and clustering.
+
+    Use Case: Business analytics for hourly pattern detection and clustering
+
+
+    Business Value: Actionable insights from hourly pattern detection and clustering
+
+
+    Purpose: Production hourly pattern detection and clustering analysis
+
+
+    Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for gap analysis with sequential difference
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    month-level grouping for gap analysis with sequential difference.
+
+    Use Case: Business analytics for gap analysis with sequential difference
+
+
+    Business Value: Actionable insights from gap analysis with sequential difference
+
+
+    Purpose: Production gap analysis with sequential difference analysis
+
+
+    Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by month and name
+
+
+    ---
+
+
+    Use Case: Business analytics for anomaly detection using z-score windows
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for anomaly detection using z-score windows.
+
+    Use Case: Business analytics for anomaly detection using z-score windows
+
+
+    Business Value: Actionable insights from anomaly detection using z-score windows
+
+
+    Purpose: Production anomaly detection using z-score windows analysis
+
+
+    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for recency-frequency-monetary scoring
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    week-level grouping for recency-frequency-monetary scoring.
+
+    Use Case: Business analytics for recency-frequency-monetary scoring
+
+
+    Business Value: Actionable insights from recency-frequency-monetary scoring
+
+
+    Purpose: Production recency-frequency-monetary scoring analysis
+
+
+    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by week and name
+
+
+    ---
+
+
+    Use Case: Business analytics for multi-period cohort retention analysis
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    month-level grouping for multi-period cohort retention analysis.
+
+    Use Case: Business analytics for multi-period cohort retention analysis
+
+
+    Business Value: Actionable insights from multi-period cohort retention analysis
+
+
+    Purpose: Production multi-period cohort retention analysis analysis
+
+
+    Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by month and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for second-order derivative computation
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for second-order derivative computation.
+
+    Use Case: Business analytics for second-order derivative computation
+
+
+    Business Value: Actionable insights from second-order derivative computation
+
+
+    Purpose: Production second-order derivative computation analysis
+
+
+    Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and name
+
+
+    ---
+
+
+    Use Case: Business analytics for cross-category benchmarking with percentiles
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    week-level grouping for cross-category benchmarking with percentiles.
+
+    Use Case: Business analytics for cross-category benchmarking with percentiles
+
+
+    Business Value: Actionable insights from cross-category benchmarking with percentiles
+
+
+    Purpose: Production cross-category benchmarking with percentiles analysis
+
+
+    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by week and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for exponentially weighted moving average
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    month-level grouping for exponentially weighted moving average.
+
+    Use Case: Business analytics for exponentially weighted moving average
+
+
+    Business Value: Actionable insights from exponentially weighted moving average
+
+
+    Purpose: Production exponentially weighted moving average analysis
+
+
+    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by month and name
+
+
+    ---
+
+
+    Use Case: Business analytics for peak period identification and efficiency
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for peak period identification and efficiency.
+
+    Use Case: Business analytics for peak period identification and efficiency
+
+
+    Business Value: Actionable insights from peak period identification and efficiency
+
+
+    Purpose: Production peak period identification and efficiency analysis
+
+
+    Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for lifetime value estimation model
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    week-level grouping for lifetime value estimation model.
+
+    Use Case: Business analytics for lifetime value estimation model
+
+
+    Business Value: Actionable insights from lifetime value estimation model
+
+
+    Purpose: Production lifetime value estimation model analysis
+
+
+    Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by week and name
+
+
+    ---
+
+
+    Use Case: Business analytics for year-over-year growth rate analysis
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    month-level grouping for year-over-year growth rate analysis.
+
+    Use Case: Business analytics for year-over-year growth rate analysis
+
+
+    Business Value: Actionable insights from year-over-year growth rate analysis
+
+
+    Purpose: Production year-over-year growth rate analysis analysis
+
+
+    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by month and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for heatmap data generation by time dimensions
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for heatmap data generation by time dimensions.
+
+    Use Case: Business analytics for heatmap data generation by time dimensions
+
+
+    Business Value: Actionable insights from heatmap data generation by time dimensions
+
+
+    Purpose: Production heatmap data generation by time dimensions analysis
+
+
+    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and name
+
+
+    ---
+
+
+    Use Case: Business analytics for running percentile distribution computation
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    week-level grouping for running percentile distribution computation.
+
+    Use Case: Business analytics for running percentile distribution computation
+
+
+    Business Value: Actionable insights from running percentile distribution computation
+
+
+    Purpose: Production running percentile distribution computation analysis
+
+
+    Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by week and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for cross-correlation pattern analysis
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    month-level grouping for cross-correlation pattern analysis.
+
+    Use Case: Business analytics for cross-correlation pattern analysis
+
+
+    Business Value: Actionable insights from cross-correlation pattern analysis
+
+
+    Purpose: Production cross-correlation pattern analysis analysis
+
+
+    Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by month and name
+
+
+    ---
+
+
+    Use Case: Business analytics for forensic analysis of status transitions
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for forensic analysis of status transitions.
+
+    Use Case: Business analytics for forensic analysis of status transitions
+
+
+    Business Value: Actionable insights from forensic analysis of status transitions
+
+
+    Purpose: Production forensic analysis of status transitions analysis
+
+
+    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for multi-metric dashboard aggregation pipeline
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    week-level grouping for multi-metric dashboard aggregation pipeline.
+
+    Use Case: Business analytics for multi-metric dashboard aggregation pipeline
+
+
+    Business Value: Actionable insights from multi-metric dashboard aggregation pipeline
+
+
+    Purpose: Production multi-metric dashboard aggregation pipeline analysis
+
+
+    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by week and name
+
+
+    ---
+
+
+    Use Case: Business analytics for sequential pattern mining with windows
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    month-level grouping for sequential pattern mining with windows.
+
+    Use Case: Business analytics for sequential pattern mining with windows
+
+
+    Business Value: Actionable insights from sequential pattern mining with windows
+
+
+    Purpose: Production sequential pattern mining with windows analysis
+
+
+    Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by month and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for concentration index computation
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for concentration index computation.
+
+    Use Case: Business analytics for concentration index computation
+
+
+    Business Value: Actionable insights from concentration index computation
+
+
+    Purpose: Production concentration index computation analysis
+
+
+    Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and name
+
+
+    ---
+
+
+    Use Case: Business analytics for statistical anomaly score assignment
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    week-level grouping for statistical anomaly score assignment.
+
+    Use Case: Business analytics for statistical anomaly score assignment
+
+
+    Business Value: Actionable insights from statistical anomaly score assignment
+
+
+    Purpose: Production statistical anomaly score assignment analysis
+
+
+    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by week and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for fiscal period comparative reporting
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    month-level grouping for fiscal period comparative reporting.
+
+    Use Case: Business analytics for fiscal period comparative reporting
+
+
+    Business Value: Actionable insights from fiscal period comparative reporting
+
+
+    Purpose: Production fiscal period comparative reporting analysis
+
+
+    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by month and name
+
+
+    ---
+
+
+    Use Case: Business analytics for throughput optimization metrics
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for throughput optimization metrics.
+
+    Use Case: Business analytics for throughput optimization metrics
+
+
+    Business Value: Actionable insights from throughput optimization metrics
+
+
+    Purpose: Production throughput optimization metrics analysis
+
+
+    Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for cumulative trend analysis pipeline
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    week-level grouping for cumulative trend analysis pipeline.
+
+    Use Case: Business analytics for cumulative trend analysis pipeline
+
+
+    Business Value: Actionable insights from cumulative trend analysis pipeline
+
+
+    Purpose: Production cumulative trend analysis pipeline analysis
+
+
+    Complexity: 4 CTEs, 9 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by week and name
+
+
+    ---
+
+
+    Use Case: Business analytics for multi-dimensional pivot aggregation
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    month-level grouping for multi-dimensional pivot aggregation.
+
+    Use Case: Business analytics for multi-dimensional pivot aggregation
+
+
+    Business Value: Actionable insights from multi-dimensional pivot aggregation
+
+
+    Purpose: Production multi-dimensional pivot aggregation analysis
+
+
+    Complexity: 4 CTEs, 6 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by month and user_id
+
+
+    ---
+
+
+    Use Case: Business analytics for funnel stage progression tracking
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    day-level grouping for funnel stage progression tracking.
+
+    Use Case: Business analytics for funnel stage progression tracking
+
+
+    Business Value: Actionable insights from funnel stage progression tracking
+
+
+    Purpose: Production funnel stage progression tracking analysis
+
+
+    Complexity: 4 CTEs, 7 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by day and name
+
+
+    ---
+
+
+    Use Case: Business analytics for outlier detection with iqr method
+
+
+    Description: Uses 4 CTEs with window functions, statistical aggregations, and
+    week-level grouping for outlier detection with iqr method.
+
+    Use Case: Business analytics for outlier detection with iqr method
+
+
+    Business Value: Actionable insights from outlier detection with iqr method
+
+
+    Purpose: Production outlier detection with iqr method analysis
+
+
+    Complexity: 4 CTEs, 8 window functions, GROUP BY with HAVING, date arithmetic
+
+    Expected Output: Aggregated metrics grouped by week and user_id
+
+
+    ---
+
+
+    Load schema.sql and data.sql. See docs/README.md for restoration.
+
+
+    ---
+
+
+    All queries in this database are designed to work across multiple database platforms:
+
+
+    - PostgreSQL: Full support with standard SQL features
+
+
+    Queries use standard SQL syntax and avoid platform-specific features to ensure
+    compatibility.
+
+
+    ---
+
+
+    Document Information:
+
+
+    - Generated: 20260210-0115
+
+    - Database: db-4
+
+    - Type: SharedAI Models (Seydam AI)
+
+    - Queries: 30 production queries
+
+    - Status: ✅ Complete Comprehensive Deliverable'
+  version: 1.0.0
+  contact:
+    name: Database Team
+  license:
+    name: MIT
+servers:
+- url: postgresql://localhost:5432/db_4
+  description: PostgreSQL Server
+tags:
+- name: schema
+  description: Database schema information
+- name: tables
+  description: Table definitions and structures
+- name: queries
+  description: SQL query definitions and metadata
+- name: relationships
+  description: Table relationships and foreign keys
+paths:
+  /schema:
+    get:
+      tags:
+      - schema
+      summary: Get database schema overview
+      description: Returns overview information about the database schema
+      responses:
+        '200':
+          description: Schema overview
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaOverview'
+  /tables:
+    get:
+      tags:
+      - tables
+      summary: List all tables
+      description: Returns a list of all tables in the database
+      responses:
+        '200':
+          description: List of tables
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Table'
+  /tables/{tableName}:
+    get:
+      tags:
+      - tables
+      summary: Get table details
+      description: Returns detailed information about a specific table
+      parameters:
+      - name: tableName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Name of the table
+      responses:
+        '200':
+          description: Table details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+  /queries:
+    get:
+      tags:
+      - queries
+      summary: List all SQL queries
+      description: Returns metadata for all SQL queries
+      responses:
+        '200':
+          description: List of queries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Query'
+  /queries/{queryNumber}:
+    get:
+      tags:
+      - queries
+      summary: Get query details
+      description: Returns detailed information and SQL code for a specific query
+      parameters:
+      - name: queryNumber
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Query number (1-30)
+      responses:
+        '200':
+          description: Query details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+components:
+  schemas:
+    SchemaOverview:
+      type: object
+      properties:
+        database_name:
+          type: string
+          example: db-1
+        database_type:
+          type: string
+          example: Chat/Messaging System
+        created_date:
+          type: string
+          format: date
+          example: '2026-02-03'
+        total_tables:
+          type: integer
+          example: 11
+        supported_platforms:
+          type: array
+          items:
+            type: string
+          example:
+          - PostgreSQL
+        table_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableGroup'
+    TableGroup:
+      type: object
+      properties:
+        name:
+          type: string
+          example: User Management
+        tables:
+          type: array
+          items:
+            type: string
+          example:
+          - profiles
+    Table:
+      type: object
+      required:
+      - name
+      - columns
+      properties:
+        name:
+          type: string
+          example: profiles
+        description:
+          type: string
+          example: Stores user profile information
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+        indexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Index'
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Constraint'
+        foreign_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForeignKey'
+    Column:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          example: id
+        type:
+          type: string
+          example: UUID
+        nullable:
+          type: boolean
+          example: false
+        default:
+          type: string
+          nullable: true
+          example: gen_random_uuid()
+        description:
+          type: string
+          example: Primary key - unique user identifier
+        primary_key:
+          type: boolean
+          example: true
+    Index:
+      type: object
+      properties:
+        name:
+          type: string
+          example: idx_profiles_username
+        columns:
+          type: array
+          items:
+            type: string
+          example:
+          - username
+        unique:
+          type: boolean
+          example: true
+        type:
+          type: string
+          example: btree
+    Constraint:
+      type: object
+      properties:
+        name:
+          type: string
+          example: pk_profiles
+        type:
+          type: string
+          enum:
+          - PRIMARY KEY
+          - UNIQUE
+          - CHECK
+          - NOT NULL
+          example: PRIMARY KEY
+        columns:
+          type: array
+          items:
+            type: string
+          example:
+          - id
+    ForeignKey:
+      type: object
+      properties:
+        name:
+          type: string
+          example: fk_chats_created_by
+        from_table:
+          type: string
+          example: chats
+        from_column:
+          type: string
+          example: created_by
+        to_table:
+          type: string
+          example: profiles
+        to_column:
+          type: string
+          example: id
+    Query:
+      type: object
+      required:
+      - number
+      - title
+      - sql
+      properties:
+        number:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: Production-Grade User Activity Analysis
+        description:
+          type: string
+          example: Enterprise-level user activity analysis
+        complexity:
+          type: string
+          example: Deep nested CTEs (5+ levels)
+        sql:
+          type: string
+          example: WITH user_registration_cohorts AS (...)
+        expected_output:
+          type: string
+          example: Top 20 users ranked by message activity
+        categories:
+          type: array
+          items:
+            type: string
+          example:
+          - User Activity Analysis
+          - Cohort Analytics
+        database_compatibility:
+          type: object
+          properties:
+            postgresql:
+              type: boolean
+              example: true
+  examples:
+    ProfilesTable:
+      summary: Example profiles table
+      value:
+        name: profiles
+        description: Stores user profile information
+        columns:
+        - name: id
+          type: UUID
+          nullable: false
+          primary_key: true
+          description: Primary key - unique user identifier
+        - name: username
+          type: VARCHAR(255)
+          nullable: false
+          description: Unique username for login
+        indexes:
+        - name: idx_profiles_username
+          columns:
+          - username
+          unique: true
+    QueryExample:
+      summary: Example query
+      value:
+        number: 1
+        title: Production-Grade User Activity Analysis
+        description: Enterprise-level user activity analysis
+        sql: WITH user_registration_cohorts AS (...) SELECT ...
+        expected_output: Top 20 users ranked by message activity

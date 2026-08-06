@@ -1,0 +1,17 @@
+# Python requirements for db-11 parking intelligence database
+# Created: 2026-02-04
+
+# Database connectors
+psycopg2-binary>=2.9.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Geospatial
+geopandas>=0.13.0
+shapely>=2.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+pytz>=2023.3

@@ -1,0 +1,873 @@
+---
+description: Generalized workflow and patterns for creating new databases (db-1 through db-15)
+alwaysApply: true
+---
+
+# Database Creation Workflow
+
+## Overview
+
+This rule provides a generalized workflow for creating new databases following the patterns established in db-6 and other production databases. All databases must follow consistent structure, standards, and validation requirements.
+
+## Database Initialization
+
+### Step 1: Create Directory Structure
+
+When creating a new database `db-{N}`, initialize the following directory structure:
+
+```
+db-{N}/
+├── queries/
+│   ├── queries.md          # 30+ extremely complex SQL queries (source)
+│   └── queries.json        # Query metadata (REQUIRED - extracted from queries.md)
+├── results/
+│   └── *.json              # Test results and validation reports (JSON only)
+├── docs/
+│   ├── README.md           # Database documentation
+│   ├── SCHEMA.md           # Schema documentation
+│   ├── DATA_DICTIONARY.md  # Data dictionary
+│   └── *.ipynb             # Jupyter notebooks for testing/analysis
+├── data/
+│   ├── schema.sql          # Database schema SQL file
+│   ├── data.sql            # Sample data SQL file
+│   └── *.sql, *.dump       # Additional SQL files and dumps
+├── scripts/
+│   ├── extract_queries_to_json.py  # Phase 0: Query extraction
+│   ├── verify_fixes.py              # Phase 1: Fix verification
+│   ├── comprehensive_validator.py   # Phase 2 & 4: Syntax validation and evaluation
+│   ├── execution_tester.py          # Phase 3: Execution testing
+│   ├── generate_final_report.py     # Phase 5: Final report generation
+│   ├── setup_database.sh            # Database setup script
+│   └── requirements.txt              # Python dependencies
+├── research/
+│   ├── etl_elt_pipeline.ipynb      # ETL/ELT pipeline notebook
+│   ├── data_resources.json          # Data source documentation
+│   ├── source_metadata.json         # Source metadata tracking
+│   ├── README.md                    # Research directory documentation
+│   └── *.ipynb, *.py                # Additional research notebooks and scripts
+├── metadata/
+│   ├── pipeline_metadata.json       # Pipeline execution logs
+│   ├── data_quality_reports.json    # Data quality metrics
+│   ├── schema_metadata.json          # Schema evolution tracking
+│   └── README.md                     # Metadata directory documentation
+├── deliverable/
+│   ├── db-{N}.md                     # Complete documentation (single markdown file)
+│   ├── deliverable.openapi.yaml      # OpenAPI specification (optional)
+│   ├── queries/                      # Database component: SQL queries
+│   │   ├── queries.md
+│   │   └── queries.json
+│   └── data/                         # Database component: Schema and data
+│       ├── schema.sql
+│       └── data.sql
+└── README.md                          # Database overview README
+```
+
+### Step 2: Initialize Core Files
+
+#### README.md Template
+
+Create `db-{N}/README.md` with:
+
+```markdown
+# {Database Name} Database - db-{N}
+
+**Deliverable:** db-{N}
+**Status:** 🚧 In Progress
+**Created:** {YYYY-MM-DD}
+
+## Overview
+
+{Database description and purpose}
+
+## Structure
+
+```
+db-{N}/
+├── queries/          # 30+ extremely complex SQL queries
+├── results/          # Test results and validation reports
+├── docs/             # Database documentation
+├── data/             # Schema and data files
+└── scripts/          # Utility scripts
+```
+
+## Contents
+
+- **Queries:** 30 extremely complex SQL queries in `queries/queries.md`
+- **Results:** JSON test results in `results/`
+- **Documentation:** Database documentation in `docs/`
+- **Data:** Schema and data files in `data/`
+
+## Database Schema
+
+{Schema overview with key tables}
+
+## Usage
+
+{Usage instructions}
+
+## Compatibility
+
+All queries are designed to work across:
+- PostgreSQL (with PostGIS if spatial)
+
+---
+**Last Updated:** {YYYY-MM-DD}
+```
+
+#### Schema File Template
+
+Create `db-{N}/data/schema.sql` with production-grade comments:
+
+```sql
+-- {Database Name} Database Schema
+-- Compatible with PostgreSQL
+-- Production schema for {system description}
+
+-- Table Name
+-- {Table description and purpose}
+CREATE TABLE table_name (
+    column_id VARCHAR(255) PRIMARY KEY,
+    column_name VARCHAR(100) NOT NULL,
+    -- Additional columns
+    created_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- Indexes
+CREATE INDEX idx_table_name_column ON table_name(column_name);
+
+-- Foreign Keys
+-- ALTER TABLE child_table ADD CONSTRAINT fk_parent FOREIGN KEY (parent_id) REFERENCES parent_table(id);
+```
+
+**CRITICAL**: Use production-grade comments, NOT "Created:" dates:
+- ✅ `-- Production schema for weather data pipeline system`
+- ❌ `-- Created: 2026-02-03`
+
+#### Queries Template
+
+Create `db-{N}/queries/queries.md` with exactly 30 queries:
+
+```markdown
+# SQL Queries for db-{N}
+
+## Query 1: {Query Title}
+
+**Description:** {What the SQL does technically - describes SQL operations, joins, CTEs, aggregations, window functions, spatial operations, etc.}
+
+**Use Case:** {Business use case for the query}
+
+**Business Value:** {Business value/deliverable}
+
+**Purpose:** {Purpose/reason for the query}
+
+**Complexity:** {Complexity description}
+
+**Expected Output:** {Expected output description}
+
+```sql
+-- Query SQL here
+WITH cte1 AS (
+    -- CTE definition
+)
+SELECT ...
+```
+
+## Query 2: {Query Title}
+...
+```
+
+### Step 3: Initialize Scripts
+
+#### requirements.txt Template
+
+Create `db-{N}/scripts/requirements.txt`:
+
+```txt
+# Python requirements for db-{N} {database description}
+# Created: {YYYY-MM-DD}
+
+# Database connectors
+psycopg2-binary>=2.9.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Geospatial (if spatial database)
+geopandas>=0.13.0
+shapely>=2.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+pytz>=2023.3
+```
+
+#### Copy Validation Scripts
+
+Copy validation scripts from an existing database (e.g., db-6) to `db-{N}/scripts/`:
+- `extract_queries_to_json.py` (Phase 0)
+- `verify_fixes.py` (Phase 1)
+- `comprehensive_validator.py` (Phase 2 & 4)
+- `execution_tester.py` (Phase 3)
+- `generate_final_report.py` (Phase 5)
+
+Update script paths to reference `db-{N}` instead of source database.
+
+### Step 4: Initialize Research Directory
+
+#### ETL/ELT Pipeline Notebook
+
+Create `db-{N}/research/etl_elt_pipeline.ipynb` based on template:
+
+```python
+# ETL/ELT Pipeline - db-{N}
+
+# Section 1: Setup and Configuration
+import sys
+from pathlib import Path
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+import json
+import logging
+
+# Database connections
+from sqlalchemy import create_engine, text
+
+# Section 2: Extract Phase
+# - Load data from CSV, JSON, SQL files
+# - Connect to external data sources (APIs, databases)
+# - Data.gov API Integration (if applicable)
+# - National Weather Service API Integration (if applicable)
+# - GeoPlatform.gov API Integration (if applicable)
+# - Document in data_resources.json
+
+# Section 3: Transform Phase
+# - Data cleaning and normalization
+# - Data validation and quality checks
+# - Schema transformations
+# - Data enrichment
+
+# Section 4: Load Phase
+# - Load data into PostgreSQL
+# - Load data into 
+# - Handle upserts and incremental loads
+
+# Section 5: Validate Phase
+# - Data quality metrics calculation
+# - Completeness checks
+# - Consistency validation
+
+# Section 6: Monitor Phase
+# - Pipeline execution tracking
+# - Performance metrics collection
+# - Error logging
+```
+
+#### Research README
+
+Create `db-{N}/research/README.md`:
+
+```markdown
+# Research Directory - db-{N}
+
+This directory contains research notebooks, experimental analysis, ETL/ELT pipelines, and development work.
+
+## Contents
+
+- `etl_elt_pipeline.ipynb` - Main ETL/ELT pipeline notebook
+- `data_resources.json` - Data source documentation
+- `source_metadata.json` - Source metadata tracking
+
+## Usage
+
+See `.cursor/rules/research-metadata-directories.mdc` for detailed usage guidelines.
+```
+
+### Step 5: Initialize Metadata Directory
+
+Create `db-{N}/metadata/README.md`:
+
+```markdown
+# Metadata Directory - db-{N}
+
+This directory stores pipeline execution metadata, data quality reports, and schema evolution tracking.
+
+## Contents
+
+- `pipeline_metadata.json` - Pipeline execution logs
+- `data_quality_reports.json` - Data quality metrics
+- `schema_metadata.json` - Schema evolution tracking
+
+## Usage
+
+See `.cursor/rules/research-metadata-directories.mdc` for detailed usage guidelines.
+```
+
+## Query Development Workflow
+
+### Phase 0: Query Abstraction (REQUIRED)
+
+**MANDATORY**: Extract queries from `queries.md` to `queries.json` before any validation:
+
+```bash
+cd db-{N}
+python3 scripts/extract_queries_to_json.py
+```
+
+**Requirements**:
+- `queries.json` must exist before validation
+- Must contain all 30 queries
+- Must include all required fields (number, title, description, use_case, business_value, purpose, complexity, expected_output, sql, line_number)
+- Timestamps must use EST timezone in `YYYYMMDD-HHMM` format
+
+### Query Requirements
+
+All queries must meet these requirements:
+
+1. **Count**: Exactly 30 queries, numbered sequentially (Query 1 through Query 30)
+2. **Cross-Database Compatibility**: All queries must work on PostgreSQL
+3. **Unique SQL Expressions**: Each query must be unique - no duplicates or minor variations
+4. **CTE Usage**: All queries must use at least one CTE (Common Table Expression)
+5. **Extreme Complexity**: Queries must demonstrate extremely complex patterns:
+   - Multiple CTEs (preferably 3+)
+   - Joins, aggregations, window functions
+   - Subqueries and correlated subqueries
+   - Recursive CTEs where claimed
+6. **Formatting**: Consistent formatting with `## Query N: Title` headers
+
+## Schema Development Patterns
+
+### Schema File Organization
+
+For complex databases, organize schema files:
+
+```
+data/
+├── schema.sql                    # Core schema
+├── schema_extensions.sql         # Schema extensions (if applicable)
+├── {domain}_schema.sql          # Domain-specific schemas (e.g., insurance_schema.sql)
+├── schema_postgresql.sql        # PostgreSQL-specific extensions (if needed)
+└── data.sql                     # Sample data
+```
+
+### Cross-Database Compatibility
+
+**CRITICAL**: All schemas must be compatible with PostgreSQL:
+
+- Use standard SQL data types
+- Use `TIMESTAMP_NTZ` instead of `TIMESTAMP` (for compatibility)
+- Use `GEOGRAPHY` for spatial data (PostgreSQL PostGIS)
+- Avoid database-specific features when possible
+- Document any required database-specific extensions
+
+### Spatial Database Patterns
+
+For spatial databases (like db-6):
+
+- Use `GEOGRAPHY` type for spatial columns
+- Include spatial extent columns (west, south, east, north)
+- Include CRS (Coordinate Reference System) columns
+- Document spatial operations in query descriptions
+- Include spatial indexes where appropriate
+
+## Validation Workflow
+
+### Phase 1: Fix Verification
+
+```bash
+cd db-{N}
+python3 scripts/verify_fixes.py
+```
+
+Checks:
+- Query 2: Array syntax compatibility (conceptual)
+- Query 26: Recursive CTE validation (conceptual)
+- Query title uniqueness
+- Header formatting consistency
+
+### Phase 2: Syntax Validation
+
+```bash
+cd db-{N}
+python3 scripts/comprehensive_validator.py
+```
+
+Validates SQL syntax on PostgreSQL using `EXPLAIN` statements.
+
+### Phase 3: Execution Testing
+
+```bash
+cd db-{N}
+python3 scripts/execution_tester.py
+```
+
+Executes queries on available databases and collects metrics.
+
+### Phase 4: Comprehensive Evaluation
+
+Part of `comprehensive_validator.py`, evaluates:
+- Query count (exactly 30)
+- Recursive CTE usage validation
+- CTE usage validation (all queries must use CTEs)
+- Complexity metrics
+- Cross-database compatibility
+
+### Phase 5: Report Generation
+
+```bash
+cd db-{N}
+python3 scripts/generate_final_report.py
+```
+
+Generates final comprehensive validation report combining all phases.
+
+## Deliverable Creation
+
+**CRITICAL**: All databases must create a web-deployable deliverable following the `db6-weather-consulting-insurance` pattern. This is the standard deliverable format, not optional.
+
+### Step 1: Generate Documentation
+
+Create `db-{N}/deliverable/db-{N}.md` with:
+- Complete database documentation
+- Schema documentation with ER diagrams (Mermaid.js)
+- All 30 SQL queries embedded inline with full business context
+- Table of contents with natural language descriptions
+- Business context ($1M+ ARR companies)
+
+### Step 2: Create Web-Deployable Deliverable (REQUIRED)
+
+**MANDATORY**: Create web-deployable deliverable folder `db{N}-{descriptive-name}/`:
+
+```
+db-{N}/deliverable/
+├── db-{N}.md                     # Markdown documentation (source)
+├── deliverable.openapi.yaml      # OpenAPI spec (optional)
+├── queries/                      # Database component
+│   ├── queries.md
+│   └── queries.json
+├── data/                         # Database component
+│   ├── schema.sql
+│   └── data.sql
+└── db{N}-{descriptive-name}/    # Web-deployable package (REQUIRED)
+    ├── db-{N}_documentation.html # HTML documentation (REQUIRED)
+    ├── db-{N}_deliverable.json   # JSON deliverable (REQUIRED)
+    ├── db-{N}.md                 # Markdown source (REQUIRED)
+    ├── vercel.json               # Vercel config (REQUIRED)
+    ├── .gitignore                # Git ignore (REQUIRED)
+    └── data/                     # Database component (REQUIRED)
+        ├── schema.sql
+        └── data.sql
+```
+
+**See Step 3 below for complete web-deployable deliverable requirements.**
+
+### Step 3: Web-Deployable Deliverable (REQUIRED Pattern)
+
+**CRITICAL**: All databases must create a web-deployable deliverable following the `db6-weather-consulting-insurance` pattern.
+
+#### Structure
+
+Create a web-deployable deliverable folder with naming pattern: `db{N}-{descriptive-name}`:
+
+```
+db-{N}/deliverable/db{N}-{descriptive-name}/
+├── db-{N}_documentation.html    # HTML version of documentation (REQUIRED)
+├── db-{N}_deliverable.json       # JSON version of deliverable (REQUIRED)
+├── db-{N}.md                      # Markdown source (REQUIRED)
+├── vercel.json                    # Vercel deployment config (REQUIRED)
+├── .gitignore                     # Git ignore file (REQUIRED)
+├── afterquery-logo.png            # Logo/branding (optional)
+└── data/                          # Database component (REQUIRED)
+    ├── schema.sql
+    ├── data.sql
+    └── *.sql                      # Additional schema files
+```
+
+#### File Requirements
+
+**1. HTML Documentation (`db-{N}_documentation.html`)**
+
+- **REQUIRED**: Must be created for all databases
+- Standalone HTML file with embedded CSS and JavaScript
+- Includes complete database documentation:
+  - Database overview
+  - Schema documentation with ER diagrams (Mermaid.js)
+  - All 30 SQL queries embedded inline with syntax highlighting
+  - Table of contents with navigation sidebar
+  - Business context ($1M+ ARR companies)
+- Uses Prism.js for SQL syntax highlighting
+- Responsive design with sidebar navigation
+- Dark theme optimized for code readability
+
+**HTML Template Structure**:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{Database Name} - Documentation</title>
+    <!-- Prism.js Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <style>
+        /* Embedded CSS styles */
+        /* OpenAI-style sidebar navigation */
+        /* Dark theme for code blocks */
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <!-- Main Content -->
+    <!-- Embedded markdown content converted to HTML -->
+</body>
+</html>
+```
+
+**2. JSON Deliverable (`db-{N}_deliverable.json`)**
+
+- **REQUIRED**: Must be created for all databases
+- Machine-readable JSON format containing:
+  - Database metadata (id, name, description, version)
+  - Complete schema definition (all tables, columns, constraints)
+  - All 30 queries with full metadata
+  - ER diagram relationships
+  - Business context and use cases
+
+**JSON Structure**:
+
+```json
+{
+  "database": {
+    "id": "db-{N}",
+    "name": "{Database Name}",
+    "description": "{Database description}",
+    "created_date": "{YYYY-MM-DD}",
+    "version": "1.0"
+  },
+  "schema": {
+    "total_tables": {N},
+    "tables": [
+      {
+        "name": "table_name",
+        "description": "Table description",
+        "columns": [...]
+      }
+    ]
+  },
+  "queries": [
+    {
+      "number": 1,
+      "title": "Query Title",
+      "description": "...",
+      "sql": "...",
+      ...
+    }
+  ]
+}
+```
+
+**3. Vercel Configuration (`vercel.json`)**
+
+- **REQUIRED**: Must be created for all databases
+- Configures Vercel deployment routing and headers
+
+**vercel.json template**:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/db-{N}_documentation.html"
+    },
+    {
+      "source": "/db-{N}_deliverable.json",
+      "destination": "/db-{N}_deliverable.json"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*\\.html)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.json)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**4. Git Ignore (`.gitignore`)**
+
+- **REQUIRED**: Standard .gitignore for web deployment
+
+**.gitignore template**:
+
+```gitignore
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+```
+
+**5. Data Directory**
+
+- **REQUIRED**: Copy all schema and data files to `data/` subdirectory
+- Includes: `schema.sql`, `data.sql`, and any domain-specific schema files
+
+#### Naming Convention
+
+The deliverable folder must follow this naming pattern:
+
+- **Format**: `db{N}-{descriptive-name}`
+- **Examples**:
+  - `db6-weather-consulting-insurance`
+  - `db1-chat-messaging-platform`
+  - `db2-ecommerce-retail-system`
+- **Descriptive name**: Use lowercase with hyphens, descriptive of database domain
+
+#### Generation Process
+
+The web-deployable deliverable should be Rebuilt:
+
+1. **From Markdown**: Convert `db-{N}.md` to HTML with proper formatting
+2. **From JSON**: Generate `db-{N}_deliverable.json` from queries.json and schema
+3. **Copy Data**: Copy all SQL files to `data/` subdirectory
+4. **Create Config**: Generate `vercel.json` and `.gitignore`
+5. **Package**: Ensure all files are in the deliverable folder
+
+#### Deployment
+
+The deliverable folder is ready for deployment to:
+
+- **Vercel**: Push folder to GitHub and connect to Vercel
+- **Netlify**: Deploy folder as static site
+- **GitHub Pages**: Serve as static site
+- **Any static hosting**: All files are self-contained
+
+#### Integration with Format Command
+
+The `/format` command generates this web-deployable structure automatically, following the **db-6 golden solution**:
+
+```bash
+/format db-{N}
+```
+
+This creates (matching `db-6/deliverable/db6-weather-consulting-insurance/` structure exactly):
+
+1. **Main Deliverable Folder** (`deliverable/`):
+   - `db-{N}.md` - Complete markdown documentation
+   - `DELIVERABLE.md` - Copy of db-{N}.md (for compatibility)
+   - `deliverable.openapi.yaml` - OpenAPI specification (optional)
+   - `database_deliverable.json` - JSON deliverable (main folder version)
+   - `data/` - All SQL files (schema.sql, data.sql, and any extensions)
+
+2. **Web-Deployable Website** (`deliverable/db{N}-{name}/`):
+   - **HTML Documentation** (`db-{N}_documentation.html`) - Standalone HTML file with:
+     - Complete database documentation converted from markdown
+     - Prism.js syntax highlighting for SQL and JSON code blocks
+     - Sidebar navigation with smooth scrolling
+     - Dark theme styling optimized for code readability
+     - Copy-to-clipboard functionality for code blocks
+     - **Anti-robot meta tags** (noindex, nofollow, noarchive, nosnippet, noimageindex) for robots, googlebot, and bingbot
+     - **Vercel Analytics** integration (script tag for static HTML, with comment noting Next.js import: `import { Analytics } from "@vercel/analytics/next"`)
+   - **JSON Deliverable** (`db-{N}_deliverable.json`) - Machine-readable database metadata (web-deployable version)
+   - **Markdown Source** (`db-{N}.md`) - Copy of main documentation
+   - **Vercel Config** (`vercel.json`) - Deployment configuration with rewrites and headers
+   - **Data Files** (`data/` folder) - Complete copy of all SQL files
+   - **Git Ignore** (`.gitignore`) - Standard git ignore patterns
+   - **Optional Assets** - Logo files, images, etc.
+
+**Website Features** (matching db-6 implementation):
+- Ready for deployment to Vercel, Netlify, GitHub Pages, or any static hosting
+- Search engine protection via anti-robot meta tags
+- Analytics tracking via Vercel Analytics
+- Self-contained (all CSS/JS embedded, no external dependencies except CDN resources)
+- Copy-to-clipboard functionality for code blocks
+- Responsive sidebar navigation
+
+**Reference**: `db-6/deliverable/db6-weather-consulting-insurance/` is the **golden solution** - all format outputs should match this structure exactly.
+
+## Documentation Standards
+
+### ER Diagrams
+
+All databases must include Mermaid.js ER diagrams in `db-{N}.md`:
+
+```mermaid
+erDiagram
+  TABLE_NAME {
+    type column_name PK "Description"
+    type column_name FK "Description"
+  }
+  
+  TABLE1 ||--o{ TABLE2 : "relationship_name"
+```
+
+See `.cursor/rules/database-er-diagrams.mdc` for complete ER diagram requirements.
+
+### Data Dictionary
+
+Create `docs/DATA_DICTIONARY.md` with:
+- All tables organized by functional category
+- Column names, data types, constraints
+- Column descriptions and business context
+
+### Schema Documentation
+
+Create `docs/SCHEMA.md` with:
+- Schema overview
+- Table descriptions
+- Relationship documentation
+- Index and constraint documentation
+
+## Best Practices
+
+1. **Start with Structure**: Create directory structure first
+2. **Schema First**: Develop schema.sql before queries
+3. **Query Extraction**: Always run Phase 0 (extract_queries_to_json.py) before validation
+4. **Iterative Development**: Develop queries incrementally, validate frequently
+5. **Documentation**: Keep documentation in sync with schema and queries
+6. **Validation**: Run full validation suite before finalizing
+7. **Production Comments**: Use production-grade comments, not creation dates
+8. **Cross-Database**: Test on PostgreSQL
+9. **Consistency**: Follow patterns from existing databases (db-6, db-1, etc.)
+10. **Web-Deployable Deliverable**: **REQUIRED** - Create `db{N}-{descriptive-name}/` folder with HTML, JSON, and Vercel config following db-6 pattern
+11. **Deliverable**: Package deliverable only when database is complete
+
+## Common Patterns
+
+### Pattern 1: Standard Database (db-1 style)
+
+- Standard relational schema
+- No spatial extensions
+- Standard SQL queries
+- Focus on business logic
+
+### Pattern 2: Spatial Database (db-6 style)
+
+- PostGIS/GEOGRAPHY columns
+- Spatial joins and operations
+- CRS transformations
+- Geospatial query patterns
+
+### Pattern 3: Domain-Specific Extensions
+
+- Core schema + domain extensions
+- Separate schema files (e.g., `insurance_schema.sql`)
+- Domain-specific queries
+- Extended documentation
+
+## Integration with Existing Rules
+
+This workflow integrates with:
+- `.cursor/rules/database-compatibility.mdc` - Query requirements and compatibility
+- `.cursor/rules/query-validation-suite.mdc` - Validation workflow
+- `.cursor/rules/deliverable-formatting.mdc` - Deliverable packaging
+- `.cursor/rules/research-metadata-directories.mdc` - Research and metadata usage
+- `.cursor/rules/database-er-diagrams.mdc` - ER diagram requirements
+
+## Troubleshooting
+
+### Missing queries.json
+
+**Error**: "queries.json not found"
+**Solution**: Run `python3 scripts/extract_queries_to_json.py` (Phase 0)
+
+### Schema Compatibility Issues
+
+**Error**: Query fails on one database but not another
+**Solution**: Review database-specific syntax, use standard SQL patterns
+
+### Validation Failures
+
+**Error**: Validation phase fails
+**Solution**: Review phase-specific error messages, fix issues incrementally
+
+### Deliverable Packaging Issues
+
+**Error**: Missing files in deliverable
+**Solution**: Ensure all required files exist, run `/format` command
+
+## Summary: Web-Deployable Deliverable Requirement
+
+**CRITICAL**: Every database must include a web-deployable deliverable folder following the **db-6 golden solution** pattern (`db6-weather-consulting-insurance`).
+
+**Golden Solution Reference**: `db-6/deliverable/db6-weather-consulting-insurance/` serves as the authoritative reference for all web-deployable deliverables. All format outputs must match this structure exactly.
+
+### Required Deliverable Structure
+
+```
+db-{N}/deliverable/db{N}-{descriptive-name}/
+├── db-{N}_documentation.html    ✅ REQUIRED
+├── db-{N}_deliverable.json       ✅ REQUIRED
+├── db-{N}.md                     ✅ REQUIRED
+├── vercel.json                   ✅ REQUIRED
+├── .gitignore                    ✅ REQUIRED
+└── data/                         ✅ REQUIRED
+    ├── schema.sql
+    └── data.sql
+```
+
+### Key Requirements
+
+1. **HTML Documentation**: Standalone HTML file with embedded CSS/JS, Prism.js syntax highlighting, sidebar navigation
+2. **JSON Deliverable**: Machine-readable JSON with complete database metadata, schema, and queries
+3. **Vercel Config**: Deployment configuration for Vercel hosting
+4. **Data Files**: All SQL schema and data files in `data/` subdirectory
+5. **Naming**: Follow `db{N}-{descriptive-name}` pattern (e.g., `db6-weather-consulting-insurance`)
+
+### Reference Implementation (Golden Solution)
+
+**CRITICAL**: `db-6/deliverable/db6-weather-consulting-insurance/` is the **golden solution** and authoritative reference for:
+- HTML structure and styling (with anti-robot tags and Analytics)
+- JSON schema format (database_deliverable.json structure)
+- Vercel configuration (vercel.json rewrites and headers)
+- File organization (folder structure, naming conventions)
+- Data folder structure (all SQL files including extensions)
+- Git ignore patterns (.gitignore)
+- Markdown source file placement
+
+**All format outputs must match db-6's structure exactly.** When in doubt, reference `db-6/deliverable/db6-weather-consulting-insurance/` as the source of truth.
+
+---
+**Last Updated**: 2026-02-04
+**Version**: 1.0

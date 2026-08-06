@@ -1,0 +1,1535 @@
+{
+  "report_date": "20260203-2148",
+  "database": "db-1",
+  "file_validated": "queries/queries.md",
+  "Pass": 1,
+  "summary": {
+    "total_queries": 30,
+    "fix_verification_status": "PASS",
+    "syntax_validation_status": "PARTIAL",
+    "evaluation_status": "PASS",
+    "execution_testing_status": "PASS"
+  },
+  "phase_1_fix_verification": {
+    "verification_date": "20260203-2148",
+    "file": "/Users/machine/Documents/AQ/db/db-1/queries/queries.md",
+    "fixes": {
+      "query_2_array_syntax": {
+        "query_number": 2,
+        "fix": "Array slicing syntax replacement",
+        "status": "PASS",
+        "checks": [
+          {
+            "check": "path_preview_cte CTE exists",
+            "status": "PASS"
+          },
+          {
+            "check": "No array slicing syntax [start:end]",
+            "status": "PASS"
+          },
+          {
+            "check": "ARRAY_LENGTH bounds checking present",
+            "status": "PASS"
+          },
+          {
+            "check": "FROM clause uses path_preview_cte",
+            "status": "PASS"
+          }
+        ]
+      },
+      "query_26_recursive_cte": {
+        "query_number": 26,
+        "fix": "Recursive CTE addition",
+        "status": "PASS",
+        "checks": [
+          {
+            "check": "WITH RECURSIVE present for recursive CTE",
+            "status": "PASS"
+          },
+          {
+            "check": "Anchor query selects from file_type_stats",
+            "status": "PASS"
+          },
+          {
+            "check": "Recursive step with UNION ALL",
+            "status": "PASS"
+          },
+          {
+            "check": "Termination condition (hierarchy_level < 5)",
+            "status": "PASS"
+          }
+        ]
+      },
+      "query_title_uniqueness": {
+        "fix": "Query title uniqueness",
+        "status": "PASS",
+        "checks": [
+          {
+            "check": "Query 26 has unique title",
+            "status": "PASS",
+            "title": "Production-Grade File Type Hierarchy Analysis with Recursive CTE and Advanced Ra"
+          },
+          {
+            "check": "Query 27 has unique title",
+            "status": "PASS",
+            "title": "Production-Grade Cumulative File Size Analysis with Advanced Time-Series Analyti"
+          },
+          {
+            "check": "Query 28 has unique title",
+            "status": "PASS",
+            "title": "Production-Grade Cross-Table File Relationship Analysis with Advanced Join Analy"
+          },
+          {
+            "check": "Query 29 has unique title",
+            "status": "PASS",
+            "title": "Production-Grade Deeply Nested File Type Analysis with Advanced Hierarchical Ana"
+          },
+          {
+            "check": "Query 30 has unique title",
+            "status": "PASS",
+            "title": "Production-Grade Advanced Window Function Aggregation Analysis with Multi-Dimens"
+          },
+          {
+            "check": "No duplicate titles",
+            "status": "PASS"
+          }
+        ]
+      },
+      "header_formatting": {
+        "fix": "Header formatting consistency",
+        "status": "PASS",
+        "checks": [
+          {
+            "check": "All queries use ## Query N: format",
+            "status": "PASS",
+            "count": 30
+          },
+          {
+            "check": "No queries with --- prefix",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    "overall_status": "PASS"
+  },
+  "phase_2_syntax_validation": {
+    "postgresql": {
+      "available": false,
+      "queries": []
+    },
+    "databricks": {
+      "available": false,
+      "queries": []
+    },
+    "databricks": {
+      "available": false,
+      "queries": []
+    }
+  },
+  "phase_3_execution_testing": {
+    "database": "db-1",
+    "test_date": "2026-02-03T21:48:46.949819",
+    "postgresql": {
+      "available": true,
+      "queries": [
+        {
+          "query_number": 1,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 2.26,
+          "row_count": 0,
+          "columns": [
+            "Column(name='user_id', type_code=2950)",
+            "Column(name='username', type_code=1043)",
+            "Column(name='registration_month', type_code=1114)",
+            "Column(name='active_chats', type_code=20)",
+            "Column(name='total_messages', type_code=20)",
+            "Column(name='user_messages', type_code=20)",
+            "Column(name='ai_responses', type_code=20)",
+            "Column(name='active_days', type_code=20)",
+            "Column(name='daily_activity_rate', type_code=1700)",
+            "Column(name='messages_per_chat', type_code=1700)",
+            "Column(name='ai_response_ratio', type_code=1700)",
+            "Column(name='days_since_last_activity', type_code=1700)",
+            "Column(name='engagement_score', type_code=1700)",
+            "Column(name='cohort_performance_ratio', type_code=1700)",
+            "Column(name='overall_percentile', type_code=1700)",
+            "Column(name='cohort_percentile', type_code=1700)",
+            "Column(name='engagement_rank', type_code=20)",
+            "Column(name='message_rank', type_code=20)",
+            "Column(name='cumulative_messages', type_code=1700)",
+            "Column(name='moving_avg_messages', type_code=1700)",
+            "Column(name='engagement_quintile', type_code=23)",
+            "Column(name='engagement_decile', type_code=23)",
+            "Column(name='user_segment', type_code=25)",
+            "Column(name='activity_status', type_code=25)"
+          ]
+        },
+        {
+          "query_number": 2,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 67.65,
+          "row_count": 0,
+          "columns": [
+            "Column(name='user_a_name', type_code=1043)",
+            "Column(name='user_b_name', type_code=1043)",
+            "Column(name='optimal_hops', type_code=23)",
+            "Column(name='connection_type', type_code=25)",
+            "Column(name='connection_category', type_code=25)",
+            "Column(name='shared_chat_count', type_code=20)",
+            "Column(name='connection_weight', type_code=1700)",
+            "Column(name='connection_strength', type_code=1700)",
+            "Column(name='total_paths', type_code=20)",
+            "Column(name='connection_duration_days', type_code=1700)",
+            "Column(name='user_a_direct_connections', type_code=20)",
+            "Column(name='user_b_direct_connections', type_code=20)",
+            "Column(name='user_a_avg_path_length', type_code=1700)",
+            "Column(name='user_b_avg_path_length', type_code=1700)",
+            "Column(name='path_preview', type_code=25)"
+          ]
+        },
+        {
+          "query_number": 3,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 1.63,
+          "row_count": 0,
+          "columns": [
+            "Column(name='chat_title', type_code=25)",
+            "Column(name='total_messages', type_code=20)",
+            "Column(name='unique_participants', type_code=20)",
+            "Column(name='user_messages', type_code=20)",
+            "Column(name='ai_messages', type_code=20)",
+            "Column(name='user_message_percentage', type_code=1700)",
+            "Column(name='ai_message_percentage', type_code=1700)",
+            "Column(name='user_to_ai_transitions', type_code=20)",
+            "Column(name='ai_to_user_transitions', type_code=20)",
+            "Column(name='turn_taking_count', type_code=20)",
+            "Column(name='burst_count', type_code=20)",
+            "Column(name='avg_response_seconds', type_code=1700)",
+            "Column(name='median_response_seconds', type_code=1700)",
+            "Column(name='p25_response_seconds', type_code=1700)",
+            "Column(name='p75_response_seconds', type_code=1700)",
+            "Column(name='messages_per_minute', type_code=1700)",
+            "Column(name='health_score', type_code=1700)",
+            "Column(name='conversation_type', type_code=25)",
+            "Column(name='velocity_class', type_code=25)",
+            "Column(name='health_class', type_code=25)",
+            "Column(name='health_percentile', type_code=1700)",
+            "Column(name='velocity_percentile', type_code=1700)",
+            "Column(name='volume_percentile', type_code=1700)",
+            "Column(name='health_ratio', type_code=1700)",
+            "Column(name='health_rank', type_code=20)",
+            "Column(name='velocity_rank', type_code=20)",
+            "Column(name='volume_rank', type_code=20)",
+            "Column(name='health_quintile', type_code=23)",
+            "Column(name='health_decile', type_code=23)",
+            "Column(name='recommendation', type_code=25)"
+          ]
+        },
+        {
+          "query_number": 4,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 1.27,
+          "row_count": 0,
+          "columns": [
+            "Column(name='user_id', type_code=2950)",
+            "Column(name='username', type_code=1043)",
+            "Column(name='total_friend_requests', type_code=20)",
+            "Column(name='accepted_friends', type_code=20)",
+            "Column(name='pending_friends', type_code=20)",
+            "Column(name='declined_friends', type_code=20)",
+            "Column(name='acceptance_rate_percent', type_code=1700)",
+            "Column(name='total_connections', type_code=20)",
+            "Column(name='direct_connections', type_code=20)",
+            "Column(name='second_degree_connections', type_code=20)",
+            "Column(name='avg_connection_depth', type_code=1700)",
+            "Column(name='total_mutual_connections', type_code=1700)",
+            "Column(name='avg_mutual_connections', type_code=1700)",
+            "Column(name='max_mutual_connections', type_code=20)",
+            "Column(name='verified_mutual_total', type_code=1700)",
+            "Column(name='network_strength_score', type_code=1700)",
+            "Column(name='connection_quality_ratio', type_code=1700)",
+            "Column(name='user_category', type_code=25)",
+            "Column(name='connection_category', type_code=25)",
+            "Column(name='friend_count_rank', type_code=20)",
+            "Column(name='friend_dense_rank', type_code=20)",
+            "Column(name='friend_percentile', type_code=1700)",
+            "Column(name='prev_user_friends', type_code=20)",
+            "Column(name='next_user_friends', type_code=20)",
+            "Column(name='cumulative_friends', type_code=1700)",
+            "Column(name='moving_avg_friends', type_code=1700)",
+            "Column(name='category_cumulative_friends', type_code=1700)",
+            "Column(name='category_moving_avg_score', type_code=1700)",
+            "Column(name='network_quintile', type_code=23)",
+            "Column(name='network_decile', type_code=23)"
+          ]
+        },
+        {
+          "query_number": 5,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.94,
+          "row_count": 0,
+          "columns": [
+            "Column(name='activity_hour', type_code=1114)",
+            "Column(name='message_count', type_code=20)",
+            "Column(name='active_chats', type_code=20)",
+            "Column(name='active_users', type_code=20)",
+            "Column(name='user_messages', type_code=20)",
+            "Column(name='ai_messages', type_code=20)",
+            "Column(name='chats_with_ai_interaction', type_code=20)",
+            "Column(name='avg_message_length', type_code=1700)",
+            "Column(name='median_message_length', type_code=1700)",
+            "Column(name='avg_user_message_length', type_code=1700)",
+            "Column(name='messages_12h_window', type_code=1700)",
+            "Column(name='messages_12h_range', type_code=1700)",
+            "Column(name='avg_24h_rows', type_code=1700)",
+            "Column(name='avg_24h_range', type_code=1700)",
+            "Column(name='max_messages_24h_rows', type_code=20)",
+            "Column(name='min_messages_24h_rows', type_code=20)",
+            "Column(name='prev_hour_messages', type_code=20)",
+            "Column(name='prev2_hour_messages', type_code=20)",
+            "Column(name='next_hour_messages', type_code=20)",
+            "Column(name='next2_hour_messages', type_code=20)",
+            "Column(name='first_value_24h', type_code=20)",
+            "Column(name='last_value_24h', type_code=20)",
+            "Column(name='hour_over_hour_change', type_code=20)",
+            "Column(name='hour_over_hour_percent_change', type_code=1700)",
+            "Column(name='activity_level', type_code=25)",
+            "Column(name='activity_trend', type_code=25)",
+            "Column(name='volatility_ratio', type_code=1700)",
+            "Column(name='volume_rank', type_code=20)",
+            "Column(name='volatility_rank', type_code=20)",
+            "Column(name='level_rank', type_code=20)",
+            "Column(name='volume_percentile', type_code=1700)",
+            "Column(name='volume_quintile', type_code=23)",
+            "Column(name='cumulative_messages', type_code=1700)",
+            "Column(name='level_cumulative_messages', type_code=1700)"
+          ]
+        },
+        {
+          "query_number": 6,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 593.92,
+          "row_count": 0,
+          "columns": [
+            "Column(name='chat_id', type_code=2950)",
+            "Column(name='title', type_code=1043)",
+            "Column(name='total_messages', type_code=20)",
+            "Column(name='unique_participants', type_code=20)",
+            "Column(name='active_days', type_code=20)",
+            "Column(name='duration_days', type_code=1700)",
+            "Column(name='avg_message_length', type_code=1700)",
+            "Column(name='median_message_length', type_code=1700)",
+            "Column(name='total_participants', type_code=20)",
+            "Column(name='recent_participants', type_code=20)",
+            "Column(name='monthly_participants', type_code=20)",
+            "Column(name='active_participants_7d', type_code=20)",
+            "Column(name='avg_messages_per_participant', type_code=1700)",
+            "Column(name='network_connected_users', type_code=20)",
+            "Column(name='network_avg_depth', type_code=1700)",
+            "Column(name='network_total_connections', type_code=20)",
+            "Column(name='engagement_score', type_code=1700)",
+            "Column(name='volume_score', type_code=1700)",
+            "Column(name='participation_score', type_code=1700)",
+            "Column(name='recency_score', type_code=1700)",
+            "Column(name='network_score', type_code=1700)",
+            "Column(name='message_percentile', type_code=1700)",
+            "Column(name='participant_percentile', type_code=1700)",
+            "Column(name='engagement_rank', type_code=20)",
+            "Column(name='engagement_rank_standard', type_code=20)",
+            "Column(name='engagement_dense_rank', type_code=20)",
+            "Column(name='engagement_percentile', type_code=1700)",
+            "Column(name='engagement_quintile', type_code=23)",
+            "Column(name='engagement_decile', type_code=23)",
+            "Column(name='cumulative_engagement_score', type_code=1700)",
+            "Column(name='moving_avg_engagement_score', type_code=1700)",
+            "Column(name='prev_engagement_score', type_code=1700)",
+            "Column(name='next_engagement_score', type_code=1700)",
+            "Column(name='engagement_category', type_code=25)",
+            "Column(name='recency_category', type_code=25)"
+          ]
+        },
+        {
+          "query_number": 7,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 1.18,
+          "row_count": 0,
+          "columns": [
+            "Column(name='type', type_code=1043)",
+            "Column(name='users_with_type', type_code=20)",
+            "Column(name='total_type_notifications', type_code=1700)",
+            "Column(name='total_read', type_code=1700)",
+            "Column(name='total_seen', type_code=1700)",
+            "Column(name='read_rate_percent', type_code=1700)",
+            "Column(name='seen_rate_percent', type_code=1700)",
+            "Column(name='avg_minutes_to_seen', type_code=1700)",
+            "Column(name='median_minutes_to_seen', type_code=1700)",
+            "Column(name='avg_10_user_window', type_code=1700)",
+            "Column(name='avg_20_user_rolling_avg', type_code=1700)",
+            "Column(name='avg_read_count_range_window', type_code=1700)",
+            "Column(name='read_rate_row_num', type_code=20)",
+            "Column(name='read_rate_rank', type_code=20)",
+            "Column(name='seen_rate_dense_rank', type_code=20)",
+            "Column(name='read_rate_percentile', type_code=1700)",
+            "Column(name='read_rate_quintile', type_code=23)",
+            "Column(name='seen_rate_decile', type_code=23)",
+            "Column(name='cumulative_notifications', type_code=1700)",
+            "Column(name='moving_avg_read_rate', type_code=1700)",
+            "Column(name='prev_read_rate', type_code=1700)",
+            "Column(name='next_seen_rate', type_code=1700)",
+            "Column(name='read_rate_category', type_code=25)",
+            "Column(name='response_time_category', type_code=25)"
+          ]
+        },
+        {
+          "query_number": 8,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 1.23,
+          "row_count": 0,
+          "columns": [
+            "Column(name='chat_id', type_code=2950)",
+            "Column(name='chat_title', type_code=1043)",
+            "Column(name='total_attachments', type_code=20)",
+            "Column(name='unique_uploaders', type_code=20)",
+            "Column(name='total_size_mb', type_code=1700)",
+            "Column(name='avg_file_size_kb', type_code=1700)",
+            "Column(name='median_file_size_kb', type_code=1700)",
+            "Column(name='p25_file_size_kb', type_code=1700)",
+            "Column(name='p75_file_size_kb', type_code=1700)",
+            "Column(name='max_file_size_kb', type_code=1700)",
+            "Column(name='stddev_file_size_kb', type_code=1700)",
+            "Column(name='avg_prior_uploads', type_code=1700)",
+            "Column(name='avg_historical_file_size_kb', type_code=1700)",
+            "Column(name='uploaders_with_chains', type_code=20)",
+            "Column(name='avg_chain_depth', type_code=1700)",
+            "Column(name='max_chain_depth', type_code=23)",
+            "Column(name='total_chain_uploads', type_code=20)",
+            "Column(name='attachments_10_chat_window', type_code=1700)",
+            "Column(name='size_20_chat_avg_mb', type_code=1700)",
+            "Column(name='attachments_size_range_window', type_code=1700)",
+            "Column(name='prev_chat_attachments', type_code=20)",
+            "Column(name='next_chat_size_mb', type_code=1700)",
+            "Column(name='first_chat_avg_size_kb', type_code=1700)",
+            "Column(name='last_chat_median_size_kb', type_code=1700)",
+            "Column(name='size_category', type_code=25)",
+            "Column(name='volume_category', type_code=25)",
+            "Column(name='attachment_count_row_num', type_code=20)",
+            "Column(name='attachment_count_rank', type_code=20)",
+            "Column(name='size_dense_rank', type_code=20)",
+            "Column(name='attachment_percentile', type_code=1700)",
+            "Column(name='attachment_quintile', type_code=23)",
+            "Column(name='size_decile', type_code=23)",
+            "Column(name='cumulative_attachments', type_code=1700)",
+            "Column(name='moving_avg_size_mb', type_code=1700)",
+            "Column(name='prev_total_attachments', type_code=20)",
+            "Column(name='next_total_size_mb', type_code=1700)"
+          ]
+        },
+        {
+          "query_number": 9,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 1.58,
+          "row_count": 0,
+          "columns": [
+            "Column(name='chat_id', type_code=2950)",
+            "Column(name='join_code', type_code=1043)",
+            "Column(name='session_start', type_code=1114)",
+            "Column(name='unique_guests', type_code=20)",
+            "Column(name='total_messages', type_code=20)",
+            "Column(name='guest_messages', type_code=20)",
+            "Column(name='ai_messages', type_code=23)",
+            "Column(name='active_guests', type_code=20)",
+            "Column(name='avg_messages_per_guest', type_code=1700)",
+            "Column(name='guests_with_chains', type_code=20)",
+            "Column(name='avg_interaction_depth', type_code=1700)",
+            "Column(name='max_interaction_depth', type_code=23)",
+            "Column(name='total_chain_interactions', type_code=20)",
+            "Column(name='duration_minutes', type_code=1700)",
+            "Column(name='activity_level', type_code=25)",
+            "Column(name='messages_10_session_window', type_code=1700)",
+            "Column(name='duration_20_session_avg', type_code=1700)",
+            "Column(name='guests_message_range_window', type_code=1700)",
+            "Column(name='prev_session_messages', type_code=20)",
+            "Column(name='next_session_duration', type_code=1700)",
+            "Column(name='first_session_guest_messages', type_code=20)",
+            "Column(name='last_session_ai_messages', type_code=23)",
+            "Column(name='guest_message_percentage', type_code=1700)",
+            "Column(name='messages_per_minute', type_code=1700)",
+            "Column(name='interaction_type', type_code=25)",
+            "Column(name='velocity_category', type_code=25)",
+            "Column(name='message_row_num', type_code=20)",
+            "Column(name='message_rank', type_code=20)",
+            "Column(name='duration_dense_rank', type_code=20)",
+            "Column(name='message_percentile', type_code=1700)",
+            "Column(name='message_quintile', type_code=23)",
+            "Column(name='duration_decile', type_code=23)",
+            "Column(name='cumulative_messages', type_code=1700)",
+            "Column(name='moving_avg_duration', type_code=1700)",
+            "Column(name='prev_total_messages', type_code=20)",
+            "Column(name='next_duration', type_code=1700)"
+          ]
+        },
+        {
+          "query_number": 10,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 88.42,
+          "row_count": 0,
+          "columns": [
+            "Column(name='user_id', type_code=2950)",
+            "Column(name='username', type_code=1043)",
+            "Column(name='total_messages', type_code=1700)",
+            "Column(name='total_chats', type_code=1700)",
+            "Column(name='total_friends', type_code=1700)",
+            "Column(name='total_notifications', type_code=1700)",
+            "Column(name='total_attachments', type_code=1700)",
+            "Column(name='chat_count', type_code=20)",
+            "Column(name='avg_message_length', type_code=1700)",
+            "Column(name='chats_with_ai_interaction', type_code=20)",
+            "Column(name='created_chats', type_code=20)",
+            "Column(name='active_participated_chats', type_code=20)",
+            "Column(name='accepted_friends', type_code=20)",
+            "Column(name='pending_friends', type_code=20)",
+            "Column(name='read_notifications', type_code=20)",
+            "Column(name='avg_minutes_to_seen', type_code=1700)",
+            "Column(name='total_upload_size_mb', type_code=1700)",
+            "Column(name='avg_file_size_kb', type_code=1700)",
+            "Column(name='unique_activity_sources', type_code=20)",
+            "Column(name='avg_chain_depth', type_code=1700)",
+            "Column(name='max_chain_depth', type_code=23)",
+            "Column(name='total_chain_activities', type_code=20)",
+            "Column(name='activity_10_user_window', type_code=1700)",
+            "Column(name='messages_20_user_avg', type_code=1700)",
+            "Column(name='chats_activity_range_window', type_code=1700)",
+            "Column(name='prev_user_activity', type_code=1700)",
+            "Column(name='next_user_messages', type_code=1700)",
+            "Column(name='first_user_chats', type_code=1700)",
+            "Column(name='last_user_friends', type_code=1700)",
+            "Column(name='activity_score', type_code=1700)",
+            "Column(name='overall_avg_activity', type_code=1700)",
+            "Column(name='activity_percentile', type_code=1700)",
+            "Column(name='activity_row_num', type_code=20)",
+            "Column(name='activity_rank', type_code=20)",
+            "Column(name='activity_dense_rank', type_code=20)",
+            "Column(name='score_percentile', type_code=1700)",
+            "Column(name='activity_quintile', type_code=23)",
+            "Column(name='activity_decile', type_code=23)",
+            "Column(name='cumulative_activity_score', type_code=1700)",
+            "Column(name='moving_avg_activity_score', type_code=1700)",
+            "Column(name='prev_activity_score', type_code=1700)",
+            "Column(name='next_activity_score', type_code=1700)",
+            "Column(name='user_category', type_code=25)",
+            "Column(name='activity_diversity_category', type_code=25)"
+          ]
+        },
+        {
+          "query_number": 11,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 1.35,
+          "row_count": 0,
+          "columns": [
+            "Column(name='chain_start_user', type_code=1043)",
+            "Column(name='chain_end_user', type_code=1043)",
+            "Column(name='chain_length', type_code=23)",
+            "Column(name='path_count', type_code=20)",
+            "Column(name='unique_chats', type_code=20)",
+            "Column(name='chain_duration_hours', type_code=1700)",
+            "Column(name='start_user_unique_invited', type_code=20)",
+            "Column(name='start_user_total_paths', type_code=20)",
+            "Column(name='start_user_avg_length', type_code=1700)",
+            "Column(name='start_user_direct_invites', type_code=20)",
+            "Column(name='end_user_unique_invited', type_code=20)",
+            "Column(name='end_user_total_paths', type_code=20)",
+            "Column(name='end_user_avg_length', type_code=1700)",
+            "Column(name='end_user_direct_invites', type_code=20)",
+            "Column(name='path_count_10_window', type_code=1700)",
+            "Column(name='duration_20_path_avg', type_code=1700)",
+            "Column(name='chats_path_range_window', type_code=1700)",
+            "Column(name='prev_path_count', type_code=20)",
+            "Column(name='next_chain_duration', type_code=1700)",
+            "Column(name='first_path_chats', type_code=20)",
+            "Column(name='last_path_duration', type_code=1700)",
+            "Column(name='network_strength_score', type_code=1700)",
+            "Column(name='path_count_row_num', type_code=20)",
+            "Column(name='path_count_rank', type_code=20)",
+            "Column(name='path_dense_rank', type_code=20)",
+            "Column(name='path_percentile', type_code=1700)",
+            "Column(name='path_quintile', type_code=23)",
+            "Column(name='path_decile', type_code=23)",
+            "Column(name='cumulative_path_count', type_code=1700)",
+            "Column(name='moving_avg_path_count', type_code=1700)",
+            "Column(name='prev_path_count_in_length', type_code=20)",
+            "Column(name='next_unique_chats', type_code=20)",
+            "Column(name='frequency_category', type_code=25)",
+            "Column(name='chain_type', type_code=25)"
+          ]
+        },
+        {
+          "query_number": 12,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 1.25,
+          "row_count": 0,
+          "columns": [
+            "Column(name='chat_title', type_code=1043)",
+            "Column(name='response_type', type_code=25)",
+            "Column(name='response_count', type_code=20)",
+            "Column(name='avg_seconds', type_code=1700)",
+            "Column(name='median_seconds', type_code=1700)",
+            "Column(name='p25_seconds', type_code=1700)",
+            "Column(name='p75_seconds', type_code=1700)",
+            "Column(name='min_seconds', type_code=1700)",
+            "Column(name='max_seconds', type_code=1700)",
+            "Column(name='stddev_seconds', type_code=1700)",
+            "Column(name='avg_historical_response_time', type_code=1700)",
+            "Column(name='avg_prior_alternating_messages', type_code=1700)",
+            "Column(name='avg_unique_participants', type_code=1700)",
+            "Column(name='avg_flow_depth', type_code=1700)",
+            "Column(name='avg_max_flow_depth', type_code=1700)",
+            "Column(name='avg_10_message_window', type_code=1700)",
+            "Column(name='avg_20_message_sum', type_code=1700)",
+            "Column(name='avg_range_window', type_code=1700)",
+            "Column(name='response_time_row_num', type_code=20)",
+            "Column(name='response_time_rank', type_code=20)",
+            "Column(name='response_count_dense_rank', type_code=20)",
+            "Column(name='response_time_percentile', type_code=1700)",
+            "Column(name='response_time_quintile', type_code=23)",
+            "Column(name='response_time_decile', type_code=23)",
+            "Column(name='cumulative_response_count', type_code=1700)",
+            "Column(name='moving_avg_response_time', type_code=1700)",
+            "Column(name='prev_avg_response_time', type_code=1700)",
+            "Column(name='next_response_count', type_code=20)",
+            "Column(name='response_time_category', type_code=25)",
+            "Column(name='volume_category', type_code=25)"
+          ]
+        },
+        {
+          "query_number": 13,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 1.34,
+          "row_count": 0,
+          "columns": [
+            "Column(name='user_a_name', type_code=1043)",
+            "Column(name='user_b_name', type_code=1043)",
+            "Column(name='mutual_friends', type_code=20)",
+            "Column(name='verified_mutual_friends', type_code=20)",
+            "Column(name='avg_mutual_verification', type_code=1700)",
+            "Column(name='unique_intermediaries', type_code=20)",
+            "Column(name='avg_connection_depth', type_code=1700)",
+            "Column(name='min_connection_depth', type_code=23)",
+            "Column(name='max_connection_depth', type_code=23)",
+            "Column(name='total_connection_paths', type_code=20)",
+            "Column(name='user_a_friends', type_code=20)",
+            "Column(name='user_a_accepted_friends', type_code=20)",
+            "Column(name='user_b_friends', type_code=20)",
+            "Column(name='user_b_accepted_friends', type_code=20)",
+            "Column(name='mutual_friends_10_pair_window', type_code=1700)",
+            "Column(name='mutual_friends_20_pair_avg', type_code=1700)",
+            "Column(name='mutual_friends_range_window', type_code=1700)",
+            "Column(name='prev_mutual_friends', type_code=20)",
+            "Column(name='next_mutual_friends', type_code=20)",
+            "Column(name='first_mutual_friends', type_code=20)",
+            "Column(name='last_mutual_friends', type_code=20)",
+            "Column(name='friend_overlap_ratio', type_code=1700)",
+            "Column(name='friend_jaccard_similarity', type_code=1700)",
+            "Column(name='overlap_category', type_code=25)",
+            "Column(name='connection_category', type_code=25)",
+            "Column(name='network_strength_score', type_code=1700)",
+            "Column(name='mutual_friends_row_num', type_code=20)",
+            "Column(name='mutual_friends_rank', type_code=20)",
+            "Column(name='overlap_dense_rank', type_code=20)",
+            "Column(name='mutual_friends_percentile', type_code=1700)",
+            "Column(name='mutual_friends_quintile', type_code=23)",
+            "Column(name='overlap_decile', type_code=23)",
+            "Column(name='cumulative_mutual_friends', type_code=1700)",
+            "Column(name='moving_avg_overlap_ratio', type_code=1700)",
+            "Column(name='prev_mutual_friends_ranked', type_code=20)",
+            "Column(name='next_overlap_ratio', type_code=1700)"
+          ]
+        },
+        {
+          "query_number": 14,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.97,
+          "row_count": 0,
+          "columns": [
+            "Column(name='day_name', type_code=25)",
+            "Column(name='hour_of_day', type_code=1700)",
+            "Column(name='message_count', type_code=20)",
+            "Column(name='active_chats', type_code=20)",
+            "Column(name='active_users', type_code=20)",
+            "Column(name='user_messages', type_code=20)",
+            "Column(name='ai_messages', type_code=20)",
+            "Column(name='avg_message_length', type_code=1700)",
+            "Column(name='chats_with_ai_interaction', type_code=20)",
+            "Column(name='unique_periods', type_code=20)",
+            "Column(name='total_pattern_messages', type_code=1700)",
+            "Column(name='avg_pattern_messages', type_code=1700)",
+            "Column(name='message_count_5_hour_window', type_code=1700)",
+            "Column(name='message_count_5_day_window', type_code=1700)",
+            "Column(name='chats_message_range_window', type_code=1700)",
+            "Column(name='prev_hour_messages', type_code=20)",
+            "Column(name='next_hour_messages', type_code=20)",
+            "Column(name='prev_day_same_hour_messages', type_code=20)",
+            "Column(name='first_hour_messages', type_code=20)",
+            "Column(name='last_hour_messages', type_code=20)",
+            "Column(name='day_total', type_code=1700)",
+            "Column(name='hour_total', type_code=1700)",
+            "Column(name='overall_avg', type_code=1700)",
+            "Column(name='day_max', type_code=20)",
+            "Column(name='day_min', type_code=20)",
+            "Column(name='hour_max', type_code=20)",
+            "Column(name='hour_min', type_code=20)",
+            "Column(name='activity_ratio', type_code=1700)",
+            "Column(name='day_percentage', type_code=1700)",
+            "Column(name='hour_percentage', type_code=1700)",
+            "Column(name='activity_level', type_code=25)",
+            "Column(name='day_relative_level', type_code=25)",
+            "Column(name='hour_relative_level', type_code=25)",
+            "Column(name='message_count_row_num', type_code=20)",
+            "Column(name='message_count_rank', type_code=20)",
+            "Column(name='day_hour_rank', type_code=20)",
+            "Column(name='message_count_percentile', type_code=1700)",
+            "Column(name='message_count_quintile', type_code=23)",
+            "Column(name='message_count_decile', type_code=23)",
+            "Column(name='cumulative_message_count', type_code=1700)",
+            "Column(name='moving_avg_message_count', type_code=1700)",
+            "Column(name='prev_time_slot_messages', type_code=20)",
+            "Column(name='next_time_slot_messages', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 15,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.97,
+          "row_count": 0,
+          "columns": [
+            "Column(name='username', type_code=1043)",
+            "Column(name='total_joins', type_code=20)",
+            "Column(name='first_joins', type_code=20)",
+            "Column(name='returning_joins', type_code=20)",
+            "Column(name='returning_same_day', type_code=20)",
+            "Column(name='returning_week', type_code=20)",
+            "Column(name='returning_month', type_code=20)",
+            "Column(name='returning_long_term', type_code=20)",
+            "Column(name='retention_rate', type_code=1700)",
+            "Column(name='avg_days_between', type_code=1700)",
+            "Column(name='median_days_between', type_code=1700)",
+            "Column(name='p25_days_between', type_code=1700)",
+            "Column(name='p75_days_between', type_code=1700)",
+            "Column(name='min_days_between_joins', type_code=1700)",
+            "Column(name='max_days_between_joins', type_code=1700)",
+            "Column(name='stddev_days_between', type_code=1700)",
+            "Column(name='avg_days_until_next_join', type_code=1700)",
+            "Column(name='avg_days_since_first_join', type_code=1700)",
+            "Column(name='avg_unique_chats_in_chain', type_code=1700)",
+            "Column(name='avg_retention_depth', type_code=1700)",
+            "Column(name='avg_max_retention_depth', type_code=1700)",
+            "Column(name='avg_total_chain_participations', type_code=1700)",
+            "Column(name='avg_5_session_window', type_code=1700)",
+            "Column(name='avg_range_window', type_code=1700)",
+            "Column(name='first_chain_join', type_code=1114)",
+            "Column(name='last_chain_join', type_code=1114)",
+            "Column(name='chain_span_days', type_code=1700)",
+            "Column(name='retention_category', type_code=25)",
+            "Column(name='engagement_frequency_category', type_code=25)",
+            "Column(name='retention_rate_row_num', type_code=20)",
+            "Column(name='retention_rate_rank', type_code=20)",
+            "Column(name='total_joins_dense_rank', type_code=20)",
+            "Column(name='retention_rate_percentile', type_code=1700)",
+            "Column(name='retention_rate_quintile', type_code=23)",
+            "Column(name='total_joins_decile', type_code=23)",
+            "Column(name='cumulative_total_joins', type_code=1700)",
+            "Column(name='moving_avg_retention_rate', type_code=1700)",
+            "Column(name='prev_total_joins', type_code=20)",
+            "Column(name='next_returning_joins', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 16,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.38,
+          "row_count": 0,
+          "columns": [
+            "Column(name='chat_title', type_code=1043)",
+            "Column(name='message_count', type_code=20)",
+            "Column(name='category', type_code=1043)",
+            "Column(name='rank_in_title', type_code=20)",
+            "Column(name='rank_with_ties', type_code=20)",
+            "Column(name='dense_rank', type_code=20)",
+            "Column(name='quartile', type_code=23)",
+            "Column(name='percent_rank', type_code=1700)",
+            "Column(name='count_10_window', type_code=1700)",
+            "Column(name='count_20_avg', type_code=1700)",
+            "Column(name='unique_ids_in_chain', type_code=20)",
+            "Column(name='avg_chain_depth', type_code=1700)",
+            "Column(name='max_chain_depth', type_code=23)"
+          ]
+        },
+        {
+          "query_number": 17,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.32,
+          "row_count": 0,
+          "columns": [
+            "Column(name='date_period', type_code=1114)",
+            "Column(name='message_count', type_code=20)",
+            "Column(name='chat_count', type_code=20)",
+            "Column(name='user_count', type_code=20)",
+            "Column(name='cumulative_messages', type_code=1700)",
+            "Column(name='avg_7day_messages', type_code=1700)",
+            "Column(name='prev_day_count', type_code=20)",
+            "Column(name='next_day_count', type_code=20)",
+            "Column(name='day_over_day_change', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 18,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.34,
+          "row_count": 0,
+          "columns": [
+            "Column(name='chat_id', type_code=2950)",
+            "Column(name='title', type_code=1043)",
+            "Column(name='total_messages', type_code=20)",
+            "Column(name='unique_senders', type_code=20)",
+            "Column(name='first_message', type_code=1114)",
+            "Column(name='last_message', type_code=1114)",
+            "Column(name='avg_messages_before', type_code=1700)",
+            "Column(name='avg_messages_after', type_code=1700)"
+          ]
+        },
+        {
+          "query_number": 19,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.31,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 20,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.31,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 21,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.3,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 22,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.27,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 23,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.27,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 24,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.3,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 25,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.29,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 26,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.57,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='size_category', type_code=25)",
+            "Column(name='hierarchy_level', type_code=23)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)",
+            "Column(name='rank_in_type', type_code=20)",
+            "Column(name='percent_rank', type_code=1700)",
+            "Column(name='rank_in_category', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 27,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.26,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 28,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.24,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 29,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.35,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        },
+        {
+          "query_number": 30,
+          "success": true,
+          "error": null,
+          "execution_time_ms": 0.26,
+          "row_count": 0,
+          "columns": [
+            "Column(name='file_type', type_code=1043)",
+            "Column(name='file_count', type_code=20)",
+            "Column(name='total_size', type_code=20)",
+            "Column(name='avg_size', type_code=1700)",
+            "Column(name='min_size', type_code=23)",
+            "Column(name='max_size', type_code=23)",
+            "Column(name='ranked_files_count', type_code=20)"
+          ]
+        }
+      ]
+    },
+    "databricks": {
+      "available": false,
+      "queries": []
+    },
+    "summary": {
+      "total_queries": 30,
+      "postgresql": {
+        "tested": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0
+      },
+      "databricks": {
+        "tested": 0,
+        "successful": 0,
+        "failed": 0,
+        "success_rate": 0
+      }
+    }
+  },
+  "phase_4_comprehensive_evaluation": {
+    "query_count": {
+      "requirement": "Exactly 30 queries",
+      "found": 30,
+      "status": "PASS",
+      "message": "Found 30 queries, expected 30"
+    },
+    "recursive_cte_usage": {
+      "requirement": "Queries claiming recursive CTE must have WITH RECURSIVE",
+      "total_queries": 30,
+      "queries_with_recursive": 14,
+      "mismatched": 0,
+      "status": "PASS",
+      "details": [
+        {
+          "query_number": 1,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 2,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 3,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 4,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 5,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 6,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 7,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 8,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 9,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 10,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 11,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 12,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 13,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 14,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 15,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 16,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 17,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 18,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 19,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 20,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 21,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 22,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 23,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 24,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 25,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 26,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 27,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 28,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 29,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 30,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        }
+      ],
+      "mismatched_queries": []
+    },
+    "cte_usage": {
+      "requirement": "All queries must use CTEs",
+      "total_queries": 30,
+      "queries_with_cte": 30,
+      "queries_without_cte": 0,
+      "status": "PASS",
+      "queries_without_cte_list": []
+    },
+    "complexity": {
+      "requirement": "Queries must demonstrate high complexity",
+      "complexity_scores": [
+        {
+          "query_number": 1,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 9,
+          "aggregation_count": 18,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 2,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 8,
+          "window_function_count": 1,
+          "aggregation_count": 15,
+          "subquery_count": 0
+        },
+        {
+          "query_number": 3,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 16,
+          "aggregation_count": 36,
+          "subquery_count": 0
+        },
+        {
+          "query_number": 4,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 9,
+          "window_function_count": 7,
+          "aggregation_count": 19,
+          "subquery_count": 2
+        },
+        {
+          "query_number": 5,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 2,
+          "window_function_count": 11,
+          "aggregation_count": 28,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 6,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 7,
+          "window_function_count": 10,
+          "aggregation_count": 32,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 7,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 2,
+          "window_function_count": 12,
+          "aggregation_count": 35,
+          "subquery_count": 2
+        },
+        {
+          "query_number": 8,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 4,
+          "window_function_count": 12,
+          "aggregation_count": 30,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 9,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 5,
+          "window_function_count": 12,
+          "aggregation_count": 22,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 10,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 8,
+          "window_function_count": 13,
+          "aggregation_count": 35,
+          "subquery_count": 13
+        },
+        {
+          "query_number": 11,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 5,
+          "window_function_count": 12,
+          "aggregation_count": 26,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 12,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 5,
+          "window_function_count": 18,
+          "aggregation_count": 32,
+          "subquery_count": 2
+        },
+        {
+          "query_number": 13,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 11,
+          "window_function_count": 12,
+          "aggregation_count": 24,
+          "subquery_count": 5
+        },
+        {
+          "query_number": 14,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 1,
+          "window_function_count": 13,
+          "aggregation_count": 29,
+          "subquery_count": 2
+        },
+        {
+          "query_number": 15,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 5,
+          "window_function_count": 15,
+          "aggregation_count": 43,
+          "subquery_count": 2
+        },
+        {
+          "query_number": 16,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 3,
+          "window_function_count": 5,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 17,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 2,
+          "aggregation_count": 5,
+          "subquery_count": 2
+        },
+        {
+          "query_number": 18,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 4,
+          "window_function_count": 0,
+          "aggregation_count": 8,
+          "subquery_count": 2
+        },
+        {
+          "query_number": 19,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 20,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 21,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 22,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 23,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 24,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 25,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 26,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 4,
+          "window_function_count": 3,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 27,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 28,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 29,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        },
+        {
+          "query_number": 30,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 2,
+          "window_function_count": 2,
+          "aggregation_count": 6,
+          "subquery_count": 3
+        }
+      ],
+      "average_cte_count": 1.0,
+      "average_join_count": 3.6333333333333333,
+      "average_window_function_count": 6.833333333333333
+    }
+  },
+  "findings": {
+    "critical_issues": [],
+    "warnings": [],
+    "recommendations": [
+      "All critical fixes have been applied successfully",
+      "Query titles are unique across all 30 queries",
+      "Header formatting is consistent",
+      "14 queries use recursive CTEs",
+      "Set up database connections for full syntax and execution testing (optional)"
+    ]
+  },
+  "notes": [
+    "Syntax validation ran with limited database availability (0 of 3 databases). Set up database connections for full cross-database validation."
+  ]
+}

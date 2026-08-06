@@ -1,0 +1,335 @@
+{
+  "source_metadata": {
+    "database": "db-9",
+    "database_name": "Shipping Intelligence Database",
+    "metadata_version": "1.0",
+    "last_updated": "2026-02-04",
+    "sources": [
+      {
+        "source_id": "usps_developer_portal",
+        "source_name": "USPS Developer Portal",
+        "source_type": "API",
+        "authority": "United States Postal Service",
+        "base_url": "https://developers.usps.com",
+        "api_version": "3.0",
+        "authentication": {
+          "method": "OAuth 2.0",
+          "requires_account": true,
+          "api_key_location": "Environment variable USPS_API_KEY",
+          "documentation_url": "https://developers.usps.com/api-documentation"
+        },
+        "endpoints": [
+          {
+            "endpoint_id": "usps_domestic_prices",
+            "name": "Domestic Prices API",
+            "endpoint": "/api/prices/v1/domestic",
+            "method": "POST",
+            "description": "Provides up-to-date pricing information for USPS products",
+            "requires_auth": true,
+            "rate_limit": "Not specified",
+            "data_format": "JSON",
+            "extraction_history": []
+          },
+          {
+            "endpoint_id": "usps_domestic_labels",
+            "name": "Domestic Labels API",
+            "endpoint": "/api/labels/v1/domestic",
+            "method": "POST",
+            "description": "Creates domestic shipping labels with validation and pricing confirmation",
+            "requires_auth": true,
+            "rate_limit": "Not specified",
+            "data_format": "JSON",
+            "extraction_history": []
+          },
+          {
+            "endpoint_id": "usps_addresses",
+            "name": "Addresses API",
+            "endpoint": "/api/addresses/v1",
+            "method": "POST",
+            "description": "Validates and standardizes addresses, including ZIP+4 codes",
+            "requires_auth": true,
+            "rate_limit": "Not specified",
+            "data_format": "JSON",
+            "extraction_history": []
+          },
+          {
+            "endpoint_id": "usps_adjustments",
+            "name": "Adjustments API",
+            "endpoint": "/api/adjustments/v1",
+            "method": "GET",
+            "description": "Retrieves shipping adjustments based on tracking numbers, identifies discrepancies",
+            "requires_auth": true,
+            "rate_limit": "Not specified",
+            "data_format": "JSON",
+            "extraction_history": []
+          },
+          {
+            "endpoint_id": "usps_tracking",
+            "name": "Tracking API",
+            "endpoint": "/api/tracking/v1",
+            "method": "GET",
+            "description": "Retrieves package tracking status and events",
+            "requires_auth": true,
+            "rate_limit": "Not specified",
+            "data_format": "JSON",
+            "extraction_history": []
+          }
+        ],
+        "data_lineage": {
+          "extraction_method": "REST API calls",
+          "transformation_steps": [
+            "Parse JSON response",
+            "Map to database schema",
+            "Validate data types",
+            "Store in shipping_rates, shipments, tracking_events, address_validation_results, shipping_adjustments tables"
+          ],
+          "load_destination": [
+            "shipping_rates",
+            "shipments",
+            "tracking_events",
+            "address_validation_results",
+            "shipping_adjustments"
+          ]
+        },
+        "migration_notice": {
+          "migration_required": true,
+          "migration_deadline": "2026-01-25",
+          "legacy_api": "USPS Web Tools API",
+          "new_platform": "https://developers.usps.com",
+          "status": "Migration in progress"
+        },
+        "ngda_theme": null,
+        "catalog_information": {
+          "catalog_type": "API",
+          "collection_id": null,
+          "artifact_type": null
+        }
+      },
+      {
+        "source_id": "ups_developer_portal",
+        "source_name": "UPS Developer Portal",
+        "source_type": "API",
+        "authority": "United Parcel Service",
+        "base_url": "https://developer.ups.com",
+        "api_version": "Multiple versions",
+        "authentication": {
+          "method": "OAuth 2.0",
+          "requires_account": true,
+          "api_key_location": "Environment variable UPS_API_KEY",
+          "documentation_url": "https://developer.ups.com/api/reference"
+        },
+        "endpoints": [
+          {
+            "endpoint_id": "ups_shipping",
+            "name": "Shipping API",
+            "endpoint": "/api/shipping/v1",
+            "method": "POST",
+            "description": "Shipping labels, rates, and tracking",
+            "requires_auth": true,
+            "rate_limit": "Not specified",
+            "data_format": "JSON",
+            "extraction_history": []
+          },
+          {
+            "endpoint_id": "ups_rating",
+            "name": "Rating API",
+            "endpoint": "/api/rating/v1",
+            "method": "POST",
+            "description": "Rate calculation for UPS services",
+            "requires_auth": true,
+            "rate_limit": "Not specified",
+            "data_format": "JSON",
+            "extraction_history": []
+          },
+          {
+            "endpoint_id": "ups_tracking",
+            "name": "Tracking API",
+            "endpoint": "/api/tracking/v1",
+            "method": "GET",
+            "description": "Package tracking and status",
+            "requires_auth": true,
+            "rate_limit": "Not specified",
+            "data_format": "JSON",
+            "extraction_history": []
+          }
+        ],
+        "data_lineage": {
+          "extraction_method": "REST API calls",
+          "transformation_steps": [
+            "Parse JSON response",
+            "Map to database schema",
+            "Validate data types",
+            "Store in shipping_rates, shipments, tracking_events tables"
+          ],
+          "load_destination": [
+            "shipping_rates",
+            "shipments",
+            "tracking_events"
+          ]
+        },
+        "rate_structures": [
+          "Retail rates (UPS Store locations)",
+          "Daily rates (scheduled pickups/accounts)"
+        ],
+        "zone_charts": {
+          "available": true,
+          "download_method": "Based on origin postal code",
+          "update_frequency": "Periodic",
+          "special_zones": ["Alaska", "Hawaii"]
+        },
+        "ngda_theme": null,
+        "catalog_information": {
+          "catalog_type": "API",
+          "collection_id": null,
+          "artifact_type": null
+        }
+      },
+      {
+        "source_id": "census_bureau_international_trade",
+        "source_name": "U.S. Census Bureau International Trade Data",
+        "source_type": "API",
+        "authority": "U.S. Census Bureau",
+        "base_url": "https://www.census.gov/foreign-trade/data",
+        "api_version": "Multiple",
+        "authentication": {
+          "method": "Public access",
+          "requires_account": false,
+          "api_key_location": null,
+          "documentation_url": "https://www.census.gov/foreign-trade/data/index.html"
+        },
+        "endpoints": [
+          {
+            "endpoint_id": "census_usa_trade_online",
+            "name": "USA Trade Online",
+            "endpoint": "Query tool for trade data",
+            "method": "Web interface / API",
+            "description": "Access to trade statistics and data",
+            "requires_auth": false,
+            "rate_limit": "Not specified",
+            "data_format": "CSV, Excel, API",
+            "extraction_history": []
+          },
+          {
+            "endpoint_id": "census_spi_databank",
+            "name": "SPI Databank",
+            "endpoint": "https://www.census.gov/foreign-trade/data/SPIM.html",
+            "method": "Download",
+            "description": "Detailed import data with HTSUSA commodity codes, country of origin, customs value",
+            "requires_auth": false,
+            "rate_limit": "Not specified",
+            "data_format": "CSV, Excel",
+            "date_range": "2010-2024",
+            "extraction_history": []
+          }
+        ],
+        "data_lineage": {
+          "extraction_method": "Bulk file download or API query",
+          "transformation_steps": [
+            "Parse CSV/Excel files",
+            "Map HTSUSA codes to database schema",
+            "Extract customs value, country of origin",
+            "Store in international_customs table"
+          ],
+          "load_destination": [
+            "international_customs"
+          ]
+        },
+        "data_categories": [
+          "Customs data",
+          "Tariff information",
+          "International trade statistics",
+          "HTSUSA commodity codes",
+          "Country of origin data"
+        ],
+        "ngda_theme": null,
+        "catalog_information": {
+          "catalog_type": "Government Data Portal",
+          "collection_id": null,
+          "artifact_type": null
+        }
+      },
+      {
+        "source_id": "data_gov_ckan",
+        "source_name": "Data.gov CKAN API",
+        "source_type": "Data Portal",
+        "authority": "U.S. General Services Administration",
+        "base_url": "https://catalog.data.gov",
+        "api_version": "CKAN API 3.0",
+        "authentication": {
+          "method": "Public access (API key optional)",
+          "requires_account": false,
+          "api_key_location": "Environment variable DATA_GOV_API_KEY (optional)",
+          "documentation_url": "https://data.gov/developers/apis/",
+          "rate_limit_with_key": "1,000 requests/hour",
+          "rate_limit_without_key": "Lower rate limit"
+        },
+        "endpoints": [
+          {
+            "endpoint_id": "datagov_package_search",
+            "name": "Package Search",
+            "endpoint": "https://catalog.data.gov/api/3/action/package_search",
+            "method": "GET",
+            "description": "Search for datasets related to shipping, postal, and logistics",
+            "requires_auth": false,
+            "rate_limit": "1,000 requests/hour with API key",
+            "data_format": "JSON",
+            "extraction_history": []
+          },
+          {
+            "endpoint_id": "datagov_package_show",
+            "name": "Package Show",
+            "endpoint": "https://catalog.data.gov/api/3/action/package_show",
+            "method": "GET",
+            "description": "Get dataset details",
+            "requires_auth": false,
+            "rate_limit": "1,000 requests/hour with API key",
+            "data_format": "JSON",
+            "extraction_history": []
+          }
+        ],
+        "data_lineage": {
+          "extraction_method": "CKAN API calls",
+          "transformation_steps": [
+            "Search for shipping-related datasets",
+            "Parse dataset metadata",
+            "Download dataset resources (CSV, GeoJSON, Shapefile)",
+            "Transform and load into appropriate tables"
+          ],
+          "load_destination": [
+            "shipping_zones",
+            "address_validation_results"
+          ]
+        },
+        "relevant_datasets": [
+          "ZIP code boundary datasets",
+          "Postal service data",
+          "Transportation and logistics datasets"
+        ],
+        "dataset_count": "Over 390,000 datasets available",
+        "search_tags": ["usps", "shipping", "postal", "logistics"],
+        "ngda_theme": null,
+        "catalog_information": {
+          "catalog_type": "CKAN Data Portal",
+          "collection_id": null,
+          "artifact_type": null
+        }
+      }
+    ],
+    "extraction_history": [],
+    "data_quality_notes": [
+      "USPS rates updated frequently - verify rate freshness",
+      "Zone data may change quarterly - monitor for updates",
+      "Address validation results cached for performance",
+      "Tracking events may have delays - implement retry logic",
+      "International customs data updated monthly from Census Bureau"
+    ],
+    "source_system_categorization": {
+      "carrier_apis": ["usps_developer_portal", "ups_developer_portal"],
+      "government_data": ["census_bureau_international_trade", "data_gov_ckan"],
+      "rate_sources": ["usps_developer_portal", "ups_developer_portal"],
+      "tracking_sources": ["usps_developer_portal", "ups_developer_portal"],
+      "address_validation_sources": ["usps_developer_portal"],
+      "customs_sources": ["census_bureau_international_trade"]
+    }
+  }
+}

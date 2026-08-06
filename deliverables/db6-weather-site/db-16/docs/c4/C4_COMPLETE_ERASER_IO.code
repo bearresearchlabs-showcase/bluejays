@@ -1,0 +1,654 @@
+title db-16 System Context - Flood Risk Assessment for M&A
+
+direction right
+
+"M&A Analyst" [icon: aws-cognito]
+"M&A Manager" [icon: aws-cognito]
+"Portfolio Manager" [icon: aws-cognito]
+"Deal Structuring Team" [icon: aws-cognito]
+"Acquisition Committee" [icon: aws-cognito]
+"Flood Risk Assessment System" [icon: aws-ec2, color: blue]
+"FEMA API" [icon: aws-cloudfront, color: gray]
+"NOAA API" [icon: aws-cloudfront, color: gray]
+"USGS API" [icon: aws-cloudfront, color: gray]
+"NASA API" [icon: aws-cloudfront, color: gray]
+
+"M&A Analyst" > "Flood Risk Assessment System": "Conducts pre-acquisition risk assessments"
+"M&A Manager" > "Flood Risk Assessment System": "Reviews risk reports for acquisition decisions"
+"Portfolio Manager" > "Flood Risk Assessment System": "Analyzes portfolio-level risk metrics"
+"Deal Structuring Team" > "Flood Risk Assessment System": "Uses financial impact for deal structuring"
+"Acquisition Committee" > "Flood Risk Assessment System": "Reviews comprehensive due diligence reports"
+"Flood Risk Assessment System" > "FEMA API": "Retrieves flood zone boundaries and BFEs"
+"Flood Risk Assessment System" > "NOAA API": "Retrieves sea level rise projections"
+"Flood Risk Assessment System" > "USGS API": "Retrieves streamflow observations"
+"Flood Risk Assessment System" > "NASA API": "Retrieves flood model predictions"
+
+
+title db-16 Container Architecture
+
+direction right
+
+"M&A Analyst" [icon: aws-cognito]
+"M&A Manager" [icon: aws-cognito]
+"Portfolio Manager" [icon: aws-cognito]
+"FEMA API" [icon: aws-cloudfront, color: gray]
+"NOAA API" [icon: aws-cloudfront, color: gray]
+"USGS API" [icon: aws-cloudfront, color: gray]
+"NASA API" [icon: aws-cloudfront, color: gray]
+"Web Application" [icon: aws-ec2]
+"API Service" [icon: aws-ec2]
+"Spatial Analysis Engine" [icon: aws-ec2]
+"Risk Calculator" [icon: aws-ec2]
+"Data Ingestion Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"Blob Storage" [icon: aws-rds]
+
+"M&A Analyst" > "Web Application": "Uses"
+"M&A Manager" > "Web Application": "Uses"
+"Portfolio Manager" > "Web Application": "Uses"
+"Web Application" > "API Service": "Makes API calls"
+"API Service" > "Spatial Analysis Engine": "Uses for spatial analysis"
+"API Service" > "Risk Calculator": "Uses for risk scoring"
+"API Service" > "Data Ingestion Service": "Triggers data ingestion"
+"API Service" > "Flood Risk Database": "Reads and writes"
+"Spatial Analysis Engine" > "Flood Risk Database": "Queries spatial data"
+"Risk Calculator" > "Flood Risk Database": "Reads risk data"
+"API Service" > "Blob Storage": "Stores/retrieves files"
+"Data Ingestion Service" > "FEMA API": "Retrieves flood zones"
+"Data Ingestion Service" > "NOAA API": "Retrieves sea level data"
+"Data Ingestion Service" > "USGS API": "Retrieves streamflow"
+"Data Ingestion Service" > "NASA API": "Retrieves flood models"
+"Data Ingestion Service" > "Flood Risk Database": "Writes ingested data"
+"Data Ingestion Service" > "Blob Storage": "Stores spatial files"
+
+
+title db-16 API Service Components
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Property API" [icon: aws-api-gateway]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Portfolio API" [icon: aws-api-gateway]
+"Financial Impact API" [icon: aws-api-gateway]
+"Comparative Analysis API" [icon: aws-api-gateway]
+"Spatial Service" [icon: aws-lambda]
+"Risk Scoring Service" [icon: aws-lambda]
+"Financial Impact Service" [icon: aws-lambda]
+"Temporal Projection Service" [icon: aws-lambda]
+"Query Executor" [icon: aws-lambda]
+"Flood Risk Database" [icon: aws-rds]
+
+"Property API" > "Spatial Service": "Uses"
+"Property API" > "Query Executor": "Uses"
+"Risk Assessment API" > "Spatial Service": "Uses"
+"Risk Assessment API" > "Risk Scoring Service": "Uses"
+"Risk Assessment API" > "Financial Impact Service": "Uses"
+"Risk Assessment API" > "Temporal Projection Service": "Uses"
+"Risk Assessment API" > "Query Executor": "Uses"
+"Portfolio API" > "Risk Scoring Service": "Uses"
+"Portfolio API" > "Query Executor": "Uses"
+"Financial Impact API" > "Financial Impact Service": "Uses"
+"Financial Impact API" > "Query Executor": "Uses"
+"Comparative Analysis API" > "Risk Scoring Service": "Uses"
+"Comparative Analysis API" > "Query Executor": "Uses"
+"Spatial Service" > "Query Executor": "Uses"
+"Risk Scoring Service" > "Query Executor": "Uses"
+"Financial Impact Service" > "Query Executor": "Uses"
+"Temporal Projection Service" > "Query Executor": "Uses"
+"Query Executor" > "Flood Risk Database": "Reads and writes"
+"API Service" > "Risk Assessment API": "Connected"
+
+
+title db-16 Database Schema Components
+
+direction right
+
+"FEMA Flood Zones" [icon: aws-ec2]
+"Real Estate Properties" [icon: aws-ec2]
+"NOAA Sea Level Rise" [icon: aws-ec2]
+"USGS Streamflow Gauges" [icon: aws-ec2]
+"USGS Streamflow Observations" [icon: aws-ec2]
+"NASA Flood Models" [icon: aws-ec2]
+"Flood Risk Assessments" [icon: aws-ec2]
+"Portfolio Risk Summaries" [icon: aws-ec2]
+"Property-Flood Zone Intersections" [icon: aws-ec2]
+"Historical Flood Events" [icon: aws-ec2]
+"Model Performance Metrics" [icon: aws-ec2]
+"Data Quality Metrics" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+
+"Real Estate Properties" > "Property-Flood Zone Intersections": "Spatial join"
+"FEMA Flood Zones" > "Property-Flood Zone Intersections": "Spatial join"
+"Real Estate Properties" > "Flood Risk Assessments": "Generates"
+"NOAA Sea Level Rise" > "Flood Risk Assessments": "Used in"
+"USGS Streamflow Observations" > "Flood Risk Assessments": "Used in"
+"NASA Flood Models" > "Flood Risk Assessments": "Used in"
+"Historical Flood Events" > "Flood Risk Assessments": "Used in"
+"Flood Risk Assessments" > "Portfolio Risk Summaries": "Aggregates to"
+"NASA Flood Models" > "Model Performance Metrics": "Tracks performance"
+"Flood Risk Database" > "NASA Flood Models": "Connected"
+"Data Quality Metrics" > "NASA Flood Models": "Connected"
+"USGS Streamflow Gauges" > "NASA Flood Models": "Connected"
+
+
+title Use Cases - Pre-Acquisition Assessment
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Financial Impact Service" [icon: aws-lambda]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Risk Scoring Service" [icon: aws-lambda]
+"Spatial Service" [icon: aws-lambda]
+"Temporal Projection Service" [icon: aws-lambda]
+"Web Application" [icon: aws-ec2]
+
+"M&A Analyst" > "Web Application": "1. Inputs property location for acquisition target"
+"Web Application" > "API Service": "2. POST /api/risk-assessment"
+"API Service" > "Risk Assessment API": "3. Routes to risk assessment endpoint"
+"Risk Assessment API" > "Spatial Service": "4. Performs spatial analysis"
+"Spatial Service" > "Query Executor": "5. Queries FEMA flood zones intersecting property"
+"Query Executor" > "Flood Risk Database": "6. SELECT from fema_flood_zones with ST_WITHIN"
+"Flood Risk Database" > "Query Executor": "7. Returns flood zone data"
+"Spatial Service" > "Query Executor": "8. Queries nearest NOAA sea level rise station"
+"Query Executor" > "Flood Risk Database": "9. SELECT from noaa_sea_level_rise with ST_DISTANCE"
+"Flood Risk Database" > "Query Executor": "10. Returns sea level rise projections"
+"Spatial Service" > "Query Executor": "11. Queries nearest USGS streamflow gauge"
+"Query Executor" > "Flood Risk Database": "12. SELECT from usgs_streamflow_gauges"
+"Flood Risk Database" > "Query Executor": "13. Returns gauge data"
+"Spatial Service" > "Query Executor": "14. Queries NASA flood models near property"
+"Query Executor" > "Flood Risk Database": "15. SELECT from nasa_flood_models with ST_DISTANCE"
+"Flood Risk Database" > "Query Executor": "16. Returns flood model predictions"
+"Risk Assessment API" > "Risk Scoring Service": "17. Calculates FEMA risk score"
+"Risk Assessment API" > "Risk Scoring Service": "18. Calculates sea level rise risk score"
+"Risk Assessment API" > "Risk Scoring Service": "19. Calculates streamflow risk score"
+"Risk Assessment API" > "Risk Scoring Service": "20. Calculates NASA model risk score"
+"Risk Assessment API" > "Risk Scoring Service": "21. Combines multi-factor risk scores"
+"Risk Assessment API" > "Temporal Projection Service": "22. Projects risk: 5, 20, 50, 100 years"
+"Temporal Projection Service" > "Query Executor": "23. Queries temporal projections"
+"Risk Assessment API" > "Financial Impact Service": "24. Estimates flood damage costs"
+"Financial Impact Service" > "Query Executor": "25. Queries property values"
+"Risk Assessment API" > "Financial Impact Service": "26. Calculates insurance premiums"
+"Risk Assessment API" > "Query Executor": "27. Saves comprehensive risk assessment"
+"Query Executor" > "Flood Risk Database": "28. INSERT into flood_risk_assessments"
+"Risk Assessment API" > "API Service": "29. Returns comprehensive risk report"
+"API Service" > "Web Application": "30. Returns JSON response"
+
+
+title Use Cases - Portfolio Risk Analysis
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"M&A Manager" [icon: aws-cognito]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Web Application" [icon: aws-ec2]
+
+"Web Application" > "M&A Analyst": "31. Displays risk score, projections, financial impact"
+"Web Application" > "M&A Manager": "13. Displays risk trends, increasing/decreasing patterns, temporal changes"
+"M&A Analyst" > "Web Application": "1. Requests NASA model accuracy assessment"
+"Web Application" > "API Service": "2. POST /api/nasa-model-accuracy"
+"API Service" > "Risk Assessment API": "3. Routes to accuracy endpoint"
+"Risk Assessment API" > "Query Executor": "4. Queries NASA model predictions"
+"Query Executor" > "Flood Risk Database": "5. SELECT from nasa_flood_models"
+"Risk Assessment API" > "Query Executor": "6. Queries actual flood events"
+"Query Executor" > "Flood Risk Database": "7. SELECT from historical_flood_events"
+"Risk Assessment API" > "Query Executor": "8. Compares predictions to actual events"
+"Query Executor" > "Flood Risk Database": "9. Calculates accuracy metrics"
+"Risk Assessment API" > "Query Executor": "10. Evaluates prediction confidence"
+"Query Executor" > "Flood Risk Database": "11. Analyzes confidence scores"
+"Risk Assessment API" > "API Service": "12. Returns accuracy assessment"
+"API Service" > "Web Application": "13. Returns JSON response"
+
+
+title Use Cases - Historical Flood Analysis
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Deal Structuring Team" [icon: aws-cognito]
+"FEMA API" [icon: aws-cloudfront, color: gray]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"M&A Manager" [icon: aws-cognito]
+"NASA API" [icon: aws-cloudfront, color: gray]
+"NOAA API" [icon: aws-cloudfront, color: gray]
+"Portfolio API" [icon: aws-api-gateway]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Risk Scoring Service" [icon: aws-lambda]
+"Spatial Service" [icon: aws-lambda]
+"USGS API" [icon: aws-cloudfront, color: gray]
+"Web Application" [icon: aws-ec2]
+
+"NOAA API" > "Risk Assessment API": "Connected"
+"USGS API" > "Risk Assessment API": "Connected"
+"NASA API" > "Risk Assessment API": "Connected"
+"FEMA API" > "Risk Assessment API": "Connected"
+"M&A Manager" > "Web Application": "1. Selects acquisition target portfolio"
+"Web Application" > "API Service": "2. POST /api/portfolio-risk-analysis"
+"API Service" > "Portfolio API": "3. Routes to portfolio endpoint"
+"Portfolio API" > "Query Executor": "4. Queries all properties in portfolio"
+"Query Executor" > "Flood Risk Database": "5. SELECT from real_estate_properties WHERE portfolio_id"
+"Flood Risk Database" > "Query Executor": "6. Returns portfolio properties"
+"Portfolio API" > "Risk Scoring Service": "7. Retrieves risk scores for all properties"
+"Risk Scoring Service" > "Query Executor": "8. SELECT from flood_risk_assessments"
+"Query Executor" > "Flood Risk Database": "9. Returns risk assessments"
+"Portfolio API" > "Spatial Service": "10. Performs geographic clustering analysis"
+"Spatial Service" > "Query Executor": "11. Groups properties by geographic regions"
+"Query Executor" > "Flood Risk Database": "12. Aggregates by state_code, county_fips"
+"Flood Risk Database" > "Query Executor": "13. Returns geographic clusters"
+"Portfolio API" > "Query Executor": "14. Calculates portfolio-level metrics"
+"Query Executor" > "Flood Risk Database": "15. Aggregates risk scores, calculates averages"
+"Flood Risk Database" > "Query Executor": "16. Returns aggregated metrics"
+"Portfolio API" > "Query Executor": "17. Identifies risk hotspots"
+"Query Executor" > "Flood Risk Database": "18. Finds high-risk geographic concentrations"
+"Portfolio API" > "Query Executor": "19. Saves portfolio risk summary"
+"Query Executor" > "Flood Risk Database": "20. INSERT into portfolio_risk_summaries"
+"Portfolio API" > "API Service": "21. Returns portfolio risk summary"
+"API Service" > "Web Application": "22. Returns JSON response"
+"Web Application" > "M&A Analyst": "14. Displays properties in flood zones, distances, zone classifications"
+"Web Application" > "Deal Structuring Team": "18. Displays damage costs, insurance premiums, annual losses, TCO for acquisition pricing"
+
+
+title Use Cases - Sea Level Rise Analysis
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"M&A Manager" [icon: aws-cognito]
+"NASA API" [icon: aws-cloudfront, color: gray]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Spatial Service" [icon: aws-lambda]
+"Web Application" [icon: aws-ec2]
+
+"Web Application" > "M&A Manager": "23. Displays portfolio risk score, geographic clustering, deal risk assessment"
+"NASA API" > "Risk Assessment API": "Connected"
+"M&A Analyst" > "Web Application": "1. Requests flood zone intersection analysis"
+"Web Application" > "API Service": "2. POST /api/flood-zone-intersection"
+"API Service" > "Risk Assessment API": "3. Routes to intersection endpoint"
+"Risk Assessment API" > "Spatial Service": "4. Performs spatial intersection analysis"
+"Spatial Service" > "Query Executor": "5. SELECT from property_flood_zone_intersections"
+"Query Executor" > "Flood Risk Database": "6. Returns intersection data"
+"Spatial Service" > "Query Executor": "7. Queries properties within flood zones"
+"Query Executor" > "Flood Risk Database": "8. ST_WITHIN analysis on properties and zones"
+"Flood Risk Database" > "Query Executor": "9. Returns intersecting properties"
+"Spatial Service" > "Query Executor": "10. Calculates distance to flood zones"
+"Query Executor" > "Flood Risk Database": "11. ST_DISTANCE calculations"
+"Risk Assessment API" > "API Service": "12. Returns intersection analysis"
+"API Service" > "Web Application": "13. Returns JSON response"
+
+
+title Use Cases - Streamflow Analysis
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Web Application" [icon: aws-ec2]
+
+"M&A Analyst" > "Web Application": "1. Requests historical flood analysis for acquisition target"
+"Web Application" > "API Service": "2. POST /api/historical-flood-analysis"
+"API Service" > "Risk Assessment API": "3. Routes to historical analysis endpoint"
+"Risk Assessment API" > "Query Executor": "4. Queries historical flood events near property"
+"Query Executor" > "Flood Risk Database": "5. SELECT from historical_flood_events with spatial join"
+"Flood Risk Database" > "Query Executor": "6. Returns historical flood events"
+"Risk Assessment API" > "Query Executor": "7. Calculates flood frequency patterns"
+"Query Executor" > "Flood Risk Database": "8. Groups by time periods, counts occurrences"
+"Flood Risk Database" > "Query Executor": "9. Returns frequency patterns"
+"Risk Assessment API" > "Query Executor": "10. Identifies temporal clustering trends"
+"Query Executor" > "Flood Risk Database": "11. Analyzes flood event timing patterns"
+"Risk Assessment API" > "Query Executor": "12. Calculates severity distributions"
+"Query Executor" > "Flood Risk Database": "13. Aggregates by flood severity categories"
+"Risk Assessment API" > "Query Executor": "14. Identifies geographic recurrence hotspots"
+"Query Executor" > "Flood Risk Database": "15. Groups by geographic regions"
+"Risk Assessment API" > "API Service": "16. Returns historical flood analysis"
+"API Service" > "Web Application": "17. Returns JSON response"
+
+
+title Use Cases - Model Performance
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"M&A Manager" [icon: aws-cognito]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Spatial Service" [icon: aws-lambda]
+"Temporal Projection Service" [icon: aws-lambda]
+"Web Application" [icon: aws-ec2]
+
+"Web Application" > "M&A Analyst": "18. Displays flood frequency, temporal patterns, severity, hotspots"
+"M&A Manager" > "Web Application": "1. Requests risk trend analysis for acquisition target"
+"Web Application" > "API Service": "2. POST /api/risk-trend-analysis"
+"API Service" > "Risk Assessment API": "3. Routes to trend analysis endpoint"
+"Risk Assessment API" > "Temporal Projection Service": "4. Retrieves historical risk assessments"
+"Temporal Projection Service" > "Query Executor": "5. SELECT from flood_risk_assessments ORDER BY assessment_date"
+"Query Executor" > "Flood Risk Database": "6. Returns historical assessments"
+"Temporal Projection Service" > "Query Executor": "7. Calculates risk trends over time"
+"Query Executor" > "Flood Risk Database": "8. Window functions to calculate trends"
+"Risk Assessment API" > "Query Executor": "9. Identifies increasing/decreasing risk patterns"
+"Query Executor" > "Flood Risk Database": "10. Analyzes risk score changes"
+"Risk Assessment API" > "API Service": "11. Returns risk trend analysis"
+"API Service" > "Web Application": "12. Returns JSON response"
+"M&A Analyst" > "Web Application": "1. Requests FEMA flood zone classification"
+"Web Application" > "API Service": "2. POST /api/fema-zone-classification"
+"API Service" > "Risk Assessment API": "3. Routes to FEMA zone endpoint"
+"Risk Assessment API" > "Spatial Service": "4. Performs spatial analysis"
+"Spatial Service" > "Query Executor": "5. SELECT from fema_flood_zones with spatial join"
+"Query Executor" > "Flood Risk Database": "6. Returns FEMA flood zones"
+"Risk Assessment API" > "Query Executor": "7. Classifies flood zone risk levels"
+"Query Executor" > "Flood Risk Database": "8. Maps zone codes to risk categories"
+"Risk Assessment API" > "Query Executor": "9. Evaluates regulatory compliance"
+"Query Executor" > "Flood Risk Database": "10. Checks FEMA zone requirements"
+"Risk Assessment API" > "API Service": "11. Returns FEMA zone classification"
+"API Service" > "Web Application": "12. Returns JSON response"
+
+
+title Use Cases - Spatial Analysis
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Manager" [icon: aws-cognito]
+"Portfolio Manager" [icon: aws-cognito]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Temporal Projection Service" [icon: aws-lambda]
+"Web Application" [icon: aws-ec2]
+
+"M&A Manager" > "Web Application": "1. Requests sea level rise analysis for coastal acquisition target"
+"Web Application" > "API Service": "2. POST /api/sea-level-rise-analysis"
+"API Service" > "Risk Assessment API": "3. Routes to sea level rise endpoint"
+"Risk Assessment API" > "Temporal Projection Service": "4. Retrieves multi-horizon projections"
+"Temporal Projection Service" > "Query Executor": "5. Queries NOAA sea level rise projections"
+"Query Executor" > "Flood Risk Database": "6. SELECT from noaa_sea_level_rise for 10, 30, 50, 100 years"
+"Flood Risk Database" > "Query Executor": "7. Returns projections for multiple time horizons"
+"Temporal Projection Service" > "Query Executor": "8. Queries multiple scenarios"
+"Query Executor" > "Flood Risk Database": "9. SELECT Low, Intermediate, High, Extreme scenarios"
+"Flood Risk Database" > "Query Executor": "10. Returns scenario comparisons"
+"Temporal Projection Service" > "Query Executor": "11. Calculates property vulnerability"
+"Query Executor" > "Flood Risk Database": "12. Compares property elevation to projected sea levels"
+"Risk Assessment API" > "Temporal Projection Service": "13. Projects high tide flooding days"
+"Temporal Projection Service" > "Query Executor": "14. Queries high_tide_flooding_days"
+"Risk Assessment API" > "API Service": "15. Returns multi-horizon impact analysis"
+"API Service" > "Web Application": "16. Returns JSON response"
+"Web Application" > "Portfolio Manager": "14. Displays risk clusters, hotspots, geographic concentrations"
+
+
+title Use Cases - Risk Trends & Projections
+
+direction right
+
+"M&A Analyst" [icon: aws-cognito]
+"M&A Manager" [icon: aws-cognito]
+"Web Application" [icon: aws-ec2]
+
+"Web Application" > "M&A Manager": "17. Displays sea level rise projections, scenarios, vulnerability across time horizons"
+"Web Application" > "M&A Analyst": "13. Displays vulnerability scores, prioritized properties"
+
+
+title Use Cases - Geographic Risk Analysis
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"NOAA API" [icon: aws-cloudfront, color: gray]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Spatial Service" [icon: aws-lambda]
+"Web Application" [icon: aws-ec2]
+
+"NOAA API" > "Risk Assessment API": "Connected"
+"M&A Analyst" > "Web Application": "1. Requests streamflow analysis for acquisition target"
+"Web Application" > "API Service": "2. POST /api/streamflow-analysis"
+"API Service" > "Risk Assessment API": "3. Routes to streamflow endpoint"
+"Risk Assessment API" > "Spatial Service": "4. Finds nearest streamflow gauges"
+"Spatial Service" > "Query Executor": "5. SELECT from usgs_streamflow_gauges with ST_DISTANCE"
+"Query Executor" > "Flood Risk Database": "6. Returns nearest gauges"
+"Risk Assessment API" > "Query Executor": "7. Queries historical streamflow observations"
+"Query Executor" > "Flood Risk Database": "8. SELECT from usgs_streamflow_observations"
+"Flood Risk Database" > "Query Executor": "9. Returns historical observations"
+"Risk Assessment API" > "Query Executor": "10. Calculates flood frequency patterns"
+"Query Executor" > "Flood Risk Database": "11. Counts flood events by category"
+"Risk Assessment API" > "Query Executor": "12. Analyzes gauge network coverage"
+"Query Executor" > "Flood Risk Database": "13. Evaluates gauge proximity and coverage"
+"Risk Assessment API" > "Query Executor": "14. Identifies historical pattern recognition"
+"Query Executor" > "Flood Risk Database": "15. Analyzes temporal patterns in flood events"
+"Risk Assessment API" > "API Service": "16. Returns streamflow flood frequency analysis"
+"API Service" > "Web Application": "17. Returns JSON response"
+"Web Application" > "M&A Analyst": "13. Displays flood zone codes, risk classifications, compliance status"
+
+
+title Use Cases - Vulnerability & Scoring
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Deal Structuring Team" [icon: aws-cognito]
+"Financial Impact API" [icon: aws-api-gateway]
+"Financial Impact Service" [icon: aws-lambda]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"M&A Manager" [icon: aws-cognito]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Temporal Projection Service" [icon: aws-lambda]
+"Web Application" [icon: aws-ec2]
+
+"Web Application" > "M&A Analyst": "18. Displays flood frequency, gauge coverage, historical patterns"
+"Deal Structuring Team" > "Web Application": "1. Requests financial impact analysis for acquisition pricing"
+"Web Application" > "API Service": "2. POST /api/financial-impact-modeling"
+"API Service" > "Financial Impact API": "3. Routes to financial impact endpoint"
+"Financial Impact API" > "Financial Impact Service": "4. Estimates flood damage costs"
+"Financial Impact Service" > "Query Executor": "5. Queries property values and risk scores"
+"Query Executor" > "Flood Risk Database": "6. SELECT from real_estate_properties and flood_risk_assessments"
+"Flood Risk Database" > "Query Executor": "7. Returns property and risk data"
+"Financial Impact Service" > "Query Executor": "8. Calculates estimated flood damage costs"
+"Query Executor" > "Flood Risk Database": "9. Applies damage cost models based on risk"
+"Financial Impact Service" > "Query Executor": "10. Calculates insurance premiums"
+"Query Executor" > "Flood Risk Database": "11. Applies insurance premium models"
+"Financial Impact Service" > "Query Executor": "12. Calculates annual loss projections"
+"Query Executor" > "Flood Risk Database": "13. Projects annual expected losses"
+"Financial Impact Service" > "Query Executor": "14. Calculates total cost of ownership"
+"Query Executor" > "Flood Risk Database": "15. Aggregates all cost components"
+"Financial Impact API" > "API Service": "16. Returns financial impact model"
+"API Service" > "Web Application": "17. Returns JSON response"
+"M&A Manager" > "Web Application": "1. Requests sea level rise scenario comparison"
+"Web Application" > "API Service": "2. POST /api/sea-level-scenario-comparison"
+"API Service" > "Risk Assessment API": "3. Routes to scenario comparison endpoint"
+"Risk Assessment API" > "Temporal Projection Service": "4. Retrieves multiple scenarios"
+"Temporal Projection Service" > "Query Executor": "5. SELECT from noaa_sea_level_rise for all scenarios"
+"Query Executor" > "Flood Risk Database": "6. Returns Low, Intermediate, High, Extreme scenarios"
+"Flood Risk Database" > "Query Executor": "7. Returns scenario data"
+"Temporal Projection Service" > "Query Executor": "8. Compares scenarios side-by-side"
+"Query Executor" > "Flood Risk Database": "9. Aggregates by scenario type"
+"Risk Assessment API" > "Query Executor": "10. Calculates scenario risk differences"
+"Query Executor" > "Flood Risk Database": "11. Compares risk across scenarios"
+"Risk Assessment API" > "API Service": "12. Returns scenario comparison"
+"API Service" > "Web Application": "13. Returns JSON response"
+
+
+title Use Cases - Financial Impact
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"USGS API" [icon: aws-cloudfront, color: gray]
+"Web Application" [icon: aws-ec2]
+
+"USGS API" > "Risk Assessment API": "Connected"
+"M&A Analyst" > "Web Application": "1. Requests NASA model performance evaluation"
+"Web Application" > "API Service": "2. POST /api/nasa-model-performance"
+"API Service" > "Risk Assessment API": "3. Routes to model performance endpoint"
+"Risk Assessment API" > "Query Executor": "4. Queries NASA flood model predictions"
+"Query Executor" > "Flood Risk Database": "5. SELECT from nasa_flood_models"
+"Flood Risk Database" > "Query Executor": "6. Returns model predictions"
+"Risk Assessment API" > "Query Executor": "7. Queries model performance metrics"
+"Query Executor" > "Flood Risk Database": "8. SELECT from model_performance_metrics"
+"Flood Risk Database" > "Query Executor": "9. Returns performance metrics"
+"Risk Assessment API" > "Query Executor": "10. Calculates accuracy metrics"
+"Query Executor" > "Flood Risk Database": "11. Compares predictions to actual events"
+"Risk Assessment API" > "Query Executor": "12. Evaluates model reliability"
+"Query Executor" > "Flood Risk Database": "13. Analyzes prediction confidence"
+"Risk Assessment API" > "API Service": "14. Returns model performance evaluation"
+"API Service" > "Web Application": "15. Returns JSON response"
+"Web Application" > "M&A Analyst": "15. Displays historical patterns, recurring risks, temporal clusters"
+
+
+title Use Cases - FEMA Classification
+
+direction right
+
+"M&A Analyst" [icon: aws-cognito]
+"Web Application" [icon: aws-ec2]
+
+"Web Application" > "M&A Analyst": "16. Displays model accuracy, reliability, confidence metrics"
+
+
+title Use Cases - Data Quality & Optimization
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"Portfolio API" [icon: aws-api-gateway]
+"Portfolio Manager" [icon: aws-cognito]
+"Query Executor" [icon: aws-lambda]
+"Spatial Service" [icon: aws-lambda]
+"Web Application" [icon: aws-ec2]
+
+"Portfolio Manager" > "Web Application": "1. Requests geographic risk clustering for portfolio"
+"Web Application" > "API Service": "2. POST /api/geographic-risk-clustering"
+"API Service" > "Portfolio API": "3. Routes to clustering endpoint"
+"Portfolio API" > "Spatial Service": "4. Performs geographic clustering analysis"
+"Spatial Service" > "Query Executor": "5. Groups properties by geographic regions"
+"Query Executor" > "Flood Risk Database": "6. Aggregates by state_code, county_fips"
+"Flood Risk Database" > "Query Executor": "7. Returns geographic clusters"
+"Portfolio API" > "Query Executor": "8. Identifies risk hotspots"
+"Query Executor" > "Flood Risk Database": "9. Finds high-risk geographic concentrations"
+"Portfolio API" > "Query Executor": "10. Calculates cluster risk metrics"
+"Query Executor" > "Flood Risk Database": "11. Aggregates risk scores by cluster"
+"Portfolio API" > "API Service": "12. Returns geographic risk clustering"
+"API Service" > "Web Application": "13. Returns JSON response"
+
+
+title Use Cases - Risk Score Fusion
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Risk Scoring Service" [icon: aws-lambda]
+"Web Application" [icon: aws-ec2]
+
+"M&A Analyst" > "Web Application": "1. Requests vulnerability scoring for acquisition target"
+"Web Application" > "API Service": "2. POST /api/vulnerability-scoring"
+"API Service" > "Risk Assessment API": "3. Routes to vulnerability endpoint"
+"Risk Assessment API" > "Risk Scoring Service": "4. Calculates property vulnerability scores"
+"Risk Scoring Service" > "Query Executor": "5. Queries property characteristics"
+"Query Executor" > "Flood Risk Database": "6. SELECT from real_estate_properties"
+"Risk Scoring Service" > "Query Executor": "7. Queries flood risk data"
+"Query Executor" > "Flood Risk Database": "8. SELECT from flood_risk_assessments"
+"Risk Scoring Service" > "Query Executor": "9. Calculates vulnerability based on elevation, age, value"
+"Query Executor" > "Flood Risk Database": "10. Aggregates vulnerability factors"
+"Risk Assessment API" > "API Service": "11. Returns vulnerability scores"
+"API Service" > "Web Application": "12. Returns JSON response"
+
+
+title Use Cases - Advanced Risk Analysis
+
+direction right
+
+"API Service" [icon: aws-ec2]
+"Flood Risk Database" [icon: aws-rds]
+"M&A Analyst" [icon: aws-cognito]
+"M&A Manager" [icon: aws-cognito]
+"Query Executor" [icon: aws-lambda]
+"Risk Assessment API" [icon: aws-api-gateway]
+"Web Application" [icon: aws-ec2]
+
+"Web Application" > "M&A Manager": "14. Displays scenario comparisons, risk differences, best/worst case"
+"M&A Analyst" > "Web Application": "1. Requests streamflow historical pattern analysis"
+"Web Application" > "API Service": "2. POST /api/streamflow-patterns"
+"API Service" > "Risk Assessment API": "3. Routes to pattern recognition endpoint"
+"Risk Assessment API" > "Query Executor": "4. Queries historical streamflow observations"
+"Query Executor" > "Flood Risk Database": "5. SELECT from usgs_streamflow_observations"
+"Flood Risk Database" > "Query Executor": "6. Returns historical observations"
+"Risk Assessment API" > "Query Executor": "7. Identifies recurring patterns"
+"Query Executor" > "Flood Risk Database": "8. Analyzes temporal patterns"
+"Risk Assessment API" > "Query Executor": "9. Recognizes seasonal patterns"
+"Query Executor" > "Flood Risk Database": "10. Groups by seasons, months"
+"Risk Assessment API" > "Query Executor": "11. Identifies flood event clusters"
+"Query Executor" > "Flood Risk Database": "12. Finds temporal clustering"
+"Risk Assessment API" > "API Service": "13. Returns pattern recognition results"
+"API Service" > "Web Application": "14. Returns JSON response"
+
+
+title Use Cases - Comprehensive Reports
+
+direction right
+
+"M&A Analyst" [icon: aws-cognito]
+"Web Application" [icon: aws-ec2]
+
+"Web Application" > "M&A Analyst": "14. Displays prediction accuracy, confidence levels, reliability metrics"
+
+
+title Code Diagram - Risk Scoring Service
+
+direction right
+
+"Risk Scoring Service" [icon: aws-lambda]
+"FEMA Risk Scorer" [icon: aws-lambda]
+"Sea Level Rise Scorer" [icon: aws-lambda]
+"Streamflow Scorer" [icon: aws-lambda]
+"NASA Model Scorer" [icon: aws-lambda]
+"Multi-Factor Aggregator" [icon: aws-lambda]
+"Temporal Projector" [icon: aws-lambda]
+"Financial Calculator" [icon: aws-lambda]
+"Vulnerability Scorer" [icon: aws-lambda]
+"Deal-Breaker Analyzer" [icon: aws-lambda]
+
+"Risk Scoring Service" > "FEMA Risk Scorer": "Uses"
+"Risk Scoring Service" > "Sea Level Rise Scorer": "Uses"
+"Risk Scoring Service" > "Streamflow Scorer": "Uses"
+"Risk Scoring Service" > "NASA Model Scorer": "Uses"
+"Risk Scoring Service" > "Multi-Factor Aggregator": "Uses"
+"Risk Scoring Service" > "Temporal Projector": "Uses"
+"Risk Scoring Service" > "Financial Calculator": "Uses"
+"Risk Scoring Service" > "Vulnerability Scorer": "Uses"
+"Risk Scoring Service" > "Deal-Breaker Analyzer": "Uses"
+"Multi-Factor Aggregator" > "FEMA Risk Scorer": "Aggregates"
+"Multi-Factor Aggregator" > "Sea Level Rise Scorer": "Aggregates"
+"Multi-Factor Aggregator" > "Streamflow Scorer": "Aggregates"
+"Multi-Factor Aggregator" > "NASA Model Scorer": "Aggregates"
+"Temporal Projector" > "Sea Level Rise Scorer": "Uses projections"
+"Financial Calculator" > "Multi-Factor Aggregator": "Uses risk scores"
+"Deal-Breaker Analyzer" > "Multi-Factor Aggregator": "Uses risk scores"
+
