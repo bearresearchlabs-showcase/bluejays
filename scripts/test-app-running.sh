@@ -37,6 +37,20 @@ done
 echo "Running integration tests..."
 BASE_URL="$BASE_URL" npm run test:integration
 
+# Hand the server lifecycle to Playwright for E2E: its config.webServer starts
+# its own dev server (reuseExistingServer is disabled in CI), so the
+# bash-managed instance must be stopped and port 3007 freed first — otherwise
+# the second server dies with EADDRINUSE (also triggered by Next.js's
+# memory-threshold self-restart leaving a bound listener).
+echo "Stopping bash-managed server before E2E..."
+cleanup
+DEV_PID=""
+fuser -k 3007/tcp 2>/dev/null || pkill -f "next dev -p 3007" 2>/dev/null || true
+for i in $(seq 1 15); do
+  curl -s -o /dev/null "$BASE_URL/login" 2>/dev/null || break
+  sleep 1
+done
+
 echo "Running E2E tests..."
 npm run test:e2e
 
