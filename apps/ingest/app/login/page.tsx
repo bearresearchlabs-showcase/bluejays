@@ -19,10 +19,11 @@ export default async function LoginPage({
       <div className="w-full max-w-[360px] p-8 rounded-lg border border-[var(--border)] bg-[var(--bg-card)]">
         <h1 className="text-xl font-semibold mb-6 text-[var(--fg)]">SQL Annotator</h1>
         <form method="post" action="/api/login">
-          <label className="block text-xs font-semibold mb-1.5 uppercase text-[var(--fg-muted)]">
+          <label htmlFor="user" className="block text-xs font-semibold mb-1.5 uppercase text-[var(--fg-muted)]">
             Username
           </label>
           <input
+            id="user"
             type="text"
             name="user"
             placeholder="staff, annotator, or customer"
@@ -30,10 +31,11 @@ export default async function LoginPage({
             autoComplete="username"
             className="w-full px-3 py-2.5 mb-4 rounded-md text-[15px] bg-[var(--bg)] border border-[var(--border)] text-[var(--fg)] placeholder:text-[var(--fg-muted)]"
           />
-          <label className="block text-xs font-semibold mb-1.5 uppercase text-[var(--fg-muted)]">
+          <label htmlFor="password" className="block text-xs font-semibold mb-1.5 uppercase text-[var(--fg-muted)]">
             Password
           </label>
           <input
+            id="password"
             type="password"
             name="password"
             placeholder="••••••••"
