@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<title>BLUEJAYS — An Executable Enterprise-Database Environment Suite for Text-to-SQL Agents</title>
+<style>
+  :root { --ink:#111827; --muted:#6b7280; --line:#e5e7eb; --bg:#ffffff; --soft:#f8fafc;
+          --jay:#1d4ed8; --jay-dark:#1e3a8a; --green:#047857; --amber:#b45309; --red:#b91c1c; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
+         color:var(--ink); background:var(--bg); line-height:1.65; }
+  .wrap { max-width:960px; margin:0 auto; padding:0 24px; }
+  header { text-align:center; padding:64px 0 36px; border-bottom:1px solid var(--line);
+           background:linear-gradient(180deg,#eff6ff 0%,#ffffff 100%); }
+  .wordmark { font-size:3.2rem; font-weight:800; letter-spacing:2px; color:var(--jay-dark); }
+  .wordmark .jay { color:var(--jay); }
+  .tagline { font-size:1.25rem; margin-top:10px; }
+  .authors { color:var(--muted); margin-top:10px; font-size:0.95rem; }
+  .btns { margin-top:22px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:9px 18px; border-radius:999px; text-decoration:none;
+         font-size:0.9rem; font-weight:600; border:1px solid var(--jay); color:var(--jay); }
+  .btn.primary { background:var(--jay); color:#fff; }
+  .btn:hover { background:var(--jay-dark); border-color:var(--jay-dark); color:#fff; }
+  section { padding:36px 0; border-bottom:1px solid var(--line); }
+  h2 { font-size:1.5rem; margin-bottom:14px; color:var(--jay-dark); }
+  h3 { font-size:1.1rem; margin:16px 0 8px; }
+  p { margin-bottom:10px; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:18px 0; }
+  .stat { background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:16px; text-align:center; }
+  .stat b { display:block; font-size:1.7rem; color:var(--jay); }
+  .stat span { font-size:0.78rem; color:var(--muted); }
+  .cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:12px; }
+  .card { background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:16px; font-size:0.95rem; }
+  .card b { color:var(--jay-dark); }
+  table { width:100%; border-collapse:collapse; margin:14px 0; font-size:0.9rem; }
+  th,td { padding:8px 10px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:var(--soft); font-weight:600; }
+  .hl { background:#eff6ff; }
+  .news li { margin-bottom:6px; }
+  .news .date { color:var(--muted); font-family:monospace; margin-right:8px; }
+  pre { background:#0b1220; color:#e6edf3; padding:16px; border-radius:8px; overflow-x:auto;
+        font-size:0.82rem; margin:10px 0; }
+  code { font-family:Menlo, Monaco, monospace; }
+  .quote { border-left:3px solid var(--jay); padding-left:14px; color:var(--muted); font-style:italic; margin:10px 0; }
+  .ok { color:var(--green); font-weight:700; } .warn { color:var(--amber); font-weight:700; } .bad { color:var(--red); font-weight:700; }
+  footer { padding:28px 0 48px; color:var(--muted); font-size:0.8rem; text-align:center; }
+  .scroll { overflow-x:auto; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark">BLUE<span class="jay">JAYS</span></div>
+    <div class="tagline">An Executable Enterprise-Database Environment Suite for Text-to-SQL Agents</div>
+    <div class="authors">Betty Tai · 1 Digital Design · 2026 · v1.0</div>
+    <div class="btns">
+      <a class="btn primary" href="WHITEPAPER.md">White Paper</a>
+      <a class="btn" href="docs/MDP_TUPLE_ARCHITECTURE.md">Formalism</a>
+      <a class="btn" href="docs/TECHNICAL_EXECUTION.md">Executed Baseline</a>
+      <a class="btn" href="docs/provenance/README.md">Provenance Record</a>
+      <a class="btn" href="mdp-architecture-db6.html">Worked Example (db-6)</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <p><strong>BLUEJAYS is not a dataset — it is a suite of executable environments.</strong> Sixteen production-domain PostgreSQL databases with 480 gold question–SQL episodes, BIRD-superset annotation, hardened per-environment containers, engineered partial observability, and a property no public benchmark can keep: <strong>contamination-free provenance by construction</strong> — the corpus was sourced under rules requiring that its content never be webcrawlable, so it cannot have been in any model's pretraining data.</p>
+  <p class="quote">The blue jay is a corvid — the bird family that collects, caches, and remembers the provenance of everything it stores. This suite holds itself to the same standard: the full forensic construction record, including known defects, ships with the benchmark.</p>
+
+  <div class="stats">
+    <div class="stat"><b>16</b><span>PostgreSQL environments</span></div>
+    <div class="stat"><b>480</b><span>gold episodes (30 per env)</span></div>
+    <div class="stat"><b>196</b><span>tables</span></div>
+    <div class="stat"><b>316</b><span>indexes</span></div>
+    <div class="stat"><b>~14 GB</b><span>bulk data (Git LFS)</span></div>
+    <div class="stat"><b>5436–5451</b><span>container port range</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>News</h2>
+  <ul class="news" style="list-style:none;">
+    <li><span class="date">2026-08-06</span>BLUEJAYS v1.0: benchmark identity, white paper, and single-repository consolidation (deployed db-6 client site merged in).</li>
+    <li><span class="date">2026-08-05</span>Full-suite executed baseline: all 480 gold queries run on fresh vanilla PostgreSQL 16 — 288 pass, 9 environments perfect; failure taxonomy and defect ledger published. Forensic provenance record incorporated.</li>
+    <li><span class="date">2026-03-09</span>Client package ships: 13 environments, 390 episodes, 19.4 GB.</li>
+    <li><span class="date">2026-02-18</span>Industrialization day: nine schemas at 06:54; thirteen ~1 GiB datasets written inside a two-minute window.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Why BLUEJAYS</h2>
+  <div class="cols">
+    <div class="card"><b>Environments, not files.</b> Every database ships as executable DDL + data with a hardened container, so the reward function — execution accuracy against materialized gold output — is runnable, not merely described. An episode is a POMDP step: observation (question + evidence + partial schema), action (SQL), reward (result match).</div>
+    <div class="card"><b>Partial observability by design.</b> Agents see a per-query schema subset, never the full DDL — simulating real-world schema retrieval instead of the full-schema fiction of classic benchmarks.</div>
+    <div class="card"><b>Radical provenance honesty.</b> The construction record is part of the release: what was exported from live systems, what was purpose-built from public/government sources, which rows are synthetic, which defects are open. A benchmark that hides its flaws contaminates every conclusion drawn on it.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Example Episode <span style="color:var(--muted);font-size:0.9rem;font-weight:400;">(db-6 · Weather/Insurance · PostGIS · Query 26, challenging)</span></h2>
+  <p><strong>Observation — question:</strong> <em>"Can you show me the storm cell tracking and movement analysis from NEXRAD radar data?"</em></p>
+  <p><strong>Policy context — evidence (excerpt):</strong> <em>"A weather consulting firm providing insurance risk assessment needs to analyze severe weather events. NEXRAD radar systems track storm cells in real-time … the query joins NEXRAD radar observations with spatial boundaries, groups storm cells by unique identifiers and time intervals, calculates aggregate metrics including maximum reflectivity and cell velocity vectors, applies window functions to compute movement trends…"</em></p>
+  <p><strong>Gold action — sql (head of 10,235 chars):</strong></p>
+  <pre><code>WITH time_window AS (
+    -- Define time window for tracking (last 2 hours)
+    SELECT CURRENT_TIMESTAMP - INTERVAL '2 hours' AS window_start,
+           CURRENT_TIMESTAMP AS window_end
+), ...</code></pre>
+  <p>Full episode walkthrough: <a href="mdp-architecture-db6.html">db-6 worked example</a>.</p>
+</section>
+
+<section>
+  <h2>Position in the Benchmark Lineage</h2>
+  <div class="scroll">
+  <table>
+    <tr><th>Dimension</th><th>Spider 1.0 (2018)</th><th>BIRD (2023)</th><th class="hl"><b>BLUEJAYS (2026)</b></th><th>Spider 2.0 (2024)</th></tr>
+    <tr><td>Task shape</td><td>Single-turn</td><td>Single-turn + evidence</td><td class="hl">Single-turn gold + agentic-loop scaffolding</td><td>Long-horizon agentic (~632 tasks)</td></tr>
+    <tr><td>Metric</td><td>Exact match</td><td>Execution accuracy</td><td class="hl">EX (materialized), EM secondary</td><td>Task success (~20–30% SOTA)</td></tr>
+    <tr><td>Live environment</td><td>No</td><td>No</td><td class="hl"><b>Yes — 16 containers</b></td><td>Yes</td></tr>
+    <tr><td>Observability</td><td>Full schema</td><td>Full schema</td><td class="hl"><b>Partial by design</b></td><td>Partial by reality</td></tr>
+    <tr><td>Dialects</td><td>SQLite</td><td>SQLite</td><td class="hl">PostgreSQL (+PostGIS)</td><td>BigQuery, Snowflake, DuckDB, PG</td></tr>
+    <tr><td>Contamination</td><td>Public since 2018</td><td>Public since 2023</td><td class="hl"><b>Private, non-webcrawlable by rule</b></td><td>Public tasks</td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>Executed Baseline <span style="color:var(--muted);font-size:0.9rem;font-weight:400;">(environment soundness, 2026-08-05)</span></h2>
+  <p>All 480 gold queries executed against fresh, schema-only, vanilla PostgreSQL 16 instances:</p>
+  <div class="scroll">
+  <table>
+    <tr><th>Result</th><th>Count</th><th>Detail</th></tr>
+    <tr><td><span class="ok">Pass</span></td><td>288 / 480</td><td>Nine environments perfect at 30/30 (db-1…5, 9, 13, 14, 15)</td></tr>
+    <tr><td><span class="warn">Environment-blocked</span></td><td>~162</td><td>Six environments require PostGIS (absent in the vanilla harness) — resolved by the suite's hardened image</td></tr>
+    <tr><td><span class="bad">Defect-blocked</span></td><td>30</td><td>db-8 (+db-10 partial): <code>VARCHAR(16777216)</code> Snowflake-dialect residue; open defect ledger T1</td></tr>
+  </table>
+  </div>
+  <p>Per-query artifact: <a href="results/gold_query_execution_20260805.json"><code>results/gold_query_execution_20260805.json</code></a> · method, reproduction, and defect ledger: <a href="docs/TECHNICAL_EXECUTION.md">Technical Execution</a>.</p>
+  <p><strong>Model leaderboard: open — no submissions yet.</strong> The BIRD/BIRD-CRITIC export harness is wired (480 entries); closing the model-evaluation loop at scale is roadmap P0. Prior all-skipped or connection-refused reports are called out as vacuous in the record rather than counted.</p>
+</section>
+
+<section>
+  <h2>Get Started</h2>
+  <pre><code># full bring-up (16 hardened containers, ports 5436–5451)
+cd client && ./scripts/setup_docker.sh -a
+
+# quick test (schema-only; queries may return 0 rows)
+./scripts/setup_docker.sh --schema-only -a
+
+# no-Docker local reproduction of the executed baseline:
+#   see docs/TECHNICAL_EXECUTION.md §2.4</code></pre>
+  <p>Access is by engagement: the contamination-free property depends on the corpus never becoming public.</p>
+</section>
+
+<section>
+  <h2>Citation</h2>
+  <pre><code>@techreport{tai2026bluejays,
+  title  = {BLUEJAYS: An Executable Enterprise-Database Environment Suite
+            for Text-to-SQL Agents},
+  author = {Tai, Betty},
+  institution = {1 Digital Design},
+  year   = {2026},
+  note   = {Version 1.0. Formerly the `db' engagement corpus.}
+}</code></pre>
+</section>
+
+</div>
+
+<footer>
+  BLUEJAYS v1.0 · Repository: <code>bluejays-benchmark</code> (rename pending from <code>db</code>; descriptive alias <code>enterprise-db-benchmark</code>) · Private benchmark — noindex · Lineage: Spider (2018) → BIRD (2023) → Spider 2.0 (2024) → BLUEJAYS (2026)
+</footer>
+
+</body>
+</html>
