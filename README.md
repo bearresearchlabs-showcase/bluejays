@@ -11,6 +11,7 @@ BLUEJAYS is not a dataset; it is a suite of **16 executable PostgreSQL environme
 | **White paper** | [WHITEPAPER.md](WHITEPAPER.md) — abstract through citation, in the Spider 2.0 / BIRD tradition |
 | **Formalism** | [docs/MDP_TUPLE_ARCHITECTURE.md](docs/MDP_TUPLE_ARCHITECTURE.md) — the POMDP tuple mapped to corpus artifacts, benchmark lineage, roadmap |
 | **Executed baseline** | [docs/TECHNICAL_EXECUTION.md](docs/TECHNICAL_EXECUTION.md) — 288/480 gold queries live on vanilla PG 16; failure taxonomy; defect ledger; reproduction commands |
+| **Applications** | [docs/APPLICATIONS.md](docs/APPLICATIONS.md) — the SQL Annotator labeling workbench (`apps/ingest`): annotation loop into the canonical source layer, RBAC and mode model, Scale-style delivery API, validation tooling, plus the four supporting apps |
 | **Provenance record** | [docs/provenance/](docs/provenance/README.md) — forensic construction history; authoritative for shipped figures (13 environments / 390 episodes / 19.4 GB delivered March 2026) |
 | **Worked example** | [mdp-architecture-db6.html](mdp-architecture-db6.html) — one full episode (db-6, NEXRAD storm-cell tracking) |
 | **Deployed client site** | [deliverables/db6-weather-site/](deliverables/db6-weather-site/) — the merged db-6-weather-documentation repository |

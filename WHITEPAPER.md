@@ -113,6 +113,7 @@ One repository carries the whole benchmark:
 ├── client/db/…               # client mirror + data_large.sql (Git LFS)
 ├── bird_export/              # BIRD / BIRD-CRITIC format exports (480 entries)
 ├── docker/, k8s/             # hardened per-environment containers (ports 5436–5451), validation jobs
+├── apps/                     # labeling workbench + services — see docs/APPLICATIONS.md
 ├── docs/MDP_TUPLE_ARCHITECTURE.md   # formalism
 ├── docs/TECHNICAL_EXECUTION.md      # factory + executed baseline + defect ledger
 ├── docs/provenance/                 # forensic construction record (authoritative for shipped figures)
