@@ -1,0 +1,586 @@
+{
+  "parser": "sqlglot",
+  "tau": 0.99,
+  "databases": {
+    "db-2": {
+      "n_queries": 30,
+      "schema_tables": 7,
+      "fks": 7,
+      "indexes": 0,
+      "views": 0,
+      "referenced_tables": 1,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 1,
+      "schema_coverage": 0.143,
+      "clusters": 9,
+      "largest_cluster": 12,
+      "effective_ratio": 0.3,
+      "entropy": 0.504,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "18/30",
+      "difficulty_mean": {
+        "cte": 4.0,
+        "join": 0.0,
+        "window": 14.83,
+        "subquery": 0.0,
+        "agg": 26.7,
+        "tables": 5.0
+      }
+    },
+    "db-3": {
+      "n_queries": 30,
+      "schema_tables": 4,
+      "fks": 4,
+      "indexes": 6,
+      "views": 1,
+      "referenced_tables": 1,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 1,
+      "schema_coverage": 0.25,
+      "clusters": 3,
+      "largest_cluster": 15,
+      "effective_ratio": 0.1,
+      "entropy": 0.24,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 4.0,
+        "join": 0.0,
+        "window": 15.0,
+        "subquery": 0.0,
+        "agg": 27.0,
+        "tables": 5.0
+      }
+    },
+    "db-6": {
+      "n_queries": 30,
+      "schema_tables": 34,
+      "fks": 0,
+      "indexes": 40,
+      "views": 0,
+      "referenced_tables": 17,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 17,
+      "schema_coverage": 0.5,
+      "clusters": 30,
+      "largest_cluster": 1,
+      "effective_ratio": 1.0,
+      "entropy": 1.0,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 6.57,
+        "join": 1.97,
+        "window": 3.93,
+        "subquery": 1.13,
+        "agg": 15.4,
+        "tables": 7.97
+      }
+    },
+    "db-7": {
+      "n_queries": 30,
+      "schema_tables": 14,
+      "fks": 0,
+      "indexes": 32,
+      "views": 0,
+      "referenced_tables": 12,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 12,
+      "schema_coverage": 0.857,
+      "clusters": 30,
+      "largest_cluster": 1,
+      "effective_ratio": 1.0,
+      "entropy": 1.0,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 5.5,
+        "join": 4.4,
+        "window": 9.1,
+        "subquery": 0.67,
+        "agg": 23.67,
+        "tables": 9.7
+      }
+    },
+    "db-8": {
+      "n_queries": 30,
+      "schema_tables": 12,
+      "fks": 11,
+      "indexes": 30,
+      "views": 0,
+      "referenced_tables": 11,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 11,
+      "schema_coverage": 0.917,
+      "clusters": 30,
+      "largest_cluster": 1,
+      "effective_ratio": 1.0,
+      "entropy": 1.0,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 4.83,
+        "join": 3.23,
+        "window": 3.43,
+        "subquery": 2.23,
+        "agg": 20.47,
+        "tables": 7.77
+      }
+    },
+    "db-9": {
+      "n_queries": 30,
+      "schema_tables": 14,
+      "fks": 21,
+      "indexes": 13,
+      "views": 0,
+      "referenced_tables": 12,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 12,
+      "schema_coverage": 0.857,
+      "clusters": 30,
+      "largest_cluster": 1,
+      "effective_ratio": 1.0,
+      "entropy": 1.0,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 3.73,
+        "join": 2.3,
+        "window": 1.87,
+        "subquery": 0.53,
+        "agg": 10.67,
+        "tables": 6.5
+      }
+    },
+    "db-10": {
+      "n_queries": 30,
+      "schema_tables": 12,
+      "fks": 11,
+      "indexes": 29,
+      "views": 0,
+      "referenced_tables": 7,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 7,
+      "schema_coverage": 0.583,
+      "clusters": 7,
+      "largest_cluster": 24,
+      "effective_ratio": 0.233,
+      "entropy": 0.252,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 5.27,
+        "join": 4.03,
+        "window": 6.0,
+        "subquery": 0.07,
+        "agg": 14.83,
+        "tables": 10.1
+      }
+    },
+    "db-11": {
+      "n_queries": 30,
+      "schema_tables": 14,
+      "fks": 18,
+      "indexes": 12,
+      "views": 0,
+      "referenced_tables": 9,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 9,
+      "schema_coverage": 0.643,
+      "clusters": 10,
+      "largest_cluster": 21,
+      "effective_ratio": 0.333,
+      "entropy": 0.373,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 6.63,
+        "join": 6.47,
+        "window": 9.23,
+        "subquery": 0.17,
+        "agg": 27.63,
+        "tables": 11.47
+      }
+    },
+    "db-12": {
+      "n_queries": 30,
+      "schema_tables": 15,
+      "fks": 26,
+      "indexes": 31,
+      "views": 0,
+      "referenced_tables": 13,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 13,
+      "schema_coverage": 0.867,
+      "clusters": 11,
+      "largest_cluster": 20,
+      "effective_ratio": 0.367,
+      "entropy": 0.413,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 7.87,
+        "join": 5.53,
+        "window": 12.4,
+        "subquery": 0.23,
+        "agg": 20.6,
+        "tables": 12.83
+      }
+    },
+    "db-13": {
+      "n_queries": 30,
+      "schema_tables": 11,
+      "fks": 10,
+      "indexes": 23,
+      "views": 0,
+      "referenced_tables": 8,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 8,
+      "schema_coverage": 0.727,
+      "clusters": 13,
+      "largest_cluster": 18,
+      "effective_ratio": 0.433,
+      "entropy": 0.49,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 5.07,
+        "join": 2.07,
+        "window": 6.43,
+        "subquery": 0.8,
+        "agg": 8.23,
+        "tables": 7.23
+      }
+    },
+    "db-14": {
+      "n_queries": 30,
+      "schema_tables": 11,
+      "fks": 18,
+      "indexes": 15,
+      "views": 0,
+      "referenced_tables": 8,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 8,
+      "schema_coverage": 0.727,
+      "clusters": 11,
+      "largest_cluster": 12,
+      "effective_ratio": 0.367,
+      "entropy": 0.567,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 8.93,
+        "join": 0.43,
+        "window": 0.2,
+        "subquery": 0.0,
+        "agg": 0.9,
+        "tables": 4.6
+      }
+    },
+    "db-15": {
+      "n_queries": 30,
+      "schema_tables": 17,
+      "fks": 28,
+      "indexes": 29,
+      "views": 0,
+      "referenced_tables": 15,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 15,
+      "schema_coverage": 0.882,
+      "clusters": 30,
+      "largest_cluster": 1,
+      "effective_ratio": 1.0,
+      "entropy": 1.0,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 3.9,
+        "join": 3.83,
+        "window": 2.77,
+        "subquery": 0.4,
+        "agg": 11.6,
+        "tables": 7.4
+      }
+    },
+    "db-16": {
+      "n_queries": 30,
+      "schema_tables": 12,
+      "fks": 0,
+      "indexes": 23,
+      "views": 0,
+      "referenced_tables": 8,
+      "undefined_tables": [],
+      "unparsed": 0,
+      "declared_referenced": 8,
+      "schema_coverage": 0.667,
+      "clusters": 8,
+      "largest_cluster": 23,
+      "effective_ratio": 0.267,
+      "entropy": 0.293,
+      "complexity_values": [
+        "moderate"
+      ],
+      "prose_expected_output": 30,
+      "md_agreement": "30/30",
+      "difficulty_mean": {
+        "cte": 4.67,
+        "join": 1.2,
+        "window": 2.3,
+        "subquery": 1.93,
+        "agg": 7.63,
+        "tables": 6.8
+      }
+    }
+  },
+  "invariants": {
+    "I1": {
+      "statement": "Action-set cardinality |A_d| = 30",
+      "holds": true,
+      "violations": []
+    },
+    "I2": {
+      "statement": "Field totality \u2014 all required keys present and non-empty",
+      "holds": true,
+      "violations": []
+    },
+    "I3": {
+      "statement": "Schema closure \u2014 every referenced base table is declared",
+      "holds": true,
+      "violations": []
+    },
+    "I4": {
+      "statement": "Action distinctness \u2014 no gold pair within tau",
+      "holds": false,
+      "violations": [
+        {
+          "db": "2",
+          "detail": "21 collapsed; largest=12"
+        },
+        {
+          "db": "3",
+          "detail": "27 collapsed; largest=15"
+        },
+        {
+          "db": "10",
+          "detail": "23 collapsed; largest=24"
+        },
+        {
+          "db": "11",
+          "detail": "20 collapsed; largest=21"
+        },
+        {
+          "db": "12",
+          "detail": "19 collapsed; largest=20"
+        },
+        {
+          "db": "13",
+          "detail": "17 collapsed; largest=18"
+        },
+        {
+          "db": "14",
+          "detail": "19 collapsed; largest=12"
+        },
+        {
+          "db": "16",
+          "detail": "22 collapsed; largest=23"
+        }
+      ]
+    },
+    "I5": {
+      "statement": "Difficulty signal \u2014 complexity is non-constant",
+      "holds": false,
+      "violations": [
+        {
+          "db": "corpus",
+          "detail": "complexity constant at {'moderate'}"
+        }
+      ]
+    },
+    "I6": {
+      "statement": "Reward verifiability \u2014 expected_output is structured",
+      "holds": false,
+      "violations": [
+        {
+          "db": "2",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "3",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "6",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "7",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "8",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "9",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "10",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "11",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "12",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "13",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "14",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "15",
+          "detail": "30/30 expected_output are prose"
+        },
+        {
+          "db": "16",
+          "detail": "30/30 expected_output are prose"
+        }
+      ]
+    },
+    "I7": {
+      "statement": "Representation agreement \u2014 json description appears in queries.md",
+      "holds": false,
+      "violations": [
+        {
+          "db": "2",
+          "detail": "12 descriptions absent from queries.md"
+        }
+      ]
+    },
+    "I8": {
+      "statement": "Provenance resolution \u2014 source_file resolves",
+      "holds": false,
+      "violations": [
+        {
+          "db": "2",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "3",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "6",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "7",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "8",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "9",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "10",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "11",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "12",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "13",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "14",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "15",
+          "detail": "source_file does not resolve"
+        },
+        {
+          "db": "16",
+          "detail": "source_file does not resolve"
+        }
+      ]
+    }
+  },
+  "corpus": {
+    "databases": 13,
+    "queries": 390,
+    "tables": 177,
+    "foreign_keys": 154,
+    "indexes": 283,
+    "declared_tables_reached": 122,
+    "effective_actions": 222,
+    "effective_ratio": 0.569,
+    "invariants_holding": 3,
+    "invariants_total": 8
+  }
+}

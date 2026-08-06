@@ -1,0 +1,6951 @@
+{
+  "db-2": {
+    "ddl_errors": 0,
+    "executes": 30,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": true,
+        "cols": [
+          "analysis_date",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "min_value",
+          "max_value",
+          "median_value",
+          "stddev_value",
+          "above_avg_count",
+          "avg_rolling_7d"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 2,
+        "ok": true,
+        "cols": [
+          "period",
+          "customer_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 3,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 4,
+        "ok": true,
+        "cols": [
+          "period",
+          "payment_type",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 5,
+        "ok": true,
+        "cols": [
+          "period",
+          "location_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": true,
+        "cols": [
+          "period",
+          "sale_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 8,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 9,
+        "ok": true,
+        "cols": [
+          "period",
+          "customer_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "period",
+          "customer_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 12,
+        "ok": true,
+        "cols": [
+          "period",
+          "location_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 13,
+        "ok": true,
+        "cols": [
+          "period",
+          "sale_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 14,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 15,
+        "ok": true,
+        "cols": [
+          "period",
+          "customer_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 16,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 17,
+        "ok": true,
+        "cols": [
+          "period",
+          "location_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "period",
+          "sale_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "period",
+          "customer_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "period",
+          "customer_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 25,
+        "ok": true,
+        "cols": [
+          "period",
+          "location_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 26,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 27,
+        "ok": true,
+        "cols": [
+          "period",
+          "customer_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 28,
+        "ok": true,
+        "cols": [
+          "period",
+          "employee_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 29,
+        "ok": true,
+        "cols": [
+          "period",
+          "customer_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 30,
+        "ok": true,
+        "cols": [
+          "period",
+          "sale_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      }
+    ]
+  },
+  "db-3": {
+    "ddl_errors": 0,
+    "executes": 30,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 2,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 3,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 4,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 5,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 8,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 9,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 12,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 13,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 14,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 15,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 16,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 17,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 25,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 26,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 27,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 28,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 29,
+        "ok": true,
+        "cols": [
+          "period",
+          "seller_id",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 30,
+        "ok": true,
+        "cols": [
+          "period",
+          "status",
+          "record_count",
+          "avg_value",
+          "q1_value",
+          "median_value",
+          "q3_value",
+          "stddev_value",
+          "min_value",
+          "max_value",
+          "outlier_count",
+          "increasing_count",
+          "avg_rolling",
+          "max_cumulative"
+        ],
+        "n_rows": 0
+      }
+    ]
+  },
+  "db-6": {
+    "ddl_errors": 12,
+    "executes": 11,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": false,
+        "err": "UndefinedColumn: column fpc.grid_cell_geom does not exist\nLINE 55:         AND fpc.grid_cell_geom IS NOT NU"
+      },
+      {
+        "n": 2,
+        "ok": false,
+        "err": "UndefinedFunction: function st_within(geography, geography) does not exist\nLINE 15:                     WHEN "
+      },
+      {
+        "n": 3,
+        "ok": true,
+        "cols": [
+          "forecast_time",
+          "forecast_hour",
+          "forecast_date",
+          "rounded_lat",
+          "rounded_lon",
+          "temperature_value",
+          "precipitation_value",
+          "windspeed_value",
+          "apparent_temperature",
+          "wind_chill_temperature",
+          "temp_change_1h",
+          "temp_change_3h",
+          "precip_change_1h",
+          "correlation_pattern",
+          "weather_pattern",
+          "pattern_frequency",
+          "temp_percentile",
+          "precip_quintile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 4,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 45:                 ST_DIST"
+      },
+      {
+        "n": 5,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 50:                 AND ST_"
+      },
+      {
+        "n": 6,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 30:         AND ST_DISTANCE"
+      },
+      {
+        "n": 7,
+        "ok": false,
+        "err": "UndefinedFunction: function st_within(geography, geography) does not exist\nLINE 17:                     WHEN "
+      },
+      {
+        "n": 8,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 33:         AND ST_DISTANCE"
+      },
+      {
+        "n": 9,
+        "ok": false,
+        "err": "UndefinedFunction: function st_within(geography, geography) does not exist\nLINE 16:                     WHEN "
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "parameter_name",
+          "forecast_date",
+          "forecast_count",
+          "mean_value",
+          "median_value",
+          "q1_value",
+          "q3_value",
+          "p10_value",
+          "p90_value",
+          "p5_value",
+          "p95_value",
+          "min_value",
+          "max_value",
+          "stddev_value",
+          "iqr",
+          "value_range",
+          "coefficient_of_variation",
+          "skewness_indicator",
+          "iqr_outlier_count",
+          "percentile_outlier_count",
+          "zscore_outlier_count",
+          "avg_iqr_outlier_value",
+          "outlier_percentage",
+          "moving_avg_mean_7d",
+          "stddev_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 35:             ORDER BY ST"
+      },
+      {
+        "n": 12,
+        "ok": true,
+        "cols": [
+          "temp_forecast_id",
+          "forecast_time",
+          "forecast_hour",
+          "rounded_lat",
+          "rounded_lon",
+          "temperature",
+          "precipitation",
+          "wind_speed",
+          "weather_pattern",
+          "cluster_cohesion",
+          "pattern_frequency",
+          "anomaly_status",
+          "avg_temp_for_pattern",
+          "avg_precip_for_pattern",
+          "avg_wind_for_pattern",
+          "temp_deviation_from_pattern",
+          "precip_deviation_from_pattern",
+          "wind_deviation_from_pattern",
+          "temp_percentile_in_pattern",
+          "temp_quintile_in_pattern"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 13,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 52:                 AND ST_"
+      },
+      {
+        "n": 14,
+        "ok": false,
+        "err": "UndefinedFunction: function st_within(geography, geography) does not exist\nLINE 21:         AND ST_WITHIN(gf."
+      },
+      {
+        "n": 15,
+        "ok": false,
+        "err": "UndefinedFunction: function st_within(geography, geography) does not exist\nLINE 35:         AND ST_WITHIN(gf."
+      },
+      {
+        "n": 16,
+        "ok": true,
+        "cols": [
+          "policy_area_id",
+          "policy_type",
+          "coverage_type",
+          "forecast_day",
+          "forecast_date",
+          "forecast_period_start",
+          "forecast_period_end",
+          "base_rate",
+          "base_component",
+          "precipitation_risk_component",
+          "temperature_risk_component",
+          "wind_risk_component",
+          "freeze_risk_component",
+          "flood_risk_component",
+          "extreme_event_component",
+          "total_risk_components",
+          "risk_multiplier",
+          "risk_adjusted_rate",
+          "rate_tier",
+          "rate_category",
+          "overall_risk_score",
+          "confidence_level",
+          "calculation_method",
+          "effective_date",
+          "expiration_date"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 17,
+        "ok": true,
+        "cols": [
+          "policy_area_id",
+          "policy_type",
+          "coverage_type",
+          "forecast_period_start",
+          "forecast_period_end",
+          "forecast_day",
+          "rate_count",
+          "min_rate",
+          "max_rate",
+          "avg_rate",
+          "median_rate",
+          "rate_stddev",
+          "rate_range",
+          "rate_volatility_percent",
+          "avg_confidence_level",
+          "avg_risk_multiplier",
+          "prev_day_avg_rate",
+          "rate_change_from_prev_day",
+          "rate_trend",
+          "moving_avg_3day",
+          "optimal_rate_score",
+          "recommended_rate",
+          "optimal_day_rank",
+          "recommendation_status"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "policy_area_id",
+          "policy_type",
+          "coverage_type",
+          "forecast_day_ahead",
+          "total_claims",
+          "accurate_forecasts",
+          "inaccurate_forecasts",
+          "accuracy_rate",
+          "avg_forecast_risk_score",
+          "avg_loss_amount",
+          "extreme_risk_count",
+          "very_high_risk_count",
+          "high_risk_count",
+          "moderate_risk_count",
+          "low_risk_count",
+          "improvement_priority",
+          "forecast_day_assessment"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": true,
+        "cols": [
+          "policy_area_id",
+          "policy_type",
+          "coverage_type",
+          "forecast_day",
+          "rate_observations",
+          "min_rate",
+          "max_rate",
+          "avg_rate",
+          "median_rate",
+          "rate_stddev",
+          "coefficient_of_variation",
+          "range_percentage",
+          "avg_confidence_level",
+          "stability_score",
+          "volatility_classification",
+          "avg_volatility_across_days",
+          "min_volatility_across_days",
+          "max_volatility_across_days",
+          "rate_change_from_prev_day",
+          "recommended_stable_rate",
+          "stability_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "policy_area_id",
+          "policy_type",
+          "coverage_type",
+          "policy_area_name",
+          "state_code",
+          "risk_zone",
+          "forecast_days_covered",
+          "forecast_dates_covered",
+          "total_risk_observations",
+          "overall_avg_risk_score",
+          "overall_max_risk_score",
+          "overall_min_risk_score",
+          "overall_median_risk_score",
+          "overall_p95_risk_score",
+          "overall_risk_stddev",
+          "overall_avg_precipitation_risk",
+          "overall_avg_temperature_risk",
+          "overall_avg_wind_risk",
+          "overall_avg_freeze_risk",
+          "overall_avg_flood_risk",
+          "overall_avg_extreme_event_probability",
+          "risk_category",
+          "risk_rank_by_type",
+          "overall_risk_rank",
+          "risk_percentile",
+          "risk_decile",
+          "avg_risk_for_type",
+          "deviation_from_type_avg",
+          "percent_deviation_from_type_avg"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "policy_area_id",
+          "parameter_name",
+          "forecast_day",
+          "forecast_date",
+          "parameter_observations",
+          "avg_parameter_value",
+          "min_parameter_value",
+          "max_parameter_value",
+          "parameter_stddev",
+          "avg_risk_contribution",
+          "total_risk_contribution",
+          "avg_rate_impact",
+          "total_rate_impact",
+          "avg_risk_adjusted_rate",
+          "avg_base_rate",
+          "avg_risk_multiplier",
+          "contribution_percentage",
+          "impact_percentage_of_base_rate",
+          "parameter_impact_rank",
+          "parameter_contribution_rank",
+          "impact_classification"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "policy_area_id",
+          "policy_type",
+          "coverage_type",
+          "forecast_date",
+          "forecast_days_count",
+          "total_rate_observations",
+          "ensemble_min_rate",
+          "ensemble_max_rate",
+          "ensemble_mean_rate",
+          "ensemble_median_rate",
+          "ensemble_q1_rate",
+          "ensemble_q3_rate",
+          "ensemble_p10_rate",
+          "ensemble_p90_rate",
+          "ensemble_stddev_rate",
+          "ensemble_variance_rate",
+          "ensemble_avg_confidence",
+          "ensemble_min_confidence",
+          "ensemble_max_confidence",
+          "ensemble_avg_risk_score",
+          "ensemble_risk_score_stddev",
+          "consensus_rate",
+          "confidence_interval_lower_90",
+          "confidence_interval_upper_90",
+          "ensemble_iqr",
+          "ensemble_coefficient_of_variation",
+          "ensemble_quality_score",
+          "ensemble_reliability"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "policy_area_id",
+          "policy_type",
+          "coverage_type",
+          "forecast_day",
+          "rate_count",
+          "avg_confidence",
+          "min_confidence",
+          "max_confidence",
+          "avg_rate",
+          "rate_stddev",
+          "avg_risk_score",
+          "risk_score_stddev",
+          "historical_accuracy_rate",
+          "confidence_score",
+          "stability_score",
+          "accuracy_score",
+          "planning_horizon_score",
+          "overall_optimization_score",
+          "optimization_rank",
+          "optimization_percentile",
+          "recommendation_status",
+          "recommendation_justification"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": false,
+        "err": "UndefinedColumn: column rtc.avg_confidence_level does not exist\nLINE 58:         AVG(rtc.avg_confidence_lev"
+      },
+      {
+        "n": 25,
+        "ok": false,
+        "err": "UndefinedFunction: function st_x(geometry) does not exist\nLINE 50:         ST_X(nld.reflectivity_geom::GEOMET"
+      },
+      {
+        "n": 26,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 58:         ST_DISTANCE(scb"
+      },
+      {
+        "n": 27,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 73:         ST_SETSRID(ST_MAKE"
+      },
+      {
+        "n": 28,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 30:         ST_DISTANCE(\n  "
+      },
+      {
+        "n": 29,
+        "ok": false,
+        "err": "UndefinedFunction: function st_x(geometry) does not exist\nLINE 63:             ST_MAKEPOINT(AVG(ST_X(fc.grid_"
+      },
+      {
+        "n": 30,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 8:         ST_DISTANCE(nrs."
+      }
+    ]
+  },
+  "db-7": {
+    "ddl_errors": 0,
+    "executes": 24,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 114:                 ST_DIS"
+      },
+      {
+        "n": 2,
+        "ok": true,
+        "cols": [
+          "port_call_id",
+          "vessel_id",
+          "vessel_name",
+          "imo_number",
+          "port_id",
+          "port_name",
+          "port_code",
+          "locode",
+          "carrier_id",
+          "carrier_name",
+          "voyage_number",
+          "route_id",
+          "scheduled_arrival",
+          "actual_arrival",
+          "scheduled_departure",
+          "actual_departure",
+          "port_call_type",
+          "total_containers_handled",
+          "arrival_delay_hours",
+          "departure_delay_hours",
+          "dwell_time_hours",
+          "scheduled_dwell_time_hours",
+          "dwell_time_variance_hours",
+          "on_time_arrival",
+          "on_time_departure",
+          "port_moving_avg_arrival_delay_30",
+          "port_moving_avg_dwell_time_30",
+          "carrier_moving_avg_arrival_delay_30",
+          "arrival_delay_percentile_rank",
+          "dwell_time_percentile_rank",
+          "arrival_performance_class",
+          "dwell_time_efficiency_class"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 3,
+        "ok": true,
+        "cols": [
+          "route_id",
+          "route_name",
+          "route_code",
+          "carrier_id",
+          "carrier_name",
+          "origin_port_id",
+          "origin_port_name",
+          "origin_port_code",
+          "destination_port_id",
+          "destination_port_name",
+          "destination_port_code",
+          "total_sailings",
+          "completed_sailings",
+          "avg_actual_transit_days",
+          "avg_scheduled_transit_days",
+          "avg_distance_nm",
+          "avg_speed_knots",
+          "avg_capacity_utilization",
+          "avg_teu",
+          "median_transit_days",
+          "stddev_transit_days",
+          "transit_time_variance_days",
+          "speed_efficiency_nm_per_day",
+          "completion_rate_percent",
+          "fastest_competitor_transit_days",
+          "market_avg_transit_days",
+          "transit_time_rank",
+          "competitors_count",
+          "transit_time_advantage_percent",
+          "optimization_score",
+          "optimization_class",
+          "transit_time_class"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 4,
+        "ok": true,
+        "cols": [
+          "carrier_id",
+          "carrier_name",
+          "scac_code",
+          "carrier_type",
+          "total_sailings",
+          "completed_sailings",
+          "cancelled_sailings",
+          "unique_vessels",
+          "unique_routes",
+          "avg_transit_days",
+          "avg_distance_nm",
+          "avg_speed_knots",
+          "avg_capacity_utilization",
+          "avg_teu_per_sailing",
+          "total_teu_carried",
+          "median_transit_days",
+          "stddev_transit_days",
+          "total_port_calls",
+          "completed_port_calls",
+          "on_time_arrivals",
+          "on_time_departures",
+          "avg_arrival_delay_hours",
+          "avg_departure_delay_hours",
+          "avg_dwell_time_hours",
+          "total_containers_handled",
+          "sailing_completion_rate",
+          "port_call_completion_rate",
+          "on_time_arrival_rate",
+          "on_time_departure_rate",
+          "market_avg_transit_days",
+          "market_avg_capacity_utilization",
+          "market_avg_on_time_arrival_rate",
+          "market_avg_completion_rate",
+          "on_time_rank",
+          "capacity_utilization_rank",
+          "completion_rate_rank",
+          "volume_rank",
+          "on_time_percentile",
+          "capacity_percentile",
+          "completion_percentile",
+          "reliability_score",
+          "performance_class",
+          "on_time_class"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 5,
+        "ok": true,
+        "cols": [
+          "port_id",
+          "port_name",
+          "port_code",
+          "locode",
+          "country",
+          "country_code",
+          "statistic_month",
+          "monthly_vessel_calls",
+          "monthly_container_teu",
+          "monthly_containers_loaded",
+          "monthly_containers_discharged",
+          "monthly_containers_transshipped",
+          "monthly_avg_vessel_size",
+          "monthly_avg_dwell_time",
+          "monthly_avg_berth_utilization",
+          "monthly_avg_crane_utilization",
+          "median_monthly_teu",
+          "stddev_monthly_teu",
+          "moving_avg_teu_3_month",
+          "moving_avg_teu_12_month",
+          "moving_avg_calls_3_month",
+          "prev_month_teu",
+          "prev_year_teu",
+          "month_over_month_growth_percent",
+          "year_over_year_growth_percent",
+          "teu_per_vessel_call",
+          "loading_percentage",
+          "transshipment_percentage",
+          "performance_score",
+          "market_avg_monthly_teu",
+          "throughput_percentile",
+          "performance_class",
+          "growth_class"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "route_id",
+          "route_name",
+          "route_code",
+          "carrier_id",
+          "carrier_name",
+          "origin_port_id",
+          "origin_port_name",
+          "destination_port_id",
+          "destination_port_name",
+          "total_sailings",
+          "unique_vessels",
+          "avg_utilization_percent",
+          "avg_reported_utilization",
+          "avg_teu_per_sailing",
+          "total_teu_carried",
+          "total_unused_capacity_teu",
+          "avg_vessel_capacity",
+          "median_utilization",
+          "stddev_utilization",
+          "min_utilization",
+          "max_utilization",
+          "high_utilization_sailings",
+          "low_utilization_sailings",
+          "utilization_efficiency_score",
+          "optimization_potential_percent",
+          "market_avg_utilization",
+          "utilization_percentile",
+          "utilization_class",
+          "optimization_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 26:                 ST_DIST"
+      },
+      {
+        "n": 8,
+        "ok": true,
+        "cols": [
+          "vessel_id",
+          "vessel_name",
+          "imo_number",
+          "container_capacity_teu",
+          "carrier_id",
+          "carrier_name",
+          "total_sailings",
+          "completed_sailings",
+          "avg_utilization_percent",
+          "avg_teu_per_sailing",
+          "total_teu_carried",
+          "avg_transit_days",
+          "avg_distance_nm",
+          "median_utilization",
+          "stddev_utilization",
+          "min_utilization",
+          "max_utilization",
+          "unique_routes",
+          "unique_origin_ports",
+          "unique_destination_ports",
+          "total_port_calls",
+          "total_containers_handled",
+          "avg_dwell_time_hours",
+          "theoretical_max_capacity_teu",
+          "utilization_efficiency_score",
+          "carrier_avg_utilization",
+          "market_avg_utilization",
+          "carrier_utilization_rank",
+          "market_utilization_rank",
+          "carrier_vessel_count",
+          "total_vessel_count",
+          "carrier_percentile",
+          "market_percentile",
+          "utilization_class",
+          "carrier_performance_class",
+          "market_performance_class"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 9,
+        "ok": true,
+        "cols": [
+          "origin_port_id",
+          "origin_port_name",
+          "origin_port_code",
+          "origin_locode",
+          "origin_country",
+          "destination_port_id",
+          "destination_port_name",
+          "destination_port_code",
+          "destination_locode",
+          "destination_country",
+          "sailing_month",
+          "unique_carriers",
+          "monthly_sailings",
+          "monthly_completed_sailings",
+          "monthly_teu",
+          "monthly_avg_teu_per_sailing",
+          "monthly_avg_capacity_utilization",
+          "median_monthly_teu",
+          "stddev_monthly_teu",
+          "moving_avg_teu_3_month",
+          "moving_avg_teu_12_month",
+          "prev_month_teu",
+          "prev_year_teu",
+          "month_over_month_growth_percent",
+          "year_over_year_growth_percent",
+          "total_demand_teu",
+          "avg_monthly_demand_teu",
+          "market_avg_monthly_teu",
+          "demand_percentile",
+          "demand_score",
+          "demand_class",
+          "growth_class",
+          "market_opportunity"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "voyage_id",
+          "voyage_number",
+          "vessel_id",
+          "vessel_name",
+          "imo_number",
+          "carrier_id",
+          "carrier_name",
+          "route_id",
+          "route_name",
+          "voyage_status",
+          "scheduled_start_date",
+          "actual_start_date",
+          "scheduled_end_date",
+          "actual_end_date",
+          "total_port_calls",
+          "completed_port_calls",
+          "on_time_arrivals",
+          "on_time_departures",
+          "avg_arrival_delay_hours",
+          "avg_departure_delay_hours",
+          "avg_dwell_time_hours",
+          "max_arrival_delay_hours",
+          "max_departure_delay_hours",
+          "median_arrival_delay",
+          "median_departure_delay",
+          "p75_arrival_delay",
+          "p75_departure_delay",
+          "stddev_arrival_delay",
+          "stddev_departure_delay",
+          "voyage_completed",
+          "on_time_start",
+          "on_time_completion",
+          "actual_voyage_duration_days",
+          "scheduled_voyage_duration_days",
+          "port_call_completion_rate",
+          "on_time_arrival_rate",
+          "on_time_departure_rate",
+          "voyage_delay_days",
+          "carrier_avg_completion_rate",
+          "carrier_avg_on_time_arrival_rate",
+          "carrier_avg_on_time_departure_rate",
+          "carrier_avg_arrival_delay",
+          "carrier_avg_departure_delay",
+          "market_avg_completion_rate",
+          "market_avg_on_time_arrival_rate",
+          "market_avg_on_time_departure_rate",
+          "market_avg_arrival_delay",
+          "market_avg_departure_delay",
+          "carrier_completion_rank",
+          "market_completion_rank",
+          "carrier_completion_percentile",
+          "market_completion_percentile",
+          "reliability_class",
+          "delay_root_cause",
+          "carrier_performance_class",
+          "market_performance_class"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": true,
+        "cols": [
+          "carrier_id",
+          "carrier_name",
+          "route_id",
+          "route_name",
+          "route_type",
+          "total_sailings",
+          "completed_sailings",
+          "cancelled_sailings",
+          "total_teu_carried",
+          "avg_teu_per_sailing",
+          "avg_capacity_utilization",
+          "avg_transit_days",
+          "avg_distance_nm",
+          "median_transit_days",
+          "p75_transit_days",
+          "stddev_transit_days",
+          "min_transit_days",
+          "max_transit_days",
+          "on_time_departures",
+          "on_time_arrivals",
+          "total_port_calls",
+          "avg_arrival_delay_hours",
+          "avg_departure_delay_hours",
+          "avg_dwell_time_hours",
+          "total_containers_handled",
+          "completion_rate",
+          "on_time_departure_rate",
+          "on_time_arrival_rate",
+          "cancellation_rate",
+          "route_avg_completion_rate",
+          "route_avg_on_time_departure_rate",
+          "route_avg_on_time_arrival_rate",
+          "route_avg_transit_days",
+          "route_avg_capacity_utilization",
+          "route_best_transit_days",
+          "route_best_capacity_utilization",
+          "route_completion_rank",
+          "route_on_time_rank",
+          "route_transit_rank",
+          "route_capacity_rank",
+          "route_carrier_count",
+          "route_completion_percentile",
+          "route_on_time_percentile",
+          "performance_score",
+          "performance_class",
+          "competitive_position",
+          "service_quality"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 12,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 24:         ST_MAKEPOINT(vt.lo"
+      },
+      {
+        "n": 13,
+        "ok": true,
+        "cols": [
+          "port_id",
+          "port_name",
+          "port_code",
+          "locode",
+          "country",
+          "berth_count",
+          "annual_container_capacity_teu",
+          "port_call_date",
+          "daily_port_calls",
+          "daily_completed_calls",
+          "daily_active_calls",
+          "daily_total_containers",
+          "daily_containers_loaded",
+          "daily_containers_discharged",
+          "daily_containers_transshipped",
+          "avg_dwell_time_hours",
+          "avg_arrival_delay_hours",
+          "avg_departure_delay_hours",
+          "max_dwell_time_hours",
+          "median_dwell_time_hours",
+          "p75_dwell_time_hours",
+          "p90_dwell_time_hours",
+          "concurrent_berths_used",
+          "total_vessel_capacity_teu",
+          "avg_vessel_capacity_teu",
+          "berth_utilization_percent",
+          "daily_capacity_utilization_percent",
+          "moving_avg_daily_containers_7_day",
+          "moving_avg_berths_7_day",
+          "moving_avg_dwell_time_7_day",
+          "congestion_level",
+          "dwell_time_trend",
+          "arrival_delay_level",
+          "capacity_stress_level",
+          "optimization_recommendation",
+          "efficiency_score"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 14,
+        "ok": true,
+        "cols": [
+          "carrier_id",
+          "carrier_name",
+          "route_id",
+          "route_name",
+          "sailing_month",
+          "total_sailings",
+          "completed_sailings",
+          "on_time_departures",
+          "on_time_arrivals",
+          "avg_departure_delay_hours",
+          "avg_arrival_delay_hours",
+          "avg_actual_transit_days",
+          "avg_scheduled_transit_days",
+          "median_departure_delay",
+          "median_arrival_delay",
+          "p75_departure_delay",
+          "p75_arrival_delay",
+          "p90_departure_delay",
+          "p90_arrival_delay",
+          "stddev_departure_delay",
+          "stddev_arrival_delay",
+          "min_departure_delay",
+          "max_departure_delay",
+          "min_arrival_delay",
+          "max_arrival_delay",
+          "completion_rate",
+          "on_time_departure_rate",
+          "on_time_arrival_rate",
+          "moving_avg_completion_rate_3_month",
+          "moving_avg_on_time_rate_3_month",
+          "moving_avg_delay_3_month",
+          "prev_month_completion_rate",
+          "prev_month_on_time_rate",
+          "prev_month_avg_delay",
+          "prev_year_completion_rate",
+          "prev_year_on_time_rate",
+          "completion_rate_change",
+          "on_time_rate_change",
+          "consistency_level",
+          "completion_trend",
+          "on_time_trend",
+          "reliability_score",
+          "reliability_class",
+          "route_avg_reliability_score",
+          "market_avg_reliability_score",
+          "route_reliability_rank",
+          "route_reliability_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 15,
+        "ok": true,
+        "cols": [
+          "carrier_id",
+          "carrier_name",
+          "route_id",
+          "route_name",
+          "route_type",
+          "sailing_month",
+          "sailing_quarter",
+          "sailing_year",
+          "total_sailings",
+          "completed_sailings",
+          "total_teu_carried",
+          "avg_teu_per_sailing",
+          "avg_capacity_utilization",
+          "route_total_teu",
+          "route_total_sailings",
+          "route_unique_carriers",
+          "market_share_teu_percent",
+          "market_share_sailings_percent",
+          "route_rank_by_teu",
+          "route_rank_by_sailings",
+          "route_rank_by_market_share",
+          "route_market_share_percentile",
+          "hhi_index",
+          "market_concentration_level",
+          "top_carrier_market_share",
+          "top3_carriers_market_share",
+          "top5_carriers_market_share",
+          "route_dominance_class",
+          "competitive_position",
+          "prev_month_market_share",
+          "prev_year_market_share",
+          "month_over_month_change",
+          "year_over_year_change",
+          "market_share_trend",
+          "moving_avg_market_share_3_month"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 16,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 36:                 ST_DIST"
+      },
+      {
+        "n": 17,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 87:                 ST_DIST"
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "vessel_id",
+          "vessel_name",
+          "imo_number",
+          "vessel_type",
+          "container_capacity_teu",
+          "year_built",
+          "carrier_id",
+          "carrier_name",
+          "total_sailings",
+          "completed_sailings",
+          "total_teu_carried",
+          "avg_teu_per_sailing",
+          "avg_capacity_utilization",
+          "avg_transit_days",
+          "avg_distance_nm",
+          "on_time_departures",
+          "on_time_arrivals",
+          "total_port_calls",
+          "avg_dwell_time_hours",
+          "avg_arrival_delay_hours",
+          "completion_rate",
+          "on_time_departure_rate",
+          "on_time_arrival_rate",
+          "utilization_efficiency_percent",
+          "carrier_avg_completion_rate",
+          "carrier_avg_on_time_rate",
+          "carrier_avg_capacity_utilization",
+          "carrier_avg_dwell_time",
+          "market_avg_completion_rate",
+          "market_avg_on_time_rate",
+          "market_avg_capacity_utilization",
+          "market_avg_dwell_time",
+          "carrier_completion_rank",
+          "carrier_on_time_rank",
+          "carrier_capacity_rank",
+          "market_completion_rank",
+          "market_on_time_rank",
+          "market_capacity_rank",
+          "carrier_completion_percentile",
+          "carrier_on_time_percentile",
+          "market_completion_percentile",
+          "market_on_time_percentile",
+          "operational_excellence_score",
+          "performance_class",
+          "carrier_performance_position",
+          "market_performance_position"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 128:                 ST_DIS"
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "carrier_id",
+          "carrier_name",
+          "route_id",
+          "route_name",
+          "origin_port_id",
+          "origin_port_name",
+          "origin_port_code",
+          "destination_port_id",
+          "destination_port_name",
+          "destination_port_code",
+          "sailing_month",
+          "sailing_quarter",
+          "weeks_with_sailings",
+          "total_sailings",
+          "total_completed_sailings",
+          "total_cancelled_sailings",
+          "avg_sailings_per_week",
+          "median_sailings_per_week",
+          "p75_sailings_per_week",
+          "stddev_sailings_per_week",
+          "min_sailings_per_week",
+          "max_sailings_per_week",
+          "total_sunday_sailings",
+          "total_monday_sailings",
+          "total_tuesday_sailings",
+          "total_wednesday_sailings",
+          "total_thursday_sailings",
+          "total_friday_sailings",
+          "total_saturday_sailings",
+          "frequency_coefficient_of_variation",
+          "expected_weeks_in_month",
+          "service_frequency_per_week",
+          "consistency_score",
+          "gap_classification",
+          "route_avg_frequency",
+          "route_avg_consistency",
+          "optimization_recommendation",
+          "service_level"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "port_id",
+          "port_name",
+          "port_code",
+          "locode",
+          "total_port_calls",
+          "port_calls_with_delays",
+          "port_avg_arrival_delay",
+          "port_median_arrival_delay",
+          "port_p75_arrival_delay",
+          "port_p90_arrival_delay",
+          "port_stddev_arrival_delay",
+          "port_delay_rate_percent",
+          "avg_delay_sunday",
+          "avg_delay_monday",
+          "avg_delay_tuesday",
+          "avg_delay_wednesday",
+          "avg_delay_thursday",
+          "avg_delay_friday",
+          "avg_delay_saturday",
+          "delay_frequency_score",
+          "delay_severity_score",
+          "delay_variability_score",
+          "delay_risk_score",
+          "risk_classification",
+          "delay_probability",
+          "worst_day_for_delays",
+          "mitigation_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "carrier_id",
+          "carrier_name",
+          "route_id",
+          "route_name",
+          "route_type",
+          "sailing_month",
+          "sailing_quarter",
+          "total_sailings",
+          "completed_sailings",
+          "total_teu_carried",
+          "avg_teu_per_sailing",
+          "avg_capacity_utilization",
+          "avg_transit_days",
+          "avg_distance_nm",
+          "estimated_revenue_units",
+          "estimated_cost_units",
+          "revenue_per_teu",
+          "cost_per_teu",
+          "revenue_per_nm",
+          "cost_per_nm",
+          "profitability_ratio",
+          "completion_rate",
+          "route_avg_profitability",
+          "route_avg_revenue_per_teu",
+          "route_avg_cost_per_teu",
+          "market_avg_profitability",
+          "market_avg_revenue_per_teu",
+          "market_avg_cost_per_teu",
+          "route_profitability_rank",
+          "market_profitability_rank",
+          "route_profitability_percentile",
+          "market_profitability_percentile",
+          "profitability_score",
+          "profitability_class",
+          "optimization_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "vessel_id",
+          "vessel_name",
+          "imo_number",
+          "vessel_type",
+          "container_capacity_teu",
+          "year_built",
+          "vessel_age_years",
+          "carrier_id",
+          "carrier_name",
+          "status",
+          "total_sailings",
+          "completed_sailings",
+          "avg_capacity_utilization",
+          "avg_transit_days",
+          "on_time_arrivals",
+          "avg_dwell_time_hours",
+          "avg_arrival_delay_hours",
+          "age_group",
+          "completion_rate",
+          "on_time_performance_rate",
+          "age_group_avg_completion_rate",
+          "age_group_avg_on_time_rate",
+          "age_group_avg_capacity_utilization",
+          "age_group_avg_arrival_delay",
+          "market_avg_completion_rate",
+          "market_avg_on_time_rate",
+          "market_avg_capacity_utilization",
+          "market_avg_arrival_delay",
+          "age_group_completion_rank",
+          "age_group_on_time_rank",
+          "age_group_completion_percentile",
+          "age_group_performance_class",
+          "market_performance_class",
+          "age_impact_indicator",
+          "modernization_priority_score",
+          "modernization_priority",
+          "modernization_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": true,
+        "cols": [
+          "carrier_id",
+          "carrier_name",
+          "route_id",
+          "route_name",
+          "origin_port_id",
+          "origin_port_name",
+          "origin_country",
+          "destination_port_id",
+          "destination_port_name",
+          "destination_country",
+          "departure_month",
+          "departure_quarter",
+          "departure_year",
+          "season",
+          "sailing_month",
+          "sailing_quarter",
+          "monthly_sailings",
+          "monthly_completed_sailings",
+          "monthly_total_teu",
+          "monthly_avg_teu_per_sailing",
+          "monthly_avg_capacity_utilization",
+          "monthly_median_teu",
+          "monthly_p75_teu",
+          "monthly_stddev_teu",
+          "seasonal_avg_teu",
+          "route_avg_monthly_teu",
+          "market_avg_monthly_teu",
+          "prev_year_monthly_teu",
+          "seasonal_index",
+          "yoy_growth_percent",
+          "demand_classification",
+          "peak_month_rank",
+          "capacity_planning_recommendation",
+          "projected_next_year_demand"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 25,
+        "ok": true,
+        "cols": [
+          "port_id",
+          "port_name",
+          "port_code",
+          "locode",
+          "country",
+          "berth_count",
+          "annual_container_capacity_teu",
+          "port_call_date",
+          "daily_port_calls",
+          "daily_active_berths",
+          "daily_total_containers",
+          "daily_containers_loaded",
+          "daily_containers_discharged",
+          "daily_containers_transshipped",
+          "avg_dwell_time_hours",
+          "median_dwell_time_hours",
+          "p75_dwell_time_hours",
+          "p90_dwell_time_hours",
+          "max_dwell_time_hours",
+          "total_vessel_capacity_teu",
+          "avg_vessel_capacity_teu",
+          "berth_utilization_percent",
+          "daily_capacity_utilization_percent",
+          "containers_per_berth_per_day",
+          "containers_per_hour",
+          "moving_avg_daily_containers_7_day",
+          "moving_avg_active_berths_7_day",
+          "moving_avg_dwell_time_7_day",
+          "bottleneck_type",
+          "infrastructure_stress_level",
+          "infrastructure_efficiency_score",
+          "optimization_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 26,
+        "ok": true,
+        "cols": [
+          "carrier_id",
+          "carrier_name",
+          "route_id",
+          "route_name",
+          "origin_port_id",
+          "origin_port_name",
+          "destination_port_id",
+          "destination_port_name",
+          "sailing_month",
+          "sailing_quarter",
+          "total_sailings",
+          "avg_actual_transit_days",
+          "avg_scheduled_transit_days",
+          "avg_transit_time_variance",
+          "median_actual_transit_days",
+          "q1_actual_transit_days",
+          "q3_actual_transit_days",
+          "p90_actual_transit_days",
+          "p95_actual_transit_days",
+          "stddev_actual_transit_days",
+          "min_actual_transit_days",
+          "max_actual_transit_days",
+          "coefficient_of_variation_percent",
+          "on_time_transit_sailings",
+          "on_time_transit_rate",
+          "interquartile_range_days",
+          "predictability_window_days",
+          "moving_avg_transit_time_3_month",
+          "moving_avg_stddev_3_month",
+          "route_avg_transit_days",
+          "route_avg_stddev",
+          "route_avg_coefficient_of_variation",
+          "market_avg_transit_days",
+          "market_avg_stddev",
+          "market_avg_coefficient_of_variation",
+          "reliability_score",
+          "reliability_class",
+          "variability_class",
+          "predictability_class",
+          "optimization_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 27,
+        "ok": true,
+        "cols": [
+          "origin_port_id",
+          "origin_port_name",
+          "origin_port_code",
+          "origin_country",
+          "destination_port_id",
+          "destination_port_name",
+          "destination_port_code",
+          "destination_country",
+          "sailing_month",
+          "sailing_quarter",
+          "sailing_year",
+          "monthly_sailings",
+          "monthly_completed_sailings",
+          "monthly_total_teu",
+          "monthly_avg_teu_per_sailing",
+          "monthly_avg_capacity_utilization",
+          "unique_carriers",
+          "prev_month_teu",
+          "prev_year_teu",
+          "prev_quarter_teu",
+          "moving_avg_3_month",
+          "moving_avg_12_month",
+          "month_over_month_growth_percent",
+          "year_over_year_growth_percent",
+          "quarter_over_quarter_growth_percent",
+          "growth_trend",
+          "trend_direction",
+          "annual_total_teu",
+          "avg_monthly_volume",
+          "forecasted_next_month_teu",
+          "forecasted_next_year_teu",
+          "market_avg_monthly_teu",
+          "market_avg_yoy_growth",
+          "market_opportunity_score",
+          "market_opportunity_class",
+          "strategic_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 28,
+        "ok": true,
+        "cols": [
+          "vessel_id",
+          "vessel_name",
+          "imo_number",
+          "vessel_type",
+          "container_capacity_teu",
+          "carrier_id",
+          "carrier_name",
+          "unique_routes_deployed",
+          "total_sailings",
+          "total_completed_sailings",
+          "total_teu_carried",
+          "avg_teu_per_sailing",
+          "avg_capacity_utilization",
+          "avg_transit_days",
+          "avg_distance_nm",
+          "primary_route_id",
+          "primary_route_name",
+          "route_diversity_count",
+          "carrier_avg_capacity_utilization",
+          "carrier_avg_total_sailings",
+          "carrier_avg_unique_routes",
+          "market_avg_capacity_utilization",
+          "market_avg_total_sailings",
+          "market_avg_unique_routes",
+          "specialization_score",
+          "utilization_efficiency_percent",
+          "deployment_efficiency_score",
+          "deployment_strategy",
+          "carrier_performance_class",
+          "optimization_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 29,
+        "ok": true,
+        "cols": [
+          "carrier_id",
+          "carrier_name",
+          "route_id",
+          "route_name",
+          "route_type",
+          "sailing_month",
+          "carrier_sailings_on_route",
+          "carrier_completed_sailings",
+          "carrier_teu_on_route",
+          "carrier_avg_teu_per_sailing",
+          "carrier_avg_capacity_utilization",
+          "unique_carriers_on_route",
+          "total_route_sailings",
+          "total_route_teu",
+          "route_avg_capacity_utilization",
+          "route_concentration_index",
+          "top_carrier_teu_on_route",
+          "top3_carriers_teu",
+          "carrier_route_market_share",
+          "alliance_type",
+          "route_concentration_level",
+          "collaborative_efficiency_score",
+          "network_synergy",
+          "alliance_performance_class",
+          "optimization_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 30,
+        "ok": true,
+        "cols": [
+          "total_sailings",
+          "completed_sailings",
+          "cancelled_sailings",
+          "total_teu_carried",
+          "avg_capacity_utilization",
+          "avg_transit_days",
+          "on_time_arrivals",
+          "on_time_departures",
+          "completion_rate",
+          "on_time_performance_rate",
+          "cancellation_rate",
+          "total_carriers",
+          "total_ports",
+          "total_routes",
+          "total_vessels",
+          "active_vessels",
+          "total_fleet_capacity_teu",
+          "avg_vessel_capacity_teu",
+          "unique_carriers_with_vessels",
+          "top_carrier_by_utilization",
+          "busiest_port",
+          "most_active_route",
+          "total_port_pairs",
+          "market_avg_transit_days",
+          "market_avg_sailings_per_pair",
+          "market_concentration_index",
+          "overall_performance_score",
+          "performance_classification",
+          "strategic_insight"
+        ],
+        "n_rows": 0
+      }
+    ]
+  },
+  "db-8": {
+    "ddl_errors": 0,
+    "executes": 30,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": true,
+        "cols": [
+          "user_id",
+          "job_id",
+          "job_title",
+          "company_name",
+          "overall_match_score",
+          "skill_match_score",
+          "location_match_score",
+          "work_model_match_score",
+          "salary_match_score",
+          "experience_match_score",
+          "matching_required_skills_count",
+          "missing_required_skills_count",
+          "recommendation_reason",
+          "recommendation_rank",
+          "posted_date",
+          "location_city",
+          "location_state",
+          "work_model",
+          "salary_min",
+          "salary_max",
+          "industry",
+          "company_rating"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 2,
+        "ok": true,
+        "cols": [
+          "user_id",
+          "full_name",
+          "job_id",
+          "job_title",
+          "missing_skill_id",
+          "missing_skill_name",
+          "skill_category",
+          "hierarchy_level",
+          "learning_priority",
+          "estimated_days_to_learn",
+          "prerequisite_skill_ids",
+          "total_missing_skills",
+          "cumulative_days_to_learn",
+          "learning_step_number"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 3,
+        "ok": true,
+        "cols": [
+          "trend_month",
+          "location_state",
+          "industry",
+          "job_category",
+          "total_postings",
+          "mom_growth_rate",
+          "yoy_growth_rate",
+          "trend_direction",
+          "top_skills",
+          "unique_skills_demand",
+          "projected_next_month_postings",
+          "projected_3month_postings",
+          "skill_demand_change_rate",
+          "market_rank_by_postings",
+          "market_rank_by_growth"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 4,
+        "ok": true,
+        "cols": [
+          "application_week",
+          "application_month",
+          "total_applications",
+          "success_rate_pct",
+          "rejection_rate_pct",
+          "avg_days_to_update",
+          "avg_days_to_success",
+          "prev_week_success_rate",
+          "moving_avg_success_rate_4weeks",
+          "success_rate_trend",
+          "success_rate_change",
+          "successful_avg_match_score",
+          "successful_avg_salary_min",
+          "successful_work_model_matches"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 5,
+        "ok": true,
+        "cols": [
+          "industry",
+          "company_id",
+          "company_name",
+          "total_job_postings",
+          "market_share_pct",
+          "company_rating",
+          "total_reviews",
+          "applications_per_job_30d",
+          "application_success_rate_pct",
+          "industry_rank_by_postings",
+          "industry_rank_by_applications",
+          "employer_brand_score",
+          "brand_strength_category",
+          "avg_salary_midpoint",
+          "states_active",
+          "remote_jobs_count",
+          "unique_skills_demanded",
+          "top_required_skills",
+          "overall_brand_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "location_state",
+          "location_city",
+          "total_job_postings",
+          "recent_postings_30d",
+          "unique_companies",
+          "unique_industries",
+          "avg_salary_midpoint",
+          "median_salary",
+          "remote_work_pct",
+          "competition_index",
+          "application_success_rate_pct",
+          "location_attractiveness_score",
+          "attractiveness_category",
+          "city_rank_in_state",
+          "national_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": true,
+        "cols": [
+          "job_title",
+          "job_count",
+          "avg_salary_midpoint",
+          "p10_salary",
+          "p25_salary",
+          "p50_salary",
+          "p75_salary",
+          "p90_salary",
+          "min_salary",
+          "max_salary",
+          "salary_range_spread_pct",
+          "market_positioning",
+          "top_industries",
+          "top_locations",
+          "salary_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 8,
+        "ok": true,
+        "cols": [
+          "registration_month",
+          "registration_quarter",
+          "cohort_size",
+          "application_retention_rate_pct",
+          "retention_rate_30d_pct",
+          "avg_days_to_first_application",
+          "success_rate_per_user_pct",
+          "prev_cohort_retention_rate",
+          "moving_avg_retention_rate",
+          "cohort_health_score"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 9,
+        "ok": true,
+        "cols": [
+          "skill_id",
+          "skill_name",
+          "skill_category",
+          "skill_type",
+          "total_job_demand",
+          "recent_job_demand_30d",
+          "total_user_supply",
+          "active_user_supply_30d",
+          "demand_supply_ratio",
+          "recent_demand_supply_ratio",
+          "market_imbalance_score",
+          "market_balance_category",
+          "opportunity_score",
+          "learning_priority",
+          "required_job_demand",
+          "advanced_users_count",
+          "avg_importance_score",
+          "industries_demanding",
+          "states_demanding",
+          "companies_demanding",
+          "opportunity_rank",
+          "imbalance_rank",
+          "demand_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "agency_name",
+          "total_job_postings",
+          "recent_postings_30d",
+          "recent_postings_90d",
+          "unique_job_titles",
+          "states_active",
+          "cities_active",
+          "pay_plans_used",
+          "grade_levels_used",
+          "avg_salary_midpoint",
+          "agency_rank_by_postings",
+          "agency_rank_by_recent",
+          "top_pay_plans",
+          "top_grade_levels",
+          "top_locations"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": true,
+        "cols": [
+          "user_id",
+          "full_name",
+          "email",
+          "total_searches",
+          "active_search_days",
+          "unique_queries",
+          "avg_results_per_search",
+          "location_filter_usage_pct",
+          "salary_filter_usage_pct",
+          "work_model_filter_usage_pct",
+          "industry_filter_usage_pct",
+          "total_recommendations_received",
+          "applied_recommendations",
+          "recommendation_engagement_rate_pct",
+          "searches_per_day",
+          "behavior_segment",
+          "search_sophistication_score",
+          "median_total_searches",
+          "p75_total_searches",
+          "search_activity_rank",
+          "engagement_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 12,
+        "ok": true,
+        "cols": [
+          "stage_number",
+          "stage_name",
+          "applications_at_stage",
+          "prev_stage_applications",
+          "conversion_rate_from_prev_pct",
+          "drop_off_rate_pct",
+          "overall_conversion_rate_pct",
+          "avg_time_at_stage_days",
+          "median_time_at_stage_days",
+          "p90_time_at_stage_days",
+          "drop_off_severity",
+          "stage_speed_category",
+          "optimization_priority_score",
+          "optimization_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 13,
+        "ok": true,
+        "cols": [
+          "skill_id_1",
+          "skill_name_1",
+          "skill_category_1",
+          "skill_id_2",
+          "skill_name_2",
+          "skill_category_2",
+          "co_occurrence_count",
+          "co_occurrence_rate_pct",
+          "avg_salary_when_paired",
+          "salary_premium_pct",
+          "avg_combined_importance",
+          "both_required_count",
+          "industries_appearing_together",
+          "states_appearing_together",
+          "combination_value_score",
+          "combination_category",
+          "combination_value_rank",
+          "co_occurrence_rank",
+          "salary_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 14,
+        "ok": true,
+        "cols": [
+          "industry",
+          "total_jobs",
+          "filled_jobs",
+          "fill_rate_pct",
+          "avg_time_to_fill",
+          "median_time_to_fill",
+          "p25_time_to_fill",
+          "p75_time_to_fill",
+          "avg_application_velocity",
+          "avg_success_rate",
+          "market_efficiency_score",
+          "efficiency_category",
+          "overall_median_time_to_fill",
+          "efficiency_rank",
+          "speed_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 15,
+        "ok": true,
+        "cols": [
+          "posting_month",
+          "posting_quarter",
+          "posting_year",
+          "total_jobs",
+          "remote_jobs",
+          "hybrid_jobs",
+          "onsite_jobs",
+          "remote_pct",
+          "hybrid_pct",
+          "onsite_pct",
+          "avg_remote_salary",
+          "avg_hybrid_salary",
+          "avg_onsite_salary",
+          "prev_month_remote_pct",
+          "moving_avg_remote_pct_3month",
+          "remote_trend_direction",
+          "remote_pct_change",
+          "top_remote_locations",
+          "top_remote_industries"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 16,
+        "ok": true,
+        "cols": [
+          "source_name",
+          "source_type",
+          "extraction_month",
+          "total_extractions",
+          "total_records_extracted",
+          "success_rate_pct",
+          "failure_rate_pct",
+          "record_quality_rate_pct",
+          "avg_records_per_extraction",
+          "days_since_last_extraction",
+          "avg_days_between_extractions",
+          "reliability_score",
+          "reliability_category",
+          "prev_month_success_rate",
+          "moving_avg_success_rate",
+          "reliability_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 17,
+        "ok": true,
+        "cols": [
+          "title_lower",
+          "title_key_terms",
+          "title_frequency",
+          "title_variations",
+          "standardized_title",
+          "title_category",
+          "experience_level",
+          "most_common_industry",
+          "title_cluster_id",
+          "cluster_size",
+          "title_frequency_rank",
+          "category_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "application_id",
+          "user_id",
+          "job_id",
+          "application_status",
+          "match_score",
+          "skill_match_rate_pct",
+          "user_historical_success_rate_pct",
+          "success_probability_score",
+          "success_probability_category",
+          "success_indicator",
+          "prediction_accuracy",
+          "probability_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": true,
+        "cols": [
+          "company_id",
+          "company_name",
+          "industry",
+          "company_size",
+          "total_jobs_last_year",
+          "avg_monthly_jobs",
+          "max_states_hiring",
+          "max_cities_hiring",
+          "avg_growth_rate",
+          "accelerating_months",
+          "expanding_months",
+          "avg_salary_midpoint",
+          "growth_score",
+          "growth_category",
+          "growth_rank",
+          "industry_growth_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "skill_id",
+          "skill_name",
+          "skill_category",
+          "skill_type",
+          "total_demand_last_year",
+          "avg_monthly_demand",
+          "peak_demand",
+          "avg_growth_rate",
+          "avg_yoy_growth_rate",
+          "accelerating_months",
+          "declining_months",
+          "lifecycle_stage",
+          "max_industries",
+          "max_companies",
+          "avg_importance_score",
+          "emerging_score",
+          "emerging_rank",
+          "lifecycle_rank",
+          "growth_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "application_timing_category",
+          "day_of_week",
+          "hour_of_day",
+          "total_applications",
+          "successful_applications",
+          "success_rate_pct",
+          "avg_days_after_posting",
+          "median_days_after_posting",
+          "timing_score",
+          "timing_recommendation",
+          "timing_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "current_industry",
+          "target_industry",
+          "users_attempting_transition",
+          "total_transition_attempts",
+          "successful_transitions",
+          "transition_success_rate_pct",
+          "transition_difficulty",
+          "transition_popularity",
+          "best_transition_rank",
+          "popularity_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "user_id",
+          "job_title",
+          "industry",
+          "market_median",
+          "market_p75",
+          "market_p90",
+          "recommended_salary_target",
+          "negotiation_min",
+          "negotiation_max",
+          "competing_offers_count",
+          "skill_proficiency_avg",
+          "matching_skills_count",
+          "leverage_level",
+          "negotiation_strategy"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": true,
+        "cols": [
+          "job_title",
+          "industry",
+          "location_state",
+          "location_city",
+          "total_job_postings",
+          "unique_companies",
+          "total_applications",
+          "unique_applicants",
+          "avg_salary_midpoint",
+          "opportunity_density",
+          "competition_ratio",
+          "applicant_job_ratio",
+          "saturation_score",
+          "saturation_category",
+          "opportunity_rank",
+          "industry_opportunity_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 25,
+        "ok": true,
+        "cols": [
+          "journey_stage",
+          "users_at_stage",
+          "prev_stage_users",
+          "avg_searches",
+          "avg_recommendations",
+          "avg_applications",
+          "avg_successes",
+          "avg_days_to_search",
+          "avg_days_to_application",
+          "avg_engagement_score",
+          "stage_conversion_rate_pct",
+          "drop_off_rate_pct"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 26,
+        "ok": true,
+        "cols": [
+          "job_title",
+          "industry",
+          "location_state",
+          "hierarchy_level",
+          "path_description",
+          "avg_salary",
+          "job_count",
+          "path_length",
+          "total_salary_increase",
+          "path_frequency",
+          "path_score",
+          "industry_path_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 27,
+        "ok": true,
+        "cols": [
+          "industry",
+          "location_state",
+          "work_model",
+          "job_type",
+          "segment_job_count",
+          "segment_avg_salary",
+          "segment_median_salary",
+          "segment_avg_skills",
+          "segment_unique_titles",
+          "segment_cities",
+          "segment_skill_categories",
+          "segment_size_category",
+          "segment_salary_category",
+          "industry_avg_salary",
+          "segment_attractiveness_score",
+          "segment_rank",
+          "industry_segment_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 28,
+        "ok": true,
+        "cols": [
+          "trend_month",
+          "industry",
+          "location_state",
+          "monthly_job_postings",
+          "monthly_avg_salary",
+          "moving_avg_6month",
+          "monthly_growth_rate_pct",
+          "projected_next_month",
+          "projected_3months",
+          "projected_6months",
+          "forecast_confidence"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 29,
+        "ok": true,
+        "cols": [
+          "job_id",
+          "job_title",
+          "company_name",
+          "industry",
+          "location_state",
+          "work_model",
+          "salary_min",
+          "salary_max",
+          "posted_date",
+          "data_source",
+          "primary_source",
+          "source_count",
+          "source_coverage_count",
+          "is_federal_job",
+          "user_skill_matches",
+          "unified_match_score",
+          "match_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 30,
+        "ok": true,
+        "cols": [
+          "total_active_jobs",
+          "total_companies",
+          "total_industries",
+          "total_states",
+          "market_avg_salary",
+          "remote_jobs_count",
+          "remote_jobs_pct",
+          "recent_jobs_30d",
+          "total_active_users",
+          "total_applications",
+          "successful_applications",
+          "application_success_rate_pct",
+          "total_recommendations",
+          "total_searches",
+          "avg_profile_completeness",
+          "total_skills",
+          "jobs_with_skills",
+          "avg_skill_importance",
+          "required_skills_count",
+          "top_industries",
+          "top_states",
+          "data_source_status",
+          "market_health_score"
+        ],
+        "n_rows": 1
+      }
+    ]
+  },
+  "db-9": {
+    "ddl_errors": 0,
+    "executes": 23,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": true,
+        "cols": [
+          "carrier_name",
+          "service_name",
+          "rate_amount",
+          "zone_number",
+          "estimated_transit_days",
+          "recommendation_type",
+          "cost_difference_from_cheapest",
+          "cost_premium_percentage",
+          "is_fastest_option"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 2,
+        "ok": false,
+        "err": "DatatypeMismatch: recursive query \"zone_hierarchy\" column 12 has type character varying(1000) in non-recursi"
+      },
+      {
+        "n": 3,
+        "ok": false,
+        "err": "UndefinedColumn: column spa.total_hours_since_first_event does not exist\nLINE 103:         spa.total_hours_"
+      },
+      {
+        "n": 4,
+        "ok": true,
+        "cols": [
+          "validation_date",
+          "total_validations",
+          "valid_count",
+          "corrected_count",
+          "invalid_count",
+          "ambiguous_count",
+          "address_corrections_count",
+          "dpv_confirmed_count",
+          "success_rate_percentage",
+          "correction_rate_percentage",
+          "dpv_confirmation_rate_percentage",
+          "invalid_rate_percentage",
+          "most_common_correction_type",
+          "most_common_correction_count",
+          "quality_category"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 5,
+        "ok": false,
+        "err": "GroupingError: column \"coo.potential_savings\" must appear in the GROUP BY clause or be used in an aggrega"
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "preset_id",
+          "preset_name",
+          "usage_count",
+          "avg_cost_per_shipment",
+          "optimized_rate",
+          "potential_savings_per_shipment",
+          "total_potential_savings",
+          "optimization_recommendation",
+          "savings_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": true,
+        "cols": [
+          "destination_country",
+          "total_shipments",
+          "avg_customs_value",
+          "median_customs_value",
+          "avg_total_customs_amount",
+          "cleared_shipments",
+          "held_shipments",
+          "returned_shipments",
+          "clearance_success_rate",
+          "avg_clearance_days",
+          "high_cost_shipments",
+          "low_cost_shipments",
+          "performance_category"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 8,
+        "ok": false,
+        "err": "UndefinedColumn: column da.adjustment_status does not exist\nLINE 93:         COUNT(CASE WHEN da.adjustment_"
+      },
+      {
+        "n": 9,
+        "ok": true,
+        "cols": [
+          "carrier_name",
+          "request_type",
+          "total_requests",
+          "success_rate_percentage",
+          "avg_response_time_ms",
+          "p95_response_time_ms",
+          "optimization_recommendation",
+          "potential_time_savings_ms",
+          "peak_error_hour",
+          "peak_error_rate",
+          "most_common_error",
+          "most_common_error_count",
+          "performance_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "shipment_date",
+          "daily_revenue",
+          "daily_shipments",
+          "daily_avg_cost",
+          "day_over_day_growth_percentage",
+          "week_over_week_growth_percentage",
+          "month_over_month_growth_percentage",
+          "seven_day_avg_revenue",
+          "thirty_day_avg_revenue",
+          "total_revenue_all_carriers",
+          "total_shipments_all_carriers",
+          "top_carrier_by_revenue",
+          "top_service_by_revenue",
+          "growth_category"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": true,
+        "cols": [
+          "package_id",
+          "weight_lbs",
+          "dimensional_weight_lbs",
+          "billable_weight_lbs",
+          "dimensional_weight_applies",
+          "dimensional_weight_cost_impact",
+          "optimization_category",
+          "recommended_max_dimension_inches",
+          "potential_cost_savings",
+          "optimization_priority_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 12,
+        "ok": true,
+        "cols": [
+          "origin_zip_prefix",
+          "destination_zip_prefix",
+          "carrier_count",
+          "available_carriers",
+          "has_good_coverage",
+          "has_no_coverage",
+          "coverage_status",
+          "destination_count_for_origin",
+          "origin_count_for_destination"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 13,
+        "ok": false,
+        "err": "UndefinedFunction: function date_diff(unknown, date, date) does not exist\nLINE 12:         DATE_DIFF('day', s"
+      },
+      {
+        "n": 14,
+        "ok": false,
+        "err": "UndefinedFunction: function pg_catalog.extract(unknown, integer) does not exist\nLINE 23:             THEN EXT"
+      },
+      {
+        "n": 15,
+        "ok": true,
+        "cols": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 16,
+        "ok": true,
+        "cols": [
+          "carrier_name",
+          "service_name",
+          "shipment_count",
+          "total_label",
+          "total_insurance",
+          "total_signature",
+          "total_all",
+          "label_pct",
+          "insurance_pct",
+          "signature_pct",
+          "cost_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 17,
+        "ok": true,
+        "cols": [
+          "carrier_name",
+          "event_type",
+          "anomaly_count",
+          "total_events",
+          "avg_gap"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "validation_status",
+          "cnt",
+          "dpv_cnt",
+          "dpv_rate_pct",
+          "correction_type",
+          "correction_count",
+          "rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": false,
+        "err": "UndefinedFunction: function pg_catalog.extract(unknown, integer) does not exist\nLINE 13: ...G(CASE WHEN custo"
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "weight_bucket",
+          "carrier_name",
+          "service_name",
+          "avg_rate",
+          "min_rate",
+          "median_rate",
+          "rate_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "package_type",
+          "pkg_count",
+          "avg_volume",
+          "avg_billable_weight",
+          "median_cost",
+          "usage_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "zone_number",
+          "carrier_name",
+          "shipment_count",
+          "avg_actual_days",
+          "avg_expected_days",
+          "stddev_days",
+          "speed_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "hs_tariff_code",
+          "destination_country",
+          "shipment_count",
+          "total_duty",
+          "avg_duty_rate_pct",
+          "duty_rank",
+          "duty_sextile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": true,
+        "cols": [
+          "carrier_name",
+          "request_type",
+          "total_requests",
+          "avg_ms",
+          "p95_ms",
+          "speed_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 25,
+        "ok": true,
+        "cols": [
+          "month",
+          "carrier_name",
+          "service_id",
+          "revenue",
+          "prev_month_revenue",
+          "mom_growth_pct",
+          "moving_avg_3m"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 26,
+        "ok": true,
+        "cols": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "avg_cost_per_shipment",
+          "delivery_rate",
+          "cost_percentile",
+          "delivery_percentile",
+          "benchmark_category"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 27,
+        "ok": true,
+        "cols": [
+          "carrier_name",
+          "total_shipments",
+          "dim_charged_count",
+          "dim_charge_pct",
+          "total_excess_weight",
+          "total_cost",
+          "dim_impact_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 28,
+        "ok": true,
+        "cols": [
+          "origin_zip_code",
+          "destination_zip_code",
+          "carrier_name",
+          "shipment_count",
+          "avg_cost",
+          "avg_distance",
+          "avg_transit_days",
+          "cost_per_mile",
+          "cost_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 29,
+        "ok": true,
+        "cols": [
+          "weight_lbs",
+          "carrier_name",
+          "service_name",
+          "total_rate",
+          "best_rate",
+          "premium_pct",
+          "rate_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 30,
+        "ok": true,
+        "cols": [
+          "carrier_name",
+          "total_shipments",
+          "total_revenue",
+          "total_delivered",
+          "delivery_rate",
+          "revenue_rank"
+        ],
+        "n_rows": 0
+      }
+    ]
+  },
+  "db-10": {
+    "ddl_errors": 2,
+    "executes": 29,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": false,
+        "err": "UndefinedFunction: function st_within(geometry, geometry) does not exist\nLINE 63: ...geom IS NOT NULL AND s.s"
+      },
+      {
+        "n": 2,
+        "ok": true,
+        "cols": [
+          "product_name",
+          "category",
+          "store_city",
+          "store_state",
+          "retailer_name",
+          "check_date",
+          "stock_level",
+          "stock_status",
+          "stock_level_classification",
+          "outage_severity",
+          "next_7d_availability_prediction",
+          "prediction_confidence",
+          "avg_stock_30d",
+          "stock_volatility_30d",
+          "avg_stock_by_dow",
+          "avg_stock_by_month",
+          "store_count_by_state",
+          "avg_stock_by_state"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 3,
+        "ok": true,
+        "cols": [
+          "retailer_name",
+          "retailer_type",
+          "product_name",
+          "category",
+          "subcategory",
+          "pricing_records_share",
+          "store_count_share",
+          "availability_share",
+          "inventory_share",
+          "pricing_rank",
+          "competitive_position",
+          "share_change_percentage",
+          "moving_avg_share_30d",
+          "share_volatility_90d",
+          "hhi_index",
+          "concentration_level"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 4,
+        "ok": true,
+        "cols": [
+          "product_name",
+          "category",
+          "retailer_name",
+          "store_city",
+          "store_state",
+          "deal_type",
+          "deal_price",
+          "original_price",
+          "discount_percentage",
+          "deal_start_date",
+          "deal_end_date",
+          "deal_quality",
+          "overall_deal_score",
+          "alert_priority",
+          "savings_percentage",
+          "avg_discount_30d",
+          "deals_count_90d"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 5,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "sale_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "seasonal_component",
+          "yoy_price_change",
+          "trend_classification",
+          "volatility_classification",
+          "promotion_level",
+          "products_count",
+          "retailers_count",
+          "total_promotions"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_trend",
+          "availability_rate",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 8,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 9,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 12,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 13,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 14,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 15,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 16,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 17,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 25,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 26,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 27,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 28,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 29,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 30,
+        "ok": true,
+        "cols": [
+          "category",
+          "subcategory",
+          "brand",
+          "price_month",
+          "avg_price",
+          "median_price",
+          "moving_avg_12m",
+          "mom_price_change",
+          "price_volatility_12m",
+          "availability_rate",
+          "price_trend",
+          "availability_classification",
+          "products_count",
+          "retailers_count",
+          "price_rank",
+          "price_percentile"
+        ],
+        "n_rows": 0
+      }
+    ]
+  },
+  "db-11": {
+    "ddl_errors": 0,
+    "executes": 6,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": true,
+        "cols": [
+          "city_id",
+          "city_name",
+          "state_code",
+          "msa_name",
+          "population",
+          "population_density",
+          "median_household_income",
+          "total_facilities",
+          "total_spaces",
+          "avg_occupancy_rate",
+          "median_occupancy_rate",
+          "p95_occupancy_rate",
+          "avg_daily_traffic",
+          "demand_score",
+          "growth_potential_score",
+          "demand_rank",
+          "growth_rank",
+          "demand_percentile",
+          "growth_percentile",
+          "expansion_priority",
+          "market_tier"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 2,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 19:                 ST_SetSRID"
+      },
+      {
+        "n": 3,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 50:                     ST_Set"
+      },
+      {
+        "n": 4,
+        "ok": true,
+        "cols": [
+          "airport_id",
+          "airport_name",
+          "city_name",
+          "state_code",
+          "annual_passengers",
+          "utilization_month",
+          "facility_id",
+          "facility_name",
+          "facility_type",
+          "total_spaces",
+          "avg_occupancy_rate",
+          "seasonal_multiplier",
+          "passenger_seasonal_factor",
+          "revenue_per_passenger",
+          "current_rate",
+          "recommended_seasonal_rate",
+          "estimated_revenue_impact",
+          "season_category"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 5,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 15:         ST_SetSRID(ST_Make"
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "city_id",
+          "city_name",
+          "state_code",
+          "income_segment",
+          "age_segment",
+          "employment_segment",
+          "population",
+          "median_household_income",
+          "median_age",
+          "facility_count",
+          "avg_occupancy_rate",
+          "current_rate",
+          "recommended_hourly_rate",
+          "total_revenue",
+          "revenue_per_capita",
+          "price_sensitivity_index",
+          "market_penetration_score",
+          "penetration_category"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": true,
+        "cols": [
+          "city_id",
+          "city_name",
+          "state_code",
+          "market_segment",
+          "population",
+          "population_density",
+          "median_household_income",
+          "facility_count",
+          "avg_occupancy_rate",
+          "total_revenue",
+          "revenue_potential_score",
+          "current_rate",
+          "recommended_segment_rate",
+          "growth_opportunity",
+          "segment_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 8,
+        "ok": true,
+        "cols": [
+          "facility_id",
+          "facility_name",
+          "city_id",
+          "city_name",
+          "utilization_hour",
+          "day_of_week",
+          "month_num",
+          "season",
+          "avg_occupancy_rate",
+          "median_occupancy_rate",
+          "trend_component",
+          "seasonal_component",
+          "residual_component",
+          "is_anomaly",
+          "anomaly_type",
+          "avg_revenue",
+          "trend_direction"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 9,
+        "ok": true,
+        "cols": [
+          "city_id",
+          "city_name",
+          "state_code",
+          "msa_name",
+          "population",
+          "population_density",
+          "median_household_income",
+          "existing_facilities",
+          "competitor_facilities",
+          "avg_occupancy_rate",
+          "opportunity_score",
+          "overall_risk_score",
+          "expansion_priority_score",
+          "expansion_rank",
+          "expansion_priority"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 10,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 11,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 12,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 13,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 14,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 15,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 16,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 17,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 18,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 19,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 20,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 21,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 22,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 23,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 24,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 25,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 26,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 27,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 28,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 29,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      },
+      {
+        "n": 30,
+        "ok": false,
+        "err": "UndefinedFunction: function st_makepoint(numeric, numeric) does not exist\nLINE 89:             ST_SetSRID(ST_"
+      }
+    ]
+  },
+  "db-12": {
+    "ddl_errors": 1,
+    "executes": 4,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": true,
+        "cols": [
+          "user_id",
+          "categories_analyzed",
+          "optimal_cards_needed",
+          "current_cards_used",
+          "total_portfolio_spending",
+          "total_optimal_rewards",
+          "total_current_rewards",
+          "total_opportunity_cost",
+          "avg_optimization_potential_pct",
+          "projected_annual_opportunity_cost",
+          "portfolio_efficiency_score",
+          "current_rewards_per_dollar",
+          "optimal_rewards_per_dollar",
+          "category_name",
+          "category_code",
+          "optimal_card_name",
+          "optimal_issuer_name",
+          "optimal_multiplier",
+          "current_card_name",
+          "category_spending",
+          "category_optimal_rewards",
+          "category_current_rewards",
+          "category_opportunity_cost",
+          "category_optimization_pct"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 2,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 42:                 ST_DIST"
+      },
+      {
+        "n": 3,
+        "ok": false,
+        "err": "UndefinedColumn: column opa.needs_activation does not exist\nLINE 254:         COUNT(DISTINCT CASE WHEN opa."
+      },
+      {
+        "n": 4,
+        "ok": false,
+        "err": "UndefinedColumn: column fc.resolution_rate_pct does not exist\nLINE 169:         fc.resolution_rate_pct,\n   "
+      },
+      {
+        "n": 5,
+        "ok": true,
+        "cols": [
+          "report_month",
+          "data_type",
+          "avg_outstanding",
+          "forecast_next_month",
+          "market_segment",
+          "interest_rate_trend",
+          "cards_available",
+          "avg_annual_fee",
+          "avg_signup_bonus",
+          "avg_apr",
+          "card_application_score",
+          "growth_rank",
+          "application_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 6,
+        "ok": false,
+        "err": "DatatypeMismatch: recursive query \"application_history\" column 8 has type character varying(255)[] in non-re"
+      },
+      {
+        "n": 7,
+        "ok": false,
+        "err": "UndefinedColumn: column orc.user_id does not exist\nLINE 127:         orc.user_id,\n                  ^"
+      },
+      {
+        "n": 8,
+        "ok": true,
+        "cols": [
+          "user_id",
+          "total_active_bonuses",
+          "completed_bonuses",
+          "pending_bonuses",
+          "total_bonus_points_potential",
+          "total_bonus_cash_potential",
+          "earned_bonus_points",
+          "earned_bonus_cash",
+          "total_remaining_spend",
+          "avg_progress_pct",
+          "card_name",
+          "signup_bonus_points",
+          "signup_bonus_cash",
+          "signup_bonus_spend_requirement",
+          "total_spend_to_date",
+          "spend_progress_pct",
+          "remaining_spend_required",
+          "daily_spend_needed",
+          "days_until_deadline",
+          "completion_status",
+          "urgency_level",
+          "spending_strategy",
+          "action_recommendation",
+          "recommended_spend_allocation_pct",
+          "allocation_priority_score"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 9,
+        "ok": false,
+        "err": "UndefinedColumn: column mcr.transaction_count does not exist\nLINE 106:             WHEN mcr.transaction_cou"
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "user_id",
+          "cards_with_rotating_categories",
+          "unique_bonus_categories",
+          "total_spending_all_categories",
+          "total_remaining_capacity",
+          "total_daily_spend_needed",
+          "avg_utilization_pct",
+          "categories_at_limit",
+          "urgent_categories",
+          "card_name",
+          "category_name",
+          "bonus_quarter",
+          "total_spending_in_period",
+          "limit_utilization_pct",
+          "remaining_spend_capacity",
+          "daily_spend_needed_to_maximize",
+          "days_remaining",
+          "utilization_status",
+          "optimization_urgency",
+          "spending_strategy",
+          "avg_spending_last_4_quarters",
+          "spending_percentile_in_quarter"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 12,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 13,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 14,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 15,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 16,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 17,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 18,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 19,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 20,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 21,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 22,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 23,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 24,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 25,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 26,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 27,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 28,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 29,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      },
+      {
+        "n": 30,
+        "ok": false,
+        "err": "FeatureNotSupported: DISTINCT is not implemented for window functions\nLINE 68:         COUNT(DISTINCT t4.issuer"
+      }
+    ]
+  },
+  "db-13": {
+    "ddl_errors": 0,
+    "executes": 30,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "license_type",
+          "intelligence_index_score",
+          "intelligence_rank",
+          "market_position",
+          "intelligence_tier",
+          "output_speed_tokens_per_sec",
+          "speed_rank",
+          "speed_tier",
+          "latency_seconds",
+          "blended_price_per_million_tokens",
+          "price_performance_rank",
+          "intelligence_per_dollar",
+          "speed_per_dollar",
+          "benchmark_count",
+          "avg_benchmark_score",
+          "context_window",
+          "total_parameters_billions",
+          "is_reasoning_model",
+          "evaluation_date"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 2,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "pricing_date",
+          "price",
+          "prev_price",
+          "price_change_percent",
+          "price_change_category",
+          "moving_avg_30d",
+          "price_volatility_30d",
+          "market_share",
+          "market_share_change",
+          "market_penetration",
+          "active_users_thousands",
+          "active_users_change",
+          "growth_rate_percent",
+          "adoption_trend"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 3,
+        "ok": true,
+        "cols": [
+          "model_family",
+          "benchmark_name",
+          "benchmark_category",
+          "model_count",
+          "avg_score",
+          "median_score",
+          "score_stddev",
+          "score_variance",
+          "min_score",
+          "max_score",
+          "avg_normalized_score",
+          "avg_percentile_rank",
+          "avg_accuracy_percentage",
+          "z_score",
+          "significance_level",
+          "family_rank_by_score",
+          "family_rank_by_category",
+          "family_percentile_rank",
+          "performance_tier",
+          "competitive_position"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 4,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "source_agency",
+          "benchmark_count",
+          "avg_compliance_score",
+          "min_compliance_score",
+          "max_compliance_score",
+          "compliance_score_stddev",
+          "certified_count",
+          "low_risk_count",
+          "high_risk_count",
+          "overall_risk_level",
+          "certification_status",
+          "regulatory_alignment_status"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 5,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "metric_date",
+          "market_penetration_percent",
+          "moving_avg_penetration_30d",
+          "intelligence_index_score",
+          "moving_avg_intelligence_30d",
+          "performance_adoption_correlation",
+          "active_users_thousands",
+          "api_calls_millions",
+          "developer_sentiment_score",
+          "output_speed_tokens_per_sec",
+          "blended_price_per_million_tokens"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "moving_avg_intelligence_30d",
+          "intelligence_change_percent",
+          "trajectory_direction",
+          "overall_trend",
+          "lifecycle_stage",
+          "volatility_category",
+          "intelligence_volatility_30d",
+          "improving_count_30d",
+          "degrading_count_30d",
+          "output_speed_tokens_per_sec",
+          "latency_seconds"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 8,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 9,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 12,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 13,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 14,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 15,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 16,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 17,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 25,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 26,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 27,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 28,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 29,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 30,
+        "ok": true,
+        "cols": [
+          "model_name",
+          "creator_company",
+          "model_family",
+          "evaluation_date",
+          "intelligence_index_score",
+          "family_avg_intelligence_30d",
+          "intelligence_rank",
+          "median_intelligence",
+          "intelligence_change",
+          "performance_tier",
+          "intelligence_volatility_90d",
+          "tier_count_by_family",
+          "tier_avg_intelligence",
+          "output_speed_tokens_per_sec"
+        ],
+        "n_rows": 0
+      }
+    ]
+  },
+  "db-14": {
+    "ddl_errors": 0,
+    "executes": 30,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": true,
+        "cols": [
+          "base_instance",
+          "base_provider",
+          "base_vcpus",
+          "base_memory_gb",
+          "base_price_per_hour",
+          "base_performance_score",
+          "recommended_instance",
+          "recommended_provider",
+          "recommended_price_per_hour",
+          "recommended_performance_score",
+          "price_difference",
+          "price_difference_pct",
+          "performance_difference",
+          "performance_difference_pct",
+          "monthly_cost_savings",
+          "optimization_score",
+          "recommendation_rank"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 2,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "instance_name",
+          "provider_id",
+          "region_code",
+          "region_name",
+          "pricing_model",
+          "price_points_count",
+          "avg_price",
+          "median_price",
+          "price_volatility",
+          "price_volatility_pct",
+          "volatility_classification",
+          "volatility_rank",
+          "forecast_price_next_month",
+          "forecast_price_next_quarter",
+          "forecast_price_next_year",
+          "price_deviation_from_provider_avg_pct"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 3,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 4,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 5,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 8,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 9,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 12,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 13,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 14,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 15,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 16,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 17,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 25,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 26,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "level"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 27,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 28,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 29,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 30,
+        "ok": true,
+        "cols": [
+          "instance_id",
+          "provider_id",
+          "instance_name",
+          "vcpus",
+          "memory_gb"
+        ],
+        "n_rows": 0
+      }
+    ]
+  },
+  "db-15": {
+    "ddl_errors": 0,
+    "executes": 16,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": true,
+        "cols": [
+          "rate_id",
+          "utility_id",
+          "utility_name",
+          "utility_type",
+          "state_id",
+          "state_name",
+          "region",
+          "division",
+          "rate_code_id",
+          "rate_code",
+          "rate_code_category",
+          "sector",
+          "rate_structure_type",
+          "energy_charge_usd_per_kwh",
+          "fixed_charge_usd",
+          "demand_charge_usd_per_kw",
+          "state_avg_energy_charge",
+          "utility_avg_energy_charge",
+          "state_rate_percentile",
+          "state_rate_rank",
+          "state_rate_quartile",
+          "energy_charge_change",
+          "energy_charge_change_percentage",
+          "competitiveness_classification",
+          "historical_12mo_avg",
+          "utility_count",
+          "rate_code_count",
+          "total_rate_count",
+          "rate_codes_offered",
+          "total_rates",
+          "utilities_offering_code",
+          "states_with_code"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 2,
+        "ok": false,
+        "err": "DatatypeMismatch: recursive query \"tiered_rate_calculations\" column 12 has type integer in non-recursive ter"
+      },
+      {
+        "n": 3,
+        "ok": true,
+        "cols": [
+          "state_id",
+          "state_name",
+          "region",
+          "utility_id",
+          "utility_name",
+          "zip_code",
+          "city",
+          "federal_incentive_count",
+          "state_incentive_count",
+          "utility_incentive_count",
+          "total_incentive_count",
+          "total_federal_incentives_10kw",
+          "total_state_incentives_10kw",
+          "total_utility_incentives_10kw",
+          "total_combined_incentives_10kw",
+          "total_federal_incentives_5kw",
+          "total_state_incentives_5kw",
+          "total_utility_incentives_5kw",
+          "total_combined_incentives_5kw",
+          "system_cost_10kw",
+          "system_cost_5kw",
+          "net_cost_10kw",
+          "net_cost_5kw",
+          "rebate_percentage_10kw",
+          "rebate_percentage_5kw",
+          "state_avg_total_incentives_10kw",
+          "region_avg_total_incentives_10kw",
+          "state_rebate_percentile",
+          "state_rebate_rank",
+          "rebate_competitiveness"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 4,
+        "ok": false,
+        "err": "UndefinedFunction: function pg_catalog.extract(unknown, integer) does not exist\nLINE 22:         EXTRACT(EPOC"
+      },
+      {
+        "n": 5,
+        "ok": false,
+        "err": "UndefinedColumn: column mi.region does not exist\nLINE 145:         mi.region,\n                  ^\nHINT:  Pe"
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "utility_id",
+          "utility_name",
+          "utility_type",
+          "state_id",
+          "state_name",
+          "region",
+          "utility_avg_energy_charge",
+          "total_rates",
+          "rate_codes_offered",
+          "state_avg_energy_charge",
+          "difference_from_state_avg",
+          "difference_from_state_avg_percentage",
+          "competitive_quartile",
+          "state_percentile_rank",
+          "performance_classification"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": false,
+        "err": "GroupingError: column \"rc.rate_code_id\" must appear in the GROUP BY clause or be used in an aggregate fun"
+      },
+      {
+        "n": 8,
+        "ok": false,
+        "err": "UndefinedColumn: column npva.year_num does not exist\nLINE 150:     WHERE npva.year_num = 1\n                "
+      },
+      {
+        "n": 9,
+        "ok": false,
+        "err": "SyntaxError: syntax error at or near \"ON\"\nLINE 111:     CROSS JOIN regional_benchmarks rb ON srs.region"
+      },
+      {
+        "n": 10,
+        "ok": false,
+        "err": "UndefinedColumn: column rs.rate_structure_type does not exist\nLINE 8:         rs.rate_structure_type,\n     "
+      },
+      {
+        "n": 11,
+        "ok": false,
+        "err": "UndefinedFunction: function pg_catalog.extract(unknown, integer) does not exist\nLINE 12:         EXTRACT(EPOC"
+      },
+      {
+        "n": 12,
+        "ok": false,
+        "err": "UndefinedColumn: column gra.utility_id does not exist\nLINE 13:         COUNT(DISTINCT gra.utility_id) AS ut"
+      },
+      {
+        "n": 13,
+        "ok": false,
+        "err": "AmbiguousColumn: column reference \"diversity_score\" is ambiguous\nLINE 93:     diversity_score, portfolio_co"
+      },
+      {
+        "n": 14,
+        "ok": false,
+        "err": "AmbiguousColumn: column reference \"annual_savings\" is ambiguous\nLINE 103:     annual_savings, payback_perio"
+      },
+      {
+        "n": 15,
+        "ok": false,
+        "err": "AmbiguousColumn: column reference \"avg_rate_3yr\" is ambiguous\nLINE 80:     months_analyzed, avg_rate_3yr, r"
+      },
+      {
+        "n": 16,
+        "ok": true,
+        "cols": [
+          "rate_type",
+          "state_id",
+          "state_name",
+          "region",
+          "rate_count",
+          "utility_count",
+          "avg_rate",
+          "median_rate",
+          "total_rates_in_state",
+          "total_rates_in_region",
+          "state_market_share",
+          "region_market_share"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 17,
+        "ok": true,
+        "cols": [
+          "utility_1_id",
+          "utility_1_name",
+          "utility_2_id",
+          "utility_2_name",
+          "state_id",
+          "rate_code_id",
+          "utility_1_rate",
+          "utility_2_rate",
+          "rate_difference",
+          "rate_difference_percentage",
+          "competitive_position"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "state_id",
+          "utility_id",
+          "zip_code",
+          "system_size_kw",
+          "system_cost",
+          "total_rebates",
+          "net_cost",
+          "rebate_percentage",
+          "federal_incentive_count",
+          "state_incentive_count",
+          "utility_incentive_count"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": true,
+        "cols": [
+          "rate_code_id",
+          "rate_code",
+          "state_id",
+          "utilities_adopting",
+          "total_utilities_in_state",
+          "market_penetration_percentage",
+          "total_rates"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "state_id",
+          "state_name",
+          "region",
+          "state_total_federal",
+          "state_total_state",
+          "state_total_utility",
+          "state_total_combined",
+          "state_avg_combined",
+          "location_count",
+          "region_avg_total",
+          "national_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "utility_id",
+          "rate_code_id",
+          "state_id",
+          "rate_month",
+          "monthly_avg_rate",
+          "prev_rate",
+          "monthly_change",
+          "avg_monthly_change",
+          "forecast_6mo",
+          "forecast_12mo"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "utility_id",
+          "utility_name",
+          "state_id",
+          "rate_codes_offered",
+          "total_rates",
+          "portfolio_avg_rate",
+          "portfolio_rate_stddev",
+          "diversification_status",
+          "optimization_recommendation"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "state_id",
+          "state_name",
+          "region",
+          "federal_incentives_available",
+          "state_incentives_available",
+          "utility_incentives_available",
+          "utilities_with_incentives",
+          "total_utilities_in_state",
+          "utility_coverage_percentage"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": true,
+        "cols": [
+          "region",
+          "utility_count",
+          "total_rates",
+          "region_avg_rate",
+          "region_median_rate",
+          "region_min_rate",
+          "region_max_rate",
+          "national_total_rates",
+          "regional_market_share"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 25,
+        "ok": true,
+        "cols": [
+          "rate_structure_id",
+          "utility_id",
+          "rate_code_id",
+          "energy_charge_usd_per_kwh",
+          "fixed_charge_usd",
+          "demand_charge_usd_per_kw",
+          "tier_count",
+          "tou_period_count",
+          "total_cost_per_1000kwh",
+          "structure_complexity"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 26,
+        "ok": false,
+        "err": "DatatypeMismatch: recursive query \"rate_code_hierarchy\" column 7 has type character varying(255)[] in non-re"
+      },
+      {
+        "n": 27,
+        "ok": true,
+        "cols": [
+          "state_id",
+          "state_name",
+          "region",
+          "utility_count",
+          "total_rates",
+          "rate_types",
+          "structure_types",
+          "avg_rate",
+          "min_rate",
+          "max_rate",
+          "total_rebates",
+          "avg_rebates",
+          "rebate_locations",
+          "region_avg_rate",
+          "national_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 28,
+        "ok": true,
+        "cols": [
+          "state_id",
+          "state_name",
+          "region",
+          "utility_id",
+          "utility_name",
+          "total_combined_incentives_usd",
+          "state_avg_rebates",
+          "region_avg_rebates",
+          "state_rebate_percentile",
+          "competitive_position"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 29,
+        "ok": true,
+        "cols": [
+          "state_id",
+          "state_name",
+          "region",
+          "state_avg_rate",
+          "utility_count",
+          "rate_count",
+          "region_cluster_avg",
+          "cluster_classification"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 30,
+        "ok": false,
+        "err": "AmbiguousColumn: column reference \"monthly_cost_1000kwh\" is ambiguous\nLINE 55:     monthly_cost_1000kwh, mo"
+      }
+    ]
+  },
+  "db-16": {
+    "ddl_errors": 6,
+    "executes": 24,
+    "total": 30,
+    "results": [
+      {
+        "n": 1,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 77:         AND ST_DISTANCE"
+      },
+      {
+        "n": 2,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 94:                 AND ST_"
+      },
+      {
+        "n": 3,
+        "ok": false,
+        "err": "UndefinedFunction: function st_intersects(geography, geography) does not exist\nLINE 225:                 AND "
+      },
+      {
+        "n": 4,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 39:         ST_DISTANCE(rep"
+      },
+      {
+        "n": 5,
+        "ok": false,
+        "err": "UndefinedFunction: function st_distance(geography, geography) does not exist\nLINE 119:                 AND ST"
+      },
+      {
+        "n": 6,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 7,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 8,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 9,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 10,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 11,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 12,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 13,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 14,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 15,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 16,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 17,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 18,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 19,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 20,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 21,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 22,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 23,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 24,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 25,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 26,
+        "ok": false,
+        "err": "UndefinedFunction: function st_dwithin(geography, geography, integer) does not exist\nLINE 28:         AND ST_"
+      },
+      {
+        "n": 27,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 28,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 29,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      },
+      {
+        "n": 30,
+        "ok": true,
+        "cols": [
+          "property_id",
+          "property_address",
+          "elevation_feet",
+          "total_value",
+          "state_code",
+          "county_fips",
+          "avg_risk_score",
+          "assessment_count",
+          "risk_rank",
+          "risk_percentile"
+        ],
+        "n_rows": 0
+      }
+    ]
+  }
+}

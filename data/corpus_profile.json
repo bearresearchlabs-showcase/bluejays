@@ -1,0 +1,485 @@
+[
+  {
+    "id": "db-2",
+    "name": "Filling Station Retail / POS",
+    "domain": "Point-of-sale operations",
+    "mirror": "PHP Point of Sale (retained export, anonymized)",
+    "sources": "Retail transaction schema",
+    "tables": 7,
+    "foreign_keys": 7,
+    "indexes": 0,
+    "columns": 65,
+    "instance_bytes": 1080786098,
+    "tasks": 30,
+    "effective_tasks": 9,
+    "entropy": 0.504,
+    "clean": false,
+    "schema_coverage": 0.14285714285714285,
+    "undeclared_tables": [],
+    "preference_pairs": 0,
+    "difficulty": {
+      "mean": 4.65,
+      "min": 4.36,
+      "max": 4.66
+    },
+    "features_mean": {
+      "cte": 4.0,
+      "join": 0.0,
+      "window": 14.83,
+      "subquery": 0.0,
+      "base_tables": 1.0
+    },
+    "example": {
+      "number": 2,
+      "question": "Can you break down monthly purchase behavior by customer? I need to see quartile distributions, how many outlier transactions occurred, and which customers show increasing purchase trends.",
+      "difficulty": 4.66,
+      "sql_excerpt": "WITH cte_level_1 AS ( SELECT *, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY sale_time DESC) AS rn, DATE_TRUNC('day', sale_time) AS sale_day, DATE_TRUNC('week', sale_time) AS sale_week, EXTRACT(HOUR FROM sale_time) AS sale_hour, EXTRACT(DOW FROM sale_t..."
+    }
+  },
+  {
+    "id": "db-3",
+    "name": "Hierarchical Orders",
+    "domain": "E-commerce order hierarchy",
+    "mirror": "E-commerce backend (retained export, anonymized)",
+    "sources": "Order/seller hierarchy",
+    "tables": 3,
+    "foreign_keys": 4,
+    "indexes": 6,
+    "columns": 20,
+    "instance_bytes": 1086687152,
+    "tasks": 30,
+    "effective_tasks": 3,
+    "entropy": 0.24,
+    "clean": false,
+    "schema_coverage": 0.0,
+    "undeclared_tables": [
+      "orders_order"
+    ],
+    "preference_pairs": 0,
+    "difficulty": {
+      "mean": 4.66,
+      "min": 4.66,
+      "max": 4.66
+    },
+    "features_mean": {
+      "cte": 4.0,
+      "join": 0.0,
+      "window": 15.0,
+      "subquery": 0.0,
+      "base_tables": 1.0
+    },
+    "example": {
+      "number": 1,
+      "question": "I want to see how order total amounts vary over the past year, with rolling averages and outlier counts broken down by day and seller code.",
+      "difficulty": 4.66,
+      "sql_excerpt": "WITH cte_level_1 AS ( SELECT *, ROW_NUMBER() OVER (PARTITION BY seller_id ORDER BY created_at DESC) AS rn, DATE_TRUNC('day', created_at) AS day_bucket, DATE_TRUNC('week', created_at) AS week_bucket, EXTRACT(HOUR FROM created_at) AS hour_val, EXTRACT(DOW FROM c..."
+    }
+  },
+  {
+    "id": "db-6",
+    "name": "Weather Data Pipeline",
+    "domain": "Meteorological ETL & insurance risk",
+    "mirror": "\u2014",
+    "sources": "NOAA GRIB2, NEXRAD Level-II, shapefiles, NWS API, AWS Open Data",
+    "tables": 34,
+    "foreign_keys": 0,
+    "indexes": 40,
+    "columns": 618,
+    "instance_bytes": 1076717064,
+    "tasks": 30,
+    "effective_tasks": 30,
+    "entropy": 1.0,
+    "clean": true,
+    "schema_coverage": 0.5,
+    "undeclared_tables": [],
+    "preference_pairs": 30,
+    "difficulty": {
+      "mean": 5.66,
+      "min": 2.62,
+      "max": 8.52
+    },
+    "features_mean": {
+      "cte": 6.57,
+      "join": 1.97,
+      "window": 3.93,
+      "subquery": 1.13,
+      "base_tables": 2.1
+    },
+    "example": {
+      "number": 8,
+      "question": "Can you validate our forecasts against actual observations and provide accuracy scores?",
+      "difficulty": 5.65,
+      "sql_excerpt": "WITH observation_forecast_matching AS ( -- First CTE: Match observations with forecasts SELECT wo.observation_id, wo.station_id, wo.station_name, wo.observation_time, wo.station_geom, gf.forecast_id, gf.parameter_name, gf.forecast_time, gf.parameter_value AS f..."
+    }
+  },
+  {
+    "id": "db-7",
+    "name": "Maritime Shipping Intelligence",
+    "domain": "Vessel routing & port operations",
+    "mirror": "Linescape",
+    "sources": "NOAA, US Coast Guard, MARAD",
+    "tables": 14,
+    "foreign_keys": 0,
+    "indexes": 32,
+    "columns": 219,
+    "instance_bytes": 1077441845,
+    "tasks": 30,
+    "effective_tasks": 30,
+    "entropy": 1.0,
+    "clean": true,
+    "schema_coverage": 0.8571428571428571,
+    "undeclared_tables": [],
+    "preference_pairs": 30,
+    "difficulty": {
+      "mean": 7.3,
+      "min": 5.66,
+      "max": 9.16
+    },
+    "features_mean": {
+      "cte": 5.5,
+      "join": 4.4,
+      "window": 9.1,
+      "subquery": 0.67,
+      "base_tables": 4.27
+    },
+    "example": {
+      "number": 23,
+      "question": "Can you show me how vessel age correlates with performance metrics and provide fleet modernization recommendations?",
+      "difficulty": 7.25,
+      "sql_excerpt": "WITH vessel_age_calculations AS ( -- First CTE: Calculate vessel age and performance metrics SELECT ve.vessel_id, ve.vessel_name, ve.imo_number, ve.vessel_type, ve.container_capacity_teu, ve.year_built, EXTRACT(YEAR FROM CURRENT_DATE) - ve.year_built AS vessel..."
+    }
+  },
+  {
+    "id": "db-8",
+    "name": "Job Market Intelligence",
+    "domain": "Labour-market matching & analytics",
+    "mirror": "jobright.ai",
+    "sources": "USAJobs.gov, BLS, Dept. of Labor",
+    "tables": 12,
+    "foreign_keys": 11,
+    "indexes": 30,
+    "columns": 206,
+    "instance_bytes": 1073743745,
+    "tasks": 30,
+    "effective_tasks": 30,
+    "entropy": 1.0,
+    "clean": true,
+    "schema_coverage": 0.9166666666666666,
+    "undeclared_tables": [],
+    "preference_pairs": 30,
+    "difficulty": {
+      "mean": 6.28,
+      "min": 3.51,
+      "max": 9.13
+    },
+    "features_mean": {
+      "cte": 4.83,
+      "join": 3.23,
+      "window": 3.43,
+      "subquery": 2.23,
+      "base_tables": 3.03
+    },
+    "example": {
+      "number": 20,
+      "question": "How are different skills evolving in the job market, and which emerging skills should professionals focus on learning?",
+      "difficulty": 6.31,
+      "sql_excerpt": "WITH skill_demand_timeline AS ( -- First CTE: Track skill demand over time SELECT jsr.skill_id, s.skill_name, s.skill_category, s.skill_type, DATE_TRUNC('month', jp.posted_date) AS demand_month, DATE_TRUNC('quarter', jp.posted_date) AS demand_quarter, COUNT(DI..."
+    }
+  },
+  {
+    "id": "db-9",
+    "name": "Parcel Shipping Intelligence",
+    "domain": "Multi-carrier rate optimization",
+    "mirror": "Pirate Ship",
+    "sources": "USPS Developer Portal, UPS, US Census, Data.gov",
+    "tables": 14,
+    "foreign_keys": 21,
+    "indexes": 13,
+    "columns": 222,
+    "instance_bytes": 4793732133,
+    "tasks": 30,
+    "effective_tasks": 30,
+    "entropy": 1.0,
+    "clean": true,
+    "schema_coverage": 0.8571428571428571,
+    "undeclared_tables": [],
+    "preference_pairs": 0,
+    "difficulty": {
+      "mean": 5.26,
+      "min": 3.47,
+      "max": 7.98
+    },
+    "features_mean": {
+      "cte": 3.73,
+      "join": 2.3,
+      "window": 1.87,
+      "subquery": 0.53,
+      "base_tables": 2.93
+    },
+    "example": {
+      "number": 19,
+      "question": "What are the most efficient international shipping routes considering both cost and delivery time, and how do customs procedures affect them?",
+      "difficulty": 5.03,
+      "sql_excerpt": "WITH intl_shipments AS ( SELECT s.shipment_id, s.carrier_id, s.destination_country, s.total_cost, s.created_at, ic.customs_duty_amount, ic.customs_status, ic.customs_cleared_date FROM shipments s JOIN international_customs ic ON s.shipment_id = ic.shipment_id ..."
+    }
+  },
+  {
+    "id": "db-10",
+    "name": "Retail / Marketing Intelligence",
+    "domain": "Price & inventory intelligence",
+    "mirror": "Brickseek",
+    "sources": "Census MRTS, BLS CPI/PPI, FTC",
+    "tables": 12,
+    "foreign_keys": 11,
+    "indexes": 29,
+    "columns": 197,
+    "instance_bytes": 1073742402,
+    "tasks": 30,
+    "effective_tasks": 7,
+    "entropy": 0.252,
+    "clean": false,
+    "schema_coverage": 0.5833333333333334,
+    "undeclared_tables": [],
+    "preference_pairs": 0,
+    "difficulty": {
+      "mean": 7.09,
+      "min": 5.8,
+      "max": 8.71
+    },
+    "features_mean": {
+      "cte": 5.27,
+      "join": 4.03,
+      "window": 6.0,
+      "subquery": 0.07,
+      "base_tables": 4.83
+    },
+    "example": {
+      "number": 7,
+      "question": "Can you generate the marketing intelligence analysis report for query 7?",
+      "difficulty": 6.98,
+      "sql_excerpt": "WITH base_analysis AS ( SELECT p.product_id, p.product_name, p.category, p.subcategory, p.brand, pp.pricing_id, pp.retailer_id, pp.current_price, pp.price_effective_date, r.retailer_name, r.retailer_type, s.store_id, s.store_city, s.store_state, pi.stock_level..."
+    }
+  },
+  {
+    "id": "db-11",
+    "name": "Parking Intelligence",
+    "domain": "Urban parking marketplace",
+    "mirror": "SpotHero",
+    "sources": "Municipal open parking data",
+    "tables": 14,
+    "foreign_keys": 18,
+    "indexes": 12,
+    "columns": 195,
+    "instance_bytes": 1073742341,
+    "tasks": 30,
+    "effective_tasks": 10,
+    "entropy": 0.373,
+    "clean": false,
+    "schema_coverage": 0.6428571428571429,
+    "undeclared_tables": [],
+    "preference_pairs": 0,
+    "difficulty": {
+      "mean": 7.83,
+      "min": 5.11,
+      "max": 8.36
+    },
+    "features_mean": {
+      "cte": 6.63,
+      "join": 6.47,
+      "window": 9.23,
+      "subquery": 0.17,
+      "base_tables": 4.83
+    },
+    "example": {
+      "number": 10,
+      "question": "Can you provide revenue forecasting models with time-series analysis and statistical confidence intervals?",
+      "difficulty": 8.36,
+      "sql_excerpt": "WITH facility_base_data AS ( SELECT pf.facility_id, pf.facility_name, pf.city_id, pf.total_spaces, pf.facility_type, pf.operator_type, pf.latitude, pf.longitude, pf.is_event_parking, pf.is_monthly_parking, pf.accepts_reservations, c.city_name, c.state_code, c...."
+    }
+  },
+  {
+    "id": "db-12",
+    "name": "Card Rewards Optimization",
+    "domain": "Credit-card rewards engine",
+    "mirror": "CardPointers",
+    "sources": "Public card and rewards terms",
+    "tables": 15,
+    "foreign_keys": 26,
+    "indexes": 31,
+    "columns": 236,
+    "instance_bytes": 1073743330,
+    "tasks": 30,
+    "effective_tasks": 11,
+    "entropy": 0.413,
+    "clean": false,
+    "schema_coverage": 0.8666666666666667,
+    "undeclared_tables": [],
+    "preference_pairs": 0,
+    "difficulty": {
+      "mean": 8.19,
+      "min": 6.42,
+      "max": 9.17
+    },
+    "features_mean": {
+      "cte": 7.87,
+      "join": 5.53,
+      "window": 12.4,
+      "subquery": 0.23,
+      "base_tables": 4.97
+    },
+    "example": {
+      "number": 11,
+      "question": "Can you show me how our spending is distributed across different categories and where we might be able to optimize our expenses?",
+      "difficulty": 8.41,
+      "sql_excerpt": "WITH topic_cte1_q11 AS ( -- First CTE: Initial data selection for Spending Category Analysis SELECT uc.user_id, uc.user_card_id, uc.card_id, cc.card_name, cc.issuer_id, cci.issuer_name, cc.annual_fee, cc.card_type, cc.card_network FROM user_cards uc INNER JOIN..."
+    }
+  },
+  {
+    "id": "db-13",
+    "name": "AI Benchmark Marketing",
+    "domain": "Model benchmark tracking",
+    "mirror": "Artificial Analysis",
+    "sources": "NIST, NSF, DARPA, Papers with Code, HF, GitHub",
+    "tables": 11,
+    "foreign_keys": 10,
+    "indexes": 23,
+    "columns": 192,
+    "instance_bytes": 1073766531,
+    "tasks": 30,
+    "effective_tasks": 13,
+    "entropy": 0.49,
+    "clean": false,
+    "schema_coverage": 0.7272727272727273,
+    "undeclared_tables": [],
+    "preference_pairs": 30,
+    "difficulty": {
+      "mean": 6.27,
+      "min": 3.62,
+      "max": 6.87
+    },
+    "features_mean": {
+      "cte": 5.07,
+      "join": 2.07,
+      "window": 6.43,
+      "subquery": 0.8,
+      "base_tables": 2.17
+    },
+    "example": {
+      "number": 8,
+      "question": "Can you create a correlation matrix showing how performance across different benchmarks relates to each other for cross-model comparison?",
+      "difficulty": 6.43,
+      "sql_excerpt": "WITH base_data_8 AS ( SELECT am.model_id, am.model_name, am.creator_company, am.model_family, mpm.intelligence_index_score, mpm.output_speed_tokens_per_sec, mpm.evaluation_date FROM ai_models am INNER JOIN model_performance_metrics mpm ON am.model_id = mpm.mod..."
+    }
+  },
+  {
+    "id": "db-14",
+    "name": "Cloud Instance Cost",
+    "domain": "Multi-cloud pricing analytics",
+    "mirror": "\u2014",
+    "sources": "AWS / GCP / Azure public pricing APIs",
+    "tables": 11,
+    "foreign_keys": 18,
+    "indexes": 15,
+    "columns": 169,
+    "instance_bytes": 1079171827,
+    "tasks": 30,
+    "effective_tasks": 11,
+    "entropy": 0.567,
+    "clean": false,
+    "schema_coverage": 0.7272727272727273,
+    "undeclared_tables": [],
+    "preference_pairs": 0,
+    "difficulty": {
+      "mean": 3.45,
+      "min": 3.13,
+      "max": 8.12
+    },
+    "features_mean": {
+      "cte": 8.93,
+      "join": 0.43,
+      "window": 0.2,
+      "subquery": 0.0,
+      "base_tables": 1.27
+    },
+    "example": {
+      "number": 3,
+      "question": "Can you analyze the ROI of our reserved instances with multi-year cost projections?",
+      "difficulty": 3.13,
+      "sql_excerpt": "WITH base_instance_data AS ( SELECT ci.instance_id, ci.provider_id, ci.instance_name, ci.vcpus, ci.memory_gb FROM cloud_instances ci WHERE ci.is_available = TRUE AND ci.vcpus >= 2 ), cte_2 AS ( SELECT * FROM base_instance_data ), cte_3 AS ( SELECT * FROM base_..."
+    }
+  },
+  {
+    "id": "db-15",
+    "name": "Electricity Cost & Solar Rebate",
+    "domain": "Utility rate & incentive modelling",
+    "mirror": "\u2014",
+    "sources": "US electricity rates; federal/state/utility rebates",
+    "tables": 17,
+    "foreign_keys": 28,
+    "indexes": 29,
+    "columns": 227,
+    "instance_bytes": 1073742313,
+    "tasks": 30,
+    "effective_tasks": 30,
+    "entropy": 1.0,
+    "clean": true,
+    "schema_coverage": 0.8823529411764706,
+    "undeclared_tables": [],
+    "preference_pairs": 30,
+    "difficulty": {
+      "mean": 5.62,
+      "min": 2.91,
+      "max": 8.99
+    },
+    "features_mean": {
+      "cte": 3.9,
+      "join": 3.83,
+      "window": 2.77,
+      "subquery": 0.4,
+      "base_tables": 3.67
+    },
+    "example": {
+      "number": 27,
+      "question": "Can you provide a comprehensive rate analysis dashboard that breaks down rates across multiple dimensions?",
+      "difficulty": 5.58,
+      "sql_excerpt": "WITH rate_intelligence_summary AS ( SELECT s.state_id, s.state_name, s.region, COUNT(DISTINCT er.utility_id) AS utility_count, COUNT(DISTINCT er.rate_id) AS total_rates, AVG(er.energy_charge_usd_per_kwh) AS avg_rate, MIN(er.energy_charge_usd_per_kwh) AS min_ra..."
+    }
+  },
+  {
+    "id": "db-16",
+    "name": "Flood Risk Assessment",
+    "domain": "M&A due-diligence flood exposure",
+    "mirror": "\u2014",
+    "sources": "FEMA, NOAA, USGS, NASA",
+    "tables": 12,
+    "foreign_keys": 0,
+    "indexes": 23,
+    "columns": 196,
+    "instance_bytes": 2728033725,
+    "tasks": 30,
+    "effective_tasks": 8,
+    "entropy": 0.293,
+    "clean": false,
+    "schema_coverage": 0.6666666666666666,
+    "undeclared_tables": [],
+    "preference_pairs": 0,
+    "difficulty": {
+      "mean": 5.39,
+      "min": 5.05,
+      "max": 7.48
+    },
+    "features_mean": {
+      "cte": 4.67,
+      "join": 1.2,
+      "window": 2.3,
+      "subquery": 1.93,
+      "base_tables": 2.13
+    },
+    "example": {
+      "number": 6,
+      "question": "Can you show me a comprehensive performance evaluation of NASA's flood prediction models using advanced analytics?",
+      "difficulty": 5.05,
+      "sql_excerpt": "WITH base_analysis AS ( -- First CTE: Base analysis SELECT property_id, property_address, property_latitude, property_longitude, property_geom, elevation_feet, total_value, state_code, county_fips FROM real_estate_properties WHERE property_geom IS NOT NULL AND..."
+    }
+  }
+]
