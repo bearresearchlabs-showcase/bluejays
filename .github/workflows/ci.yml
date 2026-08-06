@@ -78,6 +78,17 @@ jobs:
           node-version: "20"
           cache: "npm"
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Python test dependencies
+        # `npm test` chains `npm run test:agentic` (pytest) after Jest, and
+        # `npm run test:quality` chains source-checks + `db_check.py test all`
+        run: pip install --quiet pytest psycopg2-binary pyyaml jsonschema
+
       - name: Install dependencies
         run: npm ci
 
