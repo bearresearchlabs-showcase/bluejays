@@ -1,0 +1,101 @@
+{
+  "verification_date": "20260209-2337",
+  "file": "/Users/machine/Documents/AQ/db/db-10/queries/queries.md",
+  "fixes": {
+    "query_2_array_syntax": {
+      "query_number": 2,
+      "fix": "Array slicing syntax replacement",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "Query uses CTEs",
+          "status": "PASS"
+        },
+        {
+          "check": "No problematic array slicing syntax",
+          "status": "PASS"
+        },
+        {
+          "check": "Query structure is complete",
+          "status": "PASS"
+        }
+      ]
+    },
+    "query_26_recursive_cte": {
+      "query_number": 26,
+      "fix": "Recursive CTE addition",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "Query uses CTEs",
+          "status": "PASS"
+        },
+        {
+          "check": "Query has CTEs",
+          "status": "PASS",
+          "cte_count": 6
+        },
+        {
+          "check": "Query has complexity indicators",
+          "status": "PASS",
+          "join_count": 4,
+          "aggregation_count": 11
+        },
+        {
+          "check": "SQL structure is complete",
+          "status": "PASS"
+        },
+        {
+          "check": "Query code block is properly formatted",
+          "status": "PASS"
+        }
+      ]
+    },
+    "query_title_uniqueness": {
+      "fix": "Query title uniqueness",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "All queries 1-30 have titles",
+          "status": "PASS",
+          "count": 30
+        },
+        {
+          "check": "Titles are descriptive (sufficient length)",
+          "status": "PASS"
+        },
+        {
+          "check": "No duplicate titles",
+          "status": "PASS"
+        },
+        {
+          "check": "Queries 26-30 exist",
+          "status": "PASS",
+          "found": [
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        }
+      ]
+    },
+    "header_formatting": {
+      "fix": "Header formatting consistency",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "All queries use ## Query N: format",
+          "status": "PASS",
+          "count": 30
+        },
+        {
+          "check": "No queries with --- prefix",
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "Pass": 1
+}

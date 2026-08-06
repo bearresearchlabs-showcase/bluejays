@@ -1,0 +1,292 @@
+{
+  "database": "db-4",
+  "database_number": 4,
+  "test_timestamp": "2026-02-03T20:37:51.883260",
+  "postgresql": {
+    "available": true,
+    "queries": [
+      {
+        "query_number": 1,
+        "description": "Query 1",
+        "success": true,
+        "execution_time_ms": 63.48109245300293,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 2,
+        "description": "Query 2",
+        "success": true,
+        "execution_time_ms": 1.9571781158447266,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 3,
+        "description": "Query 3",
+        "success": true,
+        "execution_time_ms": 2.727985382080078,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 4,
+        "description": "Query 4",
+        "success": true,
+        "execution_time_ms": 62.74104118347168,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 5,
+        "description": "Query 5",
+        "success": true,
+        "execution_time_ms": 1.8072128295898438,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 6,
+        "description": "Query 6",
+        "success": false,
+        "execution_time_ms": 1.4660358428955078,
+        "row_count": 0,
+        "error": "column \"category\" does not exist\nLINE 51:         category,\n                 ^\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 7,
+        "description": "Query 7",
+        "success": false,
+        "execution_time_ms": 0.9601116180419922,
+        "row_count": 0,
+        "error": "column \"category\" does not exist\nLINE 58:         category,\n                 ^\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 8,
+        "description": "Query 8",
+        "success": false,
+        "execution_time_ms": 0.9212493896484375,
+        "row_count": 0,
+        "error": "column t2_sub.foreign_id does not exist\nLINE 44:             WHERE t2_sub.foreign_id = t1.id\n                           ^\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 9,
+        "description": "Query 9",
+        "success": false,
+        "execution_time_ms": 0.8130073547363281,
+        "row_count": 0,
+        "error": "column t2.created_at does not exist\nLINE 16:         t2.created_at,\n                 ^\nHINT:  Perhaps you meant to reference the column \"lc.created_at\".\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 10,
+        "description": "Query 10",
+        "success": false,
+        "execution_time_ms": 0.8251667022705078,
+        "row_count": 0,
+        "error": "COALESCE types uuid and integer cannot be matched\nLINE 30:         SUM(COALESCE(t1.id, 0)) AS total_value,\n                                     ^\n",
+        "error_type": "DatatypeMismatch"
+      },
+      {
+        "query_number": 11,
+        "description": "Query 11",
+        "success": false,
+        "execution_time_ms": 0.659942626953125,
+        "row_count": 0,
+        "error": "each UNION query must have the same number of columns\nLINE 16:         t.id,\n                 ^\n",
+        "error_type": "SyntaxError"
+      },
+      {
+        "query_number": 12,
+        "description": "Query 12",
+        "success": false,
+        "execution_time_ms": 0.7882118225097656,
+        "row_count": 0,
+        "error": "operator does not exist: text = uuid\nLINE 24: ...NER JOIN chat_participants cp ON cp.chat_id::text = tp.patte...\n                                                              ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 13,
+        "description": "Query 13",
+        "success": false,
+        "execution_time_ms": 0.6880760192871094,
+        "row_count": 0,
+        "error": "operator does not exist: text = uuid\nLINE 23: ...NER JOIN chat_participants cp ON cp.user_id::text = sc.chain...\n                                                              ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 14,
+        "description": "Query 14",
+        "success": false,
+        "execution_time_ms": 0.6546974182128906,
+        "row_count": 0,
+        "error": "operator does not exist: text = uuid\nLINE 23: ...NER JOIN chat_participants cp ON cp.user_id::text = rc.chain...\n                                                              ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 15,
+        "description": "Query 15",
+        "success": false,
+        "execution_time_ms": 0.6628036499023438,
+        "row_count": 0,
+        "error": "operator does not exist: uuid > integer\nLINE 10:     WHERE t1.id > 100\n                         ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 16,
+        "description": "Query 16",
+        "success": false,
+        "execution_time_ms": 0.6451606750488281,
+        "row_count": 0,
+        "error": "column cc.category_path does not exist\nLINE 21: ...R JOIN chat_participants cp ON cp.chat_id::text = cc.categor...\n                                                              ^\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 17,
+        "description": "Query 17",
+        "success": false,
+        "execution_time_ms": 0.55694580078125,
+        "row_count": 0,
+        "error": "operator does not exist: text = uuid\nLINE 24: ...NER JOIN chat_participants cp ON cp.chat_id::text = tc.chain...\n                                                              ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 18,
+        "description": "Query 18",
+        "success": false,
+        "execution_time_ms": 0.6432533264160156,
+        "row_count": 0,
+        "error": "column t2.id does not exist\nLINE 5:         t2.id AS related_id,\n                ^\nHINT:  Perhaps you meant to reference the column \"t1.id\".\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 19,
+        "description": "Query 19",
+        "success": false,
+        "execution_time_ms": 0.7009506225585938,
+        "row_count": 0,
+        "error": "column t2.created_at does not exist\nLINE 16:         t2.created_at,\n                 ^\nHINT:  Perhaps you meant to reference the column \"lc.created_at\".\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 20,
+        "description": "Query 20",
+        "success": false,
+        "execution_time_ms": 0.6380081176757812,
+        "row_count": 0,
+        "error": "COALESCE types uuid and integer cannot be matched\nLINE 30:         SUM(COALESCE(t1.id, 0)) AS total_value,\n                                     ^\n",
+        "error_type": "DatatypeMismatch"
+      },
+      {
+        "query_number": 21,
+        "description": "Query 21",
+        "success": false,
+        "execution_time_ms": 0.5922317504882812,
+        "row_count": 0,
+        "error": "each UNION query must have the same number of columns\nLINE 16:         t.id,\n                 ^\n",
+        "error_type": "SyntaxError"
+      },
+      {
+        "query_number": 22,
+        "description": "Query 22",
+        "success": false,
+        "execution_time_ms": 0.6368160247802734,
+        "row_count": 0,
+        "error": "operator does not exist: text = uuid\nLINE 24: ...NER JOIN chat_participants cp ON cp.chat_id::text = tp.patte...\n                                                              ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 23,
+        "description": "Query 23",
+        "success": false,
+        "execution_time_ms": 0.6260871887207031,
+        "row_count": 0,
+        "error": "operator does not exist: text = uuid\nLINE 23: ...NER JOIN chat_participants cp ON cp.user_id::text = sc.chain...\n                                                              ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 24,
+        "description": "Query 24",
+        "success": false,
+        "execution_time_ms": 0.6380081176757812,
+        "row_count": 0,
+        "error": "operator does not exist: text = uuid\nLINE 23: ...NER JOIN chat_participants cp ON cp.user_id::text = rc.chain...\n                                                              ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 25,
+        "description": "Query 25",
+        "success": false,
+        "execution_time_ms": 0.5700588226318359,
+        "row_count": 0,
+        "error": "operator does not exist: uuid > integer\nLINE 10:     WHERE t1.id > 100\n                         ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 26,
+        "description": "Query 26",
+        "success": false,
+        "execution_time_ms": 0.6053447723388672,
+        "row_count": 0,
+        "error": "column cc.category_path does not exist\nLINE 21: ...R JOIN chat_participants cp ON cp.chat_id::text = cc.categor...\n                                                              ^\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 27,
+        "description": "Query 27",
+        "success": false,
+        "execution_time_ms": 0.5791187286376953,
+        "row_count": 0,
+        "error": "operator does not exist: text = uuid\nLINE 24: ...NER JOIN chat_participants cp ON cp.chat_id::text = tc.chain...\n                                                              ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 28,
+        "description": "Query 28",
+        "success": false,
+        "execution_time_ms": 0.5691051483154297,
+        "row_count": 0,
+        "error": "column t2.id does not exist\nLINE 5:         t2.id AS related_id,\n                ^\nHINT:  Perhaps you meant to reference the column \"t1.id\".\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 29,
+        "description": "Query 29",
+        "success": false,
+        "execution_time_ms": 1.1887550354003906,
+        "row_count": 0,
+        "error": "column t2.created_at does not exist\nLINE 16:         t2.created_at,\n                 ^\nHINT:  Perhaps you meant to reference the column \"lc.created_at\".\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 30,
+        "description": "Query 30",
+        "success": false,
+        "execution_time_ms": 0.9248256683349609,
+        "row_count": 0,
+        "error": "COALESCE types uuid and integer cannot be matched\nLINE 30:         SUM(COALESCE(t1.id, 0)) AS total_value,\n                                     ^\n",
+        "error_type": "DatatypeMismatch"
+      }
+    ],
+    "statistics": {
+      "total_queries": 30,
+      "successful": 5,
+      "failed": 25,
+      "success_rate": 16.666666666666664,
+      "avg_execution_time_ms": 26.54290199279785,
+      "total_rows_returned": 0
+    }
+  },
+  "databricks": {
+    "available": true,
+    "queries": []
+  }
+}

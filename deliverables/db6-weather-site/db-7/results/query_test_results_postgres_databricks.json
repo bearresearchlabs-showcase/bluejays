@@ -1,0 +1,27 @@
+{
+  "database": "db-7",
+  "test_date": "20260204-2020",
+  "postgresql": {
+    "available": false,
+    "queries": []
+  },
+  "databricks": {
+    "available": false,
+    "queries": []
+  },
+  "summary": {
+    "total_queries": 30,
+    "postgresql": {
+      "tested": 0,
+      "successful": 0,
+      "failed": 0,
+      "success_rate": 0
+    },
+    "databricks": {
+      "tested": 0,
+      "successful": 0,
+      "failed": 0,
+      "success_rate": 0
+    }
+  }
+}

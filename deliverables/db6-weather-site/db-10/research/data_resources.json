@@ -1,0 +1,257 @@
+{
+  "database": "db-10",
+  "description": "Marketing Intelligence Database - Data Sources Documentation",
+  "last_updated": "2026-02-04",
+  "data_sources": [
+    {
+      "source_id": "SRC001",
+      "source_name": "Census Bureau MRTS API",
+      "source_type": "api",
+      "api_endpoint": "http://api.census.gov/data/timeseries/eits/mrts",
+      "api_documentation": "https://api.census.gov/data/timeseries/eits/mrts.html",
+      "authentication_required": false,
+      "api_key_required": false,
+      "rate_limit_per_hour": 500,
+      "rate_limit_per_day": 5000,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Monthly Retail Trade Survey",
+        "Retail Sales",
+        "Retail Inventories",
+        "Store Counts",
+        "Employment Statistics"
+      ],
+      "update_frequency": "monthly",
+      "historical_data_available": true,
+      "historical_range_years": 5,
+      "usage_notes": "Provides comprehensive monthly retail trade statistics. No API key required. Data available from 1992 to present.",
+      "best_practices": [
+        "Use appropriate NAICS codes to filter by industry category",
+        "Cache responses to respect rate limits",
+        "Handle missing data gracefully",
+        "Use time series endpoints for historical trends"
+      ]
+    },
+    {
+      "source_id": "SRC002",
+      "source_name": "Census Bureau Advance Retail Inventories API",
+      "source_type": "api",
+      "api_endpoint": "http://api.census.gov/data/timeseries/eits/mrtsadv",
+      "api_documentation": "https://api.census.gov/data/timeseries/eits/mrtsadv.html",
+      "authentication_required": false,
+      "api_key_required": false,
+      "rate_limit_per_hour": 500,
+      "rate_limit_per_day": 5000,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Advance Retail Inventories",
+        "Inventory Levels",
+        "Inventory-to-Sales Ratios"
+      ],
+      "update_frequency": "monthly",
+      "historical_data_available": true,
+      "historical_range_years": 5,
+      "usage_notes": "Provides advance estimates of retail inventories. Released earlier than full MRTS data.",
+      "best_practices": [
+        "Use for early inventory trend indicators",
+        "Compare with full MRTS data when available",
+        "Account for seasonal adjustments"
+      ]
+    },
+    {
+      "source_id": "SRC003",
+      "source_name": "BLS Public Data API",
+      "source_type": "api",
+      "api_endpoint": "https://api.bls.gov/publicAPI/v2/timeseries/data",
+      "api_documentation": "https://www.bls.gov/developers/api_signature_v2.htm",
+      "authentication_required": false,
+      "api_key_required": false,
+      "registration_key_optional": true,
+      "rate_limit_per_hour": 500,
+      "rate_limit_per_day": 5000,
+      "rate_limit_with_key_per_hour": 500,
+      "rate_limit_with_key_per_day": 5000,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Consumer Price Index (CPI)",
+        "Producer Price Index (PPI)",
+        "Retail Employment Statistics",
+        "Wage Data",
+        "Price Indices by Category"
+      ],
+      "update_frequency": "monthly",
+      "historical_data_available": true,
+      "historical_range_years": 20,
+      "usage_notes": "Provides comprehensive price index data. Registration key optional but increases rate limits. Supports up to 50 series per request.",
+      "best_practices": [
+        "Use series IDs for specific product categories",
+        "Register for API key to increase rate limits",
+        "Batch multiple series in single request",
+        "Handle percent change calculations client-side"
+      ],
+      "common_series_ids": {
+        "CPI_All_Items": "CUUR0000SA0",
+        "CPI_Televisions": "CUUR0000SETB01",
+        "CPI_Smartphones": "CUUR0000SEEE01",
+        "CPI_Apparel": "CUUR0000SEGA",
+        "CPI_Household_Furnishings": "CUUR0000SEHF"
+      }
+    },
+    {
+      "source_id": "SRC004",
+      "source_name": "Data.gov CKAN API",
+      "source_type": "api",
+      "api_endpoint": "https://catalog.data.gov/api/3/action",
+      "api_documentation": "https://catalog.data.gov/api/3/action/help",
+      "authentication_required": false,
+      "api_key_required": false,
+      "rate_limit_per_hour": 1000,
+      "rate_limit_per_day": 10000,
+      "data_format": "JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Retail Datasets",
+        "Economic Indicators",
+        "Consumer Data",
+        "Market Research",
+        "Federal Datasets"
+      ],
+      "update_frequency": "varies_by_dataset",
+      "historical_data_available": true,
+      "historical_range_years": "varies",
+      "usage_notes": "Provides access to thousands of federal datasets. Use package_search endpoint to find retail-related datasets.",
+      "best_practices": [
+        "Use package_search with organization filters",
+        "Filter by tags and keywords",
+        "Check dataset update frequencies",
+        "Download resources via provided URLs"
+      ],
+      "common_organizations": [
+        "census-gov",
+        "ftc-gov",
+        "bls-gov",
+        "commerce-gov"
+      ]
+    },
+    {
+      "source_id": "SRC005",
+      "source_name": "FTC Consumer Sentinel Network",
+      "source_type": "dataset",
+      "data_url": "https://www.ftc.gov/policy-notices/open-government/data-sets",
+      "api_endpoint": null,
+      "authentication_required": false,
+      "api_key_required": false,
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "CSV, JSON",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Consumer Complaints",
+        "Fraud Reports",
+        "Identity Theft",
+        "Retail Complaints"
+      ],
+      "update_frequency": "quarterly",
+      "historical_data_available": true,
+      "historical_range_years": 10,
+      "usage_notes": "Consumer complaint data available via Data.gov or direct download. Includes retail-related complaints.",
+      "best_practices": [
+        "Download quarterly updates",
+        "Filter by complaint category",
+        "Aggregate by state/region for market analysis",
+        "Handle large file sizes appropriately"
+      ]
+    },
+    {
+      "source_id": "SRC006",
+      "source_name": "FTC Pricing Accuracy Studies",
+      "source_type": "dataset",
+      "data_url": "https://www.ftc.gov/reports/how-do-retailers-adjust-prices-evidence-store-level-data",
+      "api_endpoint": null,
+      "authentication_required": false,
+      "api_key_required": false,
+      "rate_limit_per_hour": null,
+      "rate_limit_per_day": null,
+      "data_format": "PDF, CSV",
+      "coordinate_system": "N/A",
+      "data_categories": [
+        "Pricing Accuracy",
+        "Store-Level Pricing",
+        "Price Adjustment Patterns"
+      ],
+      "update_frequency": "irregular",
+      "historical_data_available": true,
+      "historical_range_years": 20,
+      "usage_notes": "Research reports and datasets on retail pricing behavior. Historical studies available.",
+      "best_practices": [
+        "Extract data from PDF reports",
+        "Use for pricing trend analysis",
+        "Compare with current market data"
+      ]
+    }
+  ],
+  "coordinate_reference_systems": {
+    "store_locations": {
+      "primary": "WGS84 (EPSG:4326)",
+      "description": "Latitude/longitude coordinates for store locations",
+      "units": "degrees"
+    },
+    "market_boundaries": {
+      "primary": "WGS84 (EPSG:4326)",
+      "description": "Geographic market boundaries (ZIP codes, counties, states)",
+      "units": "degrees"
+    }
+  },
+  "data_collection_strategy": {
+    "products": {
+      "target_count": 10000,
+      "sources": ["manual_entry", "retailer_apis", "web_scrapers"],
+      "update_frequency": "daily"
+    },
+    "retailers": {
+      "target_count": 30,
+      "sources": ["manual_entry", "public_directories"],
+      "update_frequency": "monthly"
+    },
+    "stores": {
+      "target_count": 5000,
+      "sources": ["retailer_apis", "geocoding_services", "public_directories"],
+      "update_frequency": "weekly"
+    },
+    "pricing": {
+      "target_count": 7300000,
+      "sources": ["retailer_apis", "web_scrapers", "census_data"],
+      "update_frequency": "daily",
+      "retention_years": 2
+    },
+    "inventory": {
+      "target_count": 2600000,
+      "sources": ["retailer_apis", "web_scrapers"],
+      "update_frequency": "weekly",
+      "retention_years": 1
+    },
+    "census_data": {
+      "target_count": 300,
+      "sources": ["census_api"],
+      "update_frequency": "monthly",
+      "retention_years": 5
+    },
+    "bls_data": {
+      "target_count": 1200,
+      "sources": ["bls_api"],
+      "update_frequency": "monthly",
+      "retention_years": 5
+    }
+  },
+  "total_target_data_size_gb": 2.0,
+  "notes": [
+    "All API endpoints are publicly accessible without authentication",
+    "Rate limits should be respected to ensure continued access",
+    "Historical data collection should be done incrementally",
+    "Coordinate systems use WGS84 (EPSG:4326) for geographic data",
+    "Data quality scores should be tracked for all sources"
+  ]
+}

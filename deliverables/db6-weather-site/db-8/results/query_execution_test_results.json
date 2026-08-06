@@ -1,0 +1,368 @@
+{
+  "database": "db-8",
+  "database_number": 8,
+  "test_date": "20260208-2036",
+  "postgresql": {
+    "available": true,
+    "queries": [
+      {
+        "query_number": 1,
+        "query_title": "Production-Grade AI Job Matching Engine with Multi-Dimensional Scoring and Skill Alignment Analysis",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"ac\"\nLINE 98:         ac.industry,\n                 ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 2,
+        "query_title": "Recursive Skill Gap Analysis with Hierarchical Skill Dependencies and Learning Path Recommendations",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 3,
+        "query_title": "Market Trend Analysis with Time-Series Forecasting and Skill Demand Projections",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list\nLINE 168: ...  SELECT ARRAY_AGG(DISTINCT s.skill_name ORDER BY COUNT(*) D...\n                                                               ^\n",
+        "error_type": "InvalidColumnReference",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 4,
+        "query_title": "Application Success Rate Analysis with Cohort Segmentation and Conversion Funnel Analytics",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "function round(double precision, integer) does not exist\nLINE 91:         ROUND(ca.median_days_to_update, 2) AS median_days_to...\n                 ^\nHINT:  No function matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 5,
+        "query_title": "Company Competitive Intelligence with Market Share Analysis and Employer Branding Metrics",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list\nLINE 46:         ARRAY_AGG(DISTINCT s.skill_name ORDER BY COUNT(*) DE...\n                                                          ^\n",
+        "error_type": "InvalidColumnReference",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 6,
+        "query_title": "Geographic Job Market Analysis with Location Intelligence and Remote Work Trends",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 10:         COUNT(DISTINCT c.industry) AS unique_industries,\n                                ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 7,
+        "query_title": "Salary Benchmarking Analysis with Percentile Rankings and Market Positioning",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 8,
+        "query_title": "User Cohort Analysis with Retention Metrics and Career Progression Tracking",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "aggregate function calls cannot be nested\nLINE 128:             SELECT AVG(EXTRACT(EPOCH FROM (MIN(ja.submitted_...\n                                                     ^\n",
+        "error_type": "GroupingError",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 9,
+        "query_title": "Skill Demand vs Supply Analysis with Market Imbalance Detection",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 15:         COUNT(DISTINCT c.industry) AS industries_demanding,\n                                ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 10,
+        "query_title": "Federal Job Opportunities Analysis with USAJobs.gov Integration and Agency Intelligence",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 11,
+        "query_title": "Job Search Behavior Analysis with Search Pattern Recognition and Recommendation Optimization",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "syntax error at or near \"(\"\nLINE 158:     PERCENT_RANK() OVER (ORDER BY ubs.total_searches) -- FIX...\n                          ^\n",
+        "error_type": "SyntaxError",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 12,
+        "query_title": "Application Funnel Optimization with Conversion Rate Analysis and Drop-off Identification",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 13,
+        "query_title": "Skill Combination Analysis with Co-occurrence Patterns and Market Value Optimization",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 15:         c.industry,\n                 ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 14,
+        "query_title": "Time-to-Fill Analysis with Hiring Velocity Metrics and Market Efficiency Indicators",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 15,
+        "query_title": "Remote Work Trends Analysis with Geographic Distribution and Work Model Evolution",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 7:         c.industry,\n                ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 16,
+        "query_title": "Data Source Quality Analysis with Extraction Metrics and Data Freshness Tracking",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 17,
+        "query_title": "Job Title Normalization and Clustering with Similarity Analysis",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 7:         c.industry,\n                ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 18,
+        "query_title": "Application Success Prediction with Machine Learning Features and Probability Scoring",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 19,
+        "query_title": "Company Growth Analysis with Hiring Trends and Expansion Patterns",
+        "success": true,
+        "execution_time_ms": 2.01,
+        "row_count": 0,
+        "columns": [
+          "company_id",
+          "company_name",
+          "industry",
+          "company_size",
+          "total_jobs_last_year",
+          "avg_monthly_jobs",
+          "max_states_hiring",
+          "max_cities_hiring",
+          "avg_growth_rate",
+          "accelerating_months",
+          "expanding_months",
+          "avg_salary_midpoint",
+          "growth_score",
+          "growth_category",
+          "growth_rank",
+          "industry_growth_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 20,
+        "query_title": "Skill Evolution Tracking with Emerging Skills Detection and Trend Analysis",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 11:         COUNT(DISTINCT c.industry) AS industries_demanding,\n                                ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 21,
+        "query_title": "Application Timing Optimization with Best Time-to-Apply Analysis",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 22,
+        "query_title": "Industry Transition Analysis with Career Path Mapping and Transition Success Rates",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 6:         c.industry AS current_industry,\n                ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 23,
+        "query_title": "Salary Negotiation Intelligence with Market Positioning and Negotiation Leverage Analysis",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 24,
+        "query_title": "Job Market Saturation Analysis with Competition Intensity and Opportunity Density Metrics",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 5:         c.industry,\n                ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 25,
+        "query_title": "User Journey Analysis with Engagement Funnels and Conversion Optimization",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 26,
+        "query_title": "Recursive Career Path Analysis with Hierarchical Job Progression and Path Optimization",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 5:         c.industry,\n                ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 27,
+        "query_title": "Multi-Dimensional Market Segmentation with Cluster Analysis and Segment Profiling",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 28,
+        "query_title": "Predictive Market Forecasting with Time-Series Projections and Trend Extrapolation",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 5:         c.industry,\n                ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 29,
+        "query_title": "Cross-Database Job Matching with Redundancy Architecture and Multi-Source Integration",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 30,
+        "query_title": "Comprehensive Market Intelligence Dashboard with Multi-Dimensional Analytics and Executive Summary",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "missing FROM-clause entry for table \"c\"\nLINE 6:         COUNT(DISTINCT c.industry) AS total_industries,\n                               ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      }
+    ]
+  },
+  "summary": {
+    "total_queries": 30,
+    "postgresql": {
+      "tested": 30,
+      "successful": 1,
+      "failed": 29,
+      "success_rate": 3.33
+    }
+  },
+  "database_used": "db8",
+  "test_method": "EXECUTION"
+}

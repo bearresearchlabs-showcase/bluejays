@@ -1,0 +1,155 @@
+{
+  "data_quality_reports": {
+    "database": "db-9",
+    "database_name": "Shipping Intelligence Database",
+    "metadata_version": "1.0",
+    "last_updated": "2026-02-04",
+    "quality_metrics": {
+      "shipping_carriers": {
+        "table_name": "shipping_carriers",
+        "total_records": 0,
+        "completeness": {
+          "percentage": 0.0,
+          "null_counts": {}
+        },
+        "consistency": {
+          "duplicate_records": 0,
+          "unique_constraint_violations": 0
+        },
+        "accuracy": {
+          "validation_errors": 0,
+          "data_type_errors": 0
+        },
+        "timeliness": {
+          "stale_records": 0,
+          "last_update": null
+        }
+      },
+      "shipping_zones": {
+        "table_name": "shipping_zones",
+        "total_records": 0,
+        "completeness": {
+          "percentage": 0.0,
+          "null_counts": {}
+        },
+        "consistency": {
+          "duplicate_records": 0,
+          "unique_constraint_violations": 0
+        },
+        "accuracy": {
+          "validation_errors": 0,
+          "data_type_errors": 0
+        },
+        "timeliness": {
+          "stale_records": 0,
+          "last_update": null
+        }
+      },
+      "shipping_rates": {
+        "table_name": "shipping_rates",
+        "total_records": 0,
+        "completeness": {
+          "percentage": 0.0,
+          "null_counts": {}
+        },
+        "consistency": {
+          "duplicate_records": 0,
+          "unique_constraint_violations": 0
+        },
+        "accuracy": {
+          "validation_errors": 0,
+          "data_type_errors": 0,
+          "rate_validation": {
+            "negative_rates": 0,
+            "zero_rates": 0,
+            "outlier_rates": 0
+          }
+        },
+        "timeliness": {
+          "stale_records": 0,
+          "expired_rates": 0,
+          "last_update": null
+        }
+      },
+      "shipments": {
+        "table_name": "shipments",
+        "total_records": 0,
+        "completeness": {
+          "percentage": 0.0,
+          "null_counts": {}
+        },
+        "consistency": {
+          "duplicate_records": 0,
+          "unique_constraint_violations": 0,
+          "foreign_key_violations": 0
+        },
+        "accuracy": {
+          "validation_errors": 0,
+          "data_type_errors": 0
+        },
+        "timeliness": {
+          "stale_records": 0,
+          "last_update": null
+        }
+      },
+      "tracking_events": {
+        "table_name": "tracking_events",
+        "total_records": 0,
+        "completeness": {
+          "percentage": 0.0,
+          "null_counts": {}
+        },
+        "consistency": {
+          "duplicate_records": 0,
+          "unique_constraint_violations": 0,
+          "foreign_key_violations": 0
+        },
+        "accuracy": {
+          "validation_errors": 0,
+          "data_type_errors": 0,
+          "timestamp_validation": {
+            "future_timestamps": 0,
+            "invalid_timestamps": 0
+          }
+        },
+        "timeliness": {
+          "stale_records": 0,
+          "last_update": null
+        }
+      },
+      "address_validation_results": {
+        "table_name": "address_validation_results",
+        "total_records": 0,
+        "completeness": {
+          "percentage": 0.0,
+          "null_counts": {}
+        },
+        "consistency": {
+          "duplicate_records": 0,
+          "unique_constraint_violations": 0
+        },
+        "accuracy": {
+          "validation_errors": 0,
+          "data_type_errors": 0,
+          "zip_code_validation": {
+            "invalid_zip_codes": 0,
+            "missing_zip_plus_4": 0
+          }
+        },
+        "timeliness": {
+          "stale_records": 0,
+          "last_update": null
+        }
+      }
+    },
+    "overall_quality_score": null,
+    "quality_thresholds": {
+      "completeness_minimum": 95.0,
+      "consistency_maximum_duplicates": 0,
+      "accuracy_maximum_errors": 0.1,
+      "timeliness_maximum_stale_days": 30
+    },
+    "quality_trends": [],
+    "last_quality_check": null
+  }
+}

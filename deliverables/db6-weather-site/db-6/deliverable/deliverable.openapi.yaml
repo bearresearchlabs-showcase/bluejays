@@ -1,0 +1,1024 @@
+openapi: 3.0.3
+info:
+  title: Database db-6 - Database API Specification
+  description: "This database contains weather data from NOAA sources including GRIB2\
+    \ gridded forecasts, shapefile boundaries (CWA, Fire Zones, Marine Zones), real-time\
+    \ observations, transformation logs, spatial joins, CRS transformations, data\
+    \ quality metrics load status. The system is designed for weather forecasting,\
+    \ spatial analysis, and climate risk assessment applications.\n\n- GRIB2 Forecast\
+    \ Data: Gridded numerical weather forecasts from NDFD (National Digital Forecast\
+    \ Database)\n- Geographic Boundaries: Shapefile data for CWAs (County Warning\
+    \ Areas), Fire Zones, Marine Zones, and River Basins\n- Real-Time Observations:\
+    \ Point observations from NWS API\n- Data Quality Tracking: Comprehensive metrics\
+    \ for data quality monitoring\n- Transformation Logging: Complete audit trail\
+    \ for data transformations\n- Multi-Source Integration: Integration of multiple\
+    \ NOAA data sources\n\n- PostgreSQL: Full support with PostGIS extension for spatial\
+    \ operations\n\n- GRIB2 Files: National Digital Forecast Database (NDFD) from\
+    \ `tgftp.nws.noaa.gov`\n- Shapefiles: NWS GIS Portal shapefiles from `weather.gov/gis`\n\
+    - Observations: NWS API (`api.weather.gov`)\n\n---\n\n---\n\nThis section provides\
+    \ a comprehensive data dictionary for all tables in the database, including column\
+    \ names, data types, constraints, and descriptions. Tables are organized by functional\
+    \ category for easier navigation.\n\nThe database consists of 11 tables organized\
+    \ into logical groups:\n\n1. Forecast Data: `grib2_forecasts`\n2. Geographic Boundaries:\
+    \ `shapefile_boundaries`\n3. Observations: `weather_observations`, `weather_stations`\n\
+    4. Transformation Logs: `grib2_transformation_log`, `shapefile_integration_log`\n\
+    5. Spatial Operations: `spatial_join_results`, `crs_transformation_parameters`\n\
+    6. Data Quality: `data_quality_metrics`\n7. Load Tracking: `load_status`\n8. Aggregations:\
+    \ `weather_forecast_aggregations`\n\n---\n\nStores gridded forecast data from\
+    \ NDFD (National Digital Forecast Database). Each row represents a forecast value\
+    \ for a specific parameter at a grid cell location and time.\n\n| Column | Type\
+    \ | Nullable | Default | Description |\n|--------|------|----------|---------|-------------|\n\
+    | `forecast_id` | `VARCHAR(255)` | No | — | Primary key - unique forecast identifier\
+    \ |\n| `parameter_name` | `VARCHAR(100)` | No | — | Forecast parameter (Temperature,\
+    \ Precipitation, WindSpeed, etc.) |\n| `forecast_time` | `TIMESTAMP_NTZ` | No\
+    \ | — | Forecast valid time |\n| `grid_cell_latitude` | `NUMERIC(10, 7)` | No\
+    \ | — | Grid cell center latitude (WGS84) |\n| `grid_cell_longitude` | `NUMERIC(10,\
+    \ 7)` | No | — | Grid cell center longitude (WGS84) |\n| `grid_cell_geom` | `GEOGRAPHY`\
+    \ | Yes | `NULL` | Point geometry for grid cell center |\n| `parameter_value`\
+    \ | `NUMERIC(10, 2)` | Yes | `NULL` | Forecast parameter value |\n| `source_file`\
+    \ | `VARCHAR(500)` | Yes | `NULL` | Source GRIB2 file name |\n| `source_crs` |\
+    \ `VARCHAR(50)` | Yes | `NULL` | Source coordinate reference system |\n| `target_crs`\
+    \ | `VARCHAR(50)` | Yes | `NULL` | Target CRS (typically WGS84/EPSG:4326) |\n\
+    | `grid_resolution_x` | `NUMERIC(10, 6)` | Yes | `NULL` | Grid resolution in X\
+    \ direction (degrees) |\n| `grid_resolution_y` | `NUMERIC(10, 6)` | Yes | `NULL`\
+    \ | Grid resolution in Y direction (degrees) |\n| `spatial_extent_west` | `NUMERIC(10,\
+    \ 6)` | Yes | `NULL` | Western boundary of spatial extent |\n| `spatial_extent_south`\
+    \ | `NUMERIC(10, 6)` | Yes | `NULL` | Southern boundary of spatial extent |\n\
+    | `spatial_extent_east` | `NUMERIC(10, 6)` | Yes | `NULL` | Eastern boundary of\
+    \ spatial extent |\n| `spatial_extent_north` | `NUMERIC(10, 6)` | Yes | `NULL`\
+    \ | Northern boundary of spatial extent |\n| `load_timestamp` | `TIMESTAMP_NTZ`\
+    \ | No | `CURRENT_TIMESTAMP()` | When forecast was loaded |\n| `transformation_status`\
+    \ | `VARCHAR(50)` | Yes | `NULL` | Transformation status (Success, Failed, Pending)\
+    \ |\n\nIndexes:\n- Primary Key: `forecast_id`\n- Index: `(parameter_name, forecast_time)`\n\
+    - Spatial Index: `grid_cell_geom` (GIST index)\n- Index: `transformation_status`\n\
+    - Index: `forecast_time`\n\nSpatial Data:\n- Uses GEOGRAPHY type for WGS84 coordinates\n\
+    - Grid cells are represented as points\n- Supports spatial queries (ST_WITHIN,\
+    \ ST_DISTANCE, etc.)\n\n---\n\nStores geographic boundaries from shapefiles including\
+    \ CWAs, Fire Zones, Marine Zones, River Basins, and Counties.\n\n| Column | Type\
+    \ | Nullable | Default | Description |\n|--------|------|----------|---------|-------------|\n\
+    | `boundary_id` | `VARCHAR(255)` | No | — | Primary key - unique boundary identifier\
+    \ |\n| `feature_type` | `VARCHAR(50)` | No | — | Feature type (CWA, FireZone,\
+    \ MarineZone, RiverBasin, County) |\n| `feature_name` | `VARCHAR(255)` | Yes |\
+    \ `NULL` | Human-readable feature name |\n| `feature_identifier` | `VARCHAR(100)`\
+    \ | Yes | `NULL` | Official feature identifier code |\n| `boundary_geom` | `GEOGRAPHY`\
+    \ | Yes | `NULL` | Polygon geometry for boundary |\n| `source_shapefile` | `VARCHAR(500)`\
+    \ | Yes | `NULL` | Source shapefile name |\n| `source_crs` | `VARCHAR(50)` | Yes\
+    \ | `NULL` | Source coordinate reference system |\n| `target_crs` | `VARCHAR(50)`\
+    \ | Yes | `NULL` | Target CRS (typically WGS84/EPSG:4326) |\n| `feature_count`\
+    \ | `INTEGER` | Yes | `NULL` | Number of features in original shapefile |\n| `spatial_extent_west`\
+    \ | `NUMERIC(10, 6)` | Yes | `NULL` | Western boundary of spatial extent |\n|\
+    \ `spatial_extent_south` | `NUMERIC(10, 6)` | Yes | `NULL` | Southern boundary\
+    \ of spatial extent |\n| `spatial_extent_east` | `NUMERIC(10, 6)` | Yes | `NULL`\
+    \ | Eastern boundary of spatial extent |\n| `spatial_extent_north` | `NUMERIC(10,\
+    \ 6)` | Yes | `NULL` | Northern boundary of spatial extent |\n| `load_timestamp`\
+    \ | `TIMESTAMP_NTZ` | No | `CURRENT_TIMESTAMP()` | When boundary was loaded |\n\
+    | `transformation_status` | `VARCHAR(50)` | Yes | `NULL` | Transformation status\
+    \ |\n| `state_code` | `VARCHAR(2)` | Yes | `NULL` | US state code (2-letter) |\n\
+    | `office_code` | `VARCHAR(10)` | Yes | `NULL` | NWS office code (CWA identifier)\
+    \ |\n\nIndexes:\n- Primary Key: `boundary_id`\n- Index: `feature_type`\n- Spatial\
+    \ Index: `boundary_geom` (GIST index)\n- Index: `state_code`\n- Index: `office_code`\n\
+    \nSpatial Data:\n- Uses GEOGRAPHY type for polygon boundaries\n- Supports spatial\
+    \ operations (ST_WITHIN, ST_INTERSECTS, ST_DISTANCE, etc.)\n\n---\n\nStores real-time\
+    \ point observations from NWS API weather stations.\n\n| Column | Type | Nullable\
+    \ | Default | Description |\n|--------|------|----------|---------|-------------|\n\
+    | `observation_id` | `VARCHAR(255)` | No | — | Primary key - unique observation\
+    \ identifier |\n| `station_id` | `VARCHAR(50)` | No | — | Foreign key to `weather_stations.station_id`\
+    \ |\n| `station_name` | `VARCHAR(255)` | Yes | `NULL` | Station name |\n| `observation_time`\
+    \ | `TIMESTAMP_NTZ` | No | — | Observation timestamp |\n| `station_latitude` |\
+    \ `NUMERIC(10, 7)` | No | — | Station latitude (WGS84) |\n| `station_longitude`\
+    \ | `NUMERIC(10, 7)` | No | — | Station longitude (WGS84) |\n| `station_geom`\
+    \ | `GEOGRAPHY` | Yes | `NULL` | Point geometry for station location |\n| `temperature`\
+    \ | `NUMERIC(6, 2)` | Yes | `NULL` | Temperature in degrees Fahrenheit |\n| `dewpoint`\
+    \ | `NUMERIC(6, 2)` | Yes | `NULL` | Dewpoint in degrees Fahrenheit |\n| `humidity`\
+    \ | `NUMERIC(5, 2)` | Yes | `NULL` | Relative humidity percentage |\n| `wind_speed`\
+    \ | `NUMERIC(6, 2)` | Yes | `NULL` | Wind speed in knots |\n| `wind_direction`\
+    \ | `INTEGER` | Yes | `NULL` | Wind direction in degrees (0-359) |\n| `pressure`\
+    \ | `NUMERIC(8, 2)` | Yes | `NULL` | Barometric pressure in inches of mercury\
+    \ |\n| `visibility` | `NUMERIC(6, 2)` | Yes | `NULL` | Visibility in miles |\n\
+    | `sky_cover` | `VARCHAR(50)` | Yes | `NULL` | Sky cover description |\n| `precipitation_amount`\
+    \ | `NUMERIC(8, 2)` | Yes | `NULL` | Precipitation amount in inches |\n| `data_freshness_minutes`\
+    \ | `INTEGER` | Yes | `NULL` | Minutes since observation |\n| `load_timestamp`\
+    \ | `TIMESTAMP_NTZ` | No | `CURRENT_TIMESTAMP()` | When observation was loaded\
+    \ |\n| `data_source` | `VARCHAR(50)` | No | `'NWS_API'` | Data source identifier\
+    \ |\n\nIndexes:\n- Primary Key: `observation_id`\n- Foreign Key: `station_id`\
+    \ → `weather_stations.station_id`\n- Index: `(station_id, observation_time)`\n\
+    - Spatial Index: `station_geom` (GIST index)\n- Index: `observation_time`\n- Index:\
+    \ `data_source`\n\n---\n\nStores metadata about weather observation stations.\n\
+    \n| Column | Type | Nullable | Default | Description |\n|--------|------|----------|---------|-------------|\n\
+    | `station_id` | `VARCHAR(50)` | No | — | Primary key - unique station identifier\
+    \ |\n| `station_name` | `VARCHAR(255)` | Yes | `NULL` | Station name |\n| `station_latitude`\
+    \ | `NUMERIC(10, 7)` | No | — | Station latitude (WGS84) |\n| `station_longitude`\
+    \ | `NUMERIC(10, 7)` | No | — | Station longitude (WGS84) |\n| `station_geom`\
+    \ | `GEOGRAPHY` | Yes | `NULL` | Point geometry for station location |\n| `elevation_meters`\
+    \ | `NUMERIC(8, 2)` | Yes | `NULL` | Station elevation in meters |\n| `state_code`\
+    \ | `VARCHAR(2)` | Yes | `NULL` | US state code |\n| `county_name` | `VARCHAR(100)`\
+    \ | Yes | `NULL` | County name |\n| `cwa_code` | `VARCHAR(10)` | Yes | `NULL`\
+    \ | County Warning Area code |\n| `station_type` | `VARCHAR(50)` | Yes | `NULL`\
+    \ | Station type (ASOS, AWOS, etc.) |\n| `active_status` | `BOOLEAN` | No | `TRUE`\
+    \ | Whether station is currently active |\n| `first_observation_date` | `DATE`\
+    \ | Yes | `NULL` | First observation date |\n| `last_observation_date` | `DATE`\
+    \ | Yes | `NULL` | Last observation date |\n| `update_frequency_minutes` | `INTEGER`\
+    \ | Yes | `NULL` | Update frequency in minutes |\n\nIndexes:\n- Primary Key: `station_id`\n\
+    - Spatial Index: `station_geom` (GIST index)\n- Index: `cwa_code`\n- Index: `active_status`\n\
+    - Index: `state_code`\n\n---\n\nTracks GRIB2 file processing and transformation\
+    \ operations.\n\n| Column | Type | Nullable | Default | Description |\n|--------|------|----------|---------|-------------|\n\
+    | `log_id` | `VARCHAR(255)` | No | — | Primary key |\n| `file_name` | `VARCHAR(500)`\
+    \ | No | — | GRIB2 file name |\n| `source_path` | `VARCHAR(1000)` | Yes | `NULL`\
+    \ | Source file path |\n| `parameter_name` | `VARCHAR(100)` | No | — | Forecast\
+    \ parameter name |\n| `forecast_time` | `TIMESTAMP_NTZ` | Yes | `NULL` | Forecast\
+    \ valid time |\n| `source_crs` | `VARCHAR(50)` | Yes | `NULL` | Source CRS |\n\
+    | `target_crs` | `VARCHAR(50)` | Yes | `NULL` | Target CRS |\n| `gdal_command`\
+    \ | `VARCHAR(2000)` | Yes | `NULL` | GDAL command used for transformation |\n\
+    | `output_file` | `VARCHAR(1000)` | Yes | `NULL` | Output file path |\n| `grid_resolution_x`\
+    \ | `NUMERIC(10, 6)` | Yes | `NULL` | Grid resolution X |\n| `grid_resolution_y`\
+    \ | `NUMERIC(10, 6)` | Yes | `NULL` | Grid resolution Y |\n| `spatial_extent_west`\
+    \ | `NUMERIC(10, 6)` | Yes | `NULL` | Spatial extent west |\n| `spatial_extent_south`\
+    \ | `NUMERIC(10, 6)` | Yes | `NULL` | Spatial extent south |\n| `spatial_extent_east`\
+    \ | `NUMERIC(10, 6)` | Yes | `NULL` | Spatial extent east |\n| `spatial_extent_north`\
+    \ | `NUMERIC(10, 6)` | Yes | `NULL` | Spatial extent north |\n| `transformation_status`\
+    \ | `VARCHAR(50)` | Yes | `NULL` | Status (Success, Failed, Pending) |\n| `target_table`\
+    \ | `VARCHAR(255)` | Yes | `NULL` | Target table |\n| `load_timestamp` | `TIMESTAMP_NTZ`\
+    \ | Yes | `NULL` | Load timestamp |\n| `processing_duration_seconds` | `INTEGER`\
+    \ | Yes | `NULL` | Processing duration |\n| `records_processed` | `INTEGER` |\
+    \ Yes | `NULL` | Number of records processed |\n| `error_message` | `VARCHAR(2000)`\
+    \ | Yes | `NULL` | Error message if failed |\n\nIndexes:\n- Primary Key: `log_id`\n\
+    - Index: `file_name`\n- Index: `transformation_status`\n- Index: `load_timestamp`\n\
+    \n---\n\nTracks shapefile processing and coordinate transformations.\n\n| Column\
+    \ | Type | Nullable | Default | Description |\n|--------|------|----------|---------|-------------|\n\
+    | `log_id` | `VARCHAR(255)` | No | — | Primary key |\n| `shapefile_name` | `VARCHAR(500)`\
+    \ | No | — | Shapefile name |\n| `source_path` | `VARCHAR(1000)` | Yes | `NULL`\
+    \ | Source file path |\n| `feature_type` | `VARCHAR(50)` | No | — | Feature type\
+    \ |\n| `feature_count` | `INTEGER` | Yes | `NULL` | Number of features |\n| `source_crs`\
+    \ | `VARCHAR(50)` | Yes | `NULL` | Source CRS |\n| `target_crs` | `VARCHAR(50)`\
+    \ | Yes | `NULL` | Target CRS |\n| `ogr2ogr_command` | `VARCHAR(2000)` | Yes |\
+    \ `NULL` | OGR2OGR command used |\n| `transformed_path` | `VARCHAR(1000)` | Yes\
+    \ | `NULL` | Transformed file path |\n| `spatial_extent_west` | `NUMERIC(10, 6)`\
+    \ | Yes | `NULL` | Spatial extent west |\n| `spatial_extent_south` | `NUMERIC(10,\
+    \ 6)` | Yes | `NULL` | Spatial extent south |\n| `spatial_extent_east` | `NUMERIC(10,\
+    \ 6)` | Yes | `NULL` | Spatial extent east |\n| `spatial_extent_north` | `NUMERIC(10,\
+    \ 6)` | Yes | `NULL` | Spatial extent north |\n| `transformation_status` | `VARCHAR(50)`\
+    \ | Yes | `NULL` | Status |\n| `target_table` | `VARCHAR(255)` | Yes | `NULL`\
+    \ | Target table |\n| `load_timestamp` | `TIMESTAMP_NTZ` | Yes | `NULL` | Load\
+    \ timestamp |\n| `processing_duration_seconds` | `INTEGER` | Yes | `NULL` | Processing\
+    \ duration |\n| `error_message` | `VARCHAR(2000)` | Yes | `NULL` | Error message\
+    \ |\n\nIndexes:\n- Primary Key: `log_id`\n- Index: `shapefile_name`\n- Index:\
+    \ `transformation_status`\n\n---\n\nDocuments spatial join operations between\
+    \ GRIB2 grid cells and shapefile boundaries.\n\n| Column | Type | Nullable | Default\
+    \ | Description |\n|--------|------|----------|---------|-------------|\n| `join_id`\
+    \ | `VARCHAR(255)` | No | — | Primary key |\n| `grib_file` | `VARCHAR(500)` |\
+    \ Yes | `NULL` | GRIB2 file name |\n| `shapefile_name` | `VARCHAR(500)` | Yes\
+    \ | `NULL` | Shapefile name |\n| `join_type` | `VARCHAR(50)` | Yes | `NULL` |\
+    \ Join type (Point-in-Polygon, Raster-to-Vector, Clip) |\n| `gdal_command` | `VARCHAR(2000)`\
+    \ | Yes | `NULL` | GDAL command used |\n| `features_matched` | `INTEGER` | Yes\
+    \ | `NULL` | Number of features matched |\n| `features_total` | `INTEGER` | Yes\
+    \ | `NULL` | Total features |\n| `match_percentage` | `NUMERIC(5, 2)` | Yes |\
+    \ `NULL` | Match percentage |\n| `output_file` | `VARCHAR(1000)` | Yes | `NULL`\
+    \ | Output file path |\n| `join_timestamp` | `TIMESTAMP_NTZ` | No | `CURRENT_TIMESTAMP()`\
+    \ | Join timestamp |\n| `forecast_id` | `VARCHAR(255)` | Yes | `NULL` | Foreign\
+    \ key to `grib2_forecasts.forecast_id` |\n| `boundary_id` | `VARCHAR(255)` | Yes\
+    \ | `NULL` | Foreign key to `shapefile_boundaries.boundary_id` |\n\nIndexes:\n\
+    - Primary Key: `join_id`\n- Index: `(forecast_id, boundary_id)`\n- Index: `join_timestamp`\n\
+    \n---\n\nDocuments coordinate reference system transformations and parameters.\n\
+    \n| Column | Type | Nullable | Default | Description |\n|--------|------|----------|---------|-------------|\n\
+    | `transformation_id` | `VARCHAR(255)` | No | — | Primary key |\n| `source_crs`\
+    \ | `VARCHAR(50)` | No | — | Source CRS identifier |\n| `target_crs` | `VARCHAR(50)`\
+    \ | No | — | Target CRS identifier |\n| `source_crs_name` | `VARCHAR(255)` | Yes\
+    \ | `NULL` | Source CRS name |\n| `target_crs_name` | `VARCHAR(255)` | Yes | `NULL`\
+    \ | Target CRS name |\n| `transformation_method` | `VARCHAR(50)` | Yes | `NULL`\
+    \ | Method (GDAL, PROJ, Custom) |\n| `central_meridian` | `NUMERIC(10, 6)` | Yes\
+    \ | `NULL` | Central meridian |\n| `false_easting` | `NUMERIC(12, 2)` | Yes |\
+    \ `NULL` | False easting |\n| `false_northing` | `NUMERIC(12, 2)` | Yes | `NULL`\
+    \ | False northing |\n| `scale_factor` | `NUMERIC(10, 8)` | Yes | `NULL` | Scale\
+    \ factor |\n| `latitude_of_origin` | `NUMERIC(10, 6)` | Yes | `NULL` | Latitude\
+    \ of origin |\n| `units` | `VARCHAR(50)` | Yes | `NULL` | Units (degrees, meters,\
+    \ feet) |\n| `accuracy_meters` | `NUMERIC(10, 2)` | Yes | `NULL` | Transformation\
+    \ accuracy |\n| `usage_count` | `INTEGER` | No | `0` | Number of times used |\n\
+    \nIndexes:\n- Primary Key: `transformation_id`\n- Index: `(source_crs, target_crs)`\n\
+    \n---\n\nTracks data quality metrics for weather products.\n\n| Column | Type\
+    \ | Nullable | Default | Description |\n|--------|------|----------|---------|-------------|\n\
+    | `metric_id` | `VARCHAR(255)` | No | — | Primary key |\n| `metric_date` | `DATE`\
+    \ | No | — | Metric date |\n| `data_source` | `VARCHAR(50)` | No | — | Data source\
+    \ (GRIB2, Shapefile, API) |\n| `files_processed` | `INTEGER` | No | `0` | Number\
+    \ of files processed |\n| `files_successful` | `INTEGER` | No | `0` | Number of\
+    \ successful files |\n| `files_failed` | `INTEGER` | No | `0` | Number of failed\
+    \ files |\n| `success_rate` | `NUMERIC(5, 2)` | Yes | `NULL` | Success rate percentage\
+    \ |\n| `total_records` | `INTEGER` | No | `0` | Total records processed |\n| `records_with_errors`\
+    \ | `INTEGER` | No | `0` | Records with errors |\n| `error_rate` | `NUMERIC(5,\
+    \ 2)` | Yes | `NULL` | Error rate percentage |\n| `spatial_coverage_km2` | `NUMERIC(15,\
+    \ 2)` | Yes | `NULL` | Spatial coverage in square kilometers |\n| `temporal_coverage_hours`\
+    \ | `INTEGER` | Yes | `NULL` | Temporal coverage in hours |\n| `data_freshness_minutes`\
+    \ | `INTEGER` | Yes | `NULL` | Data freshness in minutes |\n| `calculation_timestamp`\
+    \ | `TIMESTAMP_NTZ` | No | `CURRENT_TIMESTAMP()` | Calculation timestamp |\n\n\
+    Indexes:\n- Primary Key: `metric_id`\n- Index: `(metric_date, data_source)`\n\
+    - Index: `metric_date`\n\n---\n\nTracks data loading operations to Databricks.\n\
+    \n| Column | Type | Nullable | Default | Description |\n|--------|------|----------|---------|-------------|\n\
+    | `load_id` | `VARCHAR(255)` | No | — | Primary key |\n| `source_file` | `VARCHAR(1000)`\
+    \ | Yes | `NULL` | Source file name |\n| `target_table` | `VARCHAR(255)` | No\
+    \ | — | Target table |\n| `load_start_time` | `TIMESTAMP_NTZ` | No | — | Load\
+    \ start time |\n| `load_end_time` | `TIMESTAMP_NTZ` | Yes | `NULL` | Load end\
+    \ time |\n| `load_duration_seconds` | `INTEGER` | Yes | `NULL` | Load duration\
+    \ |\n| `records_loaded` | `INTEGER` | No | `0` | Number of records loaded |\n\
+    | `file_size_mb` | `NUMERIC(10, 2)` | Yes | `NULL` | File size in MB |\n| `load_rate_mb_per_sec`\
+    \ | `NUMERIC(10, 2)` | Yes | `NULL` | Load rate in MB/sec |\n| `load_status` |\
+    \ `VARCHAR(50)` | Yes | `NULL` | Status (Success, Failed, Partial) |\n| `error_message`\
+    \ | `VARCHAR(2000)` | Yes | `NULL` | Error message |\n| `warehouse` | `VARCHAR(255)`\
+    \ | Yes | `NULL` | Warehouse used |\n| `data_source_type` | `VARCHAR(50)` | Yes\
+    \ | `NULL` | Data source type |\n\nIndexes:\n- Primary Key: `load_id`\n- Index:\
+    \ `target_table`\n- Index: `load_status`\n- Index: `load_start_time`\n\n---\n\n\
+    Pre-aggregated forecast data for performance optimization.\n\n| Column | Type\
+    \ | Nullable | Default | Description |\n|--------|------|----------|---------|-------------|\n\
+    | `aggregation_id` | `VARCHAR(255)` | No | — | Primary key |\n| `parameter_name`\
+    \ | `VARCHAR(100)` | No | — | Forecast parameter name |\n| `forecast_time` | `TIMESTAMP_NTZ`\
+    \ | No | — | Forecast valid time |\n| `boundary_id` | `VARCHAR(255)` | Yes | `NULL`\
+    \ | Foreign key to `shapefile_boundaries.boundary_id` |\n| `feature_type` | `VARCHAR(50)`\
+    \ | Yes | `NULL` | Feature type |\n| `feature_name` | `VARCHAR(255)` | Yes | `NULL`\
+    \ | Feature name |\n| `min_value` | `NUMERIC(10, 2)` | Yes | `NULL` | Minimum\
+    \ forecast value |\n| `max_value` | `NUMERIC(10, 2)` | Yes | `NULL` | Maximum\
+    \ forecast value |\n| `avg_value` | `NUMERIC(10, 2)` | Yes | `NULL` | Average\
+    \ forecast value |\n| `median_value` | `NUMERIC(10, 2)` | Yes | `NULL` | Median\
+    \ forecast value |\n| `std_dev_value` | `NUMERIC(10, 2)` | Yes | `NULL` | Standard\
+    \ deviation |\n| `grid_cells_count` | `INTEGER` | Yes | `NULL` | Number of grid\
+    \ cells aggregated |\n| `aggregation_timestamp` | `TIMESTAMP_NTZ` | No | `CURRENT_TIMESTAMP()`\
+    \ | Aggregation timestamp |\n\nIndexes:\n- Primary Key: `aggregation_id`\n- Index:\
+    \ `(forecast_time, parameter_name)`\n- Index: `boundary_id`\n- Index: `feature_type`\n\
+    \n---\n\n---\n\n---\n\nThis database includes 30 production SQL queries, each\
+    \ designed to solve specific business problems for companies with $1M+ ARR. Each\
+    \ query includes:\n\n- Business Use Case: The specific business problem this query\
+    \ solves\n- Description: Technical explanation of what the query does\n- Client\
+    \ Deliverable: What output or report this query generates\n- Business Value: The\
+    \ business impact and value delivered\n- Complexity: Technical complexity indicators\n\
+    - SQL Code: Complete, production-ready SQL query\n\n---\n\nUse Case: Custom Weather\
+    \ Impact Modeling - Regional Forecast Accuracy Assessment for Insurance Risk Modeling\n\
+    \nDescription: Enterprise-level spatial weather forecast analysis with multi-level\
+    \ CTE nesting, spatial aggregations within boundaries, forecast accuracy metrics,\
+    \ temporal analysis, and advanced window functions. Demonstrates production patterns\
+    \ used by NOAA and weather forecasting platforms.\n\nBusiness Value: Forecast\
+    \ accuracy report by geographic boundary (CWA, Fire Zones) showing forecast reliability\
+    \ metrics, accuracy classifications, and temporal trends. Helps insurance companies\
+    \ assess forecast accuracy for risk modeling in specific counties and regions.\n\
+    \nPurpose: Quantifies forecast reliability for specific geographic regions, enabling\
+    \ data-driven risk assessment and insurance underwriting decisions.\n\nComplexity:\
+    \ Deep nested CTEs (7+ levels), spatial operations (ST_WITHIN, ST_DISTANCE), complex\
+    \ aggregations, window functions with multiple frame clauses, percentile calculations,\
+    \ time-series analysis, correlated subqueries\n\n---\n\nUse Case: Custom Map Development\
+    \ - Multi-Level Geographic Hierarchy Visualization for Agriculture Insurance\n\
+    \nDescription: Enterprise-level recursive spatial analysis using recursive CTE\
+    \ for multi-level boundary relationships, spatial hierarchy traversal, boundary\
+    \ intersection detection, and geospatial path discovery. Implements production\
+    \ patterns for analyzing nested geographic boundaries (e.g., counties within states,\
+    \ fire zones within CWAs).\n\nBusiness Value: Spatial hierarchy relationships\
+    \ showing nested boundaries (states → counties → fire zones) with forecast aggregations\
+    \ and optimal path analysis. Enables agriculture companies to understand geographic\
+    \ relationships for multi-scale crop insurance analysis.\n\nPurpose: Provides\
+    \ multi-scale geographic analysis enabling clients to understand relationships\
+    \ between administrative boundaries and weather zones for comprehensive risk assessment.\n\
+    \nComplexity: Advanced recursive CTE with spatial operations, multi-hop traversal,\
+    \ cycle detection, path weight calculations, spatial intersection analysis, multiple\
+    \ CTE nesting levels (6+)\n\n---\n\nUse Case: Physical Climate Risk Assessment\
+    \ - Multi-Parameter Risk Correlation for Renewable Energy Planning\n\nDescription:\
+    \ Enterprise-level multi-parameter weather correlation analysis with cross-parameter\
+    \ temporal pattern detection, correlation matrices, lag analysis, and predictive\
+    \ indicators. Implements production patterns for analyzing relationships between\
+    \ temperature, precipitation, wind speed, and other meteorological parameters.\n\
+    \nBusiness Value: Correlation analysis between temperature, precipitation, and\
+    \ wind patterns with temporal lag indicators and weather pattern classifications.\
+    \ Helps energy companies understand correlation between temperature and wind for\
+    \ renewable energy generation planning.\n\nPurpose: Identifies compound weather\
+    \ risks (e.g., high temp + low precip = drought risk) and enables predictive planning\
+    \ for renewable energy operations.\n\nComplexity: Multiple CTEs (8+ levels), cross-parameter\
+    \ joins, correlation calculations, lag/lead analysis, window functions with multiple\
+    \ frame clauses, temporal pattern detection, UNION operations\n\n---\n\nUse Case:\
+    \ Custom Weather Impact Modeling - Boundary-Forecast Matching Efficiency for Logistics\
+    \ Optimization\n\nDescription: Enterprise-level spatial join optimization analysis\
+    \ evaluating boundary-forecast matching efficiency, spatial index utilization,\
+    \ join performance metrics, and optimization opportunities. Implements production\
+    \ patterns for optimizing geospatial data joins.\n\nBusiness Value: Optimizes\
+    \ forecast-to-boundary matching for faster client deliverables and improved operational\
+    \ efficiency.\n\nPurpose: Analysis of how efficiently forecasts match to client-defined\
+    \ boundaries with optimization recommendations. Helps logistics companies optimize\
+    \ forecast-to-delivery-zone matching for faster route planning.\n\nBusiness Value:\
+    \ Optimizes forecast-to-boundary matching for faster client deliverables and improved\
+    \ operational efficiency.\n\nComplexity: Multiple CTEs (7+ levels), spatial join\
+    \ analysis, performance metrics, optimization scoring, window functions, correlated\
+    \ subqueries, UNION operations\n\n---\n\nUse Case: Supply Chain and Fleet Management\
+    \ - Station Coverage Gap Analysis for Route Planning\n\nDescription: Enterprise-level\
+    \ weather station network analysis identifying coverage gaps, station density\
+    \ metrics, spatial interpolation opportunities, and network optimization recommendations.\
+    \ Implements production patterns for analyzing observation network coverage.\n\
+    \nBusiness Value: Map showing gaps in weather station coverage along routes with\
+    \ coverage density metrics. Fleet management companies can identify areas where\
+    \ additional monitoring may be needed.\n\nPurpose: Identifies areas where additional\
+    \ weather monitoring may be needed to ensure adequate coverage for logistics operations.\n\
+    \nComplexity: Multiple CTEs (8+ levels), spatial coverage analysis, gap detection\
+    \ algorithms, density calculations, interpolation analysis, window functions,\
+    \ spatial operations\n\n---\n\nUse Case: Forensic Meteorology - Historical Forecast\
+    \ Accuracy Assessment for Legal Cases\n\nDescription: Enterprise-level forecast\
+    \ accuracy trend analysis identifying temporal error patterns, accuracy degradation\
+    \ over time, seasonal variations, and forecast model performance trends. Implements\
+    \ production patterns for monitoring forecast model accuracy.\n\nBusiness Value:\
+    \ Provides quantitative evidence of forecast reliability for legal proceedings\
+    \ and insurance claim validation.\n\nPurpose: Trend analysis showing forecast\
+    \ accuracy over time with error pattern detection. Provides evidence of forecast\
+    \ reliability for insurance claim disputes and legal cases.\n\nBusiness Value:\
+    \ Provides quantitative evidence of forecast reliability for legal proceedings\
+    \ and insurance claim validation.\n\nComplexity: Multiple CTEs (7+ levels), temporal\
+    \ trend analysis, error pattern detection, seasonal analysis, window functions\
+    \ with multiple frame clauses, time-series decomposition\n\n---\n\nUse Case: Custom\
+    \ Weather Impact Modeling - Aggregated Forecasts by Boundary for Retail Operations\n\
+    \nDescription: Enterprise-level boundary forecast aggregation analysis with multi-level\
+    \ spatial summarization, hierarchical aggregations, and comprehensive statistical\
+    \ summaries. Implements production patterns for aggregating gridded forecasts\
+    \ to geographic boundaries.\n\nBusiness Value: Summary forecasts aggregated by\
+    \ client-defined boundaries (counties, zones). Retail chains can get aggregated\
+    \ temperature forecasts for each store location's county.\n\nPurpose: Provides\
+    \ simplified forecasts for specific geographic areas enabling location-based business\
+    \ decisions.\n\nComplexity: Multiple CTEs (7+ levels), spatial aggregations, hierarchical\
+    \ summarization, statistical calculations, window functions, UNION operations\n\
+    \n---\n\nUse Case: Forensic Meteorology - Forecast vs. Observation Validation\
+    \ for Legal Evidence\n\nDescription: Enterprise-level observation-forecast validation\
+    \ analysis comparing actual observations with forecasts, calculating accuracy\
+    \ scores, identifying systematic biases, and providing validation metrics. Implements\
+    \ production patterns for forecast validation and model evaluation.\n\nBusiness\
+    \ Value: Provides evidence of forecast accuracy for legal proceedings and insurance\
+    \ claim validation.\n\nPurpose: Validation report comparing forecasts to actual\
+    \ observations with accuracy scoring. Legal cases require documentation that forecasts\
+    \ were accurate at specific times/locations.\n\nBusiness Value: Provides evidence\
+    \ of forecast accuracy for legal proceedings and insurance claim validation.\n\
+    \nComplexity: Multiple CTEs (8+ levels), observation-forecast matching, accuracy\
+    \ calculations, bias detection, validation scoring, window functions, statistical\
+    \ analysis\n\n---\n\nUse Case: Custom Map Development - Boundary Overlap Detection\
+    \ for Real Estate Development\n\nDescription: Enterprise-level multi-boundary\
+    \ spatial intersection analysis identifying overlapping boundaries, intersection\
+    \ areas, coverage gaps, and spatial relationships between different boundary types.\
+    \ Implements production patterns for analyzing complex geospatial boundary relationships.\n\
+    \nBusiness Value: Analysis of overlapping boundaries (e.g., fire zones overlapping\
+    \ counties) with intersection metrics. Real estate developers can understand which\
+    \ fire zones overlap with property boundaries.\n\nPurpose: Helps clients understand\
+    \ complex geographic relationships for property and risk assessment.\n\nComplexity:\
+    \ Multiple CTEs (7+ levels), spatial intersection operations, overlap calculations,\
+    \ area computations, relationship detection, window functions\n\n---\n\nUse Case:\
+    \ Physical Climate Risk Assessment - Statistical Weather Profiling for Insurance\
+    \ Underwriting\n\nDescription: Enterprise-level parameter forecast distribution\
+    \ analysis with statistical profiling, distribution shape analysis, outlier detection,\
+    \ and distribution comparisons. Implements production patterns for statistical\
+    \ analysis of forecast distributions.\n\nBusiness Value: Identifies normal vs.\
+    \ extreme weather patterns for risk assessment and insurance pricing.\n\nPurpose:\
+    \ Statistical distribution analysis of forecast parameters with percentile rankings.\
+    \ Insurance companies need statistical profiles of weather parameters for underwriting\
+    \ decisions.\n\nBusiness Value: Identifies normal vs. extreme weather patterns\
+    \ for risk assessment and insurance pricing.\n\nComplexity: Multiple CTEs (6+\
+    \ levels), statistical distribution analysis, percentile calculations, outlier\
+    \ detection, distribution comparisons, window functions\n\n---\n\nUse Case: Custom\
+    \ Weather Impact Modeling - Spatial Gradient Detection for Precision Agriculture\n\
+    \nDescription: Enterprise-level geospatial forecast interpolation analysis identifying\
+    \ spatial gradients, interpolation opportunities, spatial patterns, and interpolation\
+    \ quality metrics. Implements production patterns for spatial interpolation and\
+    \ gradient analysis.\n\nBusiness Value: Analysis of how weather parameters change\
+    \ across space with gradient calculations. Agriculture companies can understand\
+    \ temperature gradients across farmland for precision farming.\n\nPurpose: Identifies\
+    \ spatial gradients for precise location-specific forecasts enabling precision\
+    \ agriculture.\n\nComplexity: Multiple CTEs (7+ levels), spatial interpolation\
+    \ analysis, gradient calculations, spatial pattern detection, distance-based analysis,\
+    \ window functions\n\n---\n\nUse Case: Physical Climate Risk Assessment - Pattern-Based\
+    \ Risk Identification for Renewable Energy\n\nDescription: Enterprise-level weather\
+    \ pattern clustering analysis identifying spatial-temporal patterns, clustering\
+    \ similar weather conditions, and detecting pattern anomalies. Implements production\
+    \ patterns for weather pattern recognition and clustering.\n\nBusiness Value:\
+    \ Helps predict future weather patterns based on historical clusters for energy\
+    \ planning.\n\nPurpose: Identification of recurring weather patterns with clustering\
+    \ metrics. Energy companies can identify patterns that affect renewable energy\
+    \ generation.\n\nBusiness Value: Helps predict future weather patterns based on\
+    \ historical clusters for energy planning.\n\nComplexity: Multiple CTEs (8+ levels),\
+    \ clustering analysis, pattern detection, spatial-temporal analysis, similarity\
+    \ calculations, window functions\n\n---\n\nUse Case: Forensic Meteorology - Multi-Model\
+    \ Analysis for Comprehensive Legal Evidence\n\nDescription: This SQL query performs\
+    \ comprehensive forecast model performance comparison for a weather consulting\
+    \ firm. It identifies forecast models (NDFD, GFS, NAM, RAP) from source file patterns,\
+    \ spatially matches forecasts with weather observations within 25km and temporally\
+    \ within 1 hour, calculates accuracy metrics (mean absolute error, root mean squared\
+    \ error, bias, success rates), ranks models by performance, computes weighted\
+    \ performance scores, and classifies models as Best/Good/Average/Below Average\
+    \ performers. The query uses multiple nested CTEs to match forecast data with\
+    \ observations, calculate statistical metrics, compare models against overall\
+    \ averages using window functions, rank models by multiple criteria, and generate\
+    \ final performance classifications with trend analysis including moving averages\
+    \ and percentile rankings.\n\nBusiness Value: Comparison of different forecast\
+    \ models' performance with accuracy metrics. Court cases require comparison of\
+    \ multiple forecast models to establish weather conditions.\n\nPurpose: Provides\
+    \ comprehensive analysis using multiple models for legal evidence and risk assessment.\n\
+    \nComplexity: Multiple CTEs (7+ levels), model comparison, performance metrics,\
+    \ accuracy calculations, ranking analysis, window functions\n\n---\n\nUse Case:\
+    \ Physical Climate Risk Assessment - Extreme Event Detection for Emergency Management\n\
+    \nDescription: Enterprise-level boundary forecast anomaly detection identifying\
+    \ statistical outliers, anomalies in boundary aggregations, and unusual forecast\
+    \ patterns. Implements production patterns for anomaly detection in geospatial\
+    \ forecast data.\n\nBusiness Value: Early warning system for extreme weather events\
+    \ enabling proactive risk management.\n\nPurpose: Identification of anomalous\
+    \ weather patterns within boundaries with outlier metrics. Emergency management\
+    \ needs anomaly detection for early warning systems.\n\nBusiness Value: Early\
+    \ warning system for extreme weather events enabling proactive risk management.\n\
+    \nComplexity: Multiple CTEs (8+ levels), anomaly detection algorithms, statistical\
+    \ outlier identification, pattern analysis, window functions, UNION operations\n\
+    \n---\n\nUse Case: Insurance Underwriting - Multi-Day Forecast Risk Assessment\
+    \ for Rate Determination\n\nDescription: Calculates comprehensive risk factors\
+    \ for insurance policy areas based on 7-14 day forecasts from December 3-17, 2025.\
+    \ Analyzes multiple weather parameters to determine extreme event probabilities,\
+    \ precipitation risk, temperature extremes, wind damage risk, freeze risk, and\
+    \ flood risk.\n\nBusiness Value: Risk factor analysis report showing forecast-based\
+    \ risk scores for each policy area and forecast day (7-14 days ahead).\n\nPurpose:\
+    \ Enables insurance companies to adjust rates dynamically based on forecasted\
+    \ weather risks, improving underwriting accuracy and profitability.\n\nComplexity:\
+    \ Multiple CTEs (8+ levels), forecast period filtering, risk calculations, percentile\
+    \ analysis, window functions, spatial joins\n\n---\n\nUse Case: Insurance Underwriting\
+    \ - Dynamic Rate Table Calculation Based on 7-14 Day Forecasts\n\nDescription:\
+    \ Generates insurance rate tables for December 3-17, 2025 period using risk factors\
+    \ calculated from 7-14 day forecasts. Calculates base rates, risk-adjusted rates,\
+    \ rate components, and rate tiers based on forecast-based risk scores.\n\nBusiness\
+    \ Value: Enables dynamic pricing based on forecasted weather risks, allowing insurance\
+    \ companies to adjust rates proactively and optimize profitability.\n\nPurpose:\
+    \ Complete rate table showing rates for each policy area, forecast day (7-14 days),\
+    \ and coverage type with risk-adjusted pricing.\n\nBusiness Value: Enables dynamic\
+    \ pricing based on forecasted weather risks, allowing insurance companies to adjust\
+    \ rates proactively and optimize profitability.\n\nComplexity: Multiple CTEs (9+\
+    \ levels), rate calculations, risk factor integration, tier assignments, window\
+    \ functions, complex aggregations\n\n---\n\nUse Case: Insurance Underwriting -\
+    \ Multi-Day Forecast Rate Comparison for Optimal Rate Selection\n\nDescription:\
+    \ Compares insurance rates across all forecast days (7-14 days ahead) for December\
+    \ 3-17, 2025 period. Calculates rate statistics, volatility, trends, and recommends\
+    \ optimal forecast day for rate determination.\n\nBusiness Value: Rate comparison\
+    \ report showing rates by forecast day with volatility metrics and recommended\
+    \ rates.\n\nPurpose: Enables insurance companies to select optimal forecast day\
+    \ balancing accuracy (shorter forecast) with planning horizon (longer forecast).\n\
+    \nComplexity: Multiple CTEs (7+ levels), rate aggregation, volatility calculations,\
+    \ trend analysis, window functions, statistical analysis\n\n---\n\nUse Case: Insurance\
+    \ Underwriting - Forecast Accuracy Validation Using Historical Claims Data\n\n\
+    Description: Validates forecast-based risk factors against historical claims data\
+    \ for December 3-17, 2025 period. Compares forecast risk scores with actual claims\
+    \ to assess forecast accuracy and improve rate modeling.\n\nBusiness Value: Enables\
+    \ insurance companies to validate and improve forecast-based rate models using\
+    \ historical data, improving underwriting accuracy over time.\n\nPurpose: Validation\
+    \ report showing forecast risk vs actual claims with accuracy metrics and improvement\
+    \ recommendations.\n\nBusiness Value: Enables insurance companies to validate\
+    \ and improve forecast-based rate models using historical data, improving underwriting\
+    \ accuracy over time.\n\nComplexity: Multiple CTEs (8+ levels), historical data\
+    \ joins, forecast accuracy calculations, error analysis, window functions, statistical\
+    \ comparisons\n\n---\n\nUse Case: Insurance Underwriting - Rate Stability Assessment\
+    \ for Pricing Consistency\n\nDescription: Analyzes rate volatility and stability\
+    \ across 7-14 day forecasts for December 3-17, 2025. Identifies areas with high\
+    \ rate volatility and recommends stable pricing strategies.\n\nBusiness Value:\
+    \ Rate volatility analysis report with stability metrics and recommendations for\
+    \ consistent pricing.\n\nPurpose: Helps insurance companies identify pricing inconsistencies\
+    \ and implement stable pricing strategies, improving customer trust and retention.\n\
+    \nComplexity: Multiple CTEs (6+ levels), volatility calculations, stability metrics,\
+    \ trend analysis, window functions, statistical analysis\n\n---\n\nUse Case: Insurance\
+    \ Underwriting - Geographic Risk Ranking for Portfolio Management\n\nDescription:\
+    \ Ranks policy areas by forecast-based risk scores for December 3-17, 2025 period.\
+    \ Provides comparative risk analysis across geographic areas to support portfolio\
+    \ management and resource allocation.\n\nBusiness Value: Enables insurance companies\
+    \ to identify high-risk areas, allocate underwriting resources effectively, and\
+    \ optimize portfolio risk distribution.\n\nPurpose: Risk ranking report showing\
+    \ policy areas ordered by risk level with comparative metrics.\n\nBusiness Value:\
+    \ Enables insurance companies to identify high-risk areas, allocate underwriting\
+    \ resources effectively, and optimize portfolio risk distribution.\n\nComplexity:\
+    \ Multiple CTEs (7+ levels), risk aggregation, ranking calculations, percentile\
+    \ analysis, window functions, comparative analysis\n\n---\n\nUse Case: Insurance\
+    \ Underwriting - Forecast Parameter Impact on Rate Determination\n\nDescription:\
+    \ Analyzes how individual forecast parameters (temperature, precipitation, wind)\
+    \ impact insurance rates for December 3-17, 2025. Quantifies the contribution\
+    \ of each weather parameter to final rate calculations.\n\nBusiness Value: Parameter\
+    \ impact analysis showing which forecast parameters drive rate changes and their\
+    \ relative contributions.\n\nPurpose: Enables insurance companies to understand\
+    \ which weather parameters most significantly affect rates, improving transparency\
+    \ and model interpretability.\n\nComplexity: Multiple CTEs (6+ levels), parameter\
+    \ contribution analysis, impact calculations, correlation analysis, window functions\n\
+    \n---\n\nUse Case: Insurance Underwriting - Ensemble Forecast Rate Analysis for\
+    \ Robust Pricing\n\nDescription: Analyzes rates across multiple forecast days\
+    \ (7-14 days) as an ensemble to determine robust, consensus rates. Uses ensemble\
+    \ statistics to reduce forecast uncertainty and provide more stable pricing.\n\
+    \nBusiness Value: Provides more robust rate determination by combining multiple\
+    \ forecast days, reducing impact of individual forecast errors and improving pricing\
+    \ stability.\n\nPurpose: Ensemble rate analysis showing consensus rates across\
+    \ forecast days with confidence intervals.\n\nBusiness Value: Provides more robust\
+    \ rate determination by combining multiple forecast days, reducing impact of individual\
+    \ forecast errors and improving pricing stability.\n\nComplexity: Multiple CTEs\
+    \ (7+ levels), ensemble statistics, consensus calculations, confidence intervals,\
+    \ window functions, statistical aggregation\n\n---\n\nUse Case: Insurance Underwriting\
+    \ - Optimal Forecast Day Selection for Rate Determination\n\nDescription: Determines\
+    \ optimal forecast day (7-14 days) for rate determination based on accuracy, confidence,\
+    \ and business requirements. Balances forecast accuracy (shorter forecast) with\
+    \ planning horizon (longer forecast).\n\nBusiness Value: Forecast day optimization\
+    \ report recommending optimal forecast day for each policy area with justification.\n\
+    \nPurpose: Enables insurance companies to select optimal forecast day balancing\
+    \ accuracy and planning needs, improving rate determination efficiency.\n\nComplexity:\
+    \ Multiple CTEs (8+ levels), optimization scoring, multi-criteria analysis, window\
+    \ functions, ranking calculations\n\n---\n\nUse Case: Insurance Underwriting -\
+    \ Comprehensive Rate Modeling Summary Dashboard\n\nDescription: Provides comprehensive\
+    \ summary of insurance rate modeling for December 3-17, 2025 period. Aggregates\
+    \ risk factors, rates, comparisons, validations, and recommendations into a single\
+    \ dashboard view.\n\nBusiness Value: Provides insurance companies with single-source-of-truth\
+    \ dashboard for rate modeling decisions, improving efficiency and decision-making.\n\
+    \nPurpose: Comprehensive rate modeling summary dashboard with all key metrics\
+    \ and recommendations.\n\nBusiness Value: Provides insurance companies with single-source-of-truth\
+    \ dashboard for rate modeling decisions, improving efficiency and decision-making.\n\
+    \nComplexity: Multiple CTEs (9+ levels), comprehensive aggregation, summary statistics,\
+    \ dashboard metrics, window functions, multi-table joins\n\n---\n\nUse Case: Real-Time\
+    \ Weather Monitoring - Nationwide Radar Composite for Severe Weather Detection\n\
+    \nDescription: Generates US-wide composite reflectivity from all NEXRAD radar\
+    \ sites. Combines Level II radar data from multiple sites to create seamless nationwide\
+    \ coverage, handling overlapping coverage areas and data quality issues.\n\nBusiness\
+    \ Value: US-wide reflectivity composite showing precipitation intensity across\
+    \ entire United States with seamless coverage.\n\nPurpose: Provides comprehensive\
+    \ real-time precipitation monitoring across the entire US, enabling severe weather\
+    \ detection and flood forecasting at national scale.\n\nComplexity: Multiple CTEs\
+    \ (8+ levels), multi-site data fusion, spatial interpolation, coverage optimization,\
+    \ quality weighting, window functions\n\n---\n\nUse Case: Severe Weather Forecasting\
+    \ - Multi-Site Storm Cell Tracking for Tornado and Severe Thunderstorm Prediction\n\
+    \nDescription: Tracks storm cells across multiple NEXRAD radar sites and analyzes\
+    \ their movement, intensity changes, and development patterns. Handles storm cell\
+    \ merging, splitting, and dissipation across the entire US.\n\nBusiness Value:\
+    \ Enables severe weather prediction and warning systems by tracking storm development\
+    \ and movement patterns across radar networks.\n\nPurpose: Storm cell tracking\
+    \ report showing storm movement, intensity trends, and predicted paths across\
+    \ multiple radar sites.\n\nBusiness Value: Enables severe weather prediction and\
+    \ warning systems by tracking storm development and movement patterns across radar\
+    \ networks.\n\nComplexity: Multiple CTEs (9+ levels), temporal tracking, spatial\
+    \ matching, storm cell association, movement calculation, window functions, recursive\
+    \ patterns\n\n---\n\nUse Case: Cloud Monitoring - Nationwide Cloud Coverage Analysis\
+    \ from GOES Satellite Imagery\n\nDescription: Generates US-wide cloud composite\
+    \ from decompressed GOES satellite imagery. Combines multiple satellite bands\
+    \ and products to create seamless cloud coverage maps across the entire United\
+    \ States.\n\nBusiness Value: US-wide cloud composite showing cloud coverage, cloud\
+    \ top heights, and cloud properties across entire United States.\n\nPurpose: Provides\
+    \ comprehensive cloud monitoring for solar energy forecasting, aviation weather,\
+    \ and climate analysis at national scale.\n\nComplexity: Multiple CTEs (7+ levels),\
+    \ multi-band satellite data fusion, cloud property extraction, spatial interpolation,\
+    \ temporal alignment\n\n---\n\nUse Case: Precipitation Monitoring - Multi-Source\
+    \ Precipitation Estimation Combining Radar and Satellite Data\n\nDescription:\
+    \ Fuses NEXRAD radar reflectivity and satellite precipitation estimates to create\
+    \ improved US-wide precipitation maps. Combines strengths of both data sources\
+    \ for more accurate precipitation estimation.\n\nBusiness Value: Provides more\
+    \ accurate and comprehensive precipitation estimates by combining radar (high\
+    \ resolution) and satellite (wide coverage) data sources.\n\nPurpose: Fused precipitation\
+    \ product combining NEXRAD and satellite data with improved accuracy and coverage.\n\
+    \nBusiness Value: Provides more accurate and comprehensive precipitation estimates\
+    \ by combining radar (high resolution) and satellite (wide coverage) data sources.\n\
+    \nComplexity: Multiple CTEs (8+ levels), multi-source data fusion, weighted combination,\
+    \ quality assessment, spatial matching, temporal alignment\n\n---\n\nUse Case:\
+    \ Wildfire Monitoring - Nationwide Fire Detection from GOES Satellite Imagery\n\
+    \nDescription: Detects and monitors fires across the entire United States using\
+    \ decompressed GOES satellite imagery. Analyzes fire radiative power, temperature,\
+    \ and development patterns for wildfire management.\n\nBusiness Value: US-wide\
+    \ fire detection report showing fire locations, intensity, and development trends\
+    \ from satellite imagery.\n\nPurpose: Enables early wildfire detection and monitoring\
+    \ at national scale, supporting fire management and emergency response.\n\nComplexity:\
+    \ Multiple CTEs (6+ levels), fire detection algorithms, temporal tracking, spatial\
+    \ clustering, intensity analysis\n\n---\n\nUse Case: Comprehensive Weather Monitoring\
+    \ - Multi-Source Composite Products for National Weather Analysis\n\nDescription:\
+    \ Generates US-wide composite products combining NEXRAD radar and satellite imagery\
+    \ data. Creates seamless nationwide weather products with improved coverage and\
+    \ accuracy.\n\nPurpose: US-wide composite products combining radar and satellite\
+    \ data for comprehensive weather monitoring.\n\nPurpose: Provides comprehensive\
+    \ weather monitoring by combining strengths of radar (high resolution) and satellite\
+    \ (wide coverage) data sources.\n\nComplexity: Multiple CTEs (7+ levels), multi-source\
+    \ data fusion, composite generation, quality weighting, spatial interpolation\n\
+    \n---\n\n1. Database Access: Ensure you have access to the database instance (PostgreSQL\
+    \ with PostGIS)\n2. Credentials: Obtain database connection credentials\n3. Schema:\
+    \ Ensure all tables are created and populated with data\n4. Spatial Extensions:\
+    \ For PostgreSQL, ensure PostGIS extension is installed:\n   \n\n1. Open Query\
+    \ File: Navigate to `queries/queries.md`\n2. Select Query: Choose the query number\
+    \ you want to execute\n3. Review Business Case: Understand the use case and expected\
+    \ output\n4. Copy SQL: Copy the SQL code from the code block\n5. Execute: Run\
+    \ the query in your database client:\n   - PostgreSQL: Use `psql` or pgAdmin (ensure\
+    \ PostGIS is enabled)\n\n- Each query includes a \"Business Use Case\" section\
+    \ explaining the real-world application\n- Review the \"Client Deliverable\" section\
+    \ to understand what the query produces\n- Check the \"Expected Output\" section\
+    \ for result set descriptions\n- Spatial queries return geographic data that can\
+    \ be visualized on maps\n\n1. Create a new notebook\n2. Set the language to SQL\n\
+    3. Copy the query SQL into a cell\n4. Add markdown cells above for context:\n\
+    \   \n5. Execute the cell to run the query\n6. Review results and add visualization\
+    \ cells:\n   - Use map visualizations for spatial results\n   - Create charts\
+    \ for time-series data\n   - Generate tables for aggregated metrics\n\n1. Create\
+    \ Tables: Execute the schema creation scripts from `data/schema.sql`\n2. Enable\
+    \ Spatial Extensions: For PostgreSQL:\n   \n3. Create Indexes: Ensure all indexes\
+    \ are created, especially spatial indexes (GIST)\n4. Load Data: Populate tables\
+    \ with weather data:\n   - GRIB2 forecast data\n   - Shapefile boundaries\n  \
+    \ - Weather observations\n5. Verify: Run validation queries to ensure data integrity\n\
+    \n- Spatial Indexes: Critical for spatial query performance (GIST indexes on GEOGRAPHY\
+    \ columns)\n- Partitioning: Consider partitioning large tables (`grib2_forecasts`,\
+    \ `weather_observations`) by date\n- Aggregations: Use `weather_forecast_aggregations`\
+    \ table for pre-computed aggregations\n- Monitoring: Monitor query execution times,\
+    \ especially for spatial joins\n- Optimization: Review spatial join strategies\
+    \ and consider spatial clustering\n\n- Spatial Types:\n  - PostgreSQL: Uses PostGIS\
+    \ GEOGRAPHY type\n  : Uses GEOMETRY type (compatible)\n  : Uses GEOGRAPHY type\n\
+    - Spatial Functions: Standard spatial functions (ST_WITHIN, ST_DISTANCE, ST_INTERSECTS)\
+    \ work across all platforms\n- CRS Handling: All spatial data uses WGS84 (EPSG:4326)\
+    \ for compatibility\n- Test queries on your target database before production\
+    \ use\n\n1. GRIB2 Files: Use transformation scripts to load GRIB2 data\n2. Shapefiles:\
+    \ Use OGR2OGR or similar tools to transform and load shapefiles\n3. API Data:\
+    \ Use ETL pipelines to load real-time observations from NWS API\n4. Monitoring:\
+    \ Track data quality metrics using `data_quality_metrics` table\n\n---\n\n---\n\
+    \nAll queries in this database are designed to work across multiple database platforms:\n\
+    \n- PostgreSQL: Full support with standard SQL features\n\nQueries use standard\
+    \ SQL syntax and avoid platform-specific features to ensure compatibility.\n\n\
+    ---\n\nDocument Information:\n\n- Generated: 20260210-0115\n- Database: db-6\n\
+    - Type: Weather Data Pipeline System\n- Queries: 30 production queries\n- Status:\
+    \ ✅ Complete Comprehensive Deliverable"
+  version: 1.0.0
+  contact:
+    name: Database Team
+  license:
+    name: MIT
+servers:
+- url: postgresql://localhost:5432/db_6
+  description: PostgreSQL Server with PostGIS
+tags:
+- name: schema
+  description: Database schema information
+- name: tables
+  description: Table definitions and structures
+- name: spatial
+  description: Spatial data types and operations
+- name: queries
+  description: SQL query definitions and metadata
+- name: relationships
+  description: Table relationships and foreign keys
+paths:
+  /schema:
+    get:
+      tags:
+      - schema
+      summary: Get database schema overview
+      description: Returns overview information about the database schema
+      responses:
+        '200':
+          description: Schema overview
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaOverview'
+  /tables:
+    get:
+      tags:
+      - tables
+      summary: List all tables
+      description: Returns a list of all tables in the database
+      responses:
+        '200':
+          description: List of tables
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Table'
+  /tables/{tableName}:
+    get:
+      tags:
+      - tables
+      summary: Get table details
+      description: Returns detailed information about a specific table
+      parameters:
+      - name: tableName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Name of the table
+      responses:
+        '200':
+          description: Table details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+  /queries:
+    get:
+      tags:
+      - queries
+      summary: List all SQL queries
+      description: Returns metadata for all SQL queries
+      responses:
+        '200':
+          description: List of queries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Query'
+  /queries/{queryNumber}:
+    get:
+      tags:
+      - queries
+      summary: Get query details
+      description: Returns detailed information and SQL code for a specific query
+      parameters:
+      - name: queryNumber
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Query number (1-30)
+      responses:
+        '200':
+          description: Query details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+  /spatial/operations:
+    get:
+      tags:
+      - spatial
+      summary: List spatial operations
+      description: Returns available spatial operations and functions
+      responses:
+        '200':
+          description: List of spatial operations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SpatialOperation'
+components:
+  schemas:
+    SchemaOverview:
+      type: object
+      properties:
+        database_name:
+          type: string
+          example: db-1
+        database_type:
+          type: string
+          example: Chat/Messaging System
+        created_date:
+          type: string
+          format: date
+          example: '2026-02-03'
+        total_tables:
+          type: integer
+          example: 11
+        supported_platforms:
+          type: array
+          items:
+            type: string
+          example:
+          - PostgreSQL
+        table_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableGroup'
+    TableGroup:
+      type: object
+      properties:
+        name:
+          type: string
+          example: User Management
+        tables:
+          type: array
+          items:
+            type: string
+          example:
+          - profiles
+    Table:
+      type: object
+      required:
+      - name
+      - columns
+      properties:
+        name:
+          type: string
+          example: profiles
+        description:
+          type: string
+          example: Stores user profile information
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+        indexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Index'
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Constraint'
+        foreign_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForeignKey'
+    Column:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          example: id
+        type:
+          type: string
+          example: UUID
+        nullable:
+          type: boolean
+          example: false
+        default:
+          type: string
+          nullable: true
+          example: gen_random_uuid()
+        description:
+          type: string
+          example: Primary key - unique user identifier
+        primary_key:
+          type: boolean
+          example: true
+    Index:
+      type: object
+      properties:
+        name:
+          type: string
+          example: idx_profiles_username
+        columns:
+          type: array
+          items:
+            type: string
+          example:
+          - username
+        unique:
+          type: boolean
+          example: true
+        type:
+          type: string
+          example: btree
+    Constraint:
+      type: object
+      properties:
+        name:
+          type: string
+          example: pk_profiles
+        type:
+          type: string
+          enum:
+          - PRIMARY KEY
+          - UNIQUE
+          - CHECK
+          - NOT NULL
+          example: PRIMARY KEY
+        columns:
+          type: array
+          items:
+            type: string
+          example:
+          - id
+    ForeignKey:
+      type: object
+      properties:
+        name:
+          type: string
+          example: fk_chats_created_by
+        from_table:
+          type: string
+          example: chats
+        from_column:
+          type: string
+          example: created_by
+        to_table:
+          type: string
+          example: profiles
+        to_column:
+          type: string
+          example: id
+    Query:
+      type: object
+      required:
+      - number
+      - title
+      - sql
+      properties:
+        number:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: Production-Grade User Activity Analysis
+        description:
+          type: string
+          example: Enterprise-level user activity analysis
+        complexity:
+          type: string
+          example: Deep nested CTEs (5+ levels)
+        sql:
+          type: string
+          example: WITH user_registration_cohorts AS (...)
+        expected_output:
+          type: string
+          example: Top 20 users ranked by message activity
+        categories:
+          type: array
+          items:
+            type: string
+          example:
+          - User Activity Analysis
+          - Cohort Analytics
+        database_compatibility:
+          type: object
+          properties:
+            postgresql:
+              type: boolean
+              example: true
+        businessUseCase:
+          type: string
+          example: Custom Weather Impact Modeling
+        clientDeliverable:
+          type: string
+          example: Forecast accuracy report
+        businessValue:
+          type: string
+          example: Quantifies forecast reliability
+        spatial_operations:
+          type: array
+          items:
+            type: string
+          example:
+          - ST_WITHIN
+          - ST_DISTANCE
+    SpatialColumn:
+      type: object
+      properties:
+        name:
+          type: string
+          example: grid_cell_geom
+        type:
+          type: string
+          enum:
+          - GEOGRAPHY
+          - GEOMETRY
+          example: GEOGRAPHY
+        geometry_type:
+          type: string
+          enum:
+          - POINT
+          - POLYGON
+          - LINESTRING
+          - MULTIPOINT
+          - MULTIPOLYGON
+          - MULTILINESTRING
+          example: POINT
+        crs:
+          type: string
+          example: EPSG:4326
+        description:
+          type: string
+          example: Point geometry for grid cell center
+    SpatialOperation:
+      type: object
+      properties:
+        name:
+          type: string
+          example: ST_WITHIN
+        description:
+          type: string
+          example: Checks if one geometry is within another
+        syntax:
+          type: string
+          example: ST_WITHIN(geometry1, geometry2)
+        return_type:
+          type: string
+          example: BOOLEAN
+        supported_platforms:
+          type: array
+          items:
+            type: string
+          example:
+          - PostgreSQL (PostGIS)
+  examples:
+    ProfilesTable:
+      summary: Example profiles table
+      value:
+        name: profiles
+        description: Stores user profile information
+        columns:
+        - name: id
+          type: UUID
+          nullable: false
+          primary_key: true
+          description: Primary key - unique user identifier
+        - name: username
+          type: VARCHAR(255)
+          nullable: false
+          description: Unique username for login
+        indexes:
+        - name: idx_profiles_username
+          columns:
+          - username
+          unique: true
+    QueryExample:
+      summary: Example query
+      value:
+        number: 1
+        title: Production-Grade User Activity Analysis
+        description: Enterprise-level user activity analysis
+        sql: WITH user_registration_cohorts AS (...) SELECT ...
+        expected_output: Top 20 users ranked by message activity

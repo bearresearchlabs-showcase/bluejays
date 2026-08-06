@@ -1,0 +1,292 @@
+{
+  "database": "db-2",
+  "database_number": 2,
+  "test_timestamp": "2026-02-03T20:37:50.396591",
+  "postgresql": {
+    "available": true,
+    "queries": [
+      {
+        "query_number": 1,
+        "description": "Query 1",
+        "success": true,
+        "execution_time_ms": 3.119230270385742,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 2,
+        "description": "Query 2",
+        "success": true,
+        "execution_time_ms": 1.705169677734375,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 3,
+        "description": "Query 3",
+        "success": true,
+        "execution_time_ms": 1.6460418701171875,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 4,
+        "description": "Query 4",
+        "success": true,
+        "execution_time_ms": 2.507925033569336,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 5,
+        "description": "Query 5",
+        "success": true,
+        "execution_time_ms": 1.7499923706054688,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 6,
+        "description": "Query 6",
+        "success": true,
+        "execution_time_ms": 2.0148754119873047,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 7,
+        "description": "Query 7",
+        "success": true,
+        "execution_time_ms": 1.8630027770996094,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 8,
+        "description": "Query 8",
+        "success": true,
+        "execution_time_ms": 1.6379356384277344,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 9,
+        "description": "Query 9",
+        "success": true,
+        "execution_time_ms": 1.2319087982177734,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 10,
+        "description": "Query 10",
+        "success": true,
+        "execution_time_ms": 1.8801689147949219,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 11,
+        "description": "Query 11",
+        "success": true,
+        "execution_time_ms": 1.5590190887451172,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 12,
+        "description": "Query 12",
+        "success": true,
+        "execution_time_ms": 1.2688636779785156,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 13,
+        "description": "Query 13",
+        "success": true,
+        "execution_time_ms": 1.4350414276123047,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 14,
+        "description": "Query 14",
+        "success": true,
+        "execution_time_ms": 3.1681060791015625,
+        "row_count": 0,
+        "error": null,
+        "error_type": null
+      },
+      {
+        "query_number": 15,
+        "description": "Query 15",
+        "success": false,
+        "execution_time_ms": 1.1210441589355469,
+        "row_count": 0,
+        "error": "non-integer constant in GROUP BY\nLINE 160:     GROUP BY NULL\n                       ^\n",
+        "error_type": "SyntaxError"
+      },
+      {
+        "query_number": 16,
+        "description": "Query 16",
+        "success": false,
+        "execution_time_ms": 0.9169578552246094,
+        "row_count": 0,
+        "error": "operator does not exist: uuid <> text\nLINE 24:     WHERE t.id != ALL(cc.chain_path)\n                        ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 17,
+        "description": "Query 17",
+        "success": false,
+        "execution_time_ms": 0.8821487426757812,
+        "row_count": 0,
+        "error": "operator does not exist: uuid <> text\nLINE 27:     WHERE t.id != ALL(tc.chain_path)\n                        ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 18,
+        "description": "Query 18",
+        "success": false,
+        "execution_time_ms": 0.759124755859375,
+        "row_count": 0,
+        "error": "syntax error at or near \".\"\nLINE 19:         p.id AS related_id,\n                  ^\n",
+        "error_type": "SyntaxError"
+      },
+      {
+        "query_number": 19,
+        "description": "Query 19",
+        "success": false,
+        "execution_time_ms": 0.7040500640869141,
+        "row_count": 0,
+        "error": "column \"value\" does not exist\nLINE 5:         value,\n                ^\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 20,
+        "description": "Query 20",
+        "success": false,
+        "execution_time_ms": 0.698089599609375,
+        "row_count": 0,
+        "error": "column \"value\" does not exist\nLINE 5:         value,\n                ^\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 21,
+        "description": "Query 21",
+        "success": false,
+        "execution_time_ms": 0.7071495056152344,
+        "row_count": 0,
+        "error": "function avg(uuid) does not exist\nLINE 49:             SELECT AVG(id)\n                            ^\nHINT:  No function matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 22,
+        "description": "Query 22",
+        "success": false,
+        "execution_time_ms": 0.8130073547363281,
+        "row_count": 0,
+        "error": "operator does not exist: uuid <> text\nLINE 27:     WHERE t.id != ALL(tp.pattern_path)\n                        ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 23,
+        "description": "Query 23",
+        "success": false,
+        "execution_time_ms": 0.7891654968261719,
+        "row_count": 0,
+        "error": "missing FROM-clause entry for table \"sc\"\nLINE 36:         sc.id,\n                 ^\n",
+        "error_type": "UndefinedTable"
+      },
+      {
+        "query_number": 24,
+        "description": "Query 24",
+        "success": false,
+        "execution_time_ms": 0.6487369537353516,
+        "row_count": 0,
+        "error": "missing FROM-clause entry for table \"o1\"\nLINE 32:         o1.id AS customer_order_id,\n                 ^\n",
+        "error_type": "UndefinedTable"
+      },
+      {
+        "query_number": 25,
+        "description": "Query 25",
+        "success": false,
+        "execution_time_ms": 0.8730888366699219,
+        "row_count": 0,
+        "error": "function sum(uuid) does not exist\nLINE 122:         SUM(rwus.id) OVER (\n                  ^\nHINT:  No function matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 26,
+        "description": "Query 26",
+        "success": false,
+        "execution_time_ms": 0.8032321929931641,
+        "row_count": 0,
+        "error": "operator does not exist: uuid <> text\nLINE 24:     WHERE t.id != ALL(cc.chain_path)\n                        ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 27,
+        "description": "Query 27",
+        "success": false,
+        "execution_time_ms": 0.7150173187255859,
+        "row_count": 0,
+        "error": "operator does not exist: uuid <> text\nLINE 27:     WHERE t.id != ALL(tc.chain_path)\n                        ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction"
+      },
+      {
+        "query_number": 28,
+        "description": "Query 28",
+        "success": false,
+        "execution_time_ms": 0.5481243133544922,
+        "row_count": 0,
+        "error": "syntax error at or near \".\"\nLINE 19:         p.id AS related_id,\n                  ^\n",
+        "error_type": "SyntaxError"
+      },
+      {
+        "query_number": 29,
+        "description": "Query 29",
+        "success": false,
+        "execution_time_ms": 0.6039142608642578,
+        "row_count": 0,
+        "error": "column \"value\" does not exist\nLINE 5:         value,\n                ^\n",
+        "error_type": "UndefinedColumn"
+      },
+      {
+        "query_number": 30,
+        "description": "Query 30",
+        "success": false,
+        "execution_time_ms": 0.61798095703125,
+        "row_count": 0,
+        "error": "column \"value\" does not exist\nLINE 5:         value,\n                ^\n",
+        "error_type": "UndefinedColumn"
+      }
+    ],
+    "statistics": {
+      "total_queries": 30,
+      "successful": 14,
+      "failed": 16,
+      "success_rate": 46.666666666666664,
+      "avg_execution_time_ms": 1.9133772168840681,
+      "total_rows_returned": 0
+    }
+  },
+  "databricks": {
+    "available": true,
+    "queries": []
+  }
+}

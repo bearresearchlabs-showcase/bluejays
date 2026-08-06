@@ -1,0 +1,997 @@
+{
+  "database": "db-3",
+  "test_date": "2026-02-03T01:02:47.600890",
+  "total_queries": 30,
+  "syntax_results": [
+    {
+      "query_id": 1,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 2,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 3,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 4,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 5,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 6,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 7,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 8,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 9,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 10,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 11,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 12,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 13,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 14,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 15,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 16,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 17,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 18,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 19,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 20,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 21,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 22,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 23,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 24,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 25,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 26,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 27,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 28,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 29,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    },
+    {
+      "query_id": 30,
+      "result": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+          "sqlparse not available - using basic validation"
+        ],
+        "parse_tree": null
+      }
+    }
+  ],
+  "compatibility_results": [
+    {
+      "query_id": 1,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible",
+            "Uses array_length which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 2,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 3,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible",
+            "Uses pg_cast which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Use CAST() instead of :: for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 4,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible",
+            "Uses pg_cast which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Use CAST() instead of :: for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 5,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 6,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 7,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 8,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 9,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 10,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 11,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible",
+            "Uses array_length which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 12,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 13,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible",
+            "Uses pg_cast which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Use CAST() instead of :: for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 14,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible",
+            "Uses pg_cast which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Use CAST() instead of :: for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 15,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 16,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 17,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 18,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 19,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 20,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 21,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible",
+            "Uses array_length which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 22,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 23,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible",
+            "Uses pg_cast which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Use CAST() instead of :: for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 24,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible",
+            "Uses pg_cast which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Use CAST() instead of :: for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 25,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 26,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 27,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 28,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 29,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    },
+    {
+      "query_id": 30,
+      "result": {
+        "postgresql": true,
+        "databricks": false,
+        "databricks": false,
+        "issues": {
+          "postgresql": [],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ],
+          "databricks": [
+            "Uses array_ops which may not be compatible"
+          ]
+        },
+        "suggestions": [
+          "Consider using array_construct() for Databricks",
+          "Consider using ARRAY_CONSTRUCT() for Databricks"
+        ]
+      }
+    }
+  ],
+  "execution_results": [],
+  "performance_results": [],
+  "validation_results": [],
+  "summary": {
+    "syntax_pass_rate": 1.0,
+    "compatibility_postgresql": 1.0,
+    "compatibility_databricks": 0.0,
+    "compatibility_databricks": 0.0,
+    "execution_success_rate": 0.0,
+    "average_execution_time": 0.0,
+    "slow_queries_count": 0,
+    "total_queries": 30
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "database": "db-4",
+  "name": "Seydam AI",
+  "apis": [
+    {
+      "name": "OpenAI API",
+      "url": "https://platform.openai.com/docs/api-reference",
+      "description": "AI model APIs (GPT, embeddings)",
+      "endpoints": [
+        "/v1/chat/completions",
+        "/v1/embeddings"
+      ],
+      "auth": "API key required",
+      "rate_limit": "Varies by tier"
+    },
+    {
+      "name": "Hugging Face API",
+      "url": "https://huggingface.co/docs/api-inference",
+      "description": "ML model inference and datasets",
+      "endpoints": [
+        "/api/models",
+        "/api/datasets"
+      ],
+      "auth": "API key (optional)",
+      "rate_limit": "Varies"
+    },
+    {
+      "name": "Anthropic API",
+      "url": "https://docs.anthropic.com/claude/reference",
+      "description": "Claude AI model API",
+      "endpoints": [
+        "/v1/messages"
+      ],
+      "auth": "API key required",
+      "rate_limit": "Varies by tier"
+    }
+  ],
+  "data_sources": [],
+  "last_updated": "2026-02-09T12:47:24.221778",
+  "gov_sources": [
+    {
+      "name": "NIST AI Risk Management Framework",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "type": "government",
+      "description": "NIST AI standards and frameworks",
+      "data_types": [
+        "ai_standards",
+        "risk_frameworks",
+        "best_practices"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Periodic"
+    },
+    {
+      "name": "NSF AI Research Data",
+      "url": "https://www.nsf.gov/statistics/",
+      "type": "government",
+      "description": "NSF research data on AI and machine learning",
+      "data_types": [
+        "research_data",
+        "publications",
+        "grants"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Ongoing"
+    },
+    {
+      "name": "Data.gov AI Datasets",
+      "url": "https://catalog.data.gov/dataset?tags=artificial-intelligence",
+      "type": "government",
+      "description": "Federal AI-related datasets",
+      "data_types": [
+        "ai_datasets",
+        "ml_models",
+        "training_data"
+      ],
+      "access": "api_download",
+      "rate_limit": "1000 req/hour",
+      "update_frequency": "Varies"
+    },
+    {
+      "name": "NIST Computer Security Resource Center",
+      "url": "https://csrc.nist.gov/",
+      "type": "government",
+      "description": "AI security standards and guidelines",
+      "data_types": [
+        "security_standards",
+        "vulnerabilities",
+        "best_practices"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Periodic"
+    }
+  ]
+}

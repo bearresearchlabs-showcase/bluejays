@@ -1,0 +1,64 @@
+openapi: 3.0.3
+info:
+  title: Flood Risk Assessment Database for M&A Due Diligence - db-16
+  description: Comprehensive physical climate risk assessment database for large real
+    estate firms specializing in M&A. Integrates FEMA, NOAA, USGS, and NASA data.
+  version: 1.0.0
+servers:
+- url: postgresql://localhost:5432/db16
+  description: PostgreSQL
+- url: databricks://workspace
+  description: Databricks
+tags:
+- name: schema
+  description: Database schema information
+- name: queries
+  description: SQL query definitions
+- name: spatial
+  description: Spatial operations
+paths:
+  /schema:
+    get:
+      summary: Get schema overview
+      tags:
+      - schema
+      responses:
+        '200':
+          description: Schema overview
+  /queries:
+    get:
+      summary: List all queries
+      tags:
+      - queries
+      responses:
+        '200':
+          description: List of queries
+  /queries/{queryNumber}:
+    get:
+      summary: Get query details
+      tags:
+      - queries
+      parameters:
+      - name: queryNumber
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Query details
+components:
+  schemas:
+    Query:
+      type: object
+      properties:
+        number:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        sql:
+          type: string
+        complexity:
+          type: string

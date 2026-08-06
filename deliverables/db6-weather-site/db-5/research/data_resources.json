@@ -1,0 +1,86 @@
+{
+  "database": "db-5",
+  "name": "SharedAI",
+  "apis": [
+    {
+      "name": "OpenAI API",
+      "url": "https://platform.openai.com/docs/api-reference",
+      "description": "Shared AI platform integration",
+      "endpoints": [
+        "/v1/chat/completions",
+        "/v1/models"
+      ],
+      "auth": "API key required",
+      "rate_limit": "Varies by tier"
+    },
+    {
+      "name": "Hugging Face Hub API",
+      "url": "https://huggingface.co/docs/api-inference",
+      "description": "Model marketplace and sharing",
+      "endpoints": [
+        "/api/models",
+        "/api/spaces"
+      ],
+      "auth": "API key (optional)",
+      "rate_limit": "Varies"
+    }
+  ],
+  "data_sources": [],
+  "last_updated": "2026-02-09T12:47:24.222147",
+  "gov_sources": [
+    {
+      "name": "Data.gov Social Media Datasets",
+      "url": "https://catalog.data.gov/dataset?tags=social-media",
+      "type": "government",
+      "description": "Federal social media and communication datasets",
+      "data_types": [
+        "social_media_data",
+        "communication_patterns"
+      ],
+      "access": "api_download",
+      "rate_limit": "1000 req/hour",
+      "update_frequency": "Varies"
+    },
+    {
+      "name": "Census Communication Statistics",
+      "url": "https://www.census.gov/data/tables.html",
+      "type": "government",
+      "description": "Communication and internet usage statistics",
+      "data_types": [
+        "internet_usage",
+        "communication_trends"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Annual"
+    },
+    {
+      "name": "FCC Broadband Data",
+      "url": "https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477",
+      "type": "government",
+      "description": "FCC broadband deployment and usage data",
+      "data_types": [
+        "broadband_access",
+        "internet_speeds",
+        "coverage"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Semi-annual"
+    },
+    {
+      "name": "NTIA Internet Use Survey",
+      "url": "https://www.ntia.gov/data/internet-use-survey",
+      "type": "government",
+      "description": "NTIA internet and digital communication usage",
+      "data_types": [
+        "internet_usage",
+        "digital_communication",
+        "user_behavior"
+      ],
+      "access": "download",
+      "rate_limit": "None",
+      "update_frequency": "Biannual"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# Python requirements for db-8 Job Market Intelligence Database
+# Validation Suite Dependencies
+
+# Database connectors
+psycopg2-binary>=2.9.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Utilities
+python-dotenv>=1.0.0
+pytz>=2023.3

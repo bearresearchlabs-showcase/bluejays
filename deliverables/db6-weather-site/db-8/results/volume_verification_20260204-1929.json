@@ -1,0 +1,31 @@
+{
+  "verification_date": "20260204-1929",
+  "requirement": {
+    "min_gb": 10.0,
+    "max_gb": 30.0,
+    "description": "Data volume must be between 10-30 GB"
+  },
+  "file_volumes": {
+    "generated_files": {},
+    "transformed_files": {},
+    "total_generated_mb": 0.0,
+    "total_transformed_mb": 0.0,
+    "meets_requirement": false,
+    "total_generated_gb": 0.0,
+    "total_transformed_gb": 0.0
+  },
+  "database_volumes": {
+    "database_available": false,
+    "tables": {},
+    "total_size_mb": 0.0,
+    "total_size_gb": 0.0,
+    "error": "connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  database \"db_8_validation\" does not exist\n"
+  },
+  "summary": {
+    "file_data_gb": 0.0,
+    "database_data_gb": 0.0,
+    "total_data_gb": 0.0,
+    "meets_requirement": false,
+    "status": "FAIL"
+  }
+}

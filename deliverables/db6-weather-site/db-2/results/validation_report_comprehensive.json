@@ -1,0 +1,74 @@
+{
+  "database": "db-2",
+  "validation_date": "2026-02-02 20:52:28",
+  "schema": {
+    "tables": 40,
+    "total_rows": 7523,
+    "total_columns": 382,
+    "table_list": [
+      "affiliates_affiliatelink",
+      "affiliates_attributiontracking",
+      "affiliates_catalogue",
+      "affiliates_catalogue_links",
+      "affiliates_clicktracking",
+      "affiliates_cookieconsent",
+      "ai_services_aicontentlog",
+      "ai_services_productrecommendation",
+      "analytics_activitylog",
+      "analytics_frauddetectionlog",
+      "auth_group",
+      "auth_group_permissions",
+      "auth_permission",
+      "authentication_user",
+      "authentication_user_groups",
+      "authentication_user_user_permissions",
+      "commissions_commission",
+      "commissions_payout",
+      "commissions_payoutcommission",
+      "django_admin_log",
+      "django_celery_beat_clockedschedule",
+      "django_celery_beat_crontabschedule",
+      "django_celery_beat_intervalschedule",
+      "django_celery_beat_periodictask",
+      "django_celery_beat_periodictasks",
+      "django_celery_beat_solarschedule",
+      "django_celery_results_chordcounter",
+      "django_celery_results_groupresult",
+      "django_celery_results_taskresult",
+      "django_content_type",
+      "django_migrations",
+      "django_session",
+      "notifications_notification",
+      "orders_cart",
+      "orders_cartitem",
+      "orders_customerorder",
+      "orders_order",
+      "payments_paymentlog",
+      "products_product",
+      "products_productcategory"
+    ],
+    "complexity_score": 40
+  },
+  "documentation": {
+    "readme_exists": true,
+    "schema_doc_exists": true
+  },
+  "queries": {
+    "file_exists": false,
+    "count": 0,
+    "meets_requirement": false
+  },
+  "data_quality": {
+    "placeholder_issues": 3,
+    "high_severity_placeholders": 3,
+    "suspicious_distributions": 0
+  },
+  "overall_status": "FAIL",
+  "issues": [
+    "queries/queries.md not found",
+    "High severity placeholder data detected: 3 issues",
+    "Query requirements not met (minimum 30 queries)",
+    "Data quality issues detected"
+  ],
+  "warnings": []
+}

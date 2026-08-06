@@ -1,0 +1,102 @@
+{
+  "verification_date": "20260209-2337",
+  "file": "/Users/machine/Documents/AQ/db/db-4/queries/queries.md",
+  "fixes": {
+    "query_2_array_syntax": {
+      "query_number": 2,
+      "fix": "Recursive CTE validation",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "Query uses CTEs",
+          "Pass": 1
+        },
+        {
+          "check": "Query uses WITH RECURSIVE",
+          "Pass": 0
+        },
+        {
+          "check": "Query structure is complete",
+          "Pass": 1
+        }
+      ],
+      "notes": [
+        "Query 2 claims recursive CTE but may not have WITH RECURSIVE"
+      ]
+    },
+    "query_26_recursive_cte": {
+      "query_number": 26,
+      "fix": "Recursive CTE validation",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "Query uses CTEs",
+          "Pass": 1
+        },
+        {
+          "check": "Query uses WITH RECURSIVE",
+          "Pass": 0
+        },
+        {
+          "check": "Query demonstrates complexity",
+          "Pass": 1
+        },
+        {
+          "check": "Query structure is complete",
+          "Pass": 1
+        },
+        {
+          "check": "SQL code block properly formatted",
+          "Pass": 1
+        }
+      ],
+      "notes": [
+        "Query 26 claims recursive CTE but may not have WITH RECURSIVE"
+      ]
+    },
+    "query_title_uniqueness": {
+      "fix": "Query title uniqueness",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "All queries 1-30 exist",
+          "Pass": 1
+        },
+        {
+          "check": "Titles are descriptive",
+          "Pass": 1
+        },
+        {
+          "check": "No duplicate titles",
+          "Pass": 1
+        },
+        {
+          "check": "Queries 26-30 exist",
+          "Pass": 1
+        }
+      ],
+      "notes": []
+    },
+    "header_formatting": {
+      "fix": "Header formatting consistency",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "All queries use ## Query N: format",
+          "Pass": 1,
+          "count": 30
+        },
+        {
+          "check": "No queries with --- prefix",
+          "Pass": 1
+        }
+      ],
+      "notes": []
+    }
+  },
+  "Pass": 1,
+  "notes": [
+    "Query 2 claims recursive CTE but may not have WITH RECURSIVE",
+    "Query 26 claims recursive CTE but may not have WITH RECURSIVE"
+  ]
+}

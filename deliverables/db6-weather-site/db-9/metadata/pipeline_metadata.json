@@ -1,0 +1,103 @@
+{
+  "pipeline_metadata": {
+    "database": "db-9",
+    "database_name": "Shipping Intelligence Database",
+    "metadata_version": "1.0",
+    "last_updated": "2026-02-04",
+    "execution_logs": [],
+    "pipeline_configurations": [
+      {
+        "pipeline_id": "usps_rate_extraction",
+        "pipeline_name": "USPS Rate Extraction Pipeline",
+        "source": "usps_developer_portal",
+        "target_tables": ["shipping_rates"],
+        "frequency": "On-demand",
+        "status": "Configured",
+        "last_execution": null,
+        "execution_count": 0,
+        "success_count": 0,
+        "failure_count": 0
+      },
+      {
+        "pipeline_id": "ups_rate_extraction",
+        "pipeline_name": "UPS Rate Extraction Pipeline",
+        "source": "ups_developer_portal",
+        "target_tables": ["shipping_rates"],
+        "frequency": "On-demand",
+        "status": "Configured",
+        "last_execution": null,
+        "execution_count": 0,
+        "success_count": 0,
+        "failure_count": 0
+      },
+      {
+        "pipeline_id": "usps_tracking_extraction",
+        "pipeline_name": "USPS Tracking Extraction Pipeline",
+        "source": "usps_developer_portal",
+        "target_tables": ["tracking_events"],
+        "frequency": "On-demand",
+        "status": "Configured",
+        "last_execution": null,
+        "execution_count": 0,
+        "success_count": 0,
+        "failure_count": 0
+      },
+      {
+        "pipeline_id": "ups_tracking_extraction",
+        "pipeline_name": "UPS Tracking Extraction Pipeline",
+        "source": "ups_developer_portal",
+        "target_tables": ["tracking_events"],
+        "frequency": "On-demand",
+        "status": "Configured",
+        "last_execution": null,
+        "execution_count": 0,
+        "success_count": 0,
+        "failure_count": 0
+      },
+      {
+        "pipeline_id": "usps_address_validation",
+        "pipeline_name": "USPS Address Validation Pipeline",
+        "source": "usps_developer_portal",
+        "target_tables": ["address_validation_results"],
+        "frequency": "On-demand",
+        "status": "Configured",
+        "last_execution": null,
+        "execution_count": 0,
+        "success_count": 0,
+        "failure_count": 0
+      },
+      {
+        "pipeline_id": "census_customs_import",
+        "pipeline_name": "Census Bureau Customs Data Import",
+        "source": "census_bureau_international_trade",
+        "target_tables": ["international_customs"],
+        "frequency": "Monthly",
+        "status": "Configured",
+        "last_execution": null,
+        "execution_count": 0,
+        "success_count": 0,
+        "failure_count": 0
+      },
+      {
+        "pipeline_id": "zone_data_update",
+        "pipeline_name": "Zone Data Update Pipeline",
+        "source": "usps_developer_portal,ups_developer_portal",
+        "target_tables": ["shipping_zones"],
+        "frequency": "Quarterly",
+        "status": "Configured",
+        "last_execution": null,
+        "execution_count": 0,
+        "success_count": 0,
+        "failure_count": 0
+      }
+    ],
+    "performance_metrics": {
+      "average_execution_time_ms": null,
+      "total_records_processed": 0,
+      "average_records_per_execution": 0,
+      "peak_execution_time_ms": null,
+      "slowest_pipeline": null
+    },
+    "error_logs": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "extraction_timestamp": "20260204-2051",
+  "total_bytes": 1586915999,
+  "total_gb": 1.4779306938871741,
+  "elapsed_seconds": 313.5688691139221,
+  "method": "smart_bulk_download",
+  "file_count": 14,
+  "data_directory": "/Users/machine/Documents/AQ/db/db-10/research/extracted_data"
+}

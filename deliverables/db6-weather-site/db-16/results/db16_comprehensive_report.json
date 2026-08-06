@@ -1,0 +1,53 @@
+{
+  "report_date": "20260209-0158",
+  "database": "db-16",
+  "database_name": "Flood Risk Assessment Database for M&A Due Diligence",
+  "Pass": 1,
+  "summary": {
+    "total_queries": 30,
+    "fix_verification_Pass": 1,
+    "syntax_validation_Pass": 1,
+    "evaluation_Pass": 1,
+    "execution_testing_Pass": 1,
+    "execution_instances": 3,
+    "execution_success_rate": 100.0
+  },
+  "schema": {
+    "tables": 12,
+    "spatial_columns": 7,
+    "indexes": 20
+  },
+  "data": {
+    "total_rows_approx": "18.3M+",
+    "largest_table": "usgs_streamflow_observations (8M rows)"
+  },
+  "phases": {
+    "phase_0_extraction": {
+      "Pass": 1,
+      "queries_extracted": 30
+    },
+    "phase_1_fix_verification": {
+      "Pass": 1
+    },
+    "phase_2_4_validation": {
+      "Pass": 1,
+      "query_count": 30,
+      "cte_usage": 30
+    },
+    "phase_3_execution": {
+      "Pass": 1,
+      "instances": 3,
+      "success_rate": 100.0
+    },
+    "phase_5_final_report": {
+      "Pass": 1
+    }
+  },
+  "findings": {
+    "critical_issues": [],
+    "warnings": [],
+    "notes": [
+      "All 30 queries pass on 3 PostgreSQL instances (db16, db16_test1, db16_test2)"
+    ]
+  }
+}

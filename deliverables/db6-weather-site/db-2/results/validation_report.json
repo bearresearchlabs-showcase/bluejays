@@ -1,0 +1,21 @@
+{
+  "database": "db-2",
+  "validation_date": "2026-02-02 20:50:15",
+  "schema": {
+    "tables": 40,
+    "total_rows": 7523,
+    "total_columns": 382
+  },
+  "placeholder_issues": {
+    "total": 1,
+    "high_severity": 1
+  },
+  "distribution_analysis": {
+    "suspicious_distributions": 0
+  },
+  "complexity": {
+    "score": 40,
+    "assessment": "MEDIUM"
+  },
+  "overall_status": "FAIL - High severity placeholder data detected"
+}

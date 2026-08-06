@@ -1,0 +1,42 @@
+{
+  "reconciliation": {
+    "script": "resync_client_db.py",
+    "source": "db-N/queries/",
+    "destination": "client/db/db-N/QUERIES/",
+    "files_copied": ["queries.md", "queries.json"],
+    "method": "shutil.copy2 (byte-preserving)",
+    "zip_included": true,
+    "zip_path": "/tmp/db_zip_extract/db"
+  },
+  "byte_for_byte_results": {
+    "source_vs_client": {
+      "queries.json": true,
+      "queries.md": true,
+      "SQL_content": true
+    },
+    "source_vs_client_vs_zip": {
+      "queries.json": "source=client; zip differs (extraction_timestamp only)",
+      "queries.md": true,
+      "SQL_content": true
+    },
+    "per_db": [
+      {"db": "db-1", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-2", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-3", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-4", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-5", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-6", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-7", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-8", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-9", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-10", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-11", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-12", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-13", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-14", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-15", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"},
+      {"db": "db-16", "queries.json": "src=cli", "queries.md": "all", "SQL_content": "all", "zip": "metadata_diff"}
+    ]
+  },
+  "summary": "Source and client are byte-identical. Zip has same queries.md and SQL content; queries.json differs only in extraction_timestamp (zip is older)."
+}

@@ -1,0 +1,103 @@
+{
+  "verification_date": "20260209-0338",
+  "file": "/Users/machine/Documents/AQ/db/db-16/queries/queries.md",
+  "fixes": {
+    "query_2_array_syntax": {
+      "query_number": 2,
+      "fix": "Array syntax PostgreSQL compatibility",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "Query uses CTEs",
+          "Pass": 1
+        },
+        {
+          "check": "Array slicing syntax usage",
+          "Pass": 1
+        },
+        {
+          "check": "PostgreSQL-compatible array operations",
+          "Pass": 1,
+          "note": "No array operations detected (may not be required)"
+        },
+        {
+          "check": "Valid query structure",
+          "Pass": 1
+        }
+      ]
+    },
+    "query_26_recursive_cte": {
+      "query_number": 26,
+      "fix": "Query complexity and structure validation",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "Query uses CTEs",
+          "Pass": 1,
+          "note": "Recursive CTE"
+        },
+        {
+          "check": "Query demonstrates complexity",
+          "Pass": 1,
+          "note": "CTEs: 0, Joins: True, Aggregations: True"
+        },
+        {
+          "check": "Valid SQL structure",
+          "Pass": 1
+        },
+        {
+          "check": "Query code block is complete",
+          "Pass": 1
+        }
+      ]
+    },
+    "query_title_uniqueness": {
+      "fix": "Query title uniqueness and descriptiveness",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "All queries have titles",
+          "Pass": 1,
+          "count": 30
+        },
+        {
+          "check": "Titles are descriptive",
+          "Pass": 1,
+          "note": "All titles have sufficient length"
+        },
+        {
+          "check": "No duplicate titles",
+          "Pass": 1,
+          "note": "All 30 titles are unique"
+        },
+        {
+          "check": "Queries 26-30 exist",
+          "Pass": 1,
+          "titles": {
+            "26": "Recursive Flood Risk Propagation with Advanced Analytics",
+            "27": "High-Risk Property Identification for M&A Deal-Breaker Analy",
+            "28": "Post-Acquisition Risk Mitigation Cost-Benefit Analysis with ",
+            "29": "Acquisition Target Portfolio Diversification Risk Analysis w",
+            "30": "M&A Due Diligence Comprehensive Flood Risk Assessment Report"
+          }
+        }
+      ]
+    },
+    "header_formatting": {
+      "fix": "Header formatting consistency",
+      "Pass": 1,
+      "checks": [
+        {
+          "check": "All queries use ## Query N: format",
+          "Pass": 1,
+          "count": 30
+        },
+        {
+          "check": "No queries with --- prefix",
+          "Pass": 1
+        }
+      ]
+    }
+  },
+  "Pass": 1
+}

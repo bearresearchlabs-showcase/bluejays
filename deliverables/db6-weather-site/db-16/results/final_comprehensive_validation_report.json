@@ -1,0 +1,816 @@
+{
+  "report_date": "2026-02-09T03:44:32.853865",
+  "database": "db-16",
+  "file_validated": "queries/queries.md",
+  "overall_status": "WARNING",
+  "summary": {
+    "total_queries": 30,
+    "fix_verification_status": "UNKNOWN",
+    "syntax_validation_status": "PARTIAL",
+    "evaluation_status": "PASS",
+    "execution_testing_status": "PARTIAL"
+  },
+  "phase_1_fix_verification": {
+    "verification_date": "20260209-0338",
+    "file": "/Users/machine/Documents/AQ/db/db-16/queries/queries.md",
+    "fixes": {
+      "query_2_array_syntax": {
+        "query_number": 2,
+        "fix": "Array syntax PostgreSQL compatibility",
+        "Pass": 1,
+        "checks": [
+          {
+            "check": "Query uses CTEs",
+            "Pass": 1
+          },
+          {
+            "check": "Array slicing syntax usage",
+            "Pass": 1
+          },
+          {
+            "check": "PostgreSQL-compatible array operations",
+            "Pass": 1,
+            "note": "No array operations detected (may not be required)"
+          },
+          {
+            "check": "Valid query structure",
+            "Pass": 1
+          }
+        ]
+      },
+      "query_26_recursive_cte": {
+        "query_number": 26,
+        "fix": "Query complexity and structure validation",
+        "Pass": 1,
+        "checks": [
+          {
+            "check": "Query uses CTEs",
+            "Pass": 1,
+            "note": "Recursive CTE"
+          },
+          {
+            "check": "Query demonstrates complexity",
+            "Pass": 1,
+            "note": "CTEs: 0, Joins: True, Aggregations: True"
+          },
+          {
+            "check": "Valid SQL structure",
+            "Pass": 1
+          },
+          {
+            "check": "Query code block is complete",
+            "Pass": 1
+          }
+        ]
+      },
+      "query_title_uniqueness": {
+        "fix": "Query title uniqueness and descriptiveness",
+        "Pass": 1,
+        "checks": [
+          {
+            "check": "All queries have titles",
+            "Pass": 1,
+            "count": 30
+          },
+          {
+            "check": "Titles are descriptive",
+            "Pass": 1,
+            "note": "All titles have sufficient length"
+          },
+          {
+            "check": "No duplicate titles",
+            "Pass": 1,
+            "note": "All 30 titles are unique"
+          },
+          {
+            "check": "Queries 26-30 exist",
+            "Pass": 1,
+            "titles": {
+              "26": "Recursive Flood Risk Propagation with Advanced Analytics",
+              "27": "High-Risk Property Identification for M&A Deal-Breaker Analy",
+              "28": "Post-Acquisition Risk Mitigation Cost-Benefit Analysis with ",
+              "29": "Acquisition Target Portfolio Diversification Risk Analysis w",
+              "30": "M&A Due Diligence Comprehensive Flood Risk Assessment Report"
+            }
+          }
+        ]
+      },
+      "header_formatting": {
+        "fix": "Header formatting consistency",
+        "Pass": 1,
+        "checks": [
+          {
+            "check": "All queries use ## Query N: format",
+            "Pass": 1,
+            "count": 30
+          },
+          {
+            "check": "No queries with --- prefix",
+            "Pass": 1
+          }
+        ]
+      }
+    },
+    "Pass": 1
+  },
+  "phase_2_syntax_validation": {
+    "postgresql": {
+      "available": true,
+      "queries": [
+        {
+          "query_number": 1,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 2,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 3,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 4,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 5,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 6,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 7,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 8,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 9,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 10,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 11,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 12,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 13,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 14,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 15,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 16,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 17,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 18,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 19,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 20,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 21,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 22,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 23,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 24,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 25,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 26,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 27,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 28,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 29,
+          "success": true,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 30,
+          "success": true,
+          "error": null,
+          "error_type": null
+        }
+      ]
+    },
+    "snowflake": {
+      "available": false,
+      "queries": []
+    },
+    "databricks": {
+      "available": false,
+      "queries": []
+    }
+  },
+  "phase_3_execution_testing": {},
+  "phase_4_comprehensive_evaluation": {
+    "query_count": {
+      "requirement": "Exactly 30 queries",
+      "found": 30,
+      "status": "PASS",
+      "message": "Found 30 queries, expected 30"
+    },
+    "recursive_cte_usage": {
+      "requirement": "Queries claiming recursive CTE must have WITH RECURSIVE",
+      "total_queries": 30,
+      "queries_with_recursive": 1,
+      "mismatched": 0,
+      "status": "PASS",
+      "details": [
+        {
+          "query_number": 1,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 2,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 3,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 4,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 5,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 6,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 7,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 8,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 9,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 10,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 11,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 12,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 13,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 14,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 15,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 16,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 17,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 18,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 19,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 20,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 21,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 22,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 23,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 24,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 25,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 26,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        },
+        {
+          "query_number": 27,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 28,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 29,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 30,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        }
+      ],
+      "mismatched_queries": []
+    },
+    "cte_usage": {
+      "requirement": "All queries must use CTEs",
+      "total_queries": 30,
+      "queries_with_cte": 30,
+      "queries_without_cte": 0,
+      "status": "PASS",
+      "queries_without_cte_list": []
+    },
+    "complexity": {
+      "requirement": "Queries must demonstrate high complexity",
+      "complexity_scores": [
+        {
+          "query_number": 1,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 0,
+          "aggregation_count": 4,
+          "subquery_count": 12
+        },
+        {
+          "query_number": 2,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 3,
+          "window_function_count": 1,
+          "aggregation_count": 44,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 3,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 3,
+          "aggregation_count": 16,
+          "subquery_count": 14
+        },
+        {
+          "query_number": 4,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 0,
+          "aggregation_count": 17,
+          "subquery_count": 0
+        },
+        {
+          "query_number": 5,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 0,
+          "aggregation_count": 12,
+          "subquery_count": 8
+        },
+        {
+          "query_number": 6,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 7,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 8,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 9,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 10,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 11,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 12,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 13,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 14,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 15,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 16,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 17,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 18,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 19,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 20,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 21,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 22,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 23,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 24,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 25,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 26,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 6,
+          "window_function_count": 1,
+          "aggregation_count": 10,
+          "subquery_count": 2
+        },
+        {
+          "query_number": 27,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 28,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 29,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        },
+        {
+          "query_number": 30,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 1,
+          "window_function_count": 2,
+          "aggregation_count": 3,
+          "subquery_count": 1
+        }
+      ],
+      "average_cte_count": 1.0,
+      "average_join_count": 1.1666666666666667,
+      "average_window_function_count": 1.7666666666666666
+    }
+  },
+  "findings": {
+    "critical_issues": [],
+    "warnings": [
+      {
+        "issue": "Limited database availability for syntax validation",
+        "available_databases": [
+          "PostgreSQL"
+        ],
+        "recommendation": "Set up database connections for full cross-database validation"
+      }
+    ],
+    "recommendations": [
+      "All critical fixes have been applied successfully",
+      "Query titles are unique across all 30 queries",
+      "Header formatting is consistent",
+      "1 queries use recursive CTEs",
+      "Consider adding WITH RECURSIVE to queries 16-25 that claim recursive CTE in titles",
+      "Set up database connections for full syntax and execution testing"
+    ]
+  }
+}

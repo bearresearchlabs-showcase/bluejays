@@ -1,0 +1,581 @@
+{
+  "database": "db-9",
+  "database_number": 9,
+  "test_date": "20260208-2036",
+  "postgresql": {
+    "available": true,
+    "queries": [
+      {
+        "query_number": 1,
+        "query_title": "Multi-Carrier Rate Comparison with Zone Analysis and Cost Optimization",
+        "success": true,
+        "execution_time_ms": 2.2,
+        "row_count": 0,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "rate_amount",
+          "zone_number",
+          "estimated_transit_days",
+          "recommendation_type",
+          "cost_difference_from_cheapest",
+          "cost_premium_percentage",
+          "is_fastest_option"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 2,
+        "query_title": "Shipping Zone Analysis with Geographic Distribution and Transit Time Optimization",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "recursive query \"zone_hierarchy\" column 12 has type character varying(1000) in non-recursive term but type character varying overall\nLINE 15:         CAST(z.zone_id AS VARCHAR(1000)) AS zone_path\n                 ^\nHINT:  Cast the output of the non-recursive term to the correct type.\n",
+        "error_type": "DatatypeMismatch",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 3,
+        "query_title": "Shipment Tracking Analytics with Event Pattern Analysis and Delivery Prediction",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "relation \"tracking_events\" does not exist\nLINE 21:     FROM tracking_events te\n                  ^\n",
+        "error_type": "UndefinedTable",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 4,
+        "query_title": "Address Validation Quality Analysis with Correction Rate Metrics",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 5,
+        "query_title": "Shipping Cost Analytics with Revenue Optimization and Carrier Performance Comparison",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "column \"coo.potential_savings\" must appear in the GROUP BY clause or be used in an aggregate function\nLINE 142:     SUM(COALESCE(coo.potential_savings, 0)) OVER (PARTITION ...\n                           ^\n",
+        "error_type": "GroupingError",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 6,
+        "query_title": "Bulk Shipping Preset Optimization with Weight Distribution Analysis",
+        "success": true,
+        "execution_time_ms": 0.97,
+        "row_count": 3,
+        "columns": [
+          "preset_id",
+          "preset_name",
+          "usage_count",
+          "avg_cost_per_shipment",
+          "optimized_rate",
+          "potential_savings_per_shipment",
+          "total_potential_savings",
+          "optimization_recommendation",
+          "savings_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 7,
+        "query_title": "International Shipping Customs Analysis with Duty and Tax Optimization",
+        "success": true,
+        "execution_time_ms": 0.66,
+        "row_count": 0,
+        "columns": [
+          "destination_country",
+          "total_shipments",
+          "avg_customs_value",
+          "median_customs_value",
+          "avg_total_customs_amount",
+          "cleared_shipments",
+          "held_shipments",
+          "returned_shipments",
+          "clearance_success_rate",
+          "avg_clearance_days",
+          "high_cost_shipments",
+          "low_cost_shipments",
+          "performance_category"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 8,
+        "query_title": "Shipping Adjustment Analysis with Discrepancy Detection and Cost Recovery",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "column da.status does not exist\nLINE 93:         COUNT(CASE WHEN da.status = 'Disputed' THEN 1 END) A...\n                                 ^\n",
+        "error_type": "UndefinedColumn",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 9,
+        "query_title": "API Rate Request Performance Analysis with Optimization Recommendations",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+        "error_type": "InFailedSqlTransaction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 10,
+        "query_title": "Shipping Analytics Dashboard with Revenue Trends and Performance Metrics",
+        "success": true,
+        "execution_time_ms": 0.75,
+        "row_count": 1,
+        "columns": [
+          "shipment_date",
+          "daily_revenue",
+          "daily_shipments",
+          "daily_avg_cost",
+          "day_over_day_growth_percentage",
+          "week_over_week_growth_percentage",
+          "month_over_month_growth_percentage",
+          "seven_day_avg_revenue",
+          "thirty_day_avg_revenue",
+          "total_revenue_all_carriers",
+          "total_shipments_all_carriers",
+          "top_carrier_by_revenue",
+          "top_service_by_revenue",
+          "growth_category"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 11,
+        "query_title": "Dimensional Weight Optimization with Package Configuration Analysis",
+        "success": true,
+        "execution_time_ms": 0.75,
+        "row_count": 2,
+        "columns": [
+          "package_id",
+          "weight_lbs",
+          "dimensional_weight_lbs",
+          "billable_weight_lbs",
+          "dimensional_weight_applies",
+          "dimensional_weight_cost_impact",
+          "optimization_category",
+          "recommended_max_dimension_inches",
+          "potential_cost_savings",
+          "optimization_priority_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 12,
+        "query_title": "Shipping Zone Coverage Analysis with Geographic Gap Identification",
+        "success": true,
+        "execution_time_ms": 0.62,
+        "row_count": 7,
+        "columns": [
+          "origin_zip_prefix",
+          "destination_zip_prefix",
+          "carrier_count",
+          "available_carriers",
+          "has_good_coverage",
+          "has_no_coverage",
+          "coverage_status",
+          "destination_count_for_origin",
+          "origin_count_for_destination"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 13,
+        "query_title": "Shipping Rate Volatility Analysis with Price Trend Prediction",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "COALESCE types date and integer cannot be matched\nLINE 12: ... EXTRACT(EPOCH FROM (COALESCE(sr.expiration_date, CURRENT_DA...\n                                                              ^\n",
+        "error_type": "DatatypeMismatch",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 14,
+        "query_title": "Carrier Service Performance Comparison with Delivery Time Analysis",
+        "success": false,
+        "execution_time_ms": null,
+        "row_count": null,
+        "columns": [],
+        "error": "function pg_catalog.extract(unknown, integer) does not exist\nLINE 23:             THEN EXTRACT(EPOCH FROM (s.actual_delivery_date ...\n                          ^\nHINT:  No function matches the given name and argument types. You might need to add explicit type casts.\n",
+        "error_type": "UndefinedFunction",
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 15,
+        "query_title": "Route Optimization Analysis with Cost and Time Trade-offs",
+        "success": true,
+        "execution_time_ms": 0.51,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 16,
+        "query_title": "Shipping Cost Breakdown Analysis with Component Cost Attribution",
+        "success": true,
+        "execution_time_ms": 0.45,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 17,
+        "query_title": "Tracking Event Pattern Recognition with Anomaly Detection",
+        "success": true,
+        "execution_time_ms": 0.48,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 18,
+        "query_title": "Address Validation Quality Metrics with Correction Impact Analysis",
+        "success": true,
+        "execution_time_ms": 0.37,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 19,
+        "query_title": "International Shipping Route Analysis with Customs Optimization",
+        "success": true,
+        "execution_time_ms": 0.32,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 20,
+        "query_title": "Carrier Rate Comparison Matrix with Multi-Dimensional Analysis",
+        "success": true,
+        "execution_time_ms": 0.3,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 21,
+        "query_title": "Package Dimension Optimization with Volume Efficiency Analysis",
+        "success": true,
+        "execution_time_ms": 0.31,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 22,
+        "query_title": "Shipping Zone Transit Time Analysis with Reliability Metrics",
+        "success": true,
+        "execution_time_ms": 0.37,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 23,
+        "query_title": "Customs Duty Optimization with Tariff Code Analysis",
+        "success": true,
+        "execution_time_ms": 0.46,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 24,
+        "query_title": "API Rate Cache Optimization with Hit Rate Analysis",
+        "success": true,
+        "execution_time_ms": 0.71,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 25,
+        "query_title": "Shipping Revenue Forecasting with Trend Analysis",
+        "success": true,
+        "execution_time_ms": 0.48,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 26,
+        "query_title": "Carrier Performance Benchmarking with Industry Standards",
+        "success": true,
+        "execution_time_ms": 0.35,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 27,
+        "query_title": "Dimensional Weight Cost Analysis with Optimization Recommendations",
+        "success": true,
+        "execution_time_ms": 0.3,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 28,
+        "query_title": "Shipping Route Efficiency Metrics with Performance Scoring",
+        "success": true,
+        "execution_time_ms": 0.3,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 29,
+        "query_title": "Multi-Carrier Rate Aggregation with Best Rate Selection",
+        "success": true,
+        "execution_time_ms": 0.27,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      },
+      {
+        "query_number": 30,
+        "query_title": "Comprehensive Shipping Dashboard with Real-Time Analytics",
+        "success": true,
+        "execution_time_ms": 0.29,
+        "row_count": 4,
+        "columns": [
+          "carrier_name",
+          "service_name",
+          "total_shipments",
+          "total_revenue",
+          "avg_cost",
+          "delivery_success_rate",
+          "performance_category",
+          "revenue_rank",
+          "cost_rank"
+        ],
+        "error": null,
+        "error_type": null,
+        "test_method": "EXECUTION"
+      }
+    ]
+  },
+  "summary": {
+    "total_queries": 30,
+    "postgresql": {
+      "tested": 30,
+      "successful": 22,
+      "failed": 8,
+      "success_rate": 73.33
+    }
+  },
+  "database_used": "db9",
+  "test_method": "EXECUTION"
+}

@@ -1,0 +1,685 @@
+{
+  "validation_date": "2026-02-09T23:38:15.275313",
+  "database": "db-1",
+  "file": "/Users/machine/Documents/AQ/db/db-5/queries/queries.md",
+  "total_queries": 30,
+  "syntax_validation": {
+    "postgresql": {
+      "available": true,
+      "queries": [
+        {
+          "query_number": 1,
+          "success": false,
+          "error": "relation \"phppos_sales\" does not exist\nLINE 6:     FROM phppos_sales\n                 ^\n",
+          "error_type": "UndefinedTable"
+        },
+        {
+          "query_number": 2,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 3,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 4,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 5,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 6,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 7,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 8,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 9,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 10,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 11,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 12,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 13,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 14,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 15,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 16,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 17,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 18,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 19,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 20,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 21,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 22,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 23,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 24,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 25,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 26,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 27,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 28,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 29,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        },
+        {
+          "query_number": 30,
+          "success": false,
+          "error": "current transaction is aborted, commands ignored until end of transaction block\n",
+          "error_type": "InFailedSqlTransaction"
+        }
+      ]
+    },
+    "databricks": {
+      "available": false,
+      "queries": []
+    },
+    "databricks": {
+      "available": false,
+      "queries": []
+    }
+  },
+  "evaluation": {
+    "query_count": {
+      "requirement": "Exactly 30 queries",
+      "found": 30,
+      "status": "PASS",
+      "message": "Found 30 queries, expected 30"
+    },
+    "recursive_cte_usage": {
+      "requirement": "Queries claiming recursive CTE must have WITH RECURSIVE",
+      "total_queries": 30,
+      "queries_with_recursive": 0,
+      "mismatched": 0,
+      "status": "PASS",
+      "details": [
+        {
+          "query_number": 1,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 2,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 3,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 4,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 5,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 6,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 7,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 8,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 9,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 10,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 11,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 12,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 13,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 14,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 15,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 16,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 17,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 18,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 19,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 20,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 21,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 22,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 23,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 24,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 25,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 26,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 27,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 28,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 29,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        },
+        {
+          "query_number": 30,
+          "has_recursive": false,
+          "claims_recursive": false,
+          "status": "PASS"
+        }
+      ],
+      "mismatched_queries": []
+    },
+    "cte_usage": {
+      "requirement": "All queries must use CTEs",
+      "total_queries": 30,
+      "queries_with_cte": 30,
+      "queries_without_cte": 0,
+      "status": "PASS",
+      "queries_without_cte_list": []
+    },
+    "complexity": {
+      "requirement": "Queries must demonstrate high complexity",
+      "complexity_scores": [
+        {
+          "query_number": 1,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 6,
+          "aggregation_count": 12,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 2,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 3,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 4,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 5,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 6,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 7,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 8,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 9,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 10,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 11,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 12,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 13,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 14,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 15,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 16,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 17,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 18,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 19,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 20,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 21,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 22,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 23,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 24,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 25,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 26,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 27,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 28,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 29,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        },
+        {
+          "query_number": 30,
+          "cte_count": 1,
+          "recursive_cte_count": 0,
+          "join_count": 0,
+          "window_function_count": 10,
+          "aggregation_count": 16,
+          "subquery_count": 4
+        }
+      ],
+      "average_cte_count": 1.0,
+      "average_join_count": 0.0,
+      "average_window_function_count": 9.866666666666667
+    }
+  }
+}

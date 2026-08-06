@@ -1,0 +1,101 @@
+{
+  "database": "db-4",
+  "timestamp": "2026-02-03T20:40:16.830654",
+  "total_queries": 10,
+  "fixed": [],
+  "failed": [
+    {
+      "query_number": 6,
+      "iterations": 2,
+      "errors": [
+        "column \"category\" does not exist\nLINE 51:         category,\n                 ^\n",
+        "column \"chat_id\" does not exist\nLINE 51:         chat_id,\n                 ^\n"
+      ]
+    },
+    {
+      "query_number": 7,
+      "iterations": 2,
+      "errors": [
+        "column \"category\" does not exist\nLINE 58:         category,\n                 ^\n",
+        "column \"chat_id\" does not exist\nLINE 58:         chat_id,\n                 ^\n"
+      ]
+    },
+    {
+      "query_number": 8,
+      "iterations": 2,
+      "errors": [
+        "column t2_sub.foreign_id does not exist\nLINE 44:             WHERE t2_sub.foreign_id = t1.id\n                           ^\n",
+        "column t2_avg.value does not exist\nLINE 54:             SELECT AVG(t2_avg.value)\n                                ^\n"
+      ]
+    },
+    {
+      "query_number": 9,
+      "iterations": 3,
+      "errors": [
+        "column t2.created_at does not exist\nLINE 16:         t2.created_at,\n                 ^\nHINT:  Perhaps you meant to reference the column \"lc.created_at\".\n",
+        "syntax error at or near \"WHERE\"\nLINE 16:         WHERE.created_at,\n                 ^\n",
+        "syntax error at or near \"WHERE\"\nLINE 16:         WHERE created_at,\n                 ^\n"
+      ]
+    },
+    {
+      "query_number": 10,
+      "iterations": 3,
+      "errors": [
+        "COALESCE types uuid and integer cannot be matched\nLINE 30:         SUM(COALESCE(t1.id, 0)) AS total_value,\n                                     ^\n",
+        "function sum(text) does not exist\nLINE 30:         SUM(COALESCE(CAST(t1.id AS TEXT), CAST(0 AS TEXT))) ...\n                 ^\nHINT:  No function matches the given name and argument types. You might ne",
+        "syntax error at or near \"AS\"\nLINE 30:         SUM(CAST(COALESCE(CAST(t1.id AS TEXT AS NUMERIC)), C...\n                                                      ^\n"
+      ]
+    },
+    {
+      "query_number": 11,
+      "iterations": 1,
+      "errors": [
+        "each UNION query must have the same number of columns\nLINE 16:         t.id,\n                 ^\n"
+      ]
+    },
+    {
+      "query_number": 12,
+      "iterations": 2,
+      "errors": [
+        "operator does not exist: text = uuid\nLINE 24: ...NER JOIN chat_participants cp ON cp.chat_id::text = tp.patte...\n                                                              ^\nHINT:  No operator matc",
+        "operator does not exist: text = uuid\nLINE 24: ...NER JOIN chat_participants cp ON cp.chat_id::text = tp.patte...\n                                                              ^\nHINT:  No operator matc"
+      ]
+    },
+    {
+      "query_number": 13,
+      "iterations": 2,
+      "errors": [
+        "operator does not exist: text = uuid\nLINE 23: ...NER JOIN chat_participants cp ON cp.user_id::text = sc.chain...\n                                                              ^\nHINT:  No operator matc",
+        "operator does not exist: text = uuid\nLINE 23: ...NER JOIN chat_participants cp ON cp.user_id::text = sc.chain...\n                                                              ^\nHINT:  No operator matc"
+      ]
+    },
+    {
+      "query_number": 14,
+      "iterations": 2,
+      "errors": [
+        "operator does not exist: text = uuid\nLINE 23: ...NER JOIN chat_participants cp ON cp.user_id::text = rc.chain...\n                                                              ^\nHINT:  No operator matc",
+        "operator does not exist: text = uuid\nLINE 23: ...NER JOIN chat_participants cp ON cp.user_id::text = rc.chain...\n                                                              ^\nHINT:  No operator matc"
+      ]
+    },
+    {
+      "query_number": 15,
+      "iterations": 2,
+      "errors": [
+        "operator does not exist: uuid > integer\nLINE 10:     WHERE t1.id > 100\n                         ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type cast",
+        "cannot cast type uuid to numeric\nLINE 10:     WHERE CAST(t1.id AS NUMERIC) > 100\n                   ^\n"
+      ]
+    }
+  ],
+  "needs_manual": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ]
+}

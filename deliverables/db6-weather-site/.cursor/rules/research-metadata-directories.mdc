@@ -1,0 +1,548 @@
+---
+description: Research and metadata directories for database development, data engineering, and MLE work
+alwaysApply: true
+---
+
+# Research and Metadata Directories Usage
+
+## Overview
+
+Each database repository (db-1 through db-15) includes two specialized directories for advanced development work:
+
+1. **`/research`** - Research notebooks, experimental analysis, and development work
+2. **`/metadata`** - Pipeline execution metadata, data quality reports, and tracking information
+
+These directories support iterative database development, data engineering workflows, and Machine Learning Engineer (MLE) work.
+
+## Directory Structure
+
+```
+db-{N}/
+├── research/
+│   ├── etl_elt_pipeline.ipynb    # ETL/ELT pipeline notebook
+│   ├── data_resources.json       # Data source documentation and API resources
+│   ├── source_metadata.json      # Comprehensive source metadata tracking
+│   ├── *.ipynb                    # Additional research notebooks
+│   ├── *.py                       # Analysis scripts
+│   └── README.md                  # Documentation
+├── metadata/
+│   ├── pipeline_metadata.json     # Pipeline execution logs
+│   ├── data_quality_reports.json  # Data quality metrics
+│   ├── schema_metadata.json       # Schema evolution tracking
+│   └── README.md                  # Documentation
+├── data/                          # Source data files
+├── queries/                       # SQL queries
+└── results/                       # Query test results
+```
+
+## `/research` Directory Purpose
+
+### Primary Use Cases
+
+1. **Database Development and Expansion**
+   - Develop and test new database schemas
+   - Experiment with data models and relationships
+   - Prototype new tables and structures
+   - Test schema migrations and transformations
+
+2. **Data Engineering Workflows**
+   - ETL/ELT pipeline development and testing
+   - Data extraction from multiple sources
+   - Data transformation and cleaning operations
+   - Data quality validation and monitoring
+   - Performance optimization experiments
+
+3. **Advanced Data Engineering**
+   - Complex data transformations using pandas, Spark, or SQL
+   - Data pipeline orchestration and scheduling
+   - Data lineage tracking and documentation
+   - Schema evolution and versioning
+   - Data integration across multiple sources
+   - Real-time data processing workflows
+
+4. **Machine Learning Engineer (MLE) Work**
+   - Feature engineering and data preprocessing
+   - Model training data preparation
+   - Data validation and quality checks for ML pipelines
+   - Experiment tracking and model versioning
+   - A/B testing data preparation
+   - Model monitoring and drift detection
+   - Data pipeline optimization for ML workloads
+
+5. **Research and Experimentation**
+   - Experimental query development
+   - Performance benchmarking
+   - Cross-database compatibility testing
+   - Query optimization research
+   - Data analysis and exploration
+
+### ETL/ELT Pipeline Notebook
+
+The `etl_elt_pipeline.ipynb` notebook provides a comprehensive framework for:
+
+**Extract Phase:**
+- Load data from CSV, JSON, SQL files
+- Connect to external data sources (APIs, databases)
+- **Data.gov API Integration**:
+  - CKAN API for dataset metadata search (`https://catalog.data.gov/api/3/action`)
+  - api.data.gov for accessing actual dataset files (requires API key)
+  - Search and download federal open data datasets
+  - Document datasets in `data_resources.json`
+- **National Weather Service API Integration**:
+  - Points endpoint: Get forecast office info for coordinates (`/points/{lat},{lon}`)
+  - Gridpoint forecasts: Raw numerical forecast data (`/gridpoints/{gridId}/{gridX},{gridY}/forecast`)
+  - Active alerts: Weather alerts and warnings (`/alerts/active`)
+  - No API key required, but User-Agent header required
+  - Coordinates must use WGS84 (EPSG:4326) with max 4 decimal places
+- **GeoPlatform.gov API Integration**:
+  - GeoAPI: Search for geospatial datasets (`https://geoapi.geoplatform.gov/items/search`)
+  - STAC API: SpatioTemporal Asset Catalog interface (`https://stac.geoplatform.gov`)
+  - Collections endpoint: Get all STAC collections (`/collections`)
+  - STAC search: Search catalog for geospatial items (`/search`)
+  - Supports NGDA (National Geospatial Data Assets) across 18 themes
+  - Data formats: GeoJSON, GeoPackage, Shapefile, WMS, WFS, Map Vector, XYZ Raster
+  - No API key required
+  - Document all accessed datasets in `data_resources.json` and `source_metadata.json`
+- Extract data from multiple formats and systems
+- Handle incremental data loads
+- Collate and document all resources in `data_resources.json`
+- Track comprehensive source metadata in `source_metadata.json`
+
+**Transform Phase:**
+- Data cleaning and normalization
+- Data validation and quality checks
+- Schema transformations
+- Data enrichment and feature engineering
+- Handling missing values and outliers
+- Data type conversions and casting
+
+**Load Phase:**
+- Load data into PostgreSQL
+- Load data into 
+- Handle upserts and incremental loads
+- Optimize load performance
+
+**Validate Phase:**
+- Data quality metrics calculation
+- Completeness checks
+- Consistency validation
+- Accuracy verification
+- Generate data quality reports
+
+**Monitor Phase:**
+- Pipeline execution tracking
+- Performance metrics collection
+- Error logging and alerting
+- Metadata generation and storage
+
+## `/metadata` Directory Purpose
+
+### Primary Use Cases
+
+1. **Pipeline Execution Tracking**
+   - Store execution metadata from ETL/ELT runs
+   - Track pipeline success/failure rates
+   - Record execution timestamps and durations
+   - Store error logs and debugging information
+
+2. **Data Quality Monitoring**
+   - Data quality metrics and reports
+   - Data completeness statistics
+   - Data consistency checks
+   - Data accuracy measurements
+   - Historical quality trends
+
+3. **Schema Evolution Tracking**
+   - Schema version history
+   - Column addition/removal tracking
+   - Data type changes
+   - Constraint modifications
+   - Migration scripts and documentation
+
+4. **Data Lineage and Provenance**
+   - Track data sources and transformations
+   - Document data flow through pipelines
+   - Record data dependencies
+   - Track data transformations applied
+
+5. **Performance Metrics**
+   - Query execution times
+   - Data load performance
+   - Pipeline throughput metrics
+   - Resource utilization statistics
+
+### Metadata File Formats
+
+All metadata files are stored in JSON format for:
+- Easy parsing and analysis
+- Version control compatibility
+- Programmatic access
+- Integration with monitoring tools
+
+## Workflow: Database Development with More Data
+
+### Step 1: Research and Experimentation (`/research`)
+
+1. **Create Research Notebook**
+   - Start with `etl_elt_pipeline.ipynb` or create new notebooks
+   - Experiment with new data sources
+   - Test data transformations
+   - Validate data quality
+
+2. **Develop Data Pipelines**
+   - Build ETL/ELT workflows
+   - Test data extraction from sources
+   - Develop transformation logic
+   - Validate data quality
+
+3. **Schema Development**
+   - Design new tables and relationships
+   - Test schema changes
+   - Validate data model
+   - Optimize for query performance
+
+### Step 2: Data Engineering Work (`/research`)
+
+1. **Data Pipeline Development**
+   - Implement production-ready ETL/ELT pipelines
+   - Add error handling and retry logic
+   - Implement data validation checks
+   - Optimize for performance
+
+2. **Data Quality Engineering**
+   - Implement data quality checks
+   - Create data validation rules
+   - Monitor data quality metrics
+   - Generate quality reports
+
+3. **Advanced Transformations**
+   - Complex data transformations
+   - Data enrichment and feature engineering
+   - Data aggregation and summarization
+   - Cross-database data integration
+
+### Step 3: MLE Work (`/research`)
+
+1. **Feature Engineering**
+   - Extract features from raw data
+   - Create derived features
+   - Handle missing values and outliers
+   - Normalize and scale features
+
+2. **Model Training Data Preparation**
+   - Prepare training datasets
+   - Create train/validation/test splits
+   - Handle class imbalance
+   - Feature selection and engineering
+
+3. **Model Monitoring**
+   - Track model performance metrics
+   - Monitor data drift
+   - Track prediction distributions
+   - Alert on anomalies
+
+### Step 4: Metadata Tracking (`/metadata`)
+
+1. **Store Execution Metadata**
+   - Save pipeline execution logs
+   - Record data quality metrics
+   - Track schema changes
+   - Store performance metrics
+
+2. **Generate Reports**
+   - Data quality reports
+   - Pipeline execution summaries
+   - Performance analysis reports
+   - Schema evolution reports
+
+## Best Practices
+
+### Research Directory
+
+1. **Notebook Organization**
+   - Use descriptive notebook names
+   - Include clear markdown documentation
+   - Comment code thoroughly
+   - Document assumptions and decisions
+
+2. **Version Control**
+   - Commit notebooks regularly
+   - Use clear commit messages
+   - Tag major milestones
+   - Document experimental branches
+
+3. **Code Quality**
+   - Write reusable functions
+   - Follow Python/notebook best practices
+   - Handle errors gracefully
+   - Include logging and monitoring
+
+4. **Data Handling**
+   - Never commit sensitive data
+   - Use environment variables for credentials
+   - Document data sources
+   - Track data lineage
+
+### Metadata Directory
+
+1. **Metadata Management**
+   - Store metadata in JSON format
+   - Use consistent naming conventions
+   - Include timestamps in all metadata
+   - Version metadata files
+
+2. **Data Quality**
+   - Track quality metrics over time
+   - Set quality thresholds
+   - Alert on quality degradation
+   - Document quality issues
+
+3. **Schema Tracking**
+   - Version all schema changes
+   - Document migration scripts
+   - Track breaking changes
+   - Maintain backward compatibility when possible
+
+## Integration with Database Development
+
+### Adding More Data to Databases
+
+1. **Identify Data Sources** (`/research`)
+   - Research new data sources
+   - Evaluate data quality
+   - Test data extraction
+   - Validate data formats
+
+2. **Develop Extraction Pipeline** (`/research`)
+   - Create extraction scripts
+   - Handle API rate limits
+   - Implement incremental loads
+   - Add error handling
+
+3. **Transform Data** (`/research`)
+   - Clean and normalize data
+   - Transform to match schema
+   - Enrich with additional data
+   - Validate transformations
+
+4. **Load Data** (`/research`)
+   - Load into target database
+   - Handle conflicts and duplicates
+   - Optimize load performance
+   - Verify data integrity
+
+5. **Track Metadata** (`/metadata`)
+   - Record load statistics
+   - Store data quality metrics
+   - Track schema changes
+   - Document data lineage
+
+### Advanced Data Engineering
+
+1. **Complex Transformations** (`/research`)
+   - Multi-stage data pipelines
+   - Real-time data processing
+   - Stream processing workflows
+   - Data integration across sources
+
+2. **Performance Optimization** (`/research`)
+   - Query optimization experiments
+   - Index strategy testing
+   - Partitioning optimization
+   - Caching strategies
+
+3. **Data Quality Engineering** (`/research` + `/metadata`)
+   - Automated quality checks
+   - Quality monitoring dashboards
+   - Quality trend analysis
+   - Quality alerting systems
+
+### MLE Workflows
+
+1. **Feature Engineering** (`/research`)
+   - Extract features from databases
+   - Create feature stores
+   - Handle feature versioning
+   - Track feature lineage
+
+2. **Model Training** (`/research`)
+   - Prepare training datasets
+   - Handle data splits
+   - Track experiment metadata
+   - Version model artifacts
+
+3. **Model Monitoring** (`/research` + `/metadata`)
+   - Track prediction metrics
+   - Monitor data drift
+   - Alert on anomalies
+   - Store monitoring metadata
+
+## File Naming Conventions
+
+### Research Directory
+
+- `etl_elt_pipeline.ipynb` - Main ETL/ELT pipeline with Data.gov, NWS, and GeoPlatform integration
+- `data_resources.json` - Documentation of all data sources, APIs, and resources
+- `source_metadata.json` - Comprehensive source metadata tracking and data lineage
+- `feature_engineering.ipynb` - Feature engineering work
+- `data_quality_analysis.ipynb` - Data quality analysis
+- `schema_evolution.ipynb` - Schema development
+- `performance_optimization.ipynb` - Performance experiments
+- `ml_training_prep.ipynb` - ML data preparation
+
+### Metadata Directory
+
+- `pipeline_metadata.json` - Pipeline execution logs
+- `data_quality_reports.json` - Quality metrics
+- `schema_metadata.json` - Schema version history
+- `performance_metrics.json` - Performance statistics
+- `data_lineage.json` - Data lineage tracking
+
+## External Data Source Integration
+
+### Data.gov API Workflow
+
+1. **CKAN API (Metadata Search)**
+   - Base URL: `https://catalog.data.gov/api/3/action`
+   - Endpoint: `package_search` for searching datasets
+   - Endpoint: `package_show` for dataset details
+   - No API key required for metadata access
+   - Documentation: https://data.gov/developers/apis/
+
+2. **api.data.gov (Data File Access)**
+   - Base URL: `https://api.data.gov`
+   - Requires API key (sign up at https://api.data.gov/signup/)
+   - Rate limit: 1,000 requests/hour per API key
+   - Demo key available: `DEMO_KEY` (limited: 30 req/hour, 50/day)
+   - Documentation: https://api.data.gov/docs/developer-manual/
+
+3. **Usage Pattern**
+   - Search datasets using CKAN API
+   - Identify resource URLs from dataset metadata
+   - Download resources using api.data.gov (if required)
+   - Transform and load into target databases
+   - Document in `data_resources.json`
+
+### National Weather Service API Workflow
+
+1. **API Configuration**
+   - Base URL: `https://api.weather.gov`
+   - No API key required
+   - User-Agent header required (identify your application)
+   - Coordinate system: WGS84 (EPSG:4326)
+   - Coordinate precision: Maximum 4 decimal places
+   - Data format: GeoJSON (RFC 7946)
+   - Documentation: https://weather-gov.github.io/api/
+
+2. **Key Endpoints**
+   - **Points**: `/points/{lat},{lon}` - Get forecast office and gridpoint info
+   - **Forecast**: `/gridpoints/{gridId}/{gridX},{gridY}/forecast` - Raw numerical forecasts
+   - **Alerts**: `/alerts/active` - Active weather alerts (supports area, severity, urgency filters)
+
+3. **Usage Pattern**
+   - Get points data for location coordinates
+   - Extract gridpoint information
+   - Fetch forecast data using gridpoint coordinates
+   - Optionally fetch active alerts for regions
+   - Convert GeoJSON to DataFrame format
+   - Transform and load into target databases
+   - Document in `data_resources.json` and `source_metadata.json`
+
+4. **Best Practices**
+   - Always include User-Agent header
+   - Round coordinates to 4 decimal places
+   - Handle rate limits gracefully (no official limits, but be respectful)
+   - Cache forecast data appropriately (forecasts update periodically)
+   - Store API responses with timestamps for data lineage
+
+### GeoPlatform.gov API Workflow
+
+1. **API Configuration**
+   - GeoAPI Base URL: `https://geoapi.geoplatform.gov`
+   - STAC Base URL: `https://stac.geoplatform.gov`
+   - Web Portal: `https://www.geoplatform.gov`
+   - No API key required
+   - Authority: Geospatial Data Act of 2018
+   - NGDA Themes: 18 National Geospatial Data Asset themes
+   - Documentation: https://www.geoplatform.gov/
+
+2. **Key Endpoints**
+   - **GeoAPI Search**: `/items/search` - Search for geospatial datasets
+   - **STAC Collections**: `/collections` - Get all STAC collections
+   - **STAC Collection**: `/collections/{collectionId}` - Get specific collection details
+   - **STAC Search**: `/search` - Search STAC catalog for items (POST request)
+
+3. **Data Formats Supported**
+   - GeoJSON, GeoPackage, Shapefile
+   - WMS (Web Map Service), WFS (Web Feature Service)
+   - Map Vector tiles, XYZ Raster tiles
+
+4. **Catalogs Available**
+   - **Artifact Catalog**: Automatically converted data files (GeoPackage, Shapefiles, GeoJSON)
+   - **Tile Service Catalog**: Map tiles in Map Vector and XYZ Raster formats
+   - **Map Services Catalog**: WMS/WFS services with download options
+
+5. **Usage Pattern**
+   - Search datasets using GeoAPI or STAC interface
+   - Filter by NGDA themes if needed (18 available themes)
+   - Access STAC collections for structured geospatial data
+   - Download resources in preferred format (GeoJSON, GeoPackage, etc.)
+   - Convert GeoJSON to DataFrame format for tabular data
+   - Handle other formats (GeoPackage, Shapefile) as files
+   - Transform and load into target databases
+   - Document in `data_resources.json` and `source_metadata.json`
+
+6. **Best Practices**
+   - Use STAC API for structured, standardized geospatial data access
+   - Filter by NGDA themes for authoritative federal geospatial data
+   - Handle multiple data formats appropriately (GeoJSON for analysis, GeoPackage/Shapefile for GIS tools)
+   - Store downloaded files with metadata for data lineage
+   - Track NGDA theme associations for data categorization
+
+### Resource Documentation
+
+**`data_resources.json`** - Quick reference for data sources:
+- All API endpoints used
+- API keys and authentication requirements (store keys as env vars, not in JSON)
+- Rate limits and usage guidelines
+- Datasets accessed and their metadata
+- Data collection timestamps
+- Source URLs and documentation links
+- Coordinate systems and data formats
+- Usage notes and best practices
+
+**`source_metadata.json`** - Comprehensive source tracking:
+- Detailed API endpoint configurations
+- Authentication methods and requirements
+- Data format specifications
+- Extraction history with timestamps
+- Data lineage tracking
+- Source system categorization
+- NGDA theme associations (for GeoPlatform data)
+- Catalog information (for GeoPlatform artifacts, tiles, services)
+
+Both files serve as complementary documentation:
+- `data_resources.json`: Quick reference and current state
+- `source_metadata.json`: Historical tracking and detailed metadata
+
+These files should be updated whenever new sources are integrated or data is extracted.
+
+## Notes
+
+- Research notebooks are for development and experimentation
+- Metadata files track production pipeline execution
+- Both directories support iterative database development
+- Use research notebooks to prototype before production
+- Store all production metadata in `/metadata` directory
+- Keep research notebooks organized and documented
+- Version control all notebooks and metadata files
+- **API Keys**: Never commit API keys to version control. Use environment variables.
+- **Rate Limits**: Respect API rate limits and implement appropriate retry logic
+- **Documentation**: Always document data sources in both `data_resources.json` and `source_metadata.json`
+- **Source Tracking**: Maintain comprehensive source metadata for data lineage and provenance
+- **Geospatial Data**: Handle multiple geospatial formats appropriately (GeoJSON for analysis, GeoPackage/Shapefile for GIS)
+- **NGDA Themes**: Track NGDA theme associations when accessing GeoPlatform federal geospatial data
+- **This workflow applies to db-6 through db-15**: Use the same ETL notebook structure and data source integration patterns
+
+---
+**Last Updated:** 2026-02-03

@@ -1,0 +1,107 @@
+{
+  "database": "db-4",
+  "validation_date": "2026-02-03T18:23:40.336052",
+  "phases": {
+    "fix_verification": {
+      "query_title_uniqueness": {
+        "fix": "Query title uniqueness",
+        "status": "FAIL",
+        "checks": [
+          {
+            "check": "Query 26 found",
+            "status": "FAIL"
+          },
+          {
+            "check": "Query 27 found",
+            "status": "FAIL"
+          },
+          {
+            "check": "Query 28 found",
+            "status": "FAIL"
+          },
+          {
+            "check": "Query 29 found",
+            "status": "FAIL"
+          },
+          {
+            "check": "Query 30 found",
+            "status": "FAIL"
+          },
+          {
+            "check": "No duplicate titles",
+            "status": "PASS"
+          }
+        ]
+      },
+      "header_formatting": {
+        "fix": "Header formatting consistency",
+        "status": "FAIL",
+        "checks": [
+          {
+            "check": "All queries use ## Query N: format",
+            "status": "FAIL",
+            "found": 1,
+            "expected": 30
+          },
+          {
+            "check": "No queries with --- prefix",
+            "status": "FAIL",
+            "found": 29
+          }
+        ]
+      },
+      "status": "FAIL"
+    },
+    "evaluation": {
+      "query_count": {
+        "requirement": "Exactly 30 queries",
+        "found": 1,
+        "status": "FAIL",
+        "message": "Found 1 queries, expected 30"
+      },
+      "recursive_cte_usage": {
+        "requirement": "Queries claiming recursive CTE must have WITH RECURSIVE",
+        "total_queries": 1,
+        "queries_with_recursive": 1,
+        "mismatched": 0,
+        "status": "PASS",
+        "details": [
+          {
+            "query_number": 1,
+            "has_recursive": true,
+            "claims_recursive": true,
+            "status": "PASS"
+          }
+        ],
+        "mismatched_queries": []
+      },
+      "cte_usage": {
+        "requirement": "All queries must use CTEs",
+        "total_queries": 1,
+        "queries_with_cte": 1,
+        "queries_without_cte": 0,
+        "status": "PASS",
+        "queries_without_cte_list": []
+      },
+      "complexity": {
+        "requirement": "Queries must demonstrate high complexity",
+        "complexity_scores": [
+          {
+            "query_number": 1,
+            "cte_count": 1,
+            "recursive_cte_count": 1,
+            "join_count": 1,
+            "window_function_count": 12,
+            "aggregation_count": 15,
+            "subquery_count": 4
+          }
+        ],
+        "average_cte_count": 1.0,
+        "average_join_count": 1.0,
+        "average_window_function_count": 12.0
+      },
+      "status": "FAIL"
+    }
+  },
+  "overall_status": "FAIL"
+}

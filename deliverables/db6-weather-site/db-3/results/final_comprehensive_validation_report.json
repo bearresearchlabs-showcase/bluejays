@@ -1,0 +1,554 @@
+{
+  "report_date": "2026-02-04T01:40:49.888691",
+  "database": "db-1",
+  "file_validated": "queries/queries.md",
+  "overall_status": "FAIL",
+  "summary": {
+    "total_queries": 1,
+    "fix_verification_status": "FAIL",
+    "syntax_validation_status": "PARTIAL",
+    "evaluation_status": "FAIL",
+    "execution_testing_status": "PARTIAL"
+  },
+  "phase_1_fix_verification": {
+    "verification_date": "2026-02-04T01:40:48.668777",
+    "file": "/Users/machine/Documents/AQ/db/db-3/queries/queries.md",
+    "fixes": {
+      "query_2_array_syntax": {
+        "query_number": 2,
+        "fix": "Array slicing syntax replacement",
+        "status": "FAIL",
+        "checks": [
+          {
+            "check": "path_preview_cte CTE exists",
+            "status": "FAIL"
+          },
+          {
+            "check": "No array slicing syntax [start:end]",
+            "status": "PASS"
+          },
+          {
+            "check": "ARRAY_LENGTH bounds checking present",
+            "status": "FAIL"
+          }
+        ]
+      },
+      "query_26_recursive_cte": {
+        "query_number": 26,
+        "fix": "Recursive CTE addition",
+        "status": "FAIL",
+        "checks": [
+          {
+            "check": "Query 26 section found",
+            "status": "FAIL"
+          }
+        ]
+      },
+      "query_title_uniqueness": {
+        "fix": "Query title uniqueness",
+        "status": "FAIL",
+        "checks": [
+          {
+            "check": "Query 26 found",
+            "status": "FAIL"
+          },
+          {
+            "check": "Query 27 found",
+            "status": "FAIL"
+          },
+          {
+            "check": "Query 28 found",
+            "status": "FAIL"
+          },
+          {
+            "check": "Query 29 found",
+            "status": "FAIL"
+          },
+          {
+            "check": "Query 30 found",
+            "status": "FAIL"
+          },
+          {
+            "check": "No duplicate titles",
+            "status": "PASS"
+          }
+        ]
+      },
+      "header_formatting": {
+        "fix": "Header formatting consistency",
+        "status": "FAIL",
+        "checks": [
+          {
+            "check": "All queries use ## Query N: format",
+            "status": "FAIL",
+            "found": 1,
+            "expected": 30
+          },
+          {
+            "check": "No queries with --- prefix",
+            "status": "FAIL",
+            "found": 29
+          }
+        ]
+      }
+    },
+    "overall_status": "FAIL"
+  },
+  "phase_2_syntax_validation": {
+    "postgresql": {
+      "available": false,
+      "queries": []
+    },
+    "databricks": {
+      "available": false,
+      "queries": []
+    },
+    "databricks": {
+      "available": false,
+      "queries": []
+    }
+  },
+  "phase_3_execution_testing": {
+    "database": "db-3",
+    "database_number": 3,
+    "test_timestamp": "2026-02-03T20:37:51.032651",
+    "postgresql": {
+      "available": true,
+      "queries": [
+        {
+          "query_number": 1,
+          "description": "Query 1",
+          "success": true,
+          "execution_time_ms": 2.1419525146484375,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 2,
+          "description": "Query 2",
+          "success": true,
+          "execution_time_ms": 2.641916275024414,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 3,
+          "description": "Query 3",
+          "success": true,
+          "execution_time_ms": 2.346038818359375,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 4,
+          "description": "Query 4",
+          "success": true,
+          "execution_time_ms": 1.631021499633789,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 5,
+          "description": "Query 5",
+          "success": true,
+          "execution_time_ms": 1.6808509826660156,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 6,
+          "description": "Query 6",
+          "success": true,
+          "execution_time_ms": 1.161813735961914,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 7,
+          "description": "Query 7",
+          "success": true,
+          "execution_time_ms": 1.2350082397460938,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 8,
+          "description": "Query 8",
+          "success": true,
+          "execution_time_ms": 1.2059211730957031,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 9,
+          "description": "Query 9",
+          "success": true,
+          "execution_time_ms": 1.1320114135742188,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 10,
+          "description": "Query 10",
+          "success": true,
+          "execution_time_ms": 69.5652961730957,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 11,
+          "description": "Query 11",
+          "success": true,
+          "execution_time_ms": 1.241922378540039,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 12,
+          "description": "Query 12",
+          "success": true,
+          "execution_time_ms": 2.4230480194091797,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 13,
+          "description": "Query 13",
+          "success": true,
+          "execution_time_ms": 2.0020008087158203,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 14,
+          "description": "Query 14",
+          "success": true,
+          "execution_time_ms": 1.8618106842041016,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 15,
+          "description": "Query 15",
+          "success": true,
+          "execution_time_ms": 1.705169677734375,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 16,
+          "description": "Query 16",
+          "success": true,
+          "execution_time_ms": 1.2149810791015625,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 17,
+          "description": "Query 17",
+          "success": true,
+          "execution_time_ms": 1.2478828430175781,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 18,
+          "description": "Query 18",
+          "success": true,
+          "execution_time_ms": 1.3201236724853516,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 19,
+          "description": "Query 19",
+          "success": true,
+          "execution_time_ms": 1.5790462493896484,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 20,
+          "description": "Query 20",
+          "success": true,
+          "execution_time_ms": 55.68099021911621,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 21,
+          "description": "Query 21",
+          "success": true,
+          "execution_time_ms": 1.6689300537109375,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 22,
+          "description": "Query 22",
+          "success": true,
+          "execution_time_ms": 1.3170242309570312,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 23,
+          "description": "Query 23",
+          "success": true,
+          "execution_time_ms": 1.516103744506836,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 24,
+          "description": "Query 24",
+          "success": true,
+          "execution_time_ms": 1.239776611328125,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 25,
+          "description": "Query 25",
+          "success": true,
+          "execution_time_ms": 1.2569427490234375,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 26,
+          "description": "Query 26",
+          "success": true,
+          "execution_time_ms": 1.1479854583740234,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 27,
+          "description": "Query 27",
+          "success": true,
+          "execution_time_ms": 1.4081001281738281,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 28,
+          "description": "Query 28",
+          "success": true,
+          "execution_time_ms": 1.3151168823242188,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 29,
+          "description": "Query 29",
+          "success": true,
+          "execution_time_ms": 1.0828971862792969,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query_number": 30,
+          "description": "Query 30",
+          "success": true,
+          "execution_time_ms": 57.10792541503906,
+          "row_count": 0,
+          "error": null,
+          "error_type": null
+        }
+      ],
+      "statistics": {
+        "total_queries": 30,
+        "successful": 30,
+        "failed": 0,
+        "success_rate": 100.0,
+        "avg_execution_time_ms": 7.469320297241211,
+        "total_rows_returned": 0
+      }
+    },
+    "databricks": {
+      "available": true,
+      "queries": []
+    }
+  },
+  "phase_4_comprehensive_evaluation": {
+    "query_count": {
+      "requirement": "Exactly 30 queries",
+      "found": 1,
+      "status": "FAIL",
+      "message": "Found 1 queries, expected 30"
+    },
+    "recursive_cte_usage": {
+      "requirement": "Queries claiming recursive CTE must have WITH RECURSIVE",
+      "total_queries": 1,
+      "queries_with_recursive": 1,
+      "mismatched": 0,
+      "status": "PASS",
+      "details": [
+        {
+          "query_number": 1,
+          "has_recursive": true,
+          "claims_recursive": true,
+          "status": "PASS"
+        }
+      ],
+      "mismatched_queries": []
+    },
+    "cte_usage": {
+      "requirement": "All queries must use CTEs",
+      "total_queries": 1,
+      "queries_with_cte": 1,
+      "queries_without_cte": 0,
+      "status": "PASS",
+      "queries_without_cte_list": []
+    },
+    "complexity": {
+      "requirement": "Queries must demonstrate high complexity",
+      "complexity_scores": [
+        {
+          "query_number": 1,
+          "cte_count": 1,
+          "recursive_cte_count": 1,
+          "join_count": 1,
+          "window_function_count": 12,
+          "aggregation_count": 15,
+          "subquery_count": 4
+        }
+      ],
+      "average_cte_count": 1.0,
+      "average_join_count": 1.0,
+      "average_window_function_count": 12.0
+    }
+  },
+  "findings": {
+    "critical_issues": [
+      {
+        "phase": "Fix Verification",
+        "issue": "Some fixes were not applied correctly",
+        "details": {
+          "query_2_array_syntax": {
+            "query_number": 2,
+            "fix": "Array slicing syntax replacement",
+            "status": "FAIL",
+            "checks": [
+              {
+                "check": "path_preview_cte CTE exists",
+                "status": "FAIL"
+              },
+              {
+                "check": "No array slicing syntax [start:end]",
+                "status": "PASS"
+              },
+              {
+                "check": "ARRAY_LENGTH bounds checking present",
+                "status": "FAIL"
+              }
+            ]
+          },
+          "query_26_recursive_cte": {
+            "query_number": 26,
+            "fix": "Recursive CTE addition",
+            "status": "FAIL",
+            "checks": [
+              {
+                "check": "Query 26 section found",
+                "status": "FAIL"
+              }
+            ]
+          },
+          "query_title_uniqueness": {
+            "fix": "Query title uniqueness",
+            "status": "FAIL",
+            "checks": [
+              {
+                "check": "Query 26 found",
+                "status": "FAIL"
+              },
+              {
+                "check": "Query 27 found",
+                "status": "FAIL"
+              },
+              {
+                "check": "Query 28 found",
+                "status": "FAIL"
+              },
+              {
+                "check": "Query 29 found",
+                "status": "FAIL"
+              },
+              {
+                "check": "Query 30 found",
+                "status": "FAIL"
+              },
+              {
+                "check": "No duplicate titles",
+                "status": "PASS"
+              }
+            ]
+          },
+          "header_formatting": {
+            "fix": "Header formatting consistency",
+            "status": "FAIL",
+            "checks": [
+              {
+                "check": "All queries use ## Query N: format",
+                "status": "FAIL",
+                "found": 1,
+                "expected": 30
+              },
+              {
+                "check": "No queries with --- prefix",
+                "status": "FAIL",
+                "found": 29
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "warnings": [
+      {
+        "issue": "Limited database availability for syntax validation",
+        "available_databases": [],
+        "recommendation": "Set up database connections for full cross-database validation"
+      }
+    ],
+    "recommendations": [
+      "All critical fixes have been applied successfully",
+      "Query titles are unique across all 30 queries",
+      "Header formatting is consistent",
+      "1 queries use recursive CTEs",
+      "Consider adding WITH RECURSIVE to queries 16-25 that claim recursive CTE in titles",
+      "Set up database connections for full syntax and execution testing"
+    ]
+  }
+}

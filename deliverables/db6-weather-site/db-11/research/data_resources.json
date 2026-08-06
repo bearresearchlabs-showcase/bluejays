@@ -1,0 +1,344 @@
+{
+  "database": "db-11",
+  "description": "Parking Intelligence Database - Data Sources and API Resources",
+  "last_updated": "2026-02-04",
+  "data_sources": {
+    "data_gov_parking": {
+      "name": "Data.gov Parking Datasets",
+      "description": "Parking facility datasets from various cities via Data.gov CKAN API",
+      "base_url": "https://catalog.data.gov/api/3/action",
+      "authentication": {
+        "method": "API Key (optional)",
+        "header": "X-API-Key",
+        "note": "API key available at https://api.data.gov/signup/ for higher rate limits"
+      },
+      "rate_limits": {
+        "without_key": {
+          "requests_per_hour": 1000,
+          "requests_per_day": 10000
+        },
+        "with_key": {
+          "requests_per_hour": 10000,
+          "requests_per_day": 100000
+        }
+      },
+      "endpoints": {
+        "package_search": {
+          "path": "/package_search",
+          "method": "GET",
+          "description": "Search for parking datasets",
+          "parameters": {
+            "q": "Search query (e.g., 'parking')",
+            "fq": "Filter query (e.g., 'organization:city-name')",
+            "rows": "Number of results",
+            "start": "Pagination offset"
+          },
+          "example": "/package_search?q=parking&rows=20"
+        },
+        "package_show": {
+          "path": "/package_show",
+          "method": "GET",
+          "description": "Get dataset details",
+          "parameters": {
+            "id": "Dataset ID"
+          }
+        },
+        "resource_show": {
+          "path": "/resource_show",
+          "method": "GET",
+          "description": "Get resource file details",
+          "parameters": {
+            "id": "Resource ID"
+          }
+        }
+      },
+      "datasets": {
+        "seattle_parking": {
+          "name": "Seattle Public Garages and Parking Lots",
+          "dataset_id": "public-garages-and-parking-lots-5b51c",
+          "description": "Location and characteristics of off-street parking facilities",
+          "formats": ["CSV", "JSON", "Shapefile", "GeoJSON"],
+          "update_frequency": "Weekly",
+          "fields": ["location", "facility_type", "spaces", "rates", "coordinates"]
+        },
+        "philadelphia_parking": {
+          "name": "Philadelphia Parking Locator",
+          "description": "Parking facility lookup for Center City and University City",
+          "fields": ["address", "rates", "facility_type", "spaces", "distance"]
+        },
+        "austin_parking": {
+          "name": "Austin Parking Transactions",
+          "description": "Parking transaction data from street parking and city-operated lots",
+          "fields": ["location", "transaction_time", "duration", "revenue"]
+        },
+        "san_francisco_parking": {
+          "name": "San Francisco Parking Meters",
+          "description": "Parking meter locations with attributes",
+          "update_frequency": "Weekly",
+          "fields": ["location", "meter_type", "rates", "coordinates"]
+        }
+      },
+      "data_format": "JSON (metadata), CSV/JSON/GeoJSON/Shapefile (data files)",
+      "coordinate_system": "WGS84 (EPSG:4326)",
+      "usage_notes": [
+        "Uses Data.gov CKAN API",
+        "Filter by organization for city-specific datasets",
+        "Resources may be CSV, JSON, GeoJSON, Shapefile, or other formats",
+        "Download actual data files via resource URLs",
+        "Many cities maintain their own open data portals"
+      ],
+      "documentation": "https://catalog.data.gov/api/3/action/help_show?name=api"
+    },
+    "census_bureau": {
+      "name": "U.S. Census Bureau",
+      "description": "Demographics, population, and economic data for metropolitan areas and cities",
+      "base_url": "https://api.census.gov/data",
+      "authentication": {
+        "method": "API Key (optional but recommended)",
+        "header": "key",
+        "api_key_parameter": "key",
+        "note": "API key available at https://api.census.gov/data/key_signup.html"
+      },
+      "rate_limits": {
+        "without_key": {
+          "requests_per_day": 500
+        },
+        "with_key": {
+          "requests_per_day": 5000
+        }
+      },
+      "endpoints": {
+        "acs5": {
+          "path": "/{year}/acs/acs5",
+          "description": "American Community Survey 5-year estimates",
+          "parameters": {
+            "get": "Variables to retrieve",
+            "for": "Geographic level (e.g., 'metropolitan statistical area/micropolitan statistical area:*')",
+            "in": "Parent geography"
+          }
+        },
+        "pep": {
+          "path": "/{year}/pep/population",
+          "description": "Population estimates",
+          "parameters": {
+            "get": "Variables",
+            "for": "Geographic level"
+          }
+        }
+      },
+      "data_format": "JSON",
+      "coordinate_system": "N/A (geographic identifiers)",
+      "usage_notes": [
+        "API key recommended for higher rate limits",
+        "Use FIPS codes for geographic identifiers",
+        "MSA codes available for metropolitan statistical areas",
+        "Data available at multiple geographic levels",
+        "Time series data available for trend analysis"
+      ],
+      "documentation": "https://www.census.gov/data/developers/data-sets.html"
+    },
+    "bts_transtats": {
+      "name": "Bureau of Transportation Statistics TranStats",
+      "description": "Airport passenger and cargo statistics",
+      "base_url": "https://www.transtats.bts.gov",
+      "authentication": {
+        "method": "None required",
+        "note": "Public access, no authentication required"
+      },
+      "rate_limits": {
+        "note": "No official limits, but be respectful"
+      },
+      "endpoints": {
+        "airport_snapshots": {
+          "path": "/airports.asp",
+          "description": "Airport-specific information and statistics",
+          "parameters": {
+            "pn": "Page number"
+          }
+        },
+        "data_elements": {
+          "path": "/Data_Elements.aspx",
+          "description": "Available data elements and datasets"
+        }
+      },
+      "data_format": "HTML tables, CSV downloads",
+      "coordinate_system": "N/A",
+      "usage_notes": [
+        "Historical data available dating back to December 2006",
+        "Data includes passenger volumes, cargo information, operational metrics",
+        "Major commercial airports covered",
+        "May require web scraping or CSV downloads",
+        "Used for airport categorization and infrastructure planning"
+      ],
+      "documentation": "https://www.transtats.bts.gov/"
+    },
+    "faa_airport_data": {
+      "name": "FAA Passenger and Cargo Statistics",
+      "description": "FAA Air Carrier Activity database - passenger boarding and cargo data",
+      "base_url": "https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger",
+      "authentication": {
+        "method": "None required",
+        "note": "Public access, no authentication required"
+      },
+      "data_format": "PDF, Excel",
+      "coordinate_system": "N/A",
+      "usage_notes": [
+        "Calendar Year data available",
+        "Reports available in PDF and Excel formats",
+        "Data by airport rank order and by state",
+        "Supports Airport Improvement Program (AIP) categorization",
+        "May require manual download or parsing"
+      ],
+      "documentation": "https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger"
+    },
+    "fhwa_traffic": {
+      "name": "Federal Highway Administration Traffic Volume Data",
+      "description": "Traffic volume trends and highway statistics",
+      "base_url": "https://www.fhwa.dot.gov/policyinformation",
+      "authentication": {
+        "method": "None required",
+        "note": "Public access, no authentication required"
+      },
+      "endpoints": {
+        "traffic_volume_trends": {
+          "path": "/travel_monitoring",
+          "description": "Monthly traffic volume trends reports"
+        },
+        "traffic_monitoring": {
+          "path": "/tables/trafficmonitoring",
+          "description": "U.S. Traffic Monitoring Location Data"
+        },
+        "highway_statistics": {
+          "path": "/statistics",
+          "description": "Annual Highway Statistics reports"
+        }
+      },
+      "data_format": "PDF, Excel, CSV",
+      "coordinate_system": "N/A",
+      "usage_notes": [
+        "Monthly Traffic Volume Trends reports available",
+        "U.S. Traffic Monitoring Location Data via special tabulations",
+        "Annual Highway Statistics reports",
+        "Data supports transportation planning and analysis",
+        "May require manual download or parsing"
+      ],
+      "documentation": "https://www.fhwa.dot.gov/policyinformation/datalinks.cfm"
+    },
+    "city_open_data_portals": {
+      "name": "City Open Data Portals",
+      "description": "City-specific open data portals with parking and transportation data",
+      "examples": {
+        "seattle": {
+          "name": "Seattle Open Data",
+          "url": "https://data.seattle.gov",
+          "parking_datasets": [
+            "Public Garages and Parking Lots",
+            "Paid Parking Occupancy (Last 48 Hours)"
+          ]
+        },
+        "san_francisco": {
+          "name": "San Francisco Open Data",
+          "url": "https://data.sfgov.org",
+          "parking_datasets": [
+            "Parking Meters",
+            "Parking Citations"
+          ]
+        },
+        "austin": {
+          "name": "Austin Open Data",
+          "url": "https://data.austintexas.gov",
+          "parking_datasets": [
+            "Off-Street Parking",
+            "Parking Transactions"
+          ]
+        },
+        "philadelphia": {
+          "name": "Philadelphia Open Data",
+          "url": "https://www.opendataphilly.org",
+          "parking_datasets": [
+            "Parking Locator",
+            "Parking Facilities"
+          ]
+        }
+      },
+      "authentication": {
+        "method": "Varies by city",
+        "note": "Most portals use CKAN API or Socrata API"
+      },
+      "data_format": "CSV, JSON, GeoJSON, Shapefile",
+      "coordinate_system": "WGS84 (EPSG:4326)",
+      "usage_notes": [
+        "Each city maintains its own open data portal",
+        "APIs vary (CKAN, Socrata, ArcGIS)",
+        "Parking data availability varies by city",
+        "Real-time data may be available for some cities",
+        "Check individual city portals for specific datasets"
+      ]
+    }
+  },
+  "api_keys_configuration": {
+    "note": "Store API keys as environment variables, never commit to version control",
+    "environment_variables": {
+      "DATA_GOV_API_KEY": "Data.gov API key (optional, for higher rate limits)",
+      "CENSUS_API_KEY": "Census Bureau API key (optional but recommended)"
+    },
+    "setup_instructions": [
+      "1. (Optional) Sign up for Data.gov API key at https://api.data.gov/signup/",
+      "2. (Optional) Register for Census API key at https://api.census.gov/data/key_signup.html",
+      "3. Set environment variables: export DATA_GOV_API_KEY='your-key'",
+      "4. Set environment variables: export CENSUS_API_KEY='your-key'"
+    ]
+  },
+  "data_collection_strategy": {
+    "target_data_size": "1 GB",
+    "update_frequency": "Weekly to monthly depending on source",
+    "incremental_load": {
+      "method": "Date-based filtering and timestamp tracking",
+      "key_fields": ["load_timestamp", "extraction_date", "data_year"],
+      "retention": "Keep historical data for trend analysis"
+    },
+    "data_priorities": [
+      "1. Data.gov parking datasets - Parking facility locations and characteristics",
+      "2. Census Bureau - Demographics and population data for 400+ cities",
+      "3. BTS TranStats - Airport passenger volumes and statistics",
+      "4. FHWA - Traffic volume data for transportation planning",
+      "5. City open data portals - Real-time parking utilization and pricing",
+      "6. Stadium/venue data - Event parking demand patterns"
+    ],
+    "geographic_coverage": {
+      "target": "400+ cities across USA and Canada",
+      "focus_areas": [
+        "Major metropolitan areas (MSAs)",
+        "Top 50 airports by passenger volume",
+        "Major sports stadiums and venues",
+        "Business districts and downtown areas"
+      ]
+    }
+  },
+  "coordinate_systems": {
+    "primary": "WGS84 (EPSG:4326)",
+    "usage": "All geospatial data stored in GEOGRAPHY type using WGS84",
+    "transformations": "CRS transformations handled during data load if needed"
+  },
+  "data_formats": {
+    "parking_facilities": "CSV, JSON, GeoJSON, Shapefile",
+    "demographics": "JSON (Census API), CSV",
+    "airports": "CSV, Excel, HTML tables",
+    "traffic": "CSV, Excel, PDF",
+    "target_database": "PostgreSQL (with PostGIS) Delta Lake"
+  },
+  "best_practices": [
+    "Respect rate limits - implement exponential backoff retry logic",
+    "Cache API responses when possible to reduce API calls",
+    "Handle API errors gracefully with retry mechanisms",
+    "Store API keys as environment variables, never in code or JSON files",
+    "Log all API requests for debugging and monitoring",
+    "Implement incremental loads based on date filters",
+    "Validate data quality before loading into database",
+    "Track data lineage and source metadata for all extracted data",
+    "Use appropriate coordinate reference systems (WGS84)",
+    "Handle multiple data formats (CSV, JSON, GeoJSON, Shapefile)",
+    "Monitor data freshness and update frequency",
+    "Target 1 GB of data across all sources for comprehensive parking intelligence"
+  ]
+}

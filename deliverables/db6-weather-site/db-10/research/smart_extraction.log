@@ -1,0 +1,271 @@
+======================================================================
+Smart Bulk Download Extraction
+Target: 1 GB from real public datasets
+======================================================================
+
+======================================================================
+Finding and Downloading Data.gov Large Datasets
+======================================================================
+
+Searching for: 'retail trade'
+  Found 36 datasets
+  Dataset: Pittsburgh American Community Survey 2015 - Miscellaneous Da
+  Downloading CSV...
+    ✓ Downloaded: 0.00 MB
+  Dataset: Pittsburgh American Community Survey 2015 - Miscellaneous Da
+  Downloading CSV...
+    ✓ Downloaded: 0.10 MB
+  Dataset: Iowa Median Earnings in Past 12 Months for the Civilian Empl
+  Downloading CSV...
+    ✓ Downloaded: 180.77 MB
+  Dataset: Iowa Median Earnings in Past 12 Months for the Civilian Empl
+  Downloading JSON...
+    ✓ Downloaded: 280.39 MB
+  Dataset: Retail Pharmacies Located In Iowa
+  Downloading CSV...
+    ✓ Downloaded: 0.04 MB
+  Dataset: Retail Pharmacies Located In Iowa
+  Downloading JSON...
+    ✓ Downloaded: 0.13 MB
+
+Searching for: 'consumer price index'
+  Found 100 datasets
+  Dataset: FHFA House Price Indexes (HPIs)
+  Downloading CSV...
+    5.0 MB / 12.5 MB (40.0%)
+    10.0 MB / 12.5 MB (80.1%)
+    ✓ Downloaded: 12.49 MB
+  Dataset: Medicare Part D Spending by Drug
+  Downloading CSV...
+    5.0 MB / 2.0 MB (252.9%)
+    ✓ Downloaded: 5.00 MB
+  Dataset: Producer Price Index
+  Downloading CSV...
+    ✓ Downloaded: 0.00 MB
+  Dataset: Producer Price Index
+  Downloading CSV...
+    ✓ Downloaded: 0.01 MB
+  Dataset: Liquor Brands
+  Downloading CSV...
+    ✓ Downloaded: 12.15 MB
+  Dataset: Liquor Brands
+  Downloading JSON...
+    ✓ Downloaded: 21.12 MB
+  Dataset: Commercial and Residential Hourly Load Profiles for all TMY3
+  Downloading ZIP...
+    5.0 MB / 106.7 MB (4.7%)
+    10.0 MB / 106.7 MB (9.4%)
+    15.0 MB / 106.7 MB (14.1%)
+    20.0 MB / 106.7 MB (18.7%)
+    25.0 MB / 106.7 MB (23.4%)
+    30.0 MB / 106.7 MB (28.1%)
+    35.0 MB / 106.7 MB (32.8%)
+    40.0 MB / 106.7 MB (37.5%)
+    45.0 MB / 106.7 MB (42.2%)
+    50.0 MB / 106.7 MB (46.8%)
+    55.0 MB / 106.7 MB (51.5%)
+    60.0 MB / 106.7 MB (56.2%)
+    65.0 MB / 106.7 MB (60.9%)
+    70.0 MB / 106.7 MB (65.6%)
+    75.0 MB / 106.7 MB (70.3%)
+    80.0 MB / 106.7 MB (74.9%)
+    85.0 MB / 106.7 MB (79.6%)
+    90.0 MB / 106.7 MB (84.3%)
+    95.0 MB / 106.7 MB (89.0%)
+    100.0 MB / 106.7 MB (93.7%)
+    105.0 MB / 106.7 MB (98.4%)
+    ✓ Downloaded: 106.75 MB
+  Dataset: Commercial and Residential Hourly Load Profiles for all TMY3
+  Downloading ZIP...
+    5.0 MB / 894.4 MB (0.6%)
+    10.0 MB / 894.4 MB (1.1%)
+    15.0 MB / 894.4 MB (1.7%)
+    20.0 MB / 894.4 MB (2.2%)
+    25.0 MB / 894.4 MB (2.8%)
+    30.0 MB / 894.4 MB (3.4%)
+    35.0 MB / 894.4 MB (3.9%)
+    40.0 MB / 894.4 MB (4.5%)
+    45.0 MB / 894.4 MB (5.0%)
+    50.0 MB / 894.4 MB (5.6%)
+    55.0 MB / 894.4 MB (6.1%)
+    60.0 MB / 894.4 MB (6.7%)
+    65.0 MB / 894.4 MB (7.3%)
+    70.0 MB / 894.4 MB (7.8%)
+    75.0 MB / 894.4 MB (8.4%)
+    80.0 MB / 894.4 MB (8.9%)
+    85.0 MB / 894.4 MB (9.5%)
+    90.0 MB / 894.4 MB (10.1%)
+    95.0 MB / 894.4 MB (10.6%)
+    100.0 MB / 894.4 MB (11.2%)
+    105.0 MB / 894.4 MB (11.7%)
+    110.0 MB / 894.4 MB (12.3%)
+    115.0 MB / 894.4 MB (12.9%)
+    120.0 MB / 894.4 MB (13.4%)
+    125.0 MB / 894.4 MB (14.0%)
+    130.0 MB / 894.4 MB (14.5%)
+    135.0 MB / 894.4 MB (15.1%)
+    140.0 MB / 894.4 MB (15.7%)
+    145.0 MB / 894.4 MB (16.2%)
+    150.0 MB / 894.4 MB (16.8%)
+    155.0 MB / 894.4 MB (17.3%)
+    160.0 MB / 894.4 MB (17.9%)
+    165.0 MB / 894.4 MB (18.4%)
+    170.0 MB / 894.4 MB (19.0%)
+    175.0 MB / 894.4 MB (19.6%)
+    180.0 MB / 894.4 MB (20.1%)
+    185.0 MB / 894.4 MB (20.7%)
+    190.0 MB / 894.4 MB (21.2%)
+    195.0 MB / 894.4 MB (21.8%)
+    200.0 MB / 894.4 MB (22.4%)
+    205.0 MB / 894.4 MB (22.9%)
+    210.0 MB / 894.4 MB (23.5%)
+    215.0 MB / 894.4 MB (24.0%)
+    220.0 MB / 894.4 MB (24.6%)
+    225.0 MB / 894.4 MB (25.2%)
+    230.0 MB / 894.4 MB (25.7%)
+    235.0 MB / 894.4 MB (26.3%)
+    240.0 MB / 894.4 MB (26.8%)
+    245.0 MB / 894.4 MB (27.4%)
+    250.0 MB / 894.4 MB (28.0%)
+    255.0 MB / 894.4 MB (28.5%)
+    260.0 MB / 894.4 MB (29.1%)
+    265.0 MB / 894.4 MB (29.6%)
+    270.0 MB / 894.4 MB (30.2%)
+    275.0 MB / 894.4 MB (30.7%)
+    280.0 MB / 894.4 MB (31.3%)
+    285.0 MB / 894.4 MB (31.9%)
+    290.0 MB / 894.4 MB (32.4%)
+    295.0 MB / 894.4 MB (33.0%)
+    300.0 MB / 894.4 MB (33.5%)
+    305.0 MB / 894.4 MB (34.1%)
+    310.0 MB / 894.4 MB (34.7%)
+    315.0 MB / 894.4 MB (35.2%)
+    320.0 MB / 894.4 MB (35.8%)
+    325.0 MB / 894.4 MB (36.3%)
+    330.0 MB / 894.4 MB (36.9%)
+    335.0 MB / 894.4 MB (37.5%)
+    340.0 MB / 894.4 MB (38.0%)
+    345.0 MB / 894.4 MB (38.6%)
+    350.0 MB / 894.4 MB (39.1%)
+    355.0 MB / 894.4 MB (39.7%)
+    360.0 MB / 894.4 MB (40.2%)
+    365.0 MB / 894.4 MB (40.8%)
+    370.0 MB / 894.4 MB (41.4%)
+    375.0 MB / 894.4 MB (41.9%)
+    380.0 MB / 894.4 MB (42.5%)
+    385.0 MB / 894.4 MB (43.0%)
+    390.0 MB / 894.4 MB (43.6%)
+    395.0 MB / 894.4 MB (44.2%)
+    400.0 MB / 894.4 MB (44.7%)
+    405.0 MB / 894.4 MB (45.3%)
+    410.0 MB / 894.4 MB (45.8%)
+    415.0 MB / 894.4 MB (46.4%)
+    420.0 MB / 894.4 MB (47.0%)
+    425.0 MB / 894.4 MB (47.5%)
+    430.0 MB / 894.4 MB (48.1%)
+    435.0 MB / 894.4 MB (48.6%)
+    440.0 MB / 894.4 MB (49.2%)
+    445.0 MB / 894.4 MB (49.8%)
+    450.0 MB / 894.4 MB (50.3%)
+    455.0 MB / 894.4 MB (50.9%)
+    460.0 MB / 894.4 MB (51.4%)
+    465.0 MB / 894.4 MB (52.0%)
+    470.0 MB / 894.4 MB (52.5%)
+    475.0 MB / 894.4 MB (53.1%)
+    480.0 MB / 894.4 MB (53.7%)
+    485.0 MB / 894.4 MB (54.2%)
+    490.0 MB / 894.4 MB (54.8%)
+    495.0 MB / 894.4 MB (55.3%)
+    500.0 MB / 894.4 MB (55.9%)
+    505.0 MB / 894.4 MB (56.5%)
+    510.0 MB / 894.4 MB (57.0%)
+    515.0 MB / 894.4 MB (57.6%)
+    520.0 MB / 894.4 MB (58.1%)
+    525.0 MB / 894.4 MB (58.7%)
+    530.0 MB / 894.4 MB (59.3%)
+    535.0 MB / 894.4 MB (59.8%)
+    540.0 MB / 894.4 MB (60.4%)
+    545.0 MB / 894.4 MB (60.9%)
+    550.0 MB / 894.4 MB (61.5%)
+    555.0 MB / 894.4 MB (62.0%)
+    560.0 MB / 894.4 MB (62.6%)
+    565.0 MB / 894.4 MB (63.2%)
+    570.0 MB / 894.4 MB (63.7%)
+    575.0 MB / 894.4 MB (64.3%)
+    580.0 MB / 894.4 MB (64.8%)
+    585.0 MB / 894.4 MB (65.4%)
+    590.0 MB / 894.4 MB (66.0%)
+    595.0 MB / 894.4 MB (66.5%)
+    600.0 MB / 894.4 MB (67.1%)
+    605.0 MB / 894.4 MB (67.6%)
+    610.0 MB / 894.4 MB (68.2%)
+    615.0 MB / 894.4 MB (68.8%)
+    620.0 MB / 894.4 MB (69.3%)
+    625.0 MB / 894.4 MB (69.9%)
+    630.0 MB / 894.4 MB (70.4%)
+    635.0 MB / 894.4 MB (71.0%)
+    640.0 MB / 894.4 MB (71.6%)
+    645.0 MB / 894.4 MB (72.1%)
+    650.0 MB / 894.4 MB (72.7%)
+    655.0 MB / 894.4 MB (73.2%)
+    660.0 MB / 894.4 MB (73.8%)
+    665.0 MB / 894.4 MB (74.3%)
+    670.0 MB / 894.4 MB (74.9%)
+    675.0 MB / 894.4 MB (75.5%)
+    680.0 MB / 894.4 MB (76.0%)
+    685.0 MB / 894.4 MB (76.6%)
+    690.0 MB / 894.4 MB (77.1%)
+    695.0 MB / 894.4 MB (77.7%)
+    700.0 MB / 894.4 MB (78.3%)
+    705.0 MB / 894.4 MB (78.8%)
+    710.0 MB / 894.4 MB (79.4%)
+    715.0 MB / 894.4 MB (79.9%)
+    720.0 MB / 894.4 MB (80.5%)
+    725.0 MB / 894.4 MB (81.1%)
+    730.0 MB / 894.4 MB (81.6%)
+    735.0 MB / 894.4 MB (82.2%)
+    740.0 MB / 894.4 MB (82.7%)
+    745.0 MB / 894.4 MB (83.3%)
+    750.0 MB / 894.4 MB (83.9%)
+    755.0 MB / 894.4 MB (84.4%)
+    760.0 MB / 894.4 MB (85.0%)
+    765.0 MB / 894.4 MB (85.5%)
+    770.0 MB / 894.4 MB (86.1%)
+    775.0 MB / 894.4 MB (86.6%)
+    780.0 MB / 894.4 MB (87.2%)
+    785.0 MB / 894.4 MB (87.8%)
+    790.0 MB / 894.4 MB (88.3%)
+    795.0 MB / 894.4 MB (88.9%)
+    800.0 MB / 894.4 MB (89.4%)
+    805.0 MB / 894.4 MB (90.0%)
+    810.0 MB / 894.4 MB (90.6%)
+    815.0 MB / 894.4 MB (91.1%)
+    820.0 MB / 894.4 MB (91.7%)
+    825.0 MB / 894.4 MB (92.2%)
+    830.0 MB / 894.4 MB (92.8%)
+    835.0 MB / 894.4 MB (93.4%)
+    840.0 MB / 894.4 MB (93.9%)
+    845.0 MB / 894.4 MB (94.5%)
+    850.0 MB / 894.4 MB (95.0%)
+    855.0 MB / 894.4 MB (95.6%)
+    860.0 MB / 894.4 MB (96.1%)
+    865.0 MB / 894.4 MB (96.7%)
+    870.0 MB / 894.4 MB (97.3%)
+    875.0 MB / 894.4 MB (97.8%)
+    880.0 MB / 894.4 MB (98.4%)
+    885.0 MB / 894.4 MB (98.9%)
+    890.0 MB / 894.4 MB (99.5%)
+    ✓ Downloaded: 894.44 MB
+
+✓ Reached 1 GB target!
+
+======================================================================
+Extraction Summary
+======================================================================
+Total Files: 14
+Total Size: 1.48 GB (1513.40 MB)
+Time Elapsed: 5.23 minutes
+Data Directory: /Users/machine/Documents/AQ/db/db-10/research/extracted_data
+======================================================================
+
+Metadata saved to: /Users/machine/Documents/AQ/db/db-10/research/extraction_metadata.json

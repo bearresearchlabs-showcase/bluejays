@@ -1,0 +1,193 @@
+{
+  "database": "db-4",
+  "test_date": "2026-02-09T13:47:00.010470",
+  "postgresql": {
+    "available": true,
+    "queries": [
+      {
+        "query_number": 1,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 2,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 3,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 4,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 5,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 6,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 7,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 8,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 9,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 10,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 11,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 12,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 13,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 14,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 15,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 16,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 17,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 18,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 19,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 20,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 21,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 22,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 23,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 24,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 25,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 26,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 27,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 28,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 29,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      },
+      {
+        "query_number": 30,
+        "success": false,
+        "error": "relation \"models\" does not exist\nLINE 5:     FROM models\n                 ^\n",
+        "execution_time_ms": 0
+      }
+    ]
+  },
+  "databricks": {
+    "available": false,
+    "queries": []
+  }
+}

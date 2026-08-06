@@ -1,0 +1,266 @@
+---
+description: Complex queries must be compatible with PostgreSQL
+alwaysApply: true
+---
+
+# Database Query Compatibility
+
+## Standard Directory Structure
+
+Each database repository (db-1 through db-15) follows a consistent directory structure:
+
+```
+db-{N}/
+├── queries/
+│   ├── queries.md          # 30+ extremely complex SQL queries (source)
+│   ├── queries.json        # Query metadata in JSON format (REQUIRED - extracted from queries.md)
+│   └── queries_fixed.json  # Fixed/validated queries (if applicable)
+├── results/
+│   ├── *.json              # Test results and validation reports (JSON only)
+│   └── *.md                # Test summaries and reports (if applicable)
+├── docs/
+│   ├── README.md           # Database documentation
+│   ├── SCHEMA.md           # Schema documentation
+│   ├── DATA_DICTIONARY.md  # Data dictionary
+│   └── *.ipynb             # Jupyter notebooks for testing/analysis
+├── data/
+│   ├── schema.sql          # Database schema SQL file
+│   ├── data.sql            # Sample data SQL file
+│   └── *.sql, *.dump       # Additional SQL files and dumps
+├── scripts/
+│   ├── *.py                # Python utility scripts
+│   ├── *.sh                # Shell scripts
+│   └── requirements.txt    # Python dependencies
+├── research/
+│   ├── etl_elt_pipeline.ipynb  # ETL/ELT pipeline notebook
+│   ├── *.ipynb             # Additional research notebooks
+│   ├── *.py                # Analysis scripts
+│   └── README.md           # Research directory documentation
+└── metadata/
+    ├── pipeline_metadata.json      # Pipeline execution logs
+    ├── data_quality_reports.json   # Data quality metrics
+    ├── schema_metadata.json        # Schema evolution tracking
+    └── README.md                   # Metadata directory documentation
+```
+
+### Directory Purposes
+
+- **`queries/`**: Contains SQL queries (queries.md) and query metadata (JSON files)
+  - **queries.md**: Source file containing all SQL queries
+  - **queries.json**: **REQUIRED** - Extracted query metadata in JSON format (must exist before validation)
+  - **queries_fixed.json**: Fixed/validated queries (optional, created during validation)
+- **`results/`**: Stores test results, validation reports, and query execution results (JSON format preferred)
+- **`docs/`**: Database documentation, schema docs, data dictionaries, and analysis notebooks
+- **`data/`**: Database schema files (schema.sql), sample data (data.sql), and data dumps
+  - **Production-grade comments**: All SQL files must use production-grade comments, not "Created:" dates
+  - **Comment standards**: Comments should describe purpose, functionality, and business context, not creation dates
+- **`scripts/`**: Utility scripts for database setup, testing, validation, and automation
+- **`research/`**: Research notebooks, experimental analysis, ETL/ELT pipelines, and development work for database expansion, data engineering, and MLE workflows
+- **`metadata/`**: Pipeline execution metadata, data quality reports, schema evolution tracking, and performance metrics
+
+See `.cursor/rules/research-metadata-directories.mdc` for detailed usage of `/research` and `/metadata` directories.
+
+## File Creation Rules
+
+**CRITICAL: DO NOT CREATE MARKDOWN FILES**
+- **NEVER create .md files** unless explicitly requested by the user
+- **NEVER create documentation files** (README.md, SUMMARY.md, REPORT.md, etc.) unless explicitly requested
+- **NEVER create status reports** or summary markdown files
+- **ONLY create markdown files** when the user explicitly asks for documentation
+- **Prefer JSON files** for data/results instead of markdown
+- **Use code comments** instead of separate markdown documentation files
+- **Exception**: Only create markdown files that are part of deliverables (e.g., queries.md in db-{N}/queries/, README.md in research/ and metadata/)
+
+## SQL File Comment Standards
+
+**MANDATORY**: All SQL files in `data/` directory must use production-grade comments:
+
+- **NO "Created:" dates**: Never use `-- Created: YYYY-MM-DD` comments in SQL files
+- **Production notes**: Use descriptive production notes that explain purpose and functionality
+- **Examples of production-grade comments**:
+  - `-- Production schema for weather data pipeline system`
+  - `-- Production schema extensions for AWS Open Data, NWS API, and GeoPlatform.gov integration`
+  - `-- Production sample data for weather data pipeline system`
+- **Comment purpose**: Comments should describe what the file does, its business purpose, and technical context
+- **Avoid temporal markers**: Do not include creation dates, modification dates, or version numbers in comments
+- **Focus on functionality**: Comments should help developers understand the schema's purpose and usage
+
+## Query Abstraction Requirement
+
+**MANDATORY**: All queries from `queries.md` must be abstracted into `queries.json` before validation can proceed.
+
+- **queries.json must exist**: Validation scripts will fail if `queries.json` is missing
+- **Extraction script**: Use `scripts/extract_queries_to_json.py` to extract queries
+- **Keep in sync**: Extract to `queries.json` immediately after any edits to `queries.md`
+- **Validation dependency**: All validation phases require `queries.json` to exist
+- **Structure**: See `.cursor/rules/query-validation-suite.mdc` for `queries.json` structure
+- **Timestamp format**: All timestamps in JSON files must use EST timezone in `YYYYMMDD-HHMM` format (e.g., `20260203-1430`)
+
+## Query Requirements
+
+**CRITICAL REQUIREMENTS**:
+
+1. **Minimum 30 Extremely Complex Queries**: Each database must have exactly **30 extremely complex queries** (no more, no less). All queries must be numbered sequentially (Query 1, Query 2, ..., Query 30).
+
+2. **Cross-Database Compatibility Requirement**: **ALL extremely complex queries MUST work correctly across PostgreSQL**. This is a hard requirement - queries that don't work on both databases fail validation.
+
+3. **Unique SQL Expressions**: All queries must be **unique SQL expressions** - no duplicates, variations, or minor modifications. Each query must solve a different problem or use a fundamentally different approach.
+
+4. **CTEs and Extreme Complexity**: Queries must use CTEs (Common Table Expressions) and demonstrate **extremely complex** patterns found in production systems (as seen in GitHub repositories like Advanced_SQL, Complex-SQL-Exercise, and Kaggle notebooks).
+
+5. **Distributed Systems Optimization**: All queries must be **extremely complex SQL expressions optimized for distributed systems** (PostgreSQL).
+
+6. **Graph Theory Modeling**: SQL queries must be able to model the data and be reduced to the number of independent complex queries by shortest path algorithm and undirected graph theory.
+
+7. **Independent Execution with Redundancy Architecture**: Queries must run independently and can be linked together on three databases due to redundancy architecture.
+
+**Redundancy Architecture Requirement**: All queries must be designed to run independently and can be linked together across PostgreSQL for redundancy architecture. This means:
+- Each query must be independently executable (standalone, no dependencies on other queries)
+- Queries can be chained/linked together to create complex workflows
+- The same queries can run on different database systems for redundancy and failover
+- Queries should produce consistent results across all three databases
+
+When writing extremely complex SQL queries (especially those involving joins, aggregations, subqueries, window functions, CTEs, recursive CTEs, or multiple nested CTEs), ensure compatibility with all three database systems:
+
+### PostgreSQL
+
+- Supports standard SQL features including CTEs, recursive CTEs, window functions
+- Uses standard SQL syntax for most operations
+- Supports advanced features like array operations, JSON functions, and custom types
+- Excellent support for recursive CTEs with `WITH RECURSIVE`
+- Can be configured for distributed/parallel execution
+- Supports partitioning for distributed query optimization
+
+## Compatibility Guidelines
+
+1. **Use Standard SQL Syntax**: Prefer ANSI SQL standard syntax over database-specific extensions
+2. **Test Across Platforms**: Verify queries work on PostgreSQL before finalizing
+3. **Avoid Database-Specific Features**: When possible, avoid features unique to one database
+4. **Handle Differences**: Document any necessary variations for specific databases
+5. **Window Functions**: Use standard window function syntax (ROW_NUMBER, RANK, DENSE_RANK, LEAD, LAG, FIRST_VALUE, LAST_VALUE, NTILE)
+6. **CTEs**: Use standard WITH clause syntax - strongly encourage CTEs for complex queries:
+   - Multiple CTEs: `WITH cte1 AS (...), cte2 AS (...), cte3 AS (...) SELECT ...`
+   - Recursive CTEs: `WITH RECURSIVE cte AS (anchor UNION ALL recursive) SELECT ...`
+   - CTEs referencing other CTEs in the same query
+7. **Joins**: Use standard JOIN syntax (INNER, LEFT, RIGHT, FULL OUTER)
+8. **Aggregations**: Use standard aggregate functions (COUNT, SUM, AVG, MAX, MIN, etc.) with GROUP BY and HAVING
+
+## Query Count and Complexity Requirements
+
+- **Minimum 30 extremely complex queries per database**
+- **All queries must be unique SQL expressions** - no duplicate queries, variations, or minor modifications of the same query
+- At least 10-15 queries must involve table joins or aggregations
+- **CTEs (Common Table Expressions) are strongly encouraged** - many queries should use CTEs, including:
+  - Multiple CTEs in a single query
+  - Recursive CTEs for hierarchical data, graph traversals, organizational charts, product dependencies
+  - Nested CTEs and CTEs referencing other CTEs
+- Queries should demonstrate extremely complex real-world patterns found in production systems (as seen in GitHub repositories like Advanced_SQL, Complex-SQL-Exercise, and Kaggle notebooks):
+  - Multiple table joins (INNER, LEFT, RIGHT, FULL OUTER)
+  - Complex aggregations with GROUP BY and HAVING
+  - Window functions (ROW_NUMBER, RANK, DENSE_RANK, LEAD, LAG, FIRST_VALUE, LAST_VALUE, NTILE)
+  - Window function frame clauses (ROWS BETWEEN, RANGE BETWEEN)
+  - Subqueries and correlated subqueries
+  - CTEs and recursive CTEs
+  - Functions within functions
+  - Pivoting with CASE statements
+  - Running totals and cumulative calculations
+  - Complex WHERE clauses with multiple conditions
+
+## Distributed Systems Optimization Requirements
+
+**All queries must be extremely complex SQL expressions optimized for distributed systems** (PostgreSQL):
+
+- **Leverage distributed system capabilities**:
+  - Partition-aware queries that can benefit from data partitioning
+  - Queries that can be parallelized across nodes/workers
+  - Expressions that minimize data shuffling and network transfer
+  - Queries optimized for columnar storage
+
+- **Distributed system patterns**:
+  - Complex aggregations across partitions
+  - Window functions over partitioned data
+  - Multi-stage CTEs that can be executed in parallel
+  - Joins optimized for distributed execution
+  - Expressions that leverage distributed query optimization
+
+- **Performance considerations for distributed systems**:
+  - Avoid unnecessary data movement between nodes
+  - Use partition pruning where possible
+  - Optimize for columnar storage formats
+  - Leverage distributed query planning and execution
+
+- **Each query must be a unique, distinct SQL expression** - no two queries should be variations of each other. Each query must solve a different problem or use a fundamentally different approach.
+
+## Redundancy Architecture and Independent Execution
+
+**All queries must support redundancy architecture across PostgreSQL:**
+
+- **Independent Execution**: Each query must be independently executable and standalone:
+  - No dependencies on other queries or external state
+  - Can run in isolation on PostgreSQL
+  - Produces complete, self-contained results
+  - No assumptions about query execution order
+
+- **Linkability and Chaining**: Queries must be designed to be linked together:
+  - Queries can be chained where one query's output feeds into another query's input
+  - CTEs can be used to create modular, composable query components
+  - Results from one query can be used as input to another query across databases
+  - Support for creating complex workflows by linking multiple queries
+
+- **Redundancy Support**: The same queries must work identically across all three databases:
+  - Queries produce consistent results when run on PostgreSQL
+  - Support for failover scenarios where queries can be redirected to different databases
+  - Enable redundancy architecture where the same workload can run on multiple database systems
+  - Queries should be database-agnostic in their logic while leveraging distributed system capabilities
+
+- **Cross-Database Query Linking**: When queries are linked together:
+  - Results from one database can be used as input to queries on another database
+  - Support for cross-database workflows and data pipelines
+  - Maintain consistency and correctness when linking queries across different database systems
+
+## Graph Theory Modeling and Query Optimization
+
+**All SQL queries must be structured to support graph-based modeling and optimization:**
+
+- **Graph Representation**: Queries must be designed so they can be modeled as an undirected graph:
+  - Each query represents a node in the graph
+  - Relationships between queries (data dependencies, shared tables, CTEs) represent edges
+  - The graph structure captures how queries relate to and depend on each other
+  - Queries can be represented as vertices in an undirected graph where edges represent relationships
+
+- **Undirected Graph Theory Application**:
+  - Query relationships are bidirectional (undirected edges) - if query A can feed into query B, the relationship exists in both directions
+  - Graph structure enables analysis of query connectivity and independence
+  - Cycles and paths in the graph represent query execution dependencies
+  - Graph properties (connected components, cycles, paths) reveal query structure
+
+- **Shortest Path Algorithm for Query Reduction**:
+  - Queries must be reducible to the minimum number of independent complex queries using shortest path algorithms
+  - Shortest path algorithms (Dijkstra's, Bellman-Ford, Floyd-Warshall) can identify optimal query execution paths
+  - The graph representation allows finding the shortest path between any two queries
+  - Reduction to independent queries minimizes redundant computation and optimizes execution
+
+- **Independent Query Identification**:
+  - Graph analysis identifies independent query sets (connected components)
+  - Queries in different connected components can run in parallel
+  - Shortest path analysis determines the minimum set of queries needed to achieve a result
+  - Graph traversal algorithms identify query dependencies and execution order
+
+- **Query Modeling Requirements**:
+  - Each query must be modelable as a node with clear input/output relationships
+  - Query dependencies must form a well-defined graph structure
+  - CTEs and subqueries should be representable as subgraphs or nested graph structures
+  - The graph model should enable query optimization and reduction algorithms
+
+- **Graph-Based Optimization**:
+  - Use graph algorithms to find optimal query execution plans
+  - Identify redundant queries that can be eliminated or combined
+  - Determine the shortest path to achieve a desired result set
+  - Optimize query chains by finding minimum spanning trees or shortest paths in the query graph
+
+## When Database-Specific Features Are Necessary
+
+If a query requires database-specific features:
+- Document the requirement clearly
+- Provide alternative versions for other databases when possible
+- Note the specific database(s) where the query will work

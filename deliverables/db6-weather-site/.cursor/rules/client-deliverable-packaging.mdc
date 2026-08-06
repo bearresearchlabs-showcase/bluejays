@@ -1,0 +1,207 @@
+---
+description: Client deliverable packaging specification - defines what gets packaged in db-{N}/deliverable/ folder
+alwaysApply: true
+---
+
+# Client Deliverable Packaging
+
+## Deliverable Folder Structure
+
+**CRITICAL**: Each database (db-1 through db-15) must have a `/deliverable` folder that contains all files packaged for client delivery.
+
+### Folder Location
+
+```
+db-{N}/deliverable/
+```
+
+Where `{N}` is the database number (1-15).
+
+## Required Deliverable Contents
+
+The `/deliverable` folder must contain the following files and folders:
+
+### 1. Documentation Files
+
+- **db-{N}.md**: Complete database documentation including:
+  - Database overview and description
+  - Schema documentation with ER diagrams
+  - SQL queries documentation
+  - Usage instructions
+  - Platform compatibility information
+
+- **deliverable.openapi.yaml**: OpenAPI 3.0.3 specification file (machine-readable format)
+  - Generated from DELIVERABLE.md
+  - Includes all schemas, endpoints, and metadata
+  - See `.cursor/rules/deliverable-formatting.mdc` for formatting requirements
+
+### 2. SQL Queries
+
+- **queries/queries.md**: Complete SQL query collection (minimum 30 queries)
+  - Each query must be extremely complex (complexity score ≥ 12.5/13)
+  - Includes natural language descriptions
+  - Cross-database compatible (PostgreSQL)
+  - Fully executable SQL statements
+
+- **queries/queries.json**: JSON representation of queries (optional but recommended)
+  - Structured format for programmatic access
+  - Includes metadata, complexity scores, and query details
+
+### 3. Database Schema and Data
+
+- **data/schema.sql**: Complete database schema definition
+  - CREATE DATABASE statements
+  - CREATE SCHEMA statements
+  - CREATE TABLE statements with all columns, types, constraints
+  - CREATE INDEX statements
+  - Foreign key constraints
+  - Platform-specific extensions (e.g., PostGIS, UUID extensions)
+
+- **data/data.sql**: Sample data or seed data (if applicable)
+  - INSERT statements for test data
+  - Data for validation and testing
+
+- **data/*.dump**: Database dump files (if applicable)
+  - Full database dumps
+  - Schema-only dumps
+
+### 4. Documentation Files
+
+- **docs/README.md**: Database documentation overview
+- **docs/SCHEMA.md**: Detailed schema documentation
+- **docs/DATA_DICTIONARY.md**: Data dictionary with column descriptions
+- **docs/*.ipynb**: Jupyter notebooks for analysis and examples (if applicable)
+
+### 5. Validation Results
+
+- **results/fix_verification.json**: Fix verification results
+- **results/comprehensive_validation_report.json**: Comprehensive validation report
+- **results/execution_test_results.json**: Query execution test results
+- **results/final_comprehensive_validation_report.json**: Final validation summary
+- **results/query_test_results_postgres.json**: Execution test results
+
+**Note**: All result files must use the `"Pass"` key with binary values (1 or 0) and `"notes"` for warnings. See `.cursor/rules/json-status-format.mdc`.
+
+### 6. README File
+
+- **README.md**: Quick start guide and deliverable overview
+  - Brief description
+  - File structure explanation
+  - Quick start instructions
+  - Links to detailed documentation
+
+## Deliverable Folder Structure
+
+```
+db-{N}/deliverable/
+├── README.md                          # Quick start guide
+├── db-{N}.md                           # Complete documentation
+├── deliverable.openapi.yaml           # OpenAPI specification
+├── queries/
+│   ├── queries.md                     # SQL queries (required)
+│   └── queries.json                   # JSON format (optional)
+├── data/
+│   ├── schema.sql                     # Database schema
+│   ├── data.sql                       # Sample data (if applicable)
+│   └── *.dump                         # Database dumps (if applicable)
+├── docs/
+│   ├── README.md                      # Documentation overview
+│   ├── SCHEMA.md                      # Schema documentation
+│   ├── DATA_DICTIONARY.md             # Data dictionary
+│   └── *.ipynb                        # Jupyter notebooks (if applicable)
+└── results/
+    ├── fix_verification.json          # Fix verification
+    ├── comprehensive_validation_report.json
+    ├── execution_test_results.json
+    ├── final_comprehensive_validation_report.json
+    └── query_test_results_postgres.json
+```
+
+## Packaging Rules
+
+### What Gets Included
+
+1. **All client-facing documentation**: db-{N}.md, README.md, docs/
+2. **All SQL queries**: queries/queries.md, queries/queries.json
+3. **All database schemas**: data/schema.sql, data/data.sql
+4. **All validation results**: results/*.json
+5. **OpenAPI specification**: deliverable.openapi.yaml
+
+### What Gets Excluded
+
+1. **Internal scripts**: scripts/ folder (unless specifically requested)
+2. **Research notebooks**: research/ folder (internal use only)
+3. **Metadata files**: metadata/ folder (internal use only)
+4. **Backup files**: *.backup, *.backup2, *.bak files
+5. **Temporary files**: *.tmp, *.log files
+6. **Development files**: test scripts, validation scripts (unless part of deliverable)
+
+## Copying Files to Deliverable Folder
+
+When preparing deliverables:
+
+1. **Copy documentation**:
+   ```bash
+   # db-{N}.md is generated in deliverable/ directory by format.py
+   cp db-{N}/deliverable.openapi.yaml db-{N}/deliverable/
+   cp db-{N}/README.md db-{N}/deliverable/
+   ```
+
+2. **Copy queries**:
+   ```bash
+   mkdir -p db-{N}/deliverable/queries
+   cp db-{N}/queries/queries.md db-{N}/deliverable/queries/
+   cp db-{N}/queries/queries.json db-{N}/deliverable/queries/ 2>/dev/null || true
+   ```
+
+3. **Copy data files**:
+   ```bash
+   mkdir -p db-{N}/deliverable/data
+   cp db-{N}/data/schema.sql db-{N}/deliverable/data/ 2>/dev/null || true
+   cp db-{N}/data/data.sql db-{N}/deliverable/data/ 2>/dev/null || true
+   cp db-{N}/data/*.dump db-{N}/deliverable/data/ 2>/dev/null || true
+   ```
+
+4. **Copy documentation**:
+   ```bash
+   mkdir -p db-{N}/deliverable/docs
+   cp -r db-{N}/docs/* db-{N}/deliverable/docs/ 2>/dev/null || true
+   ```
+
+5. **Copy validation results**:
+   ```bash
+   mkdir -p db-{N}/deliverable/results
+   cp db-{N}/results/*.json db-{N}/deliverable/results/ 2>/dev/null || true
+   ```
+
+## Validation
+
+Before packaging, ensure:
+
+1. ✅ All required files exist in source locations
+2. ✅ db-{N}.md is complete and up-to-date
+3. ✅ deliverable.openapi.yaml is generated and valid
+4. ✅ queries/queries.md contains minimum 30 queries
+5. ✅ All JSON result files use `"Pass"` key format
+6. ✅ No internal/development files are included
+7. ✅ All file paths are relative (no absolute paths)
+
+## Client Delivery
+
+The `/deliverable` folder is the **complete package** for client delivery. It should:
+
+- Be self-contained (all necessary files included)
+- Include clear documentation (README.md, db-{N}.md)
+- Have validation results demonstrating query success
+- Be ready for deployment or integration
+- Follow consistent structure across all databases (db-1 through db-15)
+
+## Related Rules
+
+- `.cursor/rules/deliverable-formatting.mdc`: OpenAPI specification formatting
+- `.cursor/rules/json-status-format.mdc`: JSON status field format
+- `.cursor/rules/query-validation-suite.mdc`: Validation requirements
+- `.cursor/rules/project-requirements.mdc`: Overall project requirements
+
+---
+**Last Updated**: 2026-02-03

@@ -1,0 +1,128 @@
+{
+  "data_sources": {
+    "noaa": {
+      "name": "NOAA Digital Coast - Vessel Traffic Data",
+      "description": "Vessel location and characteristic data from USCG AIS system",
+      "base_url": "https://coast.noaa.gov/digitalcoast/data/vesseltraffic.html",
+      "access_tool": "https://coast.noaa.gov/digitalcoast/tools/ais.html",
+      "data_format": ["CSV", "GeoPackage", "GeoTIFF", "Web Services"],
+      "coverage": "2009-2024",
+      "update_frequency": "Quarterly",
+      "coverage_area": "Coastal areas of contiguous U.S., Alaska, Hawaii, territories",
+      "authentication": "None required for public data",
+      "rate_limit": "None specified",
+      "usage_notes": "Use AccessAIS tool for interactive download by geography and time period"
+    },
+    "uscg_nvmc": {
+      "name": "US Coast Guard National Vessel Movement Center",
+      "description": "Notice of Arrival and Departure (NOAD) data for vessels entering U.S. ports",
+      "base_url": "https://www.nvmc.uscg.gov/",
+      "data_type": "NOAD submissions",
+      "coverage": "Since October 2001",
+      "authentication": "May require registration for data access",
+      "usage_notes": "Primary clearinghouse for vessel arrival/departure information"
+    },
+    "uscg_vivs": {
+      "name": "US Coast Guard Vessel Information Verification Service",
+      "description": "AIS static data including MMSI, call sign, vessel name, dimensions",
+      "base_url": "https://navcen.uscg.gov/ais-vivs-home",
+      "data_type": "AIS static data",
+      "coverage_area": "NAIS coverage area",
+      "authentication": "Public access available",
+      "usage_notes": "Retrieve vessel broadcasted AIS static data"
+    },
+    "uscg_ais": {
+      "name": "US Coast Guard AIS Data Sharing",
+      "description": "AIS vessel tracking data at different access levels",
+      "data_levels": {
+        "level_a": {
+          "description": "Unfiltered real-time data (<96 hours old)",
+          "access": "Government agencies only",
+          "format": "NMEA version 4"
+        },
+        "level_b": {
+          "description": "Filtered real-time data",
+          "access": "Government agencies, validated port partners, certain NGOs",
+          "requirements": "Data Feed Request Form and Interconnection Security Agreement"
+        },
+        "level_c": {
+          "description": "Historical data (>96 hours old)",
+          "access": "Public via FOIA requests"
+        }
+      },
+      "usage_notes": "Real-time feeds require ISA with Coast Guard"
+    },
+    "marad": {
+      "name": "Maritime Administration (MARAD)",
+      "description": "U.S. flag fleet data, port statistics, and maritime transportation statistics",
+      "base_url": "https://www.maritime.dot.gov/data-reports",
+      "fleet_dashboard": "https://www.maritime.dot.gov/data-reports/us-flag-fleet-dashboard",
+      "port_data": "https://www.maritime.dot.gov/data-reports/ports",
+      "contact_email": "data.marad@dot.gov",
+      "data_types": [
+        "U.S.-Flag Fleet Lists",
+        "Port Statistics",
+        "Cargo Volumes",
+        "Vessel Calls",
+        "Berth Productivity",
+        "Waterborne Commerce Statistics"
+      ],
+      "update_frequency": "Varies by dataset",
+      "authentication": "Public access",
+      "usage_notes": "Comprehensive maritime transportation statistics and fleet data"
+    },
+    "data_gov": {
+      "name": "Data.gov Maritime Datasets",
+      "description": "Federal maritime shipping datasets including vessel schedules and AIS data",
+      "base_url": "https://catalog.data.gov",
+      "api_endpoint": "https://catalog.data.gov/api/3/action",
+      "datasets": {
+        "virginia_port_schedules": {
+          "name": "Virginia International Gateway Vessel Schedules",
+          "url": "https://data.virginia.gov/dataset/virginia-international-gateway-vig-vessel-schedules-the-port-of-virginia",
+          "format": "Excel",
+          "update_frequency": "Ad hoc",
+          "description": "Vessel schedule information for ships berthing at Virginia ports"
+        },
+        "port_grain_activity": {
+          "name": "Port Region Grain Ocean Vessel Activity",
+          "publisher": "USDA Agricultural Marketing Service",
+          "format": "Weekly data",
+          "update_frequency": "Weekly",
+          "description": "Weekly data on ocean vessels in port regions"
+        },
+        "ais_vessel_tracks": {
+          "name": "AIS Vessel Tracks",
+          "publisher": "Commerce Data Hub",
+          "format": "CSV",
+          "description": "Location and characteristic sequences for commercial and recreational vessels"
+        }
+      },
+      "authentication": "None required for public datasets",
+      "api_key": "Not required for catalog search",
+      "usage_notes": "Use CKAN API for programmatic access to dataset metadata"
+    }
+  },
+  "coordinate_systems": {
+    "wgs84": {
+      "epsg": "4326",
+      "description": "WGS84 Geographic Coordinate System",
+      "usage": "Standard for maritime coordinates (latitude/longitude)"
+    }
+  },
+  "data_formats": {
+    "csv": "Comma-separated values for tabular data",
+    "geopackage": "GeoPackage format for geospatial data",
+    "geotiff": "GeoTIFF raster format",
+    "geojson": "GeoJSON for vector geospatial data",
+    "nmea": "NMEA format for AIS data (version 4)"
+  },
+  "last_updated": "2026-02-04",
+  "notes": [
+    "NOAA AccessAIS provides interactive download tool for vessel traffic data",
+    "USCG AIS data requires proper authentication for real-time feeds",
+    "MARAD provides comprehensive U.S. flag fleet and port statistics",
+    "Data.gov CKAN API enables programmatic dataset discovery",
+    "All coordinates should use WGS84 (EPSG:4326) for consistency"
+  ]
+}
