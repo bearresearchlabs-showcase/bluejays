@@ -2,7 +2,7 @@
 
 **Betty Tai** · 1 Digital Design · 2026
 
-*Repository: `bluejays-benchmark` (formerly `db`; descriptive alias: enterprise-db-benchmark) · Version 1.0 · 2026-08-06*
+*Repository: [github.com/bearresearchlabs-showcase/bluejays](https://github.com/bearresearchlabs-showcase/bluejays) (formerly `1digitaldesign-archive/db`; working names: `enterprise-db-benchmark`, `bluejays-benchmark`) · Version 1.0 · 2026-08-06*
 
 ---
 
@@ -132,7 +132,8 @@ Bring-up: `client/scripts/setup_docker.sh -a` (full) or `--schema-only` (quick t
   author = {Tai, Betty},
   institution = {1 Digital Design},
   year   = {2026},
-  note   = {Version 1.0. Formerly the `db' engagement corpus.}
+  note   = {Version 1.0. github.com/bearresearchlabs-showcase/bluejays;
+            formerly the `db' engagement corpus.}
 }
 ```
 
