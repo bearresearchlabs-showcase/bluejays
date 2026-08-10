@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<title>BLUEJAYS Design System — Showcase</title>
+<link rel="stylesheet" href="bluejays.css">
+<style>
+  /* showcase-only chrome */
+  .sw-swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:var(--space-3); }
+  .sw-swatch { border:1px solid var(--surface-line); border-radius:var(--radius-md); overflow:hidden; font-size:var(--text-xs); }
+  .sw-swatch .chip { height:52px; }
+  .sw-swatch .meta { padding:6px 8px; font-family:var(--font-mono); color:var(--text-muted); background:var(--surface-soft); }
+  .sw-toggle { position:fixed; top:12px; right:12px; }
+  .sw-type div { border-bottom:1px dashed var(--surface-line); padding:6px 0; }
+</style>
+</head>
+<body class="bj">
+
+<button class="bj-btn sw-toggle" onclick="
+  const r=document.documentElement;
+  r.dataset.theme = r.dataset.theme==='dark' ? 'light' : 'dark';
+  this.textContent = r.dataset.theme==='dark' ? '☀ Light' : '☾ Dark';">☾ Dark</button>
+
+<header class="bj-hero">
+  <div class="wrap">
+    <div class="bj-wordmark">BLUE<span class="accent">JAYS</span></div>
+    <div class="bj-tagline">Design System — Living Showcase</div>
+    <div class="bj-byline">Every class on this page comes from <code>bluejays.css</code>, generated from <code>tokens.json</code>. Toggle the theme (top right) — both palettes are token-driven.</div>
+    <div style="margin-top:var(--space-4); display:flex; gap:10px; justify-content:center;">
+      <a class="bj-btn primary" href="#">Primary action</a>
+      <a class="bj-btn" href="#">Secondary action</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="bj-section">
+  <h2 class="bj-h2">Color tokens</h2>
+  <div class="sw-swatches">
+    <div class="sw-swatch"><div class="chip" style="background:var(--brand-jay)"></div><div class="meta">--brand-jay</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--brand-jay-strong)"></div><div class="meta">--brand-jay-strong</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--brand-jay-tint)"></div><div class="meta">--brand-jay-tint</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--surface-bg)"></div><div class="meta">--surface-bg</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--surface-soft)"></div><div class="meta">--surface-soft</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--surface-line)"></div><div class="meta">--surface-line</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--text-ink)"></div><div class="meta">--text-ink</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--text-muted)"></div><div class="meta">--text-muted</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--status-ok)"></div><div class="meta">--status-ok</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--status-warn)"></div><div class="meta">--status-warn</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--status-bad)"></div><div class="meta">--status-bad</div></div>
+    <div class="sw-swatch"><div class="chip" style="background:var(--status-note)"></div><div class="meta">--status-note</div></div>
+  </div>
+</section>
+
+<section class="bj-section">
+  <h2 class="bj-h2">Type scale</h2>
+  <div class="sw-type">
+    <div style="font-size:var(--text-3xl); font-weight:800;">3xl — Wordmark</div>
+    <div style="font-size:var(--text-2xl); font-weight:700;">2xl — Page title</div>
+    <div style="font-size:var(--text-xl); font-weight:600;">xl — Section heading</div>
+    <div style="font-size:var(--text-lg);">lg — Tagline</div>
+    <div style="font-size:var(--text-base);">base — Body prose set in the serif-leaning stack</div>
+    <div style="font-size:var(--text-sm);">sm — Cards, tables, buttons</div>
+    <div style="font-size:var(--text-xs); font-family:var(--font-mono);">xs mono — code, badges, stat labels</div>
+  </div>
+</section>
+
+<section class="bj-section">
+  <h2 class="bj-h2">Stat tiles</h2>
+  <div class="bj-stats">
+    <div class="bj-stat"><b>16</b><span>environments</span></div>
+    <div class="bj-stat"><b>480</b><span>gold episodes</span></div>
+    <div class="bj-stat"><b>288/480</b><span>executed baseline</span></div>
+    <div class="bj-stat"><b>196</b><span>tables</span></div>
+  </div>
+</section>
+
+<section class="bj-section">
+  <h2 class="bj-h2">Badges &amp; status cards</h2>
+  <p>
+    <span class="bj-badge ok">VERIFIED</span>
+    <span class="bj-badge warn">VACUOUS PASS</span>
+    <span class="bj-badge bad">DEFECT</span>
+    <span class="bj-badge note">ROADMAP</span>
+  </p>
+  <div class="bj-cols" style="margin-top:var(--space-3);">
+    <div class="bj-card ok"><b>Verified today.</b> Nine environments perfect at 30/30 on the executed baseline.</div>
+    <div class="bj-card warn"><b>Environment-blocked.</b> Six environments require PostGIS in the harness.</div>
+    <div class="bj-card bad"><b>Open defect.</b> VARCHAR(16777216) residue blocks db-8 on vanilla PostgreSQL.</div>
+    <div class="bj-card note"><b>Forward-looking.</b> Multi-step episodes via the query graph.</div>
+  </div>
+</section>
+
+<section class="bj-section">
+  <h2 class="bj-h2">Table</h2>
+  <div class="bj-scroll">
+    <table class="bj-table">
+      <tr><th>Benchmark</th><th>Year</th><th>Metric</th><th>Contamination</th></tr>
+      <tr><td>Spider 1.0</td><td>2018</td><td>Exact match</td><td>Public</td></tr>
+      <tr><td>BIRD</td><td>2023</td><td>Execution accuracy</td><td>Public</td></tr>
+      <tr class="hl"><td><b>BLUEJAYS</b></td><td>2026</td><td>EX, materialized</td><td><b>Private by rule</b></td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="bj-section">
+  <h2 class="bj-h2">Formalism figures</h2>
+  <div class="bj-tuple">
+    <div class="tile"><div class="letter">S</div><div class="name">State</div>DB instance + task</div>
+    <div class="tile"><div class="letter">A</div><div class="name">Action</div>Executable SQL</div>
+    <div class="tile"><div class="letter">P</div><div class="name">Transition</div>Execute → observe</div>
+    <div class="tile"><div class="letter">R</div><div class="name">Reward</div>Result match (EX)</div>
+    <div class="tile"><div class="letter">γ</div><div class="name">Discount</div>Multi-step horizons</div>
+  </div>
+  <div class="bj-pipeline">
+    <div class="step"><b>1 · Prompt</b>question + schema + evidence</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>2 · Gold</b>SQL</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>3 · Reward</b>execution match</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>4 · Curriculum</b>difficulty + category</div>
+  </div>
+</section>
+
+<section class="bj-section">
+  <h2 class="bj-h2">Prose furniture</h2>
+  <p class="bj-quote">The blue jay is a corvid — the bird family that collects, caches, and remembers the provenance of everything it stores.</p>
+  <ul class="bj-news">
+    <li><span class="date">2026-08-06</span>Design system v1.0 — tokens, components, showcase.</li>
+    <li><span class="date">2026-08-05</span>Executed baseline published.</li>
+  </ul>
+  <pre><code>SELECT episode FROM bluejays WHERE reward = 'materialized';</code></pre>
+</section>
+
+</div>
+
+<footer style="padding:var(--space-5) 0 var(--space-7); color:var(--text-muted); font-size:var(--text-xs); text-align:center;">
+  BLUEJAYS Design System v1.0 · <code>design/tokens.json</code> → <code>build_tokens.py</code> → <code>bluejays.css</code>
+</footer>
+
+</body>
+</html>
